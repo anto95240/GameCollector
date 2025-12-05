@@ -1,0 +1,233 @@
+{
+  "translation": {
+    "common": {
+      "back": "Retour",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "add": "Ajouter",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "confirmDelete": "Confirmer la suppression",
+      "confirmDeleteMessage": "Êtes-vous sûr de vouloir continuer ?",
+      "yesDelete": "Supprimer définitivement",
+      "noImage": "Aucune image",
+      "favorite": "Favoris"
+    },
+
+    "loading": {
+      "title": "Game Collector",
+      "message": "Chargement de votre collection..."
+    },
+
+    "auth": {
+      "login": {
+        "title": "Connexion",
+        "usernameOrEmail": "Nom d’utilisateur ou Email",
+        "password": "Mot de passe",
+        "showPassword": "Afficher le mot de passe",
+        "submit": "Se connecter",
+        "newUser": "Nouveau ici ?",
+        "newUserLink": "Créer un compte"
+      },
+
+      "register": {
+        "title": "Inscription",
+        "firstName": "Prénom",
+        "name": "Nom",
+        "username": "Nom d’utilisateur",
+        "email": "Email",
+        "password": "Mot de passe",
+        "confirmPassword": "Confirmer le mot de passe",
+        "alreadyUser": "Vous avez déjà un compte ?",
+        "alreadyUserLink": "Se connecter",
+        "back": "Retour",
+        "next": "Continuer",
+        "submit": "S'inscrire"
+      },
+
+      "logout": {
+        "title": "Déconnexion",
+        "bye": "À bientôt",
+        "thanks": "Merci d'avoir utilisé Game Collector. Vous êtes maintenant déconnecté.",
+        "returnLogin": "Retour à la connexion"
+      }
+    },
+
+    "profile": {
+      "links": {
+        "details": "Détail du profil",
+        "authMethod": "Méthode de connexion",
+        "deleteAccount": "Supprimer le compte"
+      },
+
+      "labels": {
+        "firstName": "Prénom :",
+        "name": "Nom :",
+        "username": "Nom d'utilisateur :",
+        "email": "Email :",
+        "password": "Mot de passe :",
+        "profilePicture": "Télécharger une photo"
+      },
+
+      "edit": {
+        "changeEmail": "Changer l'email",
+        "newEmail": "Nouvel email",
+        "changePassword": "Réinitialiser le mot de passe",
+        "newPassword": "Nouveau mot de passe",
+        "confirmPassword": "Confirmation du mot de passe"
+      },
+
+      "delete": {
+        "warning1": "Veuillez noter que la suppression de votre compte est une action définitive et",
+        "warning2": "ne sera pas récupérable une fois effectuée.",
+        "button": "Supprimer",
+        "popupTitle": "Confirmer la suppression",
+        "popupMessage": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+        "confirmDelete": "Supprimer définitivement"
+      }
+    },
+
+    "categories": {
+      "titleStatus": "Statut",
+      "titleGenre": "Genre",
+      "titlePlatform": "Plateforme",
+      "titleTag": "Tag",
+
+      "add": "Ajouter",
+      "addTitle": "Ajouter des ",
+      "edit": "Enregistrer",
+      "editTitle": "Modifier des ",
+
+      "fields": {
+        "name": "Nom :",
+        "order": "Ordre :",
+        "brand": "Constructeur :",
+        "color": "Couleur :"
+      }
+    },
+
+    "navbar": {
+      "altUsername": "Nom d’utilisateur",
+      "altProfile": "Photo de profil",
+      "dashboard": "Dashboard",
+      "list": "Liste des jeux",
+      "categories": "Catégories",
+      "statistics": "Statistiques",
+      "online": "En ligne",
+      "welcome": "Bonjour, ",
+      "profile": "Voir mon profil",
+      "logout": "Se déconnecter"
+    },
+
+    "dashboard": {
+      "title": "Game Collector",
+      "totalGame": "Total jeux",
+      "favorite": "Favoris",
+      "platform": "Plateforme",
+      "genre": "Genre",
+      "recentlyAdded": "Ajoutés récemment"
+    },
+
+    "gameList": {
+      "searchPlaceholder": "Rechercher un jeu...",
+      "addGame": "Ajouter un jeu",
+
+      "filters": {
+        "title": "Filtre",
+        "genre": "Genre",
+        "platform": "Plateforme",
+        "status": "Statut",
+        "year": "Année de sortie",
+        "rating": "Notation",
+        "favorite": "Favoris",
+        "soon": "Prochainement"
+      },
+
+      "actions": {
+        "edit": "Modifier",
+        "delete": "Supprimer"
+      },
+
+      "confirmDelete": {
+        "title": "Confirmer la suppression",
+        "message": "Êtes-vous sûr de vouloir supprimer ce jeu de votre collection ?",
+        "confirm": "Supprimer définitivement",
+        "cancel": "Annuler"
+      }
+    },
+
+    "gameDetail": {
+      "edit": "Modifier",
+      "delete": "Supprimer",
+
+      "labels": {
+        "genre": "Genre :",
+        "platform": "Plateforme :",
+        "releaseYear": "Année de sortie :",
+        "brand": "Constructeur :",
+        "description": "Description :",
+        "favorite": "Favoris :",
+        "comment": "Commentaire :"
+      },
+
+      "recentlySeen": "Récemment consultés",
+      "addedToCollection": "Ajouté le : ",
+      "back": "Retour"
+    },
+
+    "gameForm": {
+      "addTitle": "Ajouter un jeu",
+      "editTitle": "Modifier un jeu",
+
+      "sections": {
+        "description": "Description du jeu",
+        "rating": "Notation du jeu",
+        "details": "Détails du jeu",
+        "image": "Image du jeu",
+        "status": "Statut du jeu",
+        "tags": "Tag du jeu"
+      },
+
+      "fields": {
+        "name": "Nom",
+        "description": "Description",
+        "rating": "Notation",
+        "comment": "Commentaire",
+        "genre": "Genre",
+        "platform": "Plateforme",
+        "releaseYear": "Année de sortie",
+        "status": "Statut",
+        "tags": "Tag"
+      },
+
+      "buttons": {
+        "save": "Enregistrer",
+        "add": "Ajouter",
+        "cancel": "Annuler"
+      }
+    },
+
+    "statistics": {
+      "totalGame": "Total jeux",
+      "favorite": "Favoris",
+      "platform": "Plateforme",
+      "genre": "Genre",
+
+      "barChart": {
+        "gamesByYear": "Nombre de jeux par année de sortie",
+        "gamesByTag": "Nombre de jeux par tag"
+      },
+
+      "doughnut": {
+        "platform": "Nombre de plateformes",
+        "genre": "Nombre de genres",
+        "rating": "Nombre de notations",
+        "status": "Nombre de statuts"
+      },
+
+      "other": "Autres",
+      "selectCategory": "Sélection des catégories",
+      "noCategory": "Aucune catégorie sélectionnée"
+    }
+  }
+}

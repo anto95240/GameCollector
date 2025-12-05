@@ -1,0 +1,233 @@
+{
+  "translation": {
+    "common": {
+      "back": "Back",
+      "cancel": "Cancel",
+      "save": "Save",
+      "add": "Add",
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirmDelete": "Confirm deletion",
+      "confirmDeleteMessage": "Are you sure you want to continue?",
+      "yesDelete": "Delete permanently",
+      "noImage": "No image",
+      "favorite": "Favorite"
+    },
+
+    "loading": {
+      "title": "Game Collector",
+      "message": "Loading your collection..."
+    },
+
+    "auth": {
+      "login": {
+        "title": "Login",
+        "usernameOrEmail": "Username or Email",
+        "password": "Password",
+        "showPassword": "Show password",
+        "submit": "Login",
+        "newUser": "New here?",
+        "newUserLink": "Create an account"
+      },
+
+      "register": {
+        "title": "Register",
+        "firstName": "First Name",
+        "name": "Last Name",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "alreadyUser": "Already have an account?",
+        "alreadyUserLink": "Login",
+        "back": "Back",
+        "next": "Next",
+        "submit": "Sign Up"
+      },
+
+      "logout": {
+        "title": "Logout",
+        "bye": "See you soon",
+        "thanks": "Thanks for using Game Collector. You are now logged out.",
+        "returnLogin": "Return to login"
+      }
+    },
+
+    "profile": {
+      "links": {
+        "details": "Profile Details",
+        "authMethod": "Login Method",
+        "deleteAccount": "Delete Account"
+      },
+
+      "labels": {
+        "firstName": "First Name:",
+        "name": "Last Name:",
+        "username": "Username:",
+        "email": "Email:",
+        "password": "Password:",
+        "profilePicture": "Upload a picture"
+      },
+
+      "edit": {
+        "changeEmail": "Change Email",
+        "newEmail": "New Email",
+        "changePassword": "Reset Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm Password"
+      },
+
+      "delete": {
+        "warning1": "Please note that deleting your account is a permanent action and",
+        "warning2": "cannot be recovered once completed.",
+        "button": "Delete",
+        "popupTitle": "Confirm Deletion",
+        "popupMessage": "Are you sure you want to delete your account?",
+        "confirmDelete": "Delete permanently"
+      }
+    },
+
+    "categories": {
+      "titleStatus": "Status",
+      "titleGenre": "Genre",
+      "titlePlatform": "Platform",
+      "titleTag": "Tag",
+
+      "add": "Add",
+      "addTitle": "Add ",
+      "edit": "Save",
+      "editTitle": "Edit ",
+
+      "fields": {
+        "name": "Name:",
+        "order": "Order:",
+        "brand": "Brand:",
+        "color": "Color:"
+      }
+    },
+
+    "navbar": {
+      "altUsername": "Username",
+      "altProfile": "Profile Picture",
+      "dashboard": "Dashboard",
+      "list": "Game List",
+      "categories": "Categories",
+      "statistics": "Statistics",
+      "online": "Online",
+      "welcome": "Hello, ",
+      "profile": "View Profile",
+      "logout": "Logout"
+    },
+
+    "dashboard": {
+      "title": "Game Collector",
+      "totalGame": "Total Games",
+      "favorite": "Favorites",
+      "platform": "Platform",
+      "genre": "Genre",
+      "recentlyAdded": "Recently Added"
+    },
+
+    "gameList": {
+      "searchPlaceholder": "Search for a game...",
+      "addGame": "Add a game",
+
+      "filters": {
+        "title": "Filter",
+        "genre": "Genre",
+        "platform": "Platform",
+        "status": "Status",
+        "year": "Release Year",
+        "rating": "Rating",
+        "favorite": "Favorite",
+        "soon": "Coming Soon"
+      },
+
+      "actions": {
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+
+      "confirmDelete": {
+        "title": "Confirm Deletion",
+        "message": "Are you sure you want to remove this game from your collection?",
+        "confirm": "Delete Permanently",
+        "cancel": "Cancel"
+      }
+    },
+
+    "gameDetail": {
+      "edit": "Edit",
+      "delete": "Delete",
+
+      "labels": {
+        "genre": "Genre:",
+        "platform": "Platform:",
+        "releaseYear": "Release Year:",
+        "brand": "Brand:",
+        "description": "Description:",
+        "favorite": "Favorite:",
+        "comment": "Comment:"
+      },
+
+      "recentlySeen": "Recently Viewed",
+      "addedToCollection": "Added on: ",
+      "back": "Back"
+    },
+
+    "gameForm": {
+      "addTitle": "Add Game",
+      "editTitle": "Edit Game",
+
+      "sections": {
+        "description": "Game Description",
+        "rating": "Game Rating",
+        "details": "Game Details",
+        "image": "Game Image",
+        "status": "Game Status",
+        "tags": "Game Tags"
+      },
+
+      "fields": {
+        "name": "Name",
+        "description": "Description",
+        "rating": "Rating",
+        "comment": "Comment",
+        "genre": "Genre",
+        "platform": "Platform",
+        "releaseYear": "Release Year",
+        "status": "Status",
+        "tags": "Tags"
+      },
+
+      "buttons": {
+        "save": "Save",
+        "add": "Add",
+        "cancel": "Cancel"
+      }
+    },
+
+    "statistics": {
+      "totalGame": "Total Games",
+      "favorite": "Favorites",
+      "platform": "Platform",
+      "genre": "Genre",
+
+      "barChart": {
+        "gamesByYear": "Games by Release Year",
+        "gamesByTag": "Games by Tag"
+      },
+
+      "doughnut": {
+        "platform": "Number of Platforms",
+        "genre": "Number of Genres",
+        "rating": "Number of Ratings",
+        "status": "Number of Statuses"
+      },
+
+      "other": "Other",
+      "selectCategory": "Select Categories",
+      "noCategory": "No category selected"
+    }
+  }
+}

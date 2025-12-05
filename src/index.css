@@ -1,0 +1,110 @@
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+
+  --font-family-title: 'Montserrat Alternates', sans-serif;
+  --font-family-text: 'Lato', sans-serif;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root{
+  /* Base */
+  --color-bg-btn: #001128;
+  --color-text: #5AF2FF;
+
+  /* Bordure */
+  --color-border: #0068AC;
+  --color-border-separator: #CBD5E1;
+
+  /* Textes */
+  --text-title: var(--color-text);
+  --text-default: var(--color-accent);
+  --text-search: #64748B;
+
+  /* Shadows */
+  --shadow-main: 0 0 10px rgba(255,255,255,0.3);
+  --shadow-secondary: 0 0 7px rgba(255,255,255,0.15);
+  --shadow-navbar: 0 4px 16px rgba(255,255,255,0.25);
+
+  /* Dégradés */
+  --gradient-card-secondary: linear-gradient(47deg, #002759 0%, #001A44 80%);
+  --gradient-card-main-input: linear-gradient(47deg, #00204F 0%, #001D48 80%);
+  --gradient-blue: linear-gradient(47deg, #077BEF 0%, #0646D4 60%);
+  --gradient-account: linear-gradient(47deg, #1C79C6 0%, #0A3174 60%);
+  --gradient-success: linear-gradient(47deg, #4AAC4E 0%, #2E7D32 60%);
+  --gradient-deconnexion: linear-gradient(90deg, #EF4444 0%, #B91C1C 50%, #EF4444 100%);
+  --gradient-delete: linear-gradient(47deg, #EF4444 0%, #B91C1C 60%);
+
+  /* Tags */
+  --tag-gray: #6C6C6C;
+  --tag-owned-bg: #21342C;
+  --tag-owned-border: #6AD09D;
+  --tag-owned-text: #6AD09D;
+
+  --tag-status-bg: #3B3B3B;
+  --tag-status-border: #A8A8A8;
+  --tag-status-text: #A8A8A8;
+
+  /* Other*/
+  --color-orange: #E9A23B;
+  --color-text-btn: #001128
+  --color-text-link: #36CDFA;
+}
+
+/* ===========================
+   THEME LIGHT
+   =========================== */
+[data-theme="light"] {
+   /* Base */
+  --color-bg-btn: #F5F9FF;
+  --color-text: #0068AC;
+
+  /* Bordure */
+  --color-border: #0068AC;
+  --color-border-separator: #CBD5E1;
+
+  /* Textes */
+  --text-title: var(--color-text);
+  --text-default: var(--color-text);
+  --text-search: #7A8CA5;
+
+  /* Shadows */
+  --shadow-main: 0 0 10px rgba(0,0,0,0,0.2);
+  --shadow-secondary: 0 0 7px rgba(0,0,0,0,0.1);
+  --shadow-navbar: 0 4px 16px rgba(0,0,0,0,0.2);
+
+  /* Dégradés */
+  --gradient-card-secondary: linear-gradient(47deg, #D8ECFF 0%, #BFD9F5 80%);
+  --gradient-card-main-input: linear-gradient(47deg, #E6F2FF 0%, #D3E6F8 80%);
+  --gradient-blue: linear-gradient(47deg, #2C8FFF 0%, #0E55CE 60%);
+  --gradient-account: linear-gradient(47deg, #5BB3FF 0%, #1C63C4 60%);
+  --gradient-success: linear-gradient(47deg, #6EDB6E 0%, #368F3D 60%);
+  --gradient-deconnexion: linear-gradient(90deg, #FF6A6A 0%, #D23535 50%, #FF6A6A 100%);
+  --gradient-delete: linear-gradient(47deg, #FF6A6A 0%, #D23535 60%);
+
+  /* Tags */
+  --tag-gray: #D0D0D0;
+  --tag-owned-bg: #DDF4E7;
+  --tag-owned-border: #4ECB97;
+  --tag-owned-text: #197A54;
+
+  --tag-status-bg: #E3E3E3;
+  --tag-status-border: #A2A2A2;
+  --tag-status-text: #595959;
+
+  /* Other*/
+  --color-orange: #C47A00;
+  --color-text-btn: #001128;
+  --color-text-link: #0087D1;
+}
+
+
+body {
+  font-family: var(--font-family-text);
+  margin: 0;
+  background-color: var(--color-bg-btn); 
+}
