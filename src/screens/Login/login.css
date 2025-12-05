@@ -1,0 +1,197 @@
+.login-section-wrapper {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.login-form-container {
+  width: 90%;
+  max-width: 500px;
+  background: var(--gradient-card-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-main);
+  padding: clamp(20px, 5vw, 30px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.form-title {
+  font-family: var(--font-family-title);
+  font-size: clamp(20px, 4vw, 40px);
+  font-weight: bold;
+  /* color: var(--color-text); */
+  line-height: 25px;
+  text-align: center;
+  margin: 0 0 40px 0;
+  width: 100%;
+  text-transform: uppercase;
+  /* box-shadow: var(--shadow-auth); */
+}
+
+.login-form-container h2{
+    
+  /* background-color: gold; */
+}
+
+/* .login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: var(--gradient-card-main-input);
+} */
+
+/* .form-group {
+  width: 100%;
+  margin-bottom: clamp(20px, 5vw, 26px);
+} */
+
+/* .form-group.password-group {
+  position: relative;
+  margin-bottom: 33px;
+} */
+
+/* .form-input {
+  font-size: clamp(13px, 3vw, 14px);
+  font-weight: 400;
+  color: var(--gradient-card-main-input);
+  line-height: 17px;
+  width: 100%;
+  padding: 8px 0;
+  border: none;
+  border-bottom: 1px solid var(--color-input-text);
+  background: var(--gradient-card-main-input);
+} */
+
+/* .form-input::placeholder {
+  color: var(--color-text);
+  opacity: 0.7;
+} */
+
+/* .floating-label {
+  position: relative;
+} */
+
+/* .floating-label .form-input {
+  padding: 12px 0 6px 0;
+  font-size: clamp(13px, 3vw, 14px);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--color-input-text);
+  width: 100%;
+} */
+
+/* .floating-label label {
+  position: absolute;
+  left: 0;
+  top: 12px;
+  color: var(--color-input-text);
+  font-size: clamp(12px, 3vw, 14px);
+  pointer-events: none;
+  transition: 0.2s ease all;
+} */
+
+/* .floating-label input{
+  font-family: var(--font-family-text);
+} */
+
+/* .floating-label .form-input:focus {
+  outline: none;
+  border-bottom: 1px solid var(--color-text);
+} */
+
+/* .floating-label .form-input:focus + label,
+.floating-label .form-input:not(:placeholder-shown) + label {
+  top: -10px;
+  font-size: clamp(10px, 2vw, 12px);
+  color: var(--color-text);
+  background-color: var(--color-bg-card-page-active);
+  padding: 0 2px;
+} */
+
+.submit-button {
+  font-family: var(--font-family-title);
+  font-weight: 400;
+  color: var(--color-text);
+  text-align: center;
+  background: var(--gradient-blue);
+  border-radius: 30px;
+  font-size: clamp(13px, 3vw, 14px);
+  width: clamp(160px, 50vw, 200px);
+  height: clamp(30px, 5vw, 32px);
+  border: none;
+  cursor: pointer;
+  align-self: center;
+  margin-bottom: 30px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-account {
+  font-size: clamp(11px, 3vw, 12px);
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: clamp(12px, 3vw, 13px);
+  text-align: center;
+  margin: 0;
+}
+
+.create-account-link {
+  /* font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit; */
+  color: var(--color-text-link);
+  text-decoration: none;
+}
+
+/* MOT DE PASSE & BOUTON ŒIL */
+
+.password-wrapper {
+  position: relative;
+}
+
+.eye-button {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+  background-color: var(--color-bg-card-page-active);
+  padding: 0;
+  box-shadow: none;
+  width: 50px;
+}
+
+/* MEDIA QUERY POUR LES PETITS ÉCRANS */
+
+/* @media (max-width: 600px) {
+  .login-form-container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .submit-button {
+    width: 80%;
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .eye-button {
+    width: 40px;
+    right: 5px;
+  }
+} */

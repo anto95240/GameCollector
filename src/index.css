@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   line-height: 1.5;
   font-weight: 400;
@@ -26,6 +28,7 @@
   --text-search: #64748B;
 
   /* Shadows */
+  --shadow-auth: 0 0 20px rgba(255,255,255,0.6);
   --shadow-main: 0 0 10px rgba(255,255,255,0.3);
   --shadow-secondary: 0 0 7px rgba(255,255,255,0.15);
   --shadow-navbar: 0 4px 16px rgba(255,255,255,0.25);
@@ -51,7 +54,7 @@
 
   /* Other*/
   --color-orange: #E9A23B;
-  --color-text-btn: #001128
+  --color-text-btn: #001128;
   --color-text-link: #36CDFA;
 }
 
@@ -73,6 +76,7 @@
   --text-search: #7A8CA5;
 
   /* Shadows */
+  --shadow-auth: 0 0 20px rgba(0, 0, 0, 0.6);
   --shadow-main: 0 0 10px rgba(0,0,0,0,0.2);
   --shadow-secondary: 0 0 7px rgba(0,0,0,0,0.1);
   --shadow-navbar: 0 4px 16px rgba(0,0,0,0,0.2);
@@ -107,4 +111,5 @@ body {
   font-family: var(--font-family-text);
   margin: 0;
   background-color: var(--color-bg-btn); 
+  color: var(--color-text);
 }

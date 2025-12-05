@@ -27,7 +27,8 @@
         "showPassword": "Show password",
         "submit": "Login",
         "newUser": "New here?",
-        "newUserLink": "Create an account"
+        "newUserLink": "Create an account",
+        "arialLabelPassword": "Button to show or hide the password"
       },
 
       "register": {
@@ -42,7 +43,8 @@
         "alreadyUserLink": "Login",
         "back": "Back",
         "next": "Next",
-        "submit": "Sign Up"
+        "submit": "Sign Up",
+        "arialLabelPassword":"Button to show or hide the password"
       },
 
       "logout": {
