@@ -1,5 +1,13 @@
-# Logs
-logs
+# === Général ===
+node_modules/
+.env
+.env.local
+.DS_Store
+dist/
+dist-ssr/
+.vite/
+uploads/
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,18 +15,22 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# === Cache et builds ===
+.eslintcache
+tsconfig.tsbuildinfo
+coverage/
 
-# Editor directories and files
-.vscode/*
+# === Dossiers éditeurs ===
+.vscode/
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# === Fichiers temporaires ===
+*.tmp
+*.bak
+*.old

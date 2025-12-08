@@ -1,3 +1,4 @@
+// App.jsx
 import {
   RouterProvider,
 } from "react-router";
@@ -9,7 +10,10 @@ import router from "./config/router";
 function App() {
 
   return (
+    <div id="app-container">
       <RouterProvider router={router} />
+    </div>
+      
   )
 }
 

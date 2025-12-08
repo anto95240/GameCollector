@@ -1,5 +1,7 @@
 import { useNavigate, Link } from "react-router";
 import { useState } from "react";
+// import { useState, useEffect } from "react";
+// import axios from "axios"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "./login.css"
@@ -16,63 +18,80 @@ const LoginPage = () => {
     // const API_URL = import.meta.env.VITE_API_URL;
     const { t } = useTranslation();
 
-    const handleSubmit = () => {
-        // e.preventDefault(); 
+    //-------- Auth avec back --------//
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault(); 
 
-        // const loginData = {
-        //     login: login,
-        //     password: password,
-        // }
-        try {
-            // const { data } = await axios.post(`${API_URL}/api/user/login`, loginData);
-            // sessionStorage.setItem("loginToken", data.token);
-            navigate("/dashboard");
-        } catch (error) {
-            setErrorMsg(t('ErrorMsg.errorNetwork'));
-        }
-    }
+    //     const loginData = {
+    //         login: login,
+    //         password: password,
+    //     }
+    //     try {
+    //         const { data } = await axios.post(`${API_URL}/api/user/login`, loginData);
+    //         sessionStorage.setItem("loginToken", data.token);
+    //         navigate("/loading");
+    //     } catch (error) {
+    //         setErrorMsg(t('ErrorMsg.errorNetwork'));
+    //     }
+    // }
     
     // useEffect(() => {
     //     if (loginToken) {
-    //         navigate("/dashboard");
+    //         navigate("/loading");
     //     }
     // }, [loginToken, navigate]);
+
+    
+    //-------- Auth sans back --------//
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Front-end seulement : validations simples
+        if (!login || !password) {
+            setErrorMsg(t('ErrorMsg.errorNetwork'));
+            return;
+        }
+
+        navigate("/loading");
+    };
 
     return (
         <div>
             {/* <div className="theme-wrapper">
                 <ThemeTrad />
             </div> */}
-            <section id="section-login" className="login-section-wrapper">
-                <div className="login-form-container">
-                    <h2 className="form-title ">{t('auth.login.title')}</h2>
+            <section id="section-login" className="login-section-wrapper flex justify-center items-center m-auto">
+                <div className="login-form-container flex flex-col items-center">
+                    <h2 className="form-title text-center uppercase w-full">{t('auth.login.title')}</h2>
 
-                    <form className="login-form" onSubmit={handleSubmit}>
-                        <div className="form-group floating-label">
-                            <input type="text"className="form-input" id="login" name="login" value={login} onChange={(e) => { setLogin(e.target.value) }}  required placeholder=" " />
+                    <form className="login-form flex flex-col w-full " onSubmit={handleSubmit}>
+                        <div className="form-group floating-label w-full">
+                            <input type="text" id="login" className="form-input w-full" name="login" value={login} onChange={(e) => { setLogin(e.target.value) }} required placeholder=" " />
                             <label htmlFor="login">{t('auth.login.usernameOrEmail')}</label>
                         </div>
 
-                        <div className="form-group floating-label">
-                            <input type={showPassword ? "text" : "password"} className="form-input" id="password" name="password" value={password} onChange={(e) => { setPassword(e.target.value) }} required placeholder=" " />
+                        <div className="form-group floating-label password-group">
+                            <input type={showPassword ? "text" : "password"} id="password" className="form-input w-full" name="password" value={password} onChange={(e) => { setPassword(e.target.value) }} required placeholder=" " />
                             <label htmlFor="password">{t('auth.login.password')}</label>
                             <button
                                 type="button"
+                                className="eye-button cursor-pointer"
                                 onClick={() => setShowPassword((prev) => !prev)}
-                                className="eye-button"
                                 aria-label={t('auth.login.arialLabelPassword')}
                             >
-                            {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+                                {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
                             </button>
                         </div>
                         {errorMsg && <span className="loginError">{errorMsg}</span>}
 
-                        <button type="submit" className="submit-button bg-">{t('auth.login.submit')}</button>
+                        <button type="submit" className="submit-button text-center cursor-pointer flex justify-center items-center m-auto">{t('auth.login.submit')}</button>
+                    
+                        <p className="create-account text-center">
+                            {t('auth.login.newUser')} <Link className="create-account-link" to="/register">{t('auth.login.newUserLink')}</Link>
+                        </p>
                     </form>
 
-                    <p className="create-account">
-                    {t('auth.login.newUser')} <Link className="create-account-link" to="/register">{t('auth.login.newUserLink')}</Link>
-                    </p>
+                    
                 </div>
             </section>
         </div>

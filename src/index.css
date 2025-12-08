@@ -1,3 +1,4 @@
+/* index.css -> main.jsx */
 @import "tailwindcss";
 
 :root {
@@ -32,6 +33,7 @@
   --shadow-main: 0 0 10px rgba(255,255,255,0.3);
   --shadow-secondary: 0 0 7px rgba(255,255,255,0.15);
   --shadow-navbar: 0 4px 16px rgba(255,255,255,0.25);
+  --shadow-loader: 0 0px 16px rgba(255,255,255,0.3);
 
   /* Dégradés */
   --gradient-card-secondary: linear-gradient(47deg, #002759 0%, #001A44 80%);
@@ -56,6 +58,7 @@
   --color-orange: #E9A23B;
   --color-text-btn: #001128;
   --color-text-link: #36CDFA;
+  --input-bg-solid: #101623;
 }
 
 /* ===========================
@@ -76,10 +79,11 @@
   --text-search: #7A8CA5;
 
   /* Shadows */
-  --shadow-auth: 0 0 20px rgba(0, 0, 0, 0.6);
+  --shadow-auth: 0 0 20px rgba(0,0,0,0,0.6);
   --shadow-main: 0 0 10px rgba(0,0,0,0,0.2);
   --shadow-secondary: 0 0 7px rgba(0,0,0,0,0.1);
   --shadow-navbar: 0 4px 16px rgba(0,0,0,0,0.2);
+  --shadow-loader: 0 0px 16px rgba(0,0,0,0,0.3);
 
   /* Dégradés */
   --gradient-card-secondary: linear-gradient(47deg, #D8ECFF 0%, #BFD9F5 80%);
@@ -110,6 +114,21 @@
 body {
   font-family: var(--font-family-text);
   margin: 0;
-  background-color: var(--color-bg-btn); 
+  background-color: #81dbff;
   color: var(--color-text);
+}
+
+#app-container {
+  border-radius: 40px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-btn);
+  padding: 20px;
+  width: 100%;
+  max-width: 1600px;
+  height: 100vh;
+  overflow: hidden;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  -ms-border-radius: 40px;
+  -o-border-radius: 40px;
 }
