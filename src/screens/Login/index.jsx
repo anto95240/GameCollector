@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "./login.css"
+import ChargementPage from "../Chargement";
 import { useTranslation } from "react-i18next";
 
 const LoginPage = () => {
@@ -13,7 +14,10 @@ const LoginPage = () => {
     const [errorMsg, setErrorMsg] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    const navigate = useNavigate();
+    const [showLoading, setShowLoading] = useState(false);
+    const [isAnimating, setIsAnimating] = useState(false);
+
+    // const navigate = useNavigate();
     // const loginToken = sessionStorage.getItem("loginToken");
     // const API_URL = import.meta.env.VITE_API_URL;
     const { t } = useTranslation();
@@ -29,7 +33,12 @@ const LoginPage = () => {
     //     try {
     //         const { data } = await axios.post(`${API_URL}/api/user/login`, loginData);
     //         sessionStorage.setItem("loginToken", data.token);
-    //         navigate("/loading");
+    //         // Lancer animation
+    //         setIsAnimating(true);
+
+    //         setTimeout(() => {
+    //            setShowLoading(true);     
+    //         }, 300);
     //     } catch (error) {
     //         setErrorMsg(t('ErrorMsg.errorNetwork'));
     //     }
@@ -52,7 +61,12 @@ const LoginPage = () => {
             return;
         }
 
-        navigate("/loading");
+        // Lancer animation
+        setIsAnimating(true);
+
+        setTimeout(() => {
+            setShowLoading(true);     
+        }, 300);
     };
 
     return (
@@ -84,8 +98,32 @@ const LoginPage = () => {
                         </div>
                         {errorMsg && <span className="loginError">{errorMsg}</span>}
 
-                        <button type="submit" className="submit-button text-center cursor-pointer flex justify-center items-center m-auto">{t('auth.login.submit')}</button>
+                        {/* <button type="submit" className="submit-button text-center cursor-pointer flex justify-center items-center m-auto">{t('auth.login.submit')}</button> */}
                     
+                        {/* <button
+                            type="submit"
+                            className={`submit-button text-center cursor-pointer flex justify-center items-center m-auto ${isLoading ? "loading-btn" : ""}`}
+                            disabled={isLoading}
+                        >
+                            {isLoading ? <span className="loader-circle"></span> : t('auth.login.submit')}
+                        </button> */}
+
+                        <div className="toplayer">
+                            <button
+                                type="submit"
+                                className={`submit-button text-center cursor-pointer flex justify-center items-center m-auto ${isAnimating ? "loading-btn clicked" : ""}`}
+                                disabled={isAnimating}
+                            >
+                                {isAnimating ? <span className="loader-circle"></span> : t('auth.login.submit')}
+                            </button>
+
+                            <div className={`layer ${isAnimating ? "clicked" : ""}`}>
+                                {showLoading && <ChargementPage />}
+                            </div>
+                        </div>
+
+
+
                         <p className="create-account text-center">
                             {t('auth.login.newUser')} <Link className="create-account-link" to="/register">{t('auth.login.newUserLink')}</Link>
                         </p>

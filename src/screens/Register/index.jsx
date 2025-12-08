@@ -10,6 +10,10 @@ const RegisterPage = () => {
   const [step, setStep] = useState(1); // étape actuelle
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const [showLoading, setShowLoading] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+
   // const loginToken = sessionStorage.getItem("loginToken");
   // const API_URL = import.meta.env.VITE_API_URL;
 
@@ -60,7 +64,12 @@ const RegisterPage = () => {
   //     const { data } = await axios.post(`${API_URL}/api/user/sign-up`, registerData);
 
   //     sessionStorage.setItem("loginToken", data.token);
-  //     navigate("/loading");
+  //         // Lancer animation
+  //         setIsAnimating(true);
+
+  //         setTimeout(() => {
+  //            setShowLoading(true);     
+  //         }, 300);
 
   //     setFormData({
   //       firstname: "",
@@ -90,17 +99,22 @@ const RegisterPage = () => {
 
 
   //-------- Auth sans back --------//
-  const handleSubmit = (e) => {
-        e.preventDefault();
+  const handleSubmit = () => {
 
-        // Front-end seulement : validations simples
-        if (!login || !password) {
-            setErrorMsg(t('ErrorMsg.errorNetwork'));
-            return;
-        }
+    const { email, password } = formData;
 
-        navigate("/loading");
-    };
+    if (!email || !password) {
+        setErrorMsg(t('ErrorMsg.errorNetwork'));
+        return;
+    }
+
+    // Lancer animation
+    setIsAnimating(true);
+
+    setTimeout(() => {
+        setShowLoading(true);     
+    }, 300);
+  };
 
   return (
     <div>
@@ -125,7 +139,8 @@ const RegisterPage = () => {
           errorMsg={errorMsg}
           setErrorMsg={setErrorMsg}
           successMsg={successMsg}
-          loading={loading}
+          isAnimating={isAnimating}
+          showLoading={showLoading}
           t={t}
         />
       )}

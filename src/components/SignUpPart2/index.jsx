@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "./signUpPart2.css";
+import ChargementPage from "../../screens/Chargement";
 
 const SignUpPart2 = ({
   formData,
@@ -15,7 +16,8 @@ const SignUpPart2 = ({
   successMsg,
   setErrorMsg,
   t,
-  loading,
+  isAnimating,
+  showLoading
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -118,13 +120,28 @@ const SignUpPart2 = ({
             >
               {t("auth.register.back")}
             </button>
-            <button
+            {/* <button
               type="submit"
               className="submit-button text-center cursor-pointer flex justify-center items-center m-auto"
               disabled={loading}
             >
               {loading ? t("auth.register.loading") : t("auth.register.submit")}
-            </button>
+            </button> */}
+
+            <div className="toplayer">
+              <button
+                  type="submit"
+                  className={`submit-button text-center cursor-pointer flex justify-center items-center m-auto ${isAnimating ? "loading-btn clicked" : ""}`}
+                  disabled={isAnimating}
+              >
+                  {isAnimating ? <span className="loader-circle"></span> : t('auth.register.submit')}
+              </button>
+
+              <div className={`layer ${isAnimating ? "clicked" : ""}`}>
+                  {showLoading && <ChargementPage />}
+              </div>
+          </div>
+
           </div>
 
           <p className="login-account text-center">
