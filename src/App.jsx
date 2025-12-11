@@ -10,7 +10,7 @@ import router from "./config/router";
 function App() {
 
   return (
-    <div id="app-container">
+    <div id="app-container" className="app-container">
       <RouterProvider router={router} />
     </div>
       

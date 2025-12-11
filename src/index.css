@@ -59,6 +59,10 @@
   --color-text-btn: #001128;
   --color-text-link: #36CDFA;
   --input-bg-solid: #101623;
+  --color-indicator-online: #0EB43D;
+  --color-logo-deconnexion: #EF4444;
+  --bg-hover-theme-lang: rgba(255, 255, 255, 0.25);
+  --color-text-btn-account: #5AF2FF;
 }
 
 /* ===========================
@@ -108,8 +112,12 @@
   --color-orange: #C47A00;
   --color-text-btn: #001128;
   --color-text-link: #0087D1;
+  --input-bg-solid: #101623;
+  --color-indicator-online: #0EB43D;
+  --color-logo-deconnexion: #EF4444;
+  --bg-hover-theme-lang: rgba(0, 0, 0, 0.1);
+  --color-text-btn-account: #5AF2FF;
 }
-
 
 body {
   font-family: var(--font-family-text);
@@ -131,4 +139,56 @@ body {
   -moz-border-radius: 40px;
   -ms-border-radius: 40px;
   -o-border-radius: 40px;
+}
+
+#root, #app-container {
+  height: 100vh;
+}
+
+.app-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  height: 100%;      
+  position: relative;
+}
+
+/* ===========================
+   SCROLLBAR 
+=========================== */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) var(--color-bg-btn);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px; 
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-btn); 
+  border-left: 1px solid rgba(255, 255, 255, 0.05); 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 4px; 
+  border: 2px solid var(--color-bg-btn); 
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-text);
+  box-shadow: 0 0 10px var(--color-text);
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--color-bg-btn);
 }

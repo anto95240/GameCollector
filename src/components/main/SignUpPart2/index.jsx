@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "./signUpPart2.css";
-import ChargementPage from "../../screens/Chargement";
+import ChargementPage from "../../../screens/Chargement";
 
 const SignUpPart2 = ({
   formData,

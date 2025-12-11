@@ -10,7 +10,7 @@ import RegisterPage from "../screens/Register";
 import StatistiquePage from "../screens/Statistique";
 import ListePage from "../screens/Liste";
 // import ProtectedRoutes from "../components/ProtectedRoutes"
-import AppLayout from "../components/AppLayout";
+import AppLayout from "../components/main/AppLayout";
 import ChargementPage from "../screens/Chargement";
 
 let router = createBrowserRouter([
@@ -41,11 +41,11 @@ let router = createBrowserRouter([
             Component: HomePage,
           }, 
           {
-            path: "/category",
+            path: "/categories",
             Component: CategoryPage,
           },
           {
-            path: "/liste",
+            path: "/list",
             Component: ListePage
           },
           {
@@ -57,7 +57,7 @@ let router = createBrowserRouter([
             Component: ProfilePage,
           },
           {
-            path: "/statistique",
+            path: "/statistics",
             Component: StatistiquePage,
           }
         ]

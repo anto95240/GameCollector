@@ -3,8 +3,8 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 // import axios from "axios"
-import SignUpPart1 from "../../components/SignUpPart1";
-import SignUpPart2 from "../../components/SignUpPart2";
+import SignUpPart1 from "../../components/main/SignUpPart1";
+import SignUpPart2 from "../../components/main/SignUpPart2";
 
 const RegisterPage = () => {
   const [step, setStep] = useState(1); // étape actuelle
