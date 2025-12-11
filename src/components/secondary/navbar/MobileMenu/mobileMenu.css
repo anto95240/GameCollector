@@ -1,0 +1,27 @@
+.navbar-links-mobile {
+  inset: 0;
+  width: 260px;
+  max-width: 80%;
+  height: 100vh;
+  padding: 22px;
+  backdrop-filter: blur(14px);
+  background: var(--color-bg-btn);
+  border-right: 1px solid var(--color-border);
+  box-shadow: var(--shadow-navbar);
+  gap: 16px;
+  animation: slideIn 0.3s ease-out forwards;
+  z-index: 4000;
+  overflow-y: auto; 
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.mobile-menu-close-button {
+  font-size: 26px;
+  color: var(--color-text);
+  background: none;
+  border: none;
+}

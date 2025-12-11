@@ -1,0 +1,48 @@
+/* ===========================
+        NAVBAR
+=========================== */
+
+.navbar {
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 5000;
+  background: var(--color-bg);
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Logo */
+.navbar-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+}
+
+/* Bouton hamburger */
+.mobile-menu-button {
+  font-size: 26px;
+  color: var(--color-text);
+  background: none;
+  border: none;
+  margin-right: 1.5rem;
+}
+
+.navbar-img,
+.navbar-links {
+    display: none; 
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-button { 
+    display: none; 
+  }
+  
+  .navbar-img {
+    display: block; 
+  }
+
+  .navbar-links {
+    display: flex; 
+  }
+}

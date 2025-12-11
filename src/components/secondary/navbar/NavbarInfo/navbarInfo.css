@@ -1,0 +1,23 @@
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-indicator-online);
+  border-radius: 50%;
+}
+
+.navbar-info p {
+    white-space: nowrap;
+}
+
+.navbar-connection-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gradient-account);
+  color: var(--color-text-btn-account);
+  transition: 0.2s;
+}
+
+.navbar-connection-button:hover {
+  transform: scale(1.06);
+}

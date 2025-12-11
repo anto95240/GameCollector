@@ -1,0 +1,11 @@
+.theme-btn {
+  width: 52px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--color-bg);
+  transition: 0.25s;
+}
+
+.theme-btn:hover {
+  background: var(--bg-hover-theme-lang);
+}
