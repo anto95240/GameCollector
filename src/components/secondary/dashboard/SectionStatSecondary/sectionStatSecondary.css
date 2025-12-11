@@ -1,0 +1,45 @@
+/* ===========================
+    SECONDARY STATS (3 blocs)
+=========================== */
+
+/* Mobile : colonne */
+.secondary-stats-grid {
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 20px 40px;
+  box-shadow: var(--shadow-secondary);
+  height: 8rem;
+  margin-top: 1rem;
+}
+
+/* Desktop: side by side */
+@media (min-width: 1024px) {
+    .secondary-stats-grid {
+        margin-left: 5rem;
+    }
+}
+
+/* Desktop: side by side */
+@media (min-width: 768px) {
+    .secondary-stats-grid {
+        width: 85%;
+    }
+}
+
+/* Desktop : 3 colonnes */
+@media (min-width: 640px) {
+  .secondary-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .secondary-stats-grid {
+    height: auto;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

@@ -1,11 +1,32 @@
+import SectionGameCard from "../../components/secondary/dashboard/SectionGameCard";
+import SectionStatSecondary from "../../components/secondary/dashboard/SectionStatSecondary";
+import SectionStatPrimary from "../../components/secondary/dashboard/SectionStatPrimary";
+import { useTranslation } from "react-i18next";
+
+import "./dashboard.css";
+
 function HomePage() {
-return (
-        <div>
-            <h1 className="text-white">Dashboard Page</h1>
-            <p className="text-white">This is the Dashboard page content.</p>
+
+    const { t } = useTranslation();
+
+    return (
+        <div className="dashboard-content p-4 flex flex-col">
+
+            {/* SECTION STATS PRINCIPALES */}
+            <div className="main-stats-grid mb-8">
+                
+                {/* BLOC 1 - TOTAL */}
+                <SectionStatPrimary t={t} />
+                
+                {/* BLOC 2 - SECONDAIRES */}
+                <SectionStatSecondary t={t} />
+
+            </div>
+
+            <SectionGameCard t={t} />
+
         </div>
     );
-
 }
 
 export default HomePage;

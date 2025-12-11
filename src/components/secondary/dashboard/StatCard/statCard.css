@@ -1,0 +1,15 @@
+.stat-card {
+    padding: 10px 0;
+}
+
+.stat-title {
+    font-size: 16px;
+    color: var(--color-text);
+    opacity: 0.8;
+}
+
+.stat-value {
+    font-size: 26px;
+    font-weight: bold;
+    text-align: start;
+}

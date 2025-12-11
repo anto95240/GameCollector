@@ -1,0 +1,56 @@
+.recent-games-section {
+    margin-top: 24px;
+}
+
+.section-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.game-cards-container {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 10px 40px;
+    scroll-behavior: smooth;
+}
+
+/* Cache scrollbar */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* ===========================
+    CAROUSEL ARROWS MOBILE
+=========================== */
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    font-size: 20px;
+    display: flex;
+    padding: 5px;
+}
+
+.arrow-left { left: -5px; }
+.arrow-right { right: -5px; }
+
+/* Desktop: hide arrows */
+@media (min-width: 768px) {
+    .carousel-arrow {
+        display: none;
+    }
+
+    .game-cards-container {
+        gap: 50px;
+        overflow: hidden;
+    }
+
+    .game-card {
+        flex: 1;
+        min-width: 0;
+    }
+}

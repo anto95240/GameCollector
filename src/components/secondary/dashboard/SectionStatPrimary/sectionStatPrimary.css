@@ -1,0 +1,33 @@
+/* Mobile = width 100% / Desktop = 75% */
+.main-total-card {
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-secondary);
+    padding: 25px;
+    margin-top: 1rem;
+}
+
+/* Desktop: side by side */
+@media (min-width: 768px) {
+    .secondary-stats-grid {
+        width: 85%;
+    }
+}
+
+.main-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.total-info {
+    margin-top: 20px;
+}
+
+.total-label {
+    font-size: 18px;
+}
+
+.total-value {
+    font-size: 45px;
+    font-weight: bold;
+}
