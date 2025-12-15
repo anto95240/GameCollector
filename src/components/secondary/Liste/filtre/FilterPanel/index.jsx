@@ -68,7 +68,7 @@ const FilterPanel = ({
     <div className={`filter-panel flex flex-col ${isOpen ? 'open' : ''}`} onClick={e => e.stopPropagation()}>
       
       {/* HEADER */}
-      <div className="filter-heade flex justify-center items-centerr">
+      <div className="filter-header flex justify-center items-center">
         <h3>Filtrer</h3>
         <button className="close-filter" onClick={onClose} aria-label="Fermer">
           <FontAwesomeIcon icon={faTimes} />
