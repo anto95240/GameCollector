@@ -34,6 +34,7 @@
   --shadow-secondary: 0 0 7px rgba(255,255,255,0.15);
   --shadow-navbar: 0 4px 16px rgba(255,255,255,0.25);
   --shadow-loader: 0 0px 16px rgba(255,255,255,0.3);
+  --shadow-btn: 4px 4px 5px rgba(255,255,255,0.5);
 
   /* Dégradés */
   --gradient-card-secondary: linear-gradient(47deg, #002759 0%, #001A44 80%);
@@ -63,6 +64,7 @@
   --color-logo-deconnexion: #EF4444;
   --bg-hover-theme-lang: rgba(255, 255, 255, 0.25);
   --color-text-btn-account: #5AF2FF;
+  --color-btn-tag: #344767;
 }
 
 /* ===========================
@@ -88,6 +90,7 @@
   --shadow-secondary: 0 0 7px rgba(0,0,0,0,0.1);
   --shadow-navbar: 0 4px 16px rgba(0,0,0,0,0.2);
   --shadow-loader: 0 0px 16px rgba(0,0,0,0,0.3);
+  --shadow-btn: 4px 4px 5px rgba(0,0,0,0.5);
 
   /* Dégradés */
   --gradient-card-secondary: linear-gradient(47deg, #D8ECFF 0%, #BFD9F5 80%);
@@ -117,6 +120,7 @@
   --color-logo-deconnexion: #EF4444;
   --bg-hover-theme-lang: rgba(0, 0, 0, 0.1);
   --color-text-btn-account: #5AF2FF;
+  --color-btn-tag: #344767;
 }
 
 body {

@@ -27,7 +27,7 @@ let router = createBrowserRouter([
       Component: ChargementPage,
     },
     {
-      path: "/deconnexion",
+      path: "/logout",
       Component: DeconnexionPage,
     },
     // {
