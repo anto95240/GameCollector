@@ -29,7 +29,6 @@
   margin-bottom: 1rem;
 }
 
-/* Séparateur */
 .separate {
   border: none;
   border-top: 1px solid var(--color-border);

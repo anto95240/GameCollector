@@ -1,12 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import NavLinks from "../NavLinks";
+import "./mobileMenu.css";
 
 const MobileMenu = ({ t, closeMenu }) => {
   return (
     <nav className="navbar-links-mobile md:hidden flex flex-col items-start fixed">
       
-      <div className="mobile-menu-header flex justify-between items-center w-full">
+      <div className="mobile-menu-header flex justify-between items-center w-full gap-4">
         <img className="navbar-img" src="./logo.png" alt="Logo" />
         
         <button 

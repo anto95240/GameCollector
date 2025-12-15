@@ -4,7 +4,6 @@ import {
     faUser, 
     faRightFromBracket 
 } from "@fortawesome/free-solid-svg-icons";
-
 import "./userLinks.css";
 
 const UserLinks = ({ t }) => (

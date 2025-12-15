@@ -12,5 +12,6 @@
 .nav-item.active,
 .nav-item:hover {
   font-weight: bold;
+  font-size: clamp(20px, 2vw, 30px);
   transform: scale(1.06);
 }
