@@ -1,0 +1,37 @@
+.liste-page-container {
+    height: 90%;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-stage {
+    flex: 1;
+    position: relative;
+    padding: 20px 0;
+}
+
+.cards-wrapper {
+    padding: 0 10px;
+    flex-wrap: nowrap;
+    overflow: scroll;
+}
+
+/* Cache scrollbar */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@media (max-width: 768px) {
+    .liste-page-container { 
+        padding: 15px; 
+    }
+
+    .main-stage { 
+        gap: 15px; 
+        padding-top: 20px; 
+    }
+    
+    .cards-wrapper { 
+        gap: 15px; 
+        padding: 0 5px; 
+    }
+}

@@ -1,0 +1,148 @@
+.filter-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 320px;
+  background: #000f24;
+  border: 1px solid #00ffff33;
+  border-radius: 20px;
+  padding: 20px;
+  transform: translateX(110%);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+  z-index: 100;
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.filter-panel.open {
+  transform: translateX(0);
+}
+
+.filter-header {
+  position: relative;
+  margin-bottom: 15px;
+  flex-shrink: 0;
+}
+
+.filter-header h3 {
+  color: #00ffff;
+  font-weight: 400;
+  font-size: 24px;
+  margin: 0;
+  font-family: var(--font-family-title);
+}
+
+.close-filter {
+  position: absolute;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.close-filter:hover {
+  color: #00ffff;
+  transform: rotate(90deg);
+  transition: 0.3s;
+}
+
+/* --- FILTRES ACTIFS & RESET --- */
+.active-filters-box {
+  min-height: 50px;
+  max-height: 100px;
+  background: #020b18;
+  border: 1px solid #00ffff33;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.active-filters-box::-webkit-scrollbar {
+  width: 4px;
+}
+
+.active-filters-box::-webkit-scrollbar-thumb {
+  background: #00ffff55;
+  border-radius: 2px;
+}
+
+.filter-tag {
+  background: #00ffff;
+  color: #000;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  height: fit-content;
+  transition: background 0.2s;
+}
+
+.filter-tag:hover {
+  background: #fff;
+}
+
+.placeholder-text {
+  color: #475569;
+  font-size: 12px;
+  font-style: italic;
+  margin: auto;
+}
+
+.reset-all-btn {
+  font-size: 11px;
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.reset-all-btn:hover {
+  background: #ff6b6b;
+  color: #fff;
+}
+
+/* --- ACCORDÉON --- */
+.filter-accordion {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+  padding-bottom: 10px;
+}
+
+.filter-accordion::-webkit-scrollbar {
+  width: 4px;
+}
+
+.filter-accordion::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.filter-accordion::-webkit-scrollbar-thumb {
+  background: #00ffff33;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .filter-panel {
+    width: 100%;
+    border-radius: 0;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+  }
+}

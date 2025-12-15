@@ -1,0 +1,177 @@
+.accordion-item {
+  background: rgba(3, 31, 60, 0.6);
+  border: 1px solid #00ffff33;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.accordion-header {
+  padding: 12px 15px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  font-family: var(--font-family-title);
+  transition: background 0.2s;
+}
+
+.accordion-header:hover {
+  background: rgba(0, 255, 255, 0.05);
+}
+
+.accordion-header.active {
+  background: rgba(0, 255, 255, 0.1);
+  color: #00ffff;
+}
+
+.icon-cat {
+  color: #00ffff;
+  width: 20px;
+  text-align: center;
+}
+
+.chevron {
+  transition: transform 0.3s;
+  color: #00ffff;
+}
+
+.chevron.rotate {
+  transform: rotate(180deg);
+}
+
+/* --- CONTENU --- */
+.accordion-content {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0;
+  border-top: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.filter-options-scroll {
+  padding: 10px 15px 5px 15px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.filter-options-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.filter-options-scroll::-webkit-scrollbar-thumb {
+  background: #00ffff33;
+  border-radius: 2px;
+}
+
+/* Item de filtre (Row) */
+.filter-option-item {
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.filter-option-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Style quand sélectionné */
+.filter-option-item.selected {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 255, 0.15) 0%,
+    rgba(0, 255, 255, 0.05) 100%
+  );
+  border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.filter-option-item.selected .option-label {
+  color: #00ffff;
+  font-weight: bold;
+}
+
+/* Checkbox */
+.checkbox-container {
+  flex: 1;
+  position: relative;
+  user-select: none;
+}
+
+.checkbox-container input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #00ffff33;
+  border-radius: 4px;
+  background: transparent;
+  transition: 0.2s;
+  flex-shrink: 0;
+}
+
+.checkbox-container input[type="checkbox"]:checked {
+  background: #00ffff;
+  border-color: #00ffff;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4); /* Glow effect */
+}
+
+.checkmark .check-icon {
+  color: #001128;
+  display: none;
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.checkbox-container input[type="checkbox"]:checked + .checkmark .check-icon {
+  display: block;
+}
+
+.option-label {
+  font-size: 13px;
+  color: #e2e8f0;
+  flex: 1;
+  transition: color 0.2s;
+}
+
+.option-count {
+  font-size: 11px;
+  color: rgba(0, 255, 255, 0.6);
+  background: rgba(0, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+/* --- FOOTER DE CATÉGORIE (BOUTONS) --- */
+.category-footer {
+  padding: 10px 15px;
+  border-top: 1px solid rgba(0, 255, 255, 0.1);
+  background: rgba(0, 15, 36, 0.3);
+}
+
+.toggle-view-btn {
+  background: none;
+  border: none;
+  color: #00ffff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.toggle-view-btn:hover {
+  background: rgba(0, 255, 255, 0.1);
+}
+
+.clear-cat-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 11px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 4px 0;
+}
+
+.clear-cat-btn:hover {
+  color: #ff6b6b;
+}

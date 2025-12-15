@@ -1,0 +1,125 @@
+/* --- BASE CARD --- */
+.game-card {
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+}
+
+/* --- VARIANT: DASHBOARD --- */
+.card-dashboard {
+    min-width: 150px;
+    height: 220px;
+    border: 1px solid var(--color-border);
+    background: var(--gradient-card-secondary);
+    padding: 12px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.game-name-dashboard {
+    font-size: 16px;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .card-dashboard {
+        flex: 1; /* Prend la place dispo en desktop */
+        min-width: 0;
+    }
+}
+
+/* --- VARIANT: LIST --- */
+.card-list {
+    width: clamp(160px, 25vw, 240px);
+    height: clamp(250px, 35vw, 340px);
+    background: linear-gradient(160deg, #E57373 0%, #C65252 100%);
+    padding: 10px 20px;
+    gap: 20px;
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-heart {
+    font-size: clamp(18px, 20vh, 24px);
+    cursor: pointer;
+}
+
+.btn-dots {
+    background: none;
+    border: none;
+    font-size: clamp(18px, 20vh, 24px);
+    cursor: pointer;
+    padding: 0;
+}
+
+.game-title {
+    margin-top: auto;
+    text-align: center;    
+    font-size: clamp(16px, 10vh, 18px);
+    font-family: var(--font-family-title);
+    margin-bottom: 10px;
+}
+
+/* --- VARIANT: ADD --- */
+.card-add {
+    width: clamp(160px, 25vw, 240px);
+    height: clamp(250px, 35vw, 340px);
+    border: 1px solid var(--color-border); 
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--color-text);
+    gap: 15px;
+}
+
+.card-add:hover {
+    background: rgba(90, 242, 255, 0.05);
+}
+
+.plus-icon {
+    font-size: clamp(20px, 10vh, 26px); 
+}
+
+/* --- CONTEXT MENU (LIST) --- */
+.context-menu {
+    position: absolute;
+    top: 40px;
+    right: 15px;
+    min-width: 100px;
+    background: var(--color-bg-btn);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 8px;
+    z-index: 20;
+}
+
+.ctx-item {
+    border: none;
+    background: none;
+    padding: 8px;
+    text-align: left;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border-radius: 6px;
+    color: var(--color-text);
+}
+
+.ctx-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.ctx-item.delete:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #EF4444;
+}
