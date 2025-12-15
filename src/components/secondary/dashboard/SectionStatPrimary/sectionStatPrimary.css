@@ -7,13 +7,6 @@
     margin-top: 1rem;
 }
 
-/* Desktop: side by side */
-@media (min-width: 768px) {
-    .secondary-stats-grid {
-        width: 85%;
-    }
-}
-
 .main-title {
     font-size: 28px;
     font-weight: bold;
@@ -30,4 +23,10 @@
 .total-value {
     font-size: 45px;
     font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    .secondary-stats-grid {
+        width: 85%;
+    }
 }

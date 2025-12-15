@@ -3,13 +3,7 @@
     max-width: 1200px;
     margin: 0 auto;
 }
-.main-stats-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
 
-/* Desktop: side by side */
 @media (min-width: 768px) {
     .main-stats-grid {
         display: grid;

@@ -13,7 +13,7 @@ function HomePage() {
         <div className="dashboard-content p-4 flex flex-col">
 
             {/* SECTION STATS PRINCIPALES */}
-            <div className="main-stats-grid mb-8">
+            <div className="main-stats-grid flex flex-col gap-5 mb-8">
                 
                 {/* BLOC 1 - TOTAL */}
                 <SectionStatPrimary t={t} />

@@ -3,7 +3,8 @@ import "./sectionGameCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useDashboard } from "../../../../hooks/useDashboard";
-import GameCard from "../GameCard";
+// import GameCard from "../GameCard";
+import GameCard from "../../../common/GameCard";
 
 
 const SectionGameCard = ({t}) => {
@@ -38,7 +39,7 @@ const SectionGameCard = ({t}) => {
 
                 <div className="game-cards-container flex no-scrollbar" ref={scrollRef}>
                     {recentGames.map((game, i) => (
-                        <GameCard key={i} name={game} />
+                        <GameCard key={i} game={game} variant="dashboard"/>
                     ))}
                 </div>
 
