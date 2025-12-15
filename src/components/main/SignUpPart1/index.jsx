@@ -1,5 +1,6 @@
 import { Link } from "react-router";
-import "./signUpPart1.css"
+import FloatingInput from "../../common/FloatingInput";
+import "./signUpPart1.css";
 
 const SignUpPart1 = ({ formData, setFormData, nextStep, badLogin, setBadLogin, t }) => {
 
@@ -29,30 +30,45 @@ const SignUpPart1 = ({ formData, setFormData, nextStep, badLogin, setBadLogin, t
                 <h2 className="form-title text-center uppercase w-full">{t('auth.register.title')}</h2>
 
                 <form className="signupPart1-form flex flex-col w-full " onSubmit={handleSubmit}>
-                    <div className="form-group floating-label w-full">
-                        <input type="text" id="firstname" className="form-input w-full" name="firstname" value={formData.firstname} onChange={handleChange} required placeholder=" " />
-                        <label htmlFor="firstname">{t('auth.register.firstName')}</label>
-                    </div>
+                    
+                    <FloatingInput
+                        id="firstname"
+                        name="firstname"
+                        label={t('auth.register.firstName')}
+                        value={formData.firstname}
+                        onChange={handleChange}
+                        required
+                    />
 
-                    <div className="form-group floating-label w-full">
-                        <input type="text" id="lastname" className="form-input w-full" name="lastname" value={formData.lastname} onChange={handleChange} required placeholder=" " />
-                        <label htmlFor="lastname">{t('auth.register.name')}</label>
-                    </div>
+                    <FloatingInput
+                        id="lastname"
+                        name="lastname"
+                        label={t('auth.register.name')}
+                        value={formData.lastname}
+                        onChange={handleChange}
+                        required
+                    />
 
-                    <div className="form-group floating-label w-full">
-                        <input type="text" id="username" className="form-input w-full" name="username" value={formData.username} onChange={handleChange} required placeholder=" " />
-                        <label htmlFor="username">{t('auth.register.username')}</label>
-                        {/* {badLogin && <p className="error-message text-center">{t("ErrorMsg.badLogin")}</p>} */}
-                    </div>
+                    <FloatingInput
+                        id="username"
+                        name="username"
+                        label={t('auth.register.username')}
+                        value={formData.username}
+                        onChange={handleChange}
+                        required
+                    />
+                    
+                    {/* Gestion erreur visuelle simple pour l'exemple, peut être intégrée dans FloatingInput plus tard si besoin */}
+                    {badLogin && <p className="error-message text-center" style={{marginTop: '-15px', marginBottom: '15px'}}>{t("ErrorMsg.badLogin") || "Nom d'utilisateur trop court"}</p>}
 
-                    <button type="submit" className="submit-button text-center cursor-pointer flex justify-center items-center m-auto">{t('auth.register.next')}</button>
+                    <button type="submit" className="submit-button text-center cursor-pointer flex justify-center items-center m-auto">
+                        {t('auth.register.next')}
+                    </button>
                 
                     <p className="login-account text-center">
                         {t('auth.register.alreadyUser')} <Link className="login-account-link" to="/">{t('auth.register.alreadyUserLink')}</Link>
                     </p>
                 </form>
-
-                
             </div>
         </section>
     );

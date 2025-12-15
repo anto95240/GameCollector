@@ -1,0 +1,84 @@
+.form-group {
+  margin-bottom: clamp(20px, 5vw, 26px);
+}
+
+.form-group.password-group {
+  position: relative;
+  margin-bottom: 33px;
+}
+
+.floating-label {
+  position: relative;
+  background: var(--gradient-card-main-input);
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+}
+
+.floating-label .form-input {
+  padding: 14px 16px;
+  margin-top: 5px;
+  border-radius: 20px;
+  background: transparent; 
+  border: none;
+  font-size: clamp(13px, 3vw, 14px);
+  font-family: var(--font-family-text);
+  color: var(--color-text);
+}
+
+.floating-label label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--color-input-text);
+  background: transparent;
+  transition: 0.2s ease;
+  padding: 6px;
+}
+
+.floating-label .form-input:focus {
+  outline: none;
+}
+
+/* label déplacé si focus ou input rempli */
+.floating-label .form-input:focus + label,
+.floating-label .form-input:not(:placeholder-shown) + label {
+  top: -6px;
+  left: 12px;
+  transform: none;
+  font-size: clamp(10px, 2vw, 12px);
+  color: var(--color-text);
+  background: var(--color-bg-card-page-active);
+}
+
+/* ------------------ GESTION DU TEXTE & LIENS ------------------ */
+
+.form-input::placeholder {
+  color: var(--color-text);
+}
+
+.eye-button {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* ------------------ AUTOFILL — SUPPRESSION DU FOND BLANC ------------------ */
+
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: var(--color-text) !important;
+  caret-color: var(--color-text);
+  transition: background-color 9999s ease-in-out 0s;
+}

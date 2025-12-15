@@ -1,0 +1,75 @@
+.toplayer {
+    position: relative;
+    z-index: 99;
+}
+
+.submit-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    font-family: var(--font-family-title);
+    color: var(--color-text);
+    background: var(--gradient-blue);
+    border-radius: 30px;
+    font-size: clamp(13px, 3vw, 14px);
+    width: clamp(160px, 50vw, 200px);
+    height: clamp(30px, 5vw, 32px);
+    margin-bottom: 30px;
+    padding: 0;
+}
+
+.submit-button.loading-btn {
+    width: 60px;
+    border-radius: 50%;
+    padding: 0;
+    color: transparent;
+}
+
+/* Spinner circulaire */
+.loader-circle {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: auto;
+}
+
+/* Spinner rotation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--color-bg-btn);
+  opacity: 0;
+  transform: scale(0.1);
+  transition: all 0.5s ease;
+  z-index: 999;
+  border: 1px solid var(--color-border);
+  border-radius: 40px;
+}
+
+.layer p {
+    color: var(--color-text);
+    font-size: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.3s;
+}
+
+.clicked {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.clicked p {
+    opacity: 1;
+}

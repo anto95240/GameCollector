@@ -2,15 +2,15 @@ import { useNavigate, Link } from "react-router";
 import { useState } from "react";
 // import { useState, useEffect } from "react";
 // import axios from "axios"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "./login.css"
 import ChargementPage from "../Chargement";
 import { useTranslation } from "react-i18next";
+import FloatingInput from "../../components/common/FloatingInput";
+import LoadingButton from "../../components/common/LoadingButton"; 
 
 const LoginPage = () => {
-    const [login, setLogin] = useState("antoine@test.com");  /* toto95@admin.fr */
-    const [password, setPassword] = useState("Test1234!");  /* Admin**95 */
+    const [login, setLogin] = useState("antoine@test.com");
+    const [password, setPassword] = useState("Test1234!");
     const [errorMsg, setErrorMsg] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
@@ -70,69 +70,46 @@ const LoginPage = () => {
     };
 
     return (
-        <div>
-            {/* <div className="theme-wrapper">
-                <ThemeTrad />
-            </div> */}
-            <section id="section-login" className="login-section-wrapper flex justify-center items-center m-auto">
-                <div className="login-form-container flex flex-col items-center">
-                    <h2 className="form-title text-center uppercase w-full">{t('auth.login.title')}</h2>
+        <section id="section-login" className="login-section-wrapper flex justify-center items-center m-auto">
+            <div className="login-form-container flex flex-col items-center">
+                <h2 className="form-title text-center uppercase w-full">{t('auth.login.title')}</h2>
 
-                    <form className="login-form flex flex-col w-full " onSubmit={handleSubmit}>
-                        <div className="form-group floating-label w-full">
-                            <input type="text" id="login" className="form-input w-full" name="login" value={login} onChange={(e) => { setLogin(e.target.value) }} required placeholder=" " />
-                            <label htmlFor="login">{t('auth.login.usernameOrEmail')}</label>
-                        </div>
-
-                        <div className="form-group floating-label password-group">
-                            <input type={showPassword ? "text" : "password"} id="password" className="form-input w-full" name="password" value={password} onChange={(e) => { setPassword(e.target.value) }} required placeholder=" " />
-                            <label htmlFor="password">{t('auth.login.password')}</label>
-                            <button
-                                type="button"
-                                className="eye-button cursor-pointer"
-                                onClick={() => setShowPassword((prev) => !prev)}
-                                aria-label={t('auth.login.arialLabelPassword')}
-                            >
-                                {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
-                            </button>
-                        </div>
-                        {errorMsg && <span className="loginError">{errorMsg}</span>}
-
-                        {/* <button type="submit" className="submit-button text-center cursor-pointer flex justify-center items-center m-auto">{t('auth.login.submit')}</button> */}
+                <form className="login-form flex flex-col w-full" onSubmit={handleSubmit}>
                     
-                        {/* <button
-                            type="submit"
-                            className={`submit-button text-center cursor-pointer flex justify-center items-center m-auto ${isLoading ? "loading-btn" : ""}`}
-                            disabled={isLoading}
-                        >
-                            {isLoading ? <span className="loader-circle"></span> : t('auth.login.submit')}
-                        </button> */}
+                    <FloatingInput 
+                        id="login"
+                        name="login"
+                        label={t('auth.login.usernameOrEmail')}
+                        value={login}
+                        onChange={(e) => setLogin(e.target.value)}
+                        required
+                    />
 
-                        <div className="toplayer">
-                            <button
-                                type="submit"
-                                className={`submit-button text-center cursor-pointer flex justify-center items-center m-auto ${isAnimating ? "loading-btn clicked" : ""}`}
-                                disabled={isAnimating}
-                            >
-                                {isAnimating ? <span className="loader-circle"></span> : t('auth.login.submit')}
-                            </button>
+                    <FloatingInput 
+                        id="password"
+                        name="password"
+                        label={t('auth.login.password')}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        isPassword={true} 
+                    />
 
-                            <div className={`layer ${isAnimating ? "clicked" : ""}`}>
-                                {showLoading && <ChargementPage />}
-                            </div>
-                        </div>
+                    {errorMsg && <span className="loginError">{errorMsg}</span>}
 
+                    {/* Utilisation du composant unifié */}
+                    <LoadingButton 
+                        text={t('auth.login.submit')}
+                        isAnimating={isAnimating}
+                        showLoading={showLoading}
+                    />
 
-
-                        <p className="create-account text-center">
-                            {t('auth.login.newUser')} <Link className="create-account-link" to="/register">{t('auth.login.newUserLink')}</Link>
-                        </p>
-                    </form>
-
-                    
-                </div>
-            </section>
-        </div>
+                    <p className="create-account text-center">
+                        {t('auth.login.newUser')} <Link className="create-account-link" to="/register">{t('auth.login.newUserLink')}</Link>
+                    </p>
+                </form>
+            </div>
+        </section>
     );
 };
 

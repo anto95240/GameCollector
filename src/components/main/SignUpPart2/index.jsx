@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "./signUpPart2.css";
 import ChargementPage from "../../../screens/Chargement";
+import FloatingInput from "../../common/FloatingInput";
+import LoadingButton from "../../common/LoadingButton";
 
 const SignUpPart2 = ({
   formData,
@@ -19,8 +18,6 @@ const SignUpPart2 = ({
   isAnimating,
   showLoading
 }) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // Mise à jour des inputs
   const handleChange = (e) => {
@@ -36,7 +33,7 @@ const SignUpPart2 = ({
   // Soumission du formulaire
   const onSubmit = (e) => {
     e.preventDefault();
-    handleSubmit(); // handleSubmit depuis RegisterPage gère navigation et validation
+    handleSubmit();
   };
 
   return (
@@ -50,101 +47,62 @@ const SignUpPart2 = ({
         </h2>
 
         <form className="signupPart2-form flex flex-col w-full" onSubmit={onSubmit}>
-          <div className="form-group floating-label w-full">
-            <input
-              type="email"
-              id="email"
-              className="form-input w-full"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              placeholder=" "
-            />
-            <label htmlFor="email">{t("auth.register.email")}</label>
-          </div>
+          
+          <FloatingInput
+            type="email"
+            id="email"
+            name="email"
+            label={t("auth.register.email")}
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
 
-          <div className="form-group floating-label password-group">
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              className="form-input w-full"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              placeholder=" "
-            />
-            <label htmlFor="password">{t("auth.register.password")}</label>
-            <button
-              type="button"
-              className="eye-button cursor-pointer"
-              onClick={() => setShowPassword((prev) => !prev)}
-              aria-label={t("auth.register.arialLabelPassword")}
-            >
-              {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
-            </button>
-          </div>
+          <FloatingInput
+            id="password"
+            name="password"
+            label={t("auth.register.password")}
+            value={formData.password}
+            onChange={handleChange}
+            required
+            isPassword={true} 
+          />
 
-          <div className="form-group floating-label password-group">
-            <input
-              type={showConfirmPassword ? "text" : "password"}
-              id="passwordConfirm"
-              className="form-input w-full"
-              name="passwordConfirm"
-              value={formData.passwordConfirm}
-              onChange={handleChange}
-              required
-              placeholder=" "
-            />
-            <label htmlFor="passwordConfirm">{t("auth.register.confirmPassword")}</label>
-            <button
-              type="button"
-              className="eye-button cursor-pointer"
-              onClick={() => setShowConfirmPassword((prev) => !prev)}
-              aria-label={t("auth.register.arialLabelPassword")}
-            >
-              {showConfirmPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
-            </button>
-          </div>
+          <FloatingInput
+            id="passwordConfirm"
+            name="passwordConfirm"
+            label={t("auth.register.confirmPassword")}
+            value={formData.passwordConfirm}
+            onChange={handleChange}
+            required
+            isPassword={true} 
+          />
 
           {badPassword && <p className="signinError">{t("ErrorMsg.badPassword")}</p>}
           {errorMsg && <p className="signinError">{errorMsg}</p>}
           {successMsg && <p className="success-message">{successMsg}</p>}
 
-          <div className="btn-group">
+          <div className="btn-group flex flex-col items-center gap-4">
+            
+            {/* Composant unifié LoadingButton */}
+            <LoadingButton 
+                text={t('auth.register.submit')}
+                isAnimating={isAnimating}
+                showLoading={showLoading}
+            />
+
+            {/* Bouton Retour (simple bouton texte/lien pour alléger) */}
             <button
               type="button"
               onClick={prevStep}
-              className="submit-button text-center cursor-pointer flex justify-center items-center m-auto"
+              className="back-button"
             >
               {t("auth.register.back")}
             </button>
-            {/* <button
-              type="submit"
-              className="submit-button text-center cursor-pointer flex justify-center items-center m-auto"
-              disabled={loading}
-            >
-              {loading ? t("auth.register.loading") : t("auth.register.submit")}
-            </button> */}
-
-            <div className="toplayer">
-              <button
-                  type="submit"
-                  className={`submit-button text-center cursor-pointer flex justify-center items-center m-auto ${isAnimating ? "loading-btn clicked" : ""}`}
-                  disabled={isAnimating}
-              >
-                  {isAnimating ? <span className="loader-circle"></span> : t('auth.register.submit')}
-              </button>
-
-              <div className={`layer ${isAnimating ? "clicked" : ""}`}>
-                  {showLoading && <ChargementPage />}
-              </div>
-          </div>
 
           </div>
 
-          <p className="login-account text-center">
+          <p className="login-account text-center mt-6">
             {t("auth.register.alreadyUser")}{" "}
             <Link className="login-account-link" to="/">
               {t("auth.register.alreadyUserLink")}
