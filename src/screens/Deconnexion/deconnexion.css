@@ -1,0 +1,94 @@
+.logout-section-wrapper {
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden; 
+}
+
+.logout-card-container {
+  width: 90%;
+  max-width: 450px;
+  background: var(--gradient-card-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-main);
+  padding: 40px 30px;
+  animation: fadeInLogout 0.5s ease-out forwards;
+}
+
+@keyframes fadeInLogout {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.logout-title {
+  font-family: var(--font-family-title);
+  font-size: clamp(24px, 5vw, 32px);
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--color-text);
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(90, 242, 255, 0.6), 
+               0 0 20px rgba(90, 242, 255, 0.3);
+}
+
+.logout-inner-box {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 30px 20px;
+  gap: 25px;
+  box-sizing: border-box;
+}
+
+.logout-bye {
+  font-family: var(--font-family-text);
+  font-size: 18px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.logout-thanks {
+  font-family: var(--font-family-text);
+  font-size: 14px;
+  color: var(--color-text-search); 
+  margin: 0;
+  line-height: 1.4;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.return-login-btn {
+  background: var(--gradient-blue);
+  color: #fff;
+  font-family: var(--font-family-title);
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px 24px;
+  border-radius: 50px;
+  min-width: 160px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin-top: 10%;
+}
+
+.return-login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(7, 123, 239, 0.4); 
+}
+
+.return-login-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  .logout-card-container {
+    padding: 30px 20px;
+    width: 85%;
+  }
+
+  .logout-inner-box {
+    padding: 20px 15px;
+  }
+}
