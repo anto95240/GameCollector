@@ -1,6 +1,6 @@
-import ProfileCard from "../../secondary/profile/ProfileCard";
-import ActionButtons from "../../secondary/profile/ActionButtons";
-import InlineFormItem from "../../secondary/profile/InlineFormItem";
+import ProfileCard from "../../../secondary/profile/ProfileCard";
+import ActionButtons from "../../../secondary/profile/ActionButtons";
+import InlineFormItem from "../../../secondary/profile/InlineFormItem";
 import "./ConnexionSection.css"; // Ajout du fichier CSS pour la mise en page
 
 const ConnexionSection = ({ user, form, setForm, uiState, setUiState, t, handleSaveProfile }) => {

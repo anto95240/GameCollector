@@ -1,0 +1,60 @@
+.delete-content-row {
+  display: flex;
+  align-items: center;     
+  justify-content: space-between;
+  gap: 30px;       
+  height: 100%;    
+  min-height: 80px;         
+  width: 100%;
+}
+
+.delete-warning-container {
+  padding: 0;
+  flex: 1;
+  padding-right: 10px;
+}
+
+.delete-warning-text {
+  font-size: 14px;
+  color: var(--color-text);
+  opacity: 0.9;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.delete-action-wrapper{
+  margin-left: 0;
+  flex-shrink: 0;
+}
+
+.delete-account-card .profile-card-content {
+  flex: 1;
+  display: flex;       
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .delete-content-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 10px 0;
+  }
+
+  .delete-warning-container {
+    text-align: center;
+    padding-right: 0;
+    width: 100%;
+  }
+
+  .delete-action-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .delete-action-wrapper button {
+    width: 100%;
+  }
+}

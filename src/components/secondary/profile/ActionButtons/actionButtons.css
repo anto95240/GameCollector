@@ -31,6 +31,7 @@
 
 .btn-delete {
   background: var(--gradient-delete);
+  margin-left: auto;
 }
 
 /* Mobile : Boutons pleine largeur */

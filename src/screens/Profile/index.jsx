@@ -2,9 +2,9 @@ import "./profile.css";
 import { useProfile } from "../../hooks/useProfile";
 
 // Composants
-import ProfilSection from "../../components/ProfilePage/ProfilSection";
-import ConnexionSection from "../../components/ProfilePage/ConnexionSection";
-import DeleteAccountSection from "../../components/ProfilePage/DeleteAccountSection";
+import ProfilSection from "../../components/main/ProfilePage/ProfilSection";
+import ConnexionSection from "../../components/main/ProfilePage/ConnexionSection";
+import DeleteAccountSection from "../../components/main/ProfilePage/DeleteAccountSection";
 
 // Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
