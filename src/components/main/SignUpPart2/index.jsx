@@ -41,12 +41,12 @@ const SignUpPart2 = ({
       id="section-signupPart2"
       className="signupPart2-section-wrapper flex justify-center items-center m-auto"
     >
-      <div className="signupPart2-form-container flex flex-col items-center">
+      <div className="signupPart2-form-container flex flex-col items-center console-border-card">
         <h2 className="form-title text-center uppercase w-full">
           {t("auth.register.title")}
         </h2>
 
-        <form className="signupPart2-form flex flex-col w-full" onSubmit={onSubmit}>
+        <form className="signupPart2-form flex flex-col w-full console-border-card-secondary" onSubmit={onSubmit}>
           
           <FloatingInput
             type="email"

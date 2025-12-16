@@ -70,16 +70,19 @@ const ListePage = () => {
           {/* Liste des jeux */}
           {paginatedGames.length > 0 ? (
              paginatedGames.map((game, index) => (
+              // Ajout du wrapper pour l'animation CASCADE
+              <div key={game.id} className="console-entry-anim"> 
                 <GameCard 
-                  key={game.id}
                   game={game}
+                  key={game.id}
                   index={index}
                   variant="list"
                   activeMenuIndex={activeMenuIndex}
                   onToggleMenu={toggleMenu}
                   t={t}
                 />
-              ))
+              </div>
+            ))
           ) : (
               <p className="no-result-text" style={{margin: 'auto', color: 'white'}}>Aucun jeu trouvé</p>
           )}

@@ -39,7 +39,12 @@ const SectionGameCard = ({t}) => {
 
                 <div className="game-cards-container flex no-scrollbar" ref={scrollRef}>
                     {recentGames.map((game, i) => (
-                        <GameCard key={i} game={game} variant="dashboard"/>
+                        <div 
+                           key={i} 
+                           className="console-entry-anim w-full"
+                        >
+                            <GameCard game={game} variant="dashboard" />
+                        </div>
                     ))}
                 </div>
 

@@ -26,10 +26,10 @@ const SignUpPart1 = ({ formData, setFormData, nextStep, badLogin, setBadLogin, t
 
     return (
         <section id="section-signupPart1" className="signupPart1-section-wrapper flex justify-center items-center m-auto">
-            <div className="signupPart1-form-container flex flex-col items-center">
+            <div className="signupPart1-form-container flex flex-col items-center console-border-card">
                 <h2 className="form-title text-center uppercase w-full">{t('auth.register.title')}</h2>
 
-                <form className="signupPart1-form flex flex-col w-full " onSubmit={handleSubmit}>
+                <form className="signupPart1-form flex flex-col w-full console-border-card-secondary" onSubmit={handleSubmit}>
                     
                     <FloatingInput
                         id="firstname"

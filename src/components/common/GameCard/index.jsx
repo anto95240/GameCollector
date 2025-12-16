@@ -27,7 +27,7 @@ const GameCard = ({
         const gameName = typeof game === 'string' ? game : game.name;
         
         return (
-            <div className="game-card card-dashboard">
+            <div className="game-card card-dashboard console-card-hover">
                 <p className="game-name-dashboard">{gameName}</p>
             </div>
         );
@@ -35,7 +35,7 @@ const GameCard = ({
 
     // --- VARIANT: LIST (Standard avec actions) ---
     return (
-        <div className="game-card card-list">
+        <div className="game-card card-list console-card-hover">
             <div className="card-top">
                 <FontAwesomeIcon 
                     icon={faHeart} 

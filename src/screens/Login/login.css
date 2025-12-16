@@ -9,10 +9,6 @@
 .login-form-container {
   width: 90%;
   max-width: 500px;
-  background: var(--gradient-card-secondary);
-  border: 1px solid var(--color-border);
-  border-radius: 20px;
-  box-shadow: var(--shadow-main);
   padding: clamp(20px, 5vw, 30px);
   box-sizing: border-box;
 }
@@ -29,10 +25,6 @@
 .login-form {
   padding: clamp(20px, 5vw, 30px);
   box-sizing: border-box;
-  background: var(--gradient-card-main-input);
-  border: 1px solid var(--color-border);
-  border-radius: 20px;
-  box-shadow: var(--shadow-secondary);
 }
 
 .create-account {

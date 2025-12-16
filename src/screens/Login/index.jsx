@@ -71,10 +71,10 @@ const LoginPage = () => {
 
     return (
         <section id="section-login" className="login-section-wrapper flex justify-center items-center m-auto">
-            <div className="login-form-container flex flex-col items-center">
+            <div className="login-form-container flex flex-col items-center console-border-card">
                 <h2 className="form-title text-center uppercase w-full">{t('auth.login.title')}</h2>
 
-                <form className="login-form flex flex-col w-full" onSubmit={handleSubmit}>
+                <form className="login-form flex flex-col w-full console-border-card-secondary" onSubmit={handleSubmit}>
                     
                     <FloatingInput 
                         id="login"

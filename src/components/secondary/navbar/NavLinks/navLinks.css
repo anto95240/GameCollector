@@ -12,6 +12,7 @@
 .nav-item.active,
 .nav-item:hover {
   font-weight: bold;
+  font-family: var(--font-family-title);
   font-size: clamp(20px, 2vw, 30px);
   transform: scale(1.06);
 }
