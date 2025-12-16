@@ -1,0 +1,114 @@
+.account-info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.label {
+  font-size: 14px;
+  color: var(--color-text);
+  margin: 0;
+  opacity: 0.8;
+}
+
+.value {
+  font-weight: 600;
+  color: var(--color-text);
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+.btn-light-small {
+  background: var(--color-text-btn-account);
+  border: none;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  color: var(--color-bg-btn);
+  font-family: var(--font-family-title);
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.2s ease;
+}
+
+.btn-light-small:hover {
+  filter: brightness(1.1);
+}
+
+.btn-light-small:active {
+  transform: scale(0.95);
+}
+
+.inline-form {
+  display: grid;
+  grid-template-rows: 0fr;
+  padding: 0 15px;
+  margin: 0;
+  opacity: 0;
+  overflow: hidden;
+  animation: drawerOpen 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes drawerOpen {
+  0% { 
+    grid-template-rows: 0fr;
+    opacity: 0;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    transform: translateY(-10px); 
+  }
+  100% { 
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin: 10px 0 20px 0;
+    padding-top: 0; 
+    padding-bottom: 0;
+    transform: translateY(0); 
+  }
+}
+
+.inline-form > * {
+  min-height: 0;
+  overflow: hidden; 
+}
+
+.inline-form input {
+  width: 100%;
+  padding: 12px;
+  background: var(--gradient-card-main-input);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-family: var(--font-family-text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 10px;
+}
+
+.inline-form input:focus {
+  border-color: var(--color-text-highlight, #0068AC);
+  box-shadow: 0 0 0 2px rgba(0, 104, 172, 0.1);
+}
+
+.inline-form input:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .account-info-item {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .btn-light-small {
+    margin-left: auto;
+  }
+
+  .inline-form {
+    padding: 0;
+  }
+}

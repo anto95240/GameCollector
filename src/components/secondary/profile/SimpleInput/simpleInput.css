@@ -1,0 +1,36 @@
+.simple-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.simple-input-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.simple-input-group input {
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: var(--font-family-text);
+  background: var(--gradient-card-main-input);
+  color: var(--color-text);
+  width: 100%;
+  box-sizing: border-box; 
+  outline: none; /* Ton fix de tout à l'heure */
+  transition: box-shadow 0.2s;
+}
+
+.simple-input-group input:focus {
+  box-shadow: 0 0 0 2px var(--color-text-highlight, #0068AC);
+}
+
+@media (min-width: 769px) {
+  .simple-input-group input {
+    max-width: 400px;
+  }
+}

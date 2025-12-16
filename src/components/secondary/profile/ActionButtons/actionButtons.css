@@ -1,0 +1,42 @@
+.btn-action {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-family-title);
+  cursor: pointer;
+  border: none;
+  transition: transform 0.1s, opacity 0.2s;
+}
+
+.btn-action:active {
+  transform: scale(0.98);
+}
+
+.btn-cancel {
+  background: var(--color-text-btn-account);
+  color: var(--color-text-btn);
+}
+
+.btn-save {
+  background: var(--gradient-blue);
+  color: var(--color-text);
+}
+
+.btn-download {
+  background: var(--color-text-btn-account);
+  color: var(--color-text-btn);
+  font-weight: 500;
+}
+
+.btn-delete {
+  background: var(--gradient-delete);
+}
+
+/* Mobile : Boutons pleine largeur */
+@media (max-width: 768px) {
+  .btn-action {
+    width: 100%;
+    margin-top: 5px;
+  }
+}

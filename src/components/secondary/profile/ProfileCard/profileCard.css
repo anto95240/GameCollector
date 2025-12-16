@@ -1,0 +1,47 @@
+.profile-card {
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-navbar-scroll);
+  background: var(--color-bg-card-page-active, transparent); 
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  border: 1px solid var(--color-border);
+}
+
+.profile-card h3 {
+  margin-top: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 20px;
+  font-family: var(--font-family-title);
+}
+
+.profile-card hr {
+  border: none;
+  border-top: 1px solid var(--color-border-separator);
+  margin-top: 0;
+  margin-bottom: 20px;
+  width: 100%;
+  opacity: 0.5;
+}
+
+.profile-card-content {
+  flex: 1;
+}
+
+.profile-actions-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .profile-actions-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
