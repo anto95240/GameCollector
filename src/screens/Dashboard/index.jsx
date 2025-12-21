@@ -1,6 +1,6 @@
-import SectionGameCard from "../../components/secondary/dashboard/SectionGameCard";
-import SectionStatSecondary from "../../components/secondary/dashboard/SectionStatSecondary";
-import SectionStatPrimary from "../../components/secondary/dashboard/SectionStatPrimary";
+import SectionGameCard from "../../components/main/Dashboard/SectionGameCard";
+import SectionStatSecondary from "../../components/common/SectionStatSecondary";
+import SectionStatPrimary from "../../components/main/Dashboard/SectionStatPrimary";
 import { useTranslation } from "react-i18next";
 
 import "./dashboard.css";

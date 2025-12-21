@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import ProfileCard from "../../../secondary/profile/ProfileCard";
-import ActionButtons from "../../../secondary/profile/ActionButtons";
-import SimpleInput from "../../../secondary/profile/SimpleInput";
+import ProfileCard from "../../../secondary/Profile/ProfileCard";
+import ActionButtons from "../../../secondary/Profile/ActionButtons";
+import SimpleInput from "../../../secondary/Profile/SimpleInput";
 import "./ProfilSection.css";
 
 const ProfilSection = ({ user, form, setForm, t, handleSaveProfile, handleDownloadData }) => {

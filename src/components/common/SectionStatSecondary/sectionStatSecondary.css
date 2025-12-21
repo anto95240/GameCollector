@@ -1,0 +1,51 @@
+/* Styles par défaut (2 stats) */
+.secondary-stats-grid.default-page,
+.secondary-stats-grid.statistics-page {
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 20px 40px;
+  box-shadow: var(--shadow-secondary);
+  height: 8rem;
+  margin-top: 1rem;
+}
+
+/* Desktop : side by side et largeur différente */
+@media (min-width: 768px) {
+    .secondary-stats-grid.default-page {
+        width: 85%;
+    }
+    
+    .secondary-stats-grid.statistics-page {
+        width: 50%; 
+        max-width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2%;
+    }
+}
+
+/* Desktop : colonnes */
+@media (min-width: 640px) {
+  .secondary-stats-grid.default-page {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .secondary-stats-grid.statistics-page {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+}
+
+/* Mobile : centré */
+@media (max-width: 640px) {
+  .secondary-stats-grid.default-page,
+  .secondary-stats-grid.statistics-page {
+    height: auto;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

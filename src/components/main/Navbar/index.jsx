@@ -3,9 +3,9 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import "./Navbar.css";
 
-import NavbarInfo from "../../secondary/navbar/NavbarInfo";
-import NavLinks from "../../secondary/navbar/NavLinks";
-import MobileMenu from "../../secondary/navbar/MobileMenu";
+import NavbarInfo from "../../secondary/Navbar/NavbarInfo";
+import NavLinks from "../../secondary/Navbar/NavLinks";
+import MobileMenu from "../../secondary/Navbar/MobileMenu";
 
 import { useNavbar } from "./../../../hooks/useNavbar";
 
