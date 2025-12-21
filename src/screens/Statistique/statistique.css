@@ -1,0 +1,27 @@
+.charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 70px;
+    width: 100%;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 1024px) {
+    .charts-grid {
+        grid-template-columns: 35% 68%;
+        justify-content: space-between;
+        width: 89%;
+        gap: 20px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .charts-grid {
+        grid-template-columns: 25% 73%;
+        justify-content: space-between;
+        width: 85%; 
+        gap: 2%;
+    }
+}
