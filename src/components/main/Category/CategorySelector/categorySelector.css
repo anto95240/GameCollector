@@ -1,0 +1,70 @@
+
+.category-selector-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    transition: all 0.5s ease;
+}
+
+.category-card-btn {
+    background: linear-gradient(180deg, rgba(0, 17, 40, 0.6) 0%, rgba(0, 32, 79, 0.6) 100%);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: var(--shadow-secondary);
+}
+
+.category-card-btn:hover {
+    border-color: #5AF2FF;
+    box-shadow: 0 0 15px rgba(90, 242, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.category-card-btn.active {
+    background: rgba(0, 104, 172, 0.2);
+    border-color: #5AF2FF;
+    box-shadow: 0 0 20px rgba(90, 242, 255, 0.3);
+    transform: scale(1.05);
+}
+
+/* État Dimmed (Non sélectionné quand une autre l'est) */
+.category-card-btn.dimmed {
+    opacity: 0.5;
+    transform: scale(0.95);
+}
+
+.cat-icon {
+    font-size: 32px;
+    color: #5AF2FF;
+    transition: transform 0.3s;
+}
+
+.cat-label {
+    font-family: var(--font-family-title);
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+
+@media (max-width: 768px) {
+    .category-card-btn {
+        height: 80px;
+    }
+
+    .cat-icon { 
+        font-size: 24px; 
+    }
+
+    .cat-label { 
+        font-size: 14px; 
+    }
+}
