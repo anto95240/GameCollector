@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./listeHeader.css";
 
-const ListeHeader = ({ searchTerm, onSearchChange, onToggleFilter, t }) => {
+const ListeHeader = ({ searchTerm, onSearchChange, onToggleFilter, t, }) => {
     return (
         <div className="liste-header flex items-center justify-center mx-auto">
             {/* Barre de recherche */}

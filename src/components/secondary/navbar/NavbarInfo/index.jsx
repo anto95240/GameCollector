@@ -8,6 +8,10 @@ const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
   const [batteryLevel, setBatteryLevel] = useState(null);
   const { state, setters, actions } = useNavbar();
 
+  const handleCloseMenu = () => {
+    setActionsOpen(false);
+  };
+
   useEffect(() => {
     const updateDateTime = () => {
       const now = new Date();
@@ -59,7 +63,7 @@ const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
 
             {/* Le menu s'affichera par dessus tout, ancré à ce bloc */}
             {actionsOpen && (
-              <UserMenu t={t} state={state} setters={setters} actions={actions} />
+              <UserMenu t={t} state={state} setters={setters} actions={actions} onClose={handleCloseMenu} />
             )}
         </div>
     </div>

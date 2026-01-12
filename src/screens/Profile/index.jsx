@@ -25,15 +25,33 @@ const ProfilePage = () => {
     setUiState(prev => ({...prev, showMobileMenu: false}));
   };
 
+  const handleScrollToSection = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+        });
+        closeMobileMenu();
+    }
+  };
+
   return (
     <div>
       <div className="profile-container">
         
         {/* Sidebar */}
         <div className={`profile-sidebar ${uiState.showMobileMenu ? "show" : ""}`}>
-          <a href="#profile-section" onClick={closeMobileMenu}>{t('profile.links.details')}</a>
-          <a href="#login-section" onClick={closeMobileMenu}>{t('profile.links.authMethod')}</a>
-          <a href="#account-delete-section" onClick={closeMobileMenu}>{t('profile.links.deleteAccount')}</a>
+          <a href="#profile-section" onClick={(e) => handleScrollToSection(e, "profile-section")}>
+            {t('profile.links.details')}
+          </a>
+          <a href="#login-section" onClick={(e) => handleScrollToSection(e, "login-section")}>
+            {t('profile.links.authMethod')}
+          </a>
+          <a href="#account-delete-section" onClick={(e) => handleScrollToSection(e, "account-delete-section")}>
+            {t('profile.links.deleteAccount')}
+          </a>
         </div>
 
         {/* Bouton Menu Mobile */}

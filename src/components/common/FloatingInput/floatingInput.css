@@ -15,14 +15,18 @@
 }
 
 .floating-label .form-input {
-  padding: 14px 16px;
+  padding: 26px 16px;
   margin-top: 5px;
   border-radius: 20px;
-  background: transparent; 
+  background: transparent;
   border: none;
   font-size: clamp(13px, 3vw, 14px);
   font-family: var(--font-family-text);
   color: var(--color-text);
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
 }
 
 .floating-label label {

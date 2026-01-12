@@ -8,8 +8,15 @@ const GameCard = ({
     index, 
     activeMenuIndex, 
     onToggleMenu, 
-    t 
+    t,
+    onDeleteRequest
 }) => {
+
+    const handleDeleteClick = (e) => {
+        e.stopPropagation(); 
+        onToggleMenu(null, e); 
+        if (onDeleteRequest) onDeleteRequest(game);
+    };
 
     // --- VARIANT: ADD (Bouton Ajouter) ---
     if (variant === "add") {
@@ -54,7 +61,7 @@ const GameCard = ({
                         <FontAwesomeIcon icon={faPen} /> 
                         <span>{t('gameList.actions.edit')}</span>
                     </button>
-                    <button className="ctx-item delete">
+                    <button className="ctx-item delete" onClick={handleDeleteClick}>
                         <FontAwesomeIcon icon={faTrash} /> 
                         <span>{t('gameList.actions.delete')}</span>
                     </button>

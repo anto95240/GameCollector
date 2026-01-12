@@ -40,6 +40,7 @@ const ListePage = () => {
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(null);
+  const [gameToDelete, setGameToDelete] = useState(null);
   
   const scrollRef = useRef(null);
   const pageSize = 4;
@@ -54,6 +55,12 @@ const ListePage = () => {
   };
 
   const closeMenu = () => setActiveMenuIndex(null);
+
+  const confirmDelete = () => {
+      console.log("Suppression confirmée :", gameToDelete?.name);
+      // Logique suppression API ici...
+      setGameToDelete(null);
+  };
 
   return (
     <div className="liste-page-container w-full flex flex-col" onClick={closeMenu}>
@@ -80,6 +87,7 @@ const ListePage = () => {
                   activeMenuIndex={activeMenuIndex}
                   onToggleMenu={toggleMenu}
                   t={t}
+                  onDeleteRequest={(g) => setGameToDelete(g)}
                 />
               </div>
             ))
@@ -110,7 +118,28 @@ const ListePage = () => {
         filterData={FILTER_DATA}
         onSelectFilter={handleSelectFilter}
         games={MOCK_GAMES} 
+        resultCount={filteredGames.length}
       />
+
+      {gameToDelete && (
+        <div className="modal-overlay fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setGameToDelete(null)}>
+            <div className="modal bg-[#001128] p-6 rounded-xl border border-[#0068AC]" onClick={(e) => e.stopPropagation()}>
+                <h4 className="text-xl mb-4 text-[#5AF2FF] font-title">{t('gameList.confirmDelete.title')}</h4>
+                <p className="mb-6 text-white/80">
+                    {t('gameList.confirmDelete.message')} <br/>
+                    <span className="font-bold text-white mt-2 block">"{gameToDelete.name}"</span>
+                </p>
+                <div className="modal-actions flex justify-center gap-4">
+                    <button className="btn-light px-4 py-2 rounded-lg font-bold" onClick={() => setGameToDelete(null)}>
+                        {t('gameList.confirmDelete.cancel')}
+                    </button>
+                    <button className="btn-red px-4 py-2 rounded-lg font-bold text-white bg-red-600" onClick={confirmDelete}>
+                        {t('gameList.confirmDelete.confirm')}
+                    </button>
+                </div>
+            </div>
+        </div>
+      )}
     </div>
   );
 };

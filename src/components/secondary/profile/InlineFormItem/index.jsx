@@ -12,6 +12,7 @@ const InlineFormItem = ({
   buttonLabel,
 }) => (
   <>
+    {/* Partie Info (Inchangée) */}
     <div className="account-info-item">
       <div>
         <p className="label">{label}</p>
@@ -22,8 +23,10 @@ const InlineFormItem = ({
       </button>
     </div>  
     
-    {showForm && (
-      <div className="inline-form">
+    {/* Partie Formulaire avec Animation */}
+    {/* On retire {showForm && ...} et on utilise une classe */}
+    <div className={`inline-form-wrapper ${showForm ? "open" : ""}`}>
+      <div className="inline-form-content">
         <input
           type={inputType}
           placeholder={placeholder}
@@ -31,7 +34,7 @@ const InlineFormItem = ({
           onChange={onFormChange}
         />
       </div>
-    )}
+    </div>
   </>
 );
 

@@ -1,23 +1,30 @@
 import { useState, useEffect } from "react";
 import "./categoryForm.css"
 
-const CategoryForm = ({ categoryType, isOpen, onClose }) => {
-    useEffect(() => {
-        setFormData({ name: "", brand: "", order: "", color: "#ffffff" });
-    }, [categoryType]);
-
+const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) => {
     const [formData, setFormData] = useState({
         name: "", brand: "", order: "", color: "#ffffff"
     });
 
+    useEffect(() => {
+        if (isEdit && initialData) {
+            // Simulation : on met le nom de l'item dans le champ name
+            setFormData({ name: typeof initialData === 'string' ? initialData : "", brand: "", order: "", color: "#ffffff" });
+        } else {
+            setFormData({ name: "", brand: "", order: "", color: "#ffffff" });
+        }
+    }, [isEdit, initialData, categoryType]);
+   
+
     const getFormTitle = () => {
-        const titles = {
+        const action = isEdit ? "Modifier" : "Ajouter";
+        const suffix = {
             genre: "Ajouter des genres",
             platform: "Ajouter des plateformes",
             tag: "Ajouter des tags",
             status: "Ajouter des status"
-        };
-        return titles[categoryType] || "Ajouter";
+        }[categoryType] || "";
+        return `${action} ${suffix}`;
     };
 
     return (
@@ -69,7 +76,7 @@ const CategoryForm = ({ categoryType, isOpen, onClose }) => {
 
                     <div className="form-actions">
                         <button className="btn-cancel" onClick={onClose}>Cancel</button>
-                        <button className="btn-add">Ajouter</button>
+                        <button className="btn-add">{isEdit ? "Modifier" : "Ajouter"}</button>
                     </div>
                 </form>
             </div>
