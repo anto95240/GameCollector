@@ -1,0 +1,10 @@
+.footer-section { padding: 0 50px; margin-top: 20px; }
+.footer-title { color: #888; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; }
+
+.recent-scroll { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 10px; }
+.recent-card { width: 200px; flex-shrink: 0; transition: 0.2s; }
+.recent-card:hover { transform: translateY(-5px); }
+
+@media (max-width: 600px) {
+    .footer-section { padding: 0 20px; }
+}

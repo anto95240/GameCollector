@@ -9,6 +9,7 @@ import ProfilePage from "../screens/Profile";
 import RegisterPage from "../screens/Register";
 import StatistiquePage from "../screens/Statistique";
 import ListePage from "../screens/Liste";
+import DetailPage from "../screens/Detail";
 // import ProtectedRoutes from "../components/ProtectedRoutes"
 import AppLayout from "../components/main/AppLayout";
 import ChargementPage from "../screens/Chargement";
@@ -47,6 +48,10 @@ let router = createBrowserRouter([
           {
             path: "/list",
             Component: ListePage
+          },
+          {
+            path: "/game/:gameName",
+            Component: DetailPage
           },
           {
             path: "/add-edit-game",

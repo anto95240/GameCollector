@@ -134,7 +134,6 @@ body {
   border-radius: 40px;
   border: 1px solid var(--color-border);
   background-color: var(--color-bg-btn);
-  padding: 20px;
   width: 100%;
   max-width: 1600px;
   height: 100vh;
