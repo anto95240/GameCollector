@@ -29,7 +29,7 @@ const DetailInfoGrid = ({ game }) => {
                         <StatItem icon={faClock} label="Temps" value={game.playtime} />
                         <StatItem icon={faTrophy} label="Succès" value={game.achievements} />
                         <StatItem icon={faLayerGroup} label="Genre" value={game.genre} />
-                        <StatItem icon={faCalendarAlt} label="Année" value={game.year} />
+                        <StatItem icon={faCalendarAlt} label="Année de sortie" value={game.year} />
                     </div>
                 </div>
             </div>

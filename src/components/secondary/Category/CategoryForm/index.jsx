@@ -19,10 +19,10 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
     const getFormTitle = () => {
         const action = isEdit ? "Modifier" : "Ajouter";
         const suffix = {
-            genre: "Ajouter des genres",
-            platform: "Ajouter des plateformes",
-            tag: "Ajouter des tags",
-            status: "Ajouter des status"
+            genre: "des genres",
+            platform: "des plateformes",
+            tag: "des tags",
+            status: "des status"
         }[categoryType] || "";
         return `${action} ${suffix}`;
     };

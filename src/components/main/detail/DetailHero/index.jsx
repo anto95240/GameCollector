@@ -12,7 +12,7 @@ const DetailHero = ({ game }) => {
                     {game.tags.map((tag, i) => <span key={i} className="tag-pill">{tag}</span>)}
                 </div>
                 
-                <h1 className="main-title">{game.name}</h1>
+                <h1 className="detail-title">{game.name}</h1>
                 
                 <div className="meta-bar">
                     <div className="meta-item">

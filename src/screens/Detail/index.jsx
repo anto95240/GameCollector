@@ -23,7 +23,7 @@ const MOCK_DB = [
         addedDate: "12/01/2025",
         platform: "PlayStation 5",
         playtime: "45h",
-        achievements: "85%",
+        achievements: "20/45",
         developer: "Santa Monica",
         year: "2022",
         genre: "Action-RPG",

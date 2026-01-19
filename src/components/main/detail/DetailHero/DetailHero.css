@@ -39,7 +39,7 @@
     font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
 }
 
-.main-title {
+.detail-title {
     font-family: var(--font-family-title, sans-serif);
     font-size: clamp(32px, 5vw, 64px); 
     line-height: 1.1;
