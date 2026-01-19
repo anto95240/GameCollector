@@ -1,0 +1,13 @@
+.stat-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px; 
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+}
+.stat-label { color: #aaa; font-size: 12px; text-transform: uppercase; display: flex; gap: 8px; align-items: center; }
+.stat-value { font-weight: bold; color: #fff; }
+
+@media (max-width: 600px) {
+    .stat-label { font-size: 11px; }
+    .stat-value { font-size: 13px; }
+}

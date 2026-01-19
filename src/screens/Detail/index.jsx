@@ -2,10 +2,10 @@ import React from "react";
 import { useParams } from "react-router";
 
 // Composants refactorisés
-import DetailHeader from "../../components/secondary/detail/DetailHeader";
-import DetailHero from "../../components/secondary/detail/DetailHero";
-import DetailInfoGrid from "../../components/secondary/detail/DetailInfoGrid";
-import DetailFooter from "../../components/secondary/detail/DetailFooter";
+import DetailHeader from "../../components/main/detail/DetailHeader";
+import DetailHero from "../../components/main/detail/DetailHero";
+import DetailInfoGrid from "../../components/main/detail/DetailInfoGrid";
+import DetailFooter from "../../components/main/detail/DetailFooter";
 
 import "./detail.css";
 

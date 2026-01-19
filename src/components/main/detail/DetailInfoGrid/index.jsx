@@ -1,6 +1,6 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGamepad, faClock, faTrophy, faLayerGroup, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import "./DetailInfoGrid.css";
+import StatItem from "../../../secondary/detail/statItem";
 
 const DetailInfoGrid = ({ game }) => {
     return (
@@ -36,12 +36,5 @@ const DetailInfoGrid = ({ game }) => {
         </div>
     );
 };
-
-const StatItem = ({ icon, label, value }) => (
-    <div className="stat-item">
-        <span className="stat-label"><FontAwesomeIcon icon={icon} /> {label}</span>
-        <span className="stat-value">{value}</span>
-    </div>
-);
 
 export default DetailInfoGrid;

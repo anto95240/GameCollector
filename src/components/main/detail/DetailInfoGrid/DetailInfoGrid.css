@@ -29,15 +29,6 @@
 .data-col { display: flex; flex-direction: column; gap: 20px; }
 .stats-list { display: flex; flex-direction: column; gap: 15px; }
 
-.stat-item {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 12px; 
-    background: rgba(255,255,255,0.05);
-    border-radius: 8px;
-}
-.stat-label { color: #aaa; font-size: 12px; text-transform: uppercase; display: flex; gap: 8px; align-items: center; }
-.stat-value { font-weight: bold; color: #fff; }
-
 /* RESPONSIVE */
 @media (max-width: 1100px) {
     .content-grid { grid-template-columns: 1fr; padding: 30px; }
@@ -52,6 +43,4 @@
     .description-text { font-size: 14px; line-height: 1.6; text-align: left; }
     .user-note { font-size: 13px; padding: 15px; }
     .stats-list { grid-template-columns: 1fr; }
-    .stat-label { font-size: 11px; }
-    .stat-value { font-size: 13px; }
 }
