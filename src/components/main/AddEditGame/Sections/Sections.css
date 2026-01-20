@@ -1,0 +1,192 @@
+.form-section {
+    padding: 25px;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    position: relative;
+    scroll-margin-top: 200px;
+    background: var(--bg-card, transparent); /* Assure que le contenu ne soit pas transparent si empilé */
+}
+
+/* FIX: Z-Index élevé pour la section Tags afin que le dropdown passe au-dessus du footer */
+#tags {
+    z-index: 20; 
+}
+
+.form-section h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #fff;
+    font-family: var(--font-family-title);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.mt-4 { margin-top: 1rem; }
+
+/* INPUTS & TEXTAREA */
+.textarea-group label,
+.select-wrapper label {
+    display: block;
+    font-size: 12px;
+    color: var(--color-text);
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.textarea-group textarea {
+    width: 100%;
+    background: var(--input-bg-solid, #0b121f);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 15px;
+    color: #fff;
+    font-family: var(--font-family-text);
+    resize: vertical;
+    outline: none;
+}
+
+.textarea-group textarea:focus {
+    border-color: #5AF2FF;
+}
+
+/* IMAGE UPLOAD */
+.image-upload-area {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed var(--color-border);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.upload-label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-direction: column;
+    color: #64748B;
+}
+
+.img-preview {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+/* TAGS */
+.tags-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+}
+
+.tag-badge {
+    background: #004a7c;
+    color: #5AF2FF;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(90, 242, 255, 0.3);
+}
+
+.tag-remove-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* --- TAGS INPUT STRUCTURE (Remplacement des styles inline) --- */
+.tag-input-wrapper {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.tag-search-container {
+    flex: 1;
+    position: relative;
+}
+
+.tag-suggestion-icon {
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+/* --- TAGS SUGGESTIONS --- */
+.tags-suggestions-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #001a35;
+    border: 1px solid #0068AC;
+    border-radius: 0 0 12px 12px;
+    z-index: 100; /* Assez haut pour passer au-dessus des inputs */
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 2px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+.tag-suggestion-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.2s;
+}
+
+.tag-suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.tag-suggestion-item:hover {
+    background: rgba(90, 242, 255, 0.15);
+    color: #5AF2FF;
+}
+
+.tags-suggestions-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+.tags-suggestions-dropdown::-webkit-scrollbar-thumb {
+    background: #0068AC;
+    border-radius: 3px;
+}
+
+.btn-add-tag {
+    background: #0068AC;
+    border: none;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

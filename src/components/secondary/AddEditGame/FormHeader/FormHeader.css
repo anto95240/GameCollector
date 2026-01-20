@@ -1,0 +1,64 @@
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    background: #001128; /* Fond opaque pour le sticky */
+    z-index: 10;
+    padding-top: 20px;
+}
+
+.page-title {
+    font-family: var(--font-family-title);
+    font-size: 24px;
+    text-transform: uppercase;
+    text-shadow: var(--shadow-main);
+    margin: 0;
+}
+
+.btn-back {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.btn-back:hover {
+    background: rgba(90, 242, 255, 0.1);
+    transform: translateX(-5px);
+}
+
+.spacer { width: 80px; }
+
+@media (max-width: 900px) {
+
+    .page-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+        position: relative; /* Pas sticky sur mobile si trop gros */
+    }
+
+    .btn-back {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .spacer { display: none; }
+    
+    .page-title {
+        width: 100%;
+        text-align: center;
+    }
+}

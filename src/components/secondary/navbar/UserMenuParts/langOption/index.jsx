@@ -6,7 +6,7 @@ const LangOption = ({ code, label, flagCode, onChange }) => (
         className="lang-option flex items-center cursor-pointer" 
         onClick={(e) => onChange(code, e)}
     >
-        <Flag code={flagCode} style={{ width: 22, height: 22 }} /> {label}
+        <Flag code={flagCode} className="w-6 h-6" /> {label}
     </button>
 );
 export default LangOption;

@@ -27,7 +27,7 @@
 
 @media (min-width: 768px) {
     .card-dashboard {
-        flex: 1; /* Prend la place dispo en desktop */
+        flex: 1; 
         min-width: 0;
     }
 }
@@ -48,9 +48,16 @@
     align-items: center;
 }
 
+/* Modification ici pour gérer l'opacité via CSS */
 .icon-heart {
     font-size: clamp(18px, 20vh, 24px);
     cursor: pointer;
+    opacity: 0.5; /* Valeur par défaut (non favori) */
+    transition: opacity 0.3s ease; /* Transition fluide */
+}
+
+.icon-heart.favorite {
+    opacity: 1; /* Pleine opacité si favori */
 }
 
 .btn-dots {
@@ -87,14 +94,14 @@
 }
 
 .card-add:hover {
-  transform: scale(1.05); /* Grossit un peu plus que les autres */
-  border-color: var(--color-text); /* Devient Cyan (ou ta couleur active) */
+  transform: scale(1.05);
+  border-color: var(--color-text);
   color: var(--color-text);
-  box-shadow: 0 0 20px rgba(90, 242, 255, 0.2); /* Lueur interne */
+  box-shadow: 0 0 20px rgba(90, 242, 255, 0.2);
 }
 
 .card-add:active {
-  transform: scale(0.95); /* S'écrase bien au clic */
+  transform: scale(0.95);
 }
 
 .plus-icon {

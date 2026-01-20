@@ -71,7 +71,7 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
                             type="color" className="color-picker-square" value={formData.color}
                             onChange={(e) => setFormData({...formData, color: e.target.value})}
                         />
-                        <div style={{flex: 1}}></div> 
+                        <div className="flex-1"></div> 
                     </div>
 
                     <div className="form-actions">

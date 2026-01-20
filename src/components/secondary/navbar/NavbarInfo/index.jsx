@@ -53,7 +53,7 @@ const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
         <p>{batteryLevel !== null ? `${batteryLevel}%` : "⚡"}</p>
 
         {/* --- AJOUT DU WRAPPER RELATIF ICI --- */}
-        <div className="relative" style={{ position: 'relative' }}>
+        <div className="relative" >
             <button 
               className="navbar-connection-button flex items-center justify-center" 
               onClick={(e) => { e.stopPropagation(); setActionsOpen(prev => !prev); }}

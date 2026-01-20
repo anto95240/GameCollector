@@ -1,0 +1,12 @@
+.form-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-actions-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}

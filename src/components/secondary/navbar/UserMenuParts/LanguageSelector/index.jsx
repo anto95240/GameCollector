@@ -11,7 +11,7 @@ const LanguageSelector = ({ currentLang, isOpen, setOpen, onChange }) => {
                 onClick={(e) => { e.stopPropagation(); setOpen(prev => !prev); }}
                 aria-label="Changer la langue"
             >
-                <Flag code={currentLang === "FR" ? "FR" : "GB"} style={{ width: 24, height: 24 }} />
+                <Flag code={currentLang === "FR" ? "FR" : "GB"} className="w-6 h-6" />
             </button>
 
             {isOpen && (

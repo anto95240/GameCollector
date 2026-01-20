@@ -84,7 +84,7 @@ const FilterAccordionItem = ({
                         
                         {isActiveCategory && (
                             <button className="clear-cat-btn" onClick={() => handleClearCategory(category.label)}>
-                                <FontAwesomeIcon icon={faUndo} style={{ marginRight: 4 }}/> 
+                                <FontAwesomeIcon icon={faUndo}/> 
                                 Désélectionner
                             </button>
                         )}

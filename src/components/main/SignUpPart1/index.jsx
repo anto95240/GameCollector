@@ -59,7 +59,7 @@ const SignUpPart1 = ({ formData, setFormData, nextStep, badLogin, setBadLogin, t
                     />
                     
                     {/* Gestion erreur visuelle simple pour l'exemple, peut être intégrée dans FloatingInput plus tard si besoin */}
-                    {badLogin && <p className="error-message text-center" style={{marginTop: '-15px', marginBottom: '15px'}}>{t("ErrorMsg.badLogin") || "Nom d'utilisateur trop court"}</p>}
+                    {badLogin && <p className="error-message text-center">{t("ErrorMsg.badLogin") || "Nom d'utilisateur trop court"}</p>}
 
                     <button type="submit" className="submit-button text-center cursor-pointer flex justify-center items-center m-auto">
                         {t('auth.register.next')}

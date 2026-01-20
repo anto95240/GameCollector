@@ -54,16 +54,7 @@ const CustomTooltip = ({ label, value, position }) => {
     return (
         <div
             className="year-custom-tooltip"
-            style={{
-                left: position.x,
-                top: position.y,
-                position: 'absolute',
-                transform: 'translate(-50%, -100%)',
-                marginTop: '-8px',
-                pointerEvents: 'none',
-                zIndex: 100,
-                whiteSpace: 'nowrap'
-            }}
+            style={{ left: position.x, top: position.y }}
         >
             <p className="year-tooltip-label">{label}</p>
             <p className="year-tooltip-info">{value} Jeux</p>
@@ -157,7 +148,7 @@ const YearChart = () => {
                     />
                 </div>
 
-                <div className="year-chart-container" style={{ position: 'relative' }}>
+                <div className="year-chart-container relative">
                     <ResponsiveContainer>
                         <BarChart 
                             data={currentData}

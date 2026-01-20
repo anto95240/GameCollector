@@ -95,7 +95,7 @@ const ListePage = () => {
               </div>
             ))
           ) : (
-              <p className="no-result-text" style={{margin: 'auto', color: 'white'}}>Aucun jeu trouvé</p>
+              <p className="no-result-text m-auto">Aucun jeu trouvé</p>
           )}
 
           {/* Carte Ajouter toujours à la fin */}

@@ -1,6 +1,6 @@
 import { faGamepad, faClock, faTrophy, faLayerGroup, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import "./DetailInfoGrid.css";
-import StatItem from "../../../secondary/detail/StatItem";
+import StatItem from "../../../secondary/Detail/StatItem";
 
 const DetailInfoGrid = ({ game }) => {
     return (

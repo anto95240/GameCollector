@@ -61,6 +61,8 @@
 
 .error-message{
     color: rgb(240, 76, 76);
+    margin-top: -15px;
+    margin-bottom: 15px;
 }
 
 /* ------------------ MEDIA QUERY ------------------ */

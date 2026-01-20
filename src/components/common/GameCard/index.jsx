@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faEllipsisVertical, faPen, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router"; // Import nécessaire
+import { useNavigate } from "react-router";
 import "./gameCard.css";
 
 const GameCard = ({ 
@@ -29,7 +29,6 @@ const GameCard = ({
     const handleEditClick = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        // On passe l'objet game entier pour pré-remplir le formulaire
         navigate("/game/add-edit-game", { state: { game: game } });
         if (onToggleMenu) onToggleMenu(null, e);
     };
@@ -50,7 +49,7 @@ const GameCard = ({
         );
     }
 
-    // VARIANT: DASHBOARD (Ajout du onClick)
+    // VARIANT: DASHBOARD
     if (variant === "dashboard") {
         const gameName = typeof game === 'string' ? game : game.name;
         
@@ -64,7 +63,7 @@ const GameCard = ({
         );
     }
 
-    // VARIANT: LIST (Ajout du onClick)
+    // VARIANT: LIST
     return (
         <div 
             className="game-card card-list console-card-hover cursor-pointer"
@@ -73,14 +72,14 @@ const GameCard = ({
             <div className="card-top">
                 <FontAwesomeIcon 
                     icon={faHeart} 
-                    className="icon-heart"
-                    style={{ opacity: game.isFavorite ? 1 : 0.5 }} 
-                    onClick={(e) => e.stopPropagation()} // Stop propagation pour ne pas ouvrir le détail
+                    /* Remplacement du style inline par une classe conditionnelle */
+                    className={`icon-heart ${game.isFavorite ? 'favorite' : ''}`}
+                    onClick={(e) => e.stopPropagation()} 
                 />
                 <button 
                     className="btn-dots" 
                     onClick={(e) => {
-                        e.stopPropagation(); // Stop propagation
+                        e.stopPropagation();
                         onToggleMenu(index, e);
                     }}
                 >
