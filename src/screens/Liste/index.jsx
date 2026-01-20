@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 import { useGameFiltering } from "../../hooks/useGameFiltering";
 
 // Composants
@@ -31,6 +32,7 @@ const MOCK_GAMES = [
 
 const ListePage = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const { 
       searchTerm, setSearchTerm, 
@@ -70,6 +72,7 @@ const ListePage = () => {
         onSearchChange={setSearchTerm} 
         onToggleFilter={() => setIsFilterOpen(!isFilterOpen)} 
         t={t}
+        onClick={() => navigate("/game/add-edit-game")}
       />
 
       <div className="main-stage flex items-center justify-start w-full gap-5">
@@ -96,7 +99,7 @@ const ListePage = () => {
           )}
 
           {/* Carte Ajouter toujours à la fin */}
-          <GameCard variant="add" t={t} />
+          <GameCard variant="add" t={t} onClick={() => navigate("/game/add-edit-game")}/>
         </div>
       </div>
 

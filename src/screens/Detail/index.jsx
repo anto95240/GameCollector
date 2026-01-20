@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 
 // Composants refactorisés
 import DetailHeader from "../../components/main/detail/DetailHeader";
@@ -34,16 +34,23 @@ const MOCK_DB = [
 
 const DetailPage = () => {
     const { gameName } = useParams();
+    const navigate = useNavigate();
 
     // Logique de récupération (peut être extraite dans un hook useGameDetail)
     const game = MOCK_DB.find(g => 
         g.name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') === gameName
     ) || { ...MOCK_DB[0], name: gameName || "Jeu Inconnu" };
 
+    const handleEdit = () => {
+        // On navigue vers la même page que pour l'ajout, 
+        // mais on passe l'objet 'game' actuel dans le state.
+        navigate("/game/add-edit-game", { state: { game: game } });
+    };
+
     return (
         <div className="detail-layout fade-in">
             <DetailHeader 
-                onEdit={() => console.log("Edit")} 
+                onEdit={handleEdit}
                 onDelete={() => console.log("Delete")} 
             />
 

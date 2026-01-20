@@ -54,7 +54,7 @@ let router = createBrowserRouter([
             Component: DetailPage
           },
           {
-            path: "/add-edit-game",
+            path: "/game/add-edit-game",
             Component: AddEditGamePage,
           },
           {

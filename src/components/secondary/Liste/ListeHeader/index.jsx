@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./listeHeader.css";
 
-const ListeHeader = ({ searchTerm, onSearchChange, onToggleFilter, t, }) => {
+const ListeHeader = ({ searchTerm, onSearchChange, onToggleFilter, t, onClick}) => {
     return (
         <div className="liste-header flex items-center justify-center mx-auto">
             {/* Barre de recherche */}
@@ -27,7 +27,7 @@ const ListeHeader = ({ searchTerm, onSearchChange, onToggleFilter, t, }) => {
                     <span>{t('gameList.filters.title')}</span>
                 </button>
                 
-                <button className="btn-add flex items-center justify-center gap-2.5 cursor-pointer">
+                <button className="btn-add flex items-center justify-center gap-2.5 cursor-pointer" onClick={onClick}>
                     <FontAwesomeIcon icon={faPlus} /> 
                     <span>{t('gameList.addGame')}</span>
                 </button>

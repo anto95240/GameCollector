@@ -10,7 +10,8 @@ const GameCard = ({
     activeMenuIndex, 
     onToggleMenu, 
     t,
-    onDeleteRequest
+    onDeleteRequest,
+    onClick
 }) => {
     const navigate = useNavigate();
 
@@ -25,6 +26,14 @@ const GameCard = ({
         }
     };
 
+    const handleEditClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // On passe l'objet game entier pour pré-remplir le formulaire
+        navigate("/game/add-edit-game", { state: { game: game } });
+        if (onToggleMenu) onToggleMenu(null, e);
+    };
+
     const handleDeleteClick = (e) => {
         e.stopPropagation(); 
         onToggleMenu(null, e); 
@@ -34,7 +43,7 @@ const GameCard = ({
     // VARIANT: ADD
     if (variant === "add") {
         return (
-            <div className="game-card card-add">
+            <div className="game-card card-add cursor-pointer" onClick={onClick}>
                 <FontAwesomeIcon icon={faPlus} className="plus-icon" />
                 <span>{t ? t('gameList.addGame') : "Ajouter"}</span>
             </div>
@@ -81,7 +90,7 @@ const GameCard = ({
 
             {activeMenuIndex === index && (
                 <div className="context-menu flex flex-col gap-1.5" onClick={(e) => e.stopPropagation()}>
-                    <button className="ctx-item">
+                    <button className="ctx-item" onClick={handleEditClick}>
                         <FontAwesomeIcon icon={faPen} /> 
                         <span>{t('gameList.actions.edit')}</span>
                     </button>
