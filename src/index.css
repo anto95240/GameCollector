@@ -138,10 +138,7 @@ body {
   max-width: 1600px;
   height: 100vh;
   overflow: hidden;
-  -webkit-border-radius: 40px;
-  -moz-border-radius: 40px;
-  -ms-border-radius: 40px;
-  -o-border-radius: 40px;
+  
 }
 
 #root, #app-container {

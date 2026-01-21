@@ -5,6 +5,7 @@
   z-index: 5000;
   background: var(--color-bg);
   backdrop-filter: blur(10px); 
+  padding-top: 2%;
 }
 
 /* Logo */

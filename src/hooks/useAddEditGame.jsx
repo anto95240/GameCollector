@@ -52,7 +52,10 @@ export const useAddEditGame = () => {
     
     const [tagInput, setTagInput] = useState("");
     const [suggestedTags, setSuggestedTags] = useState([]);
-    const isScrollingRef = useRef(false);
+    
+    // Remplacement de isScrollingRef par un useRef pour bloquer l'observer lors du clic
+    const isClickScrolling = useRef(false);
+    
     const [previewImg, setPreviewImg] = useState(null);
     const [isAnimating, setIsAnimating] = useState(false);
 
@@ -84,45 +87,55 @@ export const useAddEditGame = () => {
         }
     }, [isEditMode, gameToEdit]);
 
-    // --- SCROLL SPY ---
+    // --- SCROLL SPY (INTERSECTION OBSERVER) ---
     useEffect(() => {
-        const handleScroll = () => {
-            if (isScrollingRef.current) return;
-            const scrollY = window.scrollY;
-            const triggerPoint = scrollY + 150; 
-            
-            if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 50) {
-               setActiveSection(SECTIONS[SECTIONS.length - 1].id);
-               return;
-            }
+        const handleIntersect = (entries) => {
+            // Si on est en train de scroller via un clic menu, on ignore l'observer pour éviter les sauts
+            if (isClickScrolling.current) return;
 
-            for (const section of SECTIONS) {
-                const element = document.getElementById(section.id);
-                if (element) {
-                    const { offsetHeight } = element;
-                    const rect = element.getBoundingClientRect();
-                    const top = rect.top + window.scrollY;
-                    const bottom = top + offsetHeight;
-
-                    if (triggerPoint >= top && triggerPoint < bottom) {
-                        setActiveSection(section.id);
-                        break;
-                    }
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
                 }
-            }
+            });
         };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+
+        const observer = new IntersectionObserver(handleIntersect, {
+            root: null,
+            // rootMargin définit une zone active au milieu de l'écran (-50% en haut, -50% en bas)
+            // L'intersection se déclenche quand un élément traverse cette ligne centrale invisible
+            rootMargin: '-45% 0px -45% 0px', 
+            threshold: 0
+        });
+
+        // On observe toutes les sections (elles doivent avoir la classe 'form-section')
+        const sections = document.querySelectorAll('.form-section');
+        sections.forEach((section) => observer.observe(section));
+
+        return () => {
+            sections.forEach((section) => observer.unobserve(section));
+        };
     }, []);
 
+    // --- SCROLL TO SECTION (CENTERED) ---
     const scrollToSection = (id) => {
         const element = document.getElementById(id);
-        if (!element) return;
-        isScrollingRef.current = true;
-        setActiveSection(id);
-        setShowMobileMenu(false);
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-        setTimeout(() => { isScrollingRef.current = false; }, 1000);
+        if (element) {
+            isClickScrolling.current = true;
+            setActiveSection(id);
+            setShowMobileMenu(false);
+
+            // Scroll fluide qui centre l'élément verticalement
+            element.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+
+            // On réactive l'observer après l'animation de scroll (environ 1s)
+            setTimeout(() => {
+                isClickScrolling.current = false;
+            }, 1000);
+        }
     };
 
     // --- TAGS LOGIC ---
@@ -174,13 +187,18 @@ export const useAddEditGame = () => {
         }
     };
 
+    // --- HANDLESUBMIT ---
+    const createSlug = (name) => {
+        return name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsAnimating(true);
         setTimeout(() => {
-            setIsAnimating(false);
-            navigate("/list");
-        }, 1500);
+            const slug = createSlug(formData.name);
+            navigate(`/game/${slug}`); 
+        }, 2000); 
     };
 
     return {

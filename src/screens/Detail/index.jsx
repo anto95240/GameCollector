@@ -1,5 +1,5 @@
-import React from "react";
-import { useParams, useNavigate } from "react-router";
+import React, { useEffect, useLayoutEffect } from "react";
+import { useParams, useNavigate, useLocation } from "react-router";
 
 // Composants refactorisés
 import DetailHeader from "../../components/main/Detail/DetailHeader";
@@ -35,15 +35,19 @@ const MOCK_DB = [
 const DetailPage = () => {
     const { gameName } = useParams();
     const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     // Logique de récupération (peut être extraite dans un hook useGameDetail)
     const game = MOCK_DB.find(g => 
         g.name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') === gameName
     ) || { ...MOCK_DB[0], name: gameName || "Jeu Inconnu" };
 
+    // 3. Scroll to top quand le jeu change
+    useLayoutEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+    }, [pathname, gameName]);
+
     const handleEdit = () => {
-        // On navigue vers la même page que pour l'ajout, 
-        // mais on passe l'objet 'game' actuel dans le state.
         navigate("/game/add-edit-game", { state: { game: game } });
     };
 

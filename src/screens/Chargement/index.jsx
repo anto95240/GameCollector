@@ -28,7 +28,7 @@ function ChargementPage() {
             <img className="loading-logo" src="/logo.png" alt="logo" />
 
             <h1 className="fade-in">{t("loading.title")}</h1>
-            <p className="fade-in delay">{t("loading.message")}</p>
+            <p className="fade-in delay">{t("loading.message")}</p> 
 
             <div className="futuristic-loader">
                 <hr ref={barRef} />

@@ -25,7 +25,7 @@
     border: 1px solid var(--color-border);
     color: var(--color-text);
     padding: 8px 16px;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
     display: flex;

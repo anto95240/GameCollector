@@ -118,7 +118,7 @@ export const ImageSection = ({ t, previewImg, handleFileChange }) => (
                     <img src={previewImg} alt="Preview" className="img-preview" />
                 ) : (
                     <div className="upload-placeholder">
-                        <FontAwesomeIcon icon={faImage} size="2x" />
+                        <FontAwesomeIcon icon={faImage} className="upload-icon" />
                         <p>Glisser ou cliquer pour ajouter</p>
                     </div>
                 )}

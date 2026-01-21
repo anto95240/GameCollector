@@ -45,7 +45,7 @@ const ListePage = () => {
   const [gameToDelete, setGameToDelete] = useState(null);
   
   const scrollRef = useRef(null);
-  const pageSize = 4;
+  const pageSize = 8;
   const totalPages = Math.ceil(filteredGames.length / pageSize) || 1;
 
   const paginatedGames = filteredGames.slice((page - 1) * pageSize, page * pageSize);
@@ -99,7 +99,13 @@ const ListePage = () => {
           )}
 
           {/* Carte Ajouter toujours à la fin */}
-          <GameCard variant="add" t={t} onClick={() => navigate("/game/add-edit-game")}/>
+          <div className="shrink-0"> 
+            <GameCard 
+              variant="add" 
+              t={t} 
+              onClick={() => navigate("/game/add-edit-game")}
+            />
+          </div>
         </div>
       </div>
 

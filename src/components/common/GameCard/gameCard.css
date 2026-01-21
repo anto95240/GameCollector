@@ -4,8 +4,22 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    flex-shrink: 0;
-    transition: transform 0.3s;
+    overflow: hidden;
+    aspect-ratio: 3/4; 
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* EMPÊCHER LE RÉTRÉCISSEMENT dans la liste flex */
+    flex-shrink: 0; 
+    
+    /* Scroll snap alignement */
+    scroll-snap-align: center;
+}
+
+.game-card:has(.btn-dots:hover),
+.game-card:has(.icon-heart:hover) {
+    transform: none;
+    box-shadow: none; /* Ou garder l'ombre par défaut */
 }
 
 /* --- VARIANT: DASHBOARD --- */
@@ -52,8 +66,9 @@
 .icon-heart {
     font-size: clamp(18px, 20vh, 24px);
     cursor: pointer;
-    opacity: 0.5; /* Valeur par défaut (non favori) */
-    transition: opacity 0.3s ease; /* Transition fluide */
+    opacity: 0.6; /* Un peu plus visible par défaut */
+    transition: all 0.2s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); /* Meilleure lisibilité sur image */
 }
 
 .icon-heart.favorite {
@@ -61,11 +76,31 @@
 }
 
 .btn-dots {
-    background: none;
+    background: rgba(0,0,0,0.3); /* Fond semi-transparent pour visibilité */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
-    font-size: clamp(18px, 20vh, 24px);
+    color: white;
+    font-size: 16px;
     cursor: pointer;
-    padding: 0;
+    opacity: 0.6;
+    transition: all 0.2s ease;
+}
+
+.card-list:hover .icon-heart,
+.card-list:hover .btn-dots {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.icon-heart.favorite {
+    opacity: 1;
+    color: #ff4757; /* Couleur rouge vif si favori */
+    text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
 }
 
 .game-title {
@@ -87,7 +122,7 @@
     cursor: pointer;
     color: var(--color-text);
     gap: 15px;
-    margin: auto 0px;
+    margin: 30px 0px;
     transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), 
               border-color 0.3s, 
               color 0.3s;

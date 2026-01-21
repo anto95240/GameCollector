@@ -2,36 +2,66 @@
     height: 90%;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .main-stage {
     flex: 1;
     position: relative;
     padding: 20px 0;
+    /* Centrer verticalement le contenu */
+    display: flex; 
+    align-items: center; 
 }
 
 .cards-wrapper {
     padding: 0 10px;
+    display: flex; /* Important */
     flex-wrap: nowrap;
-    overflow: scroll;
+    overflow-x: auto; /* Scroll horizontal */
+    overflow-y: hidden;
+    gap: 20px;
+    width: 100%;
+    
+    /* Scroll Snap pour mobile : pour que les cartes se calent bien */
+    scroll-snap-type: x mandatory; 
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Cache scrollbar */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
 
+/* Design amélioré pour "Aucun jeu trouvé" */
+.no-result-text {
+    margin: auto;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    background: rgba(0, 17, 40, 0.5);
+    padding: 20px 40px;
+    border-radius: 15px;
+    border: 1px dashed #5AF2FF;
+    font-family: var(--font-family-title);
+    letter-spacing: 1px;
+}
+
 @media (max-width: 768px) {
     .liste-page-container { 
         padding: 15px; 
     }
-
-    .main-stage { 
-        gap: 15px; 
-        padding-top: 20px; 
-    }
     
     .cards-wrapper { 
-        gap: 15px; 
-        padding: 0 5px; 
+        padding: 0 20px; /* Un peu plus de marge sur les côtés */
+        gap: 15px;
+    }
+
+    /* Ajustement texte aucun résultat mobile */
+    .no-result-text {
+        width: 90%;
+        font-size: 1rem;
+        padding: 15px;
     }
 }

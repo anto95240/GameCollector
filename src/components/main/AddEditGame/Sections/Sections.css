@@ -4,13 +4,13 @@
     border-radius: 20px;
     position: relative;
     scroll-margin-top: 200px;
-    background: var(--bg-card, transparent); /* Assure que le contenu ne soit pas transparent si empilé */
+    background: var(--bg-card, transparent);
 }
 
 /* FIX: Z-Index élevé pour la section Tags afin que le dropdown passe au-dessus du footer */
-#tags {
+/* #tags {
     z-index: 20; 
-}
+} */
 
 .form-section h3 {
     margin-top: 0;
@@ -38,6 +38,7 @@
     color: var(--color-text);
     margin-bottom: 8px;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 .textarea-group textarea {
@@ -53,20 +54,25 @@
 }
 
 .textarea-group textarea:focus {
-    border-color: #5AF2FF;
+    outline: none;
+    border-color: var(--color-border);
 }
 
 /* IMAGE UPLOAD */
 .image-upload-area {
     width: 100%;
-    height: 200px;
+    /* Hauteur fluide ou min-height */
+    min-height: 200px; 
+    height: auto;
+    aspect-ratio: 16/9;
     border: 2px dashed var(--color-border);
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
+    overflow: hidden;
+    position: relative;
 }
 
 .upload-label {
@@ -83,8 +89,13 @@
 .img-preview {
     max-height: 100%;
     max-width: 100%;
-    object-fit: contain;
-    border-radius: 12px;
+    object-fit: cover;
+}
+
+.upload-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #5AF2FF;
 }
 
 /* TAGS */
@@ -123,7 +134,7 @@
     position: relative;
     display: flex;
     gap: 10px;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .tag-search-container {

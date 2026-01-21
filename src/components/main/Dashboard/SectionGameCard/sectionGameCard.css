@@ -10,6 +10,10 @@
     scroll-behavior: smooth;
 }
 
+.game-cards-container .game-card {
+    height: 250px;
+}   
+
 /* Cache scrollbar */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
@@ -28,6 +32,12 @@
 
 .arrow-left { left: -5px; }
 .arrow-right { right: -5px; }
+
+@media (max-width: 600px) {
+    .game-cards-container .game-card {
+        height: 200px;
+    }
+}
 
 @media (min-width: 768px) {
     .carousel-arrow {

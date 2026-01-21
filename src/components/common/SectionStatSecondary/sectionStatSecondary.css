@@ -9,6 +9,16 @@
   margin-top: 1rem;
 }
 
+.secondary-stats-grid .stat-value {
+    font-size: 28px; /* Plus grand */
+    font-weight: bold;
+    color: #fff;
+}
+.secondary-stats-grid .stat-label {
+    font-size: 14px;
+    color: #ccc;
+}
+
 /* Desktop : side by side et largeur différente */
 @media (min-width: 768px) {
     .secondary-stats-grid.default-page {

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilter, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faFilter, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./listeHeader.css";
 
 const ListeHeader = ({ searchTerm, onSearchChange, onToggleFilter, t, onClick}) => {
@@ -14,8 +14,18 @@ const ListeHeader = ({ searchTerm, onSearchChange, onToggleFilter, t, onClick}) 
                     value={searchTerm}
                     onChange={(e) => onSearchChange(e.target.value)}
                 />
+                {searchTerm && (
+                    <button 
+                        className="btn-clear-search" 
+                        onClick={() => onSearchChange("")}
+                    >
+                        <FontAwesomeIcon icon={faTimes} />
+                    </button>
+                )}
             </div>
-                <p className="nb-jeux w-auto mx-auto">nb jeux</p>
+            <p className="nb-jeux w-auto mx-auto font-bold text-white uppercase tracking-wider">
+                nb jeux
+            </p>
 
             {/* Boutons d'action */}
             <div className="header-buttons flex gap-5">

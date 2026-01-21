@@ -15,11 +15,11 @@
   gap: 40px;
   overflow-x: auto;
   padding-bottom: 10px;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .recent-card {
-  width: 200px;
+  width: 160px;
   flex-shrink: 0;
   transition: 0.2s;
 }

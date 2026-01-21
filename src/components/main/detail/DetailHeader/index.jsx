@@ -8,7 +8,7 @@ const DetailHeader = ({ onEdit, onDelete }) => {
 
     return (
         <header className="detail-header">
-            <button className="btn-glass" onClick={() => navigate(-1)}>
+            <button className="btn-glass" onClick={() => navigate("/list")}>
                 <FontAwesomeIcon icon={faArrowLeft} /> <span>Retour</span>
             </button>
             

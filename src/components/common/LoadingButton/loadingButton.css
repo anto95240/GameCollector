@@ -73,3 +73,10 @@
 .clicked p {
     opacity: 1;
 }
+
+@media (max-width: 600px) {
+    .submit-button {
+        width: 10%;
+        padding: 10px 0;
+    }
+}

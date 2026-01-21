@@ -10,11 +10,14 @@
 .search-wrapper {
     flex: 1;
     max-width: 500px;
+    position: relative; /* Indispensable pour positionner la croix */
+    display: flex;
+    align-items: center;
 }
 
 .search-input {
-    width: 90%;
-    padding: 15px;
+    width: 100%; /* Prend toute la place */
+    padding: 15px 45px 15px 20px;
     background-color: #5AF2FF;
     color: var(--text-search);
     border: none;
@@ -28,8 +31,26 @@
     color: var(--text-search);
 }
 
-.nb-jeux {
+.btn-clear-search {
+    position: absolute;
+    right: 15px; /* Collé à droite, peu importe la taille de l'écran */
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--text-search); /* Ou une couleur plus sombre pour contraste */
+    cursor: pointer;
     font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.nb-jeux {
+    font-size: 14px;
+    color: #5AF2FF; /* Plus visible */
+    text-shadow: 0 0 10px rgba(90, 242, 255, 0.5);
 }
 
 .header-buttons {
@@ -92,6 +113,10 @@
         -moz-border-radius: 12px;
         -ms-border-radius: 12px;
         -o-border-radius: 12px;
+    }
+
+    .btn-clear-search {
+        left: 85%;
     }
 
     .nb-jeux {

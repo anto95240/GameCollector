@@ -1,4 +1,4 @@
-import { faGamepad, faClock, faTrophy, faLayerGroup, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import { faGamepad, faClock, faTrophy, faLayerGroup, faCalendarAlt, faCode } from "@fortawesome/free-solid-svg-icons";
 import "./DetailInfoGrid.css";
 import StatItem from "../../../secondary/Detail/StatItem";
 
@@ -8,7 +8,7 @@ const DetailInfoGrid = ({ game }) => {
             {/* Colonne Gauche : Narration */}
             <div className="narrative-col">
                 <div className="bento-card">
-                    <h3>Synopsis</h3>
+                    <h3>Description</h3>
                     <p className="description-text">{game.description}</p>
                 </div>
                 
@@ -30,6 +30,9 @@ const DetailInfoGrid = ({ game }) => {
                         <StatItem icon={faTrophy} label="Succès" value={game.achievements} />
                         <StatItem icon={faLayerGroup} label="Genre" value={game.genre} />
                         <StatItem icon={faCalendarAlt} label="Année de sortie" value={game.year} />
+                        {game.developer && (
+                             <StatItem icon={faCode} label="Développeur" value={game.developer} />
+                        )}
                     </div>
                 </div>
             </div>
