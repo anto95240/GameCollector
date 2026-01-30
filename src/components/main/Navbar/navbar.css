@@ -6,6 +6,7 @@
   background: var(--color-bg);
   backdrop-filter: blur(10px); 
   padding-top: 2%;
+  padding-bottom: 1%;
 }
 
 /* Logo */

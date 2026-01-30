@@ -76,7 +76,7 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
 
                     <div className="form-actions">
                         <button className="btn-cancel" onClick={onClose}>Cancel</button>
-                        <button className="btn-add">{isEdit ? "Modifier" : "Ajouter"}</button>
+                        <button className="btn-addEdit">{isEdit ? "Modifier" : "Ajouter"}</button>
                     </div>
                 </form>
             </div>

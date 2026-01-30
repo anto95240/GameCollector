@@ -1,115 +1,204 @@
+/* --- CONTAINER GLOBAL DU FORMULAIRE --- */
 .manager-form-container {
-    overflow: hidden;
-    transition: width 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
-}
-
-.manager-form-container.closed {
-    width: 0;
-    opacity: 0;
-    padding: 0;
-}
-
-.manager-form-container.open {
-    width: 50%;
-    opacity: 1;
-    padding-left: 20px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .manager-form-wrapper {
-    background: rgba(0, 17, 40, 0.5);
+    background: rgba(0, 17, 40, 0.6);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--color-border);
     border-radius: 12px;
-    padding: 25px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
-    min-width: 300px;
-}
-
-.form-title-inner {
-    color: #64748B;
-    font-size: 14px;
-    margin-bottom: 20px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
     width: 100%;
-    text-align: center;
+    box-sizing: border-box;
 }
 
+/* --- TITRE --- */
+.form-title-inner {
+    color: #94A3B8;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+/* --- CHAMPS (Layout commun) --- */
 .form-fields {
     width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
 .form-group {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-}
-
-.form-group label {
-    color: #5AF2FF;
-    font-size: 13px;
-    min-width: 110px;
-}
-
-.form-input {
-    flex: 1;
-    background: #CBD5E1;
-    border: none;
-    border-radius: 6px;
-    height: 30px;
-    padding: 0 10px;
-    color: #000;
-    outline: none;
-    font-size: 14px;
-}
-
-.color-picker-square {
-    width: 24px;
-    height: 24px;
-    background: #CBD5E1;
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
-    padding: 0;
-}
-
-.form-actions {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
     width: 100%;
 }
 
-.btn-cancel, .btn-add {
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: bold;
-    font-size: 12px;
+.form-input {
+    background: #CBD5E1;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    color: #0F172A;
+    outline: none;
+    font-weight: 600;
+    transition: all 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+    max-height: 35px;
+}
+
+.form-input:focus {
+    background: #fff;
+    border-color: #5AF2FF;
+    box-shadow: 0 0 0 4px rgba(90, 242, 255, 0.15);
+}
+
+.color-picker-square {
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
     cursor: pointer;
-    transition: 0.2s;
+    padding: 0;
+    overflow: hidden;
+    transition: transform 0.2s;
+    max-height: 40px;
+    max-width: 40px;
 }
 
-.btn-cancel { 
-    background: #5AF2FF; 
-    color: #001128; 
-}
-.btn-add { 
-    background: var(--gradient-blue); 
-    color: #fff; 
+/* ============================================================
+   DESIGN MOBILE (PETIT ÉCRAN) - UX/UI "GROS DOIGTS"
+   ============================================================ */
+@media (max-width: 1023px) {
+    .form-group {
+        flex-direction: column; /* Label au-dessus */
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .form-group label {
+        color: #5AF2FF;
+        font-size: 16px; /* Texte grand */
+        font-weight: 600;
+        margin-left: 4px;
+    }
+
+    .form-input {
+        height: 35px;
+        font-size: 16px;
+        padding: 0 15px;
+        border-radius: 10px;
 }
 
-.btn-cancel:hover, .btn-add:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-@media (max-width: 768px) {
-    .manager-form-container.open {
+    .color-input-wrapper {
         width: 100%;
-        padding-left: 0;
+        display: flex;
+        gap: 10px;
+    }
+    
+    .color-picker-square {
+        width: 20%;
+        height: 40px;
+        border-radius: 12px;
+    }
+
+    .form-actions {
+        display: flex;
+        flex-direction: column-reverse; /* Annuler en bas */
+        gap: 15px;
+        /* margin-top: 25px; */
+    }
+
+    .btn-cancel, .btn-addEdit {
+        width: 100%;
+        height: 40px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+}
+}
+
+/* ============================================================
+   DESIGN DESKTOP (GRAND ÉCRAN) - UX/UI "COMPACT"
+   ============================================================ */
+@media (min-width: 1024px) {
+    .manager-form-wrapper {
+        padding: 30px; /* Plus d'espace interne */
+    }
+
+    .form-group {
+        flex-direction: row; /* Label à côté */
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .form-group label {
+        color: #5AF2FF;
+        font-size: 14px; /* Texte standard */
+        min-width: 110px; /* Largeur fixe pour alignement */
+        text-align: left;
+    }
+
+    .form-input {
+        height: 40px; /* Hauteur standard souris */
+        font-size: 14px;
+        padding: 0 12px;
+        flex: 1; /* Prend l'espace restant */
+    }
+
+    .color-input-wrapper {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+    
+    .color-picker-square {
+        width: 60px;
+        height: 40px;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: flex-end; /* Boutons à droite */
+        gap: 15px;
+        /* margin-top: 30px; */
+    }
+
+    .btn-cancel, .btn-addEdit {
+        padding: 10px 25px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-addEdit:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+}
+
+@media (max-width: 1023px) {
+    .form-actions {
+        display: flex;
+        flex-direction: column-reverse; 
+        gap: 12px;
+        margin-top: 10px; /* Ajout d'un petit espace avec les champs */
     }
 }
+
+/* COULEURS COMMUNES BOUTONS */
+.btn-cancel { background: rgba(90, 242, 255, 0.1); color: #5AF2FF; }
+.btn-addEdit { background: var(--gradient-blue); color: #fff; }

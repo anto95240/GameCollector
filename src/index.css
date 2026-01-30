@@ -135,7 +135,6 @@ body {
   border: 1px solid var(--color-border);
   background-color: var(--color-bg-btn);
   width: 100%;
-  max-width: 1600px;
   height: 100vh;
   overflow: hidden;
   

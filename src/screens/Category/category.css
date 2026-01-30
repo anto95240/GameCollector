@@ -20,7 +20,7 @@
 
 /* État HERO (Aucune sélection) : On pousse le bloc vers le milieu de l'écran */
 .category-page-container.mode-hero .selector-wrapper {
-    transform: translateY(25vh);
+    transform: translateY(10vh);
 }
 
 /* État ACTIVE (Sélection faite) : Le bloc remonte à sa position naturelle (0) */

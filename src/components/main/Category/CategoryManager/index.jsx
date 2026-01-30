@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
@@ -7,7 +7,7 @@ import CategoryList from "../../../secondary/Category/CategoryListe";
 import CategoryForm from "../../../secondary/Category/CategoryForm";
 import "./categoryManager.css";
 
-// Mock Data (Pourrait être passé via props ou contexte)
+// Mock Data
 const MOCK_DATA = {
     genre: ["Action", "Aventure", "RPG", "Streaming"],
     platform: ["PS4", "PS5", "Xbox", "Switch", "Streaming"],
@@ -18,21 +18,44 @@ const MOCK_DATA = {
 const CategoryManager = ({ categoryType }) => {
     const { t } = useTranslation();
     const [showForm, setShowForm] = useState(false);
-    const [editMode, setEditMode] = useState(false); // État pour savoir si on édite
+    const [editMode, setEditMode] = useState(false);
     const [itemToEdit, setItemToEdit] = useState(null);
     const [showDeleteModal, setShowDeleteModal] = useState(false);   
     const listItems = MOCK_DATA[categoryType] || [];
 
-    // Helper simple pour le titre
+    const formRef = useRef(null);
+
+    // --- LOGIQUE DE SCROLL (UNIQUEMENT MOBILE) ---
+    useEffect(() => {
+        // On vérifie si on est sur petit écran (ex: < 1024px)
+        const isMobile = window.innerWidth < 1024;
+
+        if (showForm && formRef.current && isMobile) {
+            setTimeout(() => {
+                formRef.current.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center', // Centre le formulaire
+                    inline: 'nearest'
+                });
+            }, 300);
+        }
+    }, [showForm]);
+
     const getCategoryLabel = () => {
         const labels = { genre: "Genre", platform: "Plateforme", tag: "Tag", status: "Status" };
         return labels[categoryType] || "Catégorie";
     };
 
     const handleAddClick = () => {
-        setEditMode(false);
-        setItemToEdit(null);
-        setShowForm(!showForm);
+        if (showForm) {
+            setShowForm(false);
+            setEditMode(false);
+            setItemToEdit(null);
+        } else {
+            setEditMode(false);
+            setItemToEdit(null);
+            setShowForm(true);
+        }
     };
 
     const handleEdit = (item) => {
@@ -41,25 +64,13 @@ const CategoryManager = ({ categoryType }) => {
         setShowForm(true);
     };
 
-    const handleDeleteClick = (item) => {
-        setShowDeleteModal(true);
-        // Ici on stockerait l'item à supprimer
-    };
-
-    const confirmDelete = () => {
-        // Logique de suppression ici
-        setShowDeleteModal(false);
-    };
-
     return (
         <div className="manager-container">
-            
             {/* HEADER */}
             <div className="manager-header">
                 <span className="manager-title">{getCategoryLabel()}</span>
-                
                 <button 
-                    className={`add-icon-btn ${showForm && !editMode ? "active" : ""}`}
+                    className={`add-icon-btn ${showForm ? "active" : ""}`} 
                     onClick={handleAddClick}
                     title={showForm ? "Fermer" : "Ajouter"}
                 >
@@ -69,40 +80,34 @@ const CategoryManager = ({ categoryType }) => {
 
             {/* CONTENT */}
             <div className="manager-content">
-                
-                {/* LISTE (Prend la largeur restante) */}
+                {/* LISTE */}
                 <CategoryList 
                     items={listItems} 
                     isCompact={showForm} 
                     onEdit={handleEdit}
-                    onDelete={handleDeleteClick}
+                    onDelete={() => setShowDeleteModal(true)} // Exemple
                 />
 
-                {/* FORMULAIRE (S'ouvre et se ferme) */}
-                <CategoryForm 
-                    categoryType={categoryType} 
-                    isOpen={showForm} 
-                    onClose={() => setShowForm(false)} 
-                    isEdit={editMode}       
-                    initialData={itemToEdit}
-                />
-
-            </div>
-
-            {showDeleteModal && (
-                <div className="modal-overlay" onClick={() => setShowDeleteModal(false)}>
-                    <div className="modal" onClick={(e) => e.stopPropagation()}>
-                        <h4>Confirmer la suppression</h4>
-                        <p>Êtes-vous sûr de vouloir supprimer cette catégorie ?</p>
-                        <div className="modal-actions">
-                            <button className="btn-light" onClick={() => setShowDeleteModal(false)}>Annuler</button>
-                            <button className="btn-red" onClick={confirmDelete}>Supprimer</button>
-                        </div>
+                {/* CONTAINER FORMULAIRE AVEC ANIMATION HYBRIDE */}
+                <div 
+                    ref={formRef} 
+                    className={`form-collapsible ${showForm ? "open" : ""}`}
+                >
+                    <div className="form-inner">
+                        <CategoryForm 
+                            categoryType={categoryType} 
+                            isOpen={true} // Toujours true, le CSS gère la visibilité
+                            onClose={() => setShowForm(false)} 
+                            isEdit={editMode}       
+                            initialData={itemToEdit}
+                        />
                     </div>
                 </div>
-            )}
+            </div>
+            
+            {/* MODAL (Placeholder) */}
+             {showDeleteModal && <div className="modal-overlay" onClick={() => setShowDeleteModal(false)}></div>}
         </div>
-        
     );
 };
 
