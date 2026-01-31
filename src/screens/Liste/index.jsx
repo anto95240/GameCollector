@@ -42,8 +42,11 @@ const ListePage = () => {
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(null);
-  const [gameToDelete, setGameToDelete] = useState(null);
   
+  // États pour la suppression
+  const [gameToDelete, setGameToDelete] = useState(null); // Pour la modale
+  const [deletingId, setDeletingId] = useState(null);     // Pour l'animation
+
   const scrollRef = useRef(null);
   const pageSize = 8;
   const totalPages = Math.ceil(filteredGames.length / pageSize) || 1;
@@ -59,9 +62,28 @@ const ListePage = () => {
   const closeMenu = () => setActiveMenuIndex(null);
 
   const confirmDelete = () => {
-      console.log("Suppression confirmée :", gameToDelete?.name);
-      // Logique suppression API ici...
+      if (!gameToDelete) return;
+
+      const id = gameToDelete.id;
+      console.log("Début suppression pour :", gameToDelete.name);
+
+      // 1. Fermer la modale immédiatement
       setGameToDelete(null);
+
+      // 2. Déclencher l'animation sur la carte spécifique
+      setDeletingId(id);
+
+      // 3. Attendre la fin de l'animation (500ms définie dans animations.css) avant de supprimer vraiment
+      setTimeout(() => {
+          // Logique réelle de suppression (API ou mise à jour du state local)
+          console.log("Suppression effective terminée");
+          
+          // Note : Si vous utilisez un state local pour les jeux (ex: setGames), faites le filter ici.
+          // Comme MOCK_GAMES est statique ici, l'élément ne disparaitra pas vraiment au reload, 
+          // mais visuellement il disparaitra grâce au re-render si vous mettez à jour votre liste source.
+          
+          setDeletingId(null); // Reset de l'état d'animation
+      }, 500); 
   };
 
   return (
@@ -80,17 +102,18 @@ const ListePage = () => {
           {/* Liste des jeux */}
           {paginatedGames.length > 0 ? (
              paginatedGames.map((game, index) => (
-              // Ajout du wrapper pour l'animation CASCADE
+              // Le wrapper gère l'entrée, la GameCard gère sa propre sortie via className prop
               <div key={game.id} className="console-entry-anim"> 
                 <GameCard 
                   game={game}
-                  key={game.id}
                   index={index}
                   variant="list"
                   activeMenuIndex={activeMenuIndex}
                   onToggleMenu={toggleMenu}
                   t={t}
                   onDeleteRequest={(g) => setGameToDelete(g)}
+                  // On passe la classe de suppression si l'ID correspond
+                  className={deletingId === game.id ? "deleting" : ""}
                 />
               </div>
             ))

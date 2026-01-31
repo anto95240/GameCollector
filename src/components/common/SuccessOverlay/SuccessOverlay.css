@@ -1,21 +1,4 @@
-.add-edit-page {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    padding-bottom: 100px; /* Plus d'espace pour le bouton flottant */
-    color: var(--color-text);
-}
-
-/* LAYOUT */
-.page-content {
-    display: flex;
-    gap: 40px;
-    position: relative;
-}
-
-/* --- Success Overlay --- */
-/* .save-success-overlay {
+.save-success-overlay {
     flex: 1;
     display: flex;
     align-items: center;
@@ -39,7 +22,7 @@
 
 .success-icon {
     font-size: 80px;
-    color: #4ADE80; /* Vert succès *
+    color: #4ADE80; /* Vert succès */
     position: relative;
     z-index: 2;
 }
@@ -82,18 +65,4 @@
 @keyframes ripple {
     0% { width: 80px; height: 80px; opacity: 0.8; }
     100% { width: 150px; height: 150px; opacity: 0; }
-} */
-
-@media (max-width: 900px) {
-
-    .page-content {
-        flex-direction: column;
-    }
-
-    .page-header {
-        flex-direction: column;
-        gap: 15px;
-        align-items: flex-start;
-        position: relative; /* Pas sticky sur mobile si trop gros */
-    }
 }

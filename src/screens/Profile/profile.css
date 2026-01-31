@@ -8,78 +8,13 @@
   min-height: 80vh;
 }
 
-/* =========================================
-   SIDEBAR (VERSION DESKTOP PAR DÉFAUT)
-   ========================================= */
-.profile-sidebar {
-  width: 250px;
-  flex-shrink: 0;
-  position: sticky;
-  top: 100px;
-  height: fit-content;  
-  display: flex;
-  flex-direction: column;
-  gap: 15px;  
-  background: transparent; 
-  padding: 0;
-  box-shadow: none;
-  border-radius: 0;
-  z-index: 90;
-  font-family: var(--font-family-title);
-}
-
-.profile-sidebar a {
-  display: block;
-  text-align: left;
-  padding: 12px 15px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-text);
-  text-decoration: none;
-  transition: all 0.2s ease;
-  border: 1px solid var(--color-border);
-  background-color: transparent; 
-}
-
-.profile-sidebar a:hover {
-  background: var(--color-bg-card-page-active);
-  color: var(--color-text-highlight, var(--color-text));
-  transform: translateX(5px);
-}
-
 .profile-content {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
   min-width: 0; 
-}
-
-/* =========================================
-   MOBILE MENU TOGGLE
-   ========================================= */
-.mobile-menu-toggle {
-  display: none;
-  position: fixed;
-  bottom: 45%;
-  right: 20px;
-  z-index: 1001;
-}
-
-.mobile-menu-toggle button {
-  background: var(--gradient-blue);
-  color: white;
-  border: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 20px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
 }
 
 /* =========================================
@@ -159,44 +94,10 @@
   transform: scale(0.98);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1023px) {
   .profile-container {
     flex-direction: column;
     padding: 20px;
-  }
-
-  .profile-sidebar {
-    position: fixed;
-    top: 35%;
-    right: -100%;
-    left: auto;
-    width: 70%;
-    max-width: 300px;
-    height: auto;
-    
-    background-color: var(--color-bg-btn);
-    border: 1px solid var(--color-border);
-    padding: 20px;
-    border-radius: 12px 0 0 12px;
-    
-    transition: right 0.3s ease;
-    z-index: 1000;
-  }
-
-  .profile-sidebar a{
-    width: 70%;
-  }
-
-  .profile-sidebar.show {
-    right: 0;
-  }
-
-  .profile-sidebar a {
-    text-align: left;
-    margin-bottom: 5px;
-  }
-
-  .mobile-menu-toggle {
-    display: block;
+    padding-bottom: 80px; 
   }
 }

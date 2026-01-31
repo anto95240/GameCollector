@@ -9,7 +9,7 @@ const GameForm = ({
     formData, setFormData, handleChange, handleFileChange, 
     handleSubmit, tagInput, setTagInput, suggestedTags, 
     handleTagKeyDown, addTag, handleRemoveTag, 
-    previewImg, isAnimating, isEditMode, t 
+    previewImg, isAnimating, isEditMode, t, navigate 
 }) => {
     return (
         <form className="form-container" onSubmit={handleSubmit}>
@@ -26,6 +26,14 @@ const GameForm = ({
             />
 
             <div className="form-actions-footer z-0">
+                <button 
+                    type="button" 
+                    className="btn-cancel" 
+                    onClick={() => navigate(-1)}
+                >
+                    {t('common.cancel')}
+                </button>
+                
                 <LoadingButton 
                     text={isEditMode ? t('gameForm.buttons.save') : t('gameForm.buttons.add')}
                     isAnimating={isAnimating}

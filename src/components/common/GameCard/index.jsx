@@ -11,7 +11,8 @@ const GameCard = ({
     onToggleMenu, 
     t,
     onDeleteRequest,
-    onClick
+    onClick,
+    className = "" // Nouvelle prop pour injecter des classes (ex: .deleting)
 }) => {
     const navigate = useNavigate();
 
@@ -42,7 +43,7 @@ const GameCard = ({
     // VARIANT: ADD
     if (variant === "add") {
         return (
-            <div className="game-card card-add cursor-pointer" onClick={onClick}>
+            <div className={`game-card card-add cursor-pointer ${className}`} onClick={onClick}>
                 <FontAwesomeIcon icon={faPlus} className="plus-icon" />
                 <span>{t ? t('gameList.addGame') : "Ajouter"}</span>
             </div>
@@ -55,7 +56,7 @@ const GameCard = ({
         
         return (
             <div 
-                className="game-card card-dashboard console-card-hover cursor-pointer" 
+                className={`game-card card-dashboard console-card-hover cursor-pointer ${className}`}
                 onClick={handleCardClick}
             >
                 <p className="game-name-dashboard">{gameName}</p>
@@ -66,13 +67,13 @@ const GameCard = ({
     // VARIANT: LIST
     return (
         <div 
-            className="game-card card-list console-card-hover cursor-pointer"
+            // Ajout de ${className} à la fin pour permettre l'animation .deleting
+            className={`game-card card-list console-card-hover cursor-pointer ${className}`}
             onClick={handleCardClick}
         >
             <div className="card-top">
                 <FontAwesomeIcon 
                     icon={faHeart} 
-                    /* Remplacement du style inline par une classe conditionnelle */
                     className={`icon-heart ${game.isFavorite ? 'favorite' : ''}`}
                     onClick={(e) => e.stopPropagation()} 
                 />

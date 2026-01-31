@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useLayoutEffect, useEffect } from "react"; // Ajout de useEffect
 import { useParams, useNavigate, useLocation } from "react-router";
 
 // Composants refactorisés
@@ -37,14 +37,17 @@ const DetailPage = () => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
-    // Logique de récupération (peut être extraite dans un hook useGameDetail)
+    // Logique de récupération
     const game = MOCK_DB.find(g => 
         g.name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') === gameName
     ) || { ...MOCK_DB[0], name: gameName || "Jeu Inconnu" };
 
-    // 3. Scroll to top quand le jeu change
     useLayoutEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        const mainContent = document.querySelector('.main-content');
+        if (mainContent) {
+            mainContent.scrollTo(0, 0);
+        }
+
     }, [pathname, gameName]);
 
     const handleEdit = () => {

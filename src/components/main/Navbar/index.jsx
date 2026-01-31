@@ -26,7 +26,7 @@ const Navbar = () => {
         </button>
 
         {/* LOGO */}
-        <img className="navbar-img" src="./logo.png" alt="Logo" />
+        <img className="navbar-img" src="/logo.png" alt="Logo" />
 
         {/* LIENS DESKTOP */}
         <nav className="navbar-links flex-row gap-4 ml-6 items-center"> 
@@ -38,9 +38,11 @@ const Navbar = () => {
       </header>
 
       {/* ========================= MENU MOBILE ========================= */}
-      {isMenuOpen && (
-        <MobileMenu t={t} closeMenu={() => setIsMenuOpen(false)} />
-      )}
+      <MobileMenu 
+          isOpen={isMenuOpen} 
+          t={t} 
+          closeMenu={() => setIsMenuOpen(false)} 
+      />
     </>
   );
 };

@@ -22,6 +22,7 @@ const CategoryManager = ({ categoryType }) => {
     const [itemToEdit, setItemToEdit] = useState(null);
     const [showDeleteModal, setShowDeleteModal] = useState(false);   
     const listItems = MOCK_DATA[categoryType] || [];
+    const [isSuccess, setIsSuccess] = useState(false);
 
     const formRef = useRef(null);
 
@@ -64,8 +65,18 @@ const CategoryManager = ({ categoryType }) => {
         setShowForm(true);
     };
 
+    const handleSaveCategory = async (data) => {
+        // ... logique de sauvegarde ...
+        setIsSuccess(true);
+        setTimeout(() => {
+            setIsSuccess(false);
+            setShowForm(false); // Ferme le formulaire après l'animation
+        }, 1500);
+    };
+
     return (
         <div className="manager-container">
+            {isSuccess && <SuccessOverlay message="Catégorie enregistrée !" />}
             {/* HEADER */}
             <div className="manager-header">
                 <span className="manager-title">{getCategoryLabel()}</span>

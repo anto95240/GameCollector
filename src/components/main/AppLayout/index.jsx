@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import axios from "axios"
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import Navbar from "../Navbar";
@@ -20,6 +20,7 @@ const AppLayout = () => {
 //   const [transactions, setTransactions] = useState([]);
 //   const [categories, setCategories] = useState([]);
   const [showScrollToTopButton, setShowScrollToTopButton] = useState(false);
+  const scrollContainerRef = useRef(null);
 
 // // //   useEffect(() => {
 // // //     const fetchData = async () => {
@@ -65,28 +66,37 @@ const AppLayout = () => {
 //   }, []);
 
   const handleScroll = useCallback(() => {
-    setShowScrollToTopButton(window.scrollY > 50);
+    if (scrollContainerRef.current) {
+        setShowScrollToTopButton(scrollContainerRef.current.scrollTop > 50);
+    }
   }, []);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+    }
+    // Nettoyage
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
     };
-  }, [ handleScroll]);
+  }, [handleScroll]);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // 4. Scroller le conteneur
+    scrollContainerRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <div className="app-container">
+    <div className="layout-container" ref={scrollContainerRef}>
       <main className="main-content">
         <Navbar />
         <Outlet context={{ t }} />
       </main>
-      <div>
-        
+
+      <div>        
         {showScrollToTopButton && (
           <button 
             className="return-top" 

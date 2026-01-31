@@ -49,6 +49,7 @@ const AddEditGamePage = () => {
                 ) : (
                     <GameForm 
                         t={t}
+                        navigate={navigate}
                         isEditMode={isEditMode}
                         formData={formData}
                         setFormData={setFormData}
