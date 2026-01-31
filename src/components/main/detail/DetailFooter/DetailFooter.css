@@ -1,35 +1,88 @@
 .footer-section {
-  padding: 0 50px;
-  margin-top: 20px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(90, 242, 255, 0.1);
+    padding-top: 20px;
+    overflow: hidden; /* Empêche le scroll horizontal de la page entière */
 }
 
 .footer-title {
-  color: #888;
-  margin-bottom: 20px;
-  font-size: 14px;
-  text-transform: uppercase;    
+    font-family: var(--font-family-title);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    padding-left: 20px; /* Alignement du titre */
+    opacity: 0.8;
 }
 
 .recent-scroll {
-  display: flex;
-  gap: 40px;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  justify-content: flex-start;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
 }
 
-.recent-card {
-  width: 160px;
-  flex-shrink: 0;
-  transition: 0.2s;
+.recent-card-wrapper {
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    position: relative;
+    padding: 10px 0; 
+    border: 1px solid var(--color-border);
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.recent-card:hover {
-  transform: translateY(-5px);
+/* Nouveau container pour gérer le positionnement des flèches et la marge */
+.detail-carousel {
+    margin-top: 5%;
+    position: relative;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-@media (max-width: 600px) {
-  .footer-section {
-    padding: 0 20px;
-  }
+/* On nettoie les styles qui pourraient créer la double bordure */
+.observer-item {
+    border: none !important;
+    background: transparent !important;
+    outline: none !important;
+    scroll-snap-align: center;
+    flex-shrink: 0;
+}
+
+.console-entry-anim, .recent-card-wrapper {
+    scroll-snap-align: center;
+}
+
+@media (max-width: 768px) {
+    .recent-scroll {
+        /* Plus d'espace sur les côtés sur mobile pour l'effet active */
+        padding: 20px 25px; 
+    }
+
+    .detail-carousel {
+        margin-top: 20px;
+        width: 90%;
+    }
+
+    .game-cards-container, .recent-scroll, .games-list-scroll {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        
+        /* Le padding doit être égal à la moitié de la largeur du conteneur 
+        moins la moitié de la largeur d'une carte pour un centrage parfait */
+        padding-left: calc(10%) !important; 
+        padding-right: calc(10%) !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .arrow-left { 
+        display: none;
+    }
+    
+    .arrow-right { 
+        display: none;
+    }
 }

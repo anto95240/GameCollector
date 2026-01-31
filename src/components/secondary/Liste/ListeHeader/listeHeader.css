@@ -16,7 +16,7 @@
 }
 
 .search-input {
-    width: 100%; /* Prend toute la place */
+    width: 90%; /* Prend toute la place */
     padding: 15px 45px 15px 20px;
     background-color: #5AF2FF;
     color: var(--text-search);

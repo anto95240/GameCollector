@@ -6,160 +6,118 @@
     flex-direction: column;
     overflow: hidden;
     aspect-ratio: 3/4; 
+    width: 210px;
     background-size: cover;
     background-position: center;
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    /* EMPÊCHER LE RÉTRÉCISSEMENT dans la liste flex */
+    background-repeat: no-repeat;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     flex-shrink: 0; 
-    
-    /* Scroll snap alignement */
+    border: 1px solid var(--color-border);
     scroll-snap-align: center;
 }
 
-.game-card:has(.btn-dots:hover),
-.game-card:has(.icon-heart:hover) {
-    transform: none;
-    box-shadow: none; /* Ou garder l'ombre par défaut */
+.game-cards-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0; /* Espace pour le hover */
+    overflow-x: auto;
+    width: 100%;
 }
 
-/* --- VARIANT: DASHBOARD --- */
-.card-dashboard {
-    min-width: 150px;
-    height: 260px;
-    border: 1px solid var(--color-border);
-    background: var(--gradient-card-secondary);
-    padding: 12px;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 15px 0px;
+/* Overlay sombre progressif pour garantir que le texte blanc soit lisible sur n'importe quelle image */
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.8) 100%);
+    z-index: 1;
 }
 
-.game-name-dashboard {
-    font-size: 16px;
-    text-align: center;
-}
-
-@media (min-width: 768px) {
-    .card-dashboard {
-        flex: 1; 
-        min-width: 0;
-    }
+/* --- TITRE --- */
+.game-title {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+    text-align: center;    
+    font-size: clamp(14px, 2vw, 18px);
+    font-family: var(--font-family-title);
+    margin-bottom: 15px;
+    padding: 0 10px;
+    color: white;
 }
 
 /* --- VARIANT: LIST --- */
 .card-list {
-    width: clamp(160px, 25vw, 240px);
-    height: clamp(250px, 35vw, 340px);
-    background: linear-gradient(160deg, #E57373 0%, #C65252 100%);
-    padding: 10px 20px;
-    margin: 30px 0px;
-    gap: 20px;
+    background-color: #C65252; /* Couleur de secours */
 }
 
 .card-top {
+    position: relative;
+    z-index: 3;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 15px;
 }
 
-/* Modification ici pour gérer l'opacité via CSS */
 .icon-heart {
-    font-size: clamp(18px, 20vh, 24px);
+    font-size: 22px;
     cursor: pointer;
-    opacity: 0.6; /* Un peu plus visible par défaut */
+    opacity: 0.7;
     transition: all 0.2s ease;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); /* Meilleure lisibilité sur image */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
 
 .icon-heart.favorite {
-    opacity: 1; /* Pleine opacité si favori */
+    opacity: 1;
+    color: #ff4757;
 }
 
 .btn-dots {
-    background: rgba(0,0,0,0.3); /* Fond semi-transparent pour visibilité */
+    background: rgba(0,0,0,0.4);
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
     color: white;
-    font-size: 16px;
     cursor: pointer;
-    opacity: 0.6;
-    transition: all 0.2s ease;
-}
-
-.card-list:hover .icon-heart,
-.card-list:hover .btn-dots {
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-.icon-heart.favorite {
-    opacity: 1;
-    color: #ff4757; /* Couleur rouge vif si favori */
-    text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
-}
-
-.game-title {
-    margin-top: auto;
-    text-align: center;    
-    font-size: clamp(16px, 10vh, 18px);
-    font-family: var(--font-family-title);
-    margin-bottom: 10px;
+    transition: background 0.2s;
 }
 
 /* --- VARIANT: ADD --- */
 .card-add {
-    width: clamp(160px, 25vw, 240px);
-    height: clamp(250px, 35vw, 340px);
-    border: 1px solid var(--color-border); 
     background: transparent;
+    border: 2px dashed var(--color-border);
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    color: var(--color-text);
     gap: 15px;
-    margin: 30px 0px;
-    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), 
-              border-color 0.3s, 
-              color 0.3s;
-}
-
-.card-add:hover {
-  transform: scale(1.05);
-  border-color: var(--color-text);
-  color: var(--color-text);
-  box-shadow: 0 0 20px rgba(90, 242, 255, 0.2);
-}
-
-.card-add:active {
-  transform: scale(0.95);
+    color: var(--color-text);
 }
 
 .plus-icon {
-    font-size: clamp(20px, 10vh, 26px); 
+    font-size: 30px;
 }
 
-/* --- CONTEXT MENU (LIST) --- */
+/* --- CONTEXT MENU --- */
 .context-menu {
     position: absolute;
-    top: 40px;
+    top: 50px;
     right: 15px;
-    min-width: 100px;
+    min-width: 120px;
     background: var(--color-bg-btn);
     border: 1px solid var(--color-border);
     border-radius: 12px;
     padding: 8px;
     z-index: 20;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
 .ctx-item {
     border: none;
     background: none;
-    padding: 8px;
+    padding: 10px;
     text-align: left;
     font-size: 13px;
     cursor: pointer;
@@ -168,13 +126,41 @@
     align-items: center;
     border-radius: 6px;
     color: var(--color-text);
+    width: 100%;
 }
 
 .ctx-item:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
-.ctx-item.delete:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #EF4444;
+/* --- DESKTOP : Hover uniquement --- */
+@media (min-width: 1024px) {
+    .game-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+        /* border-color: var(--color-text); */
+        z-index: 5;
+    }
+}
+
+/* --- MOBILE : État Active dynamique --- */
+@media (max-width: 1023px) {
+    .game-card {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+
+    /* Activé quand la carte est au centre du scroll */
+    .game-card.active-mobile {
+        transform: scale(1.05);
+        opacity: 1;
+        /* border-color: var(--color-text); */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+}
+
+@media (max-width: 787px) {
+    .game-card {
+        width: 180px;
+    }
 }

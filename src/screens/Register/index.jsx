@@ -1,151 +1,190 @@
-import { useNavigate } from "react-router"; 
-// import { useState, useEffect } from "react";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
-// import axios from "axios"
-import SignUpPart1 from "../../components/main/SignUpPart1";
-import SignUpPart2 from "../../components/main/SignUpPart2";
+import { useNavigate, Link } from "react-router";
+import LoadingButton from "../../components/common/LoadingButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faEnvelope,
+  faLock,
+  faChevronRight,
+  faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
+import "../Login/login.css";
+import "./register.css";
 
-const RegisterPage = () => {
-  const [step, setStep] = useState(1); // étape actuelle
-  const navigate = useNavigate();
-  const { t } = useTranslation();
+const StepIdentity = ({ data, update }) => (
+  <div className="step-form-anim">
+    <div className="input-group mb-4">
+      <input
+        type="text"
+        name="firstname"
+        placeholder="Prénom"
+        value={data.firstname}
+        onChange={update}
+        className="auth-input"
+        required
+      />
+      <FontAwesomeIcon icon={faUser} className="input-icon" />
+    </div>
+    <div className="input-group">
+      <input
+        type="text"
+        name="lastname"
+        placeholder="Nom"
+        value={data.lastname}
+        onChange={update}
+        className="auth-input"
+        required
+      />
+      <FontAwesomeIcon icon={faUser} className="input-icon" />
+    </div>
+  </div>
+);
 
-  const [showLoading, setShowLoading] = useState(false);
+const StepAccount = ({ data, update }) => (
+  <div className="step-form-anim">
+    <div className="input-group mb-4">
+      <input
+        type="text"
+        name="username"
+        placeholder="Nom d'utilisateur"
+        value={data.username}
+        onChange={update}
+        className="auth-input"
+        required
+      />
+      <FontAwesomeIcon icon={faUser} className="input-icon" />
+    </div>
+    <div className="input-group">
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        value={data.email}
+        onChange={update}
+        className="auth-input"
+        required
+      />
+      <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
+    </div>
+  </div>
+);
+
+const StepSecurity = ({ data, update }) => (
+  <div className="step-form-anim">
+    <div className="input-group mb-4">
+      <input
+        type="password"
+        name="password"
+        placeholder="Mot de passe"
+        value={data.password}
+        onChange={update}
+        className="auth-input"
+        required
+      />
+      <FontAwesomeIcon icon={faLock} className="input-icon" />
+    </div>
+    <div className="input-group">
+      <input
+        type="password"
+        name="confirmPassword"
+        placeholder="Confirmer"
+        value={data.confirmPassword}
+        onChange={update}
+        className="auth-input"
+        required
+      />
+      <FontAwesomeIcon icon={faLock} className="input-icon" />
+    </div>
+  </div>
+);
+
+const Register = () => {
+  const [step, setStep] = useState(1);
   const [isAnimating, setIsAnimating] = useState(false);
-
-  // const loginToken = sessionStorage.getItem("loginToken");
-  // const API_URL = import.meta.env.VITE_API_URL;
-
+  const [showLoading, setShowLoading] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
     username: "",
     email: "",
     password: "",
-    passwordConfirm: "",
+    confirmPassword: "",
   });
 
-  const [badLogin, setBadLogin] = useState(false);
-  const [badPassword, setBadPassword] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-  const [successMsg, setSuccessMsg] = useState("");
-  const [loading, setLoading] = useState(false);
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const nextStep = () => setStep(prev => prev + 1);
-  const prevStep = () => setStep(prev => prev - 1);
-
-  //-------- Auth avec back --------//
-  // async function handleSubmit() {
-
-  //   const {
-  //     firstname, 
-  //     lastname,
-  //     username,
-  //     email,
-  //     password,
-  //     passwordConfirm,
-  //   } = formData;
-
-  //   setErrorMsg("");
-
-  //   const registerData = {
-  //     firstname: firstname.trim(),
-  //     lastname: lastname.trim(),
-  //     username: username.trim(),
-  //     email: email.trim(),
-  //     password,
-  //     passwordConfirm,
-  //   };
-
-  //   setLoading(true);
-
-  //   try {
-  //     const { data } = await axios.post(`${API_URL}/api/user/sign-up`, registerData);
-
-  //     sessionStorage.setItem("loginToken", data.token);
-  //         // Lancer animation
-  //         setIsAnimating(true);
-
-  //         setTimeout(() => {
-  //            setShowLoading(true);     
-  //         }, 300);
-
-  //     setFormData({
-  //       firstname: "",
-  //       lastname: "",
-  //       username: "",
-  //       email: "",
-  //       password: "",
-  //       passwordConfirm: "",
-  //     });
-
-  //   } catch (error) {
-  //     if (error.response?.data?.message) {
-  //       setErrorMsg(error.response.data.message);
-  //     } else {
-  //       setErrorMsg(t('ErrorMsg.errorNetwork'));
-  //     }
-  //   }
-
-  //   setLoading(false);
-  // }
-    
-  // useEffect(() => {
-  //     if (loginToken) {
-  //         navigate("/loading");
-  //     }
-  // }, [loginToken, navigate]);
-
-
-  //-------- Auth sans back --------//
-  const handleSubmit = () => {
-
-    const { email, password } = formData;
-
-    if (!email || !password) {
-        setErrorMsg(t('ErrorMsg.errorNetwork'));
-        return;
+  const handleNext = (e) => {
+    e.preventDefault();
+    if (step < 3) setStep(step + 1);
+    else {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setShowLoading(true);
+        setTimeout(() => navigate("/login"), 1500);
+      }, 1000);
     }
-
-    // Lancer animation
-    setIsAnimating(true);
-
-    setTimeout(() => {
-        setShowLoading(true);     
-    }, 300);
   };
 
   return (
-    <div>
-      {step === 1 && (
-        <SignUpPart1
-          formData={formData}
-          setFormData={setFormData}
-          nextStep={nextStep}
-          badLogin={badLogin}
-          setBadLogin={setBadLogin}
-          t={t}
-        />
-      )}
-      {step === 2 && (
-        <SignUpPart2
-          formData={formData}
-          setFormData={setFormData}
-          prevStep={prevStep}
-          handleSubmit={handleSubmit} // Ici le submit final
-          badPassword={badPassword}
-          setBadPassword={setBadPassword}
-          errorMsg={errorMsg}
-          setErrorMsg={setErrorMsg}
-          successMsg={successMsg}
-          isAnimating={isAnimating}
-          showLoading={showLoading}
-          t={t}
-        />
-      )}
+    <div className="auth-container">
+      <div className="auth-card register-card">
+        <h2 className="auth-title">Nouveau Profil</h2>
+        <div className="steps-container">
+          <div className="cyber-progress-track">
+            <div
+              className="cyber-progress-fill"
+              style={{ width: `${(step / 3) * 100}%` }}
+            ></div>
+          </div>
+          <div className="steps-labels">
+            <span className={step >= 1 ? "active" : ""}>
+              {step === 1 ? "• Identité" : "Identité"}
+            </span>
+            <span className={step >= 2 ? "active" : ""}>
+              {step === 2 ? "• Compte" : "Compte"}
+            </span>
+            <span className={step >= 3 ? "active" : ""}>
+              {step === 3 ? "• Sécurité" : "Sécurité"}
+            </span>
+          </div>
+        </div>
+        <form onSubmit={handleNext} className="auth-form">
+          {step === 1 && <StepIdentity data={formData} update={handleChange} />}
+          {step === 2 && <StepAccount data={formData} update={handleChange} />}
+          {step === 3 && <StepSecurity data={formData} update={handleChange} />}
+          <div className="form-navigation">
+            {step > 1 && (
+              <LoadingButton
+                text="Retour"
+                type="button"
+                onClick={() => setStep(step - 1)}
+                variant="secondary"
+                className="flex-1"
+              />
+            )}
+            <LoadingButton
+              text={step === 3 ? "Initialiser" : "Suivant"}
+              isAnimating={isAnimating}
+              showLoading={showLoading}
+              variant="cyber"
+              className="flex-1"
+            />
+          </div>
+        </form>
+        <div className="auth-footer">
+          <p>
+            Déjà inscrit ?{" "}
+            <Link to="/" className="cyber-link bold">
+              Connexion
+            </Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default RegisterPage;
+export default Register;

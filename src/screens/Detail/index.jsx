@@ -33,7 +33,7 @@ const MOCK_DB = [
 ];
 
 const DetailPage = () => {
-    const { gameName } = useParams();
+    const { gameName, slug } = useParams();
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
@@ -43,12 +43,12 @@ const DetailPage = () => {
     ) || { ...MOCK_DB[0], name: gameName || "Jeu Inconnu" };
 
     useLayoutEffect(() => {
-        const mainContent = document.querySelector('.main-content');
-        if (mainContent) {
-            mainContent.scrollTo(0, 0);
+        // On cible le conteneur qui a le scroll (layout-container dans votre AppLayout)
+        const scrollContainer = document.querySelector('.layout-container');
+        if (scrollContainer) {
+            scrollContainer.scrollTo({ top: 0, left: 0, behavior: "instant" });
         }
-
-    }, [pathname, gameName]);
+    }, [pathname, slug]);
 
     const handleEdit = () => {
         navigate("/game/add-edit-game", { state: { game: game } });

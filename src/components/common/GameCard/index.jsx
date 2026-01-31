@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faEllipsisVertical, faPen, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router"; // Utilisation de react-router-dom
 import "./gameCard.css";
 
 const GameCard = ({ 
@@ -12,97 +12,101 @@ const GameCard = ({
     t,
     onDeleteRequest,
     onClick,
-    className = "" // Nouvelle prop pour injecter des classes (ex: .deleting)
+    className = "",
+    isActive = false // Prop pour l'état dynamique mobile
 }) => {
     const navigate = useNavigate();
 
     const createSlug = (name) => {
-        return name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+        return name?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') || "";
     };
 
-    const handleCardClick = () => {
-        const name = typeof game === 'string' ? game : game.name;
+    const handleCardClick = (e) => {
+        // Empêcher la redirection si on clique sur le menu ou les boutons d'action
+        if (e.target.closest('.btn-dots') || e.target.closest('.context-menu') || e.target.closest('.icon-heart')) {
+            return;
+        }
+
+        if (variant === "add") {
+            if (onClick) onClick();
+            return;
+        }
+
+        const name = typeof game === 'string' ? game : game?.name;
         if (name) {
             navigate(`/game/${createSlug(name)}`);
         }
     };
 
-    const handleEditClick = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        navigate("/game/add-edit-game", { state: { game: game } });
-        if (onToggleMenu) onToggleMenu(null, e);
-    };
-
-    const handleDeleteClick = (e) => {
-        e.stopPropagation(); 
-        onToggleMenu(null, e); 
-        if (onDeleteRequest) onDeleteRequest(game);
-    };
-
-    // VARIANT: ADD
     if (variant === "add") {
         return (
-            <div className={`game-card card-add cursor-pointer ${className}`} onClick={onClick}>
-                <FontAwesomeIcon icon={faPlus} className="plus-icon" />
-                <span>{t ? t('gameList.addGame') : "Ajouter"}</span>
-            </div>
-        );
-    }
-
-    // VARIANT: DASHBOARD
-    if (variant === "dashboard") {
-        const gameName = typeof game === 'string' ? game : game.name;
-        
-        return (
             <div 
-                className={`game-card card-dashboard console-card-hover cursor-pointer ${className}`}
+                className={`game-card card-add cursor-pointer ${className}`} 
                 onClick={handleCardClick}
             >
-                <p className="game-name-dashboard">{gameName}</p>
+                <div className="card-add-content">
+                    <FontAwesomeIcon icon={faPlus} className="plus-icon" />
+                    <span>{t ? t('gameList.addGame') : "Ajouter"}</span>
+                </div>
             </div>
         );
     }
 
-    // VARIANT: LIST
+    const isListVariant = variant === "list";
+    const gameName = typeof game === 'string' ? game : game.name;
+    const cardStyle = game?.image ? { backgroundImage: `url(${game.image})` } : {};
+
     return (
         <div 
-            // Ajout de ${className} à la fin pour permettre l'animation .deleting
-            className={`game-card card-list console-card-hover cursor-pointer ${className}`}
+            className={`game-card card-${variant} ${isActive ? 'active-mobile' : ''} cursor-pointer ${className}`}
+            style={cardStyle}
             onClick={handleCardClick}
+            data-id={game.id || index} // Nécessaire pour l'observer
         >
-            <div className="card-top">
-                <FontAwesomeIcon 
-                    icon={faHeart} 
-                    className={`icon-heart ${game.isFavorite ? 'favorite' : ''}`}
-                    onClick={(e) => e.stopPropagation()} 
-                />
-                <button 
-                    className="btn-dots" 
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        onToggleMenu(index, e);
-                    }}
-                >
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                </button>
-            </div>
+            <div className="card-overlay"></div>
 
-            {activeMenuIndex === index && (
-                <div className="context-menu flex flex-col gap-1.5" onClick={(e) => e.stopPropagation()}>
-                    <button className="ctx-item" onClick={handleEditClick}>
-                        <FontAwesomeIcon icon={faPen} /> 
-                        <span>{t('gameList.actions.edit')}</span>
-                    </button>
-                    <button className="ctx-item delete" onClick={handleDeleteClick}>
-                        <FontAwesomeIcon icon={faTrash} /> 
-                        <span>{t('gameList.actions.delete')}</span>
+            {isListVariant && (
+                <div className="card-top">
+                    <FontAwesomeIcon 
+                        icon={faHeart} 
+                        className={`icon-heart ${game.isFavorite ? 'favorite' : ''}`}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            // Logique favori
+                        }} 
+                    />
+                    <button 
+                        className="btn-dots" 
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onToggleMenu(index, e);
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faEllipsisVertical} />
                     </button>
                 </div>
             )}
 
-            <div className="card-spacer"></div>
-            <p className="game-title">{game.name}</p>
+            {isListVariant && activeMenuIndex === index && (
+                <div className="context-menu" onClick={(e) => e.stopPropagation()}>
+                    <button className="ctx-item" onClick={(e) => {
+                        e.stopPropagation();
+                        navigate("/game/add-edit-game", { state: { game } });
+                    }}>
+                        <FontAwesomeIcon icon={faPen} /> <span>{t('gameList.actions.edit')}</span>
+                    </button>
+                    <button className="ctx-item delete" onClick={(e) => {
+                        e.stopPropagation();
+                        onDeleteRequest(game);
+                    }}>
+                        <FontAwesomeIcon icon={faTrash} /> <span>{t('gameList.actions.delete')}</span>
+                    </button>
+                </div>
+            )}
+
+            <p className={`game-title ${variant === 'dashboard' ? 'game-name-dashboard' : ''}`}>
+                {gameName}
+            </p>
         </div>
     );
 };

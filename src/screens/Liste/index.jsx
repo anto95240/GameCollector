@@ -2,12 +2,16 @@ import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { useGameFiltering } from "../../hooks/useGameFiltering";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { useActiveOnScroll } from "../../hooks/useActiveOnScroll";
 
 // Composants
 import ListeHeader from "../../components/secondary/Liste/ListeHeader";
 import FilterPanel from "../../components/secondary/Liste/filtre/FilterPanel";
 import Pagination from "../../components/secondary/Liste/Pagination";
 import GameCard from "../../components/common/GameCard";
+import LoadingButton from "../../components/common/LoadingButton";
 
 import "./liste.css";
 
@@ -44,14 +48,30 @@ const ListePage = () => {
   const [activeMenuIndex, setActiveMenuIndex] = useState(null);
   
   // États pour la suppression
-  const [gameToDelete, setGameToDelete] = useState(null); // Pour la modale
-  const [deletingId, setDeletingId] = useState(null);     // Pour l'animation
+  const [gameToDelete, setGameToDelete] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
 
   const scrollRef = useRef(null);
   const pageSize = 8;
   const totalPages = Math.ceil(filteredGames.length / pageSize) || 1;
 
   const paginatedGames = filteredGames.slice((page - 1) * pageSize, page * pageSize);
+
+  const activeId = useActiveOnScroll(scrollRef, ".observer-item", paginatedGames);
+
+  // Fonction de scroll pour les flèches
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+        const { current } = scrollRef;
+        const scrollAmount = 300; // Distance du scroll en pixels
+        
+        if (direction === "left") {
+            current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+        } else {
+            current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        }
+    }
+  };
 
   // Handlers UI
   const toggleMenu = (index, e) => {
@@ -63,26 +83,12 @@ const ListePage = () => {
 
   const confirmDelete = () => {
       if (!gameToDelete) return;
-
       const id = gameToDelete.id;
-      console.log("Début suppression pour :", gameToDelete.name);
-
-      // 1. Fermer la modale immédiatement
       setGameToDelete(null);
-
-      // 2. Déclencher l'animation sur la carte spécifique
       setDeletingId(id);
-
-      // 3. Attendre la fin de l'animation (500ms définie dans animations.css) avant de supprimer vraiment
       setTimeout(() => {
-          // Logique réelle de suppression (API ou mise à jour du state local)
           console.log("Suppression effective terminée");
-          
-          // Note : Si vous utilisez un state local pour les jeux (ex: setGames), faites le filter ici.
-          // Comme MOCK_GAMES est statique ici, l'élément ne disparaitra pas vraiment au reload, 
-          // mais visuellement il disparaitra grâce au re-render si vous mettez à jour votre liste source.
-          
-          setDeletingId(null); // Reset de l'état d'animation
+          setDeletingId(null);
       }, 500); 
   };
 
@@ -98,37 +104,58 @@ const ListePage = () => {
       />
 
       <div className="main-stage flex items-center justify-start w-full gap-5">
-        <div className="cards-wrapper no-scrollbar flex gap-5 mx-auto" ref={scrollRef}>
-          {/* Liste des jeux */}
-          {paginatedGames.length > 0 ? (
-             paginatedGames.map((game, index) => (
-              // Le wrapper gère l'entrée, la GameCard gère sa propre sortie via className prop
-              <div key={game.id} className="console-entry-anim"> 
-                <GameCard 
-                  game={game}
-                  index={index}
-                  variant="list"
-                  activeMenuIndex={activeMenuIndex}
-                  onToggleMenu={toggleMenu}
-                  t={t}
-                  onDeleteRequest={(g) => setGameToDelete(g)}
-                  // On passe la classe de suppression si l'ID correspond
-                  className={deletingId === game.id ? "deleting" : ""}
-                />
-              </div>
-            ))
-          ) : (
-              <p className="no-result-text m-auto">Aucun jeu trouvé</p>
-          )}
+        
+        {/* Container relatif pour positionner les flèches */}
+        <div className="list-carousel relative w-full">
+            
+            {/* Flèche gauche */}
+            <button 
+                className="list-arrow arrow-left" 
+                onClick={(e) => { e.stopPropagation(); scroll("left"); }}
+            >
+                <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
 
-          {/* Carte Ajouter toujours à la fin */}
-          <div className="shrink-0"> 
-            <GameCard 
-              variant="add" 
-              t={t} 
-              onClick={() => navigate("/game/add-edit-game")}
-            />
-          </div>
+            {/* Note: Suppression de la classe 'no-scrollbar' pour afficher la barre personnalisée */}
+            <div className="cards-wrapper flex gap-5 mx-auto" ref={scrollRef}>
+            {/* Liste des jeux */}
+            {paginatedGames.length > 0 ? (
+                paginatedGames.map((game, index) => (
+                    <div 
+                        key={game.id} 
+                        className="console-entry-anim observer-item" // Classe neutre pour l'observer
+                        data-id={String(game.id)}                   // Attribut ID pour le hook
+                    > 
+                        <GameCard 
+                            game={game}
+                            index={index}
+                            variant="list"
+                            isActive={activeId === String(game.id)} // L'état dynamique
+                            // ... reste des props
+                        />
+                    </div>
+                ))
+            ) : (
+                <p className="no-result-text m-auto">Aucun jeu trouvé</p>
+            )}
+
+            {/* Carte Ajouter toujours à la fin */}
+            <div className="shrink-0"> 
+                <GameCard 
+                variant="add" 
+                t={t} 
+                onClick={() => navigate("/game/add-edit-game")}
+                />
+            </div>
+            </div>
+
+            {/* Flèche droite */}
+            <button 
+                className="list-arrow arrow-right" 
+                onClick={(e) => { e.stopPropagation(); scroll("right"); }}
+            >
+                <FontAwesomeIcon icon={faChevronRight} />
+            </button>
         </div>
       </div>
 
@@ -155,23 +182,27 @@ const ListePage = () => {
 
       {gameToDelete && (
         <div className="modal-overlay fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setGameToDelete(null)}>
-            <div className="modal bg-[#001128] p-6 rounded-xl border border-[#0068AC]" onClick={(e) => e.stopPropagation()}>
+            <div className="modal bg-[#001128] p-8 rounded-2xl border border-[#0068AC]" onClick={(e) => e.stopPropagation()}>
                 <h4 className="text-xl mb-4 text-[#5AF2FF] font-title">{t('gameList.confirmDelete.title')}</h4>
-                <p className="mb-6 text-white/80">
+                <p className="mb-8 text-white/80">
                     {t('gameList.confirmDelete.message')} <br/>
-                    <span className="font-bold text-white mt-2 block">"{gameToDelete.name}"</span>
+                    <span className="font-bold text-white mt-2 block italic">"{gameToDelete.name}"</span>
                 </p>
-                <div className="modal-actions flex justify-center gap-4">
-                    <button className="btn-light px-4 py-2 rounded-lg font-bold" onClick={() => setGameToDelete(null)}>
-                        {t('gameList.confirmDelete.cancel')}
-                    </button>
-                    <button className="btn-red px-4 py-2 rounded-lg font-bold text-white bg-red-600" onClick={confirmDelete}>
-                        {t('gameList.confirmDelete.confirm')}
-                    </button>
+                <div className="flex justify-center gap-4">
+                    <LoadingButton 
+                        variant="secondary" 
+                        text={t('gameList.confirmDelete.cancel')} 
+                        onClick={() => setGameToDelete(null)} 
+                    />
+                    <LoadingButton 
+                        variant="danger" 
+                        text={t('gameList.confirmDelete.confirm')} 
+                        onClick={confirmDelete} 
+                    />
                 </div>
             </div>
         </div>
-      )}
+    )}
     </div>
   );
 };

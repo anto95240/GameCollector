@@ -1,34 +1,57 @@
-import { Link } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import LoadingButton from "../../components/common/LoadingButton";
 import "./deconnexion.css";
+import "../Login/login.css"; // Réutilisation des styles d'auth
 
 const DeconnexionPage = () => {
-    const { t } = useTranslation();
+    const navigate = useNavigate();
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
+    const [showLoading, setShowLoading] = useState(false);
+
+    const handleLogout = () => {
+        setIsLoggingOut(true);
+        // Simulation de nettoyage de session
+        setTimeout(() => {
+            setShowLoading(true);
+            setTimeout(() => {
+                sessionStorage.clear();
+                localStorage.removeItem("loginToken");
+                navigate("/");
+            }, 1500);
+        }, 800);
+    };
 
     return (
-        <section id="section-logout" className="logout-section-wrapper w-full flex justify-center items-center">
-            
-            <div className="logout-card-container flex flex-col items-center gap-7 console-border-card">
+        <div className="auth-container logout-page">
+            <div className="auth-card logout-card">
+                <h2 className="auth-title">Fin de Session</h2>
                 
-                <h2 className="logout-title">{t('auth.logout.title')}</h2>
-
-                <div className="logout-inner-boxflex flex-col items-center justify-center text-center console-border-card-secondary p-7 gap-7">
+                <div className="logout-content">
+                    <p className="logout-message">
+                        Voulez-vous vraiment déconnecter votre profil pilote du système ?
+                    </p>
                     
-                    <div className="logout-text-group flex flex-col gap-2.5 ">
-                        <p className="logout-bye">{t('auth.logout.bye')}</p>
-                        <p className="logout-thanks">{t('auth.logout.thanks')}</p>
+                    <div className="form-navigation mt-6">
+                        <LoadingButton 
+                            text="Annuler" 
+                            type="button" 
+                            onClick={() => navigate(-1)} 
+                            variant="secondary"
+                            className="flex-1"
+                        />
+                        <LoadingButton 
+                            text="Déconnexion" 
+                            isAnimating={isLoggingOut} 
+                            showLoading={showLoading} 
+                            variant="danger" 
+                            onClick={handleLogout}
+                            className="flex-1"
+                        />
                     </div>
-
-                    <Link to="/" className="return-login-btn console-btn-click flex items-center justify-center gap-2.5 w-auto">
-                        <FontAwesomeIcon icon={faArrowLeft} />
-                        <span>{t('auth.logout.returnLogin')}</span>
-                    </Link>
                 </div>
-
             </div>
-        </section>
+        </div>
     );
 };
 
