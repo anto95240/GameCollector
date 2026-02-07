@@ -17,7 +17,7 @@ const Login = () => {
     setIsAnimating(true);
     setTimeout(() => {
       setShowLoading(true);
-      setTimeout(() => navigate("/dashboard"), 1500);
+      setTimeout(() => navigate("/dashboard"), 3000);
     }, 1000);
   };
 

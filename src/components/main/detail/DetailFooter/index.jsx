@@ -1,6 +1,6 @@
 import GameCard from "../../../common/GameCard";
 import "./DetailFooter.css";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -49,6 +49,12 @@ const DetailFooter = () => {
     ".observer-item",
     MOCK_RECENT_GAMES,
   );
+
+  useEffect(() => {
+    if (scrollRef.current) {
+        scrollRef.current.scrollTo({ left: 0, behavior: "instant" });
+    }
+  }, []);
 
   return (
     <footer className="footer-section">

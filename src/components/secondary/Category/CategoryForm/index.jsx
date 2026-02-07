@@ -38,7 +38,7 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
                     <div className="form-group">
                         <label>Nom :</label>
                         <input 
-                            type="text" className="form-input" value={formData.name}
+                            type="text" className="form-input category" value={formData.name}
                             onChange={(e) => setFormData({...formData, name: e.target.value})}
                         />
                     </div>
@@ -48,7 +48,7 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
                          <div className="form-group">
                             <label>Ordre :</label>
                             <input 
-                                type="text" className="form-input" value={formData.order}
+                                type="text" className="form-input category" value={formData.order}
                                 onChange={(e) => setFormData({...formData, order: e.target.value})}
                             />
                         </div>
@@ -58,7 +58,7 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
                          <div className="form-group">
                             <label>Constructeur :</label>
                             <input 
-                                type="text" className="form-input" value={formData.brand}
+                                type="text" className="form-input category" value={formData.brand}
                                 onChange={(e) => setFormData({...formData, brand: e.target.value})}
                             />
                         </div>
@@ -75,8 +75,8 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
                     </div>
 
                     <div className="form-actions">
-                        <button className="btn-cancel" onClick={onClose}>Cancel</button>
-                        <button className="btn-addEdit">{isEdit ? "Modifier" : "Ajouter"}</button>
+                        <button className="btn-cancel-category" onClick={onClose}>Cancel</button>
+                        <button className="btn-addEdit-category">{isEdit ? "Modifier" : "Ajouter"}</button>
                     </div>
                 </form>
             </div>

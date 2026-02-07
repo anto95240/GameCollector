@@ -44,7 +44,7 @@
    ========================================= */
 .mobile-menu-toggle {
     position: fixed;
-    bottom: 25px;
+    bottom: 90px;
     right: 25px;
     z-index: 1001; 
     display: none;

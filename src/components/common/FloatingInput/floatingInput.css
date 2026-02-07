@@ -16,7 +16,6 @@
   border-radius: 20px;
   background: transparent;
   border: none;
-  font-size: clamp(13px, 3vw, 18px);
   font-family: var(--font-family-text);
   color: var(--color-text);
 }
@@ -35,6 +34,8 @@
 
 .floating-label .form-input:focus {
   outline: none;
+  background: transparent;
+  box-shadow: none !important;
 }
 
 /* label déplacé si focus ou input rempli */
