@@ -33,6 +33,7 @@
   flex-direction: column;
   gap: 20px;
 }
+
 .input-group {
   position: relative;
 }
@@ -64,6 +65,7 @@
   text-decoration: none;
   font-weight: bold;
 }
+
 .cyber-link:hover {
   text-shadow: 0 0 8px #5af2ff;
 }

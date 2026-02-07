@@ -3,7 +3,7 @@ import SectionStatSecondary from "../../components/common/SectionStatSecondary";
 import SectionStatPrimary from "../../components/main/Dashboard/SectionStatPrimary";
 import { useTranslation } from "react-i18next";
 
-import "./dashboard.css";
+import "./Dashboard.css";
 
 function HomePage() {
 

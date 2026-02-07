@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import "./navLinks.css";
+import "./NavLinks.css";
 
 const NavLinks = ({ t, closeMenu}) => {
     const handleClick = () => {

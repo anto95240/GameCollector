@@ -1,21 +1,26 @@
-import { useRef } from "react";
-import "./sectionGameCard.css";
+import { useRef, useEffect } from "react";
+import "./SectionGameCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useDashboard } from "../../../../hooks/useDashboard";
 import { useActiveOnScroll } from "../../../../hooks/useActiveOnScroll";
 import GameCard from "../../../common/GameCard";
 
-
 const SectionGameCard = ({t}) => {
     const { recentGames } = useDashboard();
     const scrollRef = useRef(null);
     const activeId = useActiveOnScroll(scrollRef, ".observer-item", recentGames);
 
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTo({ left: 0, behavior: "instant" });
+        }
+    }, [recentGames]); 
+
     const scroll = (direction) => {
         if (scrollRef.current) {
             const { current } = scrollRef;
-            const scrollAmount = 200; // Distance du scroll en pixels
+            const scrollAmount = 200;
             
             if (direction === "left") {
                 current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
@@ -30,7 +35,6 @@ const SectionGameCard = ({t}) => {
             <h2 className="section-title">{t('dashboard.recentlyAdded')}</h2>
 
             <div className="games-carousel relative w-full">
-                {/* Flèche gauche mobile */}
                 <button 
                     className="carousel-arrow arrow-left" 
                     onClick={() => scroll("left")}
@@ -54,7 +58,6 @@ const SectionGameCard = ({t}) => {
                     ))}
                 </div>
 
-                {/* Flèche droite mobile */}
                 <button 
                     className="carousel-arrow arrow-right" 
                     onClick={() => scroll("right")}

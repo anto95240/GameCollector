@@ -6,14 +6,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useActiveOnScroll } from "../../hooks/useActiveOnScroll";
 
-// Composants
 import ListeHeader from "../../components/secondary/Liste/ListeHeader";
 import FilterPanel from "../../components/secondary/Liste/filtre/FilterPanel";
 import Pagination from "../../components/secondary/Liste/Pagination";
 import GameCard from "../../components/common/GameCard";
 import LoadingButton from "../../components/common/LoadingButton";
 
-import "./liste.css";
+import "./Liste.css";
 
 const FILTER_DATA = [
   { id: "genre", label: "Genre", options: ["Aventure", "Action", "RPG", "FPS", "Simulation"] },
@@ -47,7 +46,6 @@ const ListePage = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(null);
   
-  // États pour la suppression
   const [gameToDelete, setGameToDelete] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
 
@@ -59,11 +57,10 @@ const ListePage = () => {
 
   const activeId = useActiveOnScroll(scrollRef, ".observer-item", paginatedGames);
 
-  // Fonction de scroll pour les flèches
   const scroll = (direction) => {
     if (scrollRef.current) {
         const { current } = scrollRef;
-        const scrollAmount = 300; // Distance du scroll en pixels
+        const scrollAmount = 300; 
         
         if (direction === "left") {
             current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
@@ -71,12 +68,6 @@ const ListePage = () => {
             current.scrollBy({ left: scrollAmount, behavior: "smooth" });
         }
     }
-  };
-
-  // Handlers UI
-  const toggleMenu = (index, e) => {
-    e.stopPropagation();
-    setActiveMenuIndex(activeMenuIndex === index ? null : index);
   };
 
   const closeMenu = () => setActiveMenuIndex(null);
@@ -105,7 +96,6 @@ const ListePage = () => {
 
       <div className="main-stage flex items-center justify-start w-full gap-5">
         
-        {/* Container relatif pour positionner les flèches */}
         <div className="list-carousel relative w-full">
             
             {/* Flèche gauche */}
@@ -116,22 +106,20 @@ const ListePage = () => {
                 <FontAwesomeIcon icon={faChevronLeft} />
             </button>
 
-            {/* Note: Suppression de la classe 'no-scrollbar' pour afficher la barre personnalisée */}
             <div className="cards-wrapper flex gap-5 mx-auto" ref={scrollRef}>
             {/* Liste des jeux */}
             {paginatedGames.length > 0 ? (
                 paginatedGames.map((game, index) => (
                     <div 
                         key={game.id} 
-                        className="console-entry-anim observer-item" // Classe neutre pour l'observer
-                        data-id={String(game.id)}                   // Attribut ID pour le hook
+                        className="console-entry-anim observer-item" 
+                        data-id={String(game.id)} 
                     > 
                         <GameCard 
                             game={game}
                             index={index}
                             variant="list"
-                            isActive={activeId === String(game.id)} // L'état dynamique
-                            // ... reste des props
+                            isActive={activeId === String(game.id)} 
                         />
                     </div>
                 ))

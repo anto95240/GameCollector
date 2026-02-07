@@ -74,19 +74,16 @@
     max-width: 40px;
 }
 
-/* ============================================================
-   DESIGN MOBILE (PETIT ÉCRAN) - UX/UI "GROS DOIGTS"
-   ============================================================ */
 @media (max-width: 1023px) {
     .form-group {
-        flex-direction: column; /* Label au-dessus */
+        flex-direction: column; 
         align-items: flex-start;
         gap: 8px;
     }
 
     .form-group label {
         color: #5AF2FF;
-        font-size: 16px; /* Texte grand */
+        font-size: 16px; 
         font-weight: 600;
         margin-left: 4px;
     }
@@ -96,7 +93,7 @@
         font-size: 16px;
         padding: 0 15px;
         border-radius: 10px;
-}
+    }
 
     .color-input-wrapper {
         width: 100%;
@@ -112,9 +109,8 @@
 
     .form-actions {
         display: flex;
-        flex-direction: column-reverse; /* Annuler en bas */
+        flex-direction: column-reverse; 
         gap: 15px;
-        /* margin-top: 25px; */
     }
 
     .btn-cancel-category, .btn-addEdit-category {
@@ -127,19 +123,16 @@
         justify-content: center;
         align-items: center;
         border: none;
-}
+    }
 }
 
-/* ============================================================
-   DESIGN DESKTOP (GRAND ÉCRAN) - UX/UI "COMPACT"
-   ============================================================ */
 @media (min-width: 1024px) {
     .manager-form-wrapper {
-        padding: 30px; /* Plus d'espace interne */
+        padding: 30px; 
     }
 
     .form-group {
-        flex-direction: row; /* Label à côté */
+        flex-direction: row;
         align-items: center;
         justify-content: space-between;
         gap: 20px;
@@ -147,16 +140,16 @@
 
     .form-group label {
         color: #5AF2FF;
-        font-size: 14px; /* Texte standard */
-        min-width: 110px; /* Largeur fixe pour alignement */
+        font-size: 14px; 
+        min-width: 110px;
         text-align: left;
     }
 
     .form-input {
-        height: 40px; /* Hauteur standard souris */
+        height: 40px;
         font-size: 14px;
         padding: 0 12px;
-        flex: 1; /* Prend l'espace restant */
+        flex: 1; 
     }
 
     .color-input-wrapper {
@@ -172,9 +165,8 @@
 
     .form-actions {
         display: flex;
-        justify-content: flex-end; /* Boutons à droite */
+        justify-content: flex-end; 
         gap: 15px;
-        /* margin-top: 30px; */
     }
 
     .btn-cancel-category, .btn-addEdit-category {
@@ -195,10 +187,16 @@
         display: flex;
         flex-direction: column-reverse; 
         gap: 12px;
-        margin-top: 10px; /* Ajout d'un petit espace avec les champs */
+        margin-top: 10px; 
     }
 }
 
-/* COULEURS COMMUNES BOUTONS */
-.btn-cancel-category { background: rgba(90, 242, 255, 0.1); color: #5AF2FF; }
-.btn-addEdit-category { background: var(--gradient-blue); color: #fff; }
+.btn-cancel-category { 
+    background: rgba(90, 242, 255, 0.1); 
+    color: #5AF2FF; 
+}
+
+.btn-addEdit-category { 
+    background: var(--gradient-blue); 
+    color: #fff; 
+}

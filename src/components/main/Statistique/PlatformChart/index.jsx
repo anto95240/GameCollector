@@ -11,9 +11,7 @@ const DATA = [
   { name: 'Nintendo', value: 3, color: '#E9A23B' },
 ];
 
-// Modification : Ajout de la prop externalActiveIndex
 const CustomTooltip = ({ active, payload, externalActiveIndex }) => {
-    // Si activeIndex est null (pas de survol de cellule), on ne retourne rien
     if (active && payload && payload.length && externalActiveIndex !== null) {
       const data = payload[0];
       return (
@@ -77,7 +75,6 @@ const PlatformChart = () => {
                   />
                 ))}
               </Pie>
-              {/* On passe activeIndex au Tooltip */}
               <Tooltip 
                   content={(props) => <CustomTooltip {...props} externalActiveIndex={activeIndex} />} 
                   cursor={false} 

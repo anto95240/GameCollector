@@ -1,5 +1,5 @@
 import Flag from "react-world-flags";
-import "./langOption.css";
+import "./LangOption.css";
 
 const LangOption = ({ code, label, flagCode, onChange }) => (
     <button 

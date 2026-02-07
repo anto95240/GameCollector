@@ -19,6 +19,6 @@
 
 @media (max-width: 360px) {
     .logout-page .form-navigation {
-        flex-direction: column; /* Boutons l'un sur l'autre sur écrans très étroits */
+        flex-direction: column; 
     }
 }

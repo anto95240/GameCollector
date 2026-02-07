@@ -52,7 +52,6 @@ const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
         <p>{dateTime}</p>
         <p>{batteryLevel !== null ? `${batteryLevel}%` : "⚡"}</p>
 
-        {/* --- AJOUT DU WRAPPER RELATIF ICI --- */}
         <div className="relative" >
             <button 
               className="navbar-connection-button flex items-center justify-center" 
@@ -61,7 +60,6 @@ const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
               <h1>AR</h1>
             </button>
 
-            {/* Le menu s'affichera par dessus tout, ancré à ce bloc */}
             {actionsOpen && (
               <UserMenu t={t} state={state} setters={setters} actions={actions} onClose={handleCloseMenu} />
             )}

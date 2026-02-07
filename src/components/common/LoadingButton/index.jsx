@@ -1,4 +1,4 @@
-import "./loadingButton.css";
+import "./LoadingButton.css";
 import ChargementPage from "../../../screens/Chargement";
 
 const LoadingButton = ({

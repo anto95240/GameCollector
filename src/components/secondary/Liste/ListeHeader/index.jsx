@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
-import "./listeHeader.css";
+import "./ListeHeader.css";
 
 const ListeHeader = ({ searchTerm, onSearchChange, onToggleFilter, t, onClick}) => {
     return (

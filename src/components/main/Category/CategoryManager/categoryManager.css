@@ -1,6 +1,6 @@
 .manager-container {
     width: 100%;
-    max-width: 1200px; /* Plus large sur desktop pour accueillir liste + form */
+    max-width: 1200px; 
     border: 1px solid var(--color-border);
     border-radius: 20px;
     background: var(--gradient-card-main-input);
@@ -12,7 +12,6 @@
     margin-top: 5%;
 }
 
-/* ... (Styles Header et Boutons inchangés) ... */
 .manager-header {
     display: flex;
     justify-content: space-between;
@@ -53,7 +52,7 @@
     gap: 20px;
     align-items: flex-start;
     width: 100%;
-    flex-direction: column; /* Mobile first: Colonne */
+    flex-direction: column;
 }
 
 /* =========================================================
@@ -69,13 +68,13 @@
 }
 
 .form-collapsible.open {
-    grid-template-rows: 1fr; /* Arrivée: Hauteur Auto */
+    grid-template-rows: 1fr;
 }
 
 .form-inner {
     min-height: 0;
     opacity: 0;
-    transform: translateY(10px); /* Léger mouvement vers le haut */
+    transform: translateY(10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
     margin: 0;
 }
@@ -92,7 +91,7 @@
    ========================================================= */
 @media (min-width: 1024px) {
     .manager-content {
-        flex-direction: row; /* Côte à côte */
+        flex-direction: row;
     }
 
     .form-collapsible {
@@ -108,12 +107,11 @@
 }
 
     .form-collapsible.open {
-        width: 50%; /* Prend la moitié de la place */
+        width: 50%;
         opacity: 1;
-        transform: translateX(0); /* Arrivée: Position normale */
+        transform: translateX(0); 
     }
 
-    /* Reset des propriétés mobile */
     .form-inner {
         opacity: 1;
         transform: none;

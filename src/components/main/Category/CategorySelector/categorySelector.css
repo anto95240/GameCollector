@@ -1,4 +1,3 @@
-
 .category-selector-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -37,7 +36,6 @@
     transform: scale(1.05);
 }
 
-/* État Dimmed (Non sélectionné quand une autre l'est) */
 .category-card-btn.dimmed {
     opacity: 0.5;
     transform: scale(0.95);

@@ -34,7 +34,6 @@
   margin-left: auto;
 }
 
-/* Mobile : Boutons pleine largeur */
 @media (max-width: 768px) {
   .btn-action {
     width: 100%;

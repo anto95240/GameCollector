@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import CategoryList from "../../../secondary/Category/CategoryListe";
 import CategoryForm from "../../../secondary/Category/CategoryForm";
-import "./categoryManager.css";
+import "./CategoryManager.css";
 
 // Mock Data
 const MOCK_DATA = {
@@ -26,16 +26,14 @@ const CategoryManager = ({ categoryType }) => {
 
     const formRef = useRef(null);
 
-    // --- LOGIQUE DE SCROLL (UNIQUEMENT MOBILE) ---
     useEffect(() => {
-        // On vérifie si on est sur petit écran (ex: < 1024px)
         const isMobile = window.innerWidth < 1024;
 
         if (showForm && formRef.current && isMobile) {
             setTimeout(() => {
                 formRef.current.scrollIntoView({ 
                     behavior: 'smooth', 
-                    block: 'center', // Centre le formulaire
+                    block: 'center',
                     inline: 'nearest'
                 });
             }, 300);
@@ -70,7 +68,7 @@ const CategoryManager = ({ categoryType }) => {
         setIsSuccess(true);
         setTimeout(() => {
             setIsSuccess(false);
-            setShowForm(false); // Ferme le formulaire après l'animation
+            setShowForm(false);
         }, 1500);
     };
 
@@ -91,7 +89,6 @@ const CategoryManager = ({ categoryType }) => {
 
             {/* CONTENT */}
             <div className="manager-content">
-                {/* LISTE */}
                 <CategoryList 
                     items={listItems} 
                     isCompact={showForm} 
@@ -99,7 +96,6 @@ const CategoryManager = ({ categoryType }) => {
                     onDelete={() => setShowDeleteModal(true)} // Exemple
                 />
 
-                {/* CONTAINER FORMULAIRE AVEC ANIMATION HYBRIDE */}
                 <div 
                     ref={formRef} 
                     className={`form-collapsible ${showForm ? "open" : ""}`}
@@ -107,7 +103,7 @@ const CategoryManager = ({ categoryType }) => {
                     <div className="form-inner">
                         <CategoryForm 
                             categoryType={categoryType} 
-                            isOpen={true} // Toujours true, le CSS gère la visibilité
+                            isOpen={true} 
                             onClose={() => setShowForm(false)} 
                             isEdit={editMode}       
                             initialData={itemToEdit}
@@ -116,8 +112,7 @@ const CategoryManager = ({ categoryType }) => {
                 </div>
             </div>
             
-            {/* MODAL (Placeholder) */}
-             {showDeleteModal && <div className="modal-overlay" onClick={() => setShowDeleteModal(false)}></div>}
+            {showDeleteModal && <div className="modal-overlay" onClick={() => setShowDeleteModal(false)}></div>}
         </div>
     );
 };

@@ -6,7 +6,7 @@
 
 .confirm-password-field {
   padding: 0 15px;
-  margin-top: -10px; /* Colle un peu au champ précédent */
+  margin-top: -10px;
   animation: fadeIn 0.3s;
 }
 

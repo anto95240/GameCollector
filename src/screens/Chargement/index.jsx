@@ -1,4 +1,4 @@
-import "./chargement.css";
+import "./Chargement.css";
 import { useTranslation } from "react-i18next";
 
 const ChargementPage = () => {

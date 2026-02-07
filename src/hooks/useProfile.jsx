@@ -4,10 +4,8 @@ import axios from "axios";
 
 export const useProfile = () => {
   const navigate = useNavigate();
-  // Récupération du contexte global fourni par le Layout (AppLayout ou similaire)
   const { user, setUser, account, API_URL, t } = useOutletContext();
 
-  // --- ÉTAT DU FORMULAIRE ---
   const [form, setForm] = useState({
     firstname: "",
     lastname: "",
@@ -22,15 +20,13 @@ export const useProfile = () => {
     avatarURL: "", 
   });
 
-  // --- ÉTAT DE L'INTERFACE (UI) ---
   const [uiState, setUiState] = useState({
-    showEmailForm: false, // Afficher l'input modifiable pour l'email
-    showPasswordForm: false, // Afficher les inputs pour le mot de passe
-    showDeletePopup: false, // Afficher la modale de confirmation de suppression
-    showMobileMenu: false, // Gérer l'ouverture du menu latéral sur mobile
+    showEmailForm: false, 
+    showPasswordForm: false,
+    showDeletePopup: false,
+    showMobileMenu: false,
   });
 
-  // --- INITIALISATION DES DONNÉES ---
   useEffect(() => {
     setForm((prev) => ({
       ...prev,
@@ -43,7 +39,6 @@ export const useProfile = () => {
       typeAccount: account?.type || "",
       budgetStart: account?.budgetStart || "",
       nameAccount: account?.name || "",
-      // Gestion de l'URL de l'avatar (absolue ou relative)
       avatarURL: user?.image
         ? user.image.startsWith("http")
           ? user.image

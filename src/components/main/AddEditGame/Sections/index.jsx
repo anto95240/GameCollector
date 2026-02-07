@@ -1,4 +1,3 @@
-import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faTimes, faTag, faPlus } from "@fortawesome/free-solid-svg-icons";
 import FloatingInput from "../../../common/FloatingInput";
@@ -19,12 +18,14 @@ export const DescriptionSection = ({ t, formData, handleChange }) => (
         />
         <div className="textarea-group">
             <label>{t('gameForm.fields.description')}</label>
-            <textarea 
-                name="description" 
-                rows="4" 
-                value={formData.description} 
-                onChange={handleChange} 
-            />
+            <div className="textarea-container">
+                <textarea 
+                    name="description" 
+                    rows="4" 
+                    value={formData.description} 
+                    onChange={handleChange} 
+                />
+            </div>
         </div>
     </SectionWrapper>
 );
@@ -42,12 +43,14 @@ export const RatingSection = ({ t, formData, handleChange, setFormData }) => (
         </div>
         <div className="textarea-group mt-4">
             <label>{t('gameForm.fields.comment')}</label>
-            <textarea 
-                name="comment" 
-                rows="3" 
-                value={formData.comment} 
-                onChange={handleChange} 
-            />
+            <div className="textarea-container">
+                <textarea 
+                    name="comment" 
+                    rows="3" 
+                    value={formData.comment} 
+                    onChange={handleChange} 
+                />
+            </div>
         </div>
     </SectionWrapper>
 );
@@ -179,4 +182,4 @@ export const TagsSection = ({ t, formData, tagInput, setTagInput, suggestedTags,
             </button>
         </div>
     </SectionWrapper>
-);  
+);

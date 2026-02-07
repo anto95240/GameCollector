@@ -3,20 +3,19 @@
     margin-top: 40px;
     flex-shrink: 0;
     width: 90%;
-    /* padding: 0 10px; */
 }
 
 /* --- Barre de recherche --- */
 .search-wrapper {
     flex: 1;
     max-width: 500px;
-    position: relative; /* Indispensable pour positionner la croix */
+    position: relative; 
     display: flex;
     align-items: center;
 }
 
 .search-input {
-    width: 90%; /* Prend toute la place */
+    width: 90%; 
     padding: 15px 45px 15px 20px;
     background-color: #5AF2FF;
     color: var(--text-search);
@@ -33,12 +32,12 @@
 
 .btn-clear-search {
     position: absolute;
-    right: 15px; /* Collé à droite, peu importe la taille de l'écran */
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
     background: transparent;
     border: none;
-    color: var(--text-search); /* Ou une couleur plus sombre pour contraste */
+    color: var(--text-search);
     cursor: pointer;
     font-size: 16px;
     display: flex;
@@ -49,7 +48,7 @@
 
 .nb-jeux {
     font-size: 14px;
-    color: #5AF2FF; /* Plus visible */
+    color: #5AF2FF; 
     text-shadow: 0 0 10px rgba(90, 242, 255, 0.5);
 }
 
@@ -83,9 +82,6 @@
     transform: scale(1.05);
 }
 
-/* ===========================
-   RESPONSIVE MOBILE
-=========================== */
 @media (max-width: 768px) {
     .liste-header {
         flex-direction: column;

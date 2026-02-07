@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import "./floatingInput.css";
+import "./FloatingInput.css";
 
 const FloatingInput = ({ 
     type = "text", 
@@ -15,7 +15,6 @@ const FloatingInput = ({
 }) => {
     const [showPassword, setShowPassword] = useState(false);
     
-    // Si c'est un mot de passe, on alterne entre "text" et "password" selon l'état
     const inputType = isPassword ? (showPassword ? "text" : "password") : type;
 
     return (

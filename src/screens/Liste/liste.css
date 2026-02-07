@@ -37,34 +37,33 @@
     -webkit-overflow-scrolling: touch;
 }
 
-/* --- Style de la Scrollbar --- */
 .cards-wrapper::-webkit-scrollbar {
-    height: 8px; /* Hauteur de la barre horizontale */
+    height: 8px;
     display: block;
 }
 
 .cards-wrapper::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 4px;
-    margin: 0 20px; /* Marges pour ne pas coller aux bords */
+    margin: 0 20px; 
 }
 
 .cards-wrapper::-webkit-scrollbar-thumb {
-    background: #0068AC; /* Couleur principale */
+    background: #0068AC;
     border-radius: 4px;
     transition: background 0.3s ease;
 }
 
 .cards-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #5AF2FF; /* Couleur au survol */
+    background: #5AF2FF; 
 }
 
-/* --- Flèches de navigation (inspiré du dashboard) --- */
+/* --- Flèches de navigation --- */
 .list-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 17, 40, 0.7); /* Fond semi-transparent pour lisibilité */
+    background: rgba(0, 17, 40, 0.7); 
     border: 1px solid rgba(90, 242, 255, 0.3);
     border-radius: 50%;
     color: #5AF2FF;

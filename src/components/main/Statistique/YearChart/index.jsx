@@ -10,7 +10,6 @@ import { useTranslation } from 'react-i18next';
 import CustomSelect from '../../../common/CustomSelect';
 import './yearChart.css';
 
-/* ---------------- MOCK DATA ---------------- */
 const DATA_MOCK = {
     year: {
         '2010-2020': [
@@ -28,7 +27,6 @@ const DATA_MOCK = {
             { name: '2024', count: 1 },
         ]
     },
-    // Modification des clés pour refléter la pagination des tags
     tag: {
         '1-5': [
             { name: 'RPG', count: 8 },
@@ -47,7 +45,6 @@ const DATA_MOCK = {
     }
 };
 
-/* ---------------- TOOLTIP ---------------- */
 const CustomTooltip = ({ label, value, position }) => {
     if (!position) return null;
 
@@ -62,19 +59,16 @@ const CustomTooltip = ({ label, value, position }) => {
     );
 };
 
-/* ---------------- COMPONENT ---------------- */
 const YearChart = () => {
     const { t } = useTranslation();
 
     const [viewType, setViewType] = useState('year');
-    // On initialise avec une valeur valide par défaut pour 'year'
     const [period, setPeriod] = useState('2010-2020');
 
     const [activeIndex, setActiveIndex] = useState(null);
     const [tooltipPos, setTooltipPos] = useState(null);
     const [tooltipData, setTooltipData] = useState(null);
 
-    // Définition des options pour chaque type de vue
     const optionsByViewType = useMemo(() => ({
         year: [
             { value: '2010-2020', label: '2010 - 2020' },
@@ -86,10 +80,8 @@ const YearChart = () => {
         ]
     }), []);
 
-    // Fonction pour changer le type de vue et réinitialiser la période/page
     const handleViewTypeChange = (newType) => {
         setViewType(newType);
-        // On sélectionne automatiquement la première option du nouveau type
         const defaultOption = optionsByViewType[newType][0].value;
         setPeriod(defaultOption);
     };
@@ -137,11 +129,10 @@ const YearChart = () => {
                             { value: 'tag', label: t('statistics.barChart.gamesByTag') || 'Par Tag' }
                         ]}
                         value={viewType}
-                        onChange={handleViewTypeChange} // Utilisation du handler personnalisé
+                        onChange={handleViewTypeChange} 
                     />
 
                     <CustomSelect
-                        // Les options dépendent maintenant du viewType choisi
                         options={optionsByViewType[viewType]}
                         value={period}
                         onChange={setPeriod}

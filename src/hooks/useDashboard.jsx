@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 export const useDashboard = () => {
-    // Simulation de données (à remplacer par des appels API plus tard)
     const [stats] = useState({
         totalGames: 2,
         favoriteCount: 1,

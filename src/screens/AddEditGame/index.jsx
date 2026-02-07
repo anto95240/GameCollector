@@ -4,7 +4,7 @@ import { useAddEditGame } from "../../hooks/useAddEditGame";
 import FormHeader from "../../components/secondary/AddEditGame/FormHeader";
 import GameNav from "../../components/main/AddEditGame/GameNav";
 import GameForm from "../../components/main/AddEditGame/GameForm";
-import "./addEditGame.css";
+import "./AddEditGame.css";
 
 const AddEditGamePage = () => {
     const {

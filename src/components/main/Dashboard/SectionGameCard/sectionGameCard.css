@@ -24,13 +24,11 @@
     gap: 20px;
     overflow-x: auto;
     padding: 30px 20px; 
-    
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
 }
 
-/* On nettoie les styles qui pourraient créer la double bordure */
 .observer-item {
     border: none !important;
     background: transparent !important;
@@ -47,7 +45,6 @@
 .carousel-arrow {
     position: absolute;
     top: 50%;
-    /* Ajustement pour centrer par rapport aux cartes, pas au conteneur avec padding */
     transform: translateY(-50%); 
     background: rgba(0, 17, 40, 0.7);
     border: 1px solid rgba(90, 242, 255, 0.3);
@@ -71,14 +68,11 @@
     box-shadow: 0 0 15px var(--secondary-color);
 }
 
-/* Ajustement de la position des flèches pour qu'elles ne chevauchent pas trop le padding */
 .arrow-left { left: -10px; }
 .arrow-right { right: -10px; }
 
 @media (max-width: 768px) {
     .carousel-arrow {
-        /* Sur mobile, on peut masquer les flèches car le swipe est naturel, 
-           ou les réduire */
         width: 35px;
         height: 35px;
         font-size: 16px;
@@ -88,7 +82,6 @@
     
     .game-cards-container {
         gap: 15px;
-        /* Padding légèrement réduit sur mobile mais toujours présent */
         padding: 15px 25px; 
     }
 
@@ -101,9 +94,6 @@
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        
-        /* Le padding doit être égal à la moitié de la largeur du conteneur 
-        moins la moitié de la largeur d'une carte pour un centrage parfait */
         padding-left: calc(10%) !important; 
         padding-right: calc(10%) !important;
     }

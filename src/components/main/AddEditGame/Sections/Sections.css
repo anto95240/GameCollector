@@ -7,11 +7,6 @@
     background: var(--bg-card, transparent);
 }
 
-/* FIX: Z-Index élevé pour la section Tags afin que le dropdown passe au-dessus du footer */
-/* #tags {
-    z-index: 20; 
-} */
-
 .form-section h3 {
     margin-top: 0;
     margin-bottom: 20px;
@@ -41,27 +36,46 @@
     margin-top: 10px;
 }
 
-.textarea-group textarea {
+.textarea-container {
     width: 100%;
     background: var(--input-bg-solid, #0b121f);
     border: 1px solid var(--color-border);
     border-radius: 12px;
-    padding: 15px;
+    margin: 20px 0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.textarea-container:focus-within {
+    border-color: #5AF2FF; 
+    box-shadow: 0 0 10px rgba(90, 242, 255, 0.1);
+}
+
+.textarea-group textarea {
+    width: 100%;
+    background: transparent;
+    border: none;    
+    padding: 20px 16px; 
     color: #fff;
     font-family: var(--font-family-text);
     resize: vertical;
     outline: none;
+    display: block; 
+    mask-image: linear-gradient(to bottom, 
+        transparent 0px,         
+        black 30px,                
+        black calc(100% - 30px),   
+        transparent 100%           
+    );
+    -webkit-mask-image: linear-gradient(to bottom, 
+        transparent 0px, 
+        black 30px, 
+        black calc(100% - 30px), 
+        transparent 100%
+    );
 }
 
-.textarea-group textarea:focus {
-    outline: none;
-    border-color: var(--color-border);
-}
-
-/* IMAGE UPLOAD */
 .image-upload-area {
     width: 100%;
-    /* Hauteur fluide ou min-height */
     min-height: 200px; 
     height: auto;
     aspect-ratio: 16/9;
@@ -98,7 +112,6 @@
     color: #5AF2FF;
 }
 
-/* TAGS */
 .tags-preview-container {
     display: flex;
     flex-wrap: wrap;
@@ -129,7 +142,6 @@
     padding: 0;
 }
 
-/* --- TAGS INPUT STRUCTURE (Remplacement des styles inline) --- */
 .tag-input-wrapper {
     position: relative;
     display: flex;
@@ -147,7 +159,6 @@
     opacity: 0.7;
 }
 
-/* --- TAGS SUGGESTIONS --- */
 .tags-suggestions-dropdown {
     position: absolute;
     top: 100%;
@@ -156,7 +167,7 @@
     background: #001a35;
     border: 1px solid #0068AC;
     border-radius: 0 0 12px 12px;
-    z-index: 100; /* Assez haut pour passer au-dessus des inputs */
+    z-index: 100;
     max-height: 200px;
     overflow-y: auto;
     margin-top: 2px;

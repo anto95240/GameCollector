@@ -1,6 +1,6 @@
 import Flag from "react-world-flags";
 import LangOption from "../langOption";
-import "./languageSelector.css";
+import "./LanguageSelector.css";
 
 const LanguageSelector = ({ currentLang, isOpen, setOpen, onChange }) => {
 

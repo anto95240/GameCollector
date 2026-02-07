@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import "./successOverlay.css"; // Copiez le CSS correspondant de addEditGame.css ici
+import "./SuccessOverlay.css"; 
 
 const SuccessOverlay = ({ message, subMessage }) => (
     <div className="save-success-overlay fade-in">

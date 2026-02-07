@@ -3,7 +3,7 @@ import PlatformChart from "../../components/main/Statistique/PlatformChart";
 import YearChart from "../../components/main/Statistique/YearChart";
 import { useTranslation } from "react-i18next";
 
-import "./statistique.css";
+import "./Statistique.css";
 
 function StatistiquePage() {
     const { t } = useTranslation();

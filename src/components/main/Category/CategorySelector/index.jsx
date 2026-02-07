@@ -6,7 +6,7 @@ import {
     faCrosshairs 
 } from "@fortawesome/free-solid-svg-icons";
 
-import "./categorySelector.css"
+import "./CategorySelector.css"
 
 const CATEGORIES_CONFIG = [
     { id: "genre", label: "GENRE", icon: faThLarge },

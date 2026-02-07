@@ -7,7 +7,6 @@
   min-height: 500px;
   z-index: 1;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  /* background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%); */
 }
 
 .hero-cover {
@@ -40,6 +39,7 @@
   gap: 10px;
   flex-wrap: wrap;
 }
+
 .tag-pill {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(5px);
@@ -85,7 +85,6 @@
   letter-spacing: 2px;
 }
 
-/* Actions */
 .hero-actions {
   display: flex;
   gap: 15px;
@@ -126,7 +125,6 @@
   color: #000;
 }
 
-/* RESPONSIVE */
 @media (max-width: 1100px) {
   .hero-section {
     flex-direction: column;
@@ -174,20 +172,20 @@
   }
 
   .hero-actions { 
-    flex-direction: row; /* Force la ligne */
+    flex-direction: row; 
     gap: 10px; 
     width: 100%;
     justify-content: center;
-}
+  }
   
   .btn-secondary-action { 
-    width: auto; /* Laisse le contenu définir la largeur ou utilise flex */
-    flex: 1; /* Distribue l'espace équitablement */
-    min-width: 0; /* Permet de rétrécir si nécessaire */
+    width: auto; 
+    flex: 1;
+    min-width: 0; 
     justify-content: center; 
     padding: 8px 12px; 
-    font-size: 11px; /* Texte un peu plus petit pour tout faire rentrer */
+    font-size: 11px;
     height: 40px; 
     white-space: nowrap;
-}
+  }
 }

@@ -35,7 +35,7 @@
 }
 
 .filter-footer {
-    background: var(--color-card-primary); /* Même fond que le panel */
+    background: var(--color-card-primary);
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
     z-index: 10;
     padding: 10px;

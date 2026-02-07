@@ -3,13 +3,10 @@ import { useTranslation } from "react-i18next";
 
 export const useNavbar = () => {
     const { t, i18n } = useTranslation();
-    
-    // États
     const [actionsOpen, setActionsOpen] = useState(false);
     const [langMenuOpen, setLangMenuOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     
-    // Lazy initialisation pour lire localStorage une seule fois au montage
     const [isDark, setIsDark] = useState(() => {
         try {
             return JSON.parse(localStorage.getItem("dark")) || false;
@@ -22,21 +19,16 @@ export const useNavbar = () => {
         localStorage.getItem("language") || "FR"
     );
 
-    /* ----- EFFETS ----- */
-    
-    // Gestion du Thème
     useEffect(() => {
         document.body.setAttribute("data-theme", isDark ? "dark" : "light");
         localStorage.setItem("dark", JSON.stringify(isDark));
     }, [isDark]);
 
-    // Gestion de la Langue
     useEffect(() => {
         i18n.changeLanguage(language.toLowerCase());
         localStorage.setItem("language", language);
     }, [language, i18n]);
 
-    // Fermeture des menus au clic extérieur
     useEffect(() => {
         const handleClickOutside = (e) => {
             const isClickOnAccountButton = e.target.closest(".navbar-connection-button");
@@ -58,7 +50,6 @@ export const useNavbar = () => {
             
             // Menu mobile
             if (!isClickOnMobileMenuButton && !isClickOnMobileMenu) {
-                // On ne ferme pas le menu mobile si on interagit avec les modals de langue/compte
                 if (!actionsOpen && !langMenuOpen) {
                     setIsMenuOpen(false);
                 }
@@ -68,8 +59,6 @@ export const useNavbar = () => {
         document.addEventListener("click", handleClickOutside);
         return () => document.removeEventListener("click", handleClickOutside);
     }, [actionsOpen, langMenuOpen]); 
-
-    /* ----- ACTIONS ----- */
 
     const toggleTheme = () => setIsDark(prev => !prev);
     

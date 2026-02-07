@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faList } from "@fortawesome/free-solid-svg-icons";
 import { SECTIONS } from "../../../../hooks/useAddEditGame";
 import "./GameNav.css";
 
@@ -37,16 +37,18 @@ const GameNav = ({ activeSection, scrollToSection, showMobileMenu, setShowMobile
                                 <span>{t(section.label)}</span>
                             </button>
                         ))}
-                        <button className="close-menu-btn" onClick={() => setShowMobileMenu(false)} type="button">
-                            <FontAwesomeIcon icon={faTimes} /> Fermer
-                        </button>
                     </div>
                 </div>
             )}
             
             {/* Floating Button Mobile */}
-            <button className="floating-menu-btn mobile-only" onClick={() => setShowMobileMenu(true)} type="button">
-                <FontAwesomeIcon icon={faBars} />
+            <button 
+                className={`floating-menu-btn mobile-only ${showMobileMenu ? 'open' : ''}`}
+                onClick={() => setShowMobileMenu(!showMobileMenu)}
+                type="button"
+                aria-label={showMobileMenu ? "Fermer le menu" : "Ouvrir le menu"}
+            >
+                <FontAwesomeIcon icon={showMobileMenu ? faTimes : faList} />
             </button>
         </>
     );

@@ -1,15 +1,10 @@
 import { NavLink } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
-    faUser, 
-    faRightFromBracket 
-} from "@fortawesome/free-solid-svg-icons";
-import "./userLinks.css";
+import { faUser, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import "./UserLinks.css";
 
-// 1. Réception de la prop onClose
 const UserLinks = ({ t, onClose }) => (
     <div className="navbar-actions-links flex flex-col items-start w-full">
-        {/* 2. Appel de onClose au clic sur le lien Profil */}
         <NavLink 
             className="navbar-link-profile flex items-center w-full" 
             to="/profile"
@@ -18,7 +13,6 @@ const UserLinks = ({ t, onClose }) => (
             <FontAwesomeIcon icon={faUser} /> {t("navbar.profile")}
         </NavLink>
         
-        {/* On l'ajoute aussi au logout pour une meilleure UX */}
         <NavLink 
             className="navbar-link-deconnect flex items-center w-full" 
             to="/logout"

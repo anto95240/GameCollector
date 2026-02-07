@@ -5,43 +5,52 @@ export const useActiveOnScroll = (containerRef, selector, items = []) => {
 
     useEffect(() => {
         const container = containerRef.current;
-        // On retire la limite de 1024px ici pour laisser le développeur décider dans le composant
         if (!container || items.length === 0) return;
 
-        const options = {
-            root: container,
-            // Zone de détection : 20% au centre de l'écran (horizontal ou vertical)
-            rootMargin: "-20% -20% -20% -20%", 
-            threshold: 0.2, 
-        };
+        const handleScroll = () => {
+            const containerRect = container.getBoundingClientRect();
+            const containerCenter = containerRect.left + containerRect.width / 2;
+            
+            if (container.scrollLeft < 50) {
+                const firstElement = container.querySelector(selector);
+                if (firstElement) {
+                    const id = firstElement.getAttribute("data-id");
+                    if (id) {
+                        setActiveId(id);
+                        return; 
+                    }
+                }
+            }
 
-        const callback = (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute("data-id");
-                    if (id) setActiveId(id);
+            const elements = container.querySelectorAll(selector);
+            let closestId = null;
+            let minDiff = Infinity;
+
+            elements.forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                const elCenter = rect.left + rect.width / 2;
+                const diff = Math.abs(elCenter - containerCenter);
+
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestId = el.getAttribute("data-id");
                 }
             });
+
+            if (closestId) {
+                setActiveId(closestId);
+            }
         };
 
-        const observer = new IntersectionObserver(callback, options);
+        container.addEventListener("scroll", handleScroll);
         
-        // On attend que le DOM soit stable
-        const timeoutId = setTimeout(() => {
-            const elements = container.querySelectorAll(selector);
-            elements.forEach((el) => observer.observe(el));
-            
-            // Si rien n'est actif, on active le premier par défaut
-            if (elements.length > 0 && !activeId) {
-                setActiveId(elements[0].getAttribute("data-id"));
-            }
-        }, 150);
+        const timeoutId = setTimeout(handleScroll, 100);
 
         return () => {
-            observer.disconnect();
+            container.removeEventListener("scroll", handleScroll);
             clearTimeout(timeoutId);
         };
-    }, [containerRef, selector, items]); // Re-déclenche si les items (filtres) changent
+    }, [containerRef, selector, items]);
 
     return activeId;
 };

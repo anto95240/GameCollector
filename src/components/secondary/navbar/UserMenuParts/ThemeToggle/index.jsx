@@ -1,10 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
-    faSun, 
-    faMoon, 
-} from "@fortawesome/free-solid-svg-icons";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 
-import "./themeToggle.css";
+import "./ThemeToggle.css";
 
 const ThemeToggle = ({ isDark, toggleTheme }) => (
     <button 

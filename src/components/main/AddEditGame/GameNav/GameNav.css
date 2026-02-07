@@ -37,8 +37,6 @@
     border-left: 3px solid #5AF2FF;
 }
 
-/* --- MOBILE SPECIFIC STYLES --- */
-
 /* Mobile Nav Overlay */
 .mobile-nav-overlay {
     position: fixed;
@@ -53,7 +51,6 @@
 
 .mobile-nav-content {
     background: #001128;
-    border: 1px solid #5AF2FF;
     padding: 30px;
     border-radius: 20px;
     width: 80%;
@@ -62,6 +59,7 @@
     flex-direction: column;
     gap: 15px;
     box-shadow: 0 0 30px rgba(90, 242, 255, 0.2);
+    margin-bottom: 20px;
 }
 
 .mobile-nav-content h3 {
@@ -100,14 +98,12 @@
     cursor: pointer;
 }
 
-
-/* Floating Button */
 .floating-menu-btn {
     position: fixed;
-    bottom: 90px;
+    bottom: 160px;
     right: 25px;
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     background: #5AF2FF;
     color: #001128;
@@ -116,17 +112,23 @@
     font-size: 24px;
     z-index: 20;
     cursor: pointer;
-    display: none; /* Caché par défaut */
+    display: none; 
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s;
+    transition: all 0.3s ease; 
+}
+
+.floating-menu-btn.open {
+    background: #ff4d4d;
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4);
+    transform: rotate(90deg);
 }
 
 .floating-menu-btn:active {
     transform: scale(0.9);
 }
 
-/* --- RESPONSIVE MEDIA QUERIES --- */
 @media (min-width: 901px) {
     .mobile-only {
         display: none !important;
@@ -139,6 +141,6 @@
     }
     
     .floating-menu-btn {
-        display: flex; /* Affiche le bouton sur mobile */
+        display: flex; 
     }
 }

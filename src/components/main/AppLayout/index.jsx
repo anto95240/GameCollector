@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import Navbar from "../Navbar";
+import BottomNav from "../../secondary/Navbar/BottomNav";
 import "./AppLayout.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -76,7 +77,6 @@ const AppLayout = () => {
     if (container) {
       container.addEventListener("scroll", handleScroll);
     }
-    // Nettoyage
     return () => {
       if (container) {
         container.removeEventListener("scroll", handleScroll);
@@ -85,7 +85,6 @@ const AppLayout = () => {
   }, [handleScroll]);
 
   const scrollToTop = () => {
-    // 4. Scroller le conteneur
     scrollContainerRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -95,6 +94,8 @@ const AppLayout = () => {
         <Navbar />
         <Outlet context={{ t }} />
       </main>
+
+      <BottomNav t={t} />
 
       <div>        
         {showScrollToTopButton && (

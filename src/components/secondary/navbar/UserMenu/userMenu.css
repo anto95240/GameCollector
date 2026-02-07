@@ -1,11 +1,11 @@
 .navbar-actions {
   top: 50px;
-  right: 0;  
-  width: 220px;  
+  right: 0;
+  width: 220px;
   background: var(--color-bg-btn);
   border: 1px solid var(--color-border);
   border-radius: 16px;
-  box-shadow: var(--shadow-navbar);  
+  box-shadow: var(--shadow-navbar);
   padding: 15px 0px;
   z-index: 9999;
   transform-origin: top right;
@@ -13,8 +13,15 @@
 }
 
 @keyframes popIn {
-  from { opacity: 0; transform: scale(0.95) translateY(-10px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .navbar-actions p {

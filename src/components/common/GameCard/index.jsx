@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faEllipsisVertical, faPen, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router"; // Utilisation de react-router-dom
-import "./gameCard.css";
+import { useNavigate } from "react-router";
+import "./GameCard.css";
 
 const GameCard = ({ 
     game, 
@@ -13,7 +13,7 @@ const GameCard = ({
     onDeleteRequest,
     onClick,
     className = "",
-    isActive = false // Prop pour l'état dynamique mobile
+    isActive = false
 }) => {
     const navigate = useNavigate();
 
@@ -22,7 +22,6 @@ const GameCard = ({
     };
 
     const handleCardClick = (e) => {
-        // Empêcher la redirection si on clique sur le menu ou les boutons d'action
         if (e.target.closest('.btn-dots') || e.target.closest('.context-menu') || e.target.closest('.icon-heart')) {
             return;
         }
@@ -61,7 +60,7 @@ const GameCard = ({
             className={`game-card card-${variant} ${isActive ? 'active-mobile' : ''} cursor-pointer ${className}`}
             style={cardStyle}
             onClick={handleCardClick}
-            data-id={game.id || index} // Nécessaire pour l'observer
+            data-id={game.id || index} 
         >
             <div className="card-overlay"></div>
 

@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import FilterAccordionItem from "../FilterAccordionItem";
-import "./filterPanel.css";
+import "./FilterPanel.css";
 
 const ICONS = {
   genre: faLayerGroup,
@@ -27,13 +27,12 @@ const FilterPanel = ({
   filterData, 
   onSelectFilter,
   games,
-  resultCount // AJOUT : Récupération du nombre de résultats
+  resultCount 
 }) => {
 
   const [expandedFilter, setExpandedFilter] = useState(null);
   const [showAllOptions, setShowAllOptions] = useState({});
 
-  // --- Handlers ---
   const toggleFilterCategory = (id) => setExpandedFilter(expandedFilter === id ? null : id);
 
   const toggleShowAll = (categoryId) => {
@@ -58,7 +57,6 @@ const FilterPanel = ({
   };
 
   return (
-    // Ajout de onClick stopPropagation pour éviter de fermer quand on clique dedans
     <div className={`filter-panel flex flex-col ${isOpen ? 'open' : ''}`} onClick={e => e.stopPropagation()}>
       
       {/* HEADER */}
@@ -69,10 +67,8 @@ const FilterPanel = ({
         </button>
       </div>
 
-      {/* ZONE SCROLLABLE (Active Filters + Accordion) */}
       <div className="filter-scroll-content grow overflow-y-auto custom-scrollbar">
           
-          {/* ACTIVE FILTERS */}
           <div className="active-filters-box">
             {selectedFilters.length === 0 ? (
               <span className="placeholder-text">Aucun filtre actif</span>

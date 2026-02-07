@@ -1,9 +1,8 @@
 import LanguageSelector from "../UserMenuParts/LanguageSelector";
 import ThemeToggle from "../UserMenuParts/ThemeToggle";
 import UserLinks from "../UserMenuParts/UserLinks";
-import "./userMenu.css";
+import "./UserMenu.css";
 
-// 1. Ajout de onClose dans les props
 const UserMenu = ({ t, state, setters, actions, onClose }) => {
     const { isDark, language, langMenuOpen } = state;
     const { setLangMenuOpen } = setters;
@@ -29,7 +28,6 @@ const UserMenu = ({ t, state, setters, actions, onClose }) => {
 
             <hr className="separate w-full" />
             
-            {/* 2. Transmission de la fonction vers l'enfant */}
             <UserLinks t={t} onClose={onClose} />
         </div>
     );

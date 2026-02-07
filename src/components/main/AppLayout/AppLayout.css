@@ -1,15 +1,15 @@
 .layout-container {
     width: 100vw;
-    height: 100vh; /* Prend tout l'écran */
-    overflow-y: auto; /* C'est ICI que le scroll se passe */
+    height: 100vh; 
+    overflow-y: auto; 
     overflow-x: hidden;
     position: relative;
-    background-color: var(--color-bg); /* Exemple */
+    background-color: var(--color-bg); 
 }
 
 .return-top {
-    position: fixed; /* Fixé par rapport à la fenêtre */
-    bottom: 30px;
+    position: fixed; 
+    bottom: 100px;
     right: 30px;
     width: 50px;
     height: 50px;
@@ -19,7 +19,7 @@
     border: none;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     cursor: pointer;
-    z-index: 1000; /* Très important pour passer au dessus du contenu */
+    z-index: 1000; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,7 +42,13 @@
 }
 
 .layout-container .main-content {
-    overflow: visible !important; /* Laisse le contenu dépasser pour que le parent scroll */
-    height: auto !important;      /* Laisse la hauteur s'adapter au contenu */
-    flex: none;                   /* Désactive le flex pour éviter les conflits de hauteur */
+    overflow: visible !important; 
+    height: auto !important;  
+    flex: none; 
+}
+
+@media (max-width: 1024px){
+    .layout-container {
+        margin-bottom: 90px;
+    }
 }

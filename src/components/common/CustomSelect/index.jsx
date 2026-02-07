@@ -1,13 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import "./customSelect.css";
+import "./CustomSelect.css";
 
 const CustomSelect = ({ options, value, onChange }) => {
     const [isOpen, setIsOpen] = useState(false);
     const wrapperRef = useRef(null);
 
-    // Fermer le menu si on clique ailleurs
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -18,11 +17,10 @@ const CustomSelect = ({ options, value, onChange }) => {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    // Trouver le label de l'option sélectionnée
     const selectedLabel = options.find(opt => opt.value === value)?.label || value;
 
     const handleSelect = (val) => {
-        onChange(val); // Renvoie juste la valeur, comme un select natif
+        onChange(val);
         setIsOpen(false);
     };
 

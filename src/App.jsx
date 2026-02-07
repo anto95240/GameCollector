@@ -1,4 +1,3 @@
-// App.jsx
 import {
   RouterProvider,
 } from "react-router";

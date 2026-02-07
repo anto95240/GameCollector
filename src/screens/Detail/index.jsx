@@ -1,15 +1,13 @@
-import React, { useLayoutEffect, useEffect } from "react"; // Ajout de useEffect
+import { useLayoutEffect } from "react"; 
 import { useParams, useNavigate, useLocation } from "react-router";
 
-// Composants refactorisés
 import DetailHeader from "../../components/main/Detail/DetailHeader";
 import DetailHero from "../../components/main/Detail/DetailHero";
 import DetailInfoGrid from "../../components/main/Detail/DetailInfoGrid";
 import DetailFooter from "../../components/main/Detail/DetailFooter";
 
-import "./detail.css";
+import "./Detail.css";
 
-// MOCK DATA (À remplacer par appel API ou Hook)
 const MOCK_DB = [
     { 
         id: "1", 
@@ -37,13 +35,11 @@ const DetailPage = () => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
-    // Logique de récupération
     const game = MOCK_DB.find(g => 
         g.name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') === gameName
     ) || { ...MOCK_DB[0], name: gameName || "Jeu Inconnu" };
 
     useLayoutEffect(() => {
-        // On cible le conteneur qui a le scroll (layout-container dans votre AppLayout)
         const scrollContainer = document.querySelector('.layout-container');
         if (scrollContainer) {
             scrollContainer.scrollTo({ top: 0, left: 0, behavior: "instant" });

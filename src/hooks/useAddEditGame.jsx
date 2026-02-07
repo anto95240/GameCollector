@@ -46,14 +46,12 @@ export const useAddEditGame = () => {
     const gameToEdit = location.state?.game; 
     const isEditMode = !!gameToEdit;
 
-    // --- STATES ---
     const [activeSection, setActiveSection] = useState("desc");
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     
     const [tagInput, setTagInput] = useState("");
     const [suggestedTags, setSuggestedTags] = useState([]);
     
-    // Remplacement de isScrollingRef par un useRef pour bloquer l'observer lors du clic
     const isClickScrolling = useRef(false);
     
     const [previewImg, setPreviewImg] = useState(null);
@@ -65,7 +63,6 @@ export const useAddEditGame = () => {
         developer: "", achievements: "", status: "", tags: [], image: null
     });
 
-    // --- INITIALISATION ---
     useEffect(() => {
         if (isEditMode) {
             setFormData({
@@ -87,10 +84,8 @@ export const useAddEditGame = () => {
         }
     }, [isEditMode, gameToEdit]);
 
-    // --- SCROLL SPY (INTERSECTION OBSERVER) ---
     useEffect(() => {
         const handleIntersect = (entries) => {
-            // Si on est en train de scroller via un clic menu, on ignore l'observer pour éviter les sauts
             if (isClickScrolling.current) return;
 
             entries.forEach((entry) => {
@@ -102,13 +97,10 @@ export const useAddEditGame = () => {
 
         const observer = new IntersectionObserver(handleIntersect, {
             root: null,
-            // rootMargin définit une zone active au milieu de l'écran (-50% en haut, -50% en bas)
-            // L'intersection se déclenche quand un élément traverse cette ligne centrale invisible
             rootMargin: '-45% 0px -45% 0px', 
             threshold: 0
         });
 
-        // On observe toutes les sections (elles doivent avoir la classe 'form-section')
         const sections = document.querySelectorAll('.form-section');
         sections.forEach((section) => observer.observe(section));
 
@@ -117,7 +109,6 @@ export const useAddEditGame = () => {
         };
     }, []);
 
-    // --- SCROLL TO SECTION (CENTERED) ---
     const scrollToSection = (id) => {
         const element = document.getElementById(id);
         if (element) {
@@ -125,20 +116,17 @@ export const useAddEditGame = () => {
             setActiveSection(id);
             setShowMobileMenu(false);
 
-            // Scroll fluide qui centre l'élément verticalement
             element.scrollIntoView({ 
                 behavior: 'smooth', 
                 block: 'center' 
             });
 
-            // On réactive l'observer après l'animation de scroll (environ 1s)
             setTimeout(() => {
                 isClickScrolling.current = false;
             }, 1000);
         }
     };
 
-    // --- TAGS LOGIC ---
     useEffect(() => {
         if (tagInput.trim() === "") {
             setSuggestedTags([]);
@@ -173,7 +161,6 @@ export const useAddEditGame = () => {
         }
     };
 
-    // --- HANDLERS ---
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -187,7 +174,6 @@ export const useAddEditGame = () => {
         }
     };
 
-    // --- HANDLESUBMIT ---
     const createSlug = (name) => {
         return name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
     };
@@ -202,7 +188,7 @@ export const useAddEditGame = () => {
     };
 
     return {
-        t, navigate, isEditMode, gameToEdit,
+        t, navigate, isEditMode, gameToEdit, 
         activeSection, showMobileMenu, setShowMobileMenu, scrollToSection,
         formData, setFormData, handleChange, handleFileChange, handleSubmit,
         tagInput, setTagInput, suggestedTags, handleTagKeyDown, addTag, handleRemoveTag,

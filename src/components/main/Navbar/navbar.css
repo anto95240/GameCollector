@@ -9,36 +9,18 @@
   padding-bottom: 1%;
 }
 
-/* Logo */
 .navbar-img {
   width: 45px;
   height: 45px;
   border-radius: 12px;
+  display: block;
 }
 
-/* Bouton hamburger */
-.mobile-menu-button {
-  font-size: 26px;
-  color: var(--color-text);
-  background: none;
-  border: none;
-  margin-right: 1.5rem;
-}
-
-.navbar-img,
 .navbar-links {
     display: none; 
 }
 
-@media (min-width: 1024px) {
-  .mobile-menu-button { 
-    display: none; 
-  }
-  
-  .navbar-img {
-    display: block; 
-  }
-
+@media (min-width: 1024px) {  
   .navbar-links {
     display: flex; 
   }

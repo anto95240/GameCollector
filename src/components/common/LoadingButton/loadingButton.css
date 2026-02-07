@@ -42,6 +42,13 @@
   margin: 0 auto;
 }
 
+.layer-overlay {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .loader-circle {
   width: 20px;
   height: 20px;

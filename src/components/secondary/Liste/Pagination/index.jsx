@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleLeft, faAngleLeft, faAngleRight, faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
-import "./pagination.css";
+import "./Pagination.css";
 
 const Pagination = ({ page, totalPages, onPrev, onNext, onFirst, onLast }) => {
     return (

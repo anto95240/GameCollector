@@ -18,12 +18,10 @@ const FilterAccordionItem = ({
     handleClearCategory
 }) => {
     
-    // Helpers locaux
     const isSelected = (opt) => selectedFilters.includes(`${category.label}: ${opt}`);
     const optionsToShow = showAllState ? category.options : category.options.slice(0, MAX_VISIBLE_OPTIONS);
     const hasMore = category.options.length > MAX_VISIBLE_OPTIONS;
     
-    // Vérifie si au moins un filtre de cette catégorie est actif
     const isActiveCategory = selectedFilters.some(f => f.startsWith(`${category.label}:`));
 
     return (

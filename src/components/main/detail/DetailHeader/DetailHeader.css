@@ -43,7 +43,6 @@
 
 .action-group { display: flex; gap: 10px; }
 
-/* RESPONSIVE */
 @media (max-width: 600px) {
     .detail-header { 
         padding: 15px; 
@@ -51,7 +50,12 @@
         gap: 12px; 
         align-items: stretch; 
     }
-    .action-group { width: 100%; justify-content: space-between; }
+
+    .action-group { 
+        width: 100%; 
+        justify-content: space-between; 
+    }
+    
     .btn-glass { 
         width: 100%; 
         justify-content: center; 

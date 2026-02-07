@@ -1,4 +1,4 @@
-import "./sectionStatPrimary.css";
+import "./SectionStatPrimary.css";
 import { useDashboard } from "../../../../hooks/useDashboard";
 
 const GameCard = ({t}) => {

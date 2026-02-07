@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
-import "./categoryListe.css"
+import "./CategoryListe.css"
 
 const CategoryList = ({ items, isCompact, onEdit, onDelete }) => {
     return (

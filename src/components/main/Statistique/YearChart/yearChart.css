@@ -21,9 +21,7 @@
 .year-chart-header {
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
     margin-bottom: 20px;
-    /* height: 30px; */
 }
 
 .year-select-type {
@@ -109,6 +107,6 @@
     }
     
     .year-chart-header > div {
-        width: 100%; /* Select prend toute la largeur */
+        width: 100%; 
     }
 }

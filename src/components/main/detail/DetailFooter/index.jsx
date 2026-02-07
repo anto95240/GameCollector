@@ -6,7 +6,6 @@ import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons
 
 import { useActiveOnScroll } from "../../../../hooks/useActiveOnScroll";
 
-// Définition en dehors du composant pour éviter que la référence change à chaque render
 const MOCK_RECENT_GAMES = [
   {
     id: 101,
@@ -60,7 +59,6 @@ const DetailFooter = () => {
     <footer className="footer-section">
       <h3 className="footer-title">Récemment consultés</h3>
 
-      {/* Container relatif pour positionner les flèches */}
       <div className="detail-carousel relative w-full">
         {/* Flèche gauche */}
         <button
@@ -73,7 +71,6 @@ const DetailFooter = () => {
           <FontAwesomeIcon icon={faChevronLeft} />
         </button>
 
-        {/* AJOUT DE ref={scrollRef} ICI */}
         <div className="recent-scroll no-scrollbar" ref={scrollRef}>
           {MOCK_RECENT_GAMES.map((gameMock) => (
             <div

@@ -26,7 +26,6 @@ const DetailInfoGrid = ({ game }) => {
                 <div className="bento-card">
                     <h3>Informations</h3>
                     <div className="stats-list">
-                        {/* Identité du jeu (Pertinence ++) */}
                         <StatItem icon={faLayerGroup} label="Genre" value={game.genre} />
                         <StatItem icon={faCalendarAlt} label="Année" value={game.year} />
                         {game.developer && (
@@ -35,7 +34,6 @@ const DetailInfoGrid = ({ game }) => {
                         
                         <div className="separator-line"></div>
 
-                        {/* Stats Joueur */}
                         <StatItem icon={faGamepad} label="Plateforme" value={game.platform} />
                         <StatItem icon={faClock} label="Temps de jeu" value={game.playtime} />
                         <StatItem icon={faTrophy} label="Succès" value={game.achievements} />

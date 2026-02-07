@@ -62,7 +62,6 @@
   border-radius: 2px;
 }
 
-/* Item de filtre (Row) */
 .filter-option-item {
   padding: 6px 8px;
   border-radius: 8px;
@@ -73,7 +72,6 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* Style quand sélectionné */
 .filter-option-item.selected {
   background: linear-gradient(
     90deg,
@@ -88,7 +86,6 @@
   font-weight: bold;
 }
 
-/* Checkbox */
 .checkbox-container {
   flex: 1;
   position: relative;
@@ -109,7 +106,7 @@
 .checkbox-container input[type="checkbox"]:checked {
   background: #00ffff;
   border-color: #00ffff;
-  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4); /* Glow effect */
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4); 
 }
 
 .checkmark .check-icon {
@@ -141,7 +138,6 @@
   border-radius: 10px;
 }
 
-/* --- FOOTER DE CATÉGORIE (BOUTONS) --- */
 .category-footer {
   padding: 10px 15px;
   border-top: 1px solid rgba(0, 255, 255, 0.1);

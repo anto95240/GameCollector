@@ -21,7 +21,7 @@
   color: var(--color-text);
   width: 100%;
   box-sizing: border-box; 
-  outline: none; /* Ton fix de tout à l'heure */
+  outline: none; 
   transition: box-shadow 0.2s;
 }
 

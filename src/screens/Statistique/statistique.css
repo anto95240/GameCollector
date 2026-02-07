@@ -34,7 +34,6 @@
         overflow-x: hidden;
     }
     
-    /* Si les graphiques sont trop larges, on permet le scroll DANS le conteneur du graphique */
     .year-chart-container {
         overflow-x: auto;
     }
