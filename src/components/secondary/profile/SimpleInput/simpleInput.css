@@ -25,10 +25,6 @@
   transition: box-shadow 0.2s;
 }
 
-.simple-input-group input:focus {
-  box-shadow: 0 0 0 2px var(--color-text-highlight, #0068AC);
-}
-
 @media (min-width: 769px) {
   .simple-input-group input {
     max-width: 400px;

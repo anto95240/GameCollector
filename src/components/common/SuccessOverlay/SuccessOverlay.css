@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     min-height: 500px;
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--bg-accordeon-category);
     border-radius: 20px;
     border: 1px solid var(--color-border);
 }
@@ -22,7 +22,7 @@
 
 .success-icon {
     font-size: 80px;
-    color: #4ADE80; /* Vert succès */
+    color: var(--color-succes-modif-game); /* Vert succès */
     position: relative;
     z-index: 2;
 }
@@ -34,7 +34,7 @@
     transform: translate(-50%, -50%);
     width: 80px;
     height: 80px;
-    background: rgba(74, 222, 128, 0.4);
+    background: var(--bg-succes-modif-game);
     border-radius: 50%;
     animation: ripple 1.5s infinite;
     z-index: 1;
@@ -42,19 +42,19 @@
 
 .success-content h2 {
     font-size: 24px;
-    color: #fff;
+    color: var(--color-text);
     margin-bottom: 10px;
     font-family: var(--font-family-title);
 }
 
 .success-content p {
-    color: #94A3B8;
+    color: var(--color-text);
     margin-bottom: 20px;
 }
 
 .redirect-spinner {
     font-size: 20px;
-    color: #5AF2FF;
+    color: var(--color-test);
 }
 
 @keyframes popIn {

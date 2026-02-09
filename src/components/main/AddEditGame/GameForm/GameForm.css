@@ -13,7 +13,7 @@
     gap: 15px;
 }
 
-.btn-cancel {
+.btn-cancel-game {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #94A3B8;
@@ -28,7 +28,7 @@
     width: 80%;
 }
 
-.btn-cancel:hover {
+.btn-cancel-game:hover {
     background: rgba(255, 255, 255, 0.05);
     color: #fff;
     border-color: rgba(255, 255, 255, 0.5);

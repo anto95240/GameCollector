@@ -1,20 +1,17 @@
 .hero-section {
   position: relative;
-  padding: 120px 50px 40px 50px;
+  padding: 100px 50px 40px 50px;
   display: flex;
   gap: 50px;
   align-items: flex-end;
   min-height: 500px;
   z-index: 1;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .hero-cover {
   width: 280px;
   aspect-ratio: 2/3;
   border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   object-fit: cover;
   flex-shrink: 0;
   transition: transform 0.3s;
@@ -22,7 +19,6 @@
 
 .hero-cover:hover {
   transform: scale(1.02) rotate(-1deg);
-  border-color: #fff;
 }
 
 .hero-content {
@@ -41,7 +37,7 @@
 }
 
 .tag-pill {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--tag-status-bg);
   backdrop-filter: blur(5px);
   padding: 5px 12px;
   border-radius: 4px;
@@ -49,6 +45,8 @@
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
+  color: var(--color-text);
+  border: 1px solid var(--tag-status-border);
 }
 
 .detail-title {
@@ -56,7 +54,6 @@
   font-size: clamp(32px, 5vw, 64px);
   line-height: 1.1;
   text-transform: uppercase;
-  text-shadow: 0 0 40px rgba(0, 210, 255, 0.2);
   margin: 0;
   word-wrap: break-word;
 }
@@ -66,7 +63,6 @@
   align-items: center;
   gap: 30px;
   font-size: 14px;
-  color: #ddd;
   flex-wrap: wrap;
 }
 
@@ -77,11 +73,11 @@
 }
 
 .meta-item strong {
-  color: #fff;
+  color: var(--color-text);
 }
 
 .rating-stars {
-  color: #f1c40f;
+  color: var(--color-star-note);
   letter-spacing: 2px;
 }
 
@@ -93,12 +89,12 @@
 }
 
 .btn-secondary-action {
-  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
-  color: #fff;
   padding: 12px 20px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--tag-status-border);
+  background: var(--tag-status-bg);
+  color: var(--tag-status-text);
   cursor: pointer;
   transition: 0.3s;
   display: flex;
@@ -108,21 +104,16 @@
   white-space: nowrap;
 }
 
-.btn-secondary-action:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
 .btn-secondary-action.active {
-  background: #ff4757;
-  border-color: #ff4757;
-  box-shadow: 0 0 15px rgba(255, 71, 87, 0.4);
+  border-color: var(--color-orange);
+  color: var(--color-orange);
+  background: transparent;
 }
 
 .btn-secondary-action.owned {
-  background: #2ecc71;
-  border-color: #2ecc71;
-  box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
-  color: #000;
+  background: var(--tag-owned-bg);
+  border-color: var(--tag-owned-border);
+  color: var(--tag-owned-text);
 }
 
 @media (max-width: 1100px) {
@@ -154,7 +145,6 @@
 
   .hero-cover {
     width: 140px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   }
 
   .main-title {

@@ -8,12 +8,12 @@ const DetailHeader = ({ onEdit, onDelete }) => {
 
     return (
         <header className="detail-header">
-            <button className="btn-glass" onClick={() => navigate("/list")}>
+            <button className="btn-glass back" onClick={() => navigate("/list")}>
                 <FontAwesomeIcon icon={faArrowLeft} /> <span>Retour</span>
             </button>
             
             <div className="action-group">
-                <button className="btn-glass" title="Modifier" onClick={onEdit}>
+                <button className="btn-glass edit" title="Modifier" onClick={onEdit}>
                     <FontAwesomeIcon icon={faPen} /> <span>Modifier</span>
                 </button>
                 <button className="btn-glass delete" title="Supprimer" onClick={onDelete}>

@@ -1,4 +1,3 @@
-import React from 'react';
 import "./SectionWrapper.css";
 
 const SectionWrapper = ({ id, title, children, className = "" }) => {

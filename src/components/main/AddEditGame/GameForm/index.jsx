@@ -28,7 +28,7 @@ const GameForm = ({
             <div className="form-actions-footer z-0">
                 <button 
                     type="button" 
-                    className="btn-cancel" 
+                    className="btn-cancel-game" 
                     onClick={() => navigate(-1)}
                 >
                     {t('common.cancel')}

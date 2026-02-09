@@ -31,9 +31,6 @@ const DetailInfoGrid = ({ game }) => {
                         {game.developer && (
                              <StatItem icon={faCode} label="Développeur" value={game.developer} />
                         )}
-                        
-                        <div className="separator-line"></div>
-
                         <StatItem icon={faGamepad} label="Plateforme" value={game.platform} />
                         <StatItem icon={faClock} label="Temps de jeu" value={game.playtime} />
                         <StatItem icon={faTrophy} label="Succès" value={game.achievements} />

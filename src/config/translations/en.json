@@ -14,11 +14,6 @@
       "favorite": "Favorite"
     },
 
-    "loading": {
-      "title": "Game Collector",
-      "message": "Loading your collection..."
-    },
-
     "auth": {
       "login": {
         "title": "Login",
@@ -52,6 +47,11 @@
         "bye": "See you soon",
         "thanks": "Thanks for using Game Collector. You are now logged out.",
         "returnLogin": "Return to login"
+      },
+
+      "loading": {
+        "statusLogin": "System Initialization...",
+        "statusLogout": "Logging out..."
       }
     },
 

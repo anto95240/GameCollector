@@ -14,23 +14,25 @@
 }
 
 .btn-cancel {
-  background: var(--color-text-btn-account);
-  color: var(--color-text-btn);
+  background: var(--bg-cancel-btn);
+  color: var(--color-text);
+  width: 10%;
 }
 
 .btn-save {
   background: var(--gradient-blue);
-  color: var(--color-text);
+  color: white;
 }
 
 .btn-download {
   background: var(--color-text-btn-account);
-  color: var(--color-text-btn);
+  color: white;
   font-weight: 500;
 }
 
 .btn-delete {
   background: var(--gradient-delete);
+  color: white;
   margin-left: auto;
 }
 

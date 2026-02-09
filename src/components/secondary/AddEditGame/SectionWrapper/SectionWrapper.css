@@ -10,8 +10,7 @@
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 18px;
-    color: #fff;
+    color: var(--color-text);
     font-family: var(--font-family-title);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 10px;
 }

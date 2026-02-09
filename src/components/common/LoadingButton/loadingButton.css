@@ -16,7 +16,7 @@
   height: 48px;
   border: none;
   cursor: pointer;
-  color: white;
+  /* color: white; */
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -26,13 +26,13 @@
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--bg-cancel-btn);
 }
 
 .btn-cyber {
-  background: linear-gradient(90deg, #0068ac, #5af2ff);
-  box-shadow: 0 0 15px rgba(90, 242, 255, 0.4);
+  background: var(--gradient-blue);
+  box-shadow: var(--shadow-btn-auth);
+  color: white;
 }
 
 .base-button.is-loading {
@@ -52,7 +52,7 @@
 .loader-circle {
   width: 20px;
   height: 20px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
+  border: 3px solid var(--color-border-loader-auth);
   border-top-color: white;
   border-radius: 50%;
   animation: spin 1s linear infinite;

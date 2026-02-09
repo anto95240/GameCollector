@@ -1,7 +1,7 @@
 .detail-layout {
   width: 100%;
   min-height: 100vh;
-  color: #fff;
+  color: var(--color-text);
   background: transparent;
   position: relative;
   overflow-x: hidden;

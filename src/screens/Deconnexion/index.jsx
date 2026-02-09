@@ -25,7 +25,7 @@ const DeconnexionPage = () => {
 
     return (
         <>
-            {showLoading && <ChargementPage />}
+            {showLoading && <ChargementPage variant="logout" />}
 
             <div className="auth-container logout-page">
                 <div className="auth-card logout-card">

@@ -5,15 +5,14 @@
   bottom: 0;
   height: 100%;
   width: 320px;
-  background: #000f24;
-  border: 1px solid #00ffff33;
+  background: var(--bg-filtre);
+  border: 1px solid var(--color-border-filtre);
   border-radius: 20px;
   padding: 20px;
   transform: translateX(110%);
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   overflow: hidden;
   z-index: 100;
-  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .filter-panel.open {
@@ -27,7 +26,7 @@
 }
 
 .filter-header h3 {
-  color: #00ffff;
+  color: var(--color-text);
   font-weight: 400;
   font-size: 24px;
   margin: 0;
@@ -36,14 +35,13 @@
 
 .filter-footer {
     background: var(--color-card-primary);
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
     z-index: 10;
     padding: 10px;
 }
 
 .btn-show-results {
     background: var(--gradient-blue);
-    color: white;
+    color: var(--color-text-btn-profile);
     font-family: var(--font-family-title);
     font-size: 16px;
     padding: 10px;
@@ -53,7 +51,7 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(0, 104, 172, 0.4);
+    box-shadow: var(--shadow-filtre-result);
 }
 
 .btn-show-results:active {
@@ -65,14 +63,13 @@
   right: 0;
   background: none;
   border: none;
-  color: #fff;
+  color: var(--color-text);
   font-size: 20px;
   cursor: pointer;
   padding: 5px;
 }
 
 .close-filter:hover {
-  color: #00ffff;
   transform: rotate(90deg);
   transition: 0.3s;
 }
@@ -81,8 +78,8 @@
 .active-filters-box {
   min-height: 50px;
   max-height: 100px;
-  background: #020b18;
-  border: 1px solid #00ffff33;
+  background: var(--bg-filtre-active);
+  border: 1px solid var(--color-border-filtre);
   border-radius: 12px;
   margin-bottom: 15px;
   padding: 10px;
@@ -99,13 +96,12 @@
 }
 
 .active-filters-box::-webkit-scrollbar-thumb {
-  background: #00ffff55;
   border-radius: 2px;
 }
 
 .filter-tag {
-  background: #00ffff;
-  color: #000;
+  background: white;
+  color: var(--color-text-btn);
   font-size: 11px;
   padding: 4px 8px;
   border-radius: 4px;
@@ -114,12 +110,7 @@
   transition: background 0.2s;
 }
 
-.filter-tag:hover {
-  background: #fff;
-}
-
 .placeholder-text {
-  color: #475569;
   font-size: 12px;
   font-style: italic;
   margin: auto;
@@ -127,9 +118,9 @@
 
 .reset-all-btn {
   font-size: 11px;
-  color: #ff6b6b;
-  background: rgba(255, 107, 107, 0.1);
-  border: 1px solid rgba(255, 107, 107, 0.3);
+  color: var(--color-reset-filter);
+  background: var(--bg-boder-reset-filter);
+  border: 1px solid var(--bg-boder-reset-filter);
   padding: 4px 8px;
   border-radius: 4px;
   cursor: pointer;
@@ -139,8 +130,8 @@
 }
 
 .reset-all-btn:hover {
-  background: #ff6b6b;
-  color: #fff;
+  background: var(--color-reset-filter);
+  color: white;
 }
 
 /* --- ACCORDÉON --- */
@@ -155,12 +146,7 @@
   width: 4px;
 }
 
-.filter-accordion::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-}
-
 .filter-accordion::-webkit-scrollbar-thumb {
-  background: #00ffff33;
   border-radius: 2px;
 }
 

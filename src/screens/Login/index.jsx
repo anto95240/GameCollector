@@ -25,7 +25,7 @@ const Login = () => {
 
   return (
     <>
-      {showLoading && <ChargementPage />}
+      {showLoading && <ChargementPage variant="login" />}
       <div className="auth-container">
         <div className="auth-card">
           <h2 className="auth-title">Connexion Système</h2>

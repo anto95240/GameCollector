@@ -5,13 +5,10 @@
 }
 
 .section-title {
-    font-family: var(--font-family-title);
+    font-family: var(--font-family-text);
     color: var(--primary-color);
     font-size: 1.3rem;
     margin: 20px 0 5px 0;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(90, 242, 255, 0.3);
 }
 
 .games-carousel {
@@ -46,10 +43,9 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%); 
-    background: rgba(0, 17, 40, 0.7);
-    border: 1px solid rgba(90, 242, 255, 0.3);
+    border: 1px solid var(--color-custom-select);
     border-radius: 50%;
-    color: var(--primary-color);
+    color: #5AF2FF;
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -60,12 +56,6 @@
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(5px);
-}
-
-.carousel-arrow:hover {
-    background: var(--secondary-color);
-    color: white;
-    box-shadow: 0 0 15px var(--secondary-color);
 }
 
 .arrow-left { left: -10px; }

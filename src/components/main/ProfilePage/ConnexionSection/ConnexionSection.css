@@ -18,6 +18,7 @@
   background: var(--gradient-card-main-input);
   color: var(--color-text);
   font-family: var(--font-family-text);
+  outline: none;
 }
 
 @media (max-width: 768px) {

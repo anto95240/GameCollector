@@ -39,7 +39,7 @@ const Register = () => {
 
   return (
     <>
-      {showLoading && <ChargementPage />}
+      {showLoading && <ChargementPage variant="login" />}
       <div className="auth-container">
         <div className="auth-card register-card">
           <h2 className="auth-title">Nouveau Profil</h2>

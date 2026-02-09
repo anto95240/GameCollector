@@ -14,7 +14,7 @@
   height: 36px;
   border-radius: 50%;
   background: var(--gradient-account);
-  color: var(--color-text-btn-account);
+  color: white;
   transition: 0.2s;
 }
 

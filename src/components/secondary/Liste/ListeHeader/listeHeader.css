@@ -17,7 +17,7 @@
 .search-input {
     width: 90%; 
     padding: 15px 45px 15px 20px;
-    background-color: #5AF2FF;
+    background-color: var(--color-text);
     color: var(--text-search);
     border: none;
     border-radius: 20px;
@@ -48,8 +48,7 @@
 
 .nb-jeux {
     font-size: 14px;
-    color: #5AF2FF; 
-    text-shadow: 0 0 10px rgba(90, 242, 255, 0.5);
+    color: var(--color-text); 
 }
 
 .header-buttons {
@@ -71,11 +70,12 @@
 
 .btn-filter {  
     background-color: var(--color-text-btn-account);
-    color: var(--color-btn-tag);
+    color: var(--color-text-btn-profile);
 }
 
 .btn-add {
     background: var(--gradient-blue);
+    color: white;
 }
 
 .btn-filter:hover, .btn-add:hover {

@@ -70,6 +70,11 @@ const ListePage = () => {
     }
   };
 
+  const handleToggleMenu = (index, e) => {
+      e.stopPropagation();
+      setActiveMenuIndex(activeMenuIndex === index ? null : index);
+  };
+
   const closeMenu = () => setActiveMenuIndex(null);
 
   const confirmDelete = () => {
@@ -120,6 +125,10 @@ const ListePage = () => {
                             index={index}
                             variant="list"
                             isActive={activeId === String(game.id)} 
+                            activeMenuIndex={activeMenuIndex}
+                            onToggleMenu={handleToggleMenu}
+                            onDeleteRequest={() => setGameToDelete(game)}
+                            t={t}
                         />
                     </div>
                 ))

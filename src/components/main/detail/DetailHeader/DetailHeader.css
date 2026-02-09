@@ -11,13 +11,13 @@
 .detail-header button { pointer-events: auto; }
 
 .btn-glass {
-    background: rgba(0, 0, 0, 0.4);
+    background: transparent;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid var(--color-border-detail-stat);
     padding: 10px 20px;
     border-radius: 10px;
-    color: #fff;
+    color: var(--color-text);
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
@@ -28,17 +28,23 @@
     transition: all 0.3s ease;
 }
 
-.btn-glass:hover {
-    background: rgba(255, 255, 255, 0.9);
-    color: #000;
-    transform: scale(1.05);
-    border-color: #fff;
+.btn-glass.back:hover {
+    background: var(--bg-cancel-btn);
+    transform: translateX(-5px);
 }
 
-.btn-glass.delete:hover {
-    background: #e74c3c;
-    color: #fff;
-    border-color: #e74c3c;
+.btn-glass:hover {
+    transform: scale(1.05);
+}
+
+.btn-glass.edit {
+    background: var(--gradient-success);
+    color: white;
+}
+
+.btn-glass.delete {
+    background: var(--gradient-delete);
+    color: white;
 }
 
 .action-group { display: flex; gap: 10px; }

@@ -27,7 +27,7 @@
   padding: 6px 14px;
   border-radius: 6px;
   font-weight: 600;
-  color: var(--color-bg-btn);
+  color: var(--color-text-btn-profile);
   font-family: var(--font-family-title);
   cursor: pointer;
   transition: transform 0.1s ease, filter 0.2s ease;
@@ -86,11 +86,6 @@
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   margin-bottom: 10px;
-}
-
-.inline-form-content input:focus {
-  border-color: var(--color-text-highlight, #0068AC);
-  box-shadow: 0 0 0 2px rgba(0, 104, 172, 0.1);
 }
 
 .inline-form-content input:last-child {

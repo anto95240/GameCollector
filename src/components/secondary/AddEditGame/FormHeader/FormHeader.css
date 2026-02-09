@@ -7,7 +7,6 @@
     border-bottom: 1px solid var(--color-border);
     position: sticky;
     top: 0;
-    background: #001128; 
     z-index: 10;
     padding-top: 20px;
 }
@@ -35,7 +34,7 @@
 }
 
 .btn-back:hover {
-    background: rgba(90, 242, 255, 0.1);
+    background: var(--bg-cancel-btn);
     transform: translateX(-5px);
 }
 

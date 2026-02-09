@@ -1,6 +1,8 @@
-/* index.css -> main.jsx */
 @import "tailwindcss";
 
+/* =========================================
+   1. CONFIGURATION GLOBALE
+   ========================================= */
 :root {
   line-height: 1.5;
   font-weight: 400;
@@ -14,120 +16,240 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-:root{
+/* =========================================
+   2. PALETTE SÉMANTIQUE (NOUVEAUX NOMS)
+   ========================================= */
+
+/* --- THÈME DARK (DÉFAUT / "NIGHT MODE") --- */
+:root {
+  /* --- BACKGROUNDS (Fonds) --- */
+  --bg-app: #001128;                       /* Fond principal de l'app */
+  --bg-panel: rgba(0, 15, 36, 0.95);       /* Fond des panneaux latéraux/filtres */
+  --bg-card: rgba(0, 39, 89, 0.4);         /* Fond des cartes (transparence) */
+  --bg-card-hover: rgba(0, 50, 110, 0.6);  /* Survol des cartes */
+  --bg-input: #0b121f;                     /* Fond des champs de saisie */
+  --bg-modal-overlay: rgba(0, 0, 0, 0.6);  /* Fond sombre derrière les modales */
+
+  /* --- TYPOGRAPHY (Textes) --- */
+  --text-primary: #5AF2FF;                 /* Titres et infos principales (Cyan Néon) */
+  --text-secondary: #838e9e;               /* Sous-titres, descriptions */
+  --text-inverse: #004E8A;                 /* Texte sur bouton clair (souvent noir/bleu nuit) */
+  --text-placeholder: #64748B;             /* Texte dans les inputs vides */
+  --text-link: #36CDFA;                    /* Liens */
+  --color-text-btn-profile: #004E8A;
+
+  /* --- BORDERS (Bordures) --- */
+  --border-main: #0068AC;                  /* Bordure principale forte */
+  --border-subtle: rgba(90, 242, 255, 0.2);/* Séparateurs discrets */
+  --border-focus: #5AF2FF;                 /* Focus input */
+
+  /* --- BRAND & ACCENTS (Couleurs de marque) --- */
+  --brand-primary: #0068AC;                /* Bleu marque principal */
+  --brand-glow: #5AF2FF;                   /* Effet néon */
+  
+  /* --- STATUS (États) --- */
+  --status-success: #6EB269;
+  --status-warning: #E9A23B;
+  --status-danger: #FF0000;
+  --status-info: #36CDFA;
+
+  /* --- GRADIENTS (Dégradés fonctionnels) --- */
+  /* Cartes */
+  --grad-card-surface: linear-gradient(47deg, #002759 0%, #001A44 80%);
+  --grad-input-surface: linear-gradient(47deg, #00204F 0%, #001D48 80%);
+  
+  /* Boutons */
+  --grad-btn-primary: linear-gradient(47deg, #077BEF 0%, #0646D4 60%);
+  --grad-btn-danger: linear-gradient(47deg, #EF4444 0%, #B91C1C 60%);
+  --grad-btn-success: linear-gradient(47deg, #4AAC4E 0%, #2E7D32 60%);
+  
+  /* Spéciaux */
+  --grad-auth-bg: radial-gradient(circle at center, #001a3a 0%, #000814 100%);
+  --grad-glow-border: conic-gradient(transparent 0deg, #0068AC 90deg, #00ffff 180deg, #0068AC 270deg, transparent 360deg);
+
+  /* --- TAGS (Étiquettes) --- */
+  --tag-bg-default: #3B3B3B;
+  --tag-border-default: #A8A8A8;
+  --tag-text-default: #A8A8A8;
+  
+  --tag-bg-owned: #21342C;
+  --tag-border-owned: #6AD09D;
+  --tag-text-owned: #6AD09D;
+}
+
+/* --- THÈME LIGHT ("LAB MODE") --- */
+[data-theme="light"] {
+  /* --- BACKGROUNDS --- */
+  /* Blanc légèrement bleuté "Clinique/Futuriste" */
+  --bg-app: #F0F5FA;                       
+  --bg-panel: rgba(255, 255, 255, 0.95);
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #EDF6FF;
+  --bg-input: #FFFFFF;
+  --bg-modal-overlay: rgba(0, 20, 40, 0.3);
+
+  /* --- TYPOGRAPHY --- */
+  /* Bleu profond pour le contraste au lieu du cyan clair */
+  --text-primary: #004E8A;                 
+  --text-secondary: #586981;
+  --text-inverse: #004E8A;                 
+  --text-placeholder: #94A3B8;
+  --text-link: #0077CC;
+  --color-text-btn-profile: white;
+
+  /* --- BORDERS --- */
+  --border-main: #6FB3E0;                  /* Bleu ciel plus doux */
+  --border-subtle: #D1D9E6;
+  --border-focus: #0068AC;
+
+  /* --- BRAND & ACCENTS --- */
+  --brand-primary: #2C8FFF;
+  --brand-glow: #004E8A;                   /* Glow plus sombre en light mode */
+
+  /* --- GRADIENTS --- */
+  /* Cartes plus lumineuses */
+  --grad-card-surface: linear-gradient(47deg, #FFFFFF 0%, #F0F7FF 100%);
+  --grad-input-surface: linear-gradient(47deg, #FAFCFF 0%, #F0F4F8 100%);
+
+  /* Boutons (plus vifs pour ressortir sur le blanc) */
+  --grad-btn-primary: linear-gradient(47deg, #2C8FFF 0%, #0066CC 100%);
+  --grad-btn-danger: linear-gradient(47deg, #FF6A6A 0%, #D23535 100%);
+  --grad-btn-success: linear-gradient(47deg, #58D658 0%, #2E7D32 100%);
+
+  /* Spéciaux */
+  --grad-auth-bg: radial-gradient(circle at center, #E6F0FF 0%, #CCDDEE 100%);
+  --grad-glow-border: conic-gradient(transparent 0deg, #2C8FFF 90deg, #004E8A 180deg, #2C8FFF 270deg, transparent 360deg);
+
+  /* --- TAGS --- */
+  --tag-bg-default: #E2E8F0;
+  --tag-border-default: #94A3B8;
+  --tag-text-default: #475569;
+
+  --tag-bg-owned: #DCFCE7;
+  --tag-border-owned: #22C55E;
+  --tag-text-owned: #15803D;
+}
+
+/* =========================================
+   3. COMPATIBILITÉ (MAPPING ANCIENS NOMS)
+   ========================================= */
+/* Cela permet à tout votre code React existant de fonctionner sans changement */
+body {
   /* Base */
-  --color-bg-btn: #001128;
-  --color-text: #5AF2FF;
+  --color-bg-btn: var(--bg-app);
+  --color-text: var(--text-primary);
 
   /* Bordure */
-  --color-border: #0068AC;
-  --color-border-separator: #CBD5E1;
+  --color-border: var(--border-main);
+  --color-border-separator: var(--border-subtle);
+  --color-border-menu-mobile: var(--border-subtle);
+  --color-border-category-selector: var(--border-subtle);
+  --color-border-loader-auth: var(--border-subtle);
 
   /* Textes */
-  --text-title: var(--color-text);
-  --text-default: var(--color-accent);
-  --text-search: #64748B;
+  --text-title: var(--text-primary);
+  --text-search: var(--text-placeholder);
+  --color-text-muted: var(--text-secondary);
+  --color-text-btn: var(--text-inverse);
+  --color-text-link: var(--text-link);
+  --color-text-btn-account: var(--text-primary); 
 
-  /* Shadows */
-  --shadow-auth: 0 0 20px rgba(255,255,255,0.6);
-  --shadow-main: 0 0 10px rgba(255,255,255,0.3);
-  --shadow-secondary: 0 0 7px rgba(255,255,255,0.15);
-  --shadow-navbar: 0 4px 16px rgba(255,255,255,0.25);
+  /* Shadows (Conservés en dur ou adaptés) */
+  --shadow-auth: 0 0 20px rgba(var(--brand-glow), 0.3);
+  --shadow-main: 0 0 10px rgba(0,0,0,0.2);
+  --shadow-secondary: 0 0 7px rgba(0,0,0,0.1);
+  --shadow-navbar: 0 4px 16px rgba(0,0,0,0.2);
   --shadow-loader: 0 0px 16px rgba(255,255,255,0.3);
-  --shadow-btn: 4px 4px 5px rgba(255,255,255,0.5);
+  --shadow-btn: 4px 4px 5px rgba(0,0,0,0.2);
+  --shadow-input-simple-focus: 0 0 0 2px var(--border-focus);
+  --shadow-favorite: 0 2px 4px rgba(0,0,0,0.5);
+  --shadow-filtre-result: 0 4px 15px rgba(0, 104, 172, 0.4);
+  --shadow-card-detail: 0 2px 25px rgba(0, 0, 0, 0.3);
+  --shadow-menu-mobile-addEditGame: 0 0 30px rgba(90, 242, 255, 0.2);
+  --shadow-btn-auth: 0 0 15px rgba(90, 242, 255, 0.4);
 
   /* Dégradés */
-  --gradient-card-secondary: linear-gradient(47deg, #002759 0%, #001A44 80%);
-  --gradient-card-main-input: linear-gradient(47deg, #00204F 0%, #001D48 80%);
-  --gradient-blue: linear-gradient(47deg, #077BEF 0%, #0646D4 60%);
-  --gradient-account: linear-gradient(47deg, #1C79C6 0%, #0A3174 60%);
-  --gradient-success: linear-gradient(47deg, #4AAC4E 0%, #2E7D32 60%);
+  --gradient-card-secondary: var(--grad-card-surface);
+  --gradient-card-main-input: var(--grad-input-surface);
+  --gradient-blue: var(--grad-btn-primary);
+  --gradient-account: var(--grad-btn-primary); /* Ou créer un spécifique */
+  --gradient-success: var(--grad-btn-success);
   --gradient-deconnexion: linear-gradient(90deg, #EF4444 0%, #B91C1C 50%, #EF4444 100%);
-  --gradient-delete: linear-gradient(47deg, #EF4444 0%, #B91C1C 60%);
+  --gradient-delete: var(--grad-btn-danger);
+  --gradient-auth: var(--grad-auth-bg);
+  --gradient-option-selected-filtre: linear-gradient(90deg, rgba(90, 242, 255, 0.15) 0%, rgba(90, 242, 255, 0.05) 100%);
+  
+  /* Textures */
+  --gradient-chargment-vertical: linear-gradient(rgba(0, 104, 172, 0.05) 1px, transparent 1px);
+  --gradient-chargement-horizontal: linear-gradient(90deg, rgba(0, 104, 172, 0.05) 1px, transparent 1px);
 
-  /* Tags */
+  /* Tags Mapped */
   --tag-gray: #6C6C6C;
-  --tag-owned-bg: #21342C;
-  --tag-owned-border: #6AD09D;
-  --tag-owned-text: #6AD09D;
+  --tag-owned-bg: var(--tag-bg-owned);
+  --tag-owned-border: var(--tag-border-owned);
+  --tag-owned-text: var(--tag-text-owned);
 
-  --tag-status-bg: #3B3B3B;
-  --tag-status-border: #A8A8A8;
-  --tag-status-text: #A8A8A8;
+  --tag-status-bg: var(--tag-bg-default);
+  --tag-status-border: var(--tag-border-default);
+  --tag-status-text: var(--tag-text-default);
 
-  /* Other*/
-  --color-orange: #E9A23B;
-  --color-text-btn: #001128;
-  --color-text-link: #36CDFA;
-  --input-bg-solid: #101623;
-  --color-indicator-online: #0EB43D;
-  --color-logo-deconnexion: #EF4444;
-  --bg-hover-theme-lang: rgba(255, 255, 255, 0.25);
-  --color-text-btn-account: #5AF2FF;
-  --color-btn-tag: #344767;
+  /* Other Mapped */
+  --color-orange: var(--status-warning);
+  --color-star-note: #f1c40f;
+  --input-bg-solid: var(--bg-input);
+  --color-indicator-online: var(--status-success);
+  --color-logo-deconnexion: var(--status-danger);
+  
+  /* Backgrounds UI spécifiques */
+  --bg-hover-theme-lang: rgba(255, 255, 255, 0.1);
+  --color-btn-tag: #344767; /* Reste spécifique */
+  --bg-btn-menu-mobile: var(--bg-panel);
+  --bg-btn-close-menu-mobile: rgba(40, 10, 10, 0.9);
+  --bg-menu-mobile: var(--bg-panel);
+  --bg-custom-select: var(--border-subtle);
+  --color-custom-select: var(--text-primary);
+  --bg-no-image: rgba(128, 128, 128, 0.1);
+  --bg-modal: var(--bg-modal-overlay);
+  
+  /* Filtres & Catégories */
+  --bg-category-selector: rgba(0, 104, 172, 0.2);
+  --color-edit-category: var(--status-success);
+  --color-del-category: var(--status-danger);
+  --bg-cancel-btn: rgba(128, 128, 128, 0.1);
+  --color-scrollbar-thumb: var(--border-main);
+  --bg-arrow: rgba(0, 17, 40, 0.7);
+  
+  --bg-filtre: var(--bg-panel);
+  --bg-filtre-active: rgba(0, 0, 0, 0.2);
+  --color-border-filtre: var(--border-subtle);
+  --color-reset-filter: var(--status-danger);
+  --bg-boder-reset-filter: rgba(239, 68, 68, 0.1);
+  --bg-accordeon-filter: rgba(255, 255, 255, 0.03);
+  --bg-accordeon-filtr-hover: rgba(255, 255, 255, 0.05);
+  --color-border-accordeon-filter: var(--border-subtle);
+  --color-clear-filter: var(--text-secondary);
+  --hover-btn-plus-filtre: rgba(0, 255, 255, 0.1);
+  --bg-option-select-filter: rgba(0, 255, 255, 0.05);
+  --hover-option-select-filter: rgba(255, 255, 255, 0.1);
+  --bg-accordeon-category: rgba(0, 0, 0, 0.2);
+  
+  --color-border-detail-stat: var(--border-subtle);
+  --hover-dropdown-addEditGame: rgba(90, 242, 255, 0.15);
+  --color-tag-badge: rgba(0, 74, 124, 0.5);
+  --bg-register-avancement: rgba(0, 104, 172, 0.2);
+  --color-succes-modif-game: var(--status-success);
+  --bg-succes-modif-game: rgba(74, 222, 128, 0.4);
 }
 
 /* ===========================
-   THEME LIGHT
+   STYLES GLOBAUX APP
    =========================== */
-[data-theme="light"] {
-   /* Base */
-  --color-bg-btn: #F5F9FF;
-  --color-text: #0068AC;
-
-  /* Bordure */
-  --color-border: #0068AC;
-  --color-border-separator: #CBD5E1;
-
-  /* Textes */
-  --text-title: var(--color-text);
-  --text-default: var(--color-text);
-  --text-search: #7A8CA5;
-
-  /* Shadows */
-  --shadow-auth: 0 0 20px rgba(0,0,0,0,0.6);
-  --shadow-main: 0 0 10px rgba(0,0,0,0,0.2);
-  --shadow-secondary: 0 0 7px rgba(0,0,0,0,0.1);
-  --shadow-navbar: 0 4px 16px rgba(0,0,0,0,0.2);
-  --shadow-loader: 0 0px 16px rgba(0,0,0,0,0.3);
-  --shadow-btn: 4px 4px 5px rgba(0,0,0,0.5);
-
-  /* Dégradés */
-  --gradient-card-secondary: linear-gradient(47deg, #D8ECFF 0%, #BFD9F5 80%);
-  --gradient-card-main-input: linear-gradient(47deg, #E6F2FF 0%, #D3E6F8 80%);
-  --gradient-blue: linear-gradient(47deg, #2C8FFF 0%, #0E55CE 60%);
-  --gradient-account: linear-gradient(47deg, #5BB3FF 0%, #1C63C4 60%);
-  --gradient-success: linear-gradient(47deg, #6EDB6E 0%, #368F3D 60%);
-  --gradient-deconnexion: linear-gradient(90deg, #FF6A6A 0%, #D23535 50%, #FF6A6A 100%);
-  --gradient-delete: linear-gradient(47deg, #FF6A6A 0%, #D23535 60%);
-
-  /* Tags */
-  --tag-gray: #D0D0D0;
-  --tag-owned-bg: #DDF4E7;
-  --tag-owned-border: #4ECB97;
-  --tag-owned-text: #197A54;
-
-  --tag-status-bg: #E3E3E3;
-  --tag-status-border: #A2A2A2;
-  --tag-status-text: #595959;
-
-  /* Other*/
-  --color-orange: #C47A00;
-  --color-text-btn: #001128;
-  --color-text-link: #0087D1;
-  --input-bg-solid: #101623;
-  --color-indicator-online: #0EB43D;
-  --color-logo-deconnexion: #EF4444;
-  --bg-hover-theme-lang: rgba(0, 0, 0, 0.1);
-  --color-text-btn-account: #5AF2FF;
-  --color-btn-tag: #344767;
-}
-
 body {
   font-family: var(--font-family-text);
   margin: 0;
   background-color: #81dbff;
   color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #app-container {
@@ -137,11 +259,7 @@ body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  
-}
-
-#root, #app-container {
-  height: 100vh;
+  position: relative;
 }
 
 .app-container {
@@ -157,12 +275,10 @@ body {
   position: relative;
 }
 
-/* ===========================
-   SCROLLBAR 
-=========================== */
+/* SCROLLBAR */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border) var(--color-bg-btn);
+  scrollbar-color: var(--color-border) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -171,23 +287,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-btn); 
-  border-left: 1px solid rgba(255, 255, 255, 0.05); 
+  background: transparent; 
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-border);
   border-radius: 4px; 
-  border: 2px solid var(--color-bg-btn); 
-  transition: all 0.3s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-text);
-  box-shadow: 0 0 10px var(--color-text);
-  cursor: pointer;
-}
-
-::-webkit-scrollbar-corner {
-  background: var(--color-bg-btn);
+  border: 2px solid var(--bg-app); 
 }

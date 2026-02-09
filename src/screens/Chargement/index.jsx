@@ -1,8 +1,18 @@
 import "./Chargement.css";
 import { useTranslation } from "react-i18next";
 
-const ChargementPage = () => {
+// On accepte une prop 'variant' qui vaut 'login' par défaut
+const ChargementPage = ({ variant = "login" }) => {
     const { t } = useTranslation();
+
+    // Logique pour choisir la clé de traduction
+    const getStatusMessage = () => {
+        if (variant === "logout") {
+            return t('auth.loading.statusLogout');
+        }
+        // Par défaut (login, register)
+        return t('auth.loading.statusLogin');
+    };
 
     return (
         <div className="loading-screen">
@@ -14,7 +24,9 @@ const ChargementPage = () => {
                 <div className="loading-bar-container">
                     <div className="loading-bar-fill"></div>
                 </div>
-                <p className="loading-status">{t('auth.loading.status') || "Chargement de votre..."}</p>
+                <p className="loading-status">
+                    {getStatusMessage()}
+                </p>
             </div>
             <div className="grid-overlay"></div>
         </div>

@@ -3,12 +3,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--hover-option-select-filter);
   border-radius: 8px;
 }
 
 .stat-label {
-  color: #aaa;
   font-size: 12px;
   text-transform: uppercase;
   display: flex;
@@ -18,7 +17,6 @@
 
 .stat-value {
   font-weight: bold;
-  color: #fff;
 }
 
 @media (max-width: 600px) {

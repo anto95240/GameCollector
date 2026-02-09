@@ -14,11 +14,6 @@
       "favorite": "Favoris"
     },
 
-    "loading": {
-      "title": "Game Collector",
-      "message": "Chargement de votre collection..."
-    },
-
     "auth": {
       "login": {
         "title": "Connexion",
@@ -52,6 +47,11 @@
         "bye": "À bientôt",
         "thanks": "Merci d'avoir utilisé Game Collector. Vous êtes maintenant déconnecté.",
         "returnLogin": "Retour à la connexion"
+      },
+
+      "loading": {
+        "statusLogin": "Chargement de votre collection...",
+        "statusLogout": "Déconnexion en cours..."
       }
     },
 

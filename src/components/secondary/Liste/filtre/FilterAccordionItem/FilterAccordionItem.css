@@ -1,6 +1,6 @@
 .accordion-item {
-  background: rgba(3, 31, 60, 0.6);
-  border: 1px solid #00ffff33;
+  background: var(--bg-accordeon-filter);
+  border: 1px solid var(--color-border-accordeon-filter);
   border-radius: 10px;
   overflow: hidden;
   flex-shrink: 0;
@@ -10,30 +10,29 @@
   padding: 12px 15px;
   background: transparent;
   border: none;
-  color: #fff;
+  color: var(--color-text);
   font-size: 15px;
   font-family: var(--font-family-title);
   transition: background 0.2s;
 }
 
 .accordion-header:hover {
-  background: rgba(0, 255, 255, 0.05);
+  background: var(--bg-accordeon-filtr-hover);
 }
 
 .accordion-header.active {
-  background: rgba(0, 255, 255, 0.1);
-  color: #00ffff;
+  color: var(--color-text);
 }
 
 .icon-cat {
-  color: #00ffff;
+  color: var(--color-text);
   width: 20px;
   text-align: center;
 }
 
 .chevron {
   transition: transform 0.3s;
-  color: #00ffff;
+  color: var(--color-text);
 }
 
 .chevron.rotate {
@@ -42,9 +41,8 @@
 
 /* --- CONTENU --- */
 .accordion-content {
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--bg-accordeon-category);
   padding: 0;
-  border-top: 1px solid rgba(0, 255, 255, 0.1);
 }
 
 .filter-options-scroll {
@@ -58,7 +56,6 @@
 }
 
 .filter-options-scroll::-webkit-scrollbar-thumb {
-  background: #00ffff33;
   border-radius: 2px;
 }
 
@@ -69,20 +66,16 @@
 }
 
 .filter-option-item:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--hover-option-select-filter);
 }
 
 .filter-option-item.selected {
-  background: linear-gradient(
-    90deg,
-    rgba(0, 255, 255, 0.15) 0%,
-    rgba(0, 255, 255, 0.05) 100%
-  );
-  border: 1px solid rgba(0, 255, 255, 0.2);
+  background: var(--gradient-option-selected-filtre);
+  border: 1px solid var(--bg-option-select-filter);
 }
 
 .filter-option-item.selected .option-label {
-  color: #00ffff;
+  color: var(--color-text);
   font-weight: bold;
 }
 
@@ -96,7 +89,7 @@
   appearance: none;
   width: 18px;
   height: 18px;
-  border: 1px solid #00ffff33;
+  border: 1px solid var(--color-border-accordeon-filter);
   border-radius: 4px;
   background: transparent;
   transition: 0.2s;
@@ -104,13 +97,11 @@
 }
 
 .checkbox-container input[type="checkbox"]:checked {
-  background: #00ffff;
-  border-color: #00ffff;
-  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4); 
+  background: white;
 }
 
 .checkmark .check-icon {
-  color: #001128;
+  color: transparent;
   display: none;
   position: absolute;
   top: -15px;
@@ -125,29 +116,25 @@
 
 .option-label {
   font-size: 13px;
-  color: #e2e8f0;
   flex: 1;
   transition: color 0.2s;
 }
 
 .option-count {
   font-size: 11px;
-  color: rgba(0, 255, 255, 0.6);
-  background: rgba(0, 255, 255, 0.1);
+  background: var(--bg-option-select-filter);
   padding: 2px 6px;
   border-radius: 10px;
 }
 
 .category-footer {
   padding: 10px 15px;
-  border-top: 1px solid rgba(0, 255, 255, 0.1);
-  background: rgba(0, 15, 36, 0.3);
 }
 
 .toggle-view-btn {
   background: none;
   border: none;
-  color: #00ffff;
+  color: var(--color-text);
   font-size: 12px;
   font-weight: 600;
   padding: 4px 8px;
@@ -155,13 +142,13 @@
 }
 
 .toggle-view-btn:hover {
-  background: rgba(0, 255, 255, 0.1);
+  background: var(--hover-btn-plus-filtre);
 }
 
 .clear-cat-btn {
   background: none;
   border: none;
-  color: #94a3b8;
+  color: var(--color-clear-filter);
   font-size: 11px;
   cursor: pointer;
   text-decoration: underline;
@@ -169,5 +156,5 @@
 }
 
 .clear-cat-btn:hover {
-  color: #ff6b6b;
+  color: var(--color-reset-filter);
 }

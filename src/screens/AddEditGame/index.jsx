@@ -1,9 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useAddEditGame } from "../../hooks/useAddEditGame";
 import FormHeader from "../../components/secondary/AddEditGame/FormHeader";
 import GameNav from "../../components/main/AddEditGame/GameNav";
 import GameForm from "../../components/main/AddEditGame/GameForm";
+import SuccessOverlay from "../../components/common/SuccessOverlay";
 import "./AddEditGame.css";
 
 const AddEditGamePage = () => {
@@ -35,17 +34,10 @@ const AddEditGamePage = () => {
                 )}
 
                 {isAnimating ? (
-                    <div className="save-success-overlay fade-in">
-                        <div className="success-content">
-                            <div className="success-icon-wrapper">
-                                <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-                                <div className="success-ripple"></div>
-                            </div>
-                            <h2>{isEditMode ? "Modifications enregistrées !" : "Jeu ajouté avec succès !"}</h2>
-                            <p>Redirection vers la fiche du jeu...</p>
-                            <FontAwesomeIcon icon={faSpinner} spin className="redirect-spinner" />
-                        </div>
-                    </div>
+                    <SuccessOverlay 
+                        message={isEditMode ? "Modifications enregistrées !" : "Jeu ajouté avec succès !"} 
+                        subMessage="Redirection vers la fiche du jeu..."
+                    />
                 ) : (
                     <GameForm 
                         t={t}
