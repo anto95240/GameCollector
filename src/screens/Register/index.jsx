@@ -7,8 +7,10 @@ import SignUpPart1 from "../../components/main/SignUpPart1";
 import SignUpPart2 from "../../components/main/SignUpPart2";
 import SignUpPart3 from "../../components/main/SignUpPart3";
 import ChargementPage from "../Chargement";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
+  const { t } = useTranslation();
   const [step, setStep] = useState(1);
   const [isAnimating, setIsAnimating] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
@@ -42,7 +44,7 @@ const Register = () => {
       {showLoading && <ChargementPage variant="login" />}
       <div className="auth-container">
         <div className="auth-card register-card">
-          <h2 className="auth-title">Nouveau Profil</h2>
+          <h2 className="auth-title">{t('auth.register.title')}</h2>
           <div className="steps-container">
             <div className="cyber-progress-track">
               <div
@@ -52,24 +54,24 @@ const Register = () => {
             </div>
             <div className="steps-labels">
               <span className={step >= 1 ? "active" : ""}>
-                {step === 1 ? "• Identité" : "Identité"}
+                {step === 1 ? `• ${t("auth.register.steps.identity")}` : t("auth.register.steps.identity")}
               </span>
               <span className={step >= 2 ? "active" : ""}>
-                {step === 2 ? "• Compte" : "Compte"}
+                {step === 2 ? `• ${t("auth.register.steps.account")}` : t("auth.register.steps.account")}
               </span>
               <span className={step >= 3 ? "active" : ""}>
-                {step === 3 ? "• Sécurité" : "Sécurité"}
+                {step === 3 ? `• ${t("auth.register.steps.security")}` : t("auth.register.steps.security")}
               </span>
             </div>
           </div>
           <form onSubmit={handleNext} className="auth-form">
-            {step === 1 && <SignUpPart1 data={formData} update={handleChange} />}
-            {step === 2 && <SignUpPart2 data={formData} update={handleChange} />}
-            {step === 3 && <SignUpPart3 data={formData} update={handleChange} />}
+            {step === 1 && <SignUpPart1 data={formData} update={handleChange} t={t} />}
+            {step === 2 && <SignUpPart2 data={formData} update={handleChange} t={t} />}
+            {step === 3 && <SignUpPart3 data={formData} update={handleChange} t={t} />}
             <div className="form-navigation">
               {step > 1 && (
                 <LoadingButton
-                  text="Retour"
+                  text={t('common.back')}
                   type="button"
                   onClick={() => setStep(step - 1)}
                   variant="secondary"
@@ -77,7 +79,7 @@ const Register = () => {
                 />
               )}
               <LoadingButton
-                text={step === 3 ? "Initialiser" : "Suivant"}
+                text={step === 3 ? t("auth.register.submit") : t("auth.register.next")}
                 isAnimating={isAnimating}
                 showLoading={showLoading}
                 variant="cyber"
@@ -87,9 +89,9 @@ const Register = () => {
           </form>
           <div className="auth-footer">
             <p>
-              Déjà inscrit ?{" "}
+              {t('auth.register.alreadyUser')}
               <Link to="/" className="cyber-link bold">
-                Connexion
+                {t('auth.register.alreadyUserLink')}
               </Link>
             </p>
           </div>

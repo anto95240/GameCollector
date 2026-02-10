@@ -1,12 +1,10 @@
 import { useState, useRef, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 
 import CategorySelector from "../../components/main/Category/CategorySelector";
 import CategoryManager from "../../components/main/Category/CategoryManager";
 import "./Category.css";
 
 const CategoryPage = () => {
-    const { t } = useTranslation();
     const [selectedCategory, setSelectedCategory] = useState(null);
     const managerRef = useRef(null);
 
@@ -33,7 +31,7 @@ const CategoryPage = () => {
                 className={`manager-wrapper ${selectedCategory ? "show" : "hide"}`}
             >
                 {selectedCategory && (
-                    <CategoryManager categoryType={selectedCategory} t={t} />
+                    <CategoryManager categoryType={selectedCategory} />
                 )}
             </div>
             

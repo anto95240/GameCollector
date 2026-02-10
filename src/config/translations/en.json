@@ -11,60 +11,65 @@
       "confirmDeleteMessage": "Are you sure you want to continue?",
       "yesDelete": "Delete permanently",
       "noImage": "No image",
-      "favorite": "Favorite"
+      "favorite": "Favorite",
+      "select": "Select one",
+      "arialLabelPassword": "Show password"
     },
 
     "auth": {
       "login": {
         "title": "Login",
-        "usernameOrEmail": "Username or Email",
+        "usernameOrEmail": "Login email",
         "password": "Password",
         "showPassword": "Show password",
-        "submit": "Login",
-        "newUser": "New here?",
-        "newUserLink": "Create an account",
-        "arialLabelPassword": "Button to show or hide the password"
+        "submit": "Submit",
+        "newUser": "New pilot ? ",
+        "newUserLink": "Create an account"
       },
 
       "register": {
-        "title": "Register",
-        "firstName": "First Name",
-        "name": "Last Name",
+        "title": "New Account",
+        "firstName": "First name",
+        "name": "Last name",
         "username": "Username",
         "email": "Email",
         "password": "Password",
-        "confirmPassword": "Confirm Password",
+        "confirmPassword": "Confirm password",
         "alreadyUser": "Already have an account?",
         "alreadyUserLink": "Login",
         "back": "Back",
         "next": "Next",
-        "submit": "Sign Up",
-        "arialLabelPassword":"Button to show or hide the password"
+        "submit": "Submit",
+
+        "steps": {
+          "identity": "Identity",
+          "account": "Account",
+          "security": "Security"
+        }
       },
 
       "logout": {
         "title": "Logout",
-        "bye": "See you soon",
-        "thanks": "Thanks for using Game Collector. You are now logged out.",
-        "returnLogin": "Return to login"
+        "message": "Are you sure you want to log out of your pilot account?",
+        "returnLogin": "Logout"
       },
 
       "loading": {
-        "statusLogin": "System Initialization...",
+        "statusLogin": "Loading your collection...",
         "statusLogout": "Logging out..."
       }
     },
 
     "profile": {
       "links": {
-        "details": "Profile Details",
-        "authMethod": "Login Method",
-        "deleteAccount": "Delete Account"
+        "details": "Profile details",
+        "authMethod": "Login method",
+        "deleteAccount": "Delete account"
       },
 
       "labels": {
-        "firstName": "First Name:",
-        "name": "Last Name:",
+        "firstName": "First name:",
+        "name": "Last name:",
         "username": "Username:",
         "email": "Email:",
         "password": "Password:",
@@ -72,18 +77,18 @@
       },
 
       "edit": {
-        "changeEmail": "Change Email",
-        "newEmail": "New Email",
-        "changePassword": "Reset Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm Password"
+        "changeEmail": "Change email",
+        "newEmail": "New email",
+        "changePassword": "Reset password",
+        "newPassword": "New password",
+        "confirmPassword": "Confirm password"
       },
 
       "delete": {
         "warning1": "Please note that deleting your account is a permanent action and",
-        "warning2": "cannot be recovered once completed.",
+        "warning2": "cannot be recovered once performed.",
         "button": "Delete",
-        "popupTitle": "Confirm Deletion",
+        "popupTitle": "Confirm deletion",
         "popupMessage": "Are you sure you want to delete your account?",
         "confirmDelete": "Delete permanently"
       }
@@ -103,133 +108,139 @@
       "fields": {
         "name": "Name:",
         "order": "Order:",
-        "brand": "Brand:",
+        "brand": "Manufacturer:",
         "color": "Color:"
       }
     },
 
     "navbar": {
       "altUsername": "Username",
-      "altProfile": "Profile Picture",
+      "altProfile": "Profile picture",
       "dashboard": "Dashboard",
-      "list": "Game List",
+      "list": "Game list",
       "categories": "Categories",
       "statistics": "Statistics",
       "online": "Online",
       "welcome": "Hello, ",
-      "profile": "View Profile",
+      "profile": "View my profile",
       "logout": "Logout"
     },
 
     "dashboard": {
       "title": "Game Collector",
-      "totalGame": "Total Games",
+      "totalGame": "Total games",
       "favorite": "Favorites",
       "platform": "Platform",
       "genre": "Genre",
-      "recentlyAdded": "Recently Added"
+      "recentlyAdded": "Recently added"
     },
 
     "gameList": {
       "searchPlaceholder": "Search for a game...",
       "addGame": "Add a game",
+      "noGame": "No games found",
 
       "filters": {
         "title": "Filter",
         "genre": "Genre",
         "platform": "Platform",
         "status": "Status",
-        "year": "Release Year",
+        "year": "Release year",
         "rating": "Rating",
-        "favorite": "Favorite",
-        "soon": "Coming Soon"
-      },
-
-      "actions": {
-        "edit": "Edit",
-        "delete": "Delete"
+        "favorite": "Favorites",
+        "soon": "Coming soon",
+        "noFilter": "No active filter",
+        "clearAll": "Clear all",
+        "deselect": "Deselect"
       },
 
       "confirmDelete": {
-        "title": "Confirm Deletion",
+        "title": "Confirm deletion",
         "message": "Are you sure you want to remove this game from your collection?",
-        "confirm": "Delete Permanently",
-        "cancel": "Cancel"
+        "confirm": "Delete permanently"
       }
     },
 
     "gameDetail": {
-      "edit": "Edit",
-      "delete": "Delete",
-
       "labels": {
         "genre": "Genre:",
         "platform": "Platform:",
-        "releaseYear": "Release Year:",
-        "brand": "Brand:",
+        "releaseYear": "Release year:",
+        "brand": "Manufacturer:",
         "description": "Description:",
         "favorite": "Favorite:",
         "comment": "Comment:"
       },
 
-      "recentlySeen": "Recently Viewed",
-      "addedToCollection": "Added on: ",
-      "back": "Back"
+      "recentlySeen": "Recently viewed",
+      "addedToCollection": "Added on: "
     },
 
     "gameForm": {
-      "addTitle": "Add Game",
-      "editTitle": "Edit Game",
+      "addTitle": "Add a game",
+      "editTitle": "Edit a game",
 
       "sections": {
-        "description": "Game Description",
-        "rating": "Game Rating",
-        "details": "Game Details",
-        "image": "Game Image",
-        "status": "Game Status",
-        "tags": "Game Tags"
+        "description": "Game description",
+        "rating": "Game rating",
+        "details": "Game details",
+        "image": "Game image",
+        "status": "Game status",
+        "tags": "Game tags"
       },
 
       "fields": {
         "name": "Name",
         "description": "Description",
         "rating": "Rating",
-        "comment": "Comment",
+        "comment": "My comment",
         "genre": "Genre",
         "platform": "Platform",
-        "releaseYear": "Release Year",
+        "releaseYear": "Release year",
         "status": "Status",
-        "tags": "Tags"
+        "tags": "Tag",
+        "developer": "Developer",
+        "playtime": "Playtime (h)",
+        "achievements": "Achievements",
+        "achievementsExample": "Achievements (Ex: 25/40)",
+        "downloadImage": "Drag or click to add",
+        "newTag": "Search or create a tag..."
       },
 
       "buttons": {
         "save": "Save",
         "add": "Add",
         "cancel": "Cancel"
+      },
+
+      "loading": {
+        "addTitle": "Game added successfully!",
+        "editTitle": "Changes saved!",
+        "message": "Redirecting to the game page..."
       }
     },
 
     "statistics": {
-      "totalGame": "Total Games",
+      "totalGame": "Total games",
       "favorite": "Favorites",
       "platform": "Platform",
       "genre": "Genre",
 
       "barChart": {
-        "gamesByYear": "Games by Release Year",
-        "gamesByTag": "Games by Tag"
+        "gamesByYear": "Number of games by release year",
+        "gamesByTag": "Number of games by tag"
       },
 
       "doughnut": {
-        "platform": "Number of Platforms",
-        "genre": "Number of Genres",
-        "rating": "Number of Ratings",
-        "status": "Number of Statuses"
+        "platform": "Number of platforms",
+        "genre": "Number of genres",
+        "rating": "Number of ratings",
+        "status": "Number of statuses"
       },
 
       "other": "Other",
-      "selectCategory": "Select Categories",
-      "noCategory": "No category selected"
+      "selectCategory": "Select categories",
+      "noCategory": "No categories selected"
     }
   }
 }

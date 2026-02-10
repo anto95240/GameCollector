@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import "./CategoryForm.css"
 
 const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) => {
@@ -6,6 +7,7 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
         name: "", brand: "", order: "", color: "#ffffff"
     });
     const nameInputRef = useRef(null); 
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (isEdit && initialData) {
@@ -24,12 +26,12 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
     }, [isOpen]);
 
     const getFormTitle = () => {
-        const action = isEdit ? "Modifier" : "Ajouter";
+        const action = isEdit ? t('categories.editTitle') : t('categories.addTitle');
         const suffix = {
-            genre: "des genres",
-            platform: "des plateformes",
-            tag: "des tags",
-            status: "des status"
+            genre: t('categories.titleGenre'),
+            platform: t('categories.titlePlatform'),
+            tag: t('categories.titleTag'),
+            status: t('categories.titleStatus')
         }[categoryType] || "";
         return `${action} ${suffix}`;
     };
@@ -43,7 +45,7 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
                     
                     {/* Nom (Commun) */}
                     <div className="form-group">
-                        <label>Nom :</label>
+                        <label>{t('categories.fields.name')}</label>
                         <input 
                             ref={nameInputRef} 
                             type="text" 
@@ -55,7 +57,7 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
                     
                     {categoryType === "tag" && (
                          <div className="form-group">
-                            <label>Ordre :</label>
+                            <label>{t('categories.fields.order')}</label>
                             <input 
                                 type="text" className="form-input category" value={formData.order}
                                 onChange={(e) => setFormData({...formData, order: e.target.value})}
@@ -65,7 +67,7 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
 
                     {categoryType === "platform" && (
                          <div className="form-group">
-                            <label>Constructeur :</label>
+                            <label>{t('categories.fields.brand')}</label>
                             <input 
                                 type="text" className="form-input category" value={formData.brand}
                                 onChange={(e) => setFormData({...formData, brand: e.target.value})}
@@ -74,7 +76,7 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
                     )}
 
                     <div className="form-group">
-                        <label>Couleur</label>
+                        <label>{t('categories.fields.color')}</label>
                         <input 
                             type="color" className="color-picker-square" value={formData.color}
                             onChange={(e) => setFormData({...formData, color: e.target.value})}
@@ -83,8 +85,8 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
                     </div>
 
                     <div className="form-actions">
-                        <button className="btn-cancel-category" onClick={onClose}>Cancel</button>
-                        <button className="btn-addEdit-category">{isEdit ? "Modifier" : "Ajouter"}</button>
+                        <button className="btn-cancel-category" onClick={onClose}>{t('common.cancel')}</button>
+                        <button className="btn-addEdit-category">{isEdit ? t('categories.edit') : t('categories.add')}</button>
                     </div>
                 </form>
             </div>

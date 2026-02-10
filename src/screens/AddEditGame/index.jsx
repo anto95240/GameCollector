@@ -14,12 +14,16 @@ const AddEditGamePage = () => {
         previewImg, isAnimating
     } = useAddEditGame();
 
+    const title = isEditMode
+        ? `${t("common.edit")} ${gameToEdit?.name ?? ""}`
+        : t("gameForm.addTitle");
+
     return (
         <div className="add-edit-page fade-in">
-            <FormHeader 
-                navigate={navigate} 
-                t={t} 
-                title={isEditMode ? `Modification de ${gameToEdit?.name}` : t('gameForm.addTitle')} 
+            <FormHeader
+                navigate={navigate}
+                title={title}
+                t={t}
             />
 
             <div className="page-content">
@@ -35,8 +39,8 @@ const AddEditGamePage = () => {
 
                 {isAnimating ? (
                     <SuccessOverlay 
-                        message={isEditMode ? "Modifications enregistrées !" : "Jeu ajouté avec succès !"} 
-                        subMessage="Redirection vers la fiche du jeu..."
+                        message={isEditMode ? t('gameForm.loading.editTitle') : t('gameForm.loading.addTitle')} 
+                        subMessage={t('gameForm.loading.message')}
                     />
                 ) : (
                     <GameForm 

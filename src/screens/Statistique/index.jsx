@@ -9,11 +9,11 @@ function StatistiquePage() {
     const { t } = useTranslation();
 
     return (
-        <div className="statistics-page-container w-full p-4">
+        <div className="statistics-page-container">
             
             <SectionStatSecondary t={t} />
 
-            <div className="charts-grid">
+            <div className="charts-grid mx-auto">
                 
                 <div className="console-entry-anim">
                     <PlatformChart />

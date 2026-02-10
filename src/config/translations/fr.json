@@ -11,42 +11,48 @@
       "confirmDeleteMessage": "Êtes-vous sûr de vouloir continuer ?",
       "yesDelete": "Supprimer définitivement",
       "noImage": "Aucune image",
-      "favorite": "Favoris"
+      "favorite": "Favoris",
+      "select": "Selectionner un",
+      "arialLabelPassword": "Afficher le mot de passe"
     },
 
     "auth": {
       "login": {
         "title": "Connexion",
-        "usernameOrEmail": "Nom d’utilisateur ou Email",
-        "password": "Mot de passe",
+        "usernameOrEmail": "Email d'identification",
+        "password": "Code d'accès",
         "showPassword": "Afficher le mot de passe",
-        "submit": "Se connecter",
-        "newUser": "Nouveau ici ?",
-        "newUserLink": "Créer un compte",
-        "arialLabelPassword": "Bouton pour afficher ou masquer le mot de passe"
+        "submit": "Initialiser",
+        "newUser": "Nouveau pilote ? ",
+        "newUserLink": "Créer un profil",
+        "arialLabelPassword": "Afficher le mot de passe"
       },
 
       "register": {
-        "title": "Inscription",
+        "title": "Nouveau Profil",
         "firstName": "Prénom",
         "name": "Nom",
         "username": "Nom d’utilisateur",
         "email": "Email",
         "password": "Mot de passe",
         "confirmPassword": "Confirmer le mot de passe",
-        "alreadyUser": "Vous avez déjà un compte ?",
+        "alreadyUser": "Vous avez déjà un compte ? ",
         "alreadyUserLink": "Se connecter",
         "back": "Retour",
         "next": "Continuer",
-        "submit": "S'inscrire",
-        "arialLabelPassword": "Bouton pour afficher ou masquer le mot de passe"
+        "submit": "Initialiser",
+
+        "steps": {
+          "identity": "Identité",
+          "account": "Compte",
+          "security": "Sécurité"
+        }
       },
 
       "logout": {
-        "title": "Déconnexion",
-        "bye": "À bientôt",
-        "thanks": "Merci d'avoir utilisé Game Collector. Vous êtes maintenant déconnecté.",
-        "returnLogin": "Retour à la connexion"
+        "title": "Fin de Session",
+        "message": "Voulez-vous vraiment déconnecter votre profil pilote du système ?",
+        "returnLogin": "Déconnexion"
       },
 
       "loading": {
@@ -133,6 +139,7 @@
     "gameList": {
       "searchPlaceholder": "Rechercher un jeu...",
       "addGame": "Ajouter un jeu",
+      "noGame": "Aucun jeu trouvé",
 
       "filters": {
         "title": "Filtre",
@@ -142,26 +149,20 @@
         "year": "Année de sortie",
         "rating": "Notation",
         "favorite": "Favoris",
-        "soon": "Prochainement"
-      },
-
-      "actions": {
-        "edit": "Modifier",
-        "delete": "Supprimer"
+        "soon": "Prochainement",
+        "noFilter":"Aucun filtre actif",
+        "clearAll": "Tout effacer",
+        "deselect": "Désélectionner"
       },
 
       "confirmDelete": {
         "title": "Confirmer la suppression",
         "message": "Êtes-vous sûr de vouloir supprimer ce jeu de votre collection ?",
-        "confirm": "Supprimer définitivement",
-        "cancel": "Annuler"
+        "confirm": "Supprimer définitivement"
       }
     },
 
     "gameDetail": {
-      "edit": "Modifier",
-      "delete": "Supprimer",
-
       "labels": {
         "genre": "Genre :",
         "platform": "Plateforme :",
@@ -173,8 +174,7 @@
       },
 
       "recentlySeen": "Récemment consultés",
-      "addedToCollection": "Ajouté le : ",
-      "back": "Retour"
+      "addedToCollection": "Ajouté le : "
     },
 
     "gameForm": {
@@ -194,18 +194,30 @@
         "name": "Nom",
         "description": "Description",
         "rating": "Notation",
-        "comment": "Commentaire",
+        "comment": " Mes commentaire",
         "genre": "Genre",
         "platform": "Plateforme",
         "releaseYear": "Année de sortie",
         "status": "Statut",
-        "tags": "Tag"
+        "tags": "Tag",
+        "developer": "Développeur",
+        "playtime": "Temps de jeu (h)",
+        "achievements": "Succès",
+        "achievementsExample": "Succès (Ex: 25/40)",
+        "downloadImage": "Glisser ou cliquer pour ajouter",
+        "newTag": "Rechercher ou créer un tag..."
       },
 
       "buttons": {
         "save": "Enregistrer",
         "add": "Ajouter",
         "cancel": "Annuler"
+      },
+
+      "loading": {
+        "addTitle": "Jeu ajouté avec succès !",
+        "editTitle": "Modifications enregistrées !",
+        "message": "Redirection vers la fiche du jeu..."
       }
     },
 

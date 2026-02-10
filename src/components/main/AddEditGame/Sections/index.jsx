@@ -84,20 +84,20 @@ export const DetailsSection = ({ t, formData, handleChange, setFormData }) => (
             />
             <FloatingInput 
                 name="playTime" 
-                label="Temps de jeu (h)" 
+                label={t('gameForm.fields.playtime')} 
                 type="number" 
                 value={formData.playTime} 
                 onChange={handleChange} 
             />
             <FloatingInput 
                 name="developer" 
-                label="Développeur" 
+                label={t('gameForm.fields.developer')} 
                 value={formData.developer} 
                 onChange={handleChange} 
             />
             <FloatingInput 
                 name="achievements" 
-                label="Succès (ex: 45/50)" 
+                label={t('gameForm.fields.achievementsExample')}
                 value={formData.achievements} 
                 onChange={handleChange} 
             />
@@ -122,7 +122,7 @@ export const ImageSection = ({ t, previewImg, handleFileChange }) => (
                 ) : (
                     <div className="upload-placeholder">
                         <FontAwesomeIcon icon={faImage} className="upload-icon" />
-                        <p>Glisser ou cliquer pour ajouter</p>
+                        <p>{t('gameForm.fields.downloadImage')}</p>
                     </div>
                 )}
             </label>
@@ -160,7 +160,7 @@ export const TagsSection = ({ t, formData, tagInput, setTagInput, suggestedTags,
             <div className="tag-search-container">
                 <FloatingInput 
                     name="tagInput" 
-                    label="Rechercher ou créer un tag..." 
+                    label={t('gameForm.fields.newTag')}
                     value={tagInput} 
                     onChange={(e) => setTagInput(e.target.value)}
                     onKeyDown={handleTagKeyDown} 

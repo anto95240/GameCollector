@@ -13,6 +13,8 @@
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   overflow: hidden;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
 }
 
 .filter-panel.open {
@@ -23,6 +25,9 @@
   position: relative;
   margin-bottom: 15px;
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .filter-header h3 {
@@ -36,12 +41,13 @@
 .filter-footer {
     background: var(--color-card-primary);
     z-index: 10;
-    padding: 10px;
+    padding: 1rem;
+    flex-shrink: 0;
 }
 
 .btn-show-results {
     background: var(--gradient-blue);
-    color: var(--color-text-btn-profile);
+    color: white;
     font-family: var(--font-family-title);
     font-size: 16px;
     padding: 10px;
@@ -52,6 +58,7 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     box-shadow: var(--shadow-filtre-result);
+    width: 100%;
 }
 
 .btn-show-results:active {
@@ -72,6 +79,11 @@
 .close-filter:hover {
   transform: rotate(90deg);
   transition: 0.3s;
+}
+
+.filter-scroll-content{
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 /* --- FILTRES ACTIFS & RESET --- */
@@ -108,6 +120,10 @@
   font-weight: bold;
   height: fit-content;
   transition: background 0.2s;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  gap: 6px;
 }
 
 .placeholder-text {
@@ -140,6 +156,10 @@
   overflow-y: auto;
   padding-right: 5px;
   padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
 }
 
 .filter-accordion::-webkit-scrollbar {

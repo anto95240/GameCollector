@@ -10,10 +10,10 @@ function HomePage() {
     const { t } = useTranslation();
 
     return (
-        <div className="dashboard-content p-4 flex flex-col">
+        <div className="dashboard-content">
 
             {/* SECTION STATS PRINCIPALES */}
-            <div className="main-stats-grid flex flex-col gap-5 mb-8">
+            <div className="main-stats-grid">
                 
                 {/* BLOC 1 - TOTAL */}
                 <SectionStatPrimary t={t} />

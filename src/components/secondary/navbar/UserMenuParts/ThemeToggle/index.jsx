@@ -5,7 +5,7 @@ import "./ThemeToggle.css";
 
 const ThemeToggle = ({ isDark, toggleTheme }) => (
     <button 
-        className="theme-btn flex items-center justify-center cursor-pointer" 
+        className="theme-btn" 
         onClick={toggleTheme}
         aria-label="Changer le thème"
     >

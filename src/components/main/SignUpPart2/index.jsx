@@ -2,13 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import "../../../screens/Register/Register.css";
 
-const SignUpPart2 = ({ data, update }) => (
+const SignUpPart2 = ({ data, update, t }) => (
   <div className="step-form-anim">
     <div className="input-group mb-4">
       <input
         type="text"
         name="username"
-        placeholder="Nom d'utilisateur"
+        placeholder={t('auth.register.username')}
         value={data.username}
         onChange={update}
         className="auth-input"
@@ -20,7 +20,7 @@ const SignUpPart2 = ({ data, update }) => (
       <input
         type="email"
         name="email"
-        placeholder="Email"
+        placeholder={t('auth.register.email')}
         value={data.email}
         onChange={update}
         className="auth-input"

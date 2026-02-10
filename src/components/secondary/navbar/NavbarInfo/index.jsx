@@ -44,7 +44,7 @@ const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
   }, []);
 
   return (
-    <div className="navbar-info flex flex-row items-center gap-3 md:gap-6 ml-auto"> 
+    <div className="navbar-info"> 
         <div className="flex flex-row items-center gap-2">
           <span className="status-indicator"></span>
           <p className="hidden sm:block">{t("navbar.online")}</p> 
@@ -54,7 +54,7 @@ const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
 
         <div className="relative" >
             <button 
-              className="navbar-connection-button flex items-center justify-center" 
+              className="navbar-connection-button" 
               onClick={(e) => { e.stopPropagation(); setActionsOpen(prev => !prev); }}
             >
               <h1>AR</h1>

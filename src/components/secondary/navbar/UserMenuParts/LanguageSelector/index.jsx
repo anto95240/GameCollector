@@ -7,7 +7,7 @@ const LanguageSelector = ({ currentLang, isOpen, setOpen, onChange }) => {
     return (
         <>
             <button 
-                className="lang-btn flex items-center justify-center cursor-pointer" 
+                className="lang-btn" 
                 onClick={(e) => { e.stopPropagation(); setOpen(prev => !prev); }}
                 aria-label="Changer la langue"
             >
@@ -15,7 +15,7 @@ const LanguageSelector = ({ currentLang, isOpen, setOpen, onChange }) => {
             </button>
 
             {isOpen && (
-                <div className="lang-menu flex flex-col gap-1">
+                <div className="lang-menu">
                     <LangOption code="FR" flagCode="FR" label="Français" onChange={onChange} />
                     <LangOption code="EN" flagCode="GB" label="English" onChange={onChange} />
                 </div>

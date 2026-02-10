@@ -7,6 +7,9 @@
   backdrop-filter: blur(10px); 
   padding-top: 2%;
   padding-bottom: 1%;
+  display: flex;
+  width: 100%;
+  align-items: center;
 }
 
 .navbar-img {
@@ -23,5 +26,9 @@
 @media (min-width: 1024px) {  
   .navbar-links {
     display: flex; 
+    /* flex-direction: row; */
+    gap: 1rem;
+    margin-left: 1.5rem;
+    align-items: center;
   }
 }

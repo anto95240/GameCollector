@@ -1,6 +1,7 @@
 import GameCard from "../../../common/GameCard";
 import "./DetailFooter.css";
 import { useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -43,6 +44,7 @@ const MOCK_RECENT_GAMES = [
 
 const DetailFooter = () => {
   const scrollRef = useRef(null);
+  const { t } = useTranslation();
   const activeId = useActiveOnScroll(
     scrollRef,
     ".observer-item",
@@ -57,9 +59,9 @@ const DetailFooter = () => {
 
   return (
     <footer className="footer-section">
-      <h3 className="footer-title">Récemment consultés</h3>
+      <h3 className="footer-title">{t('gameDetail.recentlySeen')}</h3>
 
-      <div className="detail-carousel relative w-full">
+      <div className="detail-carousel mx-auto">
         {/* Flèche gauche */}
         <button
           className="list-arrow arrow-left"
@@ -75,7 +77,7 @@ const DetailFooter = () => {
           {MOCK_RECENT_GAMES.map((gameMock) => (
             <div
               key={gameMock.id}
-              className="recent-card-wrapper observer-item"
+              className="recent-card-wrapper mx-auto observer-item"
               data-id={String(gameMock.id)}
             >
               <GameCard

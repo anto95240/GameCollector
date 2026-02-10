@@ -1,3 +1,12 @@
+.navbar-info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+
 .status-indicator {
   width: 10px;
   height: 10px;
@@ -16,6 +25,9 @@
   background: var(--gradient-account);
   color: white;
   transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar-connection-button:hover {

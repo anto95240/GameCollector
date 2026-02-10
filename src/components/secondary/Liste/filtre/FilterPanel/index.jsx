@@ -7,6 +7,7 @@ import {
 
 import FilterAccordionItem from "../FilterAccordionItem";
 import "./FilterPanel.css";
+import { t } from "i18next";
 
 const ICONS = {
   genre: faLayerGroup,
@@ -71,7 +72,7 @@ const FilterPanel = ({
           
           <div className="active-filters-box">
             {selectedFilters.length === 0 ? (
-              <span className="placeholder-text">Aucun filtre actif</span>
+              <span className="placeholder-text">{t('gameList.filters.noFilter')}</span>
             ) : (
               <>
                 {selectedFilters.map((filter, i) => (
@@ -80,7 +81,7 @@ const FilterPanel = ({
                   </span>
                 ))}
                 <button className="reset-all-btn" onClick={onClearAll}>
-                    <FontAwesomeIcon icon={faTrashAlt} /> Tout effacer
+                    <FontAwesomeIcon icon={faTrashAlt} /> {t('gameList.filters.clearAll')}
                 </button>
               </>
             )}

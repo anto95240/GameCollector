@@ -4,7 +4,7 @@ import { useDashboard } from "../../../../hooks/useDashboard";
 const GameCard = ({t}) => {
     const { stats } = useDashboard();
     return (
-        <div className="main-total-card w-full">
+        <div className="main-total-card">
             <h1 className="main-title">{t('dashboard.title')}</h1>
 
             <div className="total-info">

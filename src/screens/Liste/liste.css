@@ -19,8 +19,6 @@
     margin-top: 5%;
     position: relative;
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .cards-wrapper {
@@ -96,6 +94,53 @@
     border: 1px dashed var(--color-text);
     font-family: var(--font-family-title);
     letter-spacing: 1px;
+}
+
+.modal-overlay-liste {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.modal-liste {
+  background-color: #001128;
+  padding: 2rem;
+  border-radius:10px;
+  border: 1px solid #0068ac;
+  max-width: 500px;
+  width: 100%;
+}
+
+.modal-title {
+  font-size: 1.25rem; 
+  margin-bottom: 1rem;
+  color: var(--color-text);
+  font-family: var(--font-title, inherit);
+}
+
+.modal-text {
+  margin-bottom: 2rem; 
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.modal-game-name {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  font-style: italic;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 @media (hover: none) {

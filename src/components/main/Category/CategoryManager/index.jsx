@@ -16,7 +16,6 @@ const MOCK_DATA = {
 };
 
 const CategoryManager = ({ categoryType }) => {
-    const { t } = useTranslation();
     const [showForm, setShowForm] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [itemToEdit, setItemToEdit] = useState(null);

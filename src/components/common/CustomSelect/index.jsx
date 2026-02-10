@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 import "./CustomSelect.css";
 
 const CustomSelect = ({ options, value, onChange }) => {
     const [isOpen, setIsOpen] = useState(false);
     const wrapperRef = useRef(null);
+    const { t } = useTranslation();
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -43,7 +45,7 @@ const CustomSelect = ({ options, value, onChange }) => {
                     {options.map((opt) => (
                         <div 
                             key={opt.value} 
-                            className={`custom-option ${value === opt.value ? "selected" : ""}`}
+                            className={`custom-option ${value === opt.value ? t('common.select') : ""}`}
                             onClick={() => handleSelect(opt.value)}
                         >
                             {opt.label}

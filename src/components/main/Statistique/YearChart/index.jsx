@@ -122,7 +122,7 @@ const YearChart = () => {
         <div className="year-chart-wrapper">
             <div className="year-chart-content">
 
-                <div className="year-chart-header flex gap-4">
+                <div className="year-chart-header">
                     <CustomSelect
                         options={[
                             { value: 'year', label: t('statistics.barChart.gamesByYear') || 'Par Année' },
@@ -139,7 +139,7 @@ const YearChart = () => {
                     />
                 </div>
 
-                <div className="year-chart-container relative">
+                <div className="year-chart-container">
                     <ResponsiveContainer>
                         <BarChart 
                             data={currentData}

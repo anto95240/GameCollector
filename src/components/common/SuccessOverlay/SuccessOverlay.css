@@ -54,7 +54,7 @@
 
 .redirect-spinner {
     font-size: 20px;
-    color: var(--color-test);
+    color: var(--color-text);
 }
 
 @keyframes popIn {

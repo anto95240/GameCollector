@@ -4,7 +4,7 @@ import "./Pagination.css";
 
 const Pagination = ({ page, totalPages, onPrev, onNext, onFirst, onLast }) => {
     return (
-        <div className="pagination-footer flex justify-center items-center gap-7">
+        <div className="pagination-footer">
             {/* Première page */}
             <button 
                 className="page-btn" 

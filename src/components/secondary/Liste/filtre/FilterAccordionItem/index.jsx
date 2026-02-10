@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp, faCheck, faUndo } from "@fortawesome/free-solid-svg-icons";
 import "./FilterAccordionItem.css"
+import { useTranslation } from "react-i18next";
 
 const MAX_VISIBLE_OPTIONS = 5;
 
@@ -17,7 +18,7 @@ const FilterAccordionItem = ({
     toggleShowAll,
     handleClearCategory
 }) => {
-    
+    const { t } = useTranslation();
     const isSelected = (opt) => selectedFilters.includes(`${category.label}: ${opt}`);
     const optionsToShow = showAllState ? category.options : category.options.slice(0, MAX_VISIBLE_OPTIONS);
     const hasMore = category.options.length > MAX_VISIBLE_OPTIONS;
@@ -26,8 +27,8 @@ const FilterAccordionItem = ({
 
     return (
         <div className="accordion-item">
-            <button className={`accordion-header flex justify-between items-center w-full cursor-pointer ${isExpanded ? 'active' : ''}`} onClick={onToggle}>
-                <div className="header-left flex items-center gap-3">
+            <button className={`accordion-header ${isExpanded ? 'active' : ''}`} onClick={onToggle}>
+                <div className="header-left">
                     <span className="icon-cat">
                         <FontAwesomeIcon icon={icon} fixedWidth />
                     </span>
@@ -41,13 +42,13 @@ const FilterAccordionItem = ({
             </button>
 
             {isExpanded && (
-                <div className="accordion-content flex flex-col">
-                    <div className="filter-options-scroll flex flex-col gap-1.5">
+                <div className="accordion-content">
+                    <div className="filter-options-scroll">
                         {optionsToShow.map((opt, idx) => {
                             const selected = isSelected(opt);
                             return (
-                                <div key={idx} className={`filter-option-item flex items-center ${selected ? 'selected' : ''}`}>
-                                    <label className="checkbox-container flex items-center cursor-pointer gap-2.5">
+                                <div key={idx} className={`filter-option-item ${selected ? 'selected' : ''}`}>
+                                    <label className="checkbox-container">
                                         <input 
                                             type="checkbox" 
                                             checked={selected} 
@@ -67,9 +68,9 @@ const FilterAccordionItem = ({
                         })}
                     </div>
                     
-                    <div className="category-footer flex justify-between items-center gap-2.5">
+                    <div className="category-footer">
                         {hasMore ? (
-                            <button className="toggle-view-btn cursor-pointer flex items-center gap-1.5" onClick={() => toggleShowAll(category.id)}>
+                            <button className="toggle-view-btn" onClick={() => toggleShowAll(category.id)}>
                                 {showAllState ? (
                                     <> <FontAwesomeIcon icon={faChevronUp}/> Réduire </>
                                 ) : (
@@ -83,7 +84,7 @@ const FilterAccordionItem = ({
                         {isActiveCategory && (
                             <button className="clear-cat-btn" onClick={() => handleClearCategory(category.label)}>
                                 <FontAwesomeIcon icon={faUndo}/> 
-                                Désélectionner
+                                {t('gameList.filters.deselect')}
                             </button>
                         )}
                     </div>

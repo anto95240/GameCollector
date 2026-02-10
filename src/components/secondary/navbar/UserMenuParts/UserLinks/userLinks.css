@@ -1,6 +1,22 @@
 .navbar-actions-links {
   gap: 15px;
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar-link-profile{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar-link-deconnect {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .navbar-link-profile,
@@ -15,6 +31,11 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.deconnect-text{
+  display: flex;
+  align-items: center;
 }
 
 .logo-deconect{

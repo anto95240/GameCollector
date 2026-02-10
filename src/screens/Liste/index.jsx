@@ -99,9 +99,9 @@ const ListePage = () => {
         onClick={() => navigate("/game/add-edit-game")}
       />
 
-      <div className="main-stage flex items-center justify-start w-full gap-5">
+      <div className="main-stage">
         
-        <div className="list-carousel relative w-full">
+        <div className="list-carousel mx-auto">
             
             {/* Flèche gauche */}
             <button 
@@ -111,7 +111,7 @@ const ListePage = () => {
                 <FontAwesomeIcon icon={faChevronLeft} />
             </button>
 
-            <div className="cards-wrapper flex gap-5 mx-auto" ref={scrollRef}>
+            <div className="cards-wrapper mx-auto" ref={scrollRef}>
             {/* Liste des jeux */}
             {paginatedGames.length > 0 ? (
                 paginatedGames.map((game, index) => (
@@ -133,7 +133,7 @@ const ListePage = () => {
                     </div>
                 ))
             ) : (
-                <p className="no-result-text m-auto">Aucun jeu trouvé</p>
+                <p className="no-result-text m-auto">{t('gameList.noGame')}</p>
             )}
 
             {/* Carte Ajouter toujours à la fin */}
@@ -178,28 +178,41 @@ const ListePage = () => {
       />
 
       {gameToDelete && (
-        <div className="modal-overlay fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setGameToDelete(null)}>
-            <div className="modal bg-[#001128] p-8 rounded-2xl border border-[#0068AC]" onClick={(e) => e.stopPropagation()}>
-                <h4 className="text-xl mb-4 text-[#5AF2FF] font-title">{t('gameList.confirmDelete.title')}</h4>
-                <p className="mb-8 text-white/80">
-                    {t('gameList.confirmDelete.message')} <br/>
-                    <span className="font-bold text-white mt-2 block italic">"{gameToDelete.name}"</span>
-                </p>
-                <div className="flex justify-center gap-4">
-                    <LoadingButton 
-                        variant="secondary" 
-                        text={t('gameList.confirmDelete.cancel')} 
-                        onClick={() => setGameToDelete(null)} 
-                    />
-                    <LoadingButton 
-                        variant="danger" 
-                        text={t('gameList.confirmDelete.confirm')} 
-                        onClick={confirmDelete} 
-                    />
-                </div>
+        <div
+            className="modal-overlay-liste"
+            onClick={() => setGameToDelete(null)}
+        >
+            <div
+            className="modal-liste"
+            onClick={(e) => e.stopPropagation()}
+            >
+            <h4 className="modal-title">
+                {t("gameList.confirmDelete.title")}
+            </h4>
+
+            <p className="modal-text">
+                {t("gameList.confirmDelete.message")}
+                <br />
+                <span className="modal-game-name">
+                "{gameToDelete.name}"
+                </span>
+            </p>
+
+            <div className="modal-actions">
+                <LoadingButton
+                variant="secondary"
+                text={t("common.cancel")}
+                onClick={() => setGameToDelete(null)}
+                />
+                <LoadingButton
+                variant="danger"
+                text={t("gameList.confirmDelete.confirm")}
+                onClick={confirmDelete}
+                />
+            </div>
             </div>
         </div>
-    )}
+        )}
     </div>
   );
 };

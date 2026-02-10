@@ -4,9 +4,9 @@ import { faUser, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import "./UserLinks.css";
 
 const UserLinks = ({ t, onClose }) => (
-    <div className="navbar-actions-links flex flex-col items-start w-full">
+    <div className="navbar-actions-links">
         <NavLink 
-            className="navbar-link-profile flex items-center w-full" 
+            className="navbar-link-profile" 
             to="/profile"
             onClick={onClose} 
         >
@@ -14,11 +14,11 @@ const UserLinks = ({ t, onClose }) => (
         </NavLink>
         
         <NavLink 
-            className="navbar-link-deconnect flex items-center w-full" 
+            className="navbar-link-deconnect" 
             to="/logout"
             onClick={onClose}
         >
-            <div className="deconnect-text flex items-center">
+            <div className="deconnect-text">
                 <span className="logo-deconect"><FontAwesomeIcon icon={faRightFromBracket} /></span>
                 <span className="logout-text">{t("navbar.logout")}</span>
             </div>

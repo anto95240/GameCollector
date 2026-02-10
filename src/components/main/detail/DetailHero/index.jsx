@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCalendarAlt, faHeart, faCheck, faGamepad, faArchive } from "@fortawesome/free-solid-svg-icons";
 import "./DetailHero.css";
+import { useTranslation } from "react-i18next";
 
 const DetailHero = ({ game }) => {
+    const { t } = useTranslation();
     return (
         <section className="hero-section">
             <img src={game.image} alt={game.name} className="hero-cover" />
@@ -22,7 +24,7 @@ const DetailHero = ({ game }) => {
                         <strong>{game.rating}/5</strong>
                     </div>
                     <div className="meta-item">
-                        <FontAwesomeIcon icon={faCalendarAlt} /> Ajouté le <strong>{game.addedDate}</strong>
+                        <FontAwesomeIcon icon={faCalendarAlt} /> {t('gameDetail.addedToCollection')} <strong>{game.addedDate}</strong>
                     </div>
                 </div>
 
@@ -32,7 +34,7 @@ const DetailHero = ({ game }) => {
                     </button>
 
                     <button className={`btn-secondary-action ${game.isFavorite ? 'active' : ''}`}>
-                        <FontAwesomeIcon icon={faHeart} /> {game.isFavorite ? "Favori" : "Favori"}
+                        <FontAwesomeIcon icon={faHeart} /> {game.isFavorite ? t('common.favorite') : t('common.favorite')}
                     </button>
                     
                     <button className="btn-secondary-action">

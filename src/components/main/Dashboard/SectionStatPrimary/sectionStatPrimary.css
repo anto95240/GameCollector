@@ -4,6 +4,7 @@
     box-shadow: var(--shadow-secondary);
     padding: 25px;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .main-title {

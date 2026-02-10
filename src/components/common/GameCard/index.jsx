@@ -45,7 +45,7 @@ const GameCard = ({
             >
                 <div className="card-add-content">
                     <FontAwesomeIcon icon={faPlus} className="plus-icon" />
-                    <span>{t ? t('gameList.addGame') : "Ajouter"}</span>
+                    <span>{t('gameList.addGame')}</span>
                 </div>
             </div>
         );
@@ -92,13 +92,13 @@ const GameCard = ({
                         e.stopPropagation();
                         navigate("/game/add-edit-game", { state: { game } });
                     }}>
-                        <FontAwesomeIcon icon={faPen} /> <span>{t('gameList.actions.edit')}</span>
+                        <FontAwesomeIcon icon={faPen} /> <span>{t('common.edit')}</span>
                     </button>
                     <button className="ctx-item delete" onClick={(e) => {
                         e.stopPropagation();
                         onDeleteRequest(game);
                     }}>
-                        <FontAwesomeIcon icon={faTrash} /> <span>{t('gameList.actions.delete')}</span>
+                        <FontAwesomeIcon icon={faTrash} /> <span>{t('common.delete')}</span>
                     </button>
                 </div>
             )}

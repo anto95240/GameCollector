@@ -34,7 +34,7 @@ const SectionGameCard = ({t}) => {
         <div className="recent-games-section">
             <h2 className="section-title">{t('dashboard.recentlyAdded')}</h2>
 
-            <div className="games-carousel relative w-full">
+            <div className="games-carousel">
                 <button 
                     className="carousel-arrow arrow-left" 
                     onClick={() => scroll("left")}
@@ -42,7 +42,7 @@ const SectionGameCard = ({t}) => {
                     <FontAwesomeIcon icon={faChevronLeft} />
                 </button>
 
-                <div className="game-cards-container flex no-scrollbar" ref={scrollRef}>
+                <div className="game-cards-container no-scrollbar" ref={scrollRef}>
                     {recentGames.map((game, i) => (
                         <div 
                             key={game.id || i} 

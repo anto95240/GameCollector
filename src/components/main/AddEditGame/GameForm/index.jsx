@@ -25,7 +25,7 @@ const GameForm = ({
                 handleRemoveTag={handleRemoveTag} 
             />
 
-            <div className="form-actions-footer z-0">
+            <div className="form-actions-footer">
                 <button 
                     type="button" 
                     className="btn-cancel-game" 

@@ -36,12 +36,17 @@
     margin-top: 10px;
 }
 
+.textarea-group label{
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
 .textarea-container {
     width: 100%;
     background: var(--input-bg-solid);
     border: 1px solid var(--color-border);
     border-radius: 12px;
-    margin: 20px 0;
+    margin: 10px 0;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 

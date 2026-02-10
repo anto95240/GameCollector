@@ -6,17 +6,17 @@ import NavLinks from "../../secondary/Navbar/NavLinks";
 import { useNavbar } from "./../../../hooks/useNavbar";
 
 const Navbar = () => {
-  const { t, state, setters, actions } = useNavbar();
+  const { t, state, setters } = useNavbar();
   const { actionsOpen } = state;
   const { setActionsOpen } = setters;
 
   return (
     <>
-      <header className="navbar w-full flex items-center px-4 sm:px-6"> 
+      <header className="navbar px-4 sm:px-6"> 
 
         <img className="navbar-img" src="/logo.png" alt="Logo" />
 
-        <nav className="navbar-links flex-row gap-4 ml-6 items-center"> 
+        <nav className="navbar-links"> 
             <NavLinks t={t} />
         </nav>
 

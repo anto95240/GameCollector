@@ -9,10 +9,10 @@ const UserMenu = ({ t, state, setters, actions, onClose }) => {
     const { toggleTheme, changeLanguage } = actions;
 
     return (
-        <div className="navbar-actions flex flex-col items-center absolute"> 
+        <div className="navbar-actions"> 
             <p>{t('navbar.welcome')}Anto Ric</p>
             
-            <div className="theme-trad flex justify-center gap-3 w-full">
+            <div className="theme-trad">
                 <LanguageSelector 
                     currentLang={language} 
                     isOpen={langMenuOpen} 
@@ -26,7 +26,7 @@ const UserMenu = ({ t, state, setters, actions, onClose }) => {
                 />
             </div>
 
-            <hr className="separate w-full" />
+            <hr className="separate" />
             
             <UserLinks t={t} onClose={onClose} />
         </div>

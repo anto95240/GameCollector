@@ -3,7 +3,7 @@ import "./LangOption.css";
 
 const LangOption = ({ code, label, flagCode, onChange }) => (
     <button 
-        className="lang-option flex items-center cursor-pointer" 
+        className="lang-option" 
         onClick={(e) => onChange(code, e)}
     >
         <Flag code={flagCode} className="w-6 h-6" /> {label}

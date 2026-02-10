@@ -10,6 +10,10 @@
   z-index: 9999;
   transform-origin: top right;
   animation: popIn 0.2s ease forwards;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  flex-direction: column;
 }
 
 @keyframes popIn {
@@ -34,6 +38,10 @@
 
 .theme-trad {
   margin-bottom: 1rem;
+  gap: 12px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 .separate {
@@ -41,4 +49,5 @@
   border-top: 1px solid var(--color-border);
   opacity: 0.5;
   margin-bottom: 1rem;
+  width: 100%;
 }
