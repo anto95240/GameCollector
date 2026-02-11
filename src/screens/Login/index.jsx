@@ -69,7 +69,7 @@ const Login = () => {
       {showLoading && <ChargementPage variant="login" />}
       
       <div className="auth-container">
-        <div className="auth-card">
+        <div className="auth-card console-border-card">
           <h2 className="auth-title">{t('auth.login.title')}</h2>
           
           <form onSubmit={handleSubmit} className="auth-form">

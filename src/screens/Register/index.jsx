@@ -43,7 +43,7 @@ const Register = () => {
     <>
       {showLoading && <ChargementPage variant="login" />}
       <div className="auth-container">
-        <div className="auth-card register-card">
+        <div className="auth-card register-card console-border-card">
           <h2 className="auth-title">{t('auth.register.title')}</h2>
           <div className="steps-container">
             <div className="cyber-progress-track">

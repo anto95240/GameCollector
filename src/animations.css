@@ -7,7 +7,7 @@
 /* 1. EFFET BORDURE ROTATIVE (Login/Register/Logout) */
 .console-border-card {
   position: relative;
-  background: var(--gradient-card-secondary);
+  background: var(--color-bg-btn) ;
   border-radius: 20px;
   box-shadow: var(--shadow-main);
   z-index: 0;
@@ -91,8 +91,8 @@
 .console-border-card::after {
   content: '';
   position: absolute;
-  inset: 2px;
-  background: var(--gradient-card-secondary);
+  inset: 1px;
+  background: var(--color-bg-btn);
   border-radius: 20px;
   z-index: -1;
 }
