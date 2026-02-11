@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { useGameFiltering } from "../../hooks/useGameFiltering";
+import { useGameFiltering } from "../../hooks/components/useGameFiltering";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { useActiveOnScroll } from "../../hooks/useActiveOnScroll";
+import { useActiveOnScroll } from "../../hooks/components/useActiveOnScroll";
 
 import ListeHeader from "../../components/secondary/Liste/ListeHeader";
 import FilterPanel from "../../components/secondary/Liste/filtre/FilterPanel";

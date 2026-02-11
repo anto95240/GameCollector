@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faTimes, faTag, faPlus } from "@fortawesome/free-solid-svg-icons";
 import FloatingInput from "../../../common/FloatingInput";
 import CustomSelect from "../../../common/CustomSelect";
-import { MOCK_OPTIONS } from "../../../../hooks/useAddEditGame";
+import { MOCK_OPTIONS } from "../../../../hooks/components/useAddEditGame";
 import SectionWrapper from "../../../secondary/AddEditGame/SectionWrapper";
 import "./Sections.css";
 

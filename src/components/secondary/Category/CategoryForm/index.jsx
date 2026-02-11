@@ -58,6 +58,7 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
                     {categoryType === "tag" && (
                          <div className="form-group">
                             <label>{t('categories.fields.order')}</label>
+                            {/* <i>l'ordre d'affichage du tag dans la fiche de jeu</i> */}
                             <input 
                                 type="text" className="form-input category" value={formData.order}
                                 onChange={(e) => setFormData({...formData, order: e.target.value})}

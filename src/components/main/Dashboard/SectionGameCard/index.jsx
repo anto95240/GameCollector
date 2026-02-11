@@ -2,8 +2,8 @@ import { useRef, useEffect } from "react";
 import "./SectionGameCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { useDashboard } from "../../../../hooks/useDashboard";
-import { useActiveOnScroll } from "../../../../hooks/useActiveOnScroll";
+import { useDashboard } from "../../../../hooks/components/useDashboard";
+import { useActiveOnScroll } from "../../../../hooks/components/useActiveOnScroll";
 import GameCard from "../../../common/GameCard";
 
 const SectionGameCard = ({t}) => {

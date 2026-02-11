@@ -4,7 +4,7 @@ import {
 
 import './config/i18n'
 import router from "./config/router";
-// import './config/interceptor'
+import './config/interceptor'
 
 function App() {
 

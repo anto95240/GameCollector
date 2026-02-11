@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import UserMenu from "../UserMenu";
-import { useNavbar } from "../../../../hooks/useNavbar";
+import { useNavbar } from "../../../../hooks/components/useNavbar";
 import "./NavbarInfo.css";  
 
 const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {

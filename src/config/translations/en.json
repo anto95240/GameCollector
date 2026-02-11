@@ -35,7 +35,7 @@
         "email": "Email",
         "password": "Password",
         "confirmPassword": "Confirm password",
-        "alreadyUser": "Already have an account?",
+        "alreadyUser": "Already have an account ? ",
         "alreadyUserLink": "Login",
         "back": "Back",
         "next": "Next",
@@ -50,7 +50,7 @@
 
       "logout": {
         "title": "Logout",
-        "message": "Are you sure you want to log out of your pilot account?",
+        "message": "Are you sure you want to log out of your pilot account ?",
         "returnLogin": "Logout"
       },
 

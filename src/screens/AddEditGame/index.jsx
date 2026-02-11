@@ -1,4 +1,4 @@
-import { useAddEditGame } from "../../hooks/useAddEditGame";
+import { useAddEditGame } from "../../hooks/components/useAddEditGame";
 import FormHeader from "../../components/secondary/AddEditGame/FormHeader";
 import GameNav from "../../components/main/AddEditGame/GameNav";
 import GameForm from "../../components/main/AddEditGame/GameForm";

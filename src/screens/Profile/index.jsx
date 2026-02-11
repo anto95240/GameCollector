@@ -1,5 +1,5 @@
 import "./Profile.css";
-import { useProfile } from "../../hooks/useProfile";
+import { useProfile } from "../../hooks/components/useProfile";
 
 import ProfilSection from "../../components/main/ProfilePage/ProfilSection";
 import ConnexionSection from "../../components/main/ProfilePage/ConnexionSection";

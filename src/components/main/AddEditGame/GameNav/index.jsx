@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faList } from "@fortawesome/free-solid-svg-icons";
-import { SECTIONS } from "../../../../hooks/useAddEditGame";
+import { SECTIONS } from "../../../../hooks/components/useAddEditGame";
 import "./GameNav.css";
 
 const GameNav = ({ activeSection, scrollToSection, showMobileMenu, setShowMobileMenu, t }) => {

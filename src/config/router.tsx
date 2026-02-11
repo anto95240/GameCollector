@@ -10,7 +10,7 @@ import RegisterPage from "../screens/Register";
 import StatistiquePage from "../screens/Statistique";
 import ListePage from "../screens/Liste";
 import DetailPage from "../screens/Detail";
-// import ProtectedRoutes from "../components/ProtectedRoutes"
+import ProtectedRoutes from "../components/main/ProtectedRoutes"
 import AppLayout from "../components/main/AppLayout";
 import ChargementPage from "../screens/Chargement";
 
@@ -31,9 +31,9 @@ let router = createBrowserRouter([
       path: "/logout",
       Component: DeconnexionPage,
     },
-    // {
-    //   Component: ProtectedRoutes,
-    //   children: [
+    {
+      Component: ProtectedRoutes,
+      children: [
       {
         Component: AppLayout,
         children: [  
@@ -67,8 +67,8 @@ let router = createBrowserRouter([
           }
         ]
       }
-    // ]
-  // },  
+    ]
+  },  
 ]
 );
 

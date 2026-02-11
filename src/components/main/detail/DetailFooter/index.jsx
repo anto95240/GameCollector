@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
-import { useActiveOnScroll } from "../../../../hooks/useActiveOnScroll";
+import { useActiveOnScroll } from "../../../../hooks/components/useActiveOnScroll";
 
 const MOCK_RECENT_GAMES = [
   {
