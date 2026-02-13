@@ -4,14 +4,14 @@ import { useApiAuth } from "../../hooks/api/useApiAuth";
 import LoadingButton from "../../components/common/LoadingButton";
 import ChargementPage from "../Chargement";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faLock, faEye, faEyeSlash, faExclamationCircle } from "@fortawesome/free-solid-svg-icons"; // Ajout icone erreur
+import { faUser, faLock, faEye, faEyeSlash, faExclamationCircle } from "@fortawesome/free-solid-svg-icons"; // Ajout icone erreur
 import "./Login.css";
 import { useTranslation } from "react-i18next";
 
 const Login = () => {
   const { t } = useTranslation();
-  const [email, setEmail] = useState("antoine@test.com");
-  const [password, setPassword] = useState("Test1234!");
+  const [email, setEmail] = useState("antoine@test.com"); // Anto
+  const [password, setPassword] = useState("Test1234!"); // Anto95240
   
   // États de visibilité et d'erreur
   const [showPassword, setShowPassword] = useState(false);
@@ -92,7 +92,7 @@ const Login = () => {
                 className="auth-input"
                 required
               />
-              <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
+              <FontAwesomeIcon icon={faUser} className="input-icon" />
             </div>
 
             {/* Champ Mot de passe */}

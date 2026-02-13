@@ -1,17 +1,21 @@
 import { useState, useEffect } from "react";
 import UserMenu from "../UserMenu";
 import { useNavbar } from "../../../../hooks/components/useNavbar";
+import { useAuth } from "../../../../context/AuthContext"; // Import du contexte d'auth
 import "./NavbarInfo.css";  
 
 const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
   const [dateTime, setDateTime] = useState("");
   const [batteryLevel, setBatteryLevel] = useState(null);
   const { state, setters, actions } = useNavbar();
+  
+  const { user } = useAuth();
 
   const handleCloseMenu = () => {
     setActionsOpen(false);
   };
 
+  // Gestion de la Date et de l'Heure
   useEffect(() => {
     const updateDateTime = () => {
       const now = new Date();
@@ -32,6 +36,7 @@ const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
     return () => clearInterval(interval);
   }, []);
 
+  // Gestion de la Batterie
   useEffect(() => {
     if ("getBattery" in navigator) {
       navigator.getBattery().then((battery) => {
@@ -42,6 +47,13 @@ const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
       });
     }
   }, []);
+
+  const getInitials = () => {
+    if (!user) return "GC"; 
+    const first = user.firstname?.charAt(0) || "";
+    const last = user.lastname?.charAt(0) || "";
+    return (first + last).toUpperCase();
+  };
 
   return (
     <div className="navbar-info"> 
@@ -57,11 +69,18 @@ const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
               className="navbar-connection-button" 
               onClick={(e) => { e.stopPropagation(); setActionsOpen(prev => !prev); }}
             >
-              <h1>AR</h1>
+              <span>{getInitials()}</span>
             </button>
 
             {actionsOpen && (
-              <UserMenu t={t} state={state} setters={setters} actions={actions} onClose={handleCloseMenu} />
+              <UserMenu 
+                user={user}
+                t={t} 
+                state={state} 
+                setters={setters} 
+                actions={actions} 
+                onClose={handleCloseMenu} 
+              />
             )}
         </div>
     </div>

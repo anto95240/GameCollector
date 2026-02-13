@@ -26,7 +26,7 @@
 
 .btn-download {
   background: var(--color-text-btn-account);
-  color: white;
+  color: var(--color-text-btn-profile);
   font-weight: 500;
 }
 

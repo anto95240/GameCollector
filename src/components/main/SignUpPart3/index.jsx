@@ -36,9 +36,9 @@ const SignUpPart3 = ({ data, update, t }) => {
       <div className="input-group">
         <input
           type={showConfirmPassword ? "text" : "password"}
-          name="confirmPassword"
+          name="passwordConfirm"
           placeholder={t('auth.register.confirmPassword')}
-          value={data.confirmPassword}
+          value={data.passwordConfirm}
           onChange={update}
           className="auth-input"
           required

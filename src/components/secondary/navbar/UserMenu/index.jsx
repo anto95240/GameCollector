@@ -3,14 +3,15 @@ import ThemeToggle from "../UserMenuParts/ThemeToggle";
 import UserLinks from "../UserMenuParts/UserLinks";
 import "./UserMenu.css";
 
-const UserMenu = ({ t, state, setters, actions, onClose }) => {
+const UserMenu = ({ user, t, state, setters, actions, onClose }) => {
     const { isDark, language, langMenuOpen } = state;
     const { setLangMenuOpen } = setters;
     const { toggleTheme, changeLanguage } = actions;
+    const displayName = user?.username || "Pilote";
 
     return (
         <div className="navbar-actions"> 
-            <p>{t('navbar.welcome')}Anto Ric</p>
+            <p>{t('navbar.welcome')}{displayName}</p>
             
             <div className="theme-trad">
                 <LanguageSelector 

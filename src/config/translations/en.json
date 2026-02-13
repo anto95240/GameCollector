@@ -19,7 +19,7 @@
     "auth": {
       "login": {
         "title": "Login",
-        "usernameOrEmail": "Login email",
+        "usernameOrEmail": "Login email or username",
         "password": "Password",
         "showPassword": "Show password",
         "submit": "Submit",

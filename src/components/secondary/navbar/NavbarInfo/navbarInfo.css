@@ -1,11 +1,12 @@
-.navbar-info{
+/* src/components/secondary/Navbar/NavbarInfo/NavbarInfo.css */
+
+.navbar-info {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 12px;
   margin-left: auto;
 }
-
 
 .status-indicator {
   width: 10px;
@@ -24,10 +25,26 @@
   border-radius: 50%;
   background: var(--gradient-account);
   color: white;
-  transition: 0.2s;
+  transition: transform 0.2s ease-out;   
   display: flex;
-  align-items: center;
+  align-items: center;    
   justify-content: center;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform; 
+}
+
+.navbar-connection-button span {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1; 
+  display: block; 
+  margin: 0;          
+  pointer-events: none; 
+  user-select: none;
 }
 
 .navbar-connection-button:hover {

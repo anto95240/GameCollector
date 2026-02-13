@@ -19,7 +19,7 @@
     "auth": {
       "login": {
         "title": "Connexion",
-        "usernameOrEmail": "Email d'identification",
+        "usernameOrEmail": "Email d'identification ou Username",
         "password": "Code d'accès",
         "showPassword": "Afficher le mot de passe",
         "submit": "Initialiser",

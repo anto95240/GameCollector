@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import { useApiAuth } from "../../hooks/api/useApiAuth";
 import LoadingButton from "../../components/common/LoadingButton";
 import ChargementPage from "../Chargement"; 
 import "./Deconnexion.css";
@@ -11,18 +12,14 @@ const DeconnexionPage = () => {
     const navigate = useNavigate();
     const [isLoggingOut, setIsLoggingOut] = useState(false);
     const [showLoading, setShowLoading] = useState(false);
+    const { logout } = useApiAuth();
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
         setIsLoggingOut(true); 
-        
-        setTimeout(() => {
-            setShowLoading(true); 
-            setTimeout(() => {
-                sessionStorage.clear();
-                localStorage.removeItem("loginToken");
-                navigate("/");
-            }, 1500);
-        }, 800);
+        await new Promise(resolve => setTimeout(resolve, 800));
+        setShowLoading(true); 
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        await logout();
     };
 
     return (

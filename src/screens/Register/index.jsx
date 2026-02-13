@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router";
+import { useTranslation } from "react-i18next";
+import { useApiAuth } from "../../hooks/api/useApiAuth"; // [1] Import du hook
 import LoadingButton from "../../components/common/LoadingButton";
 import "../Login/Login.css";
 import "./Register.css";
@@ -7,35 +9,69 @@ import SignUpPart1 from "../../components/main/SignUpPart1";
 import SignUpPart2 from "../../components/main/SignUpPart2";
 import SignUpPart3 from "../../components/main/SignUpPart3";
 import ChargementPage from "../Chargement";
-import { useTranslation } from "react-i18next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Register = () => {
   const { t } = useTranslation();
   const [step, setStep] = useState(1);
   const [isAnimating, setIsAnimating] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
+  const [error, setError] = useState(""); // [2] État pour les erreurs API
+
   const navigate = useNavigate();
+  const { register } = useApiAuth(); // [3] Récupération de la fonction register
+
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    passwordConfirm: "", // Note : Le back attend souvent "passwordConfirm"
   });
 
-  const handleChange = (e) =>
+  const handleChange = (e) => {
+    // On efface l'erreur dès que l'utilisateur modifie un champ
+    if (error) setError(""); 
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const handleNext = (e) => {
+  const handleNext = async (e) => {
       e.preventDefault();
-      if (step < 3) setStep(step + 1);
-      else {
-        setIsAnimating(true);
-        setTimeout(() => {
-          setShowLoading(true);
-          setTimeout(() => navigate("/dashboard"), 2000);
-        }, 1000);
+      
+      if (step < 3) {
+        setStep(step + 1);
+        return;
+      }
+
+      // [CORRECTION] Validation avec la nouvelle clé
+      if (formData.password !== formData.passwordConfirm) {
+        setError(t('auth.register.errorPasswordsMatch') || "Les mots de passe ne correspondent pas");
+        return;
+      }
+
+      setIsAnimating(true);
+      setError("");
+
+      try {
+        // [CORRECTION] Plus besoin de mapping manuel, les noms sont bons
+        const response = await register(formData);
+
+        if (response.user) {
+             localStorage.setItem("user", JSON.stringify(response.user));
+             setShowLoading(true);
+             setTimeout(() => {
+                 navigate("/dashboard");
+             }, 2000);
+        }
+
+      } catch (err) {
+        console.error("Register Error", err);
+        const message = err.response?.data?.message || "Une erreur est survenue lors de l'inscription.";
+        setError(message);
+        setIsAnimating(false);
+        setShowLoading(false);
       }
   };
 
@@ -45,6 +81,7 @@ const Register = () => {
       <div className="auth-container">
         <div className="auth-card register-card console-border-card">
           <h2 className="auth-title">{t('auth.register.title')}</h2>
+          
           <div className="steps-container">
             <div className="cyber-progress-track">
               <div
@@ -64,10 +101,21 @@ const Register = () => {
               </span>
             </div>
           </div>
+
           <form onSubmit={handleNext} className="auth-form">
+            
+            {/* Affichage des erreurs globales */}
+            {error && (
+                <div className="error-message" style={{ color: "#ff4d4d", marginBottom: "1rem", textAlign:"center" }}>
+                    <FontAwesomeIcon icon={faExclamationCircle} style={{ marginRight: "8px" }}/>
+                    {error}
+                </div>
+            )}
+
             {step === 1 && <SignUpPart1 data={formData} update={handleChange} t={t} />}
             {step === 2 && <SignUpPart2 data={formData} update={handleChange} t={t} />}
             {step === 3 && <SignUpPart3 data={formData} update={handleChange} t={t} />}
+            
             <div className="form-navigation">
               {step > 1 && (
                 <LoadingButton
@@ -76,6 +124,7 @@ const Register = () => {
                   onClick={() => setStep(step - 1)}
                   variant="secondary"
                   className="flex-1"
+                  disabled={isAnimating} // On désactive le retour pendant l'envoi
                 />
               )}
               <LoadingButton
@@ -87,6 +136,7 @@ const Register = () => {
               />
             </div>
           </form>
+          
           <div className="auth-footer">
             <p>
               {t('auth.register.alreadyUser')}
