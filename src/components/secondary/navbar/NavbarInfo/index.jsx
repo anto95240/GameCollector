@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import UserMenu from "../UserMenu";
 import { useNavbar } from "../../../../hooks/components/useNavbar";
-import { useAuth } from "../../../../context/AuthContext"; // Import du contexte d'auth
+import { useAuth } from "../../../../context/AuthContext"; 
 import "./NavbarInfo.css";  
+import { API_URL } from "../../config/constants";
 
 const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
   const [dateTime, setDateTime] = useState("");
@@ -55,6 +56,17 @@ const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
     return (first + last).toUpperCase();
   };
 
+  // === NOUVELLES VÉRIFICATIONS (Comme sur la page profil) ===
+  const isDefaultImage = 
+    !user?.image || 
+    user.image === "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+
+  const avatarURL = user?.image 
+    ? user.image.startsWith("http") 
+      ? user.image 
+      : `${API_URL}/${user.image}`
+    : "";
+
   return (
     <div className="navbar-info"> 
         <div className="flex flex-row items-center gap-2">
@@ -68,8 +80,17 @@ const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
             <button 
               className="navbar-connection-button" 
               onClick={(e) => { e.stopPropagation(); setActionsOpen(prev => !prev); }}
+              style={!isDefaultImage ? { padding: 0, overflow: "hidden" } : {}}
             >
-              <span>{getInitials()}</span>
+              {!isDefaultImage ? (
+                <img 
+                  src={avatarURL} 
+                  alt="Profile" 
+                  style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "inherit" }} 
+                />
+              ) : (
+                <span>{getInitials()}</span>
+              )}
             </button>
 
             {actionsOpen && (

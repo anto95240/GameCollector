@@ -18,6 +18,24 @@ const ProfilSection = ({ user, form, setForm, t, handleSaveProfile, handleDownlo
     }));
   };
 
+  const handleImageClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  // === NOUVELLE FONCTION : Récupération des initiales ===
+  const getInitials = () => {
+    const first = form.firstname?.charAt(0) || "";
+    const last = form.lastname?.charAt(0) || "";
+    return `${first}${last}`.toUpperCase(); // On met tout en majuscule
+  };
+
+  // === NOUVELLE VÉRIFICATION : L'image est-elle celle par défaut ? ===
+  const isDefaultImage = 
+    form.avatarURL === "https://cdn-icons-png.flaticon.com/512/847/847969.png" || 
+    !form.avatarURL;
+
   return (
     <ProfileCard 
       id="profile-section" 
@@ -55,28 +73,43 @@ const ProfilSection = ({ user, form, setForm, t, handleSaveProfile, handleDownlo
             type="file"
             accept="image/*"
             ref={fileInputRef}
+            style={{ display: "none" }} 
             onChange={(e) => {
-                if(e.target.files[0]) setForm({ ...form, imageFile: e.target.files[0] })
+                if(e.target.files && e.target.files[0]) {
+                  setForm({ ...form, imageFile: e.target.files[0] });
+                }
             }}
           />
           
           <div className="avatar-wrapper">
             {form.imageFile ? (
                 <img className="avatar-circle" src={URL.createObjectURL(form.imageFile)} alt="Preview" />
-            ) : form.avatarURL ? (
+            ) : !isDefaultImage ? (
                 <img className="avatar-circle" src={form.avatarURL} alt="User" />
             ) : (
-                <div className="avatar-circle no-img">{t("common.noImage")}</div>
+                <div 
+                  className="avatar-circle no-img"
+                  style={{
+                    background: "var(--grad-btn-primary)", 
+                    color: "white",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "2.5rem",
+                    fontWeight: "bold",
+                    letterSpacing: "1px"
+                  }}
+                >
+                  {getInitials()}
+                </div>
             )}
           </div>
 
-          {handleDownloadData && (
-            <ActionButtons 
-              onDownload={handleDownloadData} 
-              t={t}
-              labels={{ download: t("profile.labels.profilePicture") }} 
-            />
-          )}
+          <ActionButtons 
+            onDownload={handleImageClick} 
+            t={t}
+            labels={{ download: t("profile.labels.profilePicture") || "Changer l'image" }} 
+          />
         </div>
 
       </div>

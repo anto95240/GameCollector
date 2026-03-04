@@ -16,6 +16,14 @@
       "arialLabelPassword": "Afficher le mot de passe"
     },
 
+    "ErrorMsg": {
+      "alerteSucces": "Profil mis à jour avec succès !",
+      "alerteDeleteUser": "Votre compte a été supprimé.",
+      "errorUpdateUser": "Une erreur est survenue lors de la mise à jour",
+      "passwordsNotMatching": "Les mots de passe ne correspondent pas.",
+      "errorDelete": "Erreur lors de la suppression du compte."
+    },
+
     "auth": {
       "login": {
         "title": "Connexion",

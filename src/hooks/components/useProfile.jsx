@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useOutletContext } from "react-router";
-import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
+import { useApiAuth } from "../api/useApiAuth";
+import { API_URL } from "../../config/constants";
 
 export const useProfile = () => {
   const navigate = useNavigate();
-  const { user, setUser, account, API_URL, t } = useOutletContext();
+  const { t } = useOutletContext(); 
+  
+  const { user, updateUser } = useAuth(); 
+  const { updateProfile, deleteAccount, logout } = useApiAuth(); 
 
+  // On a nettoyé le state des variables "account" inutilisées
   const [form, setForm] = useState({
     firstname: "",
     lastname: "",
@@ -13,9 +19,6 @@ export const useProfile = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    typeAccount: "",
-    budgetStart: "",
-    nameAccount: "",
     imageFile: null,
     avatarURL: "", 
   });
@@ -36,17 +39,14 @@ export const useProfile = () => {
       email: user?.email || "",
       password: "",
       confirmPassword: "",
-      typeAccount: account?.type || "",
-      budgetStart: account?.budgetStart || "",
-      nameAccount: account?.name || "",
       avatarURL: user?.image
         ? user.image.startsWith("http")
           ? user.image
-          : `${API_URL}/${user.image}`
+          : `${API_URL}/${user.image}` // Utilisation de la constante définie plus haut
         : "",
       imageFile: null,
     }));
-  }, [user, account, API_URL]);
+  }, [user]);
 
   const handleSaveProfile = async () => {
     try {
@@ -66,12 +66,12 @@ export const useProfile = () => {
       if (form.imageFile) {
         formData.append("image", form.imageFile);
       }
-
-      const res = await axios.put(`${API_URL}/api/user/${user._id}`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      console.log(user)
+      // Utilisation propre de l'API
+      const updatedUser = await updateProfile(user.uid, formData);
       
-      setUser(res.data);
+      // Mise à jour du contexte pour que l'UI (Navbar, etc.) s'actualise
+      updateUser(updatedUser);
       alert(t('ErrorMsg.alerteSucces') || "Profil mis à jour avec succès !");
       
       setForm(prev => ({ ...prev, password: "", confirmPassword: "" }));
@@ -85,9 +85,9 @@ export const useProfile = () => {
 
   const handleDeleteUser = async () => {
     try {
-      await axios.delete(`${API_URL}/api/user/${user._id}`);
+      await deleteAccount(user.uid);
       alert(t('ErrorMsg.alerteDeleteUser') || "Votre compte a été supprimé.");
-      navigate("/login");
+      await logout(); // Gère la redirection et le nettoyage
     } catch (err) {
       console.error(err);
       alert(t('ErrorMsg.errorDelete') || "Erreur lors de la suppression du compte.");
@@ -97,7 +97,6 @@ export const useProfile = () => {
   const handleDownloadData = () => {
     const dataToExport = {
       userProfile: user,
-      accountSettings: account,
       exportDate: new Date().toISOString()
     };
 

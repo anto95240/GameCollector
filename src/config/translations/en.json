@@ -16,6 +16,14 @@
       "arialLabelPassword": "Show password"
     },
 
+    "ErrorMsg": {
+      "alerteSucces": "Profile updated successfully!",
+      "alerteDeleteUser": "Your account has been deleted.",
+      "errorUpdateUser": "An error occurred during the update.",
+      "passwordsNotMatching": "Passwords do not match.",
+      "errorDelete": "Error while deleting the account."
+    },
+
     "auth": {
       "login": {
         "title": "Login",

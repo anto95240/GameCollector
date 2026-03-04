@@ -1,9 +1,7 @@
 import axios from "axios";
+import { API_URL } from "./constants";
 
-// Utilisez une variable d'environnement ou localhost par défaut
-const baseURL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-
-axios.defaults.baseURL = baseURL;
+axios.defaults.baseURL = API_URL;
 
 // CRUCIAL : Permet d'envoyer et recevoir les cookies du backend
 axios.defaults.withCredentials = true; 
