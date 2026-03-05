@@ -105,15 +105,15 @@
 }
 
 .btn-secondary-action.active {
-  border-color: var(--color-orange);
-  color: var(--color-orange);
-  background: transparent;
+  border-color: var(--color-orange) !important;
+  color: var(--color-orange) !important;
+  background: transparent !important;
 }
 
 .btn-secondary-action.owned {
-  background: var(--tag-owned-bg);
-  border-color: var(--tag-owned-border);
-  color: var(--tag-owned-text);
+  background: var(--tag-owned-bg) !important;
+  border-color: var(--tag-owned-border) !important;
+  color: var(--tag-owned-text) !important;
 }
 
 @media (max-width: 1100px) {

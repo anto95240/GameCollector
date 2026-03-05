@@ -1,70 +1,62 @@
-import { useRef, useEffect } from "react";
-import "./SectionGameCard.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { useDashboard } from "../../../../hooks/components/useDashboard";
-import { useActiveOnScroll } from "../../../../hooks/components/useActiveOnScroll";
+import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import GameCard from "../../../common/GameCard";
+import { useApiGame } from "../../../../hooks/api/useApiGame";
+import "./SectionGameCard.css";
 
-const SectionGameCard = ({t}) => {
-    const { recentGames } = useDashboard();
-    const scrollRef = useRef(null);
-    const activeId = useActiveOnScroll(scrollRef, ".observer-item", recentGames);
+const SectionGameCard = () => {
+    const { t } = useTranslation();
+    const { getAllGames } = useApiGame();
+    
+    const [recentGames, setRecentGames] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if (scrollRef.current) {
-            scrollRef.current.scrollTo({ left: 0, behavior: "instant" });
-        }
-    }, [recentGames]); 
-
-    const scroll = (direction) => {
-        if (scrollRef.current) {
-            const { current } = scrollRef;
-            const scrollAmount = 200;
-            
-            if (direction === "left") {
-                current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-            } else {
-                current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        const fetchRecentGames = async () => {
+            setIsLoading(true);
+            try {
+                const data = await getAllGames();
+                const gamesList = Array.isArray(data) ? data : data.games || [];
+                
+                // On prend uniquement les 5 premiers pour le Dashboard.
+                setRecentGames(gamesList.slice(0, 5)); 
+            } catch (error) {
+                console.error("Erreur lors du chargement des jeux récents", error);
+            } finally {
+                setIsLoading(false);
             }
-        }
-    };
-    
+        };
+
+        fetchRecentGames();
+    }, [getAllGames]);
+
     return (
-        <div className="recent-games-section">
-            <h2 className="section-title">{t('dashboard.recentlyAdded')}</h2>
-
-            <div className="games-carousel">
-                <button 
-                    className="carousel-arrow arrow-left" 
-                    onClick={() => scroll("left")}
-                >
-                    <FontAwesomeIcon icon={faChevronLeft} />
-                </button>
-
-                <div className="game-cards-container no-scrollbar" ref={scrollRef}>
-                    {recentGames.map((game, i) => (
-                        <div 
-                            key={game.id || i} 
-                            className="console-entry-anim observer-item"
-                            data-id={String(game.id || i)}
-                        >
-                            <GameCard 
-                                game={game} 
-                                variant="dashboard" 
-                                isActive={activeId === String(game.id || i)}
-                            />
-                        </div>
+        <div className="section-game-card">
+            <div className="section-header">
+                <h2 className="section-title">{t('dashboard.recentlyAdded') || "Récemment ajoutés"}</h2>
+            </div>
+            
+            {isLoading ? (
+                <p className="loading-text" style={{ padding: '20px 0' }}>Chargement des jeux...</p>
+            ) : recentGames.length > 0 ? (
+                <div className="game-cards-container">
+                    {recentGames.map((game, index) => (
+                        <GameCard 
+                            key={game._id || index} 
+                            game={{
+                                ...game,
+                                id: game._id
+                            }} 
+                            variant="dashboard" 
+                            t={t}
+                        />
                     ))}
                 </div>
-
-                <button 
-                    className="carousel-arrow arrow-right" 
-                    onClick={() => scroll("right")}
-                >
-                    <FontAwesomeIcon icon={faChevronRight} />
-                </button>
-            </div>
+            ) : (
+                <p style={{ padding: '20px 0', color: 'var(--text-secondary)' }}>
+                    Aucun jeu trouvé. Commencez par en ajouter un !
+                </p>
+            )}
         </div>
     );
 };

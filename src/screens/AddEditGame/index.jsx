@@ -11,7 +11,7 @@ const AddEditGamePage = () => {
         activeSection, showMobileMenu, setShowMobileMenu, scrollToSection,
         formData, setFormData, handleChange, handleFileChange, handleSubmit,
         tagInput, setTagInput, suggestedTags, handleTagKeyDown, addTag, handleRemoveTag,
-        previewImg, isAnimating
+        previewImg, isAnimating, optionsData, availableTags, handleAddNewMetadata
     } = useAddEditGame();
 
     const title = isEditMode
@@ -60,6 +60,9 @@ const AddEditGamePage = () => {
                         handleRemoveTag={handleRemoveTag}
                         previewImg={previewImg}
                         isAnimating={isAnimating}
+                        optionsData={optionsData}
+                        availableTags={availableTags}
+                        handleAddNewMetadata={handleAddNewMetadata}
                     />
                 )}
             </div>

@@ -11,6 +11,7 @@ const GameCard = ({
     onToggleMenu, 
     t,
     onDeleteRequest,
+    onToggleFavorite,
     onClick,
     className = "",
     isActive = false
@@ -53,7 +54,26 @@ const GameCard = ({
 
     const isListVariant = variant === "list";
     const gameName = typeof game === 'string' ? game : game.name;
-    const cardStyle = game?.image ? { backgroundImage: `url(${game.image})` } : {};
+    
+    // --- FORMATAGE DE L'URL DE L'IMAGE ---
+    // Si l'image est un chemin relatif (ex: /uploads/...), on ajoute l'URL du backend (5001)
+    const getImageUrl = (img) => {
+        if (!img) return null;
+        if (img.startsWith('http') || img.startsWith('data:')) return img;
+        // On pointe vers votre backend Express
+        const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:5001";
+        return `${backendUrl}${img}`;
+    };
+
+    const imageUrl = getImageUrl(game?.image);
+    
+    // Ajout des propriétés CSS pour que l'image s'adapte parfaitement à la carte
+    const cardStyle = imageUrl ? { 
+        backgroundImage: `url("${imageUrl}")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+    } : {};
 
     return (
         <div 
@@ -71,7 +91,7 @@ const GameCard = ({
                         className={`icon-heart ${game.isFavorite ? 'favorite' : ''}`}
                         onClick={(e) => {
                             e.stopPropagation();
-                            // Logique favori
+                            if (onToggleFavorite) onToggleFavorite(game);
                         }} 
                     />
                     <button 

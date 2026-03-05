@@ -4,7 +4,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import "./CustomSelect.css";
 
-const CustomSelect = ({ options, value, onChange }) => {
+const CustomSelect = ({ options = [], value, onChange }) => {
     const [isOpen, setIsOpen] = useState(false);
     const wrapperRef = useRef(null);
     const { t } = useTranslation();
@@ -19,8 +19,8 @@ const CustomSelect = ({ options, value, onChange }) => {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    const selectedLabel = options.find(opt => opt.value === value)?.label || value;
-
+    const selectedLabel = options.find(opt => String(opt.value) === String(value))?.label || value;
+    
     const handleSelect = (val) => {
         onChange(val);
         setIsOpen(false);

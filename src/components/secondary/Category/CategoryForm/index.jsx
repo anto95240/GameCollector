@@ -1,17 +1,36 @@
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { useApiMetadata } from "../../../../hooks/api/useApiMetadata";
 import "./CategoryForm.css"
 
-const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) => {
+const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData, onSuccess }) => {
     const [formData, setFormData] = useState({
         name: "", brand: "", order: "", color: "#ffffff"
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const nameInputRef = useRef(null); 
     const { t } = useTranslation();
+    
+    const { createMetadata, updateMetadata } = useApiMetadata();
 
     useEffect(() => {
         if (isEdit && initialData) {
-            setFormData({ name: typeof initialData === 'string' ? initialData : "", brand: "", order: "", color: "#ffffff" });
+            // Lecture dynamique du nom pour l'édition
+            const itemName = initialData.name 
+                || initialData.label 
+                || initialData.genre_name 
+                || initialData.platform_name 
+                || initialData.tag_name 
+                || initialData.status_name 
+                || (typeof initialData === 'string' ? initialData : "");
+
+            setFormData({ 
+                name: itemName, 
+                brand: initialData.brand || "", 
+                order: initialData.order || "", 
+                color: initialData.color || "#ffffff" 
+            });
         } else {
             setFormData({ name: "", brand: "", order: "", color: "#ffffff" });
         }
@@ -36,14 +55,58 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
         return `${action} ${suffix}`;
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        if (!formData.name.trim()) return; 
+
+        setIsSubmitting(true);
+        try {
+            // Construction du payload avec les clés exactes attendues par Mongoose
+            const payload = { color: formData.color };
+            
+            switch (categoryType) {
+                case "genre":
+                    payload.genre_name = formData.name;
+                    break;
+                case "platform":
+                    payload.platform_name = formData.name;
+                    payload.brand = formData.brand;
+                    break;
+                case "tag":
+                    payload.tag_name = formData.name;
+                    payload.order = Number(formData.order) || 0;
+                    break;
+                case "status":
+                    payload.status_name = formData.name;
+                    break;
+                default:
+                    payload.name = formData.name;
+            }
+
+            if (isEdit) {
+                const id = initialData._id || initialData.id;
+                await updateMetadata(categoryType, id, payload);
+            } else {
+                await createMetadata(categoryType, payload);
+            }
+            
+            if (onSuccess) onSuccess(); 
+            
+        } catch (error) {
+            console.error("Erreur lors de l'enregistrement :", error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <div className={`manager-form-container ${isOpen ? "open" : "closed"}`}>
             <div className="manager-form-wrapper">
                 <p className="form-title-inner">{getFormTitle()}</p>
                 
-                <form className="form-fields" onSubmit={(e) => e.preventDefault()}>
+                <form className="form-fields" onSubmit={handleSubmit}>
                     
-                    {/* Nom (Commun) */}
                     <div className="form-group">
                         <label>{t('categories.fields.name')}</label>
                         <input 
@@ -52,16 +115,20 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
                             className="form-input category" 
                             value={formData.name}
                             onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            required
+                            disabled={isSubmitting}
                         />
                     </div>
                     
                     {categoryType === "tag" && (
                          <div className="form-group">
                             <label>{t('categories.fields.order')}</label>
-                            {/* <i>l'ordre d'affichage du tag dans la fiche de jeu</i> */}
                             <input 
-                                type="text" className="form-input category" value={formData.order}
+                                type="number" 
+                                className="form-input category" 
+                                value={formData.order}
                                 onChange={(e) => setFormData({...formData, order: e.target.value})}
+                                disabled={isSubmitting}
                             />
                         </div>
                     )}
@@ -70,8 +137,11 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
                          <div className="form-group">
                             <label>{t('categories.fields.brand')}</label>
                             <input 
-                                type="text" className="form-input category" value={formData.brand}
+                                type="text" 
+                                className="form-input category" 
+                                value={formData.brand}
                                 onChange={(e) => setFormData({...formData, brand: e.target.value})}
+                                disabled={isSubmitting}
                             />
                         </div>
                     )}
@@ -79,15 +149,31 @@ const CategoryForm = ({ categoryType, isOpen, onClose, isEdit, initialData }) =>
                     <div className="form-group">
                         <label>{t('categories.fields.color')}</label>
                         <input 
-                            type="color" className="color-picker-square" value={formData.color}
+                            type="color" 
+                            className="color-picker-square" 
+                            value={formData.color}
                             onChange={(e) => setFormData({...formData, color: e.target.value})}
+                            disabled={isSubmitting}
                         />
                         <div className="flex-1"></div> 
                     </div>
 
                     <div className="form-actions">
-                        <button className="btn-cancel-category" onClick={onClose}>{t('common.cancel')}</button>
-                        <button className="btn-addEdit-category">{isEdit ? t('categories.edit') : t('categories.add')}</button>
+                        <button 
+                            type="button" 
+                            className="btn-cancel-category" 
+                            onClick={onClose} 
+                            disabled={isSubmitting}
+                        >
+                            {t('common.cancel')}
+                        </button>
+                        <button 
+                            type="submit" 
+                            className="btn-addEdit-category" 
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? "Enregistrement..." : (isEdit ? t('categories.edit') : t('categories.add'))}
+                        </button>
                     </div>
                 </form>
             </div>

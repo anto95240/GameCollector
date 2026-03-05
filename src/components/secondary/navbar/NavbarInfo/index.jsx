@@ -3,7 +3,7 @@ import UserMenu from "../UserMenu";
 import { useNavbar } from "../../../../hooks/components/useNavbar";
 import { useAuth } from "../../../../context/AuthContext"; 
 import "./NavbarInfo.css";  
-import { API_URL } from "../../config/constants";
+import { API_URL } from "../../../../config/constants";
 
 const NavbarInfo = ({t, setActionsOpen, actionsOpen}) => {
   const [dateTime, setDateTime] = useState("");

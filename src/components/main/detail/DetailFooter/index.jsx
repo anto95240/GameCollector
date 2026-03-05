@@ -1,104 +1,130 @@
-import GameCard from "../../../common/GameCard";
-import "./DetailFooter.css";
-import { useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useParams } from "react-router"; // Pour récupérer l'ID du jeu en cours
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
+import GameCard from "../../../common/GameCard";
 import { useActiveOnScroll } from "../../../../hooks/components/useActiveOnScroll";
-
-const MOCK_RECENT_GAMES = [
-  {
-    id: 101,
-    name: "Elden Ring",
-    image:
-      "https://image.api.playstation.com/vulcan/ap/rnd/202110/2000/phvVT0qZfcRms5qDAk0SI3CM.png",
-    rating: 5,
-    status: "Terminé",
-  },
-  {
-    id: 102,
-    name: "Cyberpunk 2077",
-    image:
-      "https://image.api.playstation.com/vulcan/ap/rnd/202311/2812/2855217417534444583b276707835109b02221295e869766.png",
-    rating: 4,
-    status: "En cours",
-  },
-  {
-    id: 103,
-    name: "Hades",
-    image:
-      "https://image.api.playstation.com/vulcan/ap/rnd/202104/0517/968c34749652f14300000000000000000000000000000000.png",
-    rating: 5,
-    status: "Terminé",
-  },
-  {
-    id: 104,
-    name: "Zelda BOTW",
-    image:
-      "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000000025/7137262b5a64d921e193653f8aa0b722925abc5680380ca0e18a77969113f010",
-    rating: 5,
-    status: "Terminé",
-  },
-];
+import { useApiGame } from "../../../../hooks/api/useApiGame"; // Hook API
+import "./DetailFooter.css";
 
 const DetailFooter = () => {
   const scrollRef = useRef(null);
   const { t } = useTranslation();
+  const { id, slug, gameName } = useParams(); // On récupère l'identifiant de la page actuelle
+  const { getAllGames } = useApiGame();
+
+  const [suggestedGames, setSuggestedGames] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // 1. Récupération des données depuis l'API
+  useEffect(() => {
+    const fetchSuggestedGames = async () => {
+        setIsLoading(true);
+        try {
+            const data = await getAllGames();
+            const gamesList = Array.isArray(data) ? data : data.games || [];
+            
+            const currentIdentifier = id || slug || gameName;
+
+            // On filtre pour enlever le jeu actuellement affiché
+            const filteredGames = gamesList.filter(g => {
+                const gameSlug = g.name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+                return g._id !== currentIdentifier && gameSlug !== currentIdentifier;
+            });
+
+            // On prend les 5 plus récents et on s'assure d'avoir la clé "id"
+            const formattedGames = filteredGames.slice(0, 5).map(g => ({
+                ...g,
+                id: g._id
+            }));
+
+            setSuggestedGames(formattedGames);
+        } catch (error) {
+            console.error("Erreur lors du chargement des suggestions", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    fetchSuggestedGames();
+  }, [getAllGames, id, slug, gameName]);
+
   const activeId = useActiveOnScroll(
     scrollRef,
     ".observer-item",
-    MOCK_RECENT_GAMES,
+    suggestedGames // On écoute maintenant les vrais jeux
   );
 
   useEffect(() => {
     if (scrollRef.current) {
         scrollRef.current.scrollTo({ left: 0, behavior: "instant" });
     }
-  }, []);
+  }, [suggestedGames]); // Se déclenche quand les jeux sont chargés
+
+  // 2. Fonction de scroll (qui manquait dans votre code original)
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+        const { current } = scrollRef;
+        const scrollAmount = 230; // La largeur de défilement (ajustable)
+        if (direction === "left") current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+        else current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
 
   return (
     <footer className="footer-section">
-      <h3 className="footer-title">{t('gameDetail.recentlySeen')}</h3>
+      <h3 className="footer-title">{t('gameDetail.recentlySeen') || "Récemment regardé"}</h3>
 
-      <div className="detail-carousel mx-auto">
-        {/* Flèche gauche */}
-        <button
-          className="list-arrow arrow-left"
-          onClick={(e) => {
-            e.stopPropagation();
-            scroll("left");
-          }}
-        >
-          <FontAwesomeIcon icon={faChevronLeft} />
-        </button>
+      {isLoading ? (
+        <p className="loading-text" style={{ textAlign: "center", padding: "20px 0" }}>Chargement...</p>
+      ) : suggestedGames.length > 0 ? (
+        <div className="detail-carousel mx-auto">
+          {/* Flèche gauche */}
+          <button
+            className="list-arrow arrow-left"
+            onClick={(e) => {
+              e.stopPropagation();
+              scroll("left");
+            }}
+          >
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
 
-        <div className="recent-scroll no-scrollbar" ref={scrollRef}>
-          {MOCK_RECENT_GAMES.map((gameMock) => (
-            <div
-              key={gameMock.id}
-              className="recent-card-wrapper mx-auto observer-item"
-              data-id={String(gameMock.id)}
-            >
-              <GameCard
-                variant="dashboard"
-                game={gameMock}
-                isActive={activeId === String(gameMock.id)}
-              />
-            </div>
-          ))}
+          <div className="recent-scroll no-scrollbar" ref={scrollRef}>
+            {suggestedGames.map((game) => (
+              <div
+                key={game.id}
+                className="recent-card-wrapper mx-auto observer-item"
+                data-id={String(game.id)}
+              >
+                <GameCard
+                  variant="dashboard"
+                  game={game}
+                  isActive={activeId === String(game.id)}
+                  t={t}
+                />
+              </div>
+            ))}
+          </div>
+          
+          {/* Flèche droite */}
+          <button
+            className="list-arrow arrow-right"
+            onClick={(e) => {
+              e.stopPropagation();
+              scroll("right");
+            }}
+          >
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
         </div>
-        {/* Flèche droite */}
-        <button
-          className="list-arrow arrow-right"
-          onClick={(e) => {
-            e.stopPropagation();
-            scroll("right");
-          }}
-        >
-          <FontAwesomeIcon icon={faChevronRight} />
-        </button>
-      </div>
+      ) : (
+        <p style={{ textAlign: "center", color: "var(--text-secondary)", padding: "20px 0" }}>
+            Aucun autre jeu disponible.
+        </p>
+      )}
     </footer>
   );
 };

@@ -11,7 +11,8 @@ const FloatingInput = ({
     onChange, 
     label, 
     required = false, 
-    isPassword = false 
+    isPassword = false,
+    autocomplete
 }) => {
     const [showPassword, setShowPassword] = useState(false);
     
@@ -28,8 +29,11 @@ const FloatingInput = ({
                 onChange={onChange}
                 required={required}
                 placeholder=" "
+                autoComplete={autocomplete}
             />
-            <label htmlFor={id}>{label}</label>
+            <label htmlFor={id}>
+                {label} {required && <span>*</span>}
+            </label>
 
             {isPassword && (
                 <button

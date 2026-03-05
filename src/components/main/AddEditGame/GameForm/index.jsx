@@ -9,20 +9,21 @@ const GameForm = ({
     formData, setFormData, handleChange, handleFileChange, 
     handleSubmit, tagInput, setTagInput, suggestedTags, 
     handleTagKeyDown, addTag, handleRemoveTag, 
-    previewImg, isAnimating, isEditMode, t, navigate 
+    previewImg, isAnimating, isEditMode, t, navigate,
+    optionsData, availableTags, handleAddNewMetadata
 }) => {
     return (
         <form className="form-container" onSubmit={handleSubmit}>
             <DescriptionSection t={t} formData={formData} handleChange={handleChange} />
-            <RatingSection t={t} formData={formData} handleChange={handleChange} setFormData={setFormData} />
-            <DetailsSection t={t} formData={formData} handleChange={handleChange} setFormData={setFormData} />
+            <RatingSection t={t} formData={formData} handleChange={handleChange} setFormData={setFormData} optionsData={optionsData} />
+            <DetailsSection t={t} formData={formData} handleChange={handleChange} setFormData={setFormData} optionsData={optionsData} handleAddNewMetadata={handleAddNewMetadata}/>
             <ImageSection t={t} previewImg={previewImg} handleFileChange={handleFileChange} />
-            <StatusSection t={t} formData={formData} setFormData={setFormData} />
+            <StatusSection t={t} formData={formData} setFormData={setFormData} optionsData={optionsData} handleAddNewMetadata={handleAddNewMetadata}/>
             <TagsSection 
                 t={t} formData={formData} tagInput={tagInput} 
                 setTagInput={setTagInput} suggestedTags={suggestedTags} 
                 handleTagKeyDown={handleTagKeyDown} addTag={addTag} 
-                handleRemoveTag={handleRemoveTag} 
+                handleRemoveTag={handleRemoveTag} availableTags={availableTags}
             />
 
             <div className="form-actions-footer">

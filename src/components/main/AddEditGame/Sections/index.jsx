@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faTimes, faTag, faPlus } from "@fortawesome/free-solid-svg-icons";
 import FloatingInput from "../../../common/FloatingInput";
 import CustomSelect from "../../../common/CustomSelect";
-import { MOCK_OPTIONS } from "../../../../hooks/components/useAddEditGame";
 import SectionWrapper from "../../../secondary/AddEditGame/SectionWrapper";
 import "./Sections.css";
 
@@ -14,7 +13,7 @@ export const DescriptionSection = ({ t, formData, handleChange }) => (
             label={t('gameForm.fields.name')} 
             value={formData.name} 
             onChange={handleChange} 
-            required 
+            required={true}
         />
         <div className="textarea-group">
             <label>{t('gameForm.fields.description')}</label>
@@ -31,12 +30,12 @@ export const DescriptionSection = ({ t, formData, handleChange }) => (
 );
 
 // --- Section Note (Rating) ---
-export const RatingSection = ({ t, formData, handleChange, setFormData }) => (
+export const RatingSection = ({ t, formData, handleChange, setFormData, optionsData }) => (
     <SectionWrapper id="rate" title={t('gameForm.sections.rating')}>
         <div className="select-wrapper">
             <label>{t('gameForm.fields.rating')}</label>
             <CustomSelect 
-                options={MOCK_OPTIONS.rating} 
+                options={optionsData?.rating || []} 
                 value={formData.rating} 
                 onChange={(val) => setFormData(p => ({...p, rating: val}))} 
             />
@@ -56,24 +55,34 @@ export const RatingSection = ({ t, formData, handleChange, setFormData }) => (
 );
 
 // --- Section Détails ---
-export const DetailsSection = ({ t, formData, handleChange, setFormData }) => (
+export const DetailsSection = ({ t, formData, handleChange, setFormData, optionsData, handleAddNewMetadata }) => (
     <SectionWrapper id="detail" title={t('gameForm.sections.details')}>
         <div className="form-grid">
             <div className="select-wrapper">
-                <label>{t('gameForm.fields.genre')}</label>
-                <CustomSelect 
-                    options={MOCK_OPTIONS.genre} 
-                    value={formData.genre} 
-                    onChange={(val) => setFormData(p => ({...p, genre: val}))} 
-                />
+                <label>{t('gameForm.fields.genre')} <span>*</span></label>
+                <div className="flex gap-2.5 items-center">
+                    <CustomSelect 
+                        options={optionsData?.genre || []} 
+                        value={formData.genre} 
+                        onChange={(val) => setFormData(p => ({...p, genre: val}))} 
+                    />
+                    <button type="button" className="btn-quick-add" onClick={() => handleAddNewMetadata('genre')}>
+                        <FontAwesomeIcon icon={faPlus} />
+                    </button>
+                </div>
             </div>
             <div className="select-wrapper">
-                <label>{t('gameForm.fields.platform')}</label>
-                <CustomSelect 
-                    options={MOCK_OPTIONS.platform} 
-                    value={formData.platform} 
-                    onChange={(val) => setFormData(p => ({...p, platform: val}))} 
-                />
+                <label>{t('gameForm.fields.platform')} <span>*</span></label>
+                <div className="flex gap-2.5 items-center">
+                    <CustomSelect 
+                        options={optionsData?.platform || []} 
+                        value={formData.platform} 
+                        onChange={(val) => setFormData(p => ({...p, platform: val}))} 
+                    />
+                    <button type="button" className="btn-quick-add" onClick={() => handleAddNewMetadata('platform')}>
+                        <FontAwesomeIcon icon={faPlus} />
+                    </button>
+                </div>
             </div>
             <FloatingInput 
                 name="year" 
@@ -107,7 +116,9 @@ export const DetailsSection = ({ t, formData, handleChange, setFormData }) => (
 
 // --- Section Image ---
 export const ImageSection = ({ t, previewImg, handleFileChange }) => (
-    <SectionWrapper id="img" title={t('gameForm.sections.image')}>
+    <SectionWrapper id="image" title={
+        <span>{t('gameForm.sections.image')} <span>*</span></span>
+    }>
         <div className="image-upload-area">
             <input 
                 type="file" 
@@ -115,6 +126,7 @@ export const ImageSection = ({ t, previewImg, handleFileChange }) => (
                 accept="image/*" 
                 onChange={handleFileChange} 
                 hidden 
+                required={!previewImg} 
             />
             <label htmlFor="file-upload" className="upload-label">
                 {previewImg ? (
@@ -122,7 +134,7 @@ export const ImageSection = ({ t, previewImg, handleFileChange }) => (
                 ) : (
                     <div className="upload-placeholder">
                         <FontAwesomeIcon icon={faImage} className="upload-icon" />
-                        <p>{t('gameForm.fields.downloadImage')}</p>
+                        <p>{t('gameForm.fields.downloadImage')} <span>*</span></p>
                     </div>
                 )}
             </label>
@@ -131,29 +143,41 @@ export const ImageSection = ({ t, previewImg, handleFileChange }) => (
 );
 
 // --- Section Statut ---
-export const StatusSection = ({ t, formData, setFormData }) => (
-    <SectionWrapper id="status" title={t('gameForm.sections.status')}>
-        <CustomSelect 
-            options={MOCK_OPTIONS.status} 
-            value={formData.status} 
-            onChange={(val) => setFormData(p => ({...p, status: val}))} 
-        />
+export const StatusSection = ({ t, formData, setFormData, optionsData, handleAddNewMetadata }) => (
+    <SectionWrapper id="status" title={
+        <span>{t('gameForm.sections.status')} <span>*</span></span>
+    }>
+        <div className="flex gap-2.5 items-center">
+            <CustomSelect 
+                options={optionsData?.status || []} 
+                value={formData.status} 
+                onChange={(val) => setFormData(p => ({...p, status: val}))} 
+            />
+            <button type="button" className="btn-quick-add" onClick={() => handleAddNewMetadata('status')}>
+                <FontAwesomeIcon icon={faPlus} />
+            </button>
+        </div>
     </SectionWrapper>
 );
 
 // --- Section Tags ---
-export const TagsSection = ({ t, formData, tagInput, setTagInput, suggestedTags, handleTagKeyDown, addTag, handleRemoveTag }) => (
+export const TagsSection = ({ t, formData, tagInput, setTagInput, suggestedTags, handleTagKeyDown, addTag, handleRemoveTag, availableTags }) => (
     <SectionWrapper id="tags" title={t('gameForm.sections.tags')}>
         {formData.tags.length > 0 && (
             <div className="tags-preview-container">
-                {formData.tags.map((tag, index) => (
-                    <span key={index} className="tag-badge">
-                        {tag}
-                        <button type="button" onClick={() => handleRemoveTag(tag)} className="tag-remove-btn">
-                            <FontAwesomeIcon icon={faTimes} />
-                        </button>
-                    </span>
-                ))}
+                {formData.tags.map((tagId, index) => {
+                    const tagObj = availableTags?.find(t => t._id === tagId);
+                    const tagName = tagObj ? tagObj.tag_name : "Tag inconnu";
+
+                    return (
+                        <span key={index} className="tag-badge">
+                            {tagName}
+                            <button type="button" onClick={() => handleRemoveTag(tagId)} className="tag-remove-btn">
+                                <FontAwesomeIcon icon={faTimes} />
+                            </button>
+                        </span>
+                    );
+                })}
             </div>
         )}
         <div className="tag-input-wrapper">
@@ -168,10 +192,10 @@ export const TagsSection = ({ t, formData, tagInput, setTagInput, suggestedTags,
                 />
                 {suggestedTags.length > 0 && (
                     <div className="tags-suggestions-dropdown">
-                        {suggestedTags.map((suggestion, index) => (
-                            <div key={index} className="tag-suggestion-item" onClick={() => addTag(suggestion)}>
+                        {suggestedTags.map((suggestion) => (
+                            <div key={suggestion._id} className="tag-suggestion-item" onClick={() => addTag(suggestion)}>
                                 <FontAwesomeIcon icon={faTag} size="xs" className="tag-suggestion-icon" />
-                                {suggestion}
+                                {suggestion.tag_name}
                             </div>
                         ))}
                     </div>

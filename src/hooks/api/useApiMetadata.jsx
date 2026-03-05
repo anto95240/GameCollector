@@ -1,4 +1,3 @@
-// [CORRECTION] Toujours importer l'interceptor
 import axios from "../../config/interceptor";
 import { useCallback } from "react";
 

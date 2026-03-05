@@ -209,3 +209,8 @@
     align-items: center;
     justify-content: center;
 }
+
+.form-grid > .form-group {
+    height: fit-content;
+    margin-top: 10px;
+}

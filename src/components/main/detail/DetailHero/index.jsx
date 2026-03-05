@@ -3,7 +3,8 @@ import { faStar, faCalendarAlt, faHeart, faCheck, faGamepad, faArchive } from "@
 import "./DetailHero.css";
 import { useTranslation } from "react-i18next";
 
-const DetailHero = ({ game }) => {
+// Ajout de la prop onToggleFavorite
+const DetailHero = ({ game, onToggleFavorite }) => {
     const { t } = useTranslation();
     return (
         <section className="hero-section">
@@ -29,15 +30,19 @@ const DetailHero = ({ game }) => {
                 </div>
 
                 <div className="hero-actions">
-                    <button className={`btn-secondary-action ${game.isOwned ? 'owned' : ''}`}>
+                    <button className={`btn-secondary-action owned ${game.isOwned ? 'owned' : ''}`}>
                         <FontAwesomeIcon icon={faArchive} /> {game.isOwned ? "Possédé" : "Non possédé"}
                     </button>
 
-                    <button className={`btn-secondary-action ${game.isFavorite ? 'active' : ''}`}>
+                    {/* Ajout du onClick pour gérer le favoris */}
+                    <button 
+                        className={`btn-secondary-action ${game.isFavorite ? 'active' : ''}`}
+                        onClick={onToggleFavorite}
+                    >
                         <FontAwesomeIcon icon={faHeart} /> {game.isFavorite ? t('common.favorite') : t('common.favorite')}
                     </button>
                     
-                    <button className="btn-secondary-action">
+                    <button className="btn-secondary-action status">
                         <FontAwesomeIcon icon={game.status === 'Terminé' ? faCheck : faGamepad} /> 
                         {game.status}
                     </button>

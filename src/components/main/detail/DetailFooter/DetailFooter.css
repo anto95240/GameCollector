@@ -7,8 +7,8 @@
     font-family: var(--font-family-title);
     color: var(--text-color);
     font-size: 1.2rem;
-    margin-bottom: 20px;
-    padding-left: 20px;
+    margin-bottom: 15px;
+    padding-left: 20px; /* Point de repère pour l'alignement */
     opacity: 0.8;
 }
 
@@ -18,50 +18,57 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    padding-left: 20px; /* Aligné exactement comme le titre */
+    padding-right: 20px;
+    padding-bottom: 20px; /* Espace pour la barre de défilement */
 }
 
 .recent-card-wrapper {
     flex-shrink: 0;
-    scroll-snap-align: center;
+    scroll-snap-align: start; /* S'aligne sur le bord gauche et non plus au centre */
     position: relative;
     padding: 10px 0; 
     border: 1px solid var(--color-border);
+    margin-left: 0 !important; /* Annule la classe 'mx-auto' du JS */
+    margin-right: 0 !important;
 }
 
 .detail-carousel {
-    margin-top: 5%;
+    margin-top: 10px;
     position: relative;
     width: 100%;
+    margin-left: 0 !important; /* Annule la classe 'mx-auto' du JS */
 }
 
 .observer-item {
     border: none !important;
     background: transparent !important;
     outline: none !important;
-    scroll-snap-align: center;
+    scroll-snap-align: start; /* S'aligne sur le bord gauche */
     flex-shrink: 0;
 }
 
-.console-entry-anim, .recent-card-wrapper {
-    scroll-snap-align: center;
+.console-entry-anim {
+    scroll-snap-align: start;
 }
 
 @media (max-width: 768px) {
     .recent-scroll {
-        padding: 20px 25px; 
+        padding: 10px 20px; 
     }
 
     .detail-carousel {
-        margin-top: 20px;
-        width: 90%;
+        margin-top: 10px;
+        width: 100%;
     }
 
+    /* Remplacement du 10% par 20px pour rester aligné avec le titre sur mobile */
     .game-cards-container, .recent-scroll, .games-list-scroll {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        padding-left: calc(10%) !important; 
-        padding-right: calc(10%) !important;
+        padding-left: 20px !important; 
+        padding-right: 20px !important;
     }
 }
 
