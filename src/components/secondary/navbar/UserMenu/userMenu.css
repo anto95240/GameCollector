@@ -51,3 +51,29 @@
   margin-bottom: 1rem;
   width: 100%;
 }
+
+.separate-version {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  opacity: 0.2;
+  margin: 0.5rem 0;
+  width: 100%;
+}
+
+.navbar-actions .version {
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+  margin-top: 3%;
+  padding: 0;
+  opacity: 0.5;
+  text-align: center; /* Souvent plus joli centré tout en bas */
+}
+/* 
+.version {
+  font-size: 10px !important;
+  color: var(--color-text-secondary) !important;
+  margin-bottom: 0 !important;
+  margin-top: 3% !important;
+  opacity: 0.5 !important;
+} */

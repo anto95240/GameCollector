@@ -30,6 +30,10 @@ const UserMenu = ({ user, t, state, setters, actions, onClose }) => {
             <hr className="separate" />
             
             <UserLinks t={t} onClose={onClose} />
+
+            <hr className="separate-version" />
+
+            <p className="version">v{import.meta.env.VITE_APP_VERSION}</p>
         </div>
     );
 };
