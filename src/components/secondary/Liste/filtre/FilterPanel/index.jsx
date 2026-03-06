@@ -50,10 +50,26 @@ const FilterPanel = ({
 
   const getOptionCount = (categoryLabel, optionValue) => {
     if (!games) return 0;
+    
     return games.filter(g => {
-        if (categoryLabel === "Genre" && g.genre === optionValue) return true;
-        if (categoryLabel === "Plateforme" && g.platform === optionValue) return true;
-        return false;
+        switch (categoryLabel) {
+            case "Genre":
+                return g.genre === optionValue;
+            case "Plateforme":
+                return g.platform === optionValue;
+            case "Année":
+                return String(g.year) === optionValue;
+            case "Note":
+                return g.rating === optionValue;
+            case "Statut":
+                return g.status === optionValue;
+            case "Favoris":
+                return optionValue === "Nos favoris" ? g.isFavorite : !g.isFavorite;
+            case "Prochainement":
+                return optionValue === "Prochainement" ? g.isSoon : !g.isSoon;
+            default:
+                return false;
+        }
     }).length; 
   };
 

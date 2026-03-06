@@ -53,12 +53,24 @@ export const useApiAuth = () => {
         return data;
     };
 
+    const addGameToHistory = async (gameId) => {
+        const { data } = await axios.put(`/api/user/history/${gameId}`);
+        return data;
+    };
+
+    const getGameHistory = useCallback(async () => {
+        const { data } = await axios.get('/api/user/history');
+        return data;
+    }, []);
+
     return {
         login,
         register,
         logout,
         getMe,
         updateProfile,
-        deleteAccount
+        deleteAccount,
+        addGameToHistory,
+        getGameHistory
     };
 };

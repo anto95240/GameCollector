@@ -1,43 +1,48 @@
 import { useState, useRef, useEffect } from "react";
-import { useParams } from "react-router"; // Pour récupérer l'ID du jeu en cours
+import { useParams } from "react-router"; 
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 import GameCard from "../../../common/GameCard";
 import { useActiveOnScroll } from "../../../../hooks/components/useActiveOnScroll";
-import { useApiGame } from "../../../../hooks/api/useApiGame"; // Hook API
+// NOUVEAU : Import de useApiUser au lieu de useApiGame
+import { useApiAuth } from "../../../../hooks/api/useApiAuth"; 
 import "./DetailFooter.css";
 
 const DetailFooter = () => {
   const scrollRef = useRef(null);
   const { t } = useTranslation();
-  const { id, slug, gameName } = useParams(); // On récupère l'identifiant de la page actuelle
-  const { getAllGames } = useApiGame();
+  const { id, slug, gameName } = useParams(); 
+  
+  // NOUVEAU : On récupère uniquement l'historique
+  const { getGameHistory } = useApiAuth(); 
 
   const [suggestedGames, setSuggestedGames] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // 1. Récupération des données depuis l'API
+  // 1. Récupération des données depuis l'API (Historique BDD)
   useEffect(() => {
     const fetchSuggestedGames = async () => {
         setIsLoading(true);
         try {
-            const data = await getAllGames();
-            const gamesList = Array.isArray(data) ? data : data.games || [];
+            // On récupère directement les jeux consultés par l'utilisateur
+            const historyGames = await getGameHistory();
             
             const currentIdentifier = id || slug || gameName;
 
-            // On filtre pour enlever le jeu actuellement affiché
-            const filteredGames = gamesList.filter(g => {
+            const viewedGames = historyGames.filter(g => {
+                if (!g) return false;
                 const gameSlug = g.name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-                return g._id !== currentIdentifier && gameSlug !== currentIdentifier;
+                return String(g._id) !== String(currentIdentifier) && gameSlug !== currentIdentifier;
             });
 
-            // On prend les 5 plus récents et on s'assure d'avoir la clé "id"
-            const formattedGames = filteredGames.slice(0, 5).map(g => ({
+            // 2. On formate et on ne garde que les 5 premiers
+            const formattedGames = viewedGames.slice(0, 5).map(g => ({
                 ...g,
-                id: g._id
+                id: g._id,
+                // On s'assure que l'image est bien formatée pour GameCard
+                image: g.image?.startsWith('http') ? g.image : `${import.meta.env.VITE_API_URL || 'http://localhost:5001'}${g.image}`
             }));
 
             setSuggestedGames(formattedGames);
@@ -49,25 +54,25 @@ const DetailFooter = () => {
     };
 
     fetchSuggestedGames();
-  }, [getAllGames, id, slug, gameName]);
+  }, [getGameHistory, id, slug, gameName]);
 
   const activeId = useActiveOnScroll(
     scrollRef,
     ".observer-item",
-    suggestedGames // On écoute maintenant les vrais jeux
+    suggestedGames 
   );
 
   useEffect(() => {
     if (scrollRef.current) {
         scrollRef.current.scrollTo({ left: 0, behavior: "instant" });
     }
-  }, [suggestedGames]); // Se déclenche quand les jeux sont chargés
+  }, [suggestedGames]); 
 
-  // 2. Fonction de scroll (qui manquait dans votre code original)
+  // 2. Fonction de scroll
   const scroll = (direction) => {
     if (scrollRef.current) {
         const { current } = scrollRef;
-        const scrollAmount = 230; // La largeur de défilement (ajustable)
+        const scrollAmount = 230; 
         if (direction === "left") current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
         else current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
