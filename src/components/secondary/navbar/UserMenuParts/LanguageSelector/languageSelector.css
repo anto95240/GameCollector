@@ -16,11 +16,11 @@
 
 .lang-menu {
   position: absolute;
-  top: 0px; 
-  right: 100%; 
-  margin-right: 10px; 
+  top: 0px;
+  right: 100%;
+  margin-right: 10px;
   width: 150px;
-  padding: 10px; 
+  padding: 10px;
   border-radius: 12px;
   background: var(--color-bg-btn);
   border: 1px solid var(--color-border);
@@ -32,7 +32,7 @@
 }
 
 @media (min-width: 320px) and (max-width: 600px) {
-  .lang-menu{
+  .lang-menu {
     right: 10%;
     top: 50%;
   }

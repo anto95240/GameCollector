@@ -7,7 +7,7 @@
   width: 100%;
 }
 
-.navbar-link-profile{
+.navbar-link-profile {
   display: flex;
   align-items: center;
   width: 100%;
@@ -33,11 +33,11 @@
   background-clip: text;
 }
 
-.deconnect-text{
+.deconnect-text {
   display: flex;
   align-items: center;
 }
 
-.logo-deconect{
+.logo-deconect {
   color: var(--color-logo-deconnexion);
 }

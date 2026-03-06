@@ -1,56 +1,61 @@
 import { useState, useRef, useEffect } from "react";
-import { useParams } from "react-router"; 
+import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 import GameCard from "../../../common/GameCard";
 import { useActiveOnScroll } from "../../../../hooks/components/useActiveOnScroll";
-// NOUVEAU : Import de useApiUser au lieu de useApiGame
-import { useApiAuth } from "../../../../hooks/api/useApiAuth"; 
+import { useApiAuth } from "../../../../hooks/api/useApiAuth";
 import "./DetailFooter.css";
 
 const DetailFooter = () => {
   const scrollRef = useRef(null);
   const { t } = useTranslation();
-  const { id, slug, gameName } = useParams(); 
-  
-  // NOUVEAU : On récupère uniquement l'historique
-  const { getGameHistory } = useApiAuth(); 
+  const { id, slug, gameName } = useParams();
+
+  const { getGameHistory } = useApiAuth();
 
   const [suggestedGames, setSuggestedGames] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // 1. Récupération des données depuis l'API (Historique BDD)
   useEffect(() => {
     const fetchSuggestedGames = async () => {
-        setIsLoading(true);
-        try {
-            // On récupère directement les jeux consultés par l'utilisateur
-            const historyGames = await getGameHistory();
-            
-            const currentIdentifier = id || slug || gameName;
+      setIsLoading(true);
+      try {
+        const historyGames = await getGameHistory();
 
-            const viewedGames = historyGames.filter(g => {
-                if (!g) return false;
-                const gameSlug = g.name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-                return String(g._id) !== String(currentIdentifier) && gameSlug !== currentIdentifier;
-            });
+        const currentIdentifier = id || slug || gameName;
 
-            // 2. On formate et on ne garde que les 5 premiers
-            const formattedGames = viewedGames.slice(0, 5).map(g => ({
-                ...g,
-                id: g._id,
-                // On s'assure que l'image est bien formatée pour GameCard
-                image: g.image?.startsWith('http') ? g.image : `${import.meta.env.VITE_API_URL || 'http://localhost:5001'}${g.image}`
-            }));
+        const viewedGames = historyGames.filter((g) => {
+          if (!g) return false;
+          const gameSlug = g.name
+            .toLowerCase()
+            .replace(/ /g, "-")
+            .replace(/[^\w-]+/g, "");
+          return (
+            String(g._id) !== String(currentIdentifier) &&
+            gameSlug !== currentIdentifier
+          );
+        });
 
-            setSuggestedGames(formattedGames);
-        } catch (error) {
-            console.error("Erreur lors du chargement des suggestions", error);
-        } finally {
-            setIsLoading(false);
-        }
+        const formattedGames = viewedGames.slice(0, 5).map((g) => ({
+          ...g,
+          id: g._id,
+          image: g.image?.startsWith("http")
+            ? g.image
+            : `${import.meta.env.VITE_API_URL || "http://localhost:5001"}${g.image}`,
+        }));
+
+        setSuggestedGames(formattedGames);
+      } catch (error) {
+        console.error("Erreur lors du chargement des suggestions", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchSuggestedGames();
@@ -59,31 +64,38 @@ const DetailFooter = () => {
   const activeId = useActiveOnScroll(
     scrollRef,
     ".observer-item",
-    suggestedGames 
+    suggestedGames,
   );
 
   useEffect(() => {
     if (scrollRef.current) {
-        scrollRef.current.scrollTo({ left: 0, behavior: "instant" });
+      scrollRef.current.scrollTo({ left: 0, behavior: "instant" });
     }
-  }, [suggestedGames]); 
+  }, [suggestedGames]);
 
-  // 2. Fonction de scroll
   const scroll = (direction) => {
     if (scrollRef.current) {
-        const { current } = scrollRef;
-        const scrollAmount = 230; 
-        if (direction === "left") current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-        else current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      const { current } = scrollRef;
+      const scrollAmount = 230;
+      if (direction === "left")
+        current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      else current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
 
   return (
     <footer className="footer-section">
-      <h3 className="footer-title">{t('gameDetail.recentlySeen') || "Récemment regardé"}</h3>
+      <h3 className="footer-title">
+        {t("gameDetail.recentlySeen") || "Récemment regardé"}
+      </h3>
 
       {isLoading ? (
-        <p className="loading-text" style={{ textAlign: "center", padding: "20px 0" }}>Chargement...</p>
+        <p
+          className="loading-text"
+          style={{ textAlign: "center", padding: "20px 0" }}
+        >
+          Chargement...
+        </p>
       ) : suggestedGames.length > 0 ? (
         <div className="detail-carousel mx-auto">
           {/* Flèche gauche */}
@@ -113,7 +125,7 @@ const DetailFooter = () => {
               </div>
             ))}
           </div>
-          
+
           {/* Flèche droite */}
           <button
             className="list-arrow arrow-right"
@@ -126,8 +138,14 @@ const DetailFooter = () => {
           </button>
         </div>
       ) : (
-        <p style={{ textAlign: "center", color: "var(--text-secondary)", padding: "20px 0" }}>
-            Aucun autre jeu disponible.
+        <p
+          style={{
+            textAlign: "center",
+            color: "var(--text-secondary)",
+            padding: "20px 0",
+          }}
+        >
+          Aucun autre jeu disponible.
         </p>
       )}
     </footer>

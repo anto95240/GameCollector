@@ -1,69 +1,68 @@
 .category-selector-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    width: 100%;
-    transition: all 0.5s ease;
-    justify-items: center;  
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+  transition: all 0.5s ease;
+  justify-items: center;
 }
 
 .category-card-btn {
-    border: 1px solid var(--color-border);
-    border-radius: 20px;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: var(--shadow-secondary);
-    width: 100%;
-    max-width: 250px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: var(--shadow-secondary);
+  width: 100%;
+  max-width: 250px;
 }
 
 .category-card-btn:hover {
-    border-color: var(--color-text);
-    box-shadow: 0 0 15px var(--bg-custom-select);
-    transform: translateY(-5px);
+  border-color: var(--color-text);
+  box-shadow: 0 0 15px var(--bg-custom-select);
+  transform: translateY(-5px);
 }
 
 .category-card-btn.active {
-    background: var(--bg-category-selector);
-    border-color: var(--color-text);
-    transform: scale(1.05);
+  background: var(--bg-category-selector);
+  border-color: var(--color-text);
+  transform: scale(1.05);
 }
 
 .category-card-btn.dimmed {
-    opacity: 0.5;
-    transform: scale(0.95);
+  opacity: 0.5;
+  transform: scale(0.95);
 }
 
 .cat-icon {
-    font-size: 32px;
-    color: var(--color-text);
-    transition: transform 0.3s;
+  font-size: 32px;
+  color: var(--color-text);
+  transition: transform 0.3s;
 }
 
 .cat-label {
-    font-family: var(--font-family-title);
-    font-size: 16px;
-    text-transform: uppercase;
-    color: var(--color-text);
-    letter-spacing: 1px;
+  font-family: var(--font-family-title);
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--color-text);
+  letter-spacing: 1px;
 }
 
-
 @media (max-width: 768px) {
-    .category-card-btn {
-        height: 80px;
-    }
+  .category-card-btn {
+    height: 80px;
+  }
 
-    .cat-icon { 
-        font-size: 24px; 
-    }
+  .cat-icon {
+    font-size: 24px;
+  }
 
-    .cat-label { 
-        font-size: 14px; 
-    }
+  .cat-label {
+    font-size: 14px;
+  }
 }

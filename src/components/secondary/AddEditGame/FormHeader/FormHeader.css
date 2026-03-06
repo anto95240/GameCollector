@@ -1,62 +1,66 @@
 .page-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--color-border);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding-top: 20px;
 }
 
 .page-title {
-    font-family: var(--font-family-title);
-    font-size: 28px;
-    text-transform: uppercase;
-    text-shadow: var(--shadow-main);
-    margin: 0;
+  font-family: var(--font-family-title);
+  font-size: 28px;
+  text-transform: uppercase;
+  text-shadow: var(--shadow-main);
+  margin: 0;
 }
 
 .btn-back {
-    background: transparent;
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
-    padding: 8px 16px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: 0.3s;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
 }
 
 .btn-back:hover {
-    background: var(--bg-cancel-btn);
-    transform: translateX(-5px);
+  background: var(--bg-cancel-btn);
+  transform: translateX(-5px);
 }
 
-.spacer { width: 80px; }
+.spacer {
+  width: 80px;
+}
 
 @media (max-width: 900px) {
-    .page-header {
-        flex-direction: column;
-        gap: 15px;
-        align-items: flex-start;
-        position: relative; 
-    }
+  .page-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+    position: relative;
+  }
 
-    .btn-back {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .spacer { display: none; }
-    
-    .page-title {
-        width: 100%;
-        text-align: center;
-    }
+  .btn-back {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .spacer {
+    display: none;
+  }
+
+  .page-title {
+    width: 100%;
+    text-align: center;
+  }
 }

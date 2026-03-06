@@ -1,24 +1,25 @@
 .dashboard-content {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  height: calc(100vh - 100px);
+  overflow: hidden;
 }
 
 .main-stats-grid {
-    /* flex flex-col gap-5 mb-8 */
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 32px;
 }
 
 @media (min-width: 768px) {
-    .main-stats-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-    }
+  .main-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
 }

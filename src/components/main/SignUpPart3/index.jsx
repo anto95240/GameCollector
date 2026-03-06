@@ -4,7 +4,6 @@ import { faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "../../../screens/Register/Register.css";
 
 const SignUpPart3 = ({ data, update, t }) => {
-  // États pour gérer la visibilité des deux champs séparément
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -15,7 +14,7 @@ const SignUpPart3 = ({ data, update, t }) => {
         <input
           type={showPassword ? "text" : "password"}
           name="password"
-          placeholder={t('auth.register.password')}
+          placeholder={t("auth.register.password")}
           value={data.password}
           onChange={update}
           className="auth-input"
@@ -26,7 +25,7 @@ const SignUpPart3 = ({ data, update, t }) => {
           type="button"
           className="password-toggle-btn"
           onClick={() => setShowPassword(!showPassword)}
-          aria-label={t('common.arialLabelPassword')}
+          aria-label={t("common.arialLabelPassword")}
         >
           <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
         </button>
@@ -37,7 +36,7 @@ const SignUpPart3 = ({ data, update, t }) => {
         <input
           type={showConfirmPassword ? "text" : "password"}
           name="passwordConfirm"
-          placeholder={t('auth.register.confirmPassword')}
+          placeholder={t("auth.register.confirmPassword")}
           value={data.passwordConfirm}
           onChange={update}
           className="auth-input"
@@ -48,7 +47,7 @@ const SignUpPart3 = ({ data, update, t }) => {
           type="button"
           className="password-toggle-btn"
           onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-          aria-label={t('common.arialLabelPassword')}
+          aria-label={t("common.arialLabelPassword")}
         >
           <FontAwesomeIcon icon={showConfirmPassword ? faEyeSlash : faEye} />
         </button>

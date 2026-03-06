@@ -2,7 +2,7 @@
   padding: 20px;
   border-radius: 20px;
   box-shadow: var(--shadow-navbar-scroll);
-  background: var(--color-bg-card-page-active, transparent); 
+  background: var(--color-bg-card-page-active, transparent);
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;

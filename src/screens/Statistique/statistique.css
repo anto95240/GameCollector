@@ -1,43 +1,43 @@
 .statistics-page-container {
-    padding: 1rem;
-    width: 100%;
+  padding: 1rem;
+  width: 100%;
 }
 
 .charts-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 70px;
-    width: 100%;
-    margin-top: 5%;
-    max-width: 100%;
-    overflow-x: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 70px;
+  width: 100%;
+  margin-top: 5%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 @media (min-width: 1024px) {
-    .charts-grid {
-        grid-template-columns: 35% 68%;
-        justify-content: space-between;
-        width: 89%;
-        gap: 20px;
-    }
+  .charts-grid {
+    grid-template-columns: 35% 68%;
+    justify-content: space-between;
+    width: 89%;
+    gap: 20px;
+  }
 }
 
 @media (min-width: 1440px) {
-    .charts-grid {
-        grid-template-columns: 25% 73%;
-        justify-content: space-between;
-        width: 85%; 
-        gap: 2%;
-    }
+  .charts-grid {
+    grid-template-columns: 25% 73%;
+    justify-content: space-between;
+    width: 85%;
+    gap: 2%;
+  }
 }
 
 @media (max-width: 768px) {
-    .statistics-page-container {
-        padding: 10px;
-        overflow-x: hidden;
-    }
-    
-    .year-chart-container {
-        overflow-x: auto;
-    }
+  .statistics-page-container {
+    padding: 10px;
+    overflow-x: hidden;
+  }
+
+  .year-chart-container {
+    overflow-x: auto;
+  }
 }

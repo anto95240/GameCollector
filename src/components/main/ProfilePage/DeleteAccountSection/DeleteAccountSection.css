@@ -1,10 +1,10 @@
 .delete-content-row {
   display: flex;
-  align-items: center;     
+  align-items: center;
   justify-content: space-between;
-  gap: 30px;       
-  height: 100%;    
-  min-height: 80px;         
+  gap: 30px;
+  height: 100%;
+  min-height: 80px;
   width: 100%;
 }
 
@@ -22,14 +22,14 @@
   margin: 0;
 }
 
-.delete-action-wrapper{
+.delete-action-wrapper {
   margin-left: 0;
   flex-shrink: 0;
 }
 
 .delete-account-card .profile-card-content {
   flex: 1;
-  display: flex;       
+  display: flex;
   align-items: center;
   width: 100%;
 }
@@ -48,7 +48,7 @@
     width: 100%;
   }
 
-  .delete-action-wrapper{
+  .delete-action-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;

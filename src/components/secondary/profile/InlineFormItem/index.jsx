@@ -20,8 +20,8 @@ const InlineFormItem = ({
       <button className="btn-light-small" onClick={toggleForm}>
         {buttonLabel}
       </button>
-    </div>  
-    
+    </div>
+
     <div className={`inline-form-wrapper ${showForm ? "open" : ""}`}>
       <div className="inline-form-content">
         <input

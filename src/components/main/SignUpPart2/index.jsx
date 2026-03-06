@@ -8,7 +8,7 @@ const SignUpPart2 = ({ data, update, t }) => (
       <input
         type="text"
         name="username"
-        placeholder={t('auth.register.username')}
+        placeholder={t("auth.register.username")}
         value={data.username}
         onChange={update}
         className="auth-input"
@@ -20,7 +20,7 @@ const SignUpPart2 = ({ data, update, t }) => (
       <input
         type="email"
         name="email"
-        placeholder={t('auth.register.email')}
+        placeholder={t("auth.register.email")}
         value={data.email}
         onChange={update}
         className="auth-input"

@@ -4,7 +4,7 @@
   top: 0;
   z-index: 5000;
   background: var(--color-bg);
-  backdrop-filter: blur(10px); 
+  backdrop-filter: blur(10px);
   padding-top: 2%;
   padding-bottom: 1%;
   display: flex;
@@ -20,13 +20,12 @@
 }
 
 .navbar-links {
-    display: none; 
+  display: none;
 }
 
-@media (min-width: 1024px) {  
+@media (min-width: 1024px) {
   .navbar-links {
-    display: flex; 
-    /* flex-direction: row; */
+    display: flex;
     gap: 1rem;
     margin-left: 1.5rem;
     align-items: center;

@@ -141,13 +141,16 @@
       "favorite": "Favoris",
       "platform": "Plateforme",
       "genre": "Genre",
-      "recentlyAdded": "Ajoutés récemment"
+      "recentlyAdded": "Ajoutés récemment",
+      "loading": "Chargement de votre collection...",
+      "noGame": "Aucun jeu trouvé. Commencez par en ajouter un !"
     },
 
     "gameList": {
       "searchPlaceholder": "Rechercher un jeu...",
       "addGame": "Ajouter un jeu",
       "noGame": "Aucun jeu trouvé",
+      "totalGames": "jeu(s) au total",
 
       "filters": {
         "title": "Filtre",

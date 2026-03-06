@@ -19,6 +19,9 @@
   font-size: 14px;
   font-weight: 600;
   transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .custom-select-trigger:hover,

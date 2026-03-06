@@ -1,68 +1,82 @@
 .save-success-overlay {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 500px;
-    background: var(--bg-accordeon-category);
-    border-radius: 20px;
-    border: 1px solid var(--color-border);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  background: var(--bg-accordeon-category);
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
 }
 
 .success-content {
-    text-align: center;
-    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: center;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .success-icon-wrapper {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
 .success-icon {
-    font-size: 80px;
-    color: var(--color-succes-modif-game); /* Vert succès */
-    position: relative;
-    z-index: 2;
+  font-size: 80px;
+  color: var(--color-succes-modif-game); /* Vert succès */
+  position: relative;
+  z-index: 2;
 }
 
 .success-ripple {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
-    background: var(--bg-succes-modif-game);
-    border-radius: 50%;
-    animation: ripple 1.5s infinite;
-    z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: var(--bg-succes-modif-game);
+  border-radius: 50%;
+  animation: ripple 1.5s infinite;
+  z-index: 1;
 }
 
 .success-content h2 {
-    font-size: 24px;
-    color: var(--color-text);
-    margin-bottom: 10px;
-    font-family: var(--font-family-title);
+  font-size: 24px;
+  color: var(--color-text);
+  margin-bottom: 10px;
+  font-family: var(--font-family-title);
 }
 
 .success-content p {
-    color: var(--color-text);
-    margin-bottom: 20px;
+  color: var(--color-text);
+  margin-bottom: 20px;
 }
 
 .redirect-spinner {
-    font-size: 20px;
-    color: var(--color-text);
+  font-size: 20px;
+  color: var(--color-text);
 }
 
 @keyframes popIn {
-    0% { transform: scale(0.8); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes ripple {
-    0% { width: 80px; height: 80px; opacity: 0.8; }
-    100% { width: 150px; height: 150px; opacity: 0; }
+  0% {
+    width: 80px;
+    height: 80px;
+    opacity: 0.8;
+  }
+  100% {
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+  }
 }

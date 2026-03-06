@@ -4,7 +4,7 @@ import ActionButtons from "../../../secondary/Profile/ActionButtons";
 import SimpleInput from "../../../secondary/Profile/SimpleInput";
 import "./ProfilSection.css";
 
-const ProfilSection = ({ user, form, setForm, t, handleSaveProfile, handleDownloadData }) => {
+const ProfilSection = ({ user, form, setForm, t, handleSaveProfile }) => {
   const fileInputRef = useRef(null);
 
   const handleCancel = () => {
@@ -24,48 +24,48 @@ const ProfilSection = ({ user, form, setForm, t, handleSaveProfile, handleDownlo
     }
   };
 
-  // === NOUVELLE FONCTION : Récupération des initiales ===
   const getInitials = () => {
     const first = form.firstname?.charAt(0) || "";
     const last = form.lastname?.charAt(0) || "";
-    return `${first}${last}`.toUpperCase(); // On met tout en majuscule
+    return `${first}${last}`.toUpperCase();
   };
 
-  // === NOUVELLE VÉRIFICATION : L'image est-elle celle par défaut ? ===
-  const isDefaultImage = 
-    form.avatarURL === "https://cdn-icons-png.flaticon.com/512/847/847969.png" || 
+  const isDefaultImage =
+    form.avatarURL ===
+      "https://cdn-icons-png.flaticon.com/512/847/847969.png" ||
     !form.avatarURL;
 
   return (
-    <ProfileCard 
-      id="profile-section" 
-      title={t("profile.links.details")} 
-      actions={<ActionButtons 
-        onCancel={handleCancel}
-        onSave={handleSaveProfile}
-        t={t}
-      />}
+    <ProfileCard
+      id="profile-section"
+      title={t("profile.links.details")}
+      actions={
+        <ActionButtons
+          onCancel={handleCancel}
+          onSave={handleSaveProfile}
+          t={t}
+        />
+      }
     >
       <div className="profile-form-layout">
-        
         {/* Champs texte */}
         <div className="profile-fields">
-          <SimpleInput 
-              label={t("profile.labels.firstName")}
-              value={form.firstname}
-              onChange={(e) => setForm({ ...form, firstname: e.target.value })}
+          <SimpleInput
+            label={t("profile.labels.firstName")}
+            value={form.firstname}
+            onChange={(e) => setForm({ ...form, firstname: e.target.value })}
           />
-          <SimpleInput 
-              label={t("profile.labels.name")}
-              value={form.lastname}
-              onChange={(e) => setForm({ ...form, lastname: e.target.value })}
+          <SimpleInput
+            label={t("profile.labels.name")}
+            value={form.lastname}
+            onChange={(e) => setForm({ ...form, lastname: e.target.value })}
           />
-          <SimpleInput 
-              label={t("profile.labels.username")}
-              value={form.username}
-              onChange={(e) => setForm({ ...form, username: e.target.value })}
+          <SimpleInput
+            label={t("profile.labels.username")}
+            value={form.username}
+            onChange={(e) => setForm({ ...form, username: e.target.value })}
           />
-      </div>
+        </div>
 
         {/* Avatar */}
         <div className="profile-avatar">
@@ -73,45 +73,36 @@ const ProfilSection = ({ user, form, setForm, t, handleSaveProfile, handleDownlo
             type="file"
             accept="image/*"
             ref={fileInputRef}
-            style={{ display: "none" }} 
+            style={{ display: "none" }}
             onChange={(e) => {
-                if(e.target.files && e.target.files[0]) {
-                  setForm({ ...form, imageFile: e.target.files[0] });
-                }
+              if (e.target.files && e.target.files[0]) {
+                setForm({ ...form, imageFile: e.target.files[0] });
+              }
             }}
           />
-          
+
           <div className="avatar-wrapper">
             {form.imageFile ? (
-                <img className="avatar-circle" src={URL.createObjectURL(form.imageFile)} alt="Preview" />
+              <img
+                className="avatar-circle"
+                src={URL.createObjectURL(form.imageFile)}
+                alt="Preview"
+              />
             ) : !isDefaultImage ? (
-                <img className="avatar-circle" src={form.avatarURL} alt="User" />
+              <img className="avatar-circle" src={form.avatarURL} alt="User" />
             ) : (
-                <div 
-                  className="avatar-circle no-img"
-                  style={{
-                    background: "var(--grad-btn-primary)", 
-                    color: "white",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "2.5rem",
-                    fontWeight: "bold",
-                    letterSpacing: "1px"
-                  }}
-                >
-                  {getInitials()}
-                </div>
+              <div className="avatar-circle no-img">{getInitials()}</div>
             )}
           </div>
 
-          <ActionButtons 
-            onDownload={handleImageClick} 
+          <ActionButtons
+            onDownload={handleImageClick}
             t={t}
-            labels={{ download: t("profile.labels.profilePicture") || "Changer l'image" }} 
+            labels={{
+              download: t("profile.labels.profilePicture"),
+            }}
           />
         </div>
-
       </div>
     </ProfileCard>
   );

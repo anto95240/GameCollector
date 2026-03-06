@@ -1,57 +1,64 @@
 .manager-container {
-    width: 100%;
-    max-width: 1200px; 
-    border: 1px solid var(--color-border);
-    border-radius: 20px;
-    box-shadow: var(--shadow-main);
-    height: auto; 
-    padding: 20px;
-    position: relative;
-    overflow: hidden; 
-    margin-top: 5%;
+  width: 100%;
+  max-width: 1200px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-main);
+  height: auto;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 5%;
 }
 
 .manager-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--color-border-category-selector);
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--color-border-category-selector);
+  margin-bottom: 20px;
 }
 
 .manager-title {
-    font-family: var(--font-family-title);
-    color: var(--color-text);
-    font-size: 18px;
-    text-transform: capitalize;
+  font-family: var(--font-family-title);
+  color: var(--color-text);
+  font-size: 18px;
+  text-transform: capitalize;
 }
 
 .add-icon-btn {
-    background: var(--gradient-blue);
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s;
+  background: var(--gradient-blue);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.3s;
 }
 
-.add-icon-btn:hover { transform: scale(1.1); }
-.add-icon-btn.active { transform: rotate(45deg); background: var(--color-logo-deconnexion); }
+.add-icon-btn:hover {
+  transform: scale(1.1);
+}
+.add-icon-btn.active {
+  transform: rotate(45deg);
+  background: var(--color-logo-deconnexion);
+}
 
 /* LAYOUT GLOBAL */
 .manager-content {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    width: 100%;
-    flex-direction: column;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: 100%;
+  flex-direction: column;
 }
 
 /* =========================================================
@@ -59,176 +66,180 @@
    Effet: Hauteur Progressive (Accordion)
    ========================================================= */
 .form-collapsible {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    width: 100%;
-    overflow: hidden;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  overflow: hidden;
 }
 
 .form-collapsible.open {
-    grid-template-rows: 1fr;
+  grid-template-rows: 1fr;
 }
 
 .form-inner {
-    min-height: 0;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    margin: 0;
+  min-height: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  margin: 0;
 }
 
 .form-collapsible.open .form-inner {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .loading-wrapper {
-    width: 100%;
-    padding: 3rem;
-    text-align: center;
+  width: 100%;
+  padding: 3rem;
+  text-align: center;
 }
 
 .loading-text {
-    color: var(--color-text-muted);
-    font-style: italic;
-    animation: pulse 1.5s infinite ease-in-out;
+  color: var(--color-text-muted);
+  font-style: italic;
+  animation: pulse 1.5s infinite ease-in-out;
 }
 
 /* MODAL / POPUP STYLES */
-/* --- MODAL OVERLAY --- */
 .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: var(--bg-modal-overlay);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    animation: fadeIn 0.2s ease-out;
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-modal-overlay);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
 }
 
-/* --- MODAL CONTENT --- */
 .modal-content {
-    background: var(--grad-card-surface);
-    background-color: var(--bg-card);
-    width: 90%;
-    max-width: 420px;
-    border-radius: 20px;
-    border: 1px solid var(--border-main);
-    box-shadow: var(--shadow-card-detail);
-    overflow: hidden;
-    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: var(--grad-card-surface);
+  background-color: var(--bg-card);
+  width: 90%;
+  max-width: 420px;
+  border-radius: 20px;
+  border: 1px solid var(--border-main);
+  box-shadow: var(--shadow-card-detail);
+  overflow: hidden;
+  animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* --- MODAL HEADER --- */
 .modal-header-danger {
-    padding: 24px 20px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+  padding: 24px 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
 .modal-icon-warning {
-    color: var(--status-danger);
-    font-size: 2.5rem;
-    filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.3));
+  color: var(--status-danger);
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.3));
 }
 
 .modal-title {
-    color: var(--text-primary);
-    font-family: var(--font-family-title);
-    font-size: 1.25rem;
-    margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-family-title);
+  font-size: 1.25rem;
+  margin: 0;
 }
 
-/* --- MODAL BODY --- */
 .modal-body {
-    padding: 10px 30px 24px;
-    text-align: center;
+  padding: 10px 30px 24px;
+  text-align: center;
 }
 
 .modal-body p {
-    color: var(--text-secondary);
-    margin: 5px 0;
+  color: var(--text-secondary);
+  margin: 5px 0;
 }
 
 .item-to-delete-display {
-    display: block;
-    margin: 15px 0;
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--text-primary);
-    padding: 8px;
-    background: rgba(90, 242, 255, 0.05);
-    border-radius: 8px;
+  display: block;
+  margin: 15px 0;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  padding: 8px;
+  background: rgba(90, 242, 255, 0.05);
+  border-radius: 8px;
 }
 
 .modal-warning-subtext {
-    font-size: 0.85rem;
-    color: var(--status-danger) !important;
-    opacity: 0.8;
+  font-size: 0.85rem;
+  color: var(--status-danger) !important;
+  opacity: 0.8;
 }
 
-/* --- MODAL ACTIONS --- */
 .modal-actions {
-    display: flex;
-    justify-content: center;
-    gap: 16px; /* Espacement entre les boutons */
-    padding: 20px 30px 30px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 30px 30px;
 }
 
 .btn-modal {
-    flex: 1;
-    padding: 12px 20px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-family: var(--font-family-text);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: 1px solid transparent;
-    font-size: 0.95rem;
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-family: var(--font-family-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
 }
 
-/* Bouton Annuler */
 .btn-cancel {
-    background: var(--bg-cancel-btn);
-    color: var(--text-secondary);
-    border-color: var(--border-subtle);
+  background: var(--bg-cancel-btn);
+  color: var(--text-secondary);
+  border-color: var(--border-subtle);
 }
 
 .btn-cancel:hover {
-    background-color: rgba(128, 128, 128, 0.2);
-    color: var(--text-primary);
+  background-color: rgba(128, 128, 128, 0.2);
+  color: var(--text-primary);
 }
 
-/* Bouton Supprimer */
 .btn-confirm-delete {
-    background: var(--grad-btn-danger);
-    color: white;
-    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+  background: var(--grad-btn-danger);
+  color: white;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
 }
 
 .btn-confirm-delete:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
 }
 
 .btn-confirm-delete:active {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
-/* --- ANIMATIONS --- */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* =========================================================
@@ -236,33 +247,34 @@
    Effet: Fade-in de Droite à Gauche (Slide)
    ========================================================= */
 @media (min-width: 1024px) {
-    .manager-content {
-        flex-direction: row;
-    }
+  .manager-content {
+    flex-direction: row;
+  }
 
-    .form-collapsible {
-        display: block;
-        grid-template-rows: unset;
-        width: 0;
-        opacity: 0;
-        transform: translateX(30px);
-        overflow: hidden;
-        transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1),                                        
-                    opacity 0.4s ease,                                        
-                    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
+  .form-collapsible {
+    display: block;
+    grid-template-rows: unset;
+    width: 0;
+    opacity: 0;
+    transform: translateX(30px);
+    overflow: hidden;
+    transition:
+      width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.4s ease,
+      transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
 
-    .form-collapsible.open {
-        width: 50%;
-        opacity: 1;
-        transform: translateX(0); 
-    }
+  .form-collapsible.open {
+    width: 50%;
+    opacity: 1;
+    transform: translateX(0);
+  }
 
-    .form-inner {
-        opacity: 1;
-        transform: none;
-        min-width: 450px;
-        margin: 0;
-        width: 100%; 
-    }
+  .form-inner {
+    opacity: 1;
+    transform: none;
+    min-width: 450px;
+    margin: 0;
+    width: 100%;
+  }
 }

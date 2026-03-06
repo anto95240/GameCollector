@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  min-width: 0; 
+  min-width: 0;
   position: relative;
 }
 
@@ -26,7 +26,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--bg-modal); 
+  background-color: var(--bg-modal);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,7 +73,9 @@
   cursor: pointer;
   font-weight: 700;
   font-size: 14px;
-  transition: transform 0.1s, opacity 0.2s;
+  transition:
+    transform 0.1s,
+    opacity 0.2s;
 }
 
 .btn-red {
@@ -85,10 +87,12 @@
   cursor: pointer;
   font-weight: 700;
   font-size: 14px;
-  transition: transform 0.1s, opacity 0.2s;
+  transition:
+    transform 0.1s,
+    opacity 0.2s;
 }
 
-.btn-light:active, 
+.btn-light:active,
 .btn-red:active {
   transform: scale(0.98);
 }
@@ -97,6 +101,6 @@
   .profile-container {
     flex-direction: column;
     padding: 20px;
-    padding-bottom: 80px; 
+    padding-bottom: 80px;
   }
 }

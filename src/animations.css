@@ -1,5 +1,3 @@
-
-
 /* =========================================
    CONSOLE OS ANIMATIONS
    ========================================= */
@@ -7,7 +5,7 @@
 /* 1. EFFET BORDURE ROTATIVE (Login/Register/Logout) */
 .console-border-card {
   position: relative;
-  background: var(--color-bg-btn) ;
+  background: var(--color-bg-btn);
   border-radius: 20px;
   box-shadow: var(--shadow-main);
   z-index: 0;
@@ -26,8 +24,6 @@
 
 .console-border-card-profile {
   position: relative;
-  /* background: var(--color-bg-btn); */
-  /* border: 1px solid var(--color-border); */
   border-radius: 20px;
   box-shadow: var(--shadow-secondary);
   z-index: 0;
@@ -37,17 +33,17 @@
 /* Le dégradé qui tourne derrière */
 .console-border-card::before,
 .console-border-card-secondary::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
   background: conic-gradient(
-    transparent 0deg, 
-    #0068AC 90deg, 
-    #00ffff 180deg, 
-    #0068AC 270deg, 
+    transparent 0deg,
+    #0068ac 90deg,
+    #00ffff 180deg,
+    #0068ac 270deg,
     transparent 360deg
   );
   animation: rotate-border 4s linear infinite;
@@ -55,17 +51,17 @@
 }
 
 .console-border-card-profile::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -250%;
   left: -250%;
   width: 600%;
-  height: 600%; 
+  height: 600%;
   background: conic-gradient(
-    transparent 0deg, 
-    #0068AC 90deg, 
-    #00ffff 180deg, 
-    #0068AC 270deg, 
+    transparent 0deg,
+    #0068ac 90deg,
+    #00ffff 180deg,
+    #0068ac 270deg,
     transparent 360deg
   );
   animation: rotate-border 4s linear infinite;
@@ -89,7 +85,7 @@
 }
 
 .console-border-card::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 1px;
   background: var(--color-bg-btn);
@@ -98,7 +94,7 @@
 }
 
 .console-border-card-secondary::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 2px;
   background: var(--gradient-card-main-input);
@@ -107,7 +103,7 @@
 }
 
 .console-border-card-profile::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 1px;
   border-radius: 14px;
@@ -116,8 +112,12 @@
 }
 
 @keyframes rotate-border {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes slide-up-fade {
@@ -132,62 +132,71 @@
 }
 
 .console-entry-anim {
-  opacity: 0; 
+  opacity: 0;
   animation: slide-up-fade 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-.console-entry-anim:nth-child(1) { animation-delay: 0.05s; }
-.console-entry-anim:nth-child(2) { animation-delay: 0.1s; }
-.console-entry-anim:nth-child(3) { animation-delay: 0.15s; }
-.console-entry-anim:nth-child(4) { animation-delay: 0.2s; }
-.console-entry-anim:nth-child(5) { animation-delay: 0.25s; }
+.console-entry-anim:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.console-entry-anim:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.console-entry-anim:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.console-entry-anim:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.console-entry-anim:nth-child(5) {
+  animation-delay: 0.25s;
+}
 
-/* 3. EFFET SURVOL PHYSIQUE (Game Cards) */
 .console-card-hover {
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              box-shadow 0.3s ease,
-              filter 0.3s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
 }
 
 .console-card-hover:hover {
   transform: scale(1.05) translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 
-              0 0 15px rgba(90, 242, 255, 0.3); /* Ta couleur --color-text */
+  box-shadow:
+    0 15px 30px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(90, 242, 255, 0.3);
   z-index: 10;
   filter: brightness(1.1);
 }
 
 .console-btn-click {
-  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), 
-              filter 0.2s ease,
-              box-shadow 0.2s ease;
+  transition:
+    transform 0.1s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.2s ease,
+    box-shadow 0.2s ease;
   cursor: pointer;
-  /* Pour éviter que le texte soit sélectionné quand on clique vite */
-  user-select: none; 
+  user-select: none;
 }
 
-/* Au survol : ça brille un peu */
 .console-btn-click:hover {
   filter: brightness(1.2);
-  transform: translateY(-2px); /* Monte légèrement */
+  transform: translateY(-2px);
 }
 
-/* Au clic (Active) : ça s'écrase comme un bouton d'arcade */
 .console-btn-click:active {
-  transform: scale(0.96) translateY(0); /* Rétrécit et redescend */
+  transform: scale(0.96) translateY(0);
   filter: brightness(0.9);
 }
 
 @keyframes slideOut {
-  to { 
-    opacity: 0; 
-    transform: translateX(50px); 
-    max-height: 0; 
-    margin: 0; 
-    padding: 0; 
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+    max-height: 0;
+    margin: 0;
+    padding: 0;
   }
 }
 .game-card.deleting {
   animation: slideOut 0.5s forwards;
-  pointer-events: none; /* Empêcher les clics pendant l'animation */
+  pointer-events: none;
 }

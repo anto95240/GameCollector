@@ -89,7 +89,7 @@
   0% {
     transform: translateX(-110%);
   }
-  
+
   50% {
     transform: translateX(340%);
   }
@@ -103,8 +103,7 @@
   position: absolute;
   inset: 0;
   background-image:
-    var(--gradient-chargment-vertical),
-    var(--gradient-chargement-horizontal);
+    var(--gradient-chargment-vertical), var(--gradient-chargement-horizontal);
   background-size: 30px 30px;
   z-index: 1;
 }

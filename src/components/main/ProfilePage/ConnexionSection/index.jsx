@@ -3,17 +3,34 @@ import ActionButtons from "../../../secondary/Profile/ActionButtons";
 import InlineFormItem from "../../../secondary/Profile/InlineFormItem";
 import "./ConnexionSection.css";
 
-const ConnexionSection = ({ user, form, setForm, uiState, setUiState, t, handleSaveProfile }) => {
-  
+const ConnexionSection = ({
+  user,
+  form,
+  setForm,
+  uiState,
+  setUiState,
+  t,
+  handleSaveProfile,
+}) => {
   const handleCancel = () => {
-    setUiState(prev => ({ ...prev, showEmailForm: false, showPasswordForm: false }));
+    setUiState((prev) => ({
+      ...prev,
+      showEmailForm: false,
+      showPasswordForm: false,
+    }));
   };
 
   return (
-    <ProfileCard 
-      id="login-section" 
-      title={t("profile.links.authMethod")} 
-      actions={<ActionButtons onCancel={handleCancel} onSave={handleSaveProfile} t={t} />}
+    <ProfileCard
+      id="login-section"
+      title={t("profile.links.authMethod")}
+      actions={
+        <ActionButtons
+          onCancel={handleCancel}
+          onSave={handleSaveProfile}
+          t={t}
+        />
+      }
     >
       <div className="connexion-container">
         {/* Email */}
@@ -23,9 +40,13 @@ const ConnexionSection = ({ user, form, setForm, uiState, setUiState, t, handleS
           placeholder={t("profile.edit.newEmail")}
           showForm={uiState.showEmailForm}
           inputType="email"
-          toggleForm={() => setUiState(p => ({ ...p, showEmailForm: !p.showEmailForm }))}
+          toggleForm={() =>
+            setUiState((p) => ({ ...p, showEmailForm: !p.showEmailForm }))
+          }
           formValue={form.email}
-          onFormChange={(e) => setForm(p => ({ ...p, email: e.target.value }))}
+          onFormChange={(e) =>
+            setForm((p) => ({ ...p, email: e.target.value }))
+          }
           buttonLabel={t("profile.edit.changeEmail")}
         />
 
@@ -36,9 +57,13 @@ const ConnexionSection = ({ user, form, setForm, uiState, setUiState, t, handleS
           placeholder={t("profile.edit.newPassword")}
           showForm={uiState.showPasswordForm}
           inputType="password"
-          toggleForm={() => setUiState(p => ({ ...p, showPasswordForm: !p.showPasswordForm }))}
+          toggleForm={() =>
+            setUiState((p) => ({ ...p, showPasswordForm: !p.showPasswordForm }))
+          }
           formValue={form.password}
-          onFormChange={(e) => setForm(p => ({ ...p, password: e.target.value }))}
+          onFormChange={(e) =>
+            setForm((p) => ({ ...p, password: e.target.value }))
+          }
           buttonLabel={t("profile.edit.changePassword")}
         />
 
@@ -49,7 +74,9 @@ const ConnexionSection = ({ user, form, setForm, uiState, setUiState, t, handleS
               type="password"
               placeholder={t("profile.edit.confirmPassword")}
               value={form.confirmPassword}
-              onChange={(e) => setForm(p => ({ ...p, confirmPassword: e.target.value }))}
+              onChange={(e) =>
+                setForm((p) => ({ ...p, confirmPassword: e.target.value }))
+              }
             />
           </div>
         )}

@@ -1,16 +1,16 @@
 .form-section {
-    padding: 25px;
-    border: 1px solid var(--color-border);
-    border-radius: 20px;
-    position: relative;
-    scroll-margin-top: 200px;
+  padding: 25px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  position: relative;
+  scroll-margin-top: 200px;
 }
 
 .form-section h3 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 18px;
-    color: var(--color-text);
-    font-family: var(--font-family-title);
-    padding-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: var(--color-text);
+  font-family: var(--font-family-title);
+  padding-bottom: 10px;
 }

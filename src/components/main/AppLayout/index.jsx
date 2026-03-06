@@ -6,20 +6,16 @@ import Navbar from "../Navbar";
 import BottomNav from "../../secondary/Navbar/BottomNav";
 import "./AppLayout.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowUp
-} 
-from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 const AppLayout = () => {
-  
   const { t } = useTranslation();
   const [showScrollToTopButton, setShowScrollToTopButton] = useState(false);
   const scrollContainerRef = useRef(null);
 
   const handleScroll = useCallback(() => {
     if (scrollContainerRef.current) {
-        setShowScrollToTopButton(scrollContainerRef.current.scrollTop > 50);
+      setShowScrollToTopButton(scrollContainerRef.current.scrollTop > 50);
     }
   }, []);
 
@@ -48,11 +44,11 @@ const AppLayout = () => {
 
       <BottomNav t={t} />
 
-      <div>        
+      <div>
         {showScrollToTopButton && (
-          <button 
-            className="return-top" 
-            onClick={scrollToTop}   
+          <button
+            className="return-top"
+            onClick={scrollToTop}
             aria-label="Retour en haut"
           >
             <FontAwesomeIcon icon={faArrowUp} />

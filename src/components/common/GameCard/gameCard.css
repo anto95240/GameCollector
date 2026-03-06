@@ -1,155 +1,155 @@
 /* --- BASE CARD --- */
 .game-card {
-    border-radius: 20px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    aspect-ratio: 3/4; 
-    width: 210px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    flex-shrink: 0; 
-    scroll-snap-align: center;
-    background-color: #C65252;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  width: 210px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  background-color: #c65252;
 }
 
 .game-cards-container {
-    display: flex;
-    gap: 20px;
-    padding: 20px 0;
-    overflow-x: auto;
-    width: 100%;
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  overflow-x: auto;
+  width: 100%;
 }
 
 .card-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
 .game-title {
-    position: relative;
-    z-index: 2;
-    margin-top: auto;
-    text-align: center;    
-    font-size: clamp(14px, 2vw, 18px);
-    font-family: var(--font-family-title);
-    margin-bottom: 15px;
-    padding: 0 10px;
-    color: white;
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  text-align: center;
+  font-size: clamp(14px, 2vw, 18px);
+  font-family: var(--font-family-title);
+  margin-bottom: 15px;
+  padding: 0 10px;
+  color: white;
 }
 
 /* --- VARIANT: LIST --- */
 .card-list {
-    background-color: #C65252; /* Couleur de secours */
+  background-color: #c65252; /* Couleur de secours */
 }
 
 .card-top {
-    position: relative;
-    z-index: 3;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
 }
 
 .icon-heart {
-    font-size: 22px;
-    cursor: pointer;
-    opacity: 0.7;
-    transition: all 0.2s ease;
-    filter: drop-shadow(var( --shadow-favorite));
-    color: #89C3CB;
+  font-size: 22px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  filter: drop-shadow(var(--shadow-favorite));
+  color: #89c3cb;
 }
 
 .icon-heart.favorite {
-    opacity: 1;
-    color: var(--color-logo-deconnexion);
+  opacity: 1;
+  color: var(--color-logo-deconnexion);
 }
 
 .btn-dots {
-    background: var(--bg-modal);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    color: white;
-    cursor: pointer;
-    transition: background 0.2s;
+  background: var(--bg-modal);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 /* --- VARIANT: ADD --- */
 .card-add {
-    background: transparent;
-    border: 2px dashed var(--color-border);
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    color: var(--color-text);
+  background: transparent;
+  border: 2px dashed var(--color-border);
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  color: var(--color-text);
 }
 
 .plus-icon {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .context-menu {
-    position: absolute;
-    top: 50px;
-    right: 15px;
-    min-width: 120px;
-    background: var(--color-bg-btn);
-    border-radius: 12px;
-    padding: 8px;
-    z-index: 20;
+  position: absolute;
+  top: 50px;
+  right: 15px;
+  min-width: 120px;
+  background: var(--color-bg-btn);
+  border-radius: 12px;
+  padding: 8px;
+  z-index: 20;
 }
 
 .ctx-item {
-    border: none;
-    background: none;
-    padding: 10px;
-    text-align: left;
-    font-size: 13px;
-    cursor: pointer;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    border-radius: 6px;
-    color: var(--color-text);
-    width: 100%;
+  border: none;
+  background: none;
+  padding: 10px;
+  text-align: left;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-radius: 6px;
+  color: var(--color-text);
+  width: 100%;
 }
 
 .ctx-item:hover {
-    background: var(--bg-hover-theme-lang);
+  background: var(--bg-hover-theme-lang);
 }
 
 @media (min-width: 1024px) {
-    .game-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 5px 20px var(--bg-modal);
-        z-index: 5;
-    }
+  .game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 20px var(--bg-modal);
+    z-index: 5;
+  }
 }
 
 @media (max-width: 1023px) {
-    .game-card {
-        transform: scale(0.95);
-        opacity: 0.7;
-    }
+  .game-card {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
 
-    .game-card.active-mobile {
-        transform: scale(1.05);
-        opacity: 1;
-    }
+  .game-card.active-mobile {
+    transform: scale(1.05);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 787px) {
-    .game-card {
-        width: 180px;
-    }
+  .game-card {
+    width: 180px;
+  }
 }

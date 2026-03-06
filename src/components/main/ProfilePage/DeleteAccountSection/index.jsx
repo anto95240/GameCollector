@@ -4,10 +4,10 @@ import "./DeleteAccountSection.css";
 
 const DeleteAccountSection = ({ setUiState, t }) => {
   return (
-    <ProfileCard 
-      id="account-delete-section" 
+    <ProfileCard
+      id="account-delete-section"
       className="delete-account-card"
-      title={t("profile.links.deleteAccount")} 
+      title={t("profile.links.deleteAccount")}
     >
       <div className="delete-content-row">
         <div className="delete-warning-container">
@@ -16,11 +16,13 @@ const DeleteAccountSection = ({ setUiState, t }) => {
             {t("profile.delete.warning2")}
           </p>
         </div>
-        
+
         <div className="delete-action-wrapper">
-          <ActionButtons 
-            onDelete={() => setUiState(prev => ({ ...prev, showDeletePopup: true }))}
-            t={t} 
+          <ActionButtons
+            onDelete={() =>
+              setUiState((prev) => ({ ...prev, showDeletePopup: true }))
+            }
+            t={t}
           />
         </div>
       </div>

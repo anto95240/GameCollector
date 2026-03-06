@@ -140,13 +140,16 @@
       "favorite": "Favorites",
       "platform": "Platform",
       "genre": "Genre",
-      "recentlyAdded": "Recently added"
+      "recentlyAdded": "Recently added",
+      "loading": "Loading your collection...",
+      "noGame": "No games found. Start by adding one!"
     },
 
     "gameList": {
       "searchPlaceholder": "Search for a game...",
       "addGame": "Add a game",
       "noGame": "No games found",
+      "totalGames": "game(s) in total",
 
       "filters": {
         "title": "Filter",

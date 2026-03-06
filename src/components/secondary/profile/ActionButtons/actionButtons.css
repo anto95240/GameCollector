@@ -6,7 +6,9 @@
   font-family: var(--font-family-title);
   cursor: pointer;
   border: none;
-  transition: transform 0.1s, opacity 0.2s;
+  transition:
+    transform 0.1s,
+    opacity 0.2s;
 }
 
 .btn-action:active {

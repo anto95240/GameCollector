@@ -12,18 +12,19 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="navbar px-4 sm:px-6"> 
-
+      <header className="navbar px-4 sm:px-6">
         <img className="navbar-img" src="/logo.png" alt="Logo" />
 
-        <nav className="navbar-links"> 
-            <NavLinks t={t} />
+        <nav className="navbar-links">
+          <NavLinks t={t} />
         </nav>
 
-        <NavbarInfo t={t} setActionsOpen={setActionsOpen} actionsOpen={actionsOpen} /> 
-        
+        <NavbarInfo
+          t={t}
+          setActionsOpen={setActionsOpen}
+          actionsOpen={actionsOpen}
+        />
       </header>
-
     </>
   );
 };

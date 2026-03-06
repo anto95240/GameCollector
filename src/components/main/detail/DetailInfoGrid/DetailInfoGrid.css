@@ -37,35 +37,37 @@
   font-size: 1.05rem;
 }
 
-.note-icon-title { 
-    color: var(--color-text); 
-    margin-right: 10px; 
-    opacity: 0.8; 
+.note-icon-title {
+  color: var(--color-text);
+  margin-right: 10px;
+  opacity: 0.8;
 }
 
 .user-note-container {
-    background: var(--bg-accordeon-category);
-    border-radius: 12px;
-    padding: 20px;
-    position: relative;
-    margin-top: 10px;
+  background: var(--bg-accordeon-category);
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  margin-top: 10px;
 }
 
 .user-note-text {
-    font-style: italic;
-    font-size: 15px;
-    line-height: 1.6;
-    margin: 0;
-    opacity: 0.9;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.9;
 }
 
 .user-note-container::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 20px; bottom: 20px;
-    width: 3px;
-    background: var(--gradient-blue); 
-    border-radius: 0 4px 4px 0;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20px;
+  bottom: 20px;
+  width: 3px;
+  background: var(--gradient-blue);
+  border-radius: 0 4px 4px 0;
 }
 
 .data-col {

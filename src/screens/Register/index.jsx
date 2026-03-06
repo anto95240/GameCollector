@@ -17,10 +17,10 @@ const Register = () => {
   const [step, setStep] = useState(1);
   const [isAnimating, setIsAnimating] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
-  const [error, setError] = useState(""); // [2] État pour les erreurs API
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
-  const { register } = useApiAuth(); // [3] Récupération de la fonction register
+  const { register } = useApiAuth();
 
   const [formData, setFormData] = useState({
     firstname: "",
@@ -28,51 +28,52 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
-    passwordConfirm: "", // Note : Le back attend souvent "passwordConfirm"
+    passwordConfirm: "",
   });
 
   const handleChange = (e) => {
-    // On efface l'erreur dès que l'utilisateur modifie un champ
-    if (error) setError(""); 
+    if (error) setError("");
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleNext = async (e) => {
-      e.preventDefault();
-      
-      if (step < 3) {
-        setStep(step + 1);
-        return;
+    e.preventDefault();
+
+    if (step < 3) {
+      setStep(step + 1);
+      return;
+    }
+
+    if (formData.password !== formData.passwordConfirm) {
+      setError(
+        t("auth.register.errorPasswordsMatch") ||
+          "Les mots de passe ne correspondent pas",
+      );
+      return;
+    }
+
+    setIsAnimating(true);
+    setError("");
+
+    try {
+      const response = await register(formData);
+
+      if (response.user) {
+        localStorage.setItem("user", JSON.stringify(response.user));
+        setShowLoading(true);
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
       }
-
-      // [CORRECTION] Validation avec la nouvelle clé
-      if (formData.password !== formData.passwordConfirm) {
-        setError(t('auth.register.errorPasswordsMatch') || "Les mots de passe ne correspondent pas");
-        return;
-      }
-
-      setIsAnimating(true);
-      setError("");
-
-      try {
-        // [CORRECTION] Plus besoin de mapping manuel, les noms sont bons
-        const response = await register(formData);
-
-        if (response.user) {
-             localStorage.setItem("user", JSON.stringify(response.user));
-             setShowLoading(true);
-             setTimeout(() => {
-                 navigate("/dashboard");
-             }, 2000);
-        }
-
-      } catch (err) {
-        console.error("Register Error", err);
-        const message = err.response?.data?.message || "Une erreur est survenue lors de l'inscription.";
-        setError(message);
-        setIsAnimating(false);
-        setShowLoading(false);
-      }
+    } catch (err) {
+      console.error("Register Error", err);
+      const message =
+        err.response?.data?.message ||
+        "Une erreur est survenue lors de l'inscription.";
+      setError(message);
+      setIsAnimating(false);
+      setShowLoading(false);
+    }
   };
 
   return (
@@ -80,8 +81,8 @@ const Register = () => {
       {showLoading && <ChargementPage variant="login" />}
       <div className="auth-container">
         <div className="auth-card register-card console-border-card">
-          <h2 className="auth-title">{t('auth.register.title')}</h2>
-          
+          <h2 className="auth-title">{t("auth.register.title")}</h2>
+
           <div className="steps-container">
             <div className="cyber-progress-track">
               <div
@@ -91,44 +92,68 @@ const Register = () => {
             </div>
             <div className="steps-labels">
               <span className={step >= 1 ? "active" : ""}>
-                {step === 1 ? `• ${t("auth.register.steps.identity")}` : t("auth.register.steps.identity")}
+                {step === 1
+                  ? `• ${t("auth.register.steps.identity")}`
+                  : t("auth.register.steps.identity")}
               </span>
               <span className={step >= 2 ? "active" : ""}>
-                {step === 2 ? `• ${t("auth.register.steps.account")}` : t("auth.register.steps.account")}
+                {step === 2
+                  ? `• ${t("auth.register.steps.account")}`
+                  : t("auth.register.steps.account")}
               </span>
               <span className={step >= 3 ? "active" : ""}>
-                {step === 3 ? `• ${t("auth.register.steps.security")}` : t("auth.register.steps.security")}
+                {step === 3
+                  ? `• ${t("auth.register.steps.security")}`
+                  : t("auth.register.steps.security")}
               </span>
             </div>
           </div>
 
           <form onSubmit={handleNext} className="auth-form">
-            
-            {/* Affichage des erreurs globales */}
             {error && (
-                <div className="error-message" style={{ color: "#ff4d4d", marginBottom: "1rem", textAlign:"center" }}>
-                    <FontAwesomeIcon icon={faExclamationCircle} style={{ marginRight: "8px" }}/>
-                    {error}
-                </div>
+              <div
+                className="error-message"
+                style={{
+                  color: "#ff4d4d",
+                  marginBottom: "1rem",
+                  textAlign: "center",
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faExclamationCircle}
+                  style={{ marginRight: "8px" }}
+                />
+                {error}
+              </div>
             )}
 
-            {step === 1 && <SignUpPart1 data={formData} update={handleChange} t={t} />}
-            {step === 2 && <SignUpPart2 data={formData} update={handleChange} t={t} />}
-            {step === 3 && <SignUpPart3 data={formData} update={handleChange} t={t} />}
-            
+            {step === 1 && (
+              <SignUpPart1 data={formData} update={handleChange} t={t} />
+            )}
+            {step === 2 && (
+              <SignUpPart2 data={formData} update={handleChange} t={t} />
+            )}
+            {step === 3 && (
+              <SignUpPart3 data={formData} update={handleChange} t={t} />
+            )}
+
             <div className="form-navigation">
               {step > 1 && (
                 <LoadingButton
-                  text={t('common.back')}
+                  text={t("common.back")}
                   type="button"
                   onClick={() => setStep(step - 1)}
                   variant="secondary"
                   className="flex-1"
-                  disabled={isAnimating} // On désactive le retour pendant l'envoi
+                  disabled={isAnimating}
                 />
               )}
               <LoadingButton
-                text={step === 3 ? t("auth.register.submit") : t("auth.register.next")}
+                text={
+                  step === 3
+                    ? t("auth.register.submit")
+                    : t("auth.register.next")
+                }
                 isAnimating={isAnimating}
                 showLoading={showLoading}
                 variant="cyber"
@@ -136,12 +161,12 @@ const Register = () => {
               />
             </div>
           </form>
-          
+
           <div className="auth-footer">
             <p>
-              {t('auth.register.alreadyUser')}
+              {t("auth.register.alreadyUser")}
               <Link to="/" className="cyber-link bold">
-                {t('auth.register.alreadyUserLink')}
+                {t("auth.register.alreadyUserLink")}
               </Link>
             </p>
           </div>
