@@ -1,0 +1,220 @@
+.liste-page-container {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-stage {
+  flex: 1;
+  position: relative;
+  padding: 20px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.list-carousel {
+  margin-top: 5%;
+  position: relative;
+  width: 100%;
+}
+
+.cards-wrapper {
+  padding: 20px 20px 30px 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 20px;
+  width: 90%;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cards-wrapper::-webkit-scrollbar {
+  height: 8px;
+  display: block;
+}
+
+.cards-wrapper::-webkit-scrollbar-track {
+  border-radius: 4px;
+  margin: 0 20px;
+}
+
+.cards-wrapper::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-thumb);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.cards-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text);
+}
+
+/* --- Flèches de navigation --- */
+.list-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bg-arrow);
+  border: 1px solid var(--color-custom-select);
+  border-radius: 50%;
+  color: #5af2ff;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.list-arrow:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.list-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.arrow-left {
+  left: 10px;
+}
+.arrow-right {
+  right: 10px;
+}
+
+.no-result-text {
+  margin: auto;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 20px 40px;
+  border-radius: 15px;
+  border: 1px dashed var(--color-text);
+  font-family: var(--font-family-title);
+  letter-spacing: 1px;
+}
+
+.modal-overlay-liste {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.modal-liste {
+  background-color: #001128;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid #0068ac;
+  max-width: 500px;
+  width: 100%;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+  font-family: var(--font-title, inherit);
+}
+
+.modal-text {
+  margin-bottom: 2rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.modal-game-name {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  font-style: italic;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (hover: none) {
+  .game-card:focus {
+    pointer-events: none;
+  }
+}
+
+.deleting {
+  animation: slideUpAndDelete 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes slideUpAndDelete {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    width: 210px;
+    margin-right: 20px;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+    width: 0px;
+    margin-right: 0px;
+    padding: 0;
+    border: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .liste-page-container {
+    padding: 15px;
+  }
+
+  .list-carousel {
+    margin-top: 20px;
+    width: 90%;
+  }
+
+  .cards-wrapper {
+    padding: 10px 20px 20px 20px;
+    gap: 15px;
+  }
+
+  .list-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .arrow-left {
+    left: 5px;
+  }
+  .arrow-right {
+    right: 5px;
+  }
+
+  .no-result-text {
+    width: 90%;
+    font-size: 1rem;
+    padding: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .arrow-left {
+    display: none;
+  }
+
+  .arrow-right {
+    display: none;
+  }
+}

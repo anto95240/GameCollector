@@ -1,0 +1,134 @@
+/* SIDEBAR (Desktop) */
+.sidebar-nav {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.nav-anchor {
+  background: transparent;
+  border: none;
+  text-align: left;
+  color: var(--text-search);
+  font-size: 14px;
+  font-family: var(--font-family-title);
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-anchor:hover {
+  color: var(--color-text);
+  transform: translateX(-5px);
+}
+
+.nav-anchor.active {
+  color: var(--color-text);
+  background: var(--bg-custom-select);
+  border-radius: 10px;
+  padding-left: 15px;
+  border-left: 3px solid var(--color-text);
+}
+
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-menu-mobile);
+  backdrop-filter: blur(5px);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-nav-content {
+  background: var(--color-text-btn);
+  padding: 30px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: var(--shadow-menu-mobile-addEditGame);
+  margin-bottom: 20px;
+}
+
+.mobile-nav-content h3 {
+  text-align: center;
+  color: var(--color-text);
+  margin-bottom: 10px;
+  font-family: var(--font-family-title);
+}
+
+.mobile-nav-item {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 12px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-radius: 10px;
+}
+
+.mobile-nav-item.active {
+  background: var(--color-custom-select);
+  color: var(--color-text);
+  font-weight: bold;
+}
+
+.floating-menu-btn {
+  position: fixed;
+  bottom: 160px;
+  right: 25px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: var(--bg-btn-menu-mobile);
+  color: var(--color-text-btn-account);
+  border: 1px solid var(--color-border-menu-mobile);
+  font-size: 24px;
+  z-index: 20;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.floating-menu-btn.open {
+  background: var(--bg-btn-close-menu-mobile);
+  border-color: var(--color-logo-deconnexion);
+  color: var(--color-logo-deconnexion);
+  transform: rotate(90deg);
+}
+
+.floating-menu-btn:active {
+  transform: scale(0.9);
+}
+
+@media (min-width: 901px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .floating-menu-btn {
+    display: flex;
+  }
+}

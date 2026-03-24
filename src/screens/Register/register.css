@@ -1,0 +1,94 @@
+.register-card {
+  max-width: 500px;
+}
+
+.steps-container {
+  margin-bottom: 25px;
+}
+
+.cyber-progress-track {
+  width: 100%;
+  height: 6px;
+  background: var(--bg-register-avancement);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.cyber-progress-fill {
+  height: 100%;
+  background: var(--color-text);
+  transition: width 0.4s ease;
+  box-shadow: 0 0 10px var(--color-text);
+}
+
+.steps-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: clamp(0.6rem, 2.5vw, 0.75rem);
+  text-transform: uppercase;
+}
+
+.step-label.active {
+  color: var(--color-text);
+  text-shadow: 0 0 5px var(--color-text);
+}
+
+.form-navigation {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.form-navigation .button-wrapper {
+  flex: 1;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.step-form-anim {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 15px;
+  background: none;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  z-index: 10;
+}
+
+.password-toggle-btn:hover {
+  opacity: 0.8;
+}
+
+.auth-input {
+  padding-right: 45px !important;
+}

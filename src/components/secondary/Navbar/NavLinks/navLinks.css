@@ -1,0 +1,18 @@
+.nav-item {
+  color: var(--color-text);
+  transition: 0.25s ease;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: var(--font-family-title);
+  white-space: nowrap;
+  width: 100%;
+}
+
+.nav-item.active,
+.nav-item:hover {
+  font-weight: bold;
+  font-family: var(--font-family-title);
+  font-size: clamp(20px, 2vw, 30px);
+  transform: scale(1.06);
+}

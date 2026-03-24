@@ -1,0 +1,12 @@
+.lang-option {
+  gap: 10px;
+  padding: 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.lang-option:hover {
+  background: var(--bg-hover-theme-lang);
+}

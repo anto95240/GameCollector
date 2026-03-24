@@ -1,0 +1,15 @@
+.theme-btn {
+  width: 52px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--color-bg);
+  transition: 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.theme-btn:hover {
+  background: var(--bg-hover-theme-lang);
+}
