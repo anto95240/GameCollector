@@ -1,3 +1,10 @@
+# 1.0.0 (2026-03-24)
+
+
+### Features
+
+* init commit ([5174c31](https://github.com/anto95240/GameCollector/commit/5174c31b40f4f3790821fdbaee5f8dece249d96f))
+
 # [1.1.0](https://github.com/zkerkeb-class/front-projet-final-anto95240-1/compare/v1.0.0...v1.1.0) (2026-03-06)
 
 
