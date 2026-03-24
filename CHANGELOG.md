@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/anto95240/GameCollector/compare/v1.0.0...v1.1.0) (2026-03-24)
+
+
+### Features
+
+* update css dashboard, detail, add-edit-game ([0f337b8](https://github.com/anto95240/GameCollector/commit/0f337b82e88a551d155f2d63660e7cb1dc4a9a7e))
+
 # 1.0.0 (2026-03-24)
 
 
