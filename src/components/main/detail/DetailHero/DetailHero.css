@@ -177,5 +177,6 @@
     font-size: 11px;
     height: 40px;
     white-space: nowrap;
+    gap: 5px;
   }
 }

@@ -350,7 +350,7 @@ export const useAddEditGame = () => {
       if (formData.image instanceof File) {
         submitData.append("image", formData.image);
       } else if (isEditMode && gameToEdit.image) {
-        submitData.append("image", gameToEdit.image); // Correction pour ne pas perdre l'image
+        submitData.append("image", gameToEdit.image);
       }
 
       if (isEditMode) {
@@ -359,7 +359,9 @@ export const useAddEditGame = () => {
         await createGame(submitData);
       }
 
-      setTimeout(() => navigate("/list"), 1500);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      setTimeout(() => navigate("/list"));
     } catch (error) {
       console.error("Erreur de sauvegarde", error.response?.data || error.message);
       alert("Une erreur est survenue lors de l'enregistrement. Vérifiez vos données.");

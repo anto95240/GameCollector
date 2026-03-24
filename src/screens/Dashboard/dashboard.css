@@ -23,3 +23,9 @@
     gap: 40px;
   }
 }
+
+@media (max-width: 768px) {
+  .dashboard-content {
+    overflow-y: auto;
+  }
+}
