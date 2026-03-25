@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/anto95240/GameCollector/compare/v1.1.0...v1.2.0) (2026-03-25)
+
+
+### Features
+
+* update detail mobil css ([f88e587](https://github.com/anto95240/GameCollector/commit/f88e5873825bf08e3ba73aec4f8b344bd8868106))
+
 # [1.1.0](https://github.com/anto95240/GameCollector/compare/v1.0.0...v1.1.0) (2026-03-24)
 
 
