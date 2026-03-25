@@ -4,7 +4,7 @@ import GameCard from "../../../common/GameCard";
 import { useApiGame } from "../../../../hooks/api/useApiGame";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { useActiveOnScroll } from "../../../../hooks/components/useActiveOnScroll";
+import { useActiveOnScroll } from "../../../../hooks/ui/useActiveOnScroll";
 import "./SectionGameCard.css";
 
 const SectionGameCard = () => {

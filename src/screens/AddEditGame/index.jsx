@@ -1,7 +1,5 @@
-import {
-  useAddEditGame,
-  SECTIONS,
-} from "../../hooks/components/useAddEditGame";
+import { useAddEditGame } from "../../hooks/games/useAddEditGame";
+import { SECTIONS } from "../../config/constants";
 import FormHeader from "../../components/secondary/AddEditGame/FormHeader";
 import SideNav from "../../components/common/SideNav";
 import GameForm from "../../components/main/AddEditGame/GameForm";
@@ -10,30 +8,11 @@ import "./AddEditGame.css";
 
 const AddEditGamePage = () => {
   const {
-    t,
-    navigate,
-    isEditMode,
-    gameToEdit,
-    activeSection,
-    showMobileMenu,
-    setShowMobileMenu,
-    scrollToSection,
-    formData,
-    setFormData,
-    handleChange,
-    handleFileChange,
-    handleSubmit,
-    tagInput,
-    setTagInput,
-    suggestedTags,
-    handleTagKeyDown,
-    addTag,
-    handleRemoveTag,
-    previewImg,
-    isAnimating,
-    optionsData,
-    availableTags,
-    handleAddNewMetadata,
+    t, navigate, isEditMode, gameToEdit, activeSection, showMobileMenu,
+    setShowMobileMenu, scrollToSection, formData, setFormData, handleChange,
+    handleFileChange, handleSubmit, tagInput, setTagInput, suggestedTags,
+    handleTagKeyDown, addTag, handleRemoveTag, previewImg, isAnimating,
+    optionsData, availableTags, handleAddNewMetadata,
   } = useAddEditGame();
 
   const title = isEditMode
@@ -58,11 +37,7 @@ const AddEditGamePage = () => {
 
         {isAnimating ? (
           <SuccessOverlay
-            message={
-              isEditMode
-                ? t("gameForm.loading.editTitle")
-                : t("gameForm.loading.addTitle")
-            }
+            message={isEditMode ? t("gameForm.loading.editTitle") : t("gameForm.loading.addTitle")}
             subMessage={t("gameForm.loading.message")}
           />
         ) : (

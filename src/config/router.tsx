@@ -1,82 +1,129 @@
 import { createBrowserRouter } from "react-router";
+import { lazy, Suspense } from "react";
 
-import HomePage from "../screens/Dashboard";
-import LoginPage from "../screens/Login"; 
-import AddEditGamePage from "../screens/AddEditGame";
-import CategoryPage from "../screens/Category";
-import DeconnexionPage from "../screens/Deconnexion";
-import ProfilePage from "../screens/Profile";
-import RegisterPage from "../screens/Register";
-import StatistiquePage from "../screens/Statistique";
-import ListePage from "../screens/Liste";
-import DetailPage from "../screens/Detail";
-import ProtectedRoutes from "../components/main/ProtectedRoutes"
+// On importe uniquement les layouts de base normalement
+import ProtectedRoutes from "../components/main/ProtectedRoutes";
 import AppLayout from "../components/main/AppLayout";
 import AuthLayout from "../components/main/AuthLayout";
 import ChargementPage from "../screens/Chargement";
 
+// 🚀 LAZY LOADING : Ces pages ne seront téléchargées que lorsqu'elles seront visitées !
+const HomePage = lazy(() => import("../screens/Dashboard"));
+const LoginPage = lazy(() => import("../screens/Login"));
+const AddEditGamePage = lazy(() => import("../screens/AddEditGame"));
+const CategoryPage = lazy(() => import("../screens/Category"));
+const DeconnexionPage = lazy(() => import("../screens/Deconnexion"));
+const ProfilePage = lazy(() => import("../screens/Profile"));
+const RegisterPage = lazy(() => import("../screens/Register"));
+const StatistiquePage = lazy(() => import("../screens/Statistique"));
+const ListePage = lazy(() => import("../screens/Liste"));
+const DetailPage = lazy(() => import("../screens/Detail"));
+
+// Un composant qui enveloppe nos routes paresseuses pour afficher le chargement
+const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
+  <Suspense fallback={<ChargementPage />}>{children}</Suspense>
+);
+
 let router = createBrowserRouter([
-    {
-      Component: AuthLayout,
-      children: [
-        {
-          path: "/",
-          Component: LoginPage,
-        }, 
-        {
-          path: "/register",
-          Component: RegisterPage,
-        },
-      ]
-    },
-    {
-      path: "/loading",
-      Component: ChargementPage,
-    },
-    {
-      path: "/logout",
-      Component: DeconnexionPage,
-    },
-    {
-      Component: ProtectedRoutes,
-      children: [
+  {
+    Component: AuthLayout,
+    children: [
+      {
+        path: "/",
+        element: (
+          <SuspenseWrapper>
+            <LoginPage />
+          </SuspenseWrapper>
+        ),
+      },
+      {
+        path: "/register",
+        element: (
+          <SuspenseWrapper>
+            <RegisterPage />
+          </SuspenseWrapper>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/loading",
+    Component: ChargementPage,
+  },
+  {
+    path: "/logout",
+    element: (
+      <SuspenseWrapper>
+        <DeconnexionPage />
+      </SuspenseWrapper>
+    ),
+  },
+  {
+    Component: ProtectedRoutes,
+    children: [
       {
         Component: AppLayout,
-        children: [  
+        children: [
           {
             path: "/dashboard",
-            Component: HomePage,
-          }, 
+            element: (
+              <SuspenseWrapper>
+                <HomePage />
+              </SuspenseWrapper>
+            ),
+          },
           {
             path: "/categories",
-            Component: CategoryPage,
+            element: (
+              <SuspenseWrapper>
+                <CategoryPage />
+              </SuspenseWrapper>
+            ),
           },
           {
             path: "/list",
-            Component: ListePage
+            element: (
+              <SuspenseWrapper>
+                <ListePage />
+              </SuspenseWrapper>
+            ),
           },
           {
             path: "/game/:gameName",
-            Component: DetailPage
+            element: (
+              <SuspenseWrapper>
+                <DetailPage />
+              </SuspenseWrapper>
+            ),
           },
           {
             path: "/game/add-edit-game",
-            Component: AddEditGamePage,
+            element: (
+              <SuspenseWrapper>
+                <AddEditGamePage />
+              </SuspenseWrapper>
+            ),
           },
           {
             path: "/profile",
-            Component: ProfilePage,
+            element: (
+              <SuspenseWrapper>
+                <ProfilePage />
+              </SuspenseWrapper>
+            ),
           },
           {
             path: "/statistics",
-            Component: StatistiquePage,
-          }
-        ]
-      }
-    ]
-  },  
-]
-);
+            element: (
+              <SuspenseWrapper>
+                <StatistiquePage />
+              </SuspenseWrapper>
+            ),
+          },
+        ],
+      },
+    ],
+  },
+]);
 
 export default router;
-

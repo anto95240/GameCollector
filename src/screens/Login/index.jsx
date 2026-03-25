@@ -1,45 +1,15 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router";
-import { useTranslation } from "react-i18next";
-import { useApiAuth } from "../../hooks/api/useApiAuth";
+import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
 import LoadingButton from "../../components/common/LoadingButton";
 import ChargementPage from "../Chargement";
 import AuthInput from "../../components/common/AuthInput";
+import { useLogin } from "../../hooks/auth/useLogin";
 import "./Login.css";
 
 const Login = () => {
-  const { t } = useTranslation();
-  const [email, setEmail] = useState("antoine@test.com");
-  const [password, setPassword] = useState("Test1234!");
-
-  const [error, setError] = useState("");
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [showLoading, setShowLoading] = useState(false);
-
-  const navigate = useNavigate();
-  const { login } = useApiAuth();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setIsAnimating(true);
-
-    try {
-      const response = await login({ login: email, password });
-      if (response.user) {
-        localStorage.setItem("user", JSON.stringify(response.user));
-        setShowLoading(true);
-        setTimeout(() => navigate("/dashboard"), 1500);
-      }
-    } catch (err) {
-      setError(err.response?.data?.message || t("auth.login.errorGeneric"));
-      setIsAnimating(false);
-      setShowLoading(false);
-    }
-  };
+  const { email, setEmail, password, setPassword, error, isAnimating, showLoading, handleSubmit, t } = useLogin();
 
   return (
     <>

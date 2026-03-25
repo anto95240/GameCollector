@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import GameCard from "../../../common/GameCard";
-import { useActiveOnScroll } from "../../../../hooks/components/useActiveOnScroll";
+import { useActiveOnScroll } from "../../../../hooks/ui/useActiveOnScroll";
 import { useApiAuth } from "../../../../hooks/api/useApiAuth";
 import "./DetailFooter.css";
 

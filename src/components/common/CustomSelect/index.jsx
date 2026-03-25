@@ -8,6 +8,7 @@ const CustomSelect = ({ options = [], value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
   
+  // Nouveaux refs et state pour détecter le débordement
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -27,8 +28,10 @@ const CustomSelect = ({ options = [], value, onChange }) => {
   const selectedLabel =
     options.find((opt) => String(opt.value) === String(value))?.label || value;
 
+  // Détecte intelligemment si le texte est trop grand
   useEffect(() => {
     const checkOverflow = () => {
+      // Un petit setTimeout garantit que le navigateur a fini de dessiner le texte
       setTimeout(() => {
         if (containerRef.current && textRef.current) {
           const cw = containerRef.current.clientWidth;
@@ -36,6 +39,7 @@ const CustomSelect = ({ options = [], value, onChange }) => {
           
           if (sw > cw) {
             setIsOverflowing(true);
+            // On calcule la distance (négative pour aller vers la gauche)
             textRef.current.style.setProperty('--scroll-amount', `-${sw - cw}px`);
           } else {
             setIsOverflowing(false);

@@ -12,7 +12,6 @@ const ChargementPage = ({ variant = "login" }) => {
     return t("auth.loading.statusLogin");
   };
 
-  // Stocker le contenu dans une variable
   const loadingContent = (
     <div className="loading-screen">
       <div className="loading-content">
@@ -29,7 +28,6 @@ const ChargementPage = ({ variant = "login" }) => {
     </div>
   );
 
-  // Utiliser createPortal pour l'injecter directement dans le <body>
   return createPortal(loadingContent, document.body);
 };
 

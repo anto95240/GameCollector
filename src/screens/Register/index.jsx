@@ -1,7 +1,4 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router";
-import { useTranslation } from "react-i18next";
-import { useApiAuth } from "../../hooks/api/useApiAuth";
+import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
@@ -10,52 +7,11 @@ import SignUpPart1 from "../../components/main/SignUpPart1";
 import SignUpPart2 from "../../components/main/SignUpPart2";
 import SignUpPart3 from "../../components/main/SignUpPart3";
 import ChargementPage from "../Chargement";
+import { useRegister } from "../../hooks/auth/useRegister";
 import "./Register.css";
 
 const Register = () => {
-  const { t } = useTranslation();
-  const [step, setStep] = useState(1);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [showLoading, setShowLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const navigate = useNavigate();
-  const { register } = useApiAuth();
-
-  const [formData, setFormData] = useState({
-    firstname: "", lastname: "", username: "", email: "", password: "", passwordConfirm: "",
-  });
-
-  const handleChange = (e) => {
-    if (error) setError("");
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleNext = async (e) => {
-    e.preventDefault();
-
-    if (step < 3) return setStep(step + 1);
-
-    if (formData.password !== formData.passwordConfirm) {
-      return setError(t("auth.register.errorPasswordsMatch") || "Les mots de passe ne correspondent pas");
-    }
-
-    setIsAnimating(true);
-    setError("");
-
-    try {
-      const response = await register(formData);
-      if (response.user) {
-        localStorage.setItem("user", JSON.stringify(response.user));
-        setShowLoading(true);
-        setTimeout(() => navigate("/dashboard"), 2000);
-      }
-    } catch (err) {
-      setError(err.response?.data?.message || "Une erreur est survenue lors de l'inscription.");
-      setIsAnimating(false);
-      setShowLoading(false);
-    }
-  };
+  const { step, setStep, formData, handleChange, handleNext, error, isAnimating, showLoading, t } = useRegister();
 
   return (
     <>

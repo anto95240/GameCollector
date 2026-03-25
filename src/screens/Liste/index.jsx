@@ -1,22 +1,23 @@
-import { useState, useRef, useEffect, useMemo, useCallback } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { useGameFiltering } from "../../hooks/components/useGameFiltering";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { useActiveOnScroll } from "../../hooks/components/useActiveOnScroll";
 
 import ListeHeader from "../../components/secondary/Liste/ListeHeader";
 import FilterPanel from "../../components/secondary/Liste/filtre/FilterPanel";
 import Pagination from "../../components/secondary/Liste/Pagination";
 import GameCard from "../../components/common/GameCard";
-import LoadingButton from "../../components/common/LoadingButton";
+import DeleteModal from "../../components/secondary/Liste/DeleteModal";
 
-import { useApiGame } from "../../hooks/api/useApiGame";
-import { useApiMetadata } from "../../hooks/api/useApiMetadata";
+import { useGameFiltering } from "../../hooks/games/useGameFiltering";
+import { useActiveOnScroll } from "../../hooks/ui/useActiveOnScroll";
+import { useGamesList } from "../../hooks/games/useGamesList";
+import { useCarousel } from "../../hooks/ui/useCarousel";
+import { useSearchBar } from "../../hooks/ui/useSearchBar";
 
 import "./Liste.css";
 
@@ -24,16 +25,11 @@ const ListePage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { getAllGames, deleteGame, updateGame } = useApiGame();
-  const { getAllMetadata } = useApiMetadata();
-
-  const [games, setGames] = useState([]);
-  const [metadata, setMetadata] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { searchTerm, setSearchTerm, debouncedTerm } = useSearchBar("");
+  const { games, metadata, isLoading, toggleFavorite, removeGame } =
+    useGamesList(debouncedTerm);
 
   const {
-    searchTerm,
-    setSearchTerm,
     selectedFilters,
     handleSelectFilter,
     removeFilter,
@@ -43,61 +39,37 @@ const ListePage = () => {
     filteredGames,
   } = useGameFiltering(games);
 
-  const fetchGamesAndMeta = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const [gamesData, metaData] = await Promise.all([
-        getAllGames(searchTerm),
-        getAllMetadata(),
-      ]);
-      setMetadata(metaData);
+  const { scrollRef, scroll } = useCarousel();
 
-      const rawGames = Array.isArray(gamesData)
-        ? gamesData
-        : gamesData.games || [];
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [activeMenuIndex, setActiveMenuIndex] = useState(null);
+  const [gameToDelete, setGameToDelete] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
 
-      const mappedGames = rawGames.map((game) => ({
-        ...game,
-        id: game._id,
-        genre:
-          metaData.genres?.find(
-            (g) => g._id === (game.genre_id?._id || game.genre_id),
-          )?.genre_name || "Inconnu",
-        platform:
-          metaData.platforms?.find(
-            (p) => p._id === (game.platform_id?._id || game.platform_id),
-          )?.platform_name || "Inconnu",
-        status:
-          metaData.statuses?.find(
-            (s) => s._id === (game.status_id?._id || game.status_id),
-          )?.status_name || "Inconnu",
-        rating: game.note ? `${Math.floor(game.note)} étoiles` : "Non noté",
-        image: game.image?.startsWith("http")
-          ? game.image
-          : `${import.meta.env.VITE_API_URL || "http://localhost:5001"}${game.image}`,
-      }));
+  const pageSize = 8;
+  const totalPages = Math.ceil(filteredGames.length / pageSize) || 1;
+  const paginatedGames = filteredGames.slice(
+    (page - 1) * pageSize,
+    page * pageSize,
+  );
 
-      setGames(mappedGames);
-    } catch (error) {
-      console.error("Erreur de chargement des jeux", error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [searchTerm, getAllGames, getAllMetadata]);
+  const activeId = useActiveOnScroll(
+    scrollRef,
+    ".observer-item",
+    paginatedGames,
+  );
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      fetchGamesAndMeta();
-    }, 300);
-    return () => clearTimeout(timeoutId);
-  }, [fetchGamesAndMeta]);
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
+    }
+  }, [debouncedTerm, selectedFilters, page]);
 
   const filterData = useMemo(() => {
     if (!metadata) return [];
     const years = [...new Set(games.map((g) => g.year).filter(Boolean))]
       .sort((a, b) => b - a)
       .map(String);
-
     return [
       {
         id: "genre",
@@ -139,106 +111,21 @@ const ListePage = () => {
     ];
   }, [metadata, games]);
 
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [activeMenuIndex, setActiveMenuIndex] = useState(null);
-
-  const [gameToDelete, setGameToDelete] = useState(null);
-  const [deletingId, setDeletingId] = useState(null);
-
-  const scrollRef = useRef(null);
-  const pageSize = 8;
-  const totalPages = Math.ceil(filteredGames.length / pageSize) || 1;
-
-  const paginatedGames = filteredGames.slice(
-    (page - 1) * pageSize,
-    page * pageSize,
-  );
-  const activeId = useActiveOnScroll(
-    scrollRef,
-    ".observer-item",
-    paginatedGames,
-  );
-
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      const { current } = scrollRef;
-      const itemNode = current.querySelector('.observer-item');
-      const scrollAmount = itemNode ? itemNode.offsetWidth + (window.innerWidth <= 768 ? 15 : 20) : 230;
-      
-      if (direction === "left")
-        current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-      else current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
-  };
-
-  const handleToggleMenu = (index, e) => {
-    e.stopPropagation();
-    setActiveMenuIndex(activeMenuIndex === index ? null : index);
-  };
-
-  const closeMenu = () => setActiveMenuIndex(null);
-
-  const handleToggleFavorite = async (clickedGame) => {
-    const newFavoriteState = !clickedGame.isFavorite;
-
-    setGames((prevGames) =>
-      prevGames.map((g) =>
-        g.id === clickedGame.id ? { ...g, isFavorite: newFavoriteState } : g,
-      ),
-    );
-
-    try {
-      const payload = {
-        name: clickedGame.name,
-        description: clickedGame.description || "",
-        year: clickedGame.year || "",
-        image: clickedGame.image || "",
-        status_id: clickedGame.status_id?._id || clickedGame.status_id,
-        genre_id: clickedGame.genre_id?._id || clickedGame.genre_id,
-        platform_id: clickedGame.platform_id?._id || clickedGame.platform_id,
-        tags_ids: clickedGame.tags_ids?.map((t) => t?._id || t) || [],
-        isSoon: clickedGame.isSoon || false,
-        isFavorite: newFavoriteState,
-        note: clickedGame.note || "",
-        comment: clickedGame.comment || "",
-        playing_time: clickedGame.playing_time || "",
-        developer: clickedGame.developer || "",
-        succes: clickedGame.succes || "",
-      };
-
-      await updateGame(clickedGame.id, payload);
-    } catch (error) {
-      console.error("Erreur lors de la mise à jour du favoris", error);
-      setGames((prevGames) =>
-        prevGames.map((g) =>
-          g.id === clickedGame.id ? { ...g, isFavorite: !newFavoriteState } : g,
-        ),
-      );
-    }
-  };
-
   const confirmDelete = () => {
     if (!gameToDelete) return;
     const id = gameToDelete.id;
-    setGameToDelete(null);
     setDeletingId(id);
-
+    setGameToDelete(null);
     setTimeout(async () => {
-      try {
-        await deleteGame(id);
-        await fetchGamesAndMeta();
-      } catch (error) {
-        console.error("Erreur lors de la suppression", error);
-      } finally {
-        setDeletingId(null);
-      }
+      await removeGame(id);
+      setDeletingId(null);
     }, 400);
   };
 
   return (
     <div
       className="liste-page-container w-full flex flex-col"
-      onClick={closeMenu}
+      onClick={() => setActiveMenuIndex(null)}
     >
       <ListeHeader
         searchTerm={searchTerm}
@@ -251,12 +138,7 @@ const ListePage = () => {
 
       <div className="main-stage">
         {isLoading && games.length === 0 ? (
-          <p
-            className="loading-text"
-            style={{ textAlign: "center", width: "100%", marginTop: "50px" }}
-          >
-            Chargement...
-          </p>
+          <p className="loading-text text-center w-full mt-12">Chargement...</p>
         ) : (
           <div className="list-carousel mx-auto">
             <button
@@ -271,36 +153,41 @@ const ListePage = () => {
 
             <div className="cards-wrapper mx-auto" ref={scrollRef}>
               {paginatedGames.length > 0 ? (
-                paginatedGames.map((game, index) => (
-                  <div
-                    key={game.id}
-                    className={`console-entry-anim observer-item ${deletingId === game.id ? "deleting" : ""}`}
-                    data-id={String(game.id)}
-                  >
+                <>
+                  {paginatedGames.map((game, index) => (
+                    <div
+                      key={game.id}
+                      data-id={String(game.id)}
+                      className={`console-entry-anim observer-item ${deletingId === game.id ? "deleting" : ""}`}
+                    >
+                      <GameCard
+                        game={game}
+                        index={index}
+                        variant="list"
+                        isActive={activeId === String(game.id)}
+                        activeMenuIndex={activeMenuIndex}
+                        onToggleMenu={(i, e) => {
+                          e.stopPropagation();
+                          setActiveMenuIndex(activeMenuIndex === i ? null : i);
+                        }}
+                        onDeleteRequest={() => setGameToDelete(game)}
+                        onToggleFavorite={toggleFavorite}
+                        t={t}
+                      />
+                    </div>
+                  ))}
+
+                  <div className="shrink-0 observer-item">
                     <GameCard
-                      game={game}
-                      index={index}
-                      variant="list"
-                      isActive={activeId === String(game.id)}
-                      activeMenuIndex={activeMenuIndex}
-                      onToggleMenu={handleToggleMenu}
-                      onDeleteRequest={() => setGameToDelete(game)}
-                      onToggleFavorite={handleToggleFavorite}
+                      variant="add"
                       t={t}
+                      onClick={() => navigate("/game/add-edit-game")}
                     />
                   </div>
-                ))
+                </>
               ) : (
-                <p className="no-result-text m-auto">{t("gameList.noGame")}</p>
+                <p className="no-result-text m-auto">Aucun jeu trouvé</p>
               )}
-
-              <div className="shrink-0 observer-item">
-                <GameCard
-                  variant="add"
-                  t={t}
-                  onClick={() => navigate("/game/add-edit-game")}
-                />
-              </div>
             </div>
 
             <button
@@ -339,33 +226,12 @@ const ListePage = () => {
         resultCount={filteredGames.length}
       />
 
-      {gameToDelete && (
-        <div
-          className="modal-overlay-liste"
-          onClick={() => setGameToDelete(null)}
-        >
-          <div className="modal-liste" onClick={(e) => e.stopPropagation()}>
-            <h4 className="modal-title">{t("gameList.confirmDelete.title")}</h4>
-            <p className="modal-text">
-              {t("gameList.confirmDelete.message")}
-              <br />
-              <span className="modal-game-name">"{gameToDelete.name}"</span>
-            </p>
-            <div className="modal-actions">
-              <LoadingButton
-                variant="secondary"
-                text={t("common.cancel")}
-                onClick={() => setGameToDelete(null)}
-              />
-              <LoadingButton
-                variant="danger"
-                text={t("gameList.confirmDelete.confirm")}
-                onClick={confirmDelete}
-              />
-            </div>
-          </div>
-        </div>
-      )}
+      <DeleteModal
+        game={gameToDelete}
+        onClose={() => setGameToDelete(null)}
+        onConfirm={confirmDelete}
+        t={t}
+      />
     </div>
   );
 };

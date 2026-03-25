@@ -1,5 +1,5 @@
 import "./SectionStatPrimary.css";
-import { useDashboard } from "../../../../hooks/components/useDashboard";
+import { useDashboard } from "../../../../hooks/dashboard/useDashboard";
 
 const GameCard = ({ t }) => {
   const { stats } = useDashboard();

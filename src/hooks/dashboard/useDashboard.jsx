@@ -17,6 +17,7 @@ export const useDashboard = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        let isMounted = true;
         const fetchDashboardData = async () => {
             setIsLoading(true);
             try {
@@ -24,6 +25,8 @@ export const useDashboard = () => {
                     getAllGames(),
                     getAllMetadata()
                 ]);
+
+                if (!isMounted) return;
 
                 const gamesList = Array.isArray(gamesData) ? gamesData : gamesData.games || [];
                 
@@ -60,7 +63,8 @@ export const useDashboard = () => {
         };
 
         fetchDashboardData();
-    }, [getAllGames, getAllMetadata]);
+        return () => { isMounted = false; };
+    }, []);
 
     return {
         stats,

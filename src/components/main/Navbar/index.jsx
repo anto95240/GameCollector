@@ -3,7 +3,7 @@ import "./Navbar.css";
 import NavbarInfo from "../../secondary/Navbar/NavbarInfo";
 import NavLinks from "../../secondary/Navbar/NavLinks";
 
-import { useNavbar } from "./../../../hooks/components/useNavbar";
+import { useNavbar } from "../../../hooks/ui/useNavbar";
 
 const Navbar = () => {
   const { t, state, setters } = useNavbar();

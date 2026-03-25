@@ -25,6 +25,7 @@ const FloatingInput = ({
 
   useEffect(() => {
     const checkOverflow = () => {
+      // Un petit setTimeout garantit que le navigateur a fini de dessiner le texte
       setTimeout(() => {
         if (containerRef.current && textRef.current) {
           const cw = containerRef.current.clientWidth;
@@ -32,6 +33,7 @@ const FloatingInput = ({
           
           if (sw > cw) {
             setIsOverflowing(true);
+            // On calcule la distance (négative pour aller vers la gauche)
             textRef.current.style.setProperty('--scroll-amount', `-${sw - cw}px`);
           } else {
             setIsOverflowing(false);

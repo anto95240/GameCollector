@@ -5,6 +5,14 @@ export const useGameFiltering = (initialGames) => {
     const [selectedFilters, setSelectedFilters] = useState([]);
     const [page, setPage] = useState(1);
     
+    // 1. On pré-calcule les filtres parsés UNE SEULE FOIS quand ils changent
+    const parsedFilters = useMemo(() => {
+        return selectedFilters.map(filterTag => {
+            const [category, value] = filterTag.split(': ');
+            return { category: category.toLowerCase(), value };
+        });
+    }, [selectedFilters]);
+
     const filteredGames = useMemo(() => {
         if (!initialGames) return [];
 
@@ -13,11 +21,10 @@ export const useGameFiltering = (initialGames) => {
                 return false;
             }
 
-            if (selectedFilters.length > 0) {
-                const matchesAll = selectedFilters.every(filterTag => {
-                    const [category, value] = filterTag.split(': ');
-                    
-                    switch(category.toLowerCase()) {
+            if (parsedFilters.length > 0) {
+                // 2. On utilise les filtres déjà parsés
+                const matchesAll = parsedFilters.every(({ category, value }) => {
+                    switch(category) {
                         case "genre": return game.genre === value;
                         case "plateforme": return game.platform === value; 
                         case "année": return game.year?.toString() === value;
@@ -35,7 +42,7 @@ export const useGameFiltering = (initialGames) => {
             }
             return true;
         });
-    }, [initialGames, searchTerm, selectedFilters]);
+    }, [initialGames, searchTerm, parsedFilters]); // On dépend de parsedFilters ici
 
     const handleSelectFilter = (category, option) => {
         const newTag = `${category}: ${option}`;
@@ -45,24 +52,15 @@ export const useGameFiltering = (initialGames) => {
         }
     };
 
-    const removeFilter = (tag) => {
-        setSelectedFilters(prev => prev.filter(t => t !== tag));
-    };
-
+    const removeFilter = (tag) => setSelectedFilters(prev => prev.filter(t => t !== tag));
+    
     const clearAllFilters = () => {
         setSelectedFilters([]);
         setPage(1);
     };
 
     return {
-        searchTerm,
-        setSearchTerm,
-        selectedFilters,
-        handleSelectFilter,
-        removeFilter,
-        clearAllFilters,
-        page,
-        setPage,
-        filteredGames
+        searchTerm, setSearchTerm, selectedFilters, handleSelectFilter, 
+        removeFilter, clearAllFilters, page, setPage, filteredGames
     };
 };
