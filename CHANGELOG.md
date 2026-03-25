@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/anto95240/GameCollector/compare/v1.2.0...v1.3.0) (2026-03-25)
+
+
+### Features
+
+* Refactor + réorganisation hooks ([07a4a72](https://github.com/anto95240/GameCollector/commit/07a4a7207c0be64bd1e64b7b636660f9ff68c310))
+
 # [1.2.0](https://github.com/anto95240/GameCollector/compare/v1.1.0...v1.2.0) (2026-03-25)
 
 
