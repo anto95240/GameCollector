@@ -30,15 +30,15 @@
   overflow: hidden;
 }
 
-/* Le dégradé qui tourne derrière */
+/* Le dégradé qui tourne derrière (Taille fixe géante et centré pour éviter le recalcul) */
 .console-border-card::before,
 .console-border-card-secondary::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  top: 50%;
+  left: 50%;
+  width: 2000px;
+  height: 2000px;
   background: conic-gradient(
     transparent 0deg,
     #0068ac 90deg,
@@ -53,10 +53,10 @@
 .console-border-card-profile::before {
   content: "";
   position: absolute;
-  top: -250%;
-  left: -250%;
-  width: 600%;
-  height: 600%;
+  top: 50%;
+  left: 50%;
+  width: 2000px;
+  height: 2000px;
   background: conic-gradient(
     transparent 0deg,
     #0068ac 90deg,
@@ -76,14 +76,15 @@
   animation: rotate-border 4s linear infinite reverse;
 }
 
+/* Optimisation pour la carte graphique */
 .console-border-card::before,
 .console-border-card-secondary::before,
 .console-border-card-profile::before {
   will-change: transform;
   backface-visibility: hidden;
-  transform: translateZ(0);
 }
 
+/* L'intérieur des cartes (Ce qui masque le centre du dégradé) */
 .console-border-card::after {
   content: "";
   position: absolute;
@@ -111,14 +112,19 @@
   z-index: -1;
 }
 
+/* Animation de rotation du disque géant centré */
 @keyframes rotate-border {
   0% {
-    transform: rotate(0deg);
+    transform: translate(-50%, -50%) translateZ(0) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: translate(-50%, -50%) translateZ(0) rotate(360deg);
   }
 }
+
+/* =========================================
+   2. ANIMATIONS D'ENTRÉE ET INTERACTIONS
+   ========================================= */
 
 @keyframes slide-up-fade {
   from {
@@ -196,6 +202,7 @@
     padding: 0;
   }
 }
+
 .game-card.deleting {
   animation: slideOut 0.5s forwards;
   pointer-events: none;

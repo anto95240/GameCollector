@@ -148,7 +148,11 @@ const CategoryManager = ({ categoryType }) => {
             <CategoryForm
               categoryType={categoryType}
               isOpen={true}
-              onClose={() => setShowForm(false)}
+              onClose={() => {
+                setShowForm(false);
+                setEditMode(false);
+                setItemToEdit(null);
+              }}
               isEdit={editMode}
               initialData={itemToEdit}
               onSuccess={handleSuccess}

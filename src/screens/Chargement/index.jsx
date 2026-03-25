@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import "./Chargement.css";
 import { useTranslation } from "react-i18next";
 
@@ -11,7 +12,8 @@ const ChargementPage = ({ variant = "login" }) => {
     return t("auth.loading.statusLogin");
   };
 
-  return (
+  // Stocker le contenu dans une variable
+  const loadingContent = (
     <div className="loading-screen">
       <div className="loading-content">
         <div className="cyber-spinner">
@@ -26,6 +28,9 @@ const ChargementPage = ({ variant = "login" }) => {
       <div className="grid-overlay"></div>
     </div>
   );
+
+  // Utiliser createPortal pour l'injecter directement dans le <body>
+  return createPortal(loadingContent, document.body);
 };
 
 export default ChargementPage;

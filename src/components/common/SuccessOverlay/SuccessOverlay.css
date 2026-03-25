@@ -22,7 +22,7 @@
 
 .success-icon {
   font-size: 80px;
-  color: var(--color-succes-modif-game); /* Vert succès */
+  color: var(--color-succes-modif-game);
   position: relative;
   z-index: 2;
 }

@@ -27,7 +27,7 @@
     "auth": {
       "login": {
         "title": "Connexion",
-        "usernameOrEmail": "Email d'identification ou Username",
+        "usernameOrEmail": "Email d'identification ou Nom d'utilisateur",
         "password": "Code d'accès",
         "showPassword": "Afficher le mot de passe",
         "submit": "Initialiser",
@@ -150,7 +150,7 @@
       "searchPlaceholder": "Rechercher un jeu...",
       "addGame": "Ajouter un jeu",
       "noGame": "Aucun jeu trouvé",
-      "totalGames": "jeu(s) au total",
+      "totalGames": "jeu(x) au total",
 
       "filters": {
         "title": "Filtre",

@@ -33,6 +33,31 @@
   transition: 0.2s ease;
   padding: 6px;
   z-index: 5;
+  max-width: calc(100% - 35px);
+  display: flex;
+  align-items: center;
+  overflow: hidden; /* Nécessaire pour l'animation interne */
+}
+
+/* --- ANIMATION DU TEXTE --- */
+.label-text {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.label-text:not(.scrolling) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.label-text.scrolling {
+  animation: scrollMarquee 5s linear infinite alternate;
+}
+
+@keyframes scrollMarquee {
+  0%, 15% { transform: translateX(0); }
+  85%, 100% { transform: translateX(var(--scroll-amount)); }
 }
 
 .floating-label .form-input:focus {
@@ -43,6 +68,7 @@
 
 .floating-label .form-input:focus + label,
 .floating-label .form-input:not(:placeholder-shown) + label {
+  --translate-y: 0;
   top: 0;
   left: 12px;
   transform: none;
@@ -50,10 +76,10 @@
   color: var(--color-text);
   background: var(--color-bg-card-page-active);
   border-radius: 0 0 10px 10px;
+  max-width: calc(100% - 24px); /* Evite que le label sorte du cadre quand il est en haut */
 }
 
 /* ------------------ GESTION DU TEXTE & LIENS ------------------ */
-
 .form-input::placeholder {
   color: var(--color-text);
 }
@@ -72,8 +98,7 @@
   z-index: 6;
 }
 
-/* ------------------ AUTOFILL — SUPPRESSION DU FOND BLANC ------------------ */
-
+/* ------------------ AUTOFILL ------------------ */
 .form-input:-webkit-autofill,
 .form-input:-webkit-autofill:hover,
 .form-input:-webkit-autofill:focus {
@@ -82,4 +107,8 @@
   -webkit-text-fill-color: var(--color-text) !important;
   caret-color: var(--color-text);
   transition: background-color 9999s ease-in-out 0s;
+  -webkit-transition: background-color 9999s ease-in-out 0s;
+  -moz-transition: background-color 9999s ease-in-out 0s;
+  -ms-transition: background-color 9999s ease-in-out 0s;
+  -o-transition: background-color 9999s ease-in-out 0s;
 }

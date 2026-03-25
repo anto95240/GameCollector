@@ -26,6 +26,8 @@
 
 @media (max-width: 768px) {
   .dashboard-content {
-    overflow-y: auto;
+    overflow-y: visible;
+    height: auto;
+    min-height: calc(100vh - 100px);
   }
 }

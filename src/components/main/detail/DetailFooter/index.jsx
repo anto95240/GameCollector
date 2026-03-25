@@ -27,22 +27,31 @@ const DetailFooter = () => {
       setIsLoading(true);
       try {
         const historyGames = await getGameHistory();
-
         const currentIdentifier = id || slug || gameName;
 
-        const viewedGames = historyGames.filter((g) => {
-          if (!g) return false;
+        // --- CORRECTION 1 : Filtrage strict pour éviter les doublons ---
+        const uniqueGames = [];
+        const seenIds = new Set();
+
+        for (const g of historyGames) {
+          if (!g) continue;
           const gameSlug = g.name
             .toLowerCase()
             .replace(/ /g, "-")
             .replace(/[^\w-]+/g, "");
-          return (
-            String(g._id) !== String(currentIdentifier) &&
-            gameSlug !== currentIdentifier
-          );
-        });
+            
+          const isCurrentGame = 
+            String(g._id) === String(currentIdentifier) || 
+            gameSlug === currentIdentifier;
 
-        const formattedGames = viewedGames.slice(0, 5).map((g) => ({
+          // On ajoute le jeu uniquement s'il n'est pas déjà dans la liste
+          if (!isCurrentGame && !seenIds.has(String(g._id))) {
+            seenIds.add(String(g._id));
+            uniqueGames.push(g);
+          }
+        }
+
+        const formattedGames = uniqueGames.slice(0, 5).map((g) => ({
           ...g,
           id: g._id,
           image: g.image?.startsWith("http")
@@ -110,20 +119,25 @@ const DetailFooter = () => {
           </button>
 
           <div className="recent-scroll no-scrollbar" ref={scrollRef}>
-            {suggestedGames.map((game) => (
-              <div
-                key={game.id}
-                className="recent-card-wrapper mx-auto observer-item"
-                data-id={String(game.id)}
-              >
-                <GameCard
-                  variant="dashboard"
-                  game={game}
-                  isActive={activeId === String(game.id)}
-                  t={t}
-                />
-              </div>
-            ))}
+            {suggestedGames.map((game, index) => {
+              // --- CORRECTION 2 : ID garanti 100% unique pour l'animation HTML ---
+              const uniqueDomId = `${game.id || 'game'}-${index}`;
+              
+              return (
+                <div
+                  key={uniqueDomId}
+                  className="recent-card-wrapper mx-auto observer-item"
+                  data-id={uniqueDomId}
+                >
+                  <GameCard
+                    variant="dashboard"
+                    game={game}
+                    isActive={activeId === uniqueDomId}
+                    t={t}
+                  />
+                </div>
+              );
+            })}
           </div>
 
           {/* Flèche droite */}
@@ -138,13 +152,7 @@ const DetailFooter = () => {
           </button>
         </div>
       ) : (
-        <p
-          style={{
-            textAlign: "center",
-            color: "var(--text-secondary)",
-            padding: "20px 0",
-          }}
-        >
+        <p className="noGame">
           Aucun autre jeu disponible.
         </p>
       )}

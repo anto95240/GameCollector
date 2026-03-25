@@ -56,17 +56,11 @@ const ProfilePage = () => {
     return () => sections.forEach((section) => observer.unobserve(section));
   }, []);
 
-  const toggleMobileMenu = () => {
-    setUiState((prev) => ({ ...prev, showMobileMenu: !prev.showMobileMenu }));
-  };
-
   const closeMobileMenu = () => {
     setUiState((prev) => ({ ...prev, showMobileMenu: false }));
   };
 
-  const handleScrollToSection = (e, id) => {
-    if (e) e.preventDefault();
-
+  const handleScrollToSection = (id) => {
     isClickScrolling.current = true;
     setActiveSection(id);
 

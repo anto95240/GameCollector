@@ -111,3 +111,17 @@
     width: 100%;
   }
 }
+@media (max-width: 768px) {
+  .year-chart-wrapper {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .year-chart-content {
+    padding: 15px 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

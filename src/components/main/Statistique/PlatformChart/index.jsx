@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import CustomSelect from "../../../common/CustomSelect";
 import { useApiGame } from "../../../../hooks/api/useApiGame";
 import { useApiMetadata } from "../../../../hooks/api/useApiMetadata";
-import "./platformChart.css";
+import "./PlatformChart.css";
 
 const CustomTooltip = ({ active, payload, externalActiveIndex }) => {
   if (active && payload && payload.length && externalActiveIndex !== null) {

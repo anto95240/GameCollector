@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import CustomSelect from "../../../common/CustomSelect";
 import { useApiGame } from "../../../../hooks/api/useApiGame";
 import { useApiMetadata } from "../../../../hooks/api/useApiMetadata";
-import "./yearChart.css";
+import "./YearChart.css";
 
 const CustomTooltip = ({ label, value, position }) => {
   if (!position) return null;

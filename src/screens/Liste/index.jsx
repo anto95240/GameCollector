@@ -162,7 +162,9 @@ const ListePage = () => {
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { current } = scrollRef;
-      const scrollAmount = 300;
+      const itemNode = current.querySelector('.observer-item');
+      const scrollAmount = itemNode ? itemNode.offsetWidth + (window.innerWidth <= 768 ? 15 : 20) : 230;
+      
       if (direction === "left")
         current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
       else current.scrollBy({ left: scrollAmount, behavior: "smooth" });

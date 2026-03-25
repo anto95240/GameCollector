@@ -7,6 +7,11 @@ import "./CustomSelect.css";
 const CustomSelect = ({ options = [], value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
+  
+  const containerRef = useRef(null);
+  const textRef = useRef(null);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+  
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -22,6 +27,32 @@ const CustomSelect = ({ options = [], value, onChange }) => {
   const selectedLabel =
     options.find((opt) => String(opt.value) === String(value))?.label || value;
 
+  useEffect(() => {
+    const checkOverflow = () => {
+      setTimeout(() => {
+        if (containerRef.current && textRef.current) {
+          const cw = containerRef.current.clientWidth;
+          const sw = textRef.current.scrollWidth;
+          
+          if (sw > cw) {
+            setIsOverflowing(true);
+            textRef.current.style.setProperty('--scroll-amount', `-${sw - cw}px`);
+          } else {
+            setIsOverflowing(false);
+          }
+        }
+      }, 100); 
+    };
+
+    const observer = new ResizeObserver(() => checkOverflow());
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+    
+    checkOverflow();
+    return () => observer.disconnect();
+  }, [selectedLabel, isOpen]);
+
   const handleSelect = (val) => {
     onChange(val);
     setIsOpen(false);
@@ -34,7 +65,12 @@ const CustomSelect = ({ options = [], value, onChange }) => {
         onClick={() => setIsOpen(!isOpen)}
         type="button"
       >
-        <span className="select-label">{selectedLabel}</span>
+        <div className="select-label-wrapper" ref={containerRef}>
+          <span className={`select-label ${isOverflowing ? "scrolling" : ""}`} ref={textRef}>
+            {selectedLabel}
+          </span>
+        </div>
+        
         <FontAwesomeIcon
           icon={faChevronDown}
           className={`select-arrow ${isOpen ? "rotate" : ""}`}

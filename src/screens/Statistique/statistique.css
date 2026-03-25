@@ -1,6 +1,8 @@
 .statistics-page-container {
   padding: 1rem;
   width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .charts-grid {
@@ -11,6 +13,7 @@
   margin-top: 5%;
   max-width: 100%;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 @media (min-width: 1024px) {

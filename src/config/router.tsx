@@ -12,16 +12,22 @@ import ListePage from "../screens/Liste";
 import DetailPage from "../screens/Detail";
 import ProtectedRoutes from "../components/main/ProtectedRoutes"
 import AppLayout from "../components/main/AppLayout";
+import AuthLayout from "../components/main/AuthLayout";
 import ChargementPage from "../screens/Chargement";
 
 let router = createBrowserRouter([
     {
-      path: "/",
-      Component: LoginPage,
-    }, 
-    {
-      path: "/register",
-      Component: RegisterPage,
+      Component: AuthLayout,
+      children: [
+        {
+          path: "/",
+          Component: LoginPage,
+        }, 
+        {
+          path: "/register",
+          Component: RegisterPage,
+        },
+      ]
     },
     {
       path: "/loading",

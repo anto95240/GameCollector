@@ -40,7 +40,6 @@
   opacity: 0.8;
 }
 
-/* État Actif */
 .bottom-nav-item.active {
   color: var(--color-text);
 }

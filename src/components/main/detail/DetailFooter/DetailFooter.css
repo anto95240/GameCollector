@@ -26,7 +26,7 @@
 
 .recent-card-wrapper {
   flex-shrink: 0;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   position: relative;
   padding: 10px 10px;
   border: 1px solid var(--color-border);
@@ -45,17 +45,23 @@
   border: none !important;
   background: transparent !important;
   outline: none !important;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   flex-shrink: 0;
 }
 
 .console-entry-anim {
-  scroll-snap-align: start;
+  scroll-snap-align: center;
+}
+
+.noGame {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 20px 0;
 }
 
 @media (max-width: 768px) {
   .recent-scroll {
-    padding: 10px 20px;
+    padding: 10px calc(50vw - 90px) !important;
   }
 
   .detail-carousel {
@@ -69,8 +75,8 @@
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+    padding-left: calc(50vw - 90px) !important;
+    padding-right: calc(50vw - 90px) !important;
   }
 }
 

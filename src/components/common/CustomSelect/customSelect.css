@@ -1,6 +1,6 @@
 .custom-select-container {
   position: relative;
-  width: fit-content;
+  width: 100%;
   min-width: 150px;
 }
 
@@ -19,9 +19,7 @@
   font-size: 14px;
   font-weight: 600;
   transition: all 0.2s ease;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  width: 100%;
 }
 
 .custom-select-trigger:hover,
@@ -33,6 +31,7 @@
 .select-arrow {
   font-size: 12px;
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  flex-shrink: 0; /* Empêche la flèche de s'écraser si le texte est long */
 }
 
 .select-arrow.rotate {
@@ -40,6 +39,37 @@
   color: var(--color-text);
 }
 
+/* --- GESTION DU TEXTE TROP LONG (ANIMATION) --- */
+.select-label-wrapper {
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+  text-align: left;
+}
+
+.select-label {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.select-label:not(.scrolling) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+.select-label.scrolling {
+  animation: scrollMarquee 4s linear infinite alternate;
+  padding-right: 5px;
+}
+
+@keyframes scrollMarquee {
+  0%, 15% { transform: translateX(0); }
+  85%, 100% { transform: translateX(var(--scroll-amount)); }
+}
+
+/* --- DROPDOWN --- */
 .custom-select-dropdown {
   position: absolute;
   top: 110%;
@@ -56,14 +86,8 @@
 }
 
 @keyframes fadeInDropdown {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .custom-option {

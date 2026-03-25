@@ -150,6 +150,7 @@ body {
   /* Base */
   --color-bg-btn: var(--bg-app);
   --color-text: var(--text-primary);
+  --color-text-alt: var(--text-inverse);
 
   /* Bordure */
   --color-border: var(--border-main);

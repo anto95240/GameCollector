@@ -1,4 +1,4 @@
-import "./actionButtons.css";
+import "./ActionButtons.css";
 
 const ActionButtons = ({
   onCancel,

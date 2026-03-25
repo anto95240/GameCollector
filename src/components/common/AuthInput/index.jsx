@@ -1,27 +1,22 @@
 import { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import "./FloatingInput.css";
+import "./AuthInput.css";
 
-const FloatingInput = ({
+const AuthInput = ({
   type = "text",
-  id,
   name,
   value,
   onChange,
-  label,
+  placeholder,
+  icon,
   required = false,
   isPassword = false,
-  autocomplete,
-  onKeyDown,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-  
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
-
-  const inputType = isPassword ? (showPassword ? "text" : "password") : type;
 
   useEffect(() => {
     const checkOverflow = () => {
@@ -29,52 +24,55 @@ const FloatingInput = ({
         if (containerRef.current && textRef.current) {
           const cw = containerRef.current.clientWidth;
           const sw = textRef.current.scrollWidth;
-          
           if (sw > cw) {
             setIsOverflowing(true);
-            textRef.current.style.setProperty('--scroll-amount', `-${sw - cw}px`);
+            textRef.current.style.setProperty("--scroll-amount", `-${sw - cw}px`);
           } else {
             setIsOverflowing(false);
           }
         }
-      }, 100); 
+      }, 100);
     };
 
-    const observer = new ResizeObserver(() => checkOverflow());
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+    const observer = new ResizeObserver(checkOverflow);
+    if (containerRef.current) observer.observe(containerRef.current);
     
     checkOverflow();
+
     return () => observer.disconnect();
-  }, [label, value]);
+  }, [placeholder, value]);
+
+  const inputType = isPassword ? (showPassword ? "text" : "password") : type;
 
   return (
-    <div className="form-group floating-label w-full">
+    <div className="input-group">
       <input
         type={inputType}
-        id={id}
-        className="form-input w-full"
         name={name}
+        placeholder=" "
         value={value}
         onChange={onChange}
-        onKeyDown={onKeyDown}
+        className="auth-input"
         required={required}
-        placeholder=" "
-        autoComplete={autocomplete}
       />
-      <label htmlFor={id} ref={containerRef}>
-        <span className={`label-text ${isOverflowing ? "scrolling" : ""}`} ref={textRef}>
-          {label} {required && <span>*</span>}
+      {icon && <FontAwesomeIcon icon={icon} className="input-icon" />}
+
+      {/* Faux placeholder animé */}
+      <div className="auth-label-container" ref={containerRef}>
+        <span
+          className={`auth-label-text ${isOverflowing ? "scrolling" : ""}`}
+          ref={textRef}
+        >
+          {placeholder}
         </span>
-      </label>
+      </div>
 
       {isPassword && (
         <button
           type="button"
-          className="eye-button cursor-pointer"
           onClick={() => setShowPassword(!showPassword)}
-          aria-label="Afficher/Masquer le mot de passe"
+          className="password-toggle-btn"
+          style={{ zIndex: 10 }}
         >
           <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
         </button>
@@ -83,4 +81,4 @@ const FloatingInput = ({
   );
 };
 
-export default FloatingInput;
+export default AuthInput;

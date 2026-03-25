@@ -1,4 +1,5 @@
 .filter-panel {
+  box-sizing: border-box;
   position: absolute;
   top: 0;
   right: 0;
@@ -186,9 +187,13 @@
 
 @media (max-width: 768px) {
   .filter-panel {
+    box-sizing: border-box;
     width: 100%;
     border-radius: 0;
     padding: 15px;
     backdrop-filter: blur(10px);
+    position: fixed;
+    top: 70px;
+    height: 80%;
   }
 }

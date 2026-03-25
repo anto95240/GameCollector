@@ -43,7 +43,6 @@
   scroll-snap-align: center;
 }
 
-/* --- Styles des flèches --- */
 .carousel-arrow {
   position: absolute;
   top: 50%;

@@ -17,7 +17,7 @@ const SideNav = ({
         {sections.map((section) => (
           <button
             key={section.id}
-            onClick={(e) => scrollToSection(e, section.id)}
+            onClick={() => scrollToSection(section.id)}
             className={`nav-anchor ${activeSection === section.id ? "active" : ""}`}
             type="button"
           >
@@ -41,7 +41,7 @@ const SideNav = ({
             {sections.map((section) => (
               <button
                 key={section.id}
-                onClick={(e) => scrollToSection(e, section.id)}
+                onClick={() => scrollToSection(section.id)}
                 className={`mobile-nav-item ${activeSection === section.id ? "active" : ""}`}
                 type="button"
               >
