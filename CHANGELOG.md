@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/anto95240/GameCollector/compare/v1.3.0...v1.3.1) (2026-03-27)
+
+
+### Bug Fixes
+
+* style + fonctionnement page category ([d4f2dcb](https://github.com/anto95240/GameCollector/commit/d4f2dcb71e6949aac3f623bff6dc703754a57c06))
+
 # [1.3.0](https://github.com/anto95240/GameCollector/compare/v1.2.0...v1.3.0) (2026-03-25)
 
 
