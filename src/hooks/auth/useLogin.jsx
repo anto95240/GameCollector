@@ -8,8 +8,8 @@ export const useLogin = () => {
   const navigate = useNavigate();
   const { login } = useApiAuth();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("antoine@test.com");
+  const [password, setPassword] = useState("Test1234!");
   const [error, setError] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
   const [showLoading, setShowLoading] = useState(false);

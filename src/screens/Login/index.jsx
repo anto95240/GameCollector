@@ -19,7 +19,7 @@ const Login = () => {
 
       <form onSubmit={handleSubmit} className="auth-form">
         {error && (
-          <div className="error-message" style={{ color: "#ff4d4d", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.9rem" }}>
+          <div className="error-message-login">
             <FontAwesomeIcon icon={faExclamationCircle} />
             <span>{error}</span>
           </div>
