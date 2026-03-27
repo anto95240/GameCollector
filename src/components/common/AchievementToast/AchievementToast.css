@@ -1,0 +1,125 @@
+/* ==============================================
+   ACHIEVEMENT MODIFIÉ : EXTRACTION SANS ROTATION
+   ============================================== */
+
+.achv-masterpiece {
+  position: fixed; /* Fixé à l'écran */
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  width: 420px;
+  background: var(--bg-panel);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow-navbar), 0 0 20px rgba(90, 242, 255, 0.1);
+  overflow: hidden;
+  font-family: var(--font-family-text);
+  /* L'animation de glissement fait apparaître tout le panneau d'un coup */
+  animation: slideInOS 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  z-index: 9999;
+}
+
+/* Le Laser de Décryptage */
+.achv-laser-scan {
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: 4px;
+  height: 100%;
+  background: var(--border-focus);
+  box-shadow: 0 0 15px var(--border-focus);
+  z-index: 10;
+  animation: laserSweep 1.5s ease-in-out forwards;
+  -webkit-animation: laserSweep 1.5s ease-in-out forwards;
+}
+
+/* 4. La Carte Statique (Unified, no 3D scene needed) */
+.achv-card-static {
+  width: 60px;
+  aspect-ratio: 3/4;
+  margin-right: 20px;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-focus);
+  box-shadow: inset 0 0 15px rgba(90, 242, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+/* Bordure holographique (Conserved, it just spins on the static card) */
+.achv-card-static::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 10px;
+  background: var(--grad-glow-border);
+  z-index: -1;
+  animation: spinHolo 1.5s ease-out forwards;
+}
+
+.achv-icon {
+  font-size: 28px;
+  filter: drop-shadow(0 0 8px var(--brand-glow));
+  /* No transform: translateZ needed since there's no 3D perspective */
+}
+
+/* Les Textes / Données */
+.achv-info-panel {
+  flex-grow: 1;
+  opacity: 0;
+  animation: fadeInText 0.5s ease forwards 0.8s;
+}
+
+.achv-tag {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.achv-title {
+  margin: 0 0 4px 0;
+  font-family: var(--font-family-title);
+  color: var(--color-text-alt); /* S'adapte au mode clair/sombre */
+  font-size: 1.15rem;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.achv-desc {
+  margin: 0;
+  font-family: var(--font-family-text);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+/* Animations */
+@keyframes slideInOS {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes laserSweep {
+  0% { left: -10px; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; left: 100%; }
+  100% { left: 100%; opacity: 0; }
+}
+
+@keyframes fadeInText {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spinHolo {
+  100% { transform: rotate(360deg); }
+}
