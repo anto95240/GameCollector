@@ -1,16 +1,74 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# GameCollector
 
-Currently, two official plugins are available:
+Application web dédié a la gestion et à la collection de tous vos jeux video.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Développé par Antoine RICHARD
 
-## React Compiler
+## Les Fonctionnalités
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Thème clair/sombre
+- Internationalisation (français / anglais)
+- Responsive design (mobile / desktop)
+- Statistiques 
+- Page de profil (modification des infos, avatar, suppression)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Stack technique (Frontend)
+
+- **Vite + React**
+- **Axios**
+- **Chart.js**
+- **i18next** (traduction)
+
+---
+
+## Design & Maquette
+
+La conception de l'interface a été réalisée en amont sur Figma. 
+[Consulter la maquette UI/UX de Budgee](https://www.figma.com/design/4e0GAyg6KClMIK3eYRMy7U/GameCollector-web?node-id=1-278&t=RLsssnaq8F1oA1KK-1)
+
+---
+
+## Installation et Lancement
+
+Ce dépôt concerne uniquement la partie **Frontend** de l'application.
+
+## Prérequis
+
+- [Node.js ≥ 18](https://nodejs.org/)
+- [MongoDB](https://www.mongodb.com/try/download/community) (local ou [MongoDB Atlas](https://www.mongodb.com/cloud/atlas))
+
+---
+
+### Étapes d'installation
+
+**1. Cloner le projet**
+
+```bash
+git clone https://github.com/anto95240/GameCollector.git
+```
+
+**2.Installer les dépendances**
+
+```bash
+npm install
+```
+
+**3.Configurer les variables d'environnement**
+
+Créer un fichier .env.local à la racine du projet et y ajouter l'URL de l'API (correspondant au port de votre backend) :
+
+```bash
+VITE_API_URL=http://localhost:5001
+```
+
+**4.Lancer le serveur de développement**
+Lancer l'application (après s'etre assurer que le backend est lancé : [voir ici](https://github.com/zkerkeb-class/back-projet-final-anto95240/tree/main)) :
+```bash
+npm run dev
+```
+
+# Licence
+Projet personnel open-source. Utilisation libre pour apprentissage et développement personnel.
