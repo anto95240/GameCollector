@@ -1,3 +1,21 @@
+# [2.0.0](https://github.com/anto95240/GameCollector/compare/v1.4.0...v2.0.0) (2026-04-14)
+
+
+* Revert "feat: passage officiel à la v2 ([#3](https://github.com/anto95240/GameCollector/issues/3))" ([#4](https://github.com/anto95240/GameCollector/issues/4)) ([e3a7f54](https://github.com/anto95240/GameCollector/commit/e3a7f548f2ece934e2ff559453ba496271d8f59a))
+* Revert "feat: passage officiel à la v2 ([#3](https://github.com/anto95240/GameCollector/issues/3))" ([#5](https://github.com/anto95240/GameCollector/issues/5)) ([9fc4664](https://github.com/anto95240/GameCollector/commit/9fc466491117f793e08794cbdbf1535650c97a3f))
+
+
+### Features
+
+* passage officiel à la v2 ([#3](https://github.com/anto95240/GameCollector/issues/3)) ([9d82c53](https://github.com/anto95240/GameCollector/commit/9d82c53bc28206003d16eaff2c72dd3430cb0f76))
+
+
+### BREAKING CHANGES
+
+* Passage officiel à la nouvelle architecture v2.
+* Passage officiel à la nouvelle architecture v2.
+* Passage officiel à la nouvelle architecture v2.
+
 # [4.0.0](https://github.com/anto95240/GameCollector/compare/v3.0.0...v4.0.0) (2026-04-14)
 
 
