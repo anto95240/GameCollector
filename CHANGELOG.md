@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/anto95240/GameCollector/compare/v2.0.0...v3.0.0) (2026-04-14)
+
+
+### Features
+
+* passage officiel à la v2 ([#3](https://github.com/anto95240/GameCollector/issues/3)) ([9d82c53](https://github.com/anto95240/GameCollector/commit/9d82c53bc28206003d16eaff2c72dd3430cb0f76))
+
+
+### BREAKING CHANGES
+
+* Passage officiel à la nouvelle architecture v2.
+
 # [2.0.0](https://github.com/anto95240/GameCollector/compare/v1.3.1...v2.0.0) (2026-04-14)
 
 
