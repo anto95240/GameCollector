@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/anto95240/GameCollector/compare/v1.3.1...v1.4.0) (2026-04-14)
+
+
+### Bug Fixes
+
+* erreur lie a la connexion back ([8eab74c](https://github.com/anto95240/GameCollector/commit/8eab74c6c74ecc5a4fcb27184538f5b35fdb6f91))
+
+
+### Features
+
+* add animation obtention archievement ([27ca4f5](https://github.com/anto95240/GameCollector/commit/27ca4f59c196677ca5ea4e9d431201e668e4e025))
+
 ## [1.3.1](https://github.com/anto95240/GameCollector/compare/v1.3.0...v1.3.1) (2026-03-27)
 
 
