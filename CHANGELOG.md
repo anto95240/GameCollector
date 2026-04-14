@@ -1,4 +1,4 @@
-# [1.4.0](https://github.com/anto95240/GameCollector/compare/v1.3.1...v1.4.0) (2026-04-14)
+# [2.0.0](https://github.com/anto95240/GameCollector/compare/v1.3.1...v2.0.0) (2026-04-14)
 
 
 ### Bug Fixes
