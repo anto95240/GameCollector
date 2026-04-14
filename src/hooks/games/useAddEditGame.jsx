@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { useApiGame } from "../api/useApiGame";
@@ -20,7 +20,13 @@ export const useAddEditGame = () => {
   const initialSection = SECTIONS && SECTIONS.length > 0 ? SECTIONS[0].id : "description";
   const { activeSection, scrollToSection } = useScrollSpy(initialSection, ".form-section");
   
-  const tagsMgr = useTagsManager(isEditMode ? gameToEdit.tags_ids?.map(tag => tag._id || tag) : []);
+  // Memoïzer initialTags pour éviter les re-créations d'arrays à chaque rendu
+  const initialTags = useMemo(
+    () => isEditMode ? gameToEdit.tags_ids?.map(tag => tag._id || tag) : [],
+    [isEditMode, gameToEdit?.tags_ids]
+  );
+  
+  const tagsMgr = useTagsManager(initialTags);
 
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [optionsData, setOptionsData] = useState({ genre: [], platform: [], status: [], rating: MOCK_OPTIONS.rating });
@@ -58,8 +64,25 @@ export const useAddEditGame = () => {
 
   useEffect(() => {
     if (isEditMode && gameToEdit) {
-      setFormData(prev => ({
-        ...prev,
+      // S'assurer que les données du jeu sont bien présentes
+      const hasRequiredData = gameToEdit.name && gameToEdit.genre_id && gameToEdit.platform_id && gameToEdit.status_id;
+      
+      if (!hasRequiredData) {
+        console.warn("[useAddEditGame] Données incomplètes", gameToEdit);
+        return;
+      }
+
+      // Debug log pour vérifier ce qui est reçu
+      console.log("[useAddEditGame] ✅ Chargement complet des données:", {
+        name: gameToEdit.name,
+        description: gameToEdit.description,
+        comment: gameToEdit.comment,
+        playTime: gameToEdit.playing_time,
+        developer: gameToEdit.developer,
+        achievements: gameToEdit.succes,
+      });
+
+      setFormData({
         name: gameToEdit.name || "",
         description: gameToEdit.description || "",
         rating: gameToEdit.note || "",
@@ -68,19 +91,20 @@ export const useAddEditGame = () => {
         platform: gameToEdit.platform_id?._id || gameToEdit.platform_id || "",
         status: gameToEdit.status_id?._id || gameToEdit.status_id || "",
         year: gameToEdit.year || "",
-        playTime: gameToEdit.playTime || "",
+        playTime: gameToEdit.playing_time || "",
         developer: gameToEdit.developer || "",
-        achievements: gameToEdit.achievements || "",
+        achievements: gameToEdit.succes || "",
         isSoon: gameToEdit.isSoon || false,
         isFavorite: gameToEdit.isFavorite || false,
-        image: null 
-      }));
+        image: null,
+        tags: tagsMgr.selectedTags
+      });
       
       if (gameToEdit.image) {
-        setPreviewImg(gameToEdit.image.startsWith("http") ? gameToEdit.image : `${import.meta.env.VITE_API_URL || "http://localhost:5000"}${gameToEdit.image}`);
+        setPreviewImg(gameToEdit.imageUrl || (gameToEdit.image.startsWith("http") ? gameToEdit.image : `${import.meta.env.VITE_API_URL || "http://localhost:5000"}${gameToEdit.image}`));
       }
     }
-  }, [isEditMode, gameToEdit]);
+  }, [isEditMode, gameToEdit?._id, tagsMgr.selectedTags]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -116,19 +140,68 @@ export const useAddEditGame = () => {
     
     try {
       const submitData = new FormData();
-      Object.keys(formData).forEach(key => {
-        if (key !== "tags" && formData[key] !== null && formData[key] !== undefined && formData[key] !== "") {
-          submitData.append(key, formData[key]);
-        }
-      });
       
+      // Mapper les champs correctement (convertir les nombres)
+      if (formData.name) submitData.append("name", formData.name);
+      if (formData.description) submitData.append("description", formData.description);
+      if (formData.rating) submitData.append("note", Number(formData.rating));
+      if (formData.comment) submitData.append("comment", formData.comment);
+      if (formData.genre) submitData.append("genre_id", formData.genre);
+      if (formData.platform) submitData.append("platform_id", formData.platform);
+      if (formData.status) submitData.append("status_id", formData.status);
+      if (formData.year) submitData.append("year", Number(formData.year));
+      if (formData.playTime) submitData.append("playing_time", Number(formData.playTime));
+      if (formData.developer) submitData.append("developer", formData.developer);
+      if (formData.achievements) submitData.append("succes", formData.achievements);
+      if (formData.isSoon !== undefined) submitData.append("isSoon", formData.isSoon);
+      if (formData.isFavorite !== undefined) submitData.append("isFavorite", formData.isFavorite);
+      
+      // Pour l'image: envoyer le nouveau fichier OU l'ancien en cas d'édition
+      if (formData.image instanceof File) {
+        submitData.append("image", formData.image);
+      } else if (isEditMode && gameToEdit.image) {
+        // Envoyer l'image existante lors de l'édition s'il n'y a pas de nouveau fichier
+        submitData.append("image", gameToEdit.image);
+      }
+      
+      // Ajouter les tags
       tagsMgr.selectedTags.forEach(id => submitData.append("tags_ids", id));
 
+      // Debug: afficher ce qui est envoyé
+      console.log("📤 FormData envoyée:", {
+        fields: Object.fromEntries(submitData),
+        isEdit: isEditMode,
+        gameId: gameToEdit?._id
+      });
+
+      const isFirstGame = !isEditMode;
       if (isEditMode) await updateGame(gameToEdit._id, submitData);
       else await createGame(submitData);
       
-      navigate("/liste");
+      // Mettre à jour les stats
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      if (isFirstGame && formData.year && parseInt(formData.year) < 2000) {
+        // Jeu rétro - compter pour it's_a_me et retro_gamer
+      }
+      if (formData.name?.toLowerCase().includes("mario")) {
+        // Mario game
+      }
+      // Incrémenter late night actions si approprié
+      const hour = new Date().getHours();
+      if (hour >= 2 && hour < 5) {
+        user.lateNightActionsCount = (user.lateNightActionsCount || 0) + 1;
+      }
+      localStorage.setItem("user", JSON.stringify(user));
+      
+      // Déclencher la vérification des achievements après un court délai
+      // pour que les jeux soient bien en cache
+      setTimeout(() => {
+        window.dispatchEvent(new Event('checkAchievements'));
+      }, 500);
+      
+      navigate("/list");
     } catch (e) { 
+      console.error("Erreur lors de la sauvegarde:", e.response?.data || e.message);
       alert("Erreur lors de la sauvegarde."); 
     } finally { 
       setIsAnimating(false); 

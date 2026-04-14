@@ -73,7 +73,7 @@ export const useCategoryManager = () => {
       await fetchMetadata();
       resetForm();
     } catch (error) {
-      alert("Erreur lors de la sauvegarde.");
+      console.error("Erreur lors de la sauvegarde", error);
     } finally {
       setIsAnimating(false);
     }
@@ -99,7 +99,7 @@ export const useCategoryManager = () => {
       await deleteMetadata(endpointCategory, id);
       await fetchMetadata();
     } catch (error) {
-      alert("Erreur lors de la suppression.");
+      console.error("Erreur lors de la suppression", error);
     }
   };
 

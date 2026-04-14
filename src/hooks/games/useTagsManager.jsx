@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useApiMetadata } from "../api/useApiMetadata";
 
 export const useTagsManager = (initialTags = []) => {
@@ -7,10 +7,19 @@ export const useTagsManager = (initialTags = []) => {
   const [suggestedTags, setSuggestedTags] = useState([]);
   const [availableTags, setAvailableTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState(initialTags);
+  const prevInitialTagsRef = useRef(initialTags);
 
   // Synchronisation si les tags initiaux changent (ex: passage du mode ajout au mode édition)
   useEffect(() => {
-    setSelectedTags(initialTags);
+    // Vérifier si initialTags a réellement changé en comparant les contenus
+    const tagsChanged = 
+      prevInitialTagsRef.current.length !== initialTags.length ||
+      prevInitialTagsRef.current.some((tag, idx) => tag !== initialTags[idx]);
+    
+    if (tagsChanged) {
+      setSelectedTags(initialTags);
+      prevInitialTagsRef.current = initialTags;
+    }
   }, [initialTags]);
 
   // Logique de suggestion

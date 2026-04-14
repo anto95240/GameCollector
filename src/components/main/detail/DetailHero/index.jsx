@@ -14,7 +14,7 @@ const DetailHero = ({ game, onToggleFavorite }) => {
   const { t } = useTranslation();
   return (
     <section className="hero-section">
-      <img src={game.image} alt={game.name} className="hero-cover" />
+      <img src={game.imageUrl} alt={game.name} className="hero-cover" />
 
       <div className="hero-content">
         <div className="tags-row">

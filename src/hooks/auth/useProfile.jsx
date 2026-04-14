@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useOutletContext } from "react-router";
+import { useOutletContext } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import { useApiAuth } from "../api/useApiAuth";
 import { API_URL } from "../../config/constants";
 
 export const useProfile = () => {
-  const navigate = useNavigate();
   const { t } = useOutletContext(); 
   
   const { user, updateUser } = useAuth(); 
@@ -31,6 +30,8 @@ export const useProfile = () => {
   });
 
   useEffect(() => {
+    if (!user) return;
+    
     setForm((prev) => ({
       ...prev,
       firstname: user?.firstname || "",

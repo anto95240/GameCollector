@@ -21,7 +21,7 @@ export const useDashboard = () => {
         const fetchDashboardData = async () => {
             setIsLoading(true);
             try {
-                const [gamesData, metaData] = await Promise.all([
+                const [gamesData] = await Promise.all([
                     getAllGames(),
                     getAllMetadata()
                 ]);

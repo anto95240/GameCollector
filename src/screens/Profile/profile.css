@@ -9,12 +9,14 @@
 }
 
 .profile-content {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
   min-width: 0;
   position: relative;
+  flex: 1;
+  /* Limiter le contenu à ~75% de la largeur (sachant que la sidebar prend ~25%) */
+  max-width: 700px;
 }
 
 /* =========================================
@@ -97,7 +99,7 @@
   transform: scale(0.98);
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 900px) {
   .profile-container {
     flex-direction: column;
     padding: 20px;

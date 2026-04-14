@@ -16,7 +16,6 @@ const CategoryManager = ({ categoryType }) => {
   const [itemToEdit, setItemToEdit] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const [listItems, setListItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -102,12 +101,8 @@ const CategoryManager = ({ categoryType }) => {
   };
 
   const handleSuccess = () => {
-    setIsSuccess(true);
     fetchCategories();
-    setTimeout(() => {
-      setIsSuccess(false);
-      setShowForm(false);
-    }, 1500);
+    setShowForm(false);
   };
 
   return (

@@ -108,7 +108,7 @@ const YearChart = ({ games = [], metadata = {} }) => {
     } else {
       setPeriod("");
     }
-  }, [processedData, period]);
+  }, [processedData]);
 
   const currentData = useMemo(() => {
     return processedData?.dataByPeriod?.[period] || [];

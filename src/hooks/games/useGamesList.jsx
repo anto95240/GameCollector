@@ -35,10 +35,19 @@ export const useGamesList = (searchTerm) => {
           platform: metaData.platforms?.find((p) => p._id === (game.platform_id?._id || game.platform_id))?.platform_name || "Inconnu",
           status: metaData.statuses?.find((s) => s._id === (game.status_id?._id || game.status_id))?.status_name || "Inconnu",
           rating: game.note ? `${Math.floor(game.note)} étoiles` : "Non noté",
-          image: game.image?.startsWith("http") ? game.image : `${import.meta.env.VITE_API_URL || "http://localhost:5001"}${game.image}`,
+          imageUrl: game.image?.startsWith("http") ? game.image : `${import.meta.env.VITE_API_URL || "http://localhost:5001"}${game.image}`,
+          image: game.image,
         }));
 
         setGames(mappedGames);
+        
+        // Mettre à jour le cache localStorage
+        localStorage.setItem("games_list_cache", JSON.stringify(rawGames));
+        
+        // Déclencher la vérification des achievements après charger les jeux
+        setTimeout(() => {
+          window.dispatchEvent(new Event('checkAchievements'));
+        }, 300);
       } catch (error) {
         console.error("Erreur de chargement des jeux", error);
       } finally {
@@ -59,18 +68,14 @@ export const useGamesList = (searchTerm) => {
     setGames((prev) => prev.map((g) => g.id === clickedGame.id ? { ...g, isFavorite: newFavoriteState } : g));
     
     try {
-      const payload = { 
-        ...clickedGame, 
-        isFavorite: newFavoriteState,
-        status_id: clickedGame.status_id?._id || clickedGame.status_id,
-        genre_id: clickedGame.genre_id?._id || clickedGame.genre_id,
-        platform_id: clickedGame.platform_id?._id || clickedGame.platform_id,
-        tags_ids: clickedGame.tags_ids?.map((t) => t?._id || t) || []
-      };
+      // ✅ Pour un simple toggle favori, envoyer UNIQUEMENT isFavorite
+      const formData = new FormData();
+      formData.append("isFavorite", newFavoriteState);
       
-      await updateGame(clickedGame.id, payload);
+      await updateGame(clickedGame.id, formData);
     } catch (error) {
       console.error("Erreur lors de la mise en favori", error);
+      // Revert si erreur
       setGames((prev) => prev.map((g) => g.id === clickedGame.id ? { ...g, isFavorite: !newFavoriteState } : g));
     }
   };
@@ -78,7 +83,18 @@ export const useGamesList = (searchTerm) => {
   const removeGame = async (id) => {
     try {
       await deleteGame(id);
-      setRefreshTrigger((prev) => prev + 1); 
+      
+      // Mettre à jour les stats
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      user.deletedGamesCount = (user.deletedGamesCount || 0) + 1;
+      localStorage.setItem("user", JSON.stringify(user));
+      
+      setRefreshTrigger((prev) => prev + 1);
+      
+      // Déclencher la vérification des achievements après un court délai
+      setTimeout(() => {
+        window.dispatchEvent(new Event('checkAchievements'));
+      }, 500);
     } catch (error) {
       console.error("Erreur lors de la suppression du jeu", error);
       alert("Erreur lors de la suppression du jeu.");
