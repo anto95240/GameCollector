@@ -1,9 +1,21 @@
 import { createPortal } from "react-dom";
+import { useEffect } from "react";
 import "./Chargement.css";
 import { useTranslation } from "react-i18next";
 
 const ChargementPage = ({ variant = "login" }) => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      user.startupAnimationSeen = true;
+      localStorage.setItem("user", JSON.stringify(user));
+      window.dispatchEvent(new Event("checkAchievements"));
+    }, 2200);
+
+    return () => clearTimeout(timer);
+  }, [variant]);
 
   const getStatusMessage = () => {
     if (variant === "logout") {
@@ -12,6 +24,7 @@ const ChargementPage = ({ variant = "login" }) => {
     return t("auth.loading.statusLogin");
   };
 
+  // Stocker le contenu dans une variable
   const loadingContent = (
     <div className="loading-screen">
       <div className="loading-content">
@@ -28,6 +41,7 @@ const ChargementPage = ({ variant = "login" }) => {
     </div>
   );
 
+  // Utiliser createPortal pour l'injecter directement dans le <body>
   return createPortal(loadingContent, document.body);
 };
 

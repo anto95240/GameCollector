@@ -128,6 +128,7 @@
       "list": "Game list",
       "categories": "Categories",
       "statistics": "Statistics",
+      "trophies": "App trophies",
       "online": "Online",
       "welcome": "Hello, ",
       "profile": "View my profile",
@@ -252,6 +253,26 @@
       "other": "Other",
       "selectCategory": "Select categories",
       "noCategory": "No categories selected"
+    },
+
+    "trophies": {
+      "title": "Application trophies",
+      "subtitle": "Unlock achievements as you use your collection",
+      "totalUnlocked": "Unlocked trophies",
+      "totalAvailable": "Available trophies",
+      "globalCompletion": "Global completion",
+      "unlocked": "Unlocked",
+      "locked": "Locked",
+      "loading": "Loading trophies...",
+      "error": "Error while loading",
+      "empty": "No trophies available.",
+      "progressAria": "Progress for trophy {{game}}: {{value}} percent",
+      "rarity": {
+        "bronze": "Bronze",
+        "argent": "Silver",
+        "or": "Gold",
+        "platine": "Platinum"
+      }
     }
   }
 }

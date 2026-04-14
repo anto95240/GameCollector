@@ -17,7 +17,7 @@ export const useAddEditGame = () => {
   const gameToEdit = location.state?.game;
   const isEditMode = !!gameToEdit;
 
-  const initialSection = SECTIONS && SECTIONS.length > 0 ? SECTIONS[0].id : "description";
+  const initialSection = SECTIONS && SECTIONS.length > 0 ? SECTIONS[0].id : "desc";
   const { activeSection, scrollToSection } = useScrollSpy(initialSection, ".form-section");
   
   // Memoïzer initialTags pour éviter les re-créations d'arrays à chaque rendu
@@ -71,16 +71,6 @@ export const useAddEditGame = () => {
         console.warn("[useAddEditGame] Données incomplètes", gameToEdit);
         return;
       }
-
-      // Debug log pour vérifier ce qui est reçu
-      console.log("[useAddEditGame] ✅ Chargement complet des données:", {
-        name: gameToEdit.name,
-        description: gameToEdit.description,
-        comment: gameToEdit.comment,
-        playTime: gameToEdit.playing_time,
-        developer: gameToEdit.developer,
-        achievements: gameToEdit.succes,
-      });
 
       setFormData({
         name: gameToEdit.name || "",
@@ -166,13 +156,6 @@ export const useAddEditGame = () => {
       
       // Ajouter les tags
       tagsMgr.selectedTags.forEach(id => submitData.append("tags_ids", id));
-
-      // Debug: afficher ce qui est envoyé
-      console.log("📤 FormData envoyée:", {
-        fields: Object.fromEntries(submitData),
-        isEdit: isEditMode,
-        gameId: gameToEdit?._id
-      });
 
       const isFirstGame = !isEditMode;
       if (isEditMode) await updateGame(gameToEdit._id, submitData);

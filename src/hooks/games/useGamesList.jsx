@@ -64,8 +64,26 @@ export const useGamesList = (searchTerm) => {
 
   const toggleFavorite = async (clickedGame) => {
     const newFavoriteState = !clickedGame.isFavorite;
+
+    const syncFavoriteInCache = (favoriteValue) => {
+      try {
+        const cached = JSON.parse(localStorage.getItem("games_list_cache") || "[]");
+        if (!Array.isArray(cached)) return;
+
+        const updatedCache = cached.map((game) => {
+          const gameId = game._id || game.id;
+          if (gameId !== clickedGame.id) return game;
+          return { ...game, isFavorite: favoriteValue };
+        });
+
+        localStorage.setItem("games_list_cache", JSON.stringify(updatedCache));
+      } catch (error) {
+        console.warn("[Achievements] Impossible de synchroniser le cache favori:", error);
+      }
+    };
     
     setGames((prev) => prev.map((g) => g.id === clickedGame.id ? { ...g, isFavorite: newFavoriteState } : g));
+    syncFavoriteInCache(newFavoriteState);
     
     try {
       // ✅ Pour un simple toggle favori, envoyer UNIQUEMENT isFavorite
@@ -73,10 +91,14 @@ export const useGamesList = (searchTerm) => {
       formData.append("isFavorite", newFavoriteState);
       
       await updateGame(clickedGame.id, formData);
+
+      // Le trophée "Coup de foudre" dépend des favoris dans le cache local.
+      window.dispatchEvent(new Event('checkAchievements'));
     } catch (error) {
       console.error("Erreur lors de la mise en favori", error);
       // Revert si erreur
       setGames((prev) => prev.map((g) => g.id === clickedGame.id ? { ...g, isFavorite: !newFavoriteState } : g));
+      syncFavoriteInCache(!newFavoriteState);
     }
   };
 

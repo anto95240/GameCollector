@@ -1,12 +1,20 @@
 import { NavLink } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrophy,
+  faUser,
+  faRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
 import "./UserLinks.css";
 
 const UserLinks = ({ t, onClose }) => (
   <div className="navbar-actions-links">
     <NavLink className="navbar-link-profile" to="/profile" onClick={onClose}>
       <FontAwesomeIcon icon={faUser} /> {t("navbar.profile")}
+    </NavLink>
+
+    <NavLink className="navbar-link-profile" to="/trophies" onClick={onClose}>
+      <FontAwesomeIcon icon={faTrophy} /> {t("navbar.trophies")}
     </NavLink>
 
     <NavLink className="navbar-link-deconnect" to="/logout" onClick={onClose}>

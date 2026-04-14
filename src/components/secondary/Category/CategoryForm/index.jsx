@@ -101,9 +101,19 @@ const CategoryForm = ({
       if (isEdit) {
         const id = initialData._id || initialData.id;
         await updateMetadata(categoryType, id, payload);
+
+        const user = JSON.parse(localStorage.getItem("user") || "{}");
+        user.updatedCategoriesCount = (user.updatedCategoriesCount || 0) + 1;
+        localStorage.setItem("user", JSON.stringify(user));
       } else {
         await createMetadata(categoryType, payload);
+
+        const user = JSON.parse(localStorage.getItem("user") || "{}");
+        user.customCategoriesCreated = (user.customCategoriesCreated || 0) + 1;
+        localStorage.setItem("user", JSON.stringify(user));
       }
+
+      window.dispatchEvent(new Event("checkAchievements"));
 
       if (onSuccess) onSuccess();
     } catch (error) {

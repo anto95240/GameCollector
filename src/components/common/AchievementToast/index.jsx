@@ -1,63 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AchievementToast.css';
 
-const AchievementDemo = () => {
+const AchievementToast = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [achievement, setAchievement] = useState(null);
 
-  const triggerAchievement = () => {
-    setIsVisible(false);
-    
-    setTimeout(() => {
+  useEffect(() => {
+    const handleAchievementUnlock = (event) => {
+      const { detail } = event;
+      setAchievement(detail);
       setIsVisible(true);
       
-      setTimeout(() => {
+      // Auto-hide après 3 secondes
+      const timer = setTimeout(() => {
         setIsVisible(false);
-      }, 2000);
-    }, 100);
-  };
+      }, 3000);
+      
+      return () => clearTimeout(timer);
+    };
+
+    window.addEventListener('achievementUnlocked', handleAchievementUnlock);
+    return () => window.removeEventListener('achievementUnlocked', handleAchievementUnlock);
+  }, []);
+
+  if (!isVisible || !achievement) return null;
 
   return (
-    <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '50px' }}>
-      
-      {/* --- BOUTON DE TEST --- */}
-      <button 
-        onClick={triggerAchievement}
-        style={{
-          padding: '12px 24px',
-          background: 'var(--gradient-blue)', 
-          color: 'white',
-          border: 'none',
-          borderRadius: '8px',
-          cursor: 'pointer',
-          fontFamily: 'var(--font-family-title)',
-          boxShadow: 'var(--shadow-btn)'
-        }}
-      >
-        Débloquer un Succès (Statique)
-      </button>
+    <div className="achv-masterpiece">
+      {/* Laser de scan cyber */}
+      <div className="achv-laser-scan"></div>
 
-      {/* --- COMPOSANT D'ACHÈVEMENT MODIFIÉ --- */}
-      {isVisible && (
-        <div className="achv-masterpiece">
-          {/* Laser de scan cyber */}
-          <div className="achv-laser-scan"></div>
+      {/* Carte Statique (sans rotation) */}
+      <div className="achv-card-static">
+        <span className="achv-icon">{achievement.icon || '🏆'}</span>
+      </div>
 
-          {/* Carte Statique (sans rotation) */}
-          <div className="achv-card-static">
-            <span className="achv-icon">💎</span>
-          </div>
-
-          {/* Textes OS */}
-          <div className="achv-info-panel">
-            <span className="achv-tag">SYSTÈME // ARCHIVE DÉVERROUILLÉE</span>
-            <h3 className="achv-title">Le Saint Graal</h3>
-            <p className="achv-desc">Vous avez ajouté un jeu côté à plus de 1000€ dans votre collection.</p>
-          </div>
-        </div>
-      )}
-
+      {/* Textes OS */}
+      <div className="achv-info-panel">
+        <span className="achv-tag">SYSTÈME // ARCHIVE DÉVERROUILLÉE</span>
+        <h3 className="achv-title">{achievement.title || 'Trophée'}</h3>
+        <p className="achv-desc">{achievement.description || 'Vous avez accompli quelque chose d\'extraordinaire!'}</p>
+      </div>
     </div>
   );
 };
 
-export default AchievementDemo;
+export default AchievementToast;

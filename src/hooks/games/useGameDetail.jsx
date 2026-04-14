@@ -44,7 +44,10 @@ export const useGameDetail = (id, slug, gameName) => {
           tags: fetchedGame.tags_ids?.map(t => meta.tags?.find(mt => mt._id === (t._id || t))?.tag_name || "Tag") || [],
           imageUrl: imageUrl
         });
-        if (fetchedGame._id) await addGameToHistory(fetchedGame._id);
+        if (fetchedGame._id) {
+          await addGameToHistory(fetchedGame._id);
+          window.dispatchEvent(new Event('checkAchievements'));
+        }
       }
     } catch (e) { console.error(e); }
     finally { setIsLoading(false); }
@@ -85,6 +88,7 @@ export const useGameDetail = (id, slug, gameName) => {
       }
       
       await updateGame(game._id, formData);
+      window.dispatchEvent(new Event('checkAchievements'));
     } catch (e) { 
       console.error("Erreur lors de la mise en favori", e);
       setGame(prev => ({ ...prev, isFavorite: !newState })); 
@@ -94,6 +98,10 @@ export const useGameDetail = (id, slug, gameName) => {
   const handleDelete = async () => {
     if (game && window.confirm("Supprimer ?")) {
       await deleteGame(game._id);
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      user.deletedGamesCount = (user.deletedGamesCount || 0) + 1;
+      localStorage.setItem("user", JSON.stringify(user));
+      window.dispatchEvent(new Event('checkAchievements'));
       navigate("/list");
     }
   };

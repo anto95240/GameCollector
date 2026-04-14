@@ -29,15 +29,19 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const checkUser = async () => {
             try {
-                // On vérifie seulement si on a un token (supposé géré par axios/interceptor)
-                // ou si on veut forcer la vérif au chargement
+                // Vérifier seulement si on a un utilisateur en localStorage
+                const saved = localStorage.getItem("user");
+                if (!saved) {
+                    return;
+                }
+                
+                // On vérifie avec le backend
                 const freshUser = await getMe();
                 if (freshUser) {
                     updateUser(freshUser);
                 }
             } catch (error) {
-                console.error("Session expirée ou erreur:", error);
-                // Optionnel : updateUser(null) si tu veux déconnecter en cas d'erreur
+                // Ne pas déconnecter - laisser localStorage comme fallback
             }
         };
         

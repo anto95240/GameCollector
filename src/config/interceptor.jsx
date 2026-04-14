@@ -8,8 +8,10 @@ axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(
   (config) => {
-    // Plus besoin de config.headers.Authorization = ...
-    // Le navigateur gère le cookie automatiquement.
+    // Si c'est FormData, ne pas définir Content-Type (le navigateur le fera automatiquement)
+    if (config.data instanceof FormData) {
+      // Ne rien faire - laisser le navigateur gérer multipart/form-data
+    }
     return config;
   },
   (error) => {

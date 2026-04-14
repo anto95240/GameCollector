@@ -1,0 +1,212 @@
+.trophees-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.trophees-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.trophees-header p {
+  margin: 0.4rem 0 0;
+  color: var(--color-liste-subtitle, #8b96a8);
+}
+
+.trophees-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.summary-card {
+  border: 1px solid var(--color-border-card, rgba(255, 255, 255, 0.08));
+  border-radius: 12px;
+  padding: 0.9rem;
+  background: var(--bg-card-detail, rgba(15, 23, 42, 0.45));
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.summary-card span {
+  color: var(--color-liste-subtitle, #8b96a8);
+  font-size: 0.9rem;
+}
+
+.summary-card strong {
+  font-size: 1.35rem;
+  color: var(--color-title-list-game, #fff);
+}
+
+.trophees-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.75rem;
+}
+
+.trophy-item {
+  border: 1px solid var(--color-border-card, rgba(255, 255, 255, 0.08));
+  border-radius: 12px;
+  padding: 0.9rem;
+  background: var(--bg-card-detail, rgba(15, 23, 42, 0.45));
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.trophy-item.is-unlocked {
+  border-color: rgba(110, 178, 105, 0.6);
+  background: rgba(15, 23, 42, 0.65);
+}
+
+.trophy-item.is-locked {
+  opacity: 0.75;
+}
+
+/* Rareté : Couleurs des bordures et accents */
+.trophy-item.rarity-bronze {
+  --rarity-color: #cd7f32;
+}
+
+.trophy-item.rarity-argent {
+  --rarity-color: #c0c0c0;
+}
+
+.trophy-item.rarity-or {
+  --rarity-color: #ffd700;
+}
+
+.trophy-item.rarity-platine {
+  --rarity-color: #e5e4e2;
+}
+
+.trophy-item.is-unlocked.rarity-bronze {
+  border-color: rgba(205, 127, 50, 0.6);
+}
+
+.trophy-item.is-unlocked.rarity-argent {
+  border-color: rgba(192, 192, 192, 0.6);
+}
+
+.trophy-item.is-unlocked.rarity-or {
+  border-color: rgba(255, 215, 0, 0.6);
+}
+
+.trophy-item.is-unlocked.rarity-platine {
+  border-color: rgba(229, 228, 226, 0.6);
+}
+
+.trophy-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.trophy-item-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.trophy-icon {
+  font-size: 1.35rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.trophy-item-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.trophy-item-title h2 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.trophy-rarity {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--rarity-color, #c0c0c0);
+  text-transform: capitalize;
+}
+
+.trophy-badge {
+  font-size: 0.75rem;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.trophy-badge.unlocked {
+  color: #c3f3bf;
+  border-color: rgba(110, 178, 105, 0.6);
+  background: rgba(74, 172, 78, 0.22);
+}
+
+.trophy-badge.locked {
+  color: #d5d8de;
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.trophy-description {
+  margin: 0;
+  color: var(--color-liste-subtitle, #8b96a8);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.trophy-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.trophy-tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-liste-subtitle, #8b96a8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.loading-text,
+.empty-text,
+.error-text {
+  margin: 0;
+  color: var(--color-liste-subtitle, #8b96a8);
+}
+
+.error-text {
+  color: #ff6b6b;
+}
+
+@media (max-width: 768px) {
+  .trophees-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .trophy-item-header {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .trophy-icon {
+    font-size: 1.2rem;
+  }
+}
