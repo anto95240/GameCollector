@@ -129,6 +129,7 @@
       "list": "Liste des jeux",
       "categories": "Catégories",
       "statistics": "Statistiques",
+      "trophies": "Trophées de l'app",
       "online": "En ligne",
       "welcome": "Bonjour, ",
       "profile": "Voir mon profil",
@@ -253,6 +254,26 @@
       "other": "Autres",
       "selectCategory": "Sélection des catégories",
       "noCategory": "Aucune catégorie sélectionnée"
+    },
+
+    "trophies": {
+      "title": "Trophées de l'application",
+      "subtitle": "Débloquez des succès en utilisant votre collection",
+      "totalUnlocked": "Trophées débloqués",
+      "totalAvailable": "Trophées disponibles",
+      "globalCompletion": "Progression globale",
+      "unlocked": "Débloqué",
+      "locked": "Verrouillé",
+      "loading": "Chargement des trophées...",
+      "error": "Erreur lors du chargement",
+      "empty": "Aucun trophée disponible.",
+      "progressAria": "Progression du trophée {{game}} : {{value}} pour cent",
+      "rarity": {
+        "bronze": "Bronze",
+        "argent": "Argent",
+        "or": "Or",
+        "platine": "Platine"
+      }
     }
   }
 }

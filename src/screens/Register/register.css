@@ -55,6 +55,12 @@
   gap: 20px;
 }
 
+.error-message-register {
+  color: var(--status-danger);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

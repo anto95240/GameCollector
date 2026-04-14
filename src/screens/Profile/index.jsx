@@ -1,14 +1,16 @@
-import { useProfile } from "../../hooks/components/useProfile";
+import { useProfile } from "../../hooks/auth/useProfile";
 import { useScrollSpy } from "../../hooks/ui/useScrollSpy";
 import ProfilSection from "../../components/main/ProfilePage/ProfilSection";
 import ConnexionSection from "../../components/main/ProfilePage/ConnexionSection";
 import DeleteAccountSection from "../../components/main/ProfilePage/DeleteAccountSection";
 import SideNav from "../../components/common/SideNav";
 import { PROFILE_SECTIONS } from "../../config/constants";
+import "./Profile.css";
 
 const ProfilePage = () => {
   const { user, form, setForm, uiState, setUiState, t, handleSaveProfile, handleDeleteUser, handleDownloadData } = useProfile();
   
+  // Remplacement de toute la logique d'IntersectionObserver par le hook
   const { activeSection, scrollToSection } = useScrollSpy("profile-section", ".profile-section-item");
 
   return (

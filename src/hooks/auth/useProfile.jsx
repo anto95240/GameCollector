@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useOutletContext } from "react-router";
+import { useOutletContext } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import { useApiAuth } from "../api/useApiAuth";
 import { API_URL } from "../../config/constants";
 
 export const useProfile = () => {
-  const navigate = useNavigate();
   const { t } = useOutletContext(); 
   
   const { user, updateUser } = useAuth(); 
@@ -31,6 +30,8 @@ export const useProfile = () => {
   });
 
   useEffect(() => {
+    if (!user) return;
+    
     setForm((prev) => ({
       ...prev,
       firstname: user?.firstname || "",
@@ -66,12 +67,18 @@ export const useProfile = () => {
       if (form.imageFile) {
         formData.append("image", form.imageFile);
       }
-      console.log(user)
       // Utilisation propre de l'API
       const updatedUser = await updateProfile(user.uid, formData);
       
       // Mise à jour du contexte pour que l'UI (Navbar, etc.) s'actualise
       updateUser(updatedUser);
+
+      const localUser = JSON.parse(localStorage.getItem("user") || "{}");
+      localUser.profileUpdatedCount = (localUser.profileUpdatedCount || 0) + 1;
+      localStorage.setItem("user", JSON.stringify(localUser));
+
+      window.dispatchEvent(new Event('checkAchievements'));
+
       alert(t('ErrorMsg.alerteSucces') || "Profil mis à jour avec succès !");
       
       setForm(prev => ({ ...prev, password: "", confirmPassword: "" }));

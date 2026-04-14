@@ -158,10 +158,10 @@ export const ImageSection = ({ t, previewImg, handleFileChange }) => (
       <input
         type="file"
         id="file-upload"
+        name="file-upload"
         accept="image/*"
         onChange={handleFileChange}
         hidden
-        required={!previewImg}
       />
       <label htmlFor="file-upload" className="upload-label">
         {previewImg ? (

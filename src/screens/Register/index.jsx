@@ -38,7 +38,7 @@ const Register = () => {
 
       <form onSubmit={handleNext} className="auth-form">
         {error && (
-          <div className="error-message" style={{ color: "#ff4d4d", marginBottom: "1rem", textAlign: "center" }}>
+          <div className="error-message-register">
             <FontAwesomeIcon icon={faExclamationCircle} style={{ marginRight: "8px" }} />
             {error}
           </div>

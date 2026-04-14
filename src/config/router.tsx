@@ -18,6 +18,7 @@ const RegisterPage = lazy(() => import("../screens/Register"));
 const StatistiquePage = lazy(() => import("../screens/Statistique"));
 const ListePage = lazy(() => import("../screens/Liste"));
 const DetailPage = lazy(() => import("../screens/Detail"));
+const TropheesPage = lazy(() => import("../screens/Trophees"));
 
 // Un composant qui enveloppe nos routes paresseuses pour afficher le chargement
 const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
@@ -117,6 +118,14 @@ let router = createBrowserRouter([
             element: (
               <SuspenseWrapper>
                 <StatistiquePage />
+              </SuspenseWrapper>
+            ),
+          },
+          {
+            path: "/trophies",
+            element: (
+              <SuspenseWrapper>
+                <TropheesPage />
               </SuspenseWrapper>
             ),
           },

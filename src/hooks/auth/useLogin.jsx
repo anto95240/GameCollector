@@ -8,8 +8,8 @@ export const useLogin = () => {
   const navigate = useNavigate();
   const { login } = useApiAuth();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("antoine@test.com");
+  const [password, setPassword] = useState("Test1234!");
   const [error, setError] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
@@ -24,6 +24,14 @@ export const useLogin = () => {
       if (response.user) {
         localStorage.setItem("user", JSON.stringify(response.user));
         setShowLoading(true);
+
+        setTimeout(() => {
+          const user = JSON.parse(localStorage.getItem("user") || "{}");
+          user.startupAnimationSeen = true;
+          localStorage.setItem("user", JSON.stringify(user));
+          window.dispatchEvent(new Event("checkAchievements"));
+        }, 1300);
+
         setTimeout(() => navigate("/dashboard"), 1500);
       }
     } catch (err) {

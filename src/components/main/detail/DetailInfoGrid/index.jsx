@@ -29,7 +29,7 @@ const DetailInfoGrid = ({ game }) => {
             {t("gameForm.fields.comment")}
           </h3>
           <div className="user-note-container">
-            <p className="user-note-text">"{game.userNotes}"</p>
+            <p className="user-note-text">"{game.comment || ""}"</p>
           </div>
         </div>
       </div>
@@ -64,12 +64,12 @@ const DetailInfoGrid = ({ game }) => {
             <StatItem
               icon={faClock}
               label={t("gameForm.fields.playtime")}
-              value={game.playtime}
+              value={game.playing_time}
             />
             <StatItem
               icon={faTrophy}
               label={t("gameForm.fields.achievements")}
-              value={game.achievements}
+              value={game.succes}
             />
           </div>
         </div>

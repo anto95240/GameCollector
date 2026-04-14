@@ -18,7 +18,6 @@
 .btn-cancel {
   background: var(--bg-cancel-btn);
   color: var(--color-text);
-  width: 10%;
 }
 
 .btn-save {

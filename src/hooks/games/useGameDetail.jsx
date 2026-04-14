@@ -29,39 +29,80 @@ export const useGameDetail = (id, slug, gameName) => {
       }
 
       if (fetchedGame) {
+        let imageUrl = null;
+        if (fetchedGame.image) {
+          imageUrl = fetchedGame.image.startsWith("http") 
+            ? fetchedGame.image 
+            : `${import.meta.env.VITE_API_URL || "http://localhost:5001"}${fetchedGame.image}`;
+        }
+        
         setGame({
           ...fetchedGame,
           genre: meta.genres?.find(g => g._id === (fetchedGame.genre_id?._id || fetchedGame.genre_id))?.genre_name || "Inconnu",
           platform: meta.platforms?.find(p => p._id === (fetchedGame.platform_id?._id || fetchedGame.platform_id))?.platform_name || "Inconnu",
           status: meta.statuses?.find(s => s._id === (fetchedGame.status_id?._id || fetchedGame.status_id))?.status_name || "Inconnu",
           tags: fetchedGame.tags_ids?.map(t => meta.tags?.find(mt => mt._id === (t._id || t))?.tag_name || "Tag") || [],
-          image: fetchedGame.image?.startsWith("http") ? fetchedGame.image : `${import.meta.env.VITE_API_URL}${fetchedGame.image}`
+          imageUrl: imageUrl
         });
-        if (fetchedGame._id) await addGameToHistory(fetchedGame._id);
+        if (fetchedGame._id) {
+          await addGameToHistory(fetchedGame._id);
+          window.dispatchEvent(new Event('checkAchievements'));
+        }
       }
     } catch (e) { console.error(e); }
     finally { setIsLoading(false); }
   }, [id, slug, gameName, getAllGames, getGameById, getAllMetadata, addGameToHistory]);
 
-  useEffect(() => { fetchGameData(); }, [fetchGameData]);
+  useEffect(() => { 
+    fetchGameData(); 
+  }, [id, slug, gameName]);
 
   const handleToggleFavorite = async () => {
     if (!game) return;
     const newState = !game.isFavorite;
     setGame(prev => ({ ...prev, isFavorite: newState }));
     try {
-      await updateGame(game._id, { ...game, isFavorite: newState, 
-        genre_id: game.genre_id?._id || game.genre_id,
-        platform_id: game.platform_id?._id || game.platform_id,
-        status_id: game.status_id?._id || game.status_id
-      });
-    } catch (e) { setGame(prev => ({ ...prev, isFavorite: !newState })); }
+      const formData = new FormData();
+      formData.append("isFavorite", newState);
+      formData.append("name", game.game_name || game.name || "");
+      formData.append("description", game.description || "");
+      formData.append("note", game.note || "");
+      formData.append("comment", game.comment || "");
+      formData.append("genre_id", game.genre_id?._id || game.genre_id || "");
+      formData.append("platform_id", game.platform_id?._id || game.platform_id || "");
+      formData.append("status_id", game.status_id?._id || game.status_id || "");
+      formData.append("year", game.year || "");
+      formData.append("playing_time", game.playing_time || "");
+      formData.append("developer", game.developer || "");
+      formData.append("succes", game.succes || "");
+      formData.append("isSoon", game.isSoon || false);
+      
+      if (game.image) {
+        formData.append("image", game.image);
+      }
+      
+      if (game.tags_ids && Array.isArray(game.tags_ids)) {
+        game.tags_ids.forEach(tag => {
+          formData.append("tags_ids", tag._id || tag);
+        });
+      }
+      
+      await updateGame(game._id, formData);
+      window.dispatchEvent(new Event('checkAchievements'));
+    } catch (e) { 
+      console.error("Erreur lors de la mise en favori", e);
+      setGame(prev => ({ ...prev, isFavorite: !newState })); 
+    }
   };
 
   const handleDelete = async () => {
     if (game && window.confirm("Supprimer ?")) {
       await deleteGame(game._id);
-      navigate("/liste");
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      user.deletedGamesCount = (user.deletedGamesCount || 0) + 1;
+      localStorage.setItem("user", JSON.stringify(user));
+      window.dispatchEvent(new Event('checkAchievements'));
+      navigate("/list");
     }
   };
 

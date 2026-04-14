@@ -20,10 +20,10 @@ export const MOCK_OPTIONS = {
 };
 
 export const SECTIONS = [
-  { id: "description", label: "Description" },
-  { id: "rating", label: "Note" },
-  { id: "details", label: "Détails" },
-  { id: "image", label: "Image" },
+  { id: "desc", label: "Description" },
+  { id: "rate", label: "Note" },
+  { id: "detail", label: "Détails" },
+  { id: "img", label: "Image" },
   { id: "status", label: "Statut" },
   { id: "tags", label: "Tags" },
 ];
