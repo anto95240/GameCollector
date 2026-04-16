@@ -1,3 +1,17 @@
+# [2.3.0](https://github.com/anto95240/GameCollector/compare/v2.2.0...v2.3.0) (2026-04-16)
+
+
+### Bug Fixes
+
+* taille d'apparition navbar css ([d8b2015](https://github.com/anto95240/GameCollector/commit/d8b20157e7ef6c6eaf31c06c0d4751089a9b6c09))
+
+
+### Features
+
+* add aide des raccourci ([2c40576](https://github.com/anto95240/GameCollector/commit/2c405767ac7b8f2d5b649a76bc6524314f031cf6))
+* add raccourci ([1d3bf08](https://github.com/anto95240/GameCollector/commit/1d3bf0884ac26e44ce4195ee956266e13e6d51d4))
+* add raccourci to pages ([de2d50c](https://github.com/anto95240/GameCollector/commit/de2d50ca13055389910401ba109c460e01d8e77e))
+
 # [2.2.0](https://github.com/anto95240/GameCollector/compare/v2.1.0...v2.2.0) (2026-04-16)
 
 
