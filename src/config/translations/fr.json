@@ -211,6 +211,7 @@
         "platform": "Plateforme",
         "releaseYear": "Année de sortie",
         "status": "Statut",
+        "selectStatus": "Sélectionner un statut",
         "tags": "Tag",
         "developer": "Développeur",
         "playtime": "Temps de jeu (h)",
