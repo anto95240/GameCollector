@@ -59,7 +59,7 @@
   box-shadow: 0 0 10px var(--color-text);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
   .bottom-nav {
     display: none;
   }
