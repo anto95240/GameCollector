@@ -1,3 +1,69 @@
+# [2.1.0](https://github.com/anto95240/GameCollector/compare/v2.0.0...v2.1.0) (2026-04-14)
+
+
+### Features
+
+* passage officiel à la v2 ([8e40084](https://github.com/anto95240/GameCollector/commit/8e40084d7a3ac0c8eaf4714196db1939aa41fcfc))
+
+# [2.0.0](https://github.com/anto95240/GameCollector/compare/v1.4.0...v2.0.0) (2026-04-14)
+
+
+* Revert "feat: passage officiel à la v2 ([#3](https://github.com/anto95240/GameCollector/issues/3))" ([#4](https://github.com/anto95240/GameCollector/issues/4)) ([e3a7f54](https://github.com/anto95240/GameCollector/commit/e3a7f548f2ece934e2ff559453ba496271d8f59a))
+* Revert "feat: passage officiel à la v2 ([#3](https://github.com/anto95240/GameCollector/issues/3))" ([#5](https://github.com/anto95240/GameCollector/issues/5)) ([9fc4664](https://github.com/anto95240/GameCollector/commit/9fc466491117f793e08794cbdbf1535650c97a3f))
+
+
+### Features
+
+* passage officiel à la v2 ([#3](https://github.com/anto95240/GameCollector/issues/3)) ([9d82c53](https://github.com/anto95240/GameCollector/commit/9d82c53bc28206003d16eaff2c72dd3430cb0f76))
+
+
+### BREAKING CHANGES
+
+* Passage officiel à la nouvelle architecture v2.
+* Passage officiel à la nouvelle architecture v2.
+* Passage officiel à la nouvelle architecture v2.
+
+# [4.0.0](https://github.com/anto95240/GameCollector/compare/v3.0.0...v4.0.0) (2026-04-14)
+
+
+* Revert "feat: passage officiel à la v2 ([#3](https://github.com/anto95240/GameCollector/issues/3))" ([#4](https://github.com/anto95240/GameCollector/issues/4)) ([e3a7f54](https://github.com/anto95240/GameCollector/commit/e3a7f548f2ece934e2ff559453ba496271d8f59a))
+
+
+### BREAKING CHANGES
+
+* Passage officiel à la nouvelle architecture v2.
+
+# [3.0.0](https://github.com/anto95240/GameCollector/compare/v2.0.0...v3.0.0) (2026-04-14)
+
+
+### Features
+
+* passage officiel à la v2 ([#3](https://github.com/anto95240/GameCollector/issues/3)) ([9d82c53](https://github.com/anto95240/GameCollector/commit/9d82c53bc28206003d16eaff2c72dd3430cb0f76))
+
+
+### BREAKING CHANGES
+
+* Passage officiel à la nouvelle architecture v2.
+
+# [2.0.0](https://github.com/anto95240/GameCollector/compare/v1.3.1...v2.0.0) (2026-04-14)
+
+
+### Bug Fixes
+
+* erreur lie a la connexion back ([8eab74c](https://github.com/anto95240/GameCollector/commit/8eab74c6c74ecc5a4fcb27184538f5b35fdb6f91))
+
+
+### Features
+
+* add animation obtention archievement ([27ca4f5](https://github.com/anto95240/GameCollector/commit/27ca4f59c196677ca5ea4e9d431201e668e4e025))
+
+## [1.3.1](https://github.com/anto95240/GameCollector/compare/v1.3.0...v1.3.1) (2026-03-27)
+
+
+### Bug Fixes
+
+* style + fonctionnement page category ([d4f2dcb](https://github.com/anto95240/GameCollector/commit/d4f2dcb71e6949aac3f623bff6dc703754a57c06))
+
 # [1.3.0](https://github.com/anto95240/GameCollector/compare/v1.2.0...v1.3.0) (2026-03-25)
 
 
