@@ -13,7 +13,14 @@
       "noImage": "Aucune image",
       "favorite": "Favoris",
       "select": "Selectionner un",
-      "arialLabelPassword": "Afficher le mot de passe"
+      "arialLabelPassword": "Afficher le mot de passe",
+      "updatedSuccess": "Mise à jour effectuée avec succès",
+      "createdSuccess": "Élément créé avec succès",
+      "deletedSuccess": "Élément supprimé avec succès",
+      "savingError": "Erreur lors de la sauvegarde",
+      "deletingError": "Erreur lors de la suppression",
+      "nameRequired": "Le nom est requis",
+      "loading": "Chargement..."
     },
 
     "ErrorMsg": {

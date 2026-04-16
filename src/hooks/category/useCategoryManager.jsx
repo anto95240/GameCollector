@@ -1,10 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useApiMetadata } from "../api/useApiMetadata";
+import { useValidationToast } from "../ui/useValidationToast";
+import { validateCategory, getFirstValidationError } from "../../utils/validators";
 
 export const useCategoryManager = () => {
   const { t } = useTranslation();
   const { getAllMetadata, createMetadata, updateMetadata, deleteMetadata } = useApiMetadata();
+  const { showSuccess, showError, showCreated, showUpdated, showDeleted } = useValidationToast();
 
   const [categories, setCategories] = useState({ genres: [], platforms: [], statuses: [], tags: [] });
   const [selectedCategory, setSelectedCategory] = useState("genres");
@@ -21,10 +24,11 @@ export const useCategoryManager = () => {
       setCategories(data);
     } catch (error) {
       console.error("Erreur lors de la récupération des catégories :", error);
+      showError("Erreur lors du chargement des catégories");
     } finally {
       setIsLoading(false);
     }
-  }, [getAllMetadata]);
+  }, [getAllMetadata, showError]);
 
   useEffect(() => {
     fetchMetadata();
@@ -46,10 +50,27 @@ export const useCategoryManager = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const getCategoryLabel = () => {
+    const labels = {
+      genres: "Genre",
+      platforms: "Plateforme",
+      statuses: "Statut",
+      tags: "Tag"
+    };
+    return labels[selectedCategory] || "Catégorie";
+  };
+
   // Soumission (Création ou Mise à jour)
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name.trim()) return;
+    
+    // Validation du formulaire
+    const validationErrors = validateCategory(formData.name);
+    const firstError = getFirstValidationError(validationErrors);
+    if (firstError) {
+      showError(firstError);
+      return;
+    }
 
     setIsAnimating(true);
     try {
@@ -62,7 +83,8 @@ export const useCategoryManager = () => {
       const payload = { [fieldName]: formData.name, color: formData.color };
 
       // Retirer le 's' final pour l'endpoint API (ex: 'genres' -> 'genre')
-      const endpointCategory = selectedCategory.slice(0, -1); 
+      const endpointCategory = selectedCategory.slice(0, -1);
+      const categoryLabel = getCategoryLabel();
 
       if (isEditMode) {
         await updateMetadata(endpointCategory, formData.id, payload);
@@ -70,12 +92,16 @@ export const useCategoryManager = () => {
         const user = JSON.parse(localStorage.getItem("user") || "{}");
         user.updatedCategoriesCount = (user.updatedCategoriesCount || 0) + 1;
         localStorage.setItem("user", JSON.stringify(user));
+
+        showUpdated(`${categoryLabel}: "${formData.name}"`);
       } else {
         await createMetadata(endpointCategory, payload);
 
         const user = JSON.parse(localStorage.getItem("user") || "{}");
         user.customCategoriesCreated = (user.customCategoriesCreated || 0) + 1;
         localStorage.setItem("user", JSON.stringify(user));
+
+        showCreated(`${categoryLabel}: "${formData.name}"`);
       }
 
       window.dispatchEvent(new Event('checkAchievements'));
@@ -84,6 +110,7 @@ export const useCategoryManager = () => {
       resetForm();
     } catch (error) {
       console.error("Erreur lors de la sauvegarde", error);
+      showError(t("common.savingError") || "Erreur lors de la sauvegarde");
     } finally {
       setIsAnimating(false);
     }
@@ -114,8 +141,12 @@ export const useCategoryManager = () => {
 
       await fetchMetadata();
       window.dispatchEvent(new Event('checkAchievements'));
+
+      const categoryLabel = getCategoryLabel();
+      showDeleted(categoryLabel);
     } catch (error) {
       console.error("Erreur lors de la suppression", error);
+      showError(t("common.deletingError") || "Erreur lors de la suppression");
     }
   };
 

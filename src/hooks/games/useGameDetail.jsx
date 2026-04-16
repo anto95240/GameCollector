@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { useApiGame } from "../api/useApiGame";
 import { useApiMetadata } from "../api/useApiMetadata";
 import { useApiAuth } from "../api/useApiAuth";
@@ -7,6 +7,7 @@ import { MOCK_OPTIONS } from "../../config/constants";
 
 export const useGameDetail = (id, slug, gameName) => {
   const navigate = useNavigate();
+  const { state } = useLocation(); // Récupérer le state passé via navigate
   const { getAllGames, getGameById, deleteGame, updateGame } = useApiGame();
   const { getAllMetadata } = useApiMetadata();
   const { addGameToHistory } = useApiAuth();
@@ -27,15 +28,20 @@ export const useGameDetail = (id, slug, gameName) => {
         statuses: meta.statuses || [],
         rating: MOCK_OPTIONS.rating
       });
-      let fetchedGame = null;
-
-      if (id && id !== "undefined") {
-        fetchedGame = await getGameById(id);
-      } else {
-        const gamesData = await getAllGames();
-        const gamesList = Array.isArray(gamesData) ? gamesData : gamesData.games || [];
-        const target = (slug || gameName || "").toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "");
-        fetchedGame = gamesList.find(g => g.name.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "") === target);
+      
+      // Si un jeu a été passé via le state (création/modification), l'utiliser directement
+      let fetchedGame = state?.game;
+      
+      // Sinon, chercher le jeu via l'API
+      if (!fetchedGame) {
+        if (id && id !== "undefined") {
+          fetchedGame = await getGameById(id);
+        } else {
+          const gamesData = await getAllGames();
+          const gamesList = Array.isArray(gamesData) ? gamesData : gamesData.games || [];
+          const target = (slug || gameName || "").toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "");
+          fetchedGame = gamesList.find(g => g.name.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "") === target);
+        }
       }
 
       if (fetchedGame) {
@@ -61,11 +67,11 @@ export const useGameDetail = (id, slug, gameName) => {
       }
     } catch (e) { console.error(e); }
     finally { setIsLoading(false); }
-  }, [id, slug, gameName, getAllGames, getGameById, getAllMetadata, addGameToHistory]);
+  }, [id, slug, gameName, getAllGames, getGameById, getAllMetadata, addGameToHistory, state?.game]);
 
   useEffect(() => { 
     fetchGameData(); 
-  }, [id, slug, gameName]);
+  }, [id, slug, gameName, state?.game]);
 
   const handleToggleFavorite = async () => {
     if (!game) return;

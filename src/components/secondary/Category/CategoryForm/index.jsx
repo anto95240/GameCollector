@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useApiMetadata } from "../../../../hooks/api/useApiMetadata";
+import { useValidationToast } from "../../../../hooks/ui/useValidationToast";
+import { validateCategory, getFirstValidationError } from "../../../../utils/validators";
 import "./CategoryForm.css";
 
 const CategoryForm = ({
@@ -21,6 +23,7 @@ const CategoryForm = ({
 
   const nameInputRef = useRef(null);
   const { t } = useTranslation();
+  const { showSuccess, showError, showCreated, showUpdated } = useValidationToast();
 
   const { createMetadata, updateMetadata } = useApiMetadata();
 
@@ -69,10 +72,26 @@ const CategoryForm = ({
     return `${action} ${suffix}`;
   };
 
+  const getCategoryLabel = () => {
+    const labels = {
+      genre: t("categories.titleGenre") || "Genre",
+      platform: t("categories.titlePlatform") || "Plateforme",
+      tag: t("categories.titleTag") || "Tag",
+      status: t("categories.titleStatus") || "Statut",
+    };
+    return labels[categoryType] || "Catégorie";
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.name.trim()) return;
+    // Validation du formulaire
+    const validationErrors = validateCategory(formData.name);
+    const firstError = getFirstValidationError(validationErrors);
+    if (firstError) {
+      showError(firstError);
+      return;
+    }
 
     setIsSubmitting(true);
     try {
@@ -105,12 +124,18 @@ const CategoryForm = ({
         const user = JSON.parse(localStorage.getItem("user") || "{}");
         user.updatedCategoriesCount = (user.updatedCategoriesCount || 0) + 1;
         localStorage.setItem("user", JSON.stringify(user));
+
+        const categoryLabel = getCategoryLabel();
+        showUpdated(`${categoryLabel}: "${formData.name}"`);
       } else {
         await createMetadata(categoryType, payload);
 
         const user = JSON.parse(localStorage.getItem("user") || "{}");
         user.customCategoriesCreated = (user.customCategoriesCreated || 0) + 1;
         localStorage.setItem("user", JSON.stringify(user));
+
+        const categoryLabel = getCategoryLabel();
+        showCreated(`${categoryLabel}: "${formData.name}"`);
       }
 
       window.dispatchEvent(new Event("checkAchievements"));
@@ -118,6 +143,7 @@ const CategoryForm = ({
       if (onSuccess) onSuccess();
     } catch (error) {
       console.error("Erreur lors de l'enregistrement :", error);
+      showError(t("common.savingError") || "Erreur lors de la sauvegarde");
     } finally {
       setIsSubmitting(false);
     }
