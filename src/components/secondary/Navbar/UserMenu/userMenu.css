@@ -44,6 +44,37 @@
   justify-content: center;
 }
 
+.help-button-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 34px;
+  padding: 0;
+  background: var(--color-bg);
+  border: none;
+  border-radius: 10px;
+  color: var(--color-text);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.help-button-menu:hover {
+  background: var(--bg-hover-theme-lang);
+}
+
+.help-button-menu:active {
+  transform: scale(0.95);
+}
+
+/* Masquer sur mobile et tablette */
+@media (max-width: 1024px) {
+  .help-button-menu {
+    display: none;
+  }
+}
+
 .separate {
   border: none;
   border-top: 1px solid var(--color-border);

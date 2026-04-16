@@ -6,6 +6,8 @@ import router from "./config/router";
 import "./config/interceptor";
 import AchievementToast from './components/common/AchievementToast';
 import ValidationToast from './components/common/ValidationToast';
+import KeyboardShortcutsProvider from './components/KeyboardShortcutsProvider';
+import KeyboardHelp from './components/KeyboardHelp';
 
 function App() {
   // Tracker d'achievements - vérification sûre au démarrage
@@ -14,8 +16,10 @@ function App() {
   return (
     <div id="app-container" className="app-container">
       <RouterProvider router={router} />
+      <KeyboardShortcutsProvider />
       <AchievementToast />
       <ValidationToast />
+      <KeyboardHelp />
     </div>
   );
 }

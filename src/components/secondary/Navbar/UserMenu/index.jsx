@@ -1,6 +1,8 @@
 import LanguageSelector from "../UserMenuParts/LanguageSelector";
 import ThemeToggle from "../UserMenuParts/ThemeToggle";
 import UserLinks from "../UserMenuParts/UserLinks";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import "./UserMenu.css";
 
 const UserMenu = ({ user, t, state, setters, actions, onClose }) => {
@@ -8,6 +10,11 @@ const UserMenu = ({ user, t, state, setters, actions, onClose }) => {
   const { setLangMenuOpen } = setters;
   const { toggleTheme, changeLanguage } = actions;
   const displayName = user?.username || "Pilote";
+
+  const handleHelpClick = () => {
+    window.dispatchEvent(new CustomEvent('showKeyboardHelp'));
+    onClose();
+  };
 
   return (
     <div className="navbar-actions">
@@ -25,6 +32,15 @@ const UserMenu = ({ user, t, state, setters, actions, onClose }) => {
         />
 
         <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
+
+        <button 
+          className="help-button-menu"
+          onClick={handleHelpClick}
+          title="Afficher les raccourcis clavier (Ctrl+H)"
+          aria-label="Afficher l'aide des raccourcis clavier"
+        >
+          <FontAwesomeIcon icon={faQuestion} />
+        </button>
       </div>
 
       <hr className="separate" />

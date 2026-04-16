@@ -21,7 +21,7 @@ const DetailHero = ({ game, onToggleFavorite, metadata = {}, isUpdating = false,
   const statusDropdownRef = useRef(null);
   const ratingDropdownRef = useRef(null);
 
-  // Fermer les dropdowns quand on clique en dehors
+  // Fermer les dropdowns quand on clique en dehors ou appuie sur Escape
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (statusDropdownRef.current && !statusDropdownRef.current.contains(e.target)) {
@@ -31,9 +31,24 @@ const DetailHero = ({ game, onToggleFavorite, metadata = {}, isUpdating = false,
         setRatingDropdownOpen(false);
       }
     };
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        if (statusDropdownOpen || ratingDropdownOpen) {
+          e.preventDefault();
+          setStatusDropdownOpen(false);
+          setRatingDropdownOpen(false);
+        }
+      }
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [statusDropdownOpen, ratingDropdownOpen]);
 
   // Calculer isOwned en fonction du status (Wishlist = false, autres = true)
   useEffect(() => {

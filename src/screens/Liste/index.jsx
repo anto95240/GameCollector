@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,6 +18,7 @@ import { useActiveOnScroll } from "../../hooks/ui/useActiveOnScroll";
 import { useGamesList } from "../../hooks/games/useGamesList";
 import { useCarousel } from "../../hooks/ui/useCarousel";
 import { useSearchBar } from "../../hooks/ui/useSearchBar";
+import { useSearchBarShortcuts } from "../../hooks/ui/useSearchBarShortcuts";
 
 import "./Liste.css";
 
@@ -25,7 +26,10 @@ const ListePage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  const searchInputRef = useRef(null);
   const { searchTerm, setSearchTerm, debouncedTerm } = useSearchBar("");
+  useSearchBarShortcuts(searchInputRef);
+
   const { games, metadata, isLoading, toggleFavorite, removeGame } =
     useGamesList(debouncedTerm);
 
@@ -128,6 +132,7 @@ const ListePage = () => {
       onClick={() => setActiveMenuIndex(null)}
     >
       <ListeHeader
+        ref={searchInputRef}
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
         onToggleFilter={() => setIsFilterOpen(!isFilterOpen)}

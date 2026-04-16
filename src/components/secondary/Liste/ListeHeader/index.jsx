@@ -1,25 +1,28 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { forwardRef } from "react";
 import "./ListeHeader.css";
 
-const ListeHeader = ({
+const ListeHeader = forwardRef(({
   searchTerm,
   onSearchChange,
   onToggleFilter,
   t,
   onClick,
   totalGames,
-}) => {
+}, ref) => {
   return (
     <div className="liste-header flex items-center justify-center mx-auto">
       {/* Barre de recherche */}
       <div className="search-wrapper flex items-center gap-5">
         <input
+          ref={ref}
           type="text"
           className="search-input"
           placeholder={t("gameList.searchPlaceholder")}
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
+          title="Raccourci: Ctrl+K ou Cmd+K pour focus"
         />
         {searchTerm && (
           <button
@@ -50,6 +53,7 @@ const ListeHeader = ({
         <button
           className="btn-add flex items-center justify-center gap-2.5 cursor-pointer"
           onClick={onClick}
+          title="Raccourci: Ctrl+N ou Cmd+N pour ajouter un jeu"
         >
           <FontAwesomeIcon icon={faPlus} />
           <span>{t("gameList.addGame")}</span>
@@ -57,6 +61,8 @@ const ListeHeader = ({
       </div>
     </div>
   );
-};
+});
+
+ListeHeader.displayName = 'ListeHeader';
 
 export default ListeHeader;
