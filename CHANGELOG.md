@@ -1,3 +1,17 @@
+# [2.2.0](https://github.com/anto95240/GameCollector/compare/v2.1.0...v2.2.0) (2026-04-16)
+
+
+### Bug Fixes
+
+* erreur css + chemin hook ([fa65022](https://github.com/anto95240/GameCollector/commit/fa65022908a10b7422da854ccecab2b8c8864f06))
+
+
+### Features
+
+* ajout de nouvelle animation de chargement ([aaa3a7e](https://github.com/anto95240/GameCollector/commit/aaa3a7e0e9fdae2c0baaff6af5dda5daf9c1c16c))
+* responsive deblocage trophée, update note, status dans page detail ([c960a29](https://github.com/anto95240/GameCollector/commit/c960a29ca11343bc38bbcba31ba1d927d8cc155b))
+* update animation validation ([86085b9](https://github.com/anto95240/GameCollector/commit/86085b9ada9193930c96b7e4aebc090f158bae57))
+
 # [2.1.0](https://github.com/anto95240/GameCollector/compare/v2.0.0...v2.1.0) (2026-04-14)
 
 
