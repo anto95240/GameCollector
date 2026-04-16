@@ -1,5 +1,6 @@
 import { useProfile } from "../../hooks/auth/useProfile";
 import { useScrollSpy } from "../../hooks/ui/useScrollSpy";
+import { useEscapeKeyCloser } from "../../hooks/ui/useEscapeKeyCloser";
 import ProfilSection from "../../components/main/ProfilePage/ProfilSection";
 import ConnexionSection from "../../components/main/ProfilePage/ConnexionSection";
 import DeleteAccountSection from "../../components/main/ProfilePage/DeleteAccountSection";
@@ -12,6 +13,12 @@ const ProfilePage = () => {
   
   // Remplacement de toute la logique d'IntersectionObserver par le hook
   const { activeSection, scrollToSection } = useScrollSpy("profile-section", ".profile-section-item");
+
+  // Fermer la modal de suppression avec Escape
+  useEscapeKeyCloser(
+    () => setUiState(p => ({ ...p, showDeletePopup: false })),
+    uiState.showDeletePopup
+  );
 
   return (
     <div className="profile-container">

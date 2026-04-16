@@ -8,6 +8,7 @@ import {
 import CategoryList from "../../../secondary/Category/CategoryListe";
 import CategoryForm from "../../../secondary/Category/CategoryForm";
 import { useApiMetadata } from "../../../../hooks/api/useApiMetadata";
+import { useEscapeKeyCloser } from "../../../../hooks/ui/useEscapeKeyCloser";
 import "./CategoryManager.css";
 
 const CategoryManager = ({ categoryType }) => {
@@ -23,6 +24,12 @@ const CategoryManager = ({ categoryType }) => {
   const formRef = useRef(null);
 
   const { getMetadataByType, deleteMetadata } = useApiMetadata();
+
+  // Fermer le modal de suppression avec Escape
+  useEscapeKeyCloser(
+    () => setShowDeleteModal(false),
+    showDeleteModal
+  );
 
   const fetchCategories = useCallback(async () => {
     if (!categoryType) return;
