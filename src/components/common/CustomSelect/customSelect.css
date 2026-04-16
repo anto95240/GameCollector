@@ -109,3 +109,16 @@
   color: white;
   font-weight: bold;
 }
+
+/* --- DISABLED STATE --- */
+.custom-select-trigger.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--bg-card);
+  border-color: var(--color-border);
+}
+
+.custom-select-trigger.disabled:hover {
+  background: var(--bg-card);
+  border-color: var(--color-border);
+}

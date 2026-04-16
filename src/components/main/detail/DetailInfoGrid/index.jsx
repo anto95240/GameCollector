@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 
 const DetailInfoGrid = ({ game }) => {
   const { t } = useTranslation();
+
   return (
     <div className="content-grid">
       {/* Colonne Gauche : Narration */}

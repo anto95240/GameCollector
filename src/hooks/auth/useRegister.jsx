@@ -1,17 +1,16 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 import { useApiAuth } from "../api/useApiAuth";
 
 export const useRegister = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const { register } = useApiAuth();
+  const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
   const [error, setError] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
-  const [showLoading, setShowLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstname: "", lastname: "", username: "", email: "", password: "", passwordConfirm: "",
   });
@@ -35,15 +34,14 @@ export const useRegister = () => {
       const response = await register(formData);
       if (response.user) {
         localStorage.setItem("user", JSON.stringify(response.user));
-        setShowLoading(true);
-        setTimeout(() => navigate("/dashboard"), 2000);
+        // Redirection vers la page de chargement fullscreen
+        navigate("/loading?variant=login&returnTo=/dashboard");
       }
     } catch (err) {
       setError(err.response?.data?.message || "Erreur d'inscription.");
       setIsAnimating(false);
-      setShowLoading(false);
     }
   };
 
-  return { step, setStep, formData, handleChange, handleNext, error, isAnimating, showLoading, t };
+  return { step, setStep, formData, handleChange, handleNext, error, isAnimating, t };
 };

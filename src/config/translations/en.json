@@ -13,7 +13,14 @@
       "noImage": "No image",
       "favorite": "Favorite",
       "select": "Select one",
-      "arialLabelPassword": "Show password"
+      "arialLabelPassword": "Show password",
+      "updatedSuccess": "Update completed successfully",
+      "createdSuccess": "Item created successfully",
+      "deletedSuccess": "Item deleted successfully",
+      "savingError": "Error while saving",
+      "deletingError": "Error while deleting",
+      "nameRequired": "Name is required",
+      "loading": "Loading..."
     },
 
     "ErrorMsg": {
@@ -209,8 +216,7 @@
         "genre": "Genre",
         "platform": "Platform",
         "releaseYear": "Release year",
-        "status": "Status",
-        "tags": "Tag",
+        "status": "Status",        "selectStatus": "Select a status",        "tags": "Tag",
         "developer": "Developer",
         "playtime": "Playtime (h)",
         "achievements": "Achievements",

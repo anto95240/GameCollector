@@ -158,8 +158,12 @@ export const useAddEditGame = () => {
       tagsMgr.selectedTags.forEach(id => submitData.append("tags_ids", id));
 
       const isFirstGame = !isEditMode;
-      if (isEditMode) await updateGame(gameToEdit._id, submitData);
-      else await createGame(submitData);
+      let createdOrUpdatedGame;
+      if (isEditMode) {
+        createdOrUpdatedGame = await updateGame(gameToEdit._id, submitData);
+      } else {
+        createdOrUpdatedGame = await createGame(submitData);
+      }
       
       // Mettre à jour les stats
       const user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -182,12 +186,24 @@ export const useAddEditGame = () => {
         window.dispatchEvent(new Event('checkAchievements'));
       }, 500);
       
-      navigate("/list");
+      // Récupérer l'ID du jeu créé/modifié
+      // L'API retourne le jeu directement (pas wrappé dans { data: ... })
+      const gameId = createdOrUpdatedGame?._id || gameToEdit?._id;
+      
+      setTimeout(() => {
+        if (gameId) {
+          // Naviguer vers la page Detail du jeu créé/modifié
+          navigate(`/game/${gameId}`, { state: { game: createdOrUpdatedGame } });
+        } else {
+          // Fallback si l'ID est absent
+          console.warn("Impossible de récupérer l'ID du jeu");
+          navigate("/list");
+        }
+      }, 2500); // 2.5 secondes pour voir l'animation
     } catch (e) { 
       console.error("Erreur lors de la sauvegarde:", e.response?.data || e.message);
-      alert("Erreur lors de la sauvegarde."); 
-    } finally { 
-      setIsAnimating(false); 
+      alert("Erreur lors de la sauvegarde.");
+      setIsAnimating(false);
     }
   };
 

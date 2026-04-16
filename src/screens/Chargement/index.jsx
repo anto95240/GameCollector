@@ -1,48 +1,34 @@
-import { createPortal } from "react-dom";
-import { useEffect } from "react";
+import { useNavigate } from "react-router";
+import { useLoadingAnimation } from "../../hooks/ui/useLoadingAnimation";
+import LoadingVariants from "./modules/LoadingVariants";
+import BackgroundBlobs from "./modules/BackgroundBlobs";
+import LoadingContent from "./modules/LoadingContent";
+import Spinner from "./modules/Spinner";
+import ProgressBar from "./modules/ProgressBar";
+import StatusMessage from "./modules/StatusMessage";
+import Particles from "./modules/Particles";
 import "./Chargement.css";
-import { useTranslation } from "react-i18next";
 
-const ChargementPage = ({ variant = "login" }) => {
-  const { t } = useTranslation();
+const ChargementPage = ({ variant = "login", returnTo = null }) => {
+  const navigate = useNavigate();
+  const { progress } = useLoadingAnimation(variant, navigate, returnTo);
+  const isLogout = variant === "logout";
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const user = JSON.parse(localStorage.getItem("user") || "{}");
-      user.startupAnimationSeen = true;
-      localStorage.setItem("user", JSON.stringify(user));
-      window.dispatchEvent(new Event("checkAchievements"));
-    }, 2200);
-
-    return () => clearTimeout(timer);
-  }, [variant]);
-
-  const getStatusMessage = () => {
-    if (variant === "logout") {
-      return t("auth.loading.statusLogout");
-    }
-    return t("auth.loading.statusLogin");
-  };
-
-  // Stocker le contenu dans une variable
   const loadingContent = (
-    <div className="loading-screen">
-      <div className="loading-content">
-        <div className="cyber-spinner">
-          <div className="spinner-inner"></div>
-          <div className="spinner-text">GC</div>
-        </div>
-        <div className="loading-bar-container">
-          <div className="loading-bar-fill"></div>
-        </div>
-        <p className="loading-status">{getStatusMessage()}</p>
-      </div>
-      <div className="grid-overlay"></div>
-    </div>
+    <LoadingVariants isLogout={isLogout}>
+      <BackgroundBlobs />
+      
+      <LoadingContent>
+        <Spinner isLogout={isLogout} />
+        <ProgressBar progress={progress} />
+        <StatusMessage isLogout={isLogout} />
+      </LoadingContent>
+
+      <Particles />
+    </LoadingVariants>
   );
 
-  // Utiliser createPortal pour l'injecter directement dans le <body>
-  return createPortal(loadingContent, document.body);
+  return loadingContent;
 };
 
 export default ChargementPage;

@@ -1,0 +1,88 @@
+/* Background Blobs */
+
+.loading-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.gradient-blob {
+  position: absolute;
+  filter: blur(40px);
+  opacity: 0.6;
+  mix-blend-mode: screen;
+  border-radius: 50%;
+}
+
+.loading-login .gradient-blob-1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+  top: -100px;
+  right: -50px;
+  animation: blob-move-1 8s ease-in-out infinite;
+}
+
+.loading-login .gradient-blob-2 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+  bottom: -80px;
+  left: 10%;
+  animation: blob-move-2 10s ease-in-out infinite;
+}
+
+.loading-login .gradient-blob-3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #0ea5e9 0%, transparent 70%);
+  top: 50%;
+  left: -50px;
+  animation: blob-move-3 9s ease-in-out infinite;
+}
+
+.loading-logout .gradient-blob-1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #f97316 0%, transparent 70%);
+  top: -100px;
+  right: -50px;
+  animation: blob-move-1 8s ease-in-out infinite;
+}
+
+.loading-logout .gradient-blob-2 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, #ea580c 0%, transparent 70%);
+  bottom: -80px;
+  left: 10%;
+  animation: blob-move-2 10s ease-in-out infinite;
+}
+
+.loading-logout .gradient-blob-3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #dc2626 0%, transparent 70%);
+  top: 50%;
+  left: -50px;
+  animation: blob-move-3 9s ease-in-out infinite;
+}
+
+@keyframes blob-move-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 30px) scale(0.9); }
+}
+
+@keyframes blob-move-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-30px, 50px) scale(0.9); }
+  66% { transform: translate(40px, -30px) scale(1.1); }
+}
+
+@keyframes blob-move-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(50px, 20px) scale(1.05); }
+  66% { transform: translate(-30px, -40px) scale(0.95); }
+}

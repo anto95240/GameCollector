@@ -2,13 +2,16 @@ import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import { useApiAuth } from "../api/useApiAuth";
+import { useValidationToast } from "../ui/useValidationToast";
+import { validateProfile, getFirstValidationError } from "../../utils/validators";
 import { API_URL } from "../../config/constants";
 
 export const useProfile = () => {
   const { t } = useOutletContext(); 
   
   const { user, updateUser } = useAuth(); 
-  const { updateProfile, deleteAccount, logout } = useApiAuth(); 
+  const { updateProfile, deleteAccount, logout } = useApiAuth();
+  const { showSuccess, showError, showUpdated, showDeleted } = useValidationToast(); 
 
   // On a nettoyé le state des variables "account" inutilisées
   const [form, setForm] = useState({
@@ -51,6 +54,14 @@ export const useProfile = () => {
 
   const handleSaveProfile = async () => {
     try {
+      // Validation du formulaire
+      const validationErrors = validateProfile(form);
+      const firstError = getFirstValidationError(validationErrors);
+      if (firstError) {
+        showError(firstError);
+        return;
+      }
+
       const formData = new FormData();
       
       ["firstname", "lastname", "username", "email"].forEach((key) => {
@@ -58,9 +69,6 @@ export const useProfile = () => {
       });
       
       if (form.password) {
-        if (form.password !== form.confirmPassword) {
-          return alert(t('ErrorMsg.passwordsNotMatching') || "Les mots de passe ne correspondent pas.");
-        }
         formData.append("password", form.password);
       }
       
@@ -79,25 +87,25 @@ export const useProfile = () => {
 
       window.dispatchEvent(new Event('checkAchievements'));
 
-      alert(t('ErrorMsg.alerteSucces') || "Profil mis à jour avec succès !");
+      showUpdated("Votre profil");
       
       setForm(prev => ({ ...prev, password: "", confirmPassword: "" }));
       setUiState(prev => ({ ...prev, showEmailForm: false, showPasswordForm: false }));
 
     } catch (err) {
       console.error(err);
-      alert(t('ErrorMsg.errorUpdateUser') || "Une erreur est survenue lors de la mise à jour.");
+      showError(t('ErrorMsg.errorUpdateUser') || "Une erreur est survenue lors de la mise à jour.");
     }
   };
 
   const handleDeleteUser = async () => {
     try {
       await deleteAccount(user.uid);
-      alert(t('ErrorMsg.alerteDeleteUser') || "Votre compte a été supprimé.");
+      showDeleted("Votre compte");
       await logout(); // Gère la redirection et le nettoyage
     } catch (err) {
       console.error(err);
-      alert(t('ErrorMsg.errorDelete') || "Erreur lors de la suppression du compte.");
+      showError(t('ErrorMsg.errorDelete') || "Erreur lors de la suppression du compte.");
     }
   };
 

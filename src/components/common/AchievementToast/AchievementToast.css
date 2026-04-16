@@ -6,9 +6,11 @@
   position: fixed; /* Fixé à l'écran */
   bottom: 40px;
   right: 40px;
+  left: auto;
   display: flex;
   align-items: center;
   width: 420px;
+  max-width: calc(100vw - 32px);
   background: var(--bg-panel);
   backdrop-filter: blur(10px);
   border: 1px solid var(--color-border);
@@ -108,6 +110,11 @@
   to { transform: translateX(0); opacity: 1; }
 }
 
+@keyframes slideInMobile {
+  from { transform: translateY(18px) scale(0.98); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
 @keyframes laserSweep {
   0% { left: -10px; opacity: 0; }
   20% { opacity: 1; }
@@ -122,4 +129,76 @@
 
 @keyframes spinHolo {
   100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .achv-masterpiece {
+    right: 16px;
+    bottom: 16px;
+    width: auto;
+    left: 16px;
+    max-width: none;
+    padding: 14px;
+    border-radius: 14px;
+    animation: slideInMobile 0.45s ease-out forwards;
+  }
+
+  .achv-card-static {
+    width: 52px;
+    margin-right: 14px;
+  }
+
+  .achv-icon {
+    font-size: 24px;
+  }
+
+  .achv-tag {
+    font-size: 0.54rem;
+    letter-spacing: 1.2px;
+    line-height: 1.3;
+  }
+
+  .achv-title {
+    font-size: 1rem;
+  }
+
+  .achv-desc {
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+}
+
+@media (max-width: 480px) {
+  .achv-masterpiece {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    padding: 12px;
+  }
+
+  .achv-card-static {
+    width: 44px;
+    margin-right: 10px;
+  }
+
+  .achv-title {
+    font-size: 0.95rem;
+  }
+
+  .achv-desc {
+    font-size: 0.76rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .achv-masterpiece,
+  .achv-laser-scan,
+  .achv-info-panel,
+  .achv-card-static::before {
+    animation: none;
+  }
+
+  .achv-info-panel {
+    opacity: 1;
+  }
 }

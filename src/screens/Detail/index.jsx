@@ -10,7 +10,7 @@ import "./Detail.css";
 const DetailPage = () => {
   const { id, gameName, slug } = useParams();
   const { pathname } = useLocation();
-  const { game, isLoading, handleEdit, handleDelete, handleToggleFavorite } =
+  const { game, isLoading, metadata, isUpdating, handleEdit, handleDelete, handleToggleFavorite, handleUpdateGameField } =
     useGameDetail(id, slug, gameName);
 
   useLayoutEffect(() => {
@@ -35,7 +35,7 @@ const DetailPage = () => {
   return (
     <div className="detail-layout fade-in">
       <DetailHeader onEdit={handleEdit} onDelete={handleDelete} />
-      <DetailHero game={game} onToggleFavorite={handleToggleFavorite} />
+      <DetailHero game={game} onToggleFavorite={handleToggleFavorite} metadata={metadata} isUpdating={isUpdating} onUpdateField={handleUpdateGameField} />
       <DetailInfoGrid game={game} />
       <DetailFooter />
     </div>

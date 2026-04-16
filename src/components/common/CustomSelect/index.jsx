@@ -4,7 +4,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import "./CustomSelect.css";
 
-const CustomSelect = ({ options = [], value, onChange }) => {
+const CustomSelect = ({ options = [], value, onChange, disabled = false }) => {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
   
@@ -58,16 +58,19 @@ const CustomSelect = ({ options = [], value, onChange }) => {
   }, [selectedLabel, isOpen]);
 
   const handleSelect = (val) => {
-    onChange(val);
-    setIsOpen(false);
+    if (!disabled) {
+      onChange(val);
+      setIsOpen(false);
+    }
   };
 
   return (
     <div className="custom-select-container" ref={wrapperRef}>
       <button
-        className={`custom-select-trigger ${isOpen ? "open" : ""}`}
-        onClick={() => setIsOpen(!isOpen)}
+        className={`custom-select-trigger ${isOpen ? "open" : ""} ${disabled ? "disabled" : ""}`}
+        onClick={() => !disabled && setIsOpen(!isOpen)}
         type="button"
+        disabled={disabled}
       >
         <div className="select-label-wrapper" ref={containerRef}>
           <span className={`select-label ${isOverflowing ? "scrolling" : ""}`} ref={textRef}>
@@ -81,7 +84,7 @@ const CustomSelect = ({ options = [], value, onChange }) => {
         />
       </button>
 
-      {isOpen && (
+      {isOpen && !disabled && (
         <div className="custom-select-dropdown">
           {options.map((opt) => (
             <div
