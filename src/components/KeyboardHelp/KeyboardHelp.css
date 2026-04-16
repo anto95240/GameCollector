@@ -1,0 +1,227 @@
+.keyboard-help-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-modal-overlay);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeInOverlay 0.3s ease-in-out;
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(6px);
+  }
+}
+
+.keyboard-help-modal {
+  background: var(--bg-card);
+  border: 2px solid var(--border-main);
+  border-radius: 12px;
+  max-width: 700px;
+  width: 92%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease-out;
+  position: relative;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.keyboard-help-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(0, 104, 172, 0.1);
+}
+
+.keyboard-help-header h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: var(--font-family-title);
+}
+
+.keyboard-help-close {
+  background: none;
+  border: 1.5px solid var(--text-primary);
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+}
+
+.keyboard-help-close:hover {
+  background: var(--text-primary);
+  color: var(--bg-app);
+  transform: rotate(90deg);
+}
+
+.keyboard-help-content {
+  padding: 24px;
+  color: var(--text-secondary);
+}
+
+.keyboard-help-category {
+  margin-bottom: 24px;
+}
+
+.keyboard-help-category:last-child {
+  margin-bottom: 0;
+}
+
+.keyboard-help-category h3 {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--font-family-title);
+}
+
+.keyboard-help-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.keyboard-help-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(0, 104, 172, 0.08);
+  border-left: 3px solid var(--border-main);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.keyboard-help-item:hover {
+  background: rgba(0, 104, 172, 0.15);
+  border-left-color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+.keyboard-help-keys {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 90px;
+  padding: 5px 10px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.keyboard-help-description {
+  flex: 1;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-family: var(--font-family-text);
+}
+
+.keyboard-help-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(0, 104, 172, 0.08);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-family: var(--font-family-text);
+}
+
+.keyboard-help-footer kbd {
+  display: inline-block;
+  padding: 2px 6px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  margin: 0 4px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .keyboard-help-modal {
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .keyboard-help-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .keyboard-help-category h3 {
+    font-size: 0.9rem;
+  }
+
+  .keyboard-help-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .keyboard-help-keys {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .keyboard-help-description {
+    width: 100%;
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .keyboard-help-overlay,
+  .keyboard-help-modal {
+    animation: none;
+  }
+
+  .keyboard-help-close:hover {
+    transform: none;
+  }
+
+  .keyboard-help-item:hover {
+    transform: none;
+  }
+}
