@@ -5,7 +5,8 @@ import { lazy, Suspense } from "react";
 import ProtectedRoutes from "../components/main/ProtectedRoutes";
 import AppLayout from "../components/main/AppLayout";
 import AuthLayout from "../components/main/AuthLayout";
-import ChargementPage from "../screens/Chargement";
+import SimpleLoadingSpinner from "../components/common/SimpleLoadingSpinner";
+import LoadingScreen from "../screens/LoadingScreen";
 
 // 🚀 LAZY LOADING : Ces pages ne seront téléchargées que lorsqu'elles seront visitées !
 const HomePage = lazy(() => import("../screens/Dashboard"));
@@ -20,9 +21,14 @@ const ListePage = lazy(() => import("../screens/Liste"));
 const DetailPage = lazy(() => import("../screens/Detail"));
 const TropheesPage = lazy(() => import("../screens/Trophees"));
 
-// Un composant qui enveloppe nos routes paresseuses pour afficher le chargement
+// Un composant qui enveloppe nos routes paresseuses pour afficher un spinner simple
 const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
-  <Suspense fallback={<ChargementPage />}>{children}</Suspense>
+  <Suspense fallback={<SimpleLoadingSpinner />}>{children}</Suspense>
+);
+
+// Un wrapper léger pour la déconnexion (sans ChargementPage)
+const SimpleSuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
+  <Suspense fallback={<div></div>}>{children}</Suspense>
 );
 
 let router = createBrowserRouter([
@@ -48,16 +54,16 @@ let router = createBrowserRouter([
     ],
   },
   {
-    path: "/loading",
-    Component: ChargementPage,
-  },
-  {
     path: "/logout",
     element: (
-      <SuspenseWrapper>
+      <SimpleSuspenseWrapper>
         <DeconnexionPage />
-      </SuspenseWrapper>
+      </SimpleSuspenseWrapper>
     ),
+  },
+  {
+    path: "/loading",
+    element: <LoadingScreen />,
   },
   {
     Component: ProtectedRoutes,

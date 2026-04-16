@@ -3,18 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
 import LoadingButton from "../../components/common/LoadingButton";
-import ChargementPage from "../Chargement";
 import AuthInput from "../../components/common/AuthInput";
 import { useLogin } from "../../hooks/auth/useLogin";
 import "./Login.css";
 
 const Login = () => {
+  // L'UI est totalement séparée de la logique !
   const { email, setEmail, password, setPassword, error, isAnimating, showLoading, handleSubmit, t } = useLogin();
 
   return (
     <>
-      {showLoading && <ChargementPage variant="login" />}
-
       <h2 className="auth-title">{t("auth.login.title")}</h2>
 
       <form onSubmit={handleSubmit} className="auth-form">
@@ -50,6 +48,7 @@ const Login = () => {
           text={t("auth.login.submit")}
           isAnimating={isAnimating}
           showLoading={showLoading}
+          loadingVariant="login"
           variant="cyber"
           className="mt-4"
         />

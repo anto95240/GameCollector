@@ -6,17 +6,15 @@ import LoadingButton from "../../components/common/LoadingButton";
 import SignUpPart1 from "../../components/main/SignUpPart1";
 import SignUpPart2 from "../../components/main/SignUpPart2";
 import SignUpPart3 from "../../components/main/SignUpPart3";
-import ChargementPage from "../Chargement";
 import { useRegister } from "../../hooks/auth/useRegister";
 import "./Register.css";
 
 const Register = () => {
+  // L'UI est totalement séparée de la logique !
   const { step, setStep, formData, handleChange, handleNext, error, isAnimating, showLoading, t } = useRegister();
 
   return (
     <>
-      {showLoading && <ChargementPage variant="login" />}
-      
       <h2 className="auth-title">{t("auth.register.title")}</h2>
 
       <div className="steps-container">
@@ -63,6 +61,7 @@ const Register = () => {
             text={step === 3 ? t("auth.register.submit") : t("auth.register.next")}
             isAnimating={isAnimating}
             showLoading={showLoading}
+            loadingVariant="login"
             variant="cyber"
             className="flex-1"
           />

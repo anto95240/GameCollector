@@ -1,0 +1,115 @@
+/* Modern Spinner */
+
+.modern-spinner {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-ring {
+  position: absolute;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  animation: ring-spin 2s linear infinite;
+}
+
+.spinner-ring-1 {
+  width: 100%;
+  height: 100%;
+  border-top-color: currentColor;
+  border-right-color: currentColor;
+  color: #3b82f6;
+  animation-delay: 0s;
+}
+
+.loading-logout .spinner-ring-1 {
+  color: #f97316;
+}
+
+.spinner-ring-2 {
+  width: 70%;
+  height: 70%;
+  border-bottom-color: currentColor;
+  border-left-color: currentColor;
+  color: #06b6d4;
+  animation-delay: -0.7s;
+  animation-direction: reverse;
+}
+
+.loading-logout .spinner-ring-2 {
+  color: #ea580c;
+}
+
+.spinner-ring-3 {
+  width: 40%;
+  height: 40%;
+  border-top-color: currentColor;
+  border-right-color: currentColor;
+  color: #0ea5e9;
+}
+
+.loading-logout .spinner-ring-3 {
+  color: #dc2626;
+}
+
+@keyframes ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spinner-core {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+.loading-logout .spinner-core {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(234, 88, 12, 0.1) 100%);
+  box-shadow: inset 0 0 20px rgba(249, 115, 22, 0.2);
+}
+
+.spinner-icon {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3b82f6;
+  animation: icon-pulse 1.5s ease-in-out infinite;
+}
+
+.loading-logout .spinner-icon {
+  color: #f97316;
+}
+
+@keyframes icon-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modern-spinner {
+    width: 90px;
+    height: 90px;
+  }
+
+  .spinner-core {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .spinner-ring,
+  .spinner-icon {
+    animation: none !important;
+  }
+}
