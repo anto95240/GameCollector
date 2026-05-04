@@ -1,0 +1,185 @@
+/* =========================================
+   ÉLÉMENT RACCOURCI (LIGNE)
+   ========================================= */
+.keyboard-help-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border-left: 2px solid var(--border-main);
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+}
+
+.keyboard-help-item:hover {
+  border-left-color: var(--brand-glow);
+  transform: translateX(4px);
+}
+
+.keyboard-help-item.customized {
+  border-left-color: var(--status-success);
+}
+
+.keyboard-help-item.disabled {
+  opacity: 0.5;
+  filter: grayscale(1);
+  border-left-color: var(--border-subtle);
+}
+
+.keyboard-help-item-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+/* =========================================
+   TOUCHES CLAVIER (<KBD>)
+   ========================================= */
+.keyboard-help-keys {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 90px;
+  padding: 6px 12px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-main);
+  border-bottom: 3px solid var(--border-main);
+  border-radius: 6px;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+}
+
+.keyboard-help-item:hover .keyboard-help-keys {
+  border-color: var(--brand-glow);
+  border-bottom-color: var(--brand-glow);
+}
+
+.keyboard-help-description {
+  flex: 1;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-family: var(--font-family-text);
+}
+
+/* =========================================
+   BADGES
+   ========================================= */
+.custom-badge, .disabled-badge {
+  display: inline-block;
+  margin-left: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.custom-badge {
+  background: var(--bg-card);
+  color: var(--status-success);
+  border: 1px solid var(--status-success);
+}
+.disabled-badge {
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--text-secondary);
+}
+
+/* =========================================
+   BOUTONS D'ACTION LIGNE
+   ========================================= */
+.keyboard-help-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.keyboard-help-btn {
+  padding: 8px;
+  border: 1px solid var(--border-main);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  min-width: 36px;
+  height: 36px;
+}
+
+.keyboard-help-btn:hover:not(:disabled) {
+  border-color: var(--brand-glow);
+  transform: translateY(-2px);
+}
+
+.keyboard-help-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.keyboard-help-btn.toggle.enabled { color: var(--status-success); border-color: var(--status-success); }
+.keyboard-help-btn.toggle.disabled { color: var(--text-secondary); }
+
+/* =========================================
+   MODE ÉDITION (TERMINAL INPUT)
+   ========================================= */
+.keyboard-help-item.editing {
+  border-left-color: var(--brand-glow);
+}
+
+.keyboard-help-recording-input {
+  flex: 1;
+  padding: 10px 16px;
+  background: var(--bg-input);
+  border: 1px solid var(--brand-glow);
+  border-radius: 6px;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 1rem;
+  color: var(--text-primary);
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  outline: none;
+  animation: terminalBlink 1.5s infinite;
+}
+
+@keyframes terminalBlink {
+  0%, 100% { border-color: var(--brand-glow); }
+  50% { border-color: var(--border-main); }
+}
+
+.keyboard-help-recording-hint {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  margin-top: 6px;
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
+
+.keyboard-help-btn.save { background: var(--bg-card); color: var(--status-success); border-color: var(--status-success); }
+.keyboard-help-btn.cancel { background: var(--bg-card); color: var(--status-danger); border-color: var(--status-danger); }
+
+/* RESPONSIVE SPECIFIQUE A L'ITEM */
+@media (max-width: 768px) {
+  .keyboard-help-item { flex-direction: column; align-items: flex-start; }
+  .keyboard-help-item-content { width: 100%; flex-direction: column; align-items: flex-start; gap: 8px;}
+  .keyboard-help-keys { width: 100%; justify-content: center; }
+  .keyboard-help-actions { width: 100%; justify-content: flex-end; margin-top: 8px; }
+  .custom-badge, .disabled-badge { margin-left: 0; margin-top: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .keyboard-help-recording-input { animation: none; }
+}
