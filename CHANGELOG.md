@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/anto95240/GameCollector/compare/v2.3.0...v2.4.0) (2026-05-04)
+
+
+### Features
+
+* add personnalisation de raccourci ([#10](https://github.com/anto95240/GameCollector/issues/10)) ([ab5def0](https://github.com/anto95240/GameCollector/commit/ab5def0fb3fa1d153890eca9e31134d9c92225bd))
+
 # [2.3.0](https://github.com/anto95240/GameCollector/compare/v2.2.0...v2.3.0) (2026-04-16)
 
 
