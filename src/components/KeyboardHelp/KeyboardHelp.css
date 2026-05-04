@@ -1,57 +1,85 @@
+/* =========================================
+   OVERLAY
+   ========================================= */
 .keyboard-help-overlay {
   position: fixed;
   inset: 0;
-  background: var(--bg-modal-overlay);
+  background-color: var(--bg-modal-overlay);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  animation: fadeInOverlay 0.3s ease-in-out;
+  animation: fadeInOverlay 0.3s ease-out forwards;
 }
 
 @keyframes fadeInOverlay {
-  from {
-    opacity: 0;
-    backdrop-filter: blur(0px);
-  }
-  to {
-    opacity: 1;
-    backdrop-filter: blur(6px);
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
+/* =========================================
+   MODAL PRINCIPALE
+   ========================================= */
 .keyboard-help-modal {
-  background: var(--bg-card);
-  border: 2px solid var(--border-main);
-  border-radius: 12px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-main);
+  border-radius: 16px;
   max-width: 700px;
   width: 92%;
   max-height: 80vh;
   overflow-y: auto;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  animation: slideUp 0.3s ease-out;
+  box-shadow: var(--shadow-card-detail);
   position: relative;
+  /* Effet d'écran qui s'allume */
+  animation: crtTurnOn 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
+@keyframes crtTurnOn {
+  0% {
+    transform: scale(0.8) scaleY(0.01);
     opacity: 0;
+    filter: brightness(2);
   }
-  to {
-    transform: translateY(0);
+  50% {
+    transform: scale(1.02) scaleY(1.02);
+    filter: brightness(1.2);
+  }
+  100% {
+    transform: scale(1) scaleY(1);
     opacity: 1;
+    filter: brightness(1);
   }
 }
 
+/* Scrollbar Cyberpunk pour la modale */
+.keyboard-help-modal::-webkit-scrollbar {
+  width: 6px;
+}
+.keyboard-help-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+.keyboard-help-modal::-webkit-scrollbar-thumb {
+  background: var(--border-main);
+  border-radius: 4px;
+}
+.keyboard-help-modal::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-glow);
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
 .keyboard-help-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  border-bottom: 1px solid var(--border-subtle);
-  background: rgba(0, 104, 172, 0.1);
+  background: var(--grad-input-surface);
+  border-bottom: 1px solid var(--border-main);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .keyboard-help-header h2 {
@@ -62,11 +90,12 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   font-family: var(--font-family-title);
+  text-shadow: 0 0 8px var(--border-subtle);
 }
 
 .keyboard-help-close {
-  background: none;
-  border: 1.5px solid var(--text-primary);
+  background: var(--bg-input);
+  border: 1px solid var(--border-main);
   color: var(--text-primary);
   font-size: 1.2rem;
   cursor: pointer;
@@ -75,80 +104,109 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  border-radius: 6px;
+  border-radius: 8px;
   width: 36px;
   height: 36px;
 }
 
 .keyboard-help-close:hover {
-  background: var(--text-primary);
-  color: var(--bg-app);
+  /* Garde les couleurs de départ, seule l'animation s'exécute */
   transform: rotate(90deg);
 }
 
+/* =========================================
+   CONTENU ET CATÉGORIES
+   ========================================= */
 .keyboard-help-content {
   padding: 24px;
   color: var(--text-secondary);
 }
 
-.keyboard-help-category {
-  margin-bottom: 24px;
-}
-
-.keyboard-help-category:last-child {
-  margin-bottom: 0;
-}
-
 .keyboard-help-category h3 {
   color: var(--text-primary);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin: 0 0 12px 0;
+  letter-spacing: 2px;
+  margin: 0 0 16px 0;
   padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px dashed var(--border-subtle);
   font-family: var(--font-family-title);
+  opacity: 0.9;
 }
 
 .keyboard-help-items {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  margin-bottom: 30px;
 }
 
+/* =========================================
+   ÉLÉMENT RACCOURCI (LIGNE)
+   ========================================= */
 .keyboard-help-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
-  padding: 10px 12px;
-  background: rgba(0, 104, 172, 0.08);
-  border-left: 3px solid var(--border-main);
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border-left: 2px solid var(--border-main);
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
 }
 
 .keyboard-help-item:hover {
-  background: rgba(0, 104, 172, 0.15);
-  border-left-color: var(--text-primary);
+  border-left-color: var(--brand-glow);
   transform: translateX(4px);
+  /* Suppression du changement de background au hover */
 }
 
+.keyboard-help-item.customized {
+  border-left-color: var(--status-success);
+}
+
+.keyboard-help-item.disabled {
+  opacity: 0.5;
+  filter: grayscale(1);
+  border-left-color: var(--border-subtle);
+}
+
+.keyboard-help-item-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+/* =========================================
+   TOUCHES CLAVIER (<KBD>)
+   ========================================= */
 .keyboard-help-keys {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   min-width: 90px;
-  padding: 5px 10px;
+  padding: 6px 12px;
   background: var(--bg-input);
-  border: 1px solid var(--border-subtle);
-  border-radius: 4px;
+  border: 1px solid var(--border-main);
+  border-bottom: 3px solid var(--border-main);
+  border-radius: 6px;
   font-family: 'Monaco', 'Courier New', monospace;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-primary);
   text-align: center;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+}
+
+.keyboard-help-item:hover .keyboard-help-keys {
+  border-color: var(--brand-glow);
+  border-bottom-color: var(--brand-glow);
+  /* Suppression du box-shadow */
 }
 
 .keyboard-help-description {
@@ -158,70 +216,178 @@
   font-family: var(--font-family-text);
 }
 
-.keyboard-help-footer {
+/* BADGES */
+.custom-badge, .disabled-badge {
+  display: inline-block;
+  margin-left: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.custom-badge {
+  background: var(--bg-card);
+  color: var(--status-success);
+  border: 1px solid var(--status-success);
+}
+.disabled-badge {
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--text-secondary);
+}
+
+/* =========================================
+   BOUTONS D'ACTION LIGNE
+   ========================================= */
+.keyboard-help-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.keyboard-help-btn {
+  padding: 8px;
+  border: 1px solid var(--border-main);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  min-width: 36px;
+  height: 36px;
+}
+
+.keyboard-help-btn:hover:not(:disabled) {
+  border-color: var(--brand-glow);
+  /* Suppression du box-shadow et du changement de fond */
+  transform: translateY(-2px);
+}
+
+.keyboard-help-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.keyboard-help-btn.toggle.enabled { color: var(--status-success); border-color: var(--status-success); }
+.keyboard-help-btn.toggle.disabled { color: var(--text-secondary); }
+
+/* =========================================
+   MODE ÉDITION (TERMINAL INPUT)
+   ========================================= */
+.keyboard-help-item.editing {
+  border-left-color: var(--brand-glow);
+  /* Suppression du background sur le mode édition */
+}
+
+.keyboard-help-recording-input {
+  flex: 1;
+  padding: 10px 16px;
+  background: var(--bg-input);
+  border: 1px solid var(--brand-glow);
+  border-radius: 6px;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 1rem;
+  color: var(--text-primary);
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  outline: none;
+  /* Effet de curseur terminal qui clignote allégé */
+  animation: terminalBlink 1.5s infinite;
+}
+
+@keyframes terminalBlink {
+  0%, 100% { border-color: var(--brand-glow); }
+  50% { border-color: var(--border-main); }
+}
+
+.keyboard-help-recording-hint {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  margin-top: 6px;
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
+
+.keyboard-help-btn.save { background: var(--bg-card); color: var(--status-success); border-color: var(--status-success); }
+.keyboard-help-btn.cancel { background: var(--bg-card); color: var(--status-danger); border-color: var(--status-danger); }
+
+/* =========================================
+   MESSAGES DE NOTIFICATION
+   ========================================= */
+.keyboard-help-message {
   padding: 12px 20px;
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: slideDown 0.3s ease-out;
+  text-align: center;
+}
+.keyboard-help-message.success {
+  background: var(--bg-card);
+  color: var(--status-success);
+  border-bottom: 1px solid var(--status-success);
+}
+.keyboard-help-message.error {
+  background: var(--bg-card);
+  color: var(--status-danger);
+  border-bottom: 1px solid var(--status-danger);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.keyboard-help-footer {
+  padding: 16px 20px;
+  background: var(--grad-card-surface);
   border-top: 1px solid var(--border-subtle);
-  background: rgba(0, 104, 172, 0.08);
   text-align: center;
   color: var(--text-secondary);
-  font-size: 0.85rem;
-  font-family: var(--font-family-text);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
 }
 
 .keyboard-help-footer kbd {
   display: inline-block;
-  padding: 2px 6px;
+  padding: 3px 8px;
   background: var(--bg-input);
-  border: 1px solid var(--border-subtle);
-  border-radius: 3px;
+  border: 1px solid var(--border-main);
+  border-radius: 4px;
   font-family: 'Monaco', 'Courier New', monospace;
   font-size: 0.75rem;
+  font-weight: bold;
   color: var(--text-primary);
-  margin: 0 4px;
+  margin: 0 6px;
 }
 
-/* Mobile responsiveness */
+/* =========================================
+   RESPONSIVE
+   ========================================= */
 @media (max-width: 768px) {
-  .keyboard-help-modal {
-    width: 95%;
-    max-height: 90vh;
-  }
-
-  .keyboard-help-header h2 {
-    font-size: 1.2rem;
-  }
-
-  .keyboard-help-category h3 {
-    font-size: 0.9rem;
-  }
-
-  .keyboard-help-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .keyboard-help-keys {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .keyboard-help-description {
-    width: 100%;
-  }
+  .keyboard-help-modal { width: 95%; max-height: 90vh; }
+  .keyboard-help-header h2 { font-size: 1.2rem; }
+  .keyboard-help-item { flex-direction: column; align-items: flex-start; }
+  .keyboard-help-item-content { width: 100%; flex-direction: column; align-items: flex-start; gap: 8px;}
+  .keyboard-help-keys { width: 100%; justify-content: center; }
+  .keyboard-help-actions { width: 100%; justify-content: flex-end; margin-top: 8px; }
+  .custom-badge, .disabled-badge { margin-left: 0; margin-top: 6px; }
 }
 
-/* Prefers reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .keyboard-help-overlay,
-  .keyboard-help-modal {
-    animation: none;
-  }
-
-  .keyboard-help-close:hover {
-    transform: none;
-  }
-
-  .keyboard-help-item:hover {
-    transform: none;
-  }
+  .keyboard-help-overlay { animation: none; }
+  .keyboard-help-modal { animation: none; }
+  .keyboard-help-recording-input { animation: none; }
 }
