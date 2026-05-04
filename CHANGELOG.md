@@ -1,3 +1,16 @@
+# [2.5.0](https://github.com/anto95240/GameCollector/compare/v2.4.0...v2.5.0) (2026-05-04)
+
+
+### Bug Fixes
+
+* correction ajout jeu en whishlist ([f786b39](https://github.com/anto95240/GameCollector/commit/f786b39c89df4c78da8dc65eef7759b111e8282e))
+
+
+### Features
+
+* add onglet favori, wishlist ([252905d](https://github.com/anto95240/GameCollector/commit/252905d5bfec69593c846ecb35c5095a3bbea72f))
+* add personnalisation keyboard + animation ([242590f](https://github.com/anto95240/GameCollector/commit/242590fd710d31aec1e43cb0868e5e139b1e2775))
+
 # [2.4.0](https://github.com/anto95240/GameCollector/compare/v2.3.0...v2.4.0) (2026-05-04)
 
 
