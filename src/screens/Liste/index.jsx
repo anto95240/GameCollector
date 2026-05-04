@@ -20,14 +20,18 @@ import { useGamesList } from "../../hooks/games/useGamesList";
 import { useCarousel } from "../../hooks/ui/useCarousel";
 import { useSearchBar } from "../../hooks/ui/useSearchBar";
 import { useSearchBarShortcuts } from "../../hooks/ui/useSearchBarShortcuts";
+import { useAuth } from "../../context/AuthContext";
+import { useApiFilters } from "../../hooks/api/useApiFilters";
 import "./Liste.css";
 
 const ListePage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const searchInputRef = useRef(null);
+  const { user } = useAuth();
   const { searchTerm, setSearchTerm, debouncedTerm } = useSearchBar("");
   useSearchBarShortcuts(searchInputRef);
+  const { getUserFilters, saveUserFilter, deleteUserFilter, setActiveUserFilter } = useApiFilters();
   
   const { games, metadata, isLoading, toggleFavorite, toggleSoon, removeGame } = useGamesList(debouncedTerm);
 
@@ -39,6 +43,7 @@ const ListePage = () => {
     page,
     setPage,
     filteredGames,
+    setSelectedFilters,
   } = useGameFiltering(games);
 
   const { scrollRef, scroll } = useCarousel();
@@ -47,6 +52,149 @@ const ListePage = () => {
   const [gameToDelete, setGameToDelete] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  // --- filter metadata (genres, platforms, years, ratings, statuses)
+  const filterData = useMemo(() => {
+    if (!games) return [];
+
+    const genres = Array.from(new Set(games.map((g) => g.genre).filter(Boolean))).sort();
+    const platforms = Array.from(new Set(games.map((g) => g.platform).filter(Boolean))).sort();
+    const years = Array.from(new Set(games.map((g) => Number(g.year)).filter((y) => !Number.isNaN(y))))
+      .sort((a, b) => b - a)
+      .map(String);
+    const ratings = Array.from(new Set(games.map((g) => g.rating).filter((r) => r !== undefined && r !== null))).sort((a, b) => b - a).map(String);
+    const statuses = Array.from(new Set(games.map((g) => g.status).filter(Boolean))).sort();
+
+    const minYear = Math.min(...years.map(Number), 1900);
+    const maxYear = Math.max(...years.map(Number), new Date().getFullYear());
+    const minRating = Math.min(...ratings.map(Number), 0);
+    const maxRating = Math.max(...ratings.map(Number), 10);
+
+    return [
+      { id: "genre", label: "Genre", options: genres },
+      { id: "platform", label: "Plateforme", options: platforms },
+      { id: "year", label: "Année", options: years },
+      { id: "year_range", label: "Intervalle d'années", type: "range", min: minYear, max: maxYear },
+      { id: "rating", label: "Note", options: ratings },
+      { id: "rating_range", label: "Plage de notes", type: "range", min: minRating, max: maxRating },
+      { id: "status", label: "Statut", options: statuses },
+      { id: "favorite", label: "Favoris", options: ["Nos favoris", "Non favoris"] },
+      { id: "soon", label: "Prochainement", options: ["Prochainement", "Pas prochainement"] },
+      { id: "sort", label: "Trier par", type: "sort", options: ["Nom", "Année", "Note"] },
+    ];
+  }, [games]);
+
+  // Saved filters (localStorage + placeholder for DB)
+  const SAVED_KEY = "savedFilters";
+  const [savedFilters, setSavedFilters] = useState(() => {
+    try {
+      const raw = localStorage.getItem(SAVED_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+
+  const persistSaved = (items) => {
+    try {
+      localStorage.setItem(SAVED_KEY, JSON.stringify(items));
+    } catch (e) {
+      // ignore
+    }
+  };
+
+  useEffect(() => {
+    const loadSavedFilters = async () => {
+      if (!user) return;
+
+      try {
+        const serverFilters = await getUserFilters();
+        if (Array.isArray(serverFilters)) {
+          const normalized = serverFilters.map((filter) => ({ ...filter, source: "server" }));
+          setSavedFilters(normalized);
+          persistSaved(normalized);
+        }
+      } catch (error) {
+        // fallback to localStorage already loaded
+      }
+    };
+
+    loadSavedFilters();
+  }, [user, getUserFilters]);
+
+  const normalizeSavedFilter = (entry) => ({
+    id: entry.id || entry._id,
+    name: entry.name,
+    description: entry.description || "",
+    filters: entry.filters || [],
+    source: entry.source || "local",
+    isActive: Boolean(entry.isActive),
+    createdAt: entry.createdAt,
+    updatedAt: entry.updatedAt,
+  });
+
+  const handleSaveCurrentFilters = (name) => {
+    const baseEntry = normalizeSavedFilter({
+      id: String(Date.now()),
+      name: name || `Filtre ${new Date().toLocaleString()}`,
+      filters: selectedFilters,
+      source: user ? "server" : "local",
+    });
+
+    const next = [baseEntry, ...savedFilters.filter((filter) => filter.id !== baseEntry.id)];
+
+    const sync = async () => {
+      if (!user) {
+        setSavedFilters(next);
+        persistSaved(next);
+        return;
+      }
+
+      const savedOnServer = await saveUserFilter({
+        name: baseEntry.name,
+        selectedFilters,
+        description: JSON.stringify({ selectedFilters }),
+        isActive: false,
+      });
+
+      const merged = normalizeSavedFilter({
+        ...baseEntry,
+        ...savedOnServer,
+        source: "server",
+      });
+
+      const updated = [merged, ...savedFilters.filter((filter) => filter.id !== merged.id)];
+      setSavedFilters(updated);
+      persistSaved(updated);
+    };
+
+    sync().catch(() => {
+      setSavedFilters(next);
+      persistSaved(next);
+    });
+  };
+
+  const handleApplySaved = (entry) => {
+    if (!entry || !entry.filters) return;
+    setSelectedFilters(entry.filters || []);
+    setIsFilterOpen(false);
+    setPage(1);
+
+    if (user && entry.source === "server" && entry.id) {
+      setActiveUserFilter(entry.id).catch(() => {});
+    }
+  };
+
+  const handleDeleteSaved = (id) => {
+    const target = savedFilters.find((s) => s.id === id);
+    const next = savedFilters.filter((s) => s.id !== id);
+    setSavedFilters(next);
+    persistSaved(next);
+
+    if (user && target?.source === "server") {
+      deleteUserFilter(id).catch(() => {});
+    }
+  };
 
   // Filtrage par onglet basé sur les données MongoDB (isSoon / isFavorite)[cite: 3, 5]
   const tabFilteredGames = useMemo(() => {
@@ -59,12 +207,41 @@ const ListePage = () => {
     return filteredGames;
   }, [filteredGames, activeTab]);
 
+  // Apply sorting if a sort filter is present
+  const sortedGames = useMemo(() => {
+    if (!tabFilteredGames) return [];
+    const sortTag = selectedFilters.find((s) => {
+      const key = s.split(":")[0] || "";
+      return key.toLowerCase().includes("trier") || key.toLowerCase().includes("sort");
+    });
+
+    if (!sortTag) return tabFilteredGames;
+
+    const sortValue = sortTag.split(": ")[1] || "";
+    const [sortFieldRaw, sortOrderRaw = "asc"] = sortValue.split("|");
+    const sortField = sortFieldRaw || "Nom";
+    const sortOrder = sortOrderRaw || "asc";
+    const direction = sortOrder === "desc" ? -1 : 1;
+    const copy = [...tabFilteredGames];
+    switch (sortField) {
+      case "Nom":
+        copy.sort((a, b) => String(a.name || "").localeCompare(String(b.name || "")) * direction);
+        break;
+      case "Année":
+        copy.sort((a, b) => (Number(a.year || 0) - Number(b.year || 0)) * direction);
+        break;
+      case "Note":
+        copy.sort((a, b) => (Number(a.rating || 0) - Number(b.rating || 0)) * direction);
+        break;
+      default:
+        break;
+    }
+    return copy;
+  }, [tabFilteredGames, selectedFilters]);
+
   const pageSize = 8;
-  const totalPages = Math.ceil(tabFilteredGames.length / pageSize) || 1;
-  const paginatedGames = tabFilteredGames.slice(
-    (page - 1) * pageSize,
-    page * pageSize
-  );
+  const totalPages = Math.ceil(sortedGames.length / pageSize) || 1;
+  const paginatedGames = sortedGames.slice((page - 1) * pageSize, page * pageSize);
 
   const activeId = useActiveOnScroll(scrollRef, ".observer-item", paginatedGames);
 
@@ -77,7 +254,7 @@ const ListePage = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({ left: 0, behavior: "instant" });
     }
-  }, [page, activeTab]);
+  }, [page, activeTab, selectedFilters]);
 
   const confirmDelete = () => {
     if (!gameToDelete) return;
@@ -174,10 +351,14 @@ const ListePage = () => {
         selectedFilters={selectedFilters}
         onRemoveFilter={removeFilter}
         onClearAll={clearAllFilters}
-        filterData={[]} 
+        filterData={filterData}
         onSelectFilter={handleSelectFilter}
         games={games}
-        resultCount={tabFilteredGames.length}
+        resultCount={sortedGames.length}
+        savedFilters={savedFilters}
+        onSaveCurrentFilters={handleSaveCurrentFilters}
+        onApplySaved={handleApplySaved}
+        onDeleteSaved={handleDeleteSaved}
       />
       <DeleteModal game={gameToDelete} onClose={() => setGameToDelete(null)} onConfirm={confirmDelete} t={t} />
     </div>
