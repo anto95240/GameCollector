@@ -1,96 +1,148 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '@/context/AuthContext';
+import { useApiShortcutsDefaults, getHardcodedDefaults } from '@/hooks/api/useApiShortcutsDefaults';
+import { useApiShortcuts } from '@/hooks/api/useApiShortcuts';
+import keyboardShortcutsService from '@/services/keyboardShortcutsService';
+import ShortcutItem from '../common/ShortcutItem';
 import './KeyboardHelp.css';
 
 const KeyboardHelp = () => {
   const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleShowKeyboardHelp = () => {
-      setIsVisible(true);
-    };
-
-    const handleEscapeKey = (event) => {
-      if (event.key === 'Escape' && isVisible) {
-        event.preventDefault();
-        setIsVisible(false);
-      }
-    };
-
-    window.addEventListener('showKeyboardHelp', handleShowKeyboardHelp);
-    window.addEventListener('keydown', handleEscapeKey);
-
-    return () => {
-      window.removeEventListener('showKeyboardHelp', handleShowKeyboardHelp);
-      window.removeEventListener('keydown', handleEscapeKey);
-    };
-  }, [isVisible]);
+  const { user } = useAuth();
+  const { defaults, getDefaults } = useApiShortcutsDefaults();
+  const { toggleShortcut, updateShortcut } = useApiShortcuts();
+  const [shortcuts, setShortcuts] = useState([]);
+  const [togglingId, setTogglingId] = useState(null);
+  const [message, setMessage] = useState(null);
 
   const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
 
-  const shortcuts = [
-    // Navigation
-    {
-      category: 'Navigation',
-      items: [
-        { keys: isMac ? '⌘K' : 'Ctrl+K', description: 'Accéder à la barre de recherche' },
-        { keys: isMac ? '⌘D' : 'Ctrl+D', description: 'Aller au dashboard' },
-        { keys: isMac ? '⌘L' : 'Ctrl+L', description: 'Aller à la liste des jeux' },
-        { keys: isMac ? '⌘C' : 'Ctrl+C', description: 'Aller aux catégories' },
-        { keys: isMac ? '⌘P' : 'Ctrl+P', description: 'Aller au profil' },
-        { keys: isMac ? '⌘S' : 'Ctrl+S', description: 'Aller aux statistiques' },
-        { keys: isMac ? '⌘⌥T' : 'Ctrl+Alt+T', description: 'Aller aux trophées' },
-      ]
-    },
-    // Actions
-    {
-      category: 'Actions',
-      items: [
-        { keys: isMac ? '⌘⌥N' : 'Ctrl+Alt+N', description: 'Ajouter un nouveau jeu' },
-        { keys: isMac ? '⌘H' : 'Ctrl+H', description: 'Afficher cette aide' },
-        { keys: 'Esc', description: 'Fermer un popup ou modal' },
-      ]
-    },
-  ];
+  // Charger les valeurs par défaut
+  useEffect(() => {
+    if (!defaults) getDefaults();
+  }, [defaults, getDefaults]);
+
+  // Gérer l'ouverture/fermeture de la modale
+  useEffect(() => {
+    const handleShow = () => setIsVisible(true);
+    const handleHide = (e) => { 
+      if (e.key === 'Escape' && isVisible) { 
+        e.preventDefault(); 
+        setIsVisible(false); 
+      } 
+    };
+    
+    window.addEventListener('showKeyboardHelp', handleShow);
+    window.addEventListener('keydown', handleHide);
+    return () => {
+      window.removeEventListener('showKeyboardHelp', handleShow);
+      window.removeEventListener('keydown', handleHide);
+    };
+  }, [isVisible]);
+
+  // Fusionner les raccourcis par défaut avec ceux de l'utilisateur
+  useEffect(() => {
+    if (!defaults) return;
+    const shortcutList = (defaults.length > 0 ? defaults : getHardcodedDefaults()).map(def => {
+      const custom = user?.shortcuts?.find(s => s.action === def.action);
+      return {
+        ...def,
+        isCustomized: !!custom,
+        isEnabled: custom?.isEnabled !== false,
+        customBinding: (custom && custom.key) ? { 
+          key: custom.key, 
+          ctrlKey: custom.ctrlKey, 
+          altKey: custom.altKey, 
+          shiftKey: custom.shiftKey 
+        } : null
+      };
+    });
+    setShortcuts(shortcutList);
+  }, [defaults, user?.shortcuts]);
+
+  const showNotification = (type, text) => {
+    setMessage({ type, text });
+    setTimeout(() => setMessage(null), 2500);
+  };
+
+  const handleSave = async (actionId, keys) => {
+    try {
+      await updateShortcut(actionId, keys);
+      const updated = shortcuts.map(s => s.action === actionId ? { ...s, ...keys, isCustomized: true } : s);
+      setShortcuts(updated);
+      keyboardShortcutsService.loadCustomBindings(updated);
+      showNotification('success', 'Raccourci mis à jour !');
+    } catch {
+      showNotification('error', 'Erreur lors de la sauvegarde');
+    }
+  };
+
+  const handleReset = async (actionId) => {
+    const def = defaults?.find(d => d.action === actionId);
+    if (!def) return showNotification('error', 'Raccourci par défaut introuvable');
+    try {
+      await updateShortcut(actionId, { key: def.key, ctrlKey: def.ctrlKey, altKey: def.altKey, shiftKey: def.shiftKey });
+      const updated = shortcuts.map(s => s.action === actionId ? { ...s, ...def, isCustomized: false } : s);
+      setShortcuts(updated);
+      keyboardShortcutsService.loadCustomBindings(updated);
+      showNotification('success', 'Raccourci réinitialisé !');
+    } catch {
+      showNotification('error', 'Erreur lors de la réinitialisation');
+    }
+  };
+
+  const handleToggle = async (actionId) => {
+    setTogglingId(actionId);
+    try {
+      await toggleShortcut(actionId);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setTogglingId(null);
+    }
+  };
 
   if (!isVisible) return null;
+
+  const categories = [...new Set(shortcuts.map(s => s.category))];
 
   return (
     <div className="keyboard-help-overlay" onClick={() => setIsVisible(false)}>
       <div className="keyboard-help-modal" onClick={(e) => e.stopPropagation()}>
         <div className="keyboard-help-header">
           <h2>Raccourcis clavier</h2>
-          <button
-            className="keyboard-help-close"
-            onClick={() => setIsVisible(false)}
-            title="Fermer (Esc)"
-          >
+          <button className="keyboard-help-close" onClick={() => setIsVisible(false)} title="Fermer (Esc)">
             <FontAwesomeIcon icon={faTimes} />
           </button>
         </div>
-
+        
+        {message && <div className={`keyboard-help-message ${message.type}`}>{message.text}</div>}
+        
         <div className="keyboard-help-content">
-          {shortcuts.map((category, idx) => (
-            <div key={idx} className="keyboard-help-category">
-              <h3>{category.category}</h3>
+          {categories.map(cat => (
+            <div key={cat} className="keyboard-help-category">
+              <h3>{cat}</h3>
               <div className="keyboard-help-items">
-                {category.items.map((item, itemIdx) => (
-                  <div key={itemIdx} className="keyboard-help-item">
-                    <kbd className="keyboard-help-keys">{item.keys}</kbd>
-                    <span className="keyboard-help-description">{item.description}</span>
-                  </div>
+                {shortcuts.filter(s => s.category === cat).map(item => (
+                  <ShortcutItem 
+                    key={item._id || item.action} 
+                    item={item} 
+                    onSave={handleSave} 
+                    onReset={handleReset} 
+                    onToggle={handleToggle} 
+                    isMac={isMac} 
+                    isToggling={togglingId === item.action} 
+                  />
                 ))}
               </div>
             </div>
           ))}
         </div>
-
+        
         <div className="keyboard-help-footer">
           <p>Appuyez sur <kbd>Esc</kbd> ou cliquez en dehors pour fermer</p>
-        </div>
-        <div className="keyboard-help-footer">
-          💡 Conseil: Appuyez sur <kbd>Ctrl+H</kbd> (ou <kbd>⌘H</kbd> sur Mac) à tout moment pour afficher cette aide
         </div>
       </div>
     </div>

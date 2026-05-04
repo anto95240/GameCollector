@@ -1,171 +1,137 @@
-/**
- * Gestionnaire centralisé des raccourcis clavier
- * Permet d'enregistrer et déclencher des raccourcis globalement
- */
-
 class KeyboardShortcutsService {
   constructor() {
     this.shortcuts = new Map();
+    this.customBindings = new Map();
     this.isEnabled = true;
     this.listenerAttached = false;
-    this.isDesktop = this._checkIfDesktop();
   }
 
-  /**
-   * Vérifie si on est sur desktop
-   */
-  _checkIfDesktop() {
-    const userAgent = navigator.userAgent.toLowerCase();
-    const isMobile = /mobile|tablet|android|iphone|ipad|ipod/.test(userAgent);
-    const isTablet = /tablet|ipad/.test(userAgent);
-    return !(isMobile || isTablet) && window.innerWidth > 1024;
-  }
-
-  /**
-   * Enregistre un raccourci clavier
-   * @param {string} key - La clé du raccourci (ex: 'Escape', 'k', 'n')
-   * @param {function} callback - La fonction à exécuter
-   * @param {object} options - Options: { ctrlKey, altKey, shiftKey, preventDefault }
-   */
-  register(key, callback, options = {}) {
-    const shortcutKey = this._generateKey(key, options);
-    this.shortcuts.set(shortcutKey, { callback, options, key });
-    
-    // Initialiser le listener si pas encore fait
+  register(action, defaultKey, callback, options = {}) {
+    this.shortcuts.set(action, {
+      action,
+      defaultKey: defaultKey.toLowerCase(),
+      callback,
+      defaultOptions: options,
+    });
     this._initializeListener();
   }
 
-  /**
-   * Initialise l'écouteur d'événements clavier (une seule fois)
-   */
+  loadCustomBindings(userShortcuts) {
+    this.customBindings.clear();
+    if (Array.isArray(userShortcuts)) {
+      userShortcuts.forEach((shortcut) => {
+        this.customBindings.set(shortcut.action, {
+          key: shortcut.key,
+          ctrlKey: shortcut.ctrlKey || false,
+          altKey: shortcut.altKey || false,
+          shiftKey: shortcut.shiftKey || false,
+          isEnabled: shortcut.isEnabled !== false,
+        });
+      });
+    }
+  }
+
+  _getActiveBinding(action) {
+    const defaultBinding = this.shortcuts.get(action);
+    if (!defaultBinding) return null;
+    
+    const custom = this.customBindings.get(action);
+    
+    // Si l'utilisateur a une entrée pour ce raccourci en BDD
+    if (custom) {
+      // CORRECTION : S'il est désactivé, on coupe tout en retournant null
+      if (!custom.isEnabled) {
+        return null;
+      }
+
+      // S'il est activé, on retourne sa version personnalisée
+      return {
+        key: custom.key.toLowerCase(),
+        options: {
+          ctrlKey: custom.ctrlKey,
+          altKey: custom.altKey,
+          shiftKey: custom.shiftKey,
+          preventDefault: defaultBinding.defaultOptions.preventDefault,
+        },
+        callback: defaultBinding.callback,
+      };
+    }
+
+    // S'il n'y a aucune personnalisation en BDD, on retourne le défaut
+    return {
+      key: defaultBinding.defaultKey,
+      options: defaultBinding.defaultOptions,
+      callback: defaultBinding.callback,
+    };
+  }
+
   _initializeListener() {
     if (this.listenerAttached) return;
-    
-    window.addEventListener('keydown', this.handleKeyDown);
-    window.addEventListener('resize', () => {
-      this.isDesktop = this._checkIfDesktop();
-    });
+    window.addEventListener("keydown", this.handleKeyDown);
     this.listenerAttached = true;
   }
 
-  /**
-   * Désenregistre un raccourci clavier
-   */
-  unregister(key, options = {}) {
-    const shortcutKey = this._generateKey(key, options);
-    this.shortcuts.delete(shortcutKey);
+  unregister(action) {
+    this.shortcuts.delete(action);
   }
 
-  /**
-   * Efface tous les raccourcis
-   */
   clearAll() {
     this.shortcuts.clear();
   }
 
-  /**
-   * Active/désactive tous les raccourcis
-   */
   setEnabled(enabled) {
     this.isEnabled = enabled;
   }
 
-  /**
-   * Gère l'événement keydown global
-   */
   handleKeyDown = (event) => {
-    if (!this.isEnabled || !this.isDesktop) return;
-
-    const key = event.key.toLowerCase();
-    
-    // Vérifier TOUS les raccourcis enregistrés pour trouver une correspondance
-    for (const [shortcutKey, shortcut] of this.shortcuts.entries()) {
-      if (this._matchesShortcut(event, shortcut)) {
-        // Toujours prévenir le comportement par défaut sauf si explicitement demandé
-        if (shortcut.options.preventDefault !== false) {
+    if (!this.isEnabled) return;
+    for (const [action, shortcut] of this.shortcuts.entries()) {
+      const activeBinding = this._getActiveBinding(action);
+      
+      // Si c'est null (désactivé ou inexistant), on l'ignore complètement
+      if (!activeBinding) continue;
+      
+      if (
+        this._matchesShortcut(event, activeBinding.key, activeBinding.options)
+      ) {
+        if (activeBinding.options.preventDefault !== false) {
           event.preventDefault();
         }
-        // Exécuter le callback
-        shortcut.callback(event);
+        activeBinding.callback(event);
         return;
       }
     }
   };
 
-  /**
-   * Génère une clé unique pour un raccourci
-   */
-  _generateKey(key, options = {}) {
-    const parts = [];
-    if (options.ctrlKey) parts.push('ctrl');
-    if (options.altKey) parts.push('alt');
-    if (options.shiftKey) parts.push('shift');
-    parts.push(key.toLowerCase());
-    return parts.join('+');
-  }
-
-  /**
-   * Vérifie si un événement correspond à un raccourci
-   */
-  _matchesShortcut(event, shortcut) {
-    const { options, key } = shortcut;
+  _matchesShortcut(event, targetKey, options) {
     const eventKey = event.key.toLowerCase();
-    const targetKey = key.toLowerCase();
-    
-    // Vérifier que la touche correspond
-    if (eventKey !== targetKey) {
-      return false;
-    }
-
-    // Vérifier les modificateurs
-    // Ctrl et Meta (⌘ sur Mac) sont considérés comme équivalents
+    if (eventKey !== targetKey) return false;
     const hasCtrlModifier = event.ctrlKey || event.metaKey;
     const needsCtrl = options.ctrlKey || false;
-    
-    const hasAltModifier = event.altKey;
+    const hasAltModifier = event.altKey || false;
     const needsAlt = options.altKey || false;
-    
-    const hasShiftModifier = event.shiftKey;
+    const hasShiftModifier = event.shiftKey || false;
     const needsShift = options.shiftKey || false;
-
-    // Tous les modificateurs demandés doivent être présents
-    if (needsCtrl && !hasCtrlModifier) return false;
-    if (needsAlt && !hasAltModifier) return false;
-    if (needsShift && !hasShiftModifier) return false;
-
-    // Pas de modificateurs supplémentaires ne doivent être présents
-    if (!needsCtrl && hasCtrlModifier) return false;
-    if (!needsAlt && hasAltModifier) return false;
-    if (!needsShift && hasShiftModifier) return false;
-
+    if (needsCtrl !== hasCtrlModifier) return false;
+    if (needsAlt !== hasAltModifier) return false;
+    if (needsShift !== hasShiftModifier) return false;
     return true;
   }
 
-  /**
-   * Récupère le nom lisible d'une combinaison de touches
-   */
-  getReadableShortcut(key, options = {}) {
+  getReadableShortcut(action) {
+    const binding = this._getActiveBinding(action);
+    if (!binding) return "";
     const parts = [];
     const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
-
-    if (options.ctrlKey) {
-      parts.push(isMac ? '⌘' : 'Ctrl');
-    }
-    if (options.altKey) {
-      parts.push(isMac ? '⌥' : 'Alt');
-    }
-    if (options.shiftKey) {
-      parts.push(isMac ? '⇧' : 'Shift');
-    }
-
-    const displayKey = key === 'Escape' ? 'Esc' : key.toUpperCase();
+    if (binding.options.ctrlKey) parts.push(isMac ? "⌘" : "Ctrl");
+    if (binding.options.altKey) parts.push(isMac ? "⌥" : "Alt");
+    if (binding.options.shiftKey) parts.push(isMac ? "⇧" : "Shift");
+    const displayKey =
+      binding.key === "escape" ? "Esc" : binding.key.toUpperCase();
     parts.push(displayKey);
-
-    return parts.join(isMac ? '' : '+');
+    return parts.join(isMac ? "" : "+");
   }
 }
 
-// Instance singleton
 const keyboardShortcutsService = new KeyboardShortcutsService();
-
 export default keyboardShortcutsService;

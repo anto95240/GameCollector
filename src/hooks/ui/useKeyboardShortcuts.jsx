@@ -1,23 +1,6 @@
-import { useEffect, useRef } from 'react';
-import keyboardShortcutsService from '@/services/keyboardShortcutsService';
+import { useEffect, useRef } from "react";
+import keyboardShortcutsService from "@/services/keyboardShortcutsService";
 
-/**
- * Hook pour gérer les raccourcis clavier
- * @example
- * useKeyboardShortcuts([
- *   {
- *     key: 'k',
- *     ctrlKey: true,
- *     callback: () => searchInput.focus(),
- *     description: 'Accéder à la recherche'
- *   },
- *   {
- *     key: 'Escape',
- *     callback: () => closeModal(),
- *     description: 'Fermer le popup'
- *   }
- * ]);
- */
 export const useKeyboardShortcuts = (shortcuts = [], enabled = true) => {
   const shortcutsRef = useRef([]);
 
@@ -26,36 +9,30 @@ export const useKeyboardShortcuts = (shortcuts = [], enabled = true) => {
       return;
     }
 
-    // Enregistrer tous les raccourcis
     shortcuts.forEach((shortcut) => {
+      // Utilise shortcut.action s'il existe, sinon utilise la touche comme identifiant par défaut
+      const actionId = shortcut.action || shortcut.key;
+
       keyboardShortcutsService.register(
+        actionId,
         shortcut.key,
         shortcut.callback,
         {
           ctrlKey: shortcut.ctrlKey,
-          metaKey: shortcut.metaKey || shortcut.ctrlKey, // ctrlKey fonctionne aussi sur Mac
-          altKey: shortcut.altKey,
-          shiftKey: shortcut.shiftKey,
-          preventDefault: shortcut.preventDefault !== false,
-        }
-      );
-      shortcutsRef.current.push(shortcut.key);
-    });
-
-    // Ajouter l'écouteur global (une seule fois)
-    window.addEventListener('keydown', keyboardShortcutsService.handleKeyDown);
-
-    // Nettoyage: désenregistrer les raccourcis
-    return () => {
-      shortcuts.forEach((shortcut) => {
-        keyboardShortcutsService.unregister(shortcut.key, {
-          ctrlKey: shortcut.ctrlKey,
           metaKey: shortcut.metaKey || shortcut.ctrlKey,
           altKey: shortcut.altKey,
           shiftKey: shortcut.shiftKey,
-        });
+          preventDefault: shortcut.preventDefault !== false,
+        },
+      );
+      shortcutsRef.current.push(actionId);
+    });
+
+    return () => {
+      shortcutsRef.current.forEach((actionId) => {
+        keyboardShortcutsService.unregister(actionId);
       });
-      window.removeEventListener('keydown', keyboardShortcutsService.handleKeyDown);
+      shortcutsRef.current = []; // Nettoyage
     };
   }, [shortcuts, enabled]);
 
