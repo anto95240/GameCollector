@@ -29,8 +29,7 @@ const ListePage = () => {
   const { searchTerm, setSearchTerm, debouncedTerm } = useSearchBar("");
   useSearchBarShortcuts(searchInputRef);
   
-  const { games, metadata, isLoading, toggleFavorite, removeGame } =
-    useGamesList(debouncedTerm);
+  const { games, metadata, isLoading, toggleFavorite, toggleSoon, removeGame } = useGamesList(debouncedTerm);
 
   const {
     selectedFilters,
@@ -43,21 +42,19 @@ const ListePage = () => {
   } = useGameFiltering(games);
 
   const { scrollRef, scroll } = useCarousel();
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("all"); 
   const [activeMenuIndex, setActiveMenuIndex] = useState(null);
   const [gameToDelete, setGameToDelete] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // État pour gérer les 3 onglets
-  const [activeTab, setActiveTab] = useState("all"); 
-
-  // Logique de filtrage par onglet (Correction des erreurs 1005)
+  // Filtrage par onglet basé sur les données MongoDB (isSoon / isFavorite)[cite: 3, 5]
   const tabFilteredGames = useMemo(() => {
     if (activeTab === "favorites") {
-      return filteredGames.filter((game) => game.isFavorite);
+      return filteredGames.filter((game) => game.isFavorite === true);
     }
     if (activeTab === "wishlist") {
-      return filteredGames.filter((game) => game.isSoon);
+      return filteredGames.filter((game) => game.isSoon === true);
     }
     return filteredGames;
   }, [filteredGames, activeTab]);
@@ -69,11 +66,7 @@ const ListePage = () => {
     page * pageSize
   );
 
-  const activeId = useActiveOnScroll(
-    scrollRef,
-    ".observer-item",
-    paginatedGames
-  );
+  const activeId = useActiveOnScroll(scrollRef, ".observer-item", paginatedGames);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -85,22 +78,6 @@ const ListePage = () => {
       scrollRef.current.scrollTo({ left: 0, behavior: "instant" });
     }
   }, [page, activeTab]);
-
-  const filterData = useMemo(() => {
-    if (!metadata) return [];
-    const years = [...new Set(games.map((g) => g.year).filter(Boolean))]
-      .sort((a, b) => b - a)
-      .map(String);
-    return [
-      { id: "genre", label: "Genre", options: metadata.genres?.map((g) => g.genre_name) || [] },
-      { id: "platform", label: "Plateforme", options: metadata.platforms?.map((p) => p.platform_name) || [] },
-      { id: "year", label: "Année", options: years },
-      { id: "rating", label: "Note", options: ["5 étoiles", "4 étoiles", "3 étoiles", "2 étoiles", "1 étoiles"] },
-      { id: "status", label: "Statut", options: metadata.statuses?.map((s) => s.status_name) || [] },
-      { id: "favorite", label: "Favoris", options: ["Nos favoris", "Pas en favoris"] },
-      { id: "soon", label: "Prochainement", options: ["Prochainement", "Déjà possédé"] },
-    ];
-  }, [metadata, games]);
 
   const confirmDelete = () => {
     if (!gameToDelete) return;
@@ -125,7 +102,7 @@ const ListePage = () => {
         totalGames={tabFilteredGames.length}
       />
 
-      {/* Navigation par onglets (Responsives & Animées) */}
+      {/* Onglets Responsives */}
       <div className="list-tabs-navigation">
         <button className={`tab-link ${activeTab === 'all' ? 'is-active' : ''}`} onClick={() => handleTabChange('all')}>
           <FontAwesomeIcon icon={faGamepad} className="tab-icon" />
@@ -197,7 +174,7 @@ const ListePage = () => {
         selectedFilters={selectedFilters}
         onRemoveFilter={removeFilter}
         onClearAll={clearAllFilters}
-        filterData={filterData}
+        filterData={[]} 
         onSelectFilter={handleSelectFilter}
         games={games}
         resultCount={tabFilteredGames.length}

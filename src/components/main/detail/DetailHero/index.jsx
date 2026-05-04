@@ -13,7 +13,7 @@ import "./DetailHero.css";
 import { useTranslation } from "react-i18next";
 import { MOCK_OPTIONS } from "../../../../config/constants";
 
-const DetailHero = ({ game, onToggleFavorite, metadata = {}, isUpdating = false, onUpdateField = () => {} }) => {
+const DetailHero = ({ game, onToggleFavorite, metadata = {}, isUpdating = false, onUpdateField = () => {}, onToggleSoon = () => {} }) => {
   const { t } = useTranslation();
   const [isOwned, setIsOwned] = useState(false);
   const [statusDropdownOpen, setStatusDropdownOpen] = useState(false);
