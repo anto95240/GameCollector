@@ -122,6 +122,46 @@ export const useGameDetail = (id, slug, gameName) => {
     }
   };
 
+  const handleToggleSoon = async () => {
+    if (!game) return;
+    const newSoonState = !game.isSoon;
+    setGame(prev => ({ ...prev, isSoon: newSoonState }));
+    setIsUpdating(true);
+    try {
+      const formData = new FormData();
+      formData.append("name", game.game_name || game.name || "");
+      formData.append("description", game.description || "");
+      formData.append("comment", game.comment || "");
+      formData.append("genre_id", game.genre_id?._id || game.genre_id || "");
+      formData.append("platform_id", game.platform_id?._id || game.platform_id || "");
+      formData.append("status_id", game.status_id?._id || game.status_id || "");
+      formData.append("year", game.year || "");
+      formData.append("playing_time", game.playing_time || "");
+      formData.append("developer", game.developer || "");
+      formData.append("succes", game.succes || "");
+      formData.append("isSoon", newSoonState);
+      formData.append("isFavorite", game.isFavorite || false);
+      
+      if (game.image) {
+        formData.append("image", game.image);
+      }
+      
+      if (game.tags_ids && Array.isArray(game.tags_ids)) {
+        game.tags_ids.forEach(tag => {
+          formData.append("tags_ids", tag._id || tag);
+        });
+      }
+      
+      await updateGame(game._id, formData);
+      window.dispatchEvent(new Event('checkAchievements'));
+    } catch (e) {
+      console.error("Erreur lors du basculement wishlist", e);
+      setGame(prev => ({ ...prev, isSoon: !newSoonState }));
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
   const handleUpdateGameField = async (fieldName, fieldValue) => {
     if (!game) return;
     setIsUpdating(true);
@@ -144,10 +184,14 @@ export const useGameDetail = (id, slug, gameName) => {
       if (fieldName === "status_id") {
         formData.set("status_id", fieldValue);
         const statusName = metadata.statuses?.find(s => s._id === fieldValue)?.status_name || "Inconnu";
+        // Synchroniser isSoon avec le statut "Wishlist" ou "À venir"
+        const isWishlistStatus = statusName.toLowerCase().includes("wishlist") || statusName.toLowerCase().includes("à venir") || statusName.toLowerCase().includes("prochainement");
+        formData.set("isSoon", isWishlistStatus);
         setGame(prev => ({
           ...prev,
           status_id: fieldValue,
-          status: statusName
+          status: statusName,
+          isSoon: isWishlistStatus
         }));
       } else if (fieldName === "note") {
         formData.set("note", Number(fieldValue));
@@ -176,5 +220,5 @@ export const useGameDetail = (id, slug, gameName) => {
     }
   };
 
-  return { game, isLoading, metadata, isUpdating, handleEdit: () => navigate("/game/add-edit-game", { state: { game } }), handleDelete, handleToggleFavorite, handleUpdateGameField };
+  return { game, isLoading, metadata, isUpdating, handleEdit: () => navigate("/game/add-edit-game", { state: { game } }), handleDelete, handleToggleFavorite, handleUpdateGameField, handleToggleSoon };
 };
