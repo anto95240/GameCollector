@@ -156,7 +156,7 @@ const YearChart = ({ games = [], metadata = {} }) => {
             </p>
           ) : (
             <>
-              <ResponsiveContainer>
+              <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
                 <BarChart data={currentData} margin={{ top: 30, right: 0, left: 0, bottom: 0 }}>
                   <XAxis dataKey="name" axisLine tickLine={false} stroke="var(--border-main)" dy={10} tick={{ fill: "var(--text-secondary)", fontSize: 12 }} />
                   <Bar dataKey="count" radius={[4, 4, 0, 0]} barSize={35} onMouseEnter={handleBarEnter} onMouseLeave={handleBarLeave}>

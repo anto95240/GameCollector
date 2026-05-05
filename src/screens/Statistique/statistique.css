@@ -3,8 +3,128 @@
   width: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
+/* ── LOADING ── */
+.stats-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+  font-family: var(--font-family-title);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.stats-loading-ring {
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--border-subtle);
+  border-top-color: var(--text-primary);
+  border-radius: 50%;
+  animation: stats-spin 1s linear infinite;
+}
+
+@keyframes stats-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── TABS ── */
+.stats-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 20px 0 0 0;
+  flex-wrap: wrap;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.stats-tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 12px 12px 0 0;
+  color: var(--text-secondary);
+  font-family: var(--font-family-title);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  position: relative;
+  bottom: -1px;
+}
+
+.stats-tab:hover {
+  color: var(--text-primary);
+  background: var(--bg-card);
+}
+
+.stats-tab.active {
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border-color: var(--border-main);
+  border-bottom-color: var(--bg-card);
+  box-shadow: 0 -4px 12px rgba(90, 242, 255, 0.08);
+}
+
+.stats-tab.active svg {
+  filter: drop-shadow(0 0 5px var(--text-primary));
+}
+
+/* ── TAB CONTENT ── */
+.stats-tab-content {
+  border: 1px solid var(--border-main);
+  border-top: none;
+  border-radius: 0 16px 16px 16px;
+  padding: 24px;
+  background: var(--bg-card);
+}
+
+.stats-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mt-stats {
+  margin-top: 20px;
+}
+
+/* ── 2-COLUMN GRID ── */
+.stats-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ── FADE ANIMATION FOR TAB SWITCH ── */
+.fade-in-tab {
+  animation: fadeInTab 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInTab {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── CHARTS GRID (legacy) ── */
 .charts-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -25,12 +145,44 @@
   }
 }
 
-@media (min-width: 1440px) {
-  .charts-grid {
-    grid-template-columns: 25% 73%;
-    justify-content: space-between;
-    width: 85%;
-    gap: 2%;
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .stats-two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-tab-content {
+    border-radius: 0 0 16px 16px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-tabs {
+    gap: 8px;
+  }
+
+  .stats-tab {
+    padding: 10px 13px;
+    font-size: 10px;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .tab-icon {
+    width: 15px;
+    height: 17px;
+  }
+
+  .stats-tab span {
+    display: none;
+  }
+
+  .stats-tab svg {
+    font-size: 14px;
+  }
+
+  .stats-tab-content {
+    padding: 12px;
   }
 }
 
@@ -38,9 +190,5 @@
   .statistics-page-container {
     padding: 10px;
     overflow-x: hidden;
-  }
-
-  .year-chart-container {
-    overflow-x: auto;
   }
 }

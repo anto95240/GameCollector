@@ -1,0 +1,66 @@
+.radar-genre-wrapper {
+  width: 100%;
+  border: 1px solid var(--border-main);
+  border-radius: 20px;
+  box-shadow: var(--shadow-secondary);
+}
+
+.radar-genre-content {
+  padding: 20px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.radar-genre-header {
+  margin-bottom: 16px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.radar-genre-title {
+  font-family: var(--font-family-title);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.radar-genre-container {
+  flex: 1;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+.radar-tooltip {
+  background: var(--bg-input);
+  border: 1px solid var(--border-main);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.radar-tooltip-label {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.radar-tooltip-value {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+@media (max-width: 768px) {
+  .radar-genre-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .radar-genre-content {
+    padding: 15px 5px;
+  }
+}

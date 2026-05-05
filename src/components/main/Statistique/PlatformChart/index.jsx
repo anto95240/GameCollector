@@ -104,7 +104,7 @@ const PlatformChart = ({ games = [], metadata = {} }) => {
               Aucune donnée disponible
             </p>
           ) : (
-            <ResponsiveContainer>
+            <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
               <PieChart>
                 <Pie data={chartData} innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value" stroke="none">
                   {chartData.map((entry, index) => (
