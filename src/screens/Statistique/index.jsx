@@ -17,12 +17,13 @@ const TABS = [
   { id: "overview", label: "Vue d'ensemble", icon: faChartBar },
   { id: "genres", label: "Genres & Plateformes", icon: faLayerGroup },
   { id: "activity", label: "Activité", icon: faCalendarAlt },
-  { id: "rankings", label: "Classements", icon: faStar },
+  { id: "rankings", label: "Classements", icon: faStar }
 ];
 
 function StatistiquePage() {
   const { t } = useTranslation();
-  const { games, metadata, isLoading } = useStatsData();
+  // Utilisation de stats au lieu de games
+  const { stats, metadata, isLoading } = useStatsData();
   const [activeTab, setActiveTab] = useState("overview");
 
   useEffect(() => {
@@ -32,7 +33,7 @@ function StatistiquePage() {
     window.dispatchEvent(new Event("checkAchievements"));
   }, []);
 
-  if (isLoading) {
+  if (isLoading || !stats) {
     return (
       <div className="statistics-page-container flex items-center justify-center">
         <div className="stats-loading">
@@ -45,10 +46,8 @@ function StatistiquePage() {
 
   return (
     <div className="statistics-page-container">
-      {/* Summary KPIs */}
       <SectionStatSecondary t={t} />
 
-      {/* Tab navigation */}
       <div className="stats-tabs">
         {TABS.map(tab => (
           <button
@@ -62,49 +61,43 @@ function StatistiquePage() {
         ))}
       </div>
 
-      {/* Tab content */}
       <div className="stats-tab-content" key={activeTab}>
-
-        {/* ── OVERVIEW ── */}
         {activeTab === "overview" && (
           <div className="stats-section fade-in-tab">
-            <InsightsPanel games={games} metadata={metadata} />
+            <InsightsPanel stats={stats} metadata={metadata} />
             <div className="stats-two-col mt-stats">
-              <StatusFunnelChart games={games} metadata={metadata} />
-              <PlatformChart games={games} metadata={metadata} />
+              <StatusFunnelChart stats={stats} metadata={metadata} />
+              <PlatformChart stats={stats} metadata={metadata} />
             </div>
           </div>
         )}
 
-        {/* ── GENRES & PLATFORMS ── */}
         {activeTab === "genres" && (
           <div className="stats-section fade-in-tab">
             <div className="stats-two-col">
-              <RadarGenreChart games={games} metadata={metadata} />
-              <PlatformChart games={games} metadata={metadata} />
+              <RadarGenreChart stats={stats} metadata={metadata} />
+              <PlatformChart stats={stats} metadata={metadata} />
             </div>
             <div className="mt-stats">
-              <YearChart games={games} metadata={metadata} />
+              <YearChart stats={stats} />
             </div>
           </div>
         )}
 
-        {/* ── ACTIVITY ── */}
         {activeTab === "activity" && (
           <div className="stats-section fade-in-tab">
-            <HeatmapChart games={games} />
+            <HeatmapChart stats={stats} />
             <div className="mt-stats">
-              <YearChart games={games} metadata={metadata} />
+              <YearChart stats={stats} />
             </div>
           </div>
         )}
 
-        {/* ── RANKINGS ── */}
         {activeTab === "rankings" && (
           <div className="stats-section fade-in-tab">
-            <TopGamesWidget games={games} metadata={metadata} />
+            <TopGamesWidget stats={stats} metadata={metadata} />
             <div className="mt-stats">
-              <StatusFunnelChart games={games} metadata={metadata} />
+              <StatusFunnelChart stats={stats} metadata={metadata} />
             </div>
           </div>
         )}
@@ -112,5 +105,4 @@ function StatistiquePage() {
     </div>
   );
 }
-
 export default StatistiquePage;

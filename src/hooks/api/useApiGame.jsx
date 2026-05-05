@@ -1,13 +1,10 @@
-// [CORRECTION] Importer l'instance configurée, pas le module par défaut
 import axios from "../../config/interceptor"; 
 import { useCallback } from "react";
 
 export const useApiGame = () => {
 
-    // Récupérer tous les jeux (avec recherche optionnelle)
     const getAllGames = useCallback(async (search = "") => {
         const params = search ? { search } : {};
-        // Axios utilisera automatiquement http://localhost:5000 grâce à l'interceptor
         const { data } = await axios.get("/api/games", { params });
         return data;
     }, []);
@@ -17,8 +14,14 @@ export const useApiGame = () => {
         return data;
     }, []);
 
+    // NOUVEAU : Récupération des statistiques avancées
+    const getAdvancedStats = useCallback(async () => {
+        // D'après ton contrôleur back-end, res.json(stats) renvoie directement l'objet
+        const { data } = await axios.get("/api/games/stats/advanced");
+        return data; 
+    }, []);
+
     const createGame = async (gameData) => {
-        // Le cookie d'auth est envoyé automatiquement ici aussi
         const { data } = await axios.post("/api/games", gameData);
         return data;
     };
@@ -36,6 +39,7 @@ export const useApiGame = () => {
     return {
         getAllGames,
         getGameById,
+        getAdvancedStats, // Exporte bien la nouvelle fonction
         createGame,
         updateGame,
         deleteGame

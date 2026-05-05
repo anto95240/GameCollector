@@ -1,30 +1,29 @@
 import { useMemo } from "react";
 import "./StatusFunnelChart.css";
 
-const StatusFunnelChart = ({ games = [], metadata = {} }) => {
+const StatusFunnelChart = ({ stats, metadata = {} }) => {
   const statusData = useMemo(() => {
-    const counts = {};
-    games.forEach(g => {
-      const status = metadata.statuses?.find(s => s._id === (g.status_id?._id || g.status_id));
-      const name = status?.status_name || "Inconnu";
-      const color = status?.color || "#555";
-      if (!counts[name]) counts[name] = { count: 0, color };
-      counts[name].count += 1;
-    });
-    return Object.entries(counts)
-      .sort((a, b) => b[1].count - a[1].count)
-      .map(([name, d]) => ({ name, count: d.count, color: d.color, pct: Math.round((d.count / games.length) * 100) }));
-  }, [games, metadata]);
+    if (!stats || !stats.funnel) return [];
+    
+    return stats.funnel.map(s => {
+      const meta = metadata.statuses?.find(m => m._id === s.name);
+      return {
+        name: meta ? meta.status_name : "Inconnu",
+        count: s.value,
+        color: meta ? meta.color : "#555",
+        pct: Math.round((s.value / stats.overview.totalGames) * 100) || 0
+      };
+    }).sort((a, b) => b.count - a.count);
+  }, [stats, metadata]);
 
   if (!statusData.length) return null;
-
   const maxCount = statusData[0]?.count || 1;
 
   return (
     <div className="funnel-wrapper">
       <div className="funnel-header">
         <span className="funnel-title">Statuts de la collection</span>
-        <span className="funnel-total">{games.length} jeux</span>
+        <span className="funnel-total">{stats.overview.totalGames} jeux</span>
       </div>
       <div className="funnel-bars">
         {statusData.map((s, i) => (
@@ -34,14 +33,7 @@ const StatusFunnelChart = ({ games = [], metadata = {} }) => {
               <span className="funnel-name">{s.name}</span>
             </div>
             <div className="funnel-track">
-              <div
-                className="funnel-fill"
-                style={{
-                  width: `${(s.count / maxCount) * 100}%`,
-                  background: s.color,
-                  boxShadow: `0 0 8px ${s.color}40`,
-                }}
-              />
+              <div className="funnel-fill" style={{ width: `${(s.count / maxCount) * 100}%`, background: s.color }} />
             </div>
             <div className="funnel-stats">
               <span className="funnel-count">{s.count}</span>
@@ -53,5 +45,4 @@ const StatusFunnelChart = ({ games = [], metadata = {} }) => {
     </div>
   );
 };
-
 export default StatusFunnelChart;
