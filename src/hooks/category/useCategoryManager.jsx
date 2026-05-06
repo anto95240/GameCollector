@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useApiMetadata } from "../api/useApiMetadata";
 import { useValidationToast } from "../ui/useValidationToast";
+import { incrementStoredUserMetric } from "../../utils/userStorage";
 import { validateCategory, getFirstValidationError } from "../../utils/validators";
 
 export const useCategoryManager = () => {
@@ -89,17 +90,13 @@ export const useCategoryManager = () => {
       if (isEditMode) {
         await updateMetadata(endpointCategory, formData.id, payload);
 
-        const user = JSON.parse(localStorage.getItem("user") || "{}");
-        user.updatedCategoriesCount = (user.updatedCategoriesCount || 0) + 1;
-        localStorage.setItem("user", JSON.stringify(user));
+        incrementStoredUserMetric("updatedCategoriesCount");
 
         showUpdated(`${categoryLabel}: "${formData.name}"`);
       } else {
         await createMetadata(endpointCategory, payload);
 
-        const user = JSON.parse(localStorage.getItem("user") || "{}");
-        user.customCategoriesCreated = (user.customCategoriesCreated || 0) + 1;
-        localStorage.setItem("user", JSON.stringify(user));
+        incrementStoredUserMetric("customCategoriesCreated");
 
         showCreated(`${categoryLabel}: "${formData.name}"`);
       }
@@ -135,9 +132,7 @@ export const useCategoryManager = () => {
       const endpointCategory = selectedCategory.slice(0, -1);
       await deleteMetadata(endpointCategory, id);
 
-      const user = JSON.parse(localStorage.getItem("user") || "{}");
-      user.deletedCategoriesCount = (user.deletedCategoriesCount || 0) + 1;
-      localStorage.setItem("user", JSON.stringify(user));
+      incrementStoredUserMetric("deletedCategoriesCount");
 
       await fetchMetadata();
       window.dispatchEvent(new Event('checkAchievements'));

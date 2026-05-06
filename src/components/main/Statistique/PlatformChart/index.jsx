@@ -4,91 +4,46 @@ import { useTranslation } from "react-i18next";
 import CustomSelect from "../../../common/CustomSelect";
 import "./PlatformChart.css";
 
-const CustomTooltip = ({ active, payload, externalActiveIndex }) => {
-  if (active && payload && payload.length && externalActiveIndex !== null) {
-    const data = payload[0];
-    return (
-      <div className="platform-custom-tooltip">
-        <p className="platform-tooltip-label">{data.name}</p>
-        <p className="platform-tooltip-value">{`Quantité : ${data.value}`}</p>
-      </div>
-    );
-  }
-  return null;
-};
-
-// Le composant reçoit "games" et "metadata" depuis le parent (Statistique/index.jsx)
-const PlatformChart = ({ games = [], metadata = {} }) => {
+const PlatformChart = ({ stats, metadata = {} }) => {
   const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(null);
   const [chartType, setChartType] = useState("platform");
 
   const chartData = useMemo(() => {
-    if (!games.length || !metadata) return [];
+    if (!stats || !metadata) return [];
+    
+    let rawData = [];
+    let metaList = [];
+    let nameKey = "name";
 
-    const counts = {};
+    if (chartType === "platform") {
+      rawData = stats.platforms || [];
+      metaList = metadata.platforms || [];
+      nameKey = "platform_name";
+    } else if (chartType === "genre") {
+      rawData = (stats.radar || []).map(r => ({ name: r.subject, value: r.A }));
+      metaList = metadata.genres || [];
+      nameKey = "genre_name";
+    } else if (chartType === "status") {
+      rawData = stats.funnel || [];
+      metaList = metadata.statuses || [];
+      nameKey = "status_name";
+    }
 
-    const getId = (item) => {
-      if (!item) return null;
-      if (typeof item === "object") return String(item._id || item.id);
-      return String(item);
-    };
-
-    games.forEach((game) => {
-      let name = "Inconnu";
-      let color = "#cccccc";
-
-      if (chartType === "platform") {
-        const id = getId(game.platform_id);
-        const exactMeta = metadata.platforms?.find((p) => getId(p) === id);
-        name = exactMeta?.platform_name || exactMeta?.name || game.platform_id?.platform_name || game.platform_id?.name || "Inconnu";
-        const customMeta = metadata.platforms?.find((p) => (p.platform_name || p.name) === name && p.user_id);
-        const bestMeta = customMeta || exactMeta;
-        color = bestMeta?.color || game.platform_id?.color || "#5AF2FF";
-      } else if (chartType === "genre") {
-        const id = getId(game.genre_id);
-        const exactMeta = metadata.genres?.find((g) => getId(g) === id);
-        name = exactMeta?.genre_name || exactMeta?.name || game.genre_id?.genre_name || game.genre_id?.name || "Inconnu";
-        const customMeta = metadata.genres?.find((g) => (g.genre_name || g.name) === name && g.user_id);
-        const bestMeta = customMeta || exactMeta;
-        color = bestMeta?.color || game.genre_id?.color || "#0068AC";
-      } else if (chartType === "status") {
-        const id = getId(game.status_id);
-        const exactMeta = metadata.statuses?.find((s) => getId(s) === id);
-        name = exactMeta?.status_name || exactMeta?.name || game.status_id?.status_name || game.status_id?.name || "Inconnu";
-        const customMeta = metadata.statuses?.find((s) => (s.status_name || s.name) === name && s.user_id);
-        const bestMeta = customMeta || exactMeta;
-        color = bestMeta?.color || game.status_id?.color || "#4AAC4E";
-      } else if (chartType === "rating") {
-        const note = game.note;
-        if (note !== undefined && note !== null) {
-          name = `${note} étoiles`;
-          const colors = ["#EF4444", "#E9A23B", "#F1C40F", "#6EB269", "#4AAC4E", "#0068AC"];
-          color = colors[Math.min(Math.floor(note), 5)] || "#5AF2FF";
-        } else {
-          name = "Non noté";
-          color = "#64748B";
-        }
-      }
-
-      if (!counts[name]) counts[name] = { name, value: 0, color, fill: color };
-      counts[name].value += 1;
-    });
-
-    return Object.values(counts).sort((a, b) => b.value - a.value);
-  }, [games, metadata, chartType]);
-
-  const getCellClass = (index) => {
-    if (activeIndex === index) return "platform-cell active";
-    if (activeIndex !== null) return "platform-cell dimmed";
-    return "platform-cell";
-  };
+    return rawData.map(item => {
+      const meta = metaList.find(m => m._id === item.name);
+      return {
+        name: meta ? meta[nameKey] : "Inconnu",
+        value: item.value,
+        color: meta?.color || "#5AF2FF"
+      };
+    }).filter(d => d.value > 0);
+  }, [stats, metadata, chartType]);
 
   const options = [
     { value: "platform", label: t("statistics.doughnut.platform") },
     { value: "genre", label: t("statistics.doughnut.genre") },
-    { value: "status", label: t("statistics.doughnut.status") },
-    { value: "rating", label: t("statistics.doughnut.rating") },
+    { value: "status", label: t("statistics.doughnut.status") }
   ];
 
   return (
@@ -97,44 +52,20 @@ const PlatformChart = ({ games = [], metadata = {} }) => {
         <div className="platform-chart-header">
           <CustomSelect options={options} value={chartType} onChange={setChartType} />
         </div>
-
         <div className="platform-chart-container">
-          {chartData.length === 0 ? (
-            <p style={{ textAlign: "center", marginTop: "50px", color: "var(--text-secondary)" }}>
-              Aucune donnée disponible
-            </p>
-          ) : (
-            <ResponsiveContainer>
-              <PieChart>
-                <Pie data={chartData} innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value" stroke="none">
-                  {chartData.map((entry, index) => (
-                    <Cell 
-                      key={`cell-${index}`} 
-                      fill={entry.color} 
-                      className={getCellClass(index)} 
-                      onMouseEnter={() => setActiveIndex(index)} 
-                      onMouseLeave={() => setActiveIndex(null)} 
-                    />
-                  ))}
-                </Pie>
-                <Tooltip 
-                  content={(props) => <CustomTooltip {...props} externalActiveIndex={activeIndex} />} 
-                  cursor={false} 
-                  wrapperStyle={{ display: activeIndex !== null ? "block" : "none" }} 
-                />
-                <Legend 
-                  layout="vertical" verticalAlign="middle" align="right" iconType="circle" 
-                  formatter={(value, entry, index) => (
-                    <span className={`legend-item-text ${activeIndex === index ? "active" : ""}`}>{value}</span>
-                  )} 
-                />
-              </PieChart>
-            </ResponsiveContainer>
-          )}
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie data={chartData} innerRadius={60} outerRadius={80} dataKey="value" stroke="none">
+                {chartData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </div>
   );
 };
-
 export default PlatformChart;

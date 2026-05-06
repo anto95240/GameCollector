@@ -1,4 +1,5 @@
 import LoadingButton from "../../../common/LoadingButton";
+import "./DeleteModal.css";
 
 const DeleteModal = ({ game, onClose, onConfirm, t }) => {
   if (!game) return null;

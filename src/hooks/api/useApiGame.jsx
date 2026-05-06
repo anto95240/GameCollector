@@ -1,13 +1,10 @@
-// [CORRECTION] Importer l'instance configurée, pas le module par défaut
 import axios from "../../config/interceptor"; 
 import { useCallback } from "react";
 
 export const useApiGame = () => {
 
-    // Récupérer tous les jeux (avec recherche optionnelle)
     const getAllGames = useCallback(async (search = "") => {
         const params = search ? { search } : {};
-        // Axios utilisera automatiquement http://localhost:5000 grâce à l'interceptor
         const { data } = await axios.get("/api/games", { params });
         return data;
     }, []);
@@ -17,8 +14,29 @@ export const useApiGame = () => {
         return data;
     }, []);
 
+    const getAdvancedStats = useCallback(async () => {
+        const { data } = await axios.get("/api/games/stats/advanced");
+        return data; 
+    }, []);
+
+    const getFuzzyGames = useCallback(async (search = "") => {
+        const payload = {
+            search,
+            q: search,
+            query: search,
+            term: search,
+        };
+
+        try {
+            const { data } = await axios.get("/api/search/fuzzy", { params: payload });
+            return data;
+        } catch (getError) {
+            const { data } = await axios.post("/api/search/fuzzy", payload);
+            return data;
+        }
+    }, []);
+
     const createGame = async (gameData) => {
-        // Le cookie d'auth est envoyé automatiquement ici aussi
         const { data } = await axios.post("/api/games", gameData);
         return data;
     };
@@ -36,6 +54,8 @@ export const useApiGame = () => {
     return {
         getAllGames,
         getGameById,
+        getAdvancedStats, 
+        getFuzzyGames,
         createGame,
         updateGame,
         deleteGame

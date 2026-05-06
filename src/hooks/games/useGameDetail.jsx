@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router";
 import { useApiGame } from "../api/useApiGame";
 import { useApiMetadata } from "../api/useApiMetadata";
 import { useApiAuth } from "../api/useApiAuth";
+import { incrementStoredUserMetric } from "../../utils/userStorage";
 import { MOCK_OPTIONS } from "../../config/constants";
 
 export const useGameDetail = (id, slug, gameName) => {
@@ -114,9 +115,7 @@ export const useGameDetail = (id, slug, gameName) => {
   const handleDelete = async () => {
     if (game && window.confirm("Supprimer ?")) {
       await deleteGame(game._id);
-      const user = JSON.parse(localStorage.getItem("user") || "{}");
-      user.deletedGamesCount = (user.deletedGamesCount || 0) + 1;
-      localStorage.setItem("user", JSON.stringify(user));
+      incrementStoredUserMetric("deletedGamesCount");
       window.dispatchEvent(new Event('checkAchievements'));
       navigate("/list");
     }
