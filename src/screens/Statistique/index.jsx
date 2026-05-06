@@ -11,6 +11,7 @@ import HeatmapChart from "../../components/main/Statistique/HeatmapChart";
 import TopGamesWidget from "../../components/main/Statistique/TopGamesWidget";
 import StatusFunnelChart from "../../components/main/Statistique/StatusFunnelChart";
 import { useStatsData } from "../../hooks/dashboard/useStatsData";
+import { mergeStoredUser } from "../../utils/userStorage";
 import "./Statistique.css";
 
 const TABS = [
@@ -27,9 +28,7 @@ function StatistiquePage() {
   const [activeTab, setActiveTab] = useState("overview");
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
-    user.viewedStats = true;
-    localStorage.setItem("user", JSON.stringify(user));
+    mergeStoredUser({ viewedStats: true });
     window.dispatchEvent(new Event("checkAchievements"));
   }, []);
 

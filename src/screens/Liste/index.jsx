@@ -19,6 +19,7 @@ import { useActiveOnScroll } from "../../hooks/ui/useActiveOnScroll";
 import { useGamesList } from "../../hooks/games/useGamesList";
 import { useCarousel } from "../../hooks/ui/useCarousel";
 import { useSearchBar } from "../../hooks/ui/useSearchBar";
+import { useFuzzySearch } from "../../hooks/ui/useFuzzySearch";
 import { useSearchBarShortcuts } from "../../hooks/ui/useSearchBarShortcuts";
 import { useAuth } from "../../context/AuthContext";
 import { useApiFilters } from "../../hooks/api/useApiFilters";
@@ -34,6 +35,19 @@ const ListePage = () => {
   const { getUserFilters, saveUserFilter, deleteUserFilter, setActiveUserFilter } = useApiFilters();
   
   const { games, metadata, isLoading, toggleFavorite, toggleSoon, removeGame } = useGamesList(debouncedTerm);
+  const fuzzySearchKeys = useMemo(() => ["name", "genre", "platform", "status", "year"], []);
+  const { setQuery, results: fuzzyGames } = useFuzzySearch(games, fuzzySearchKeys);
+
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+
+    console.debug("[liste-search] state", {
+      searchTerm,
+      debouncedTerm,
+      totalGames: games.length,
+      fuzzyGames: fuzzyGames.length,
+    });
+  }, [searchTerm, debouncedTerm, games.length, fuzzyGames.length]);
 
   const {
     selectedFilters,
@@ -44,7 +58,12 @@ const ListePage = () => {
     setPage,
     filteredGames,
     setSelectedFilters,
-  } = useGameFiltering(games);
+  } = useGameFiltering(fuzzyGames);
+
+  useEffect(() => {
+    setQuery(debouncedTerm);
+    setPage(1);
+  }, [debouncedTerm, setQuery, setPage]);
 
   const { scrollRef, scroll } = useCarousel();
   const [activeTab, setActiveTab] = useState("all"); 
@@ -264,7 +283,7 @@ const ListePage = () => {
     setTimeout(async () => {
       await removeGame(id);
       setDeletingId(null);
-    }, 400);
+    }, 700);
   };
 
   return (

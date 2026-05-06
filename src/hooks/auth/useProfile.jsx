@@ -5,6 +5,7 @@ import { useApiAuth } from "../api/useApiAuth";
 import { useValidationToast } from "../ui/useValidationToast";
 import { validateProfile, getFirstValidationError } from "../../utils/validators";
 import { API_URL } from "../../config/constants";
+import { incrementStoredUserMetric } from "../../utils/userStorage";
 
 export const useProfile = () => {
   const { t } = useOutletContext(); 
@@ -81,9 +82,7 @@ export const useProfile = () => {
       // Mise à jour du contexte pour que l'UI (Navbar, etc.) s'actualise
       updateUser(updatedUser);
 
-      const localUser = JSON.parse(localStorage.getItem("user") || "{}");
-      localUser.profileUpdatedCount = (localUser.profileUpdatedCount || 0) + 1;
-      localStorage.setItem("user", JSON.stringify(localUser));
+      incrementStoredUserMetric("profileUpdatedCount");
 
       window.dispatchEvent(new Event('checkAchievements'));
 

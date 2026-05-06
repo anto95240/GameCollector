@@ -20,10 +20,22 @@ const unlockAchievement = async (idName) => {
   return data;
 };
 
+// NOUVELLE FONCTION
+const getAchievementStats = async () => {
+  try {
+    const { data } = await axios.get("/api/achievements/stats");
+    return data;
+  } catch (error) {
+    console.warn("[Achievement API] Impossible de récupérer les statistiques:", error.message);
+    return {};
+  }
+};
+
 const achievementsApi = {
   getAllAchievements,
   getUserAchievements,
   unlockAchievement,
+  getAchievementStats,
 };
 
 export const useApiAchievements = () => {

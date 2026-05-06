@@ -5,6 +5,7 @@ import { useApiGame } from "../api/useApiGame";
 import { useApiMetadata } from "../api/useApiMetadata";
 import { useTagsManager } from "./useTagsManager";
 import { useScrollSpy } from "../ui/useScrollSpy";
+import { incrementStoredUserMetric } from "../../utils/userStorage";
 import { MOCK_OPTIONS, SECTIONS } from "../../config/constants"; 
 
 export const useAddEditGame = () => {
@@ -166,7 +167,6 @@ export const useAddEditGame = () => {
       }
       
       // Mettre à jour les stats
-      const user = JSON.parse(localStorage.getItem("user") || "{}");
       if (isFirstGame && formData.year && parseInt(formData.year) < 2000) {
         // Jeu rétro - compter pour it's_a_me et retro_gamer
       }
@@ -176,9 +176,8 @@ export const useAddEditGame = () => {
       // Incrémenter late night actions si approprié
       const hour = new Date().getHours();
       if (hour >= 2 && hour < 5) {
-        user.lateNightActionsCount = (user.lateNightActionsCount || 0) + 1;
+        incrementStoredUserMetric("lateNightActionsCount");
       }
-      localStorage.setItem("user", JSON.stringify(user));
       
       // Déclencher la vérification des achievements après un court délai
       // pour que les jeux soient bien en cache

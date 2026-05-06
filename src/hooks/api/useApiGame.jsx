@@ -14,11 +14,26 @@ export const useApiGame = () => {
         return data;
     }, []);
 
-    // NOUVEAU : Récupération des statistiques avancées
     const getAdvancedStats = useCallback(async () => {
-        // D'après ton contrôleur back-end, res.json(stats) renvoie directement l'objet
         const { data } = await axios.get("/api/games/stats/advanced");
         return data; 
+    }, []);
+
+    const getFuzzyGames = useCallback(async (search = "") => {
+        const payload = {
+            search,
+            q: search,
+            query: search,
+            term: search,
+        };
+
+        try {
+            const { data } = await axios.get("/api/search/fuzzy", { params: payload });
+            return data;
+        } catch (getError) {
+            const { data } = await axios.post("/api/search/fuzzy", payload);
+            return data;
+        }
     }, []);
 
     const createGame = async (gameData) => {
@@ -39,7 +54,8 @@ export const useApiGame = () => {
     return {
         getAllGames,
         getGameById,
-        getAdvancedStats, // Exporte bien la nouvelle fonction
+        getAdvancedStats, 
+        getFuzzyGames,
         createGame,
         updateGame,
         deleteGame

@@ -76,11 +76,14 @@ export const useGamesList = (searchTerm) => {
   };
 
   const removeGame = async (id) => {
+    setGames((prev) => prev.filter((g) => g.id !== id));
+
     try {
       await deleteGame(id);
       setRefreshTrigger((prev) => prev + 1);
     } catch (error) {
       console.error("Erreur lors de la suppression:", error);
+      setRefreshTrigger((prev) => prev + 1);
     }
   };
 

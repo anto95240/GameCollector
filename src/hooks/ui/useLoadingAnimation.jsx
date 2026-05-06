@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { mergeStoredUser } from "../../utils/userStorage";
 
 export const useLoadingAnimation = (variant = "login", navigate, returnTo = null) => {
   const [progress, setProgress] = useState(0);
@@ -36,10 +37,8 @@ export const useLoadingAnimation = (variant = "login", navigate, returnTo = null
       // Redirection après 400ms
       const finalTimer = setTimeout(() => {
         if (!isMounted) return;
-        
-        const user = JSON.parse(localStorage.getItem("user") || "{}");
-        user.startupAnimationSeen = true;
-        localStorage.setItem("user", JSON.stringify(user));
+
+        mergeStoredUser({ startupAnimationSeen: true });
         
         if (navigate) {
           const destination = returnTo || (variant === "logout" ? "/" : "/dashboard");

@@ -1,36 +1,31 @@
 // src/context/AuthContext.jsx
 import { createContext, useContext, useState, useEffect } from "react";
 import { useApiAuth } from "../hooks/api/useApiAuth";
+import { readStoredUser, writeStoredUser, removeStoredUser } from "../utils/userStorage";
 
-// 1. Création du contexte
 const AuthContext = createContext(null);
 
-// 2. Le Provider (qui va envelopper l'app)
 export const AuthProvider = ({ children }) => {
     const { getMe } = useApiAuth();
     
-    // Initialisation immédiate via LocalStorage (pour la rapidité)
     const [user, setUser] = useState(() => {
-        const saved = localStorage.getItem("user");
-        return saved ? JSON.parse(saved) : null;
+        return readStoredUser();
     });
 
-    // Fonction pour mettre à jour l'utilisateur (utile après une modif de profil)
     const updateUser = (newUser) => {
         setUser(newUser);
         if (newUser) {
-            localStorage.setItem("user", JSON.stringify(newUser));
+            writeStoredUser(newUser);
         } else {
-            localStorage.removeItem("user");
+            removeStoredUser();
         }
     };
 
-    // Vérification en arrière-plan via API (Sécurité & Mise à jour)
     useEffect(() => {
         const checkUser = async () => {
             try {
                 // Vérifier seulement si on a un utilisateur en localStorage
-                const saved = localStorage.getItem("user");
+                const saved = readStoredUser();
                 if (!saved) {
                     return;
                 }
@@ -41,7 +36,6 @@ export const AuthProvider = ({ children }) => {
                     updateUser(freshUser);
                 }
             } catch (error) {
-                // Ne pas déconnecter - laisser localStorage comme fallback
             }
         };
         
@@ -55,7 +49,6 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-// 3. Le Hook personnalisé pour consommer le contexte facilement
 export const useAuth = () => {
     const context = useContext(AuthContext);
     if (!context) {

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_URL } from "./constants";
+import { removeStoredUser } from "../utils/userStorage";
 
 axios.defaults.baseURL = API_URL;
 
@@ -27,7 +28,7 @@ axios.interceptors.response.use(
     // Si le cookie est expiré ou invalide, le back renvoie 401
     if (error.response && error.response.status === 401) {
       // On nettoie le localStorage (qui contient juste les infos user, pas le token)
-      localStorage.removeItem("user");
+      removeStoredUser();
 
       // Redirection vers login sauf si on y est déjà
       if (

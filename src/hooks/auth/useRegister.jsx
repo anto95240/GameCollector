@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { useApiAuth } from "../api/useApiAuth";
+import { writeStoredUser } from "../../utils/userStorage";
 
 export const useRegister = () => {
   const { t } = useTranslation();
@@ -33,7 +34,7 @@ export const useRegister = () => {
     try {
       const response = await register(formData);
       if (response.user) {
-        localStorage.setItem("user", JSON.stringify(response.user));
+        writeStoredUser(response.user);
         // Redirection vers la page de chargement fullscreen
         navigate("/loading?variant=login&returnTo=/dashboard");
       }

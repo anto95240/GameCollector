@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useApiMetadata } from "../../../../hooks/api/useApiMetadata";
 import { useValidationToast } from "../../../../hooks/ui/useValidationToast";
+import { incrementStoredUserMetric } from "../../../../utils/userStorage";
 import { validateCategory, getFirstValidationError } from "../../../../utils/validators";
 import "./CategoryForm.css";
 
@@ -121,18 +122,14 @@ const CategoryForm = ({
         const id = initialData._id || initialData.id;
         await updateMetadata(categoryType, id, payload);
 
-        const user = JSON.parse(localStorage.getItem("user") || "{}");
-        user.updatedCategoriesCount = (user.updatedCategoriesCount || 0) + 1;
-        localStorage.setItem("user", JSON.stringify(user));
+        incrementStoredUserMetric("updatedCategoriesCount");
 
         const categoryLabel = getCategoryLabel();
         showUpdated(`${categoryLabel}: "${formData.name}"`);
       } else {
         await createMetadata(categoryType, payload);
 
-        const user = JSON.parse(localStorage.getItem("user") || "{}");
-        user.customCategoriesCreated = (user.customCategoriesCreated || 0) + 1;
-        localStorage.setItem("user", JSON.stringify(user));
+        incrementStoredUserMetric("customCategoriesCreated");
 
         const categoryLabel = getCategoryLabel();
         showCreated(`${categoryLabel}: "${formData.name}"`);
