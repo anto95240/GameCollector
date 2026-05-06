@@ -334,8 +334,8 @@ const ListePage = () => {
                         isActive={activeId === String(game.id)}
                         activeMenuIndex={activeMenuIndex}
                         onToggleMenu={(i, e) => { e.stopPropagation(); setActiveMenuIndex(activeMenuIndex === i ? null : i); }}
-                        onDeleteRequest={() => setGameToDelete(game)}
-                        onToggleFavorite={toggleFavorite}
+                        onDeleteRequest={() => { setActiveMenuIndex(null); setGameToDelete(game); }}
+                        onToggleFavorite={(g) => { setActiveMenuIndex(null); toggleFavorite(g); }}
                         t={t}
                       />
                     </div>
