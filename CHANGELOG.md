@@ -1,3 +1,10 @@
+## [2.7.1](https://github.com/anto95240/GameCollector/compare/v2.7.0...v2.7.1) (2026-05-06)
+
+
+### Bug Fixes
+
+* ferme menu contextuel Gamecart + repositionne dropdown selon l'écran ([9c14da4](https://github.com/anto95240/GameCollector/commit/9c14da4bb11543f1f1ebb68b1af1187468398948))
+
 # [2.7.0](https://github.com/anto95240/GameCollector/compare/v2.6.0...v2.7.0) (2026-05-06)
 
 
