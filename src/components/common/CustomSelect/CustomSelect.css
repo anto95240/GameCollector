@@ -31,7 +31,7 @@
 .select-arrow {
   font-size: 12px;
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  flex-shrink: 0; /* Empêche la flèche de s'écraser si le texte est long */
+  flex-shrink: 0;
 }
 
 .select-arrow.rotate {
@@ -39,7 +39,7 @@
   color: var(--color-text);
 }
 
-/* --- GESTION DU TEXTE TROP LONG (ANIMATION) --- */
+/* ── Texte long (animation défilement) ── */
 .select-label-wrapper {
   flex: 1;
   overflow: hidden;
@@ -65,14 +65,19 @@
 }
 
 @keyframes scrollMarquee {
-  0%, 15% { transform: translateX(0); }
-  85%, 100% { transform: translateX(var(--scroll-amount)); }
+  0%,
+  15% {
+    transform: translateX(0);
+  }
+  85%,
+  100% {
+    transform: translateX(var(--scroll-amount));
+  }
 }
 
-/* --- DROPDOWN --- */
+/* ── Dropdown base ── */
 .custom-select-dropdown {
   position: absolute;
-  top: 110%;
   left: 0;
   width: 100%;
   min-width: max-content;
@@ -81,15 +86,53 @@
   border-radius: 12px;
   padding: 5px;
   overflow: hidden;
-  animation: fadeInDropdown 0.2s ease-out;
   z-index: 10;
+
+  /* Animation commune */
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
 }
 
-@keyframes fadeInDropdown {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ── Position SOUS le select (défaut) ── */
+.custom-select-dropdown--bottom {
+  top: calc(100% + 8px);
+  bottom: auto;
+  transform-origin: top center;
+  animation-name: fadeInDown;
 }
 
+/* ── Position AU-DESSUS du select ── */
+.custom-select-dropdown--top {
+  bottom: calc(100% + 8px);
+  top: auto;
+  transform-origin: bottom center;
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Options ── */
 .custom-option {
   padding: 10px 15px;
   border-radius: 8px;
@@ -110,7 +153,7 @@
   font-weight: bold;
 }
 
-/* --- DISABLED STATE --- */
+/* ── Disabled ── */
 .custom-select-trigger.disabled {
   opacity: 0.5;
   cursor: not-allowed;
