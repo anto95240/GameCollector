@@ -1,3 +1,12 @@
+# [2.7.0](https://github.com/anto95240/GameCollector/compare/v2.6.0...v2.7.0) (2026-05-06)
+
+
+### Features
+
+* add filtre avancé + save filtre ([c8ee669](https://github.com/anto95240/GameCollector/commit/c8ee669066bd5565f1c1d5c730cb34bf0e9a8d66))
+* add recherche fuzzy + suppression donnée sensible localStorage ([e52858c](https://github.com/anto95240/GameCollector/commit/e52858c1632ba8d069e8dd527160aa6ab46ba690))
+* add stat avancé ([f1ef05f](https://github.com/anto95240/GameCollector/commit/f1ef05ffb1762cbde36bdb4664a322f268d31935))
+
 # [2.6.0](https://github.com/anto95240/GameCollector/compare/v2.5.0...v2.6.0) (2026-05-06)
 
 
