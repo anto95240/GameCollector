@@ -1,4 +1,4 @@
-import LoadingButton from "../../../common/LoadingButton";
+import LoadingButton from "@/components/common/LoadingButton";
 import {
   DescriptionSection,
   RatingSection,

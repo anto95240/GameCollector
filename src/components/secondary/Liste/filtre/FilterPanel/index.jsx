@@ -14,6 +14,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import FilterAccordionItem from "../FilterAccordionItem";
+import { RangeFilterItem, SortFilterItem } from "./SpecialFilters";
+import { SaveFiltersBox } from "./SaveFiltersBox";
+import { SavedFiltersList } from "./SavedFiltersList";
+import {
+  getOptionCount,
+  isFilterSelected,
+  getActiveFilterValue,
+  getActiveSort,
+  parseRangeDraft,
+  handleClearCategory,
+} from "./filterUtils";
 import "./FilterPanel.css";
 import { t } from "i18next";
 
@@ -65,70 +76,31 @@ const FilterPanel = ({
     setShowAllOptions((prev) => ({ ...prev, [categoryId]: !prev[categoryId] }));
   };
 
-  const handleClearCategory = (categoryLabel) => {
-    selectedFilters.forEach((filter) => {
-      if (filter.startsWith(`${categoryLabel}:`)) {
-        onRemoveFilter(filter);
-      }
-    });
+  const handleClearCategoryLocal = (categoryLabel) => {
+    handleClearCategory(selectedFilters, onRemoveFilter, categoryLabel);
   };
 
-  const getOptionCount = (categoryLabel, optionValue) => {
-    if (!games) return 0;
+  const getOptionCountLocal = (categoryLabel, optionValue) => 
+    getOptionCount(games, categoryLabel, optionValue);
 
-    return games.filter((g) => {
-      switch (categoryLabel) {
-        case "Genre":
-          return g.genre === optionValue;
-        case "Plateforme":
-          return g.platform === optionValue;
-        case "Année":
-          return String(g.year) === optionValue;
-        case "Note":
-          return g.rating === optionValue;
-        case "Statut":
-          return g.status === optionValue;
-        case "Favoris":
-          return optionValue === "Nos favoris" ? g.isFavorite : !g.isFavorite;
-        case "Prochainement":
-          return optionValue === "Prochainement" ? g.isSoon : !g.isSoon;
-        default:
-          return false;
-      }
-    }).length;
-  };
+  const isFilterSelectedLocal = (categoryLabel, optionValue) =>
+    isFilterSelected(selectedFilters, categoryLabel, optionValue);
 
-  const isFilterSelected = (categoryLabel, optionValue) =>
-    selectedFilters.includes(`${categoryLabel}: ${optionValue}`);
+  const getActiveFilterValueLocal = (categoryLabel) =>
+    getActiveFilterValue(selectedFilters, categoryLabel);
 
-  const getActiveFilterValue = (categoryLabel) => {
-    const found = selectedFilters.find((filter) => filter.startsWith(`${categoryLabel}:`));
-    return found ? found.split(": ")[1] : "";
-  };
-
-  const getActiveSort = () => {
-    const raw = getActiveFilterValue("Trier par");
-    const [field = "Nom", order = "asc"] = raw ? raw.split("|") : [];
-    return { field, order };
-  };
+  const getActiveSortLocal = () => getActiveSort(selectedFilters);
 
   const toggleSpecial = (key) => {
     setSpecialExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   useEffect(() => {
-    const parseRange = (categoryLabel) => {
-      const current = getActiveFilterValue(categoryLabel);
-      if (!current || !current.includes("-")) return { min: "", max: "" };
-      const [min, max] = current.split("-");
-      return { min: min || "", max: max || "" };
-    };
-
     setRangeDrafts({
-      yearRange: parseRange("Année"),
-      ratingRange: parseRange("Note"),
+      yearRange: parseRangeDraft(selectedFilters, "Année"),
+      ratingRange: parseRangeDraft(selectedFilters, "Note"),
     });
-    setSortDraft(getActiveSort());
+    setSortDraft(getActiveSortLocal());
   }, [selectedFilters]);
 
   return (
@@ -177,141 +149,36 @@ const FilterPanel = ({
             {filterData.map((cat) => {
               if (cat.type === "range") {
                 const specialKey = cat.id === "year_range" ? "yearRange" : "ratingRange";
-                const activeValue = getActiveFilterValue(cat.label);
-                const draft = rangeDrafts[specialKey] || { min: "", max: "" };
                 return (
-                  <div key={cat.id} className="accordion-item range-item special-item">
-                    <button type="button" className="accordion-header special-header" onClick={() => toggleSpecial(specialKey)}>
-                      <div className="header-left">
-                        <span className="icon-cat"><FontAwesomeIcon icon={ICONS[cat.id] || faLayerGroup} fixedWidth /></span>
-                        <span className="cat-label">{cat.label}</span>
-                        {activeValue ? <span className="active-badge">{activeValue}</span> : null}
-                      </div>
-                      <FontAwesomeIcon icon={faChevronDown} className={`chevron ${specialExpanded[specialKey] ? "rotate" : ""}`} size="xs" />
-                    </button>
-                    <div className={`accordion-content special-content ${specialExpanded[specialKey] ? "open" : "closed"}`}>
-                      {specialExpanded[specialKey] ? (
-                        <div className="range-card">
-                          <div className="range-row range-grid">
-                            <input
-                              type="number"
-                              min={cat.min}
-                              max={cat.max}
-                              placeholder={cat.min}
-                              className="range-input"
-                              value={draft.min}
-                              onChange={(e) => setRangeDrafts((prev) => ({ ...prev, [specialKey]: { ...prev[specialKey], min: e.target.value } }))}
-                            />
-                            <span className="range-separator">—</span>
-                            <input
-                              type="number"
-                              min={cat.min}
-                              max={cat.max}
-                              placeholder={cat.max}
-                              className="range-input"
-                              value={draft.max}
-                              onChange={(e) => setRangeDrafts((prev) => ({ ...prev, [specialKey]: { ...prev[specialKey], max: e.target.value } }))}
-                            />
-                          </div>
-                          <div className="range-actions">
-                            <button
-                              type="button"
-                              className="range-apply-btn"
-                              onClick={() => {
-                                const min = draft.min || cat.min;
-                                const max = draft.max || cat.max;
-                                onSelectFilter(cat.label, `${min}-${max}`);
-                                onClose();
-                              }}
-                            >
-                              Appliquer
-                            </button>
-                          </div>
-                          <p className="range-help">Définissez une plage min/max pour filtrer les jeux.</p>
-                        </div>
-                      ) : null}
-                    </div>
-                  </div>
+                  <RangeFilterItem
+                    key={cat.id}
+                    category={cat}
+                    rangeDrafts={rangeDrafts}
+                    setRangeDrafts={setRangeDrafts}
+                    getActiveFilterValue={getActiveFilterValueLocal}
+                    onSelectFilter={onSelectFilter}
+                    onClose={onClose}
+                    icon={ICONS[cat.id] || faLayerGroup}
+                    specialExpanded={specialExpanded}
+                    toggleSpecial={toggleSpecial}
+                  />
                 );
               }
 
               if (cat.type === "sort") {
-                const activeSort = getActiveFilterValue(cat.label);
-                const activeSortParts = activeSort ? activeSort.split("|") : [];
-                const activeSortField = activeSortParts[0] || sortDraft.field;
-                const activeSortOrder = activeSortParts[1] || sortDraft.order;
                 return (
-                  <div key={cat.id} className="accordion-item special-item">
-                    <button type="button" className="accordion-header special-header" onClick={() => toggleSpecial("sort")}>
-                      <div className="header-left">
-                        <span className="icon-cat"><FontAwesomeIcon icon={ICONS[cat.id] || faLayerGroup} fixedWidth /></span>
-                        <span className="cat-label">{cat.label}</span>
-                        {activeSort ? <span className="active-badge">{activeSortField} · {activeSortOrder === "desc" ? "Décroissant" : "Croissant"}</span> : null}
-                      </div>
-                      <FontAwesomeIcon icon={faChevronDown} className={`chevron ${specialExpanded.sort ? "rotate" : ""}`} size="xs" />
-                    </button>
-                    <div className={`accordion-content special-content ${specialExpanded.sort ? "open" : "closed"}`}>
-                      {specialExpanded.sort ? (
-                        <div className="sort-options-wrap p-2">
-                          <div className="sort-group">
-                            <div className="sort-group-label">Champ</div>
-                            <div className="sort-pills">
-                              {cat.options.map((opt) => {
-                                const selected = sortDraft.field === opt;
-                                return (
-                                  <button
-                                    key={opt}
-                                    type="button"
-                                    className={`sort-option ${selected ? "selected" : ""}`}
-                                    onClick={() => setSortDraft((prev) => ({ ...prev, field: opt, order: prev.order || "asc" }))}
-                                  >
-                                    <span>{opt}</span>
-                                    {selected ? <span className="sort-current-dot">Actif</span> : null}
-                                  </button>
-                                );
-                              })}
-                            </div>
-                          </div>
-
-                          <div className="sort-group">
-                            <div className="sort-group-label">Ordre</div>
-                            <div className="sort-pills">
-                              {[
-                                { label: "Croissant", value: "asc" },
-                                { label: "Décroissant", value: "desc" },
-                              ].map((opt) => {
-                                const selected = sortDraft.order === opt.value;
-                                return (
-                                  <button
-                                    key={opt.value}
-                                    type="button"
-                                    className={`sort-option ${selected ? "selected" : ""}`}
-                                    onClick={() => setSortDraft((prev) => ({ ...prev, order: opt.value }))}
-                                  >
-                                    <span>{opt.label}</span>
-                                    {selected ? <span className="sort-current-dot">Actif</span> : null}
-                                  </button>
-                                );
-                              })}
-                            </div>
-                          </div>
-
-                          <div className="sort-actions">
-                            <button
-                              type="button"
-                              className="range-apply-btn"
-                              onClick={() => {
-                                onSelectFilter(cat.label, `${sortDraft.field}|${sortDraft.order}`);
-                                onClose();
-                              }}
-                            >
-                              Appliquer le tri
-                            </button>
-                          </div>
-                        </div>
-                      ) : null}
-                    </div>
-                  </div>
+                  <SortFilterItem
+                    key={cat.id}
+                    category={cat}
+                    sortDraft={sortDraft}
+                    setSortDraft={setSortDraft}
+                    getActiveFilterValue={getActiveFilterValueLocal}
+                    onSelectFilter={onSelectFilter}
+                    onClose={onClose}
+                    icon={ICONS[cat.id] || faLayerGroup}
+                    specialExpanded={specialExpanded}
+                    toggleSpecial={toggleSpecial}
+                  />
                 );
               }
 
@@ -325,55 +192,27 @@ const FilterPanel = ({
                   onSelectFilter={onSelectFilter}
                   onRemoveFilter={onRemoveFilter}
                   icon={ICONS[cat.id] || faLayerGroup}
-                  getOptionCount={getOptionCount}
+                  getOptionCount={getOptionCountLocal}
                   showAllState={showAllOptions[cat.id]}
                   toggleShowAll={toggleShowAll}
-                  handleClearCategory={handleClearCategory}
+                  handleClearCategory={handleClearCategoryLocal}
                 />
               );
             })}
 
-            <div className="save-filters-box p-3">
-              <input value={saveName} onChange={(e) => setSaveName(e.target.value)} placeholder="Nommer ce jeu de filtres" />
-              <div className="save-actions flex gap-2 mt-2">
-                <button className="btn" onClick={() => { onSaveCurrentFilters && onSaveCurrentFilters(saveName); setSaveName(""); }}>
-                  Sauvegarder les filtres
-                </button>
-                <button className="btn btn-ghost" onClick={() => { onClearAll && onClearAll(); }}>
-                  Réinitialiser
-                </button>
-              </div>
-            </div>
+            <SaveFiltersBox 
+              saveName={saveName}
+              setSaveName={setSaveName}
+              onSaveCurrentFilters={onSaveCurrentFilters}
+              onClearAll={onClearAll}
+            />
           </div>
         ) : (
-          <div className="saved-filters-list p-3">
-            {savedFilters.length === 0 ? (
-              <div className="saved-empty-state">
-                <div className="saved-empty-title">Aucun filtre sauvegardé</div>
-                <p className="saved-empty-text">
-                  Sauvegardez un ensemble de filtres pour le retrouver ici et le réappliquer en un clic.
-                </p>
-              </div>
-            ) : (
-              savedFilters.map((s) => (
-                <div key={s.id} className="saved-item flex items-center justify-between gap-3 p-2">
-                  <div className="saved-info">
-                    <div className="saved-topline">
-                      <div className="saved-name">{s.name}</div>
-                    </div>
-                  </div>
-                  <div className="saved-actions flex gap-2">
-                    <button className="btn" onClick={() => { onApplySaved && onApplySaved(s); }}>
-                      Appliquer
-                    </button>
-                    <button className="btn btn-danger" onClick={() => { onDeleteSaved && onDeleteSaved(s.id); }}>
-                      Supprimer
-                    </button>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
+          <SavedFiltersList 
+            savedFilters={savedFilters} 
+            onApplySaved={onApplySaved} 
+            onDeleteSaved={onDeleteSaved}
+          />
         )}
 
       </div>

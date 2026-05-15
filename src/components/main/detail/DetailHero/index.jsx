@@ -11,7 +11,7 @@ import {
 import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
 import "./DetailHero.css";
 import { useTranslation } from "react-i18next";
-import { MOCK_OPTIONS } from "../../../../config/constants";
+import { MOCK_OPTIONS } from "@/config/constants";
 
 const DetailHero = ({ game, onToggleFavorite, metadata = {}, isUpdating = false, onUpdateField = () => {}, onToggleSoon = () => {} }) => {
   const { t } = useTranslation();

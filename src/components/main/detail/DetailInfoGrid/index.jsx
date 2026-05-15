@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./DetailInfoGrid.css";
-import StatItem from "../../../secondary/Detail/StatItem";
+import StatItem from "@/components/secondary/Detail/StatItem";
 import { useTranslation } from "react-i18next";
 
 const DetailInfoGrid = ({ game }) => {

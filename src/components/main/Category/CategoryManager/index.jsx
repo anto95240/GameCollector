@@ -5,10 +5,10 @@ import {
   faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 
-import CategoryList from "../../../secondary/Category/CategoryListe";
-import CategoryForm from "../../../secondary/Category/CategoryForm";
-import { useApiMetadata } from "../../../../hooks/api/useApiMetadata";
-import { useEscapeKeyCloser } from "../../../../hooks/ui/useEscapeKeyCloser";
+import CategoryList from "@/components/secondary/Category/CategoryListe";
+import CategoryForm from "@/components/secondary/Category/CategoryForm";
+import { useApiMetadata } from "@/hooks/api/useApiMetadata";
+import { useEscapeKeyCloser } from "@/hooks/ui/useEscapeKeyCloser";
 import "./CategoryManager.css";
 
 const CategoryManager = ({ categoryType }) => {

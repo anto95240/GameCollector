@@ -1,5 +1,5 @@
 import "./SectionStatSecondary.css";
-import { useDashboard } from "../../../hooks/dashboard/useDashboard";
+import { useDashboard } from "@/hooks/dashboard/useDashboard";
 import StatCard from "../StatCard";
 import { useLocation } from "react-router";
 

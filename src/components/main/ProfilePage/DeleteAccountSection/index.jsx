@@ -1,5 +1,5 @@
-import ProfileCard from "../../../secondary/Profile/ProfileCard";
-import ActionButtons from "../../../secondary/Profile/ActionButtons";
+import ProfileCard from "@/components/secondary/Profile/ProfileCard";
+import ActionButtons from "@/components/secondary/Profile/ActionButtons";
 import "./DeleteAccountSection.css";
 
 const DeleteAccountSection = ({ setUiState, t }) => {

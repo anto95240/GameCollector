@@ -1,0 +1,55 @@
+/* Details Section - Genre, Platform, Year, PlayTime, Developer, Achievements */
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.details-grid .select-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.details-grid .select-wrapper label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-primary, #1f2937);
+}
+
+.details-grid label span {
+  color: #ef4444;
+  margin-left: 0.25rem;
+}
+
+/* Tablet (2 columns) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .details-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* Mobile (1 column) */
+@media (max-width: 768px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .details-grid .select-wrapper label {
+    font-size: 0.9rem;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .details-grid {
+    gap: 0.875rem;
+  }
+
+  .details-grid .select-wrapper label {
+    font-size: 0.85rem;
+  }
+}

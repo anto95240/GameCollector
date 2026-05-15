@@ -1,6 +1,6 @@
 import { faUser, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import AuthInput from "../../common/AuthInput";
-import "../../../screens/Register/Register.css";
+import "@/screens/Register/Register.css";
 
 const SignUpPart2 = ({ data, update, t }) => (
   <div className="step-form-anim">

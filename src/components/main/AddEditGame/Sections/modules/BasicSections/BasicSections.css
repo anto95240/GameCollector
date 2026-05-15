@@ -1,0 +1,132 @@
+/* Basic Sections - Description, Rating, Comment, Metadata, Image */
+
+.textarea-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.textarea-group label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-primary, #1f2937);
+}
+
+.textarea-container {
+  position: relative;
+}
+
+.textarea-container textarea {
+  width: 100%;
+  padding: 0.875rem;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+
+.textarea-container textarea:focus {
+  outline: none;
+  border-color: var(--primary-color, #3b82f6);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.select-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.select-wrapper label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-primary, #1f2937);
+}
+
+.image-upload-area {
+  position: relative;
+  width: 100%;
+}
+
+.upload-label {
+  display: block;
+  cursor: pointer;
+  border: 2px dashed var(--border-color, #e5e7eb);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: var(--bg-secondary, #f9fafb);
+}
+
+.upload-label:hover {
+  border-color: var(--primary-color, #3b82f6);
+  background: var(--bg-hover, #f3f4f6);
+}
+
+#file-upload:focus + .upload-label {
+  border-color: var(--primary-color, #3b82f6);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.upload-placeholder .upload-icon {
+  font-size: 2.5rem;
+  color: var(--text-secondary, #6b7280);
+}
+
+.upload-placeholder p {
+  margin: 0;
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.95rem;
+}
+
+.img-preview {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+/* Responsive spacing */
+@media (max-width: 768px) {
+  .textarea-group {
+    gap: 0.5rem;
+  }
+
+  .textarea-container textarea {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .upload-label {
+    padding: 1.5rem 1rem;
+  }
+
+  .upload-placeholder .upload-icon {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .textarea-group {
+    gap: 0.375rem;
+  }
+
+  .upload-label {
+    padding: 1rem 0.75rem;
+  }
+
+  .img-preview {
+    max-height: 250px;
+  }
+}

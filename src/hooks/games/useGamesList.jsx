@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useApiGame } from "../api/useApiGame";
 import { useApiMetadata } from "../api/useApiMetadata";
+import { formatGameForDisplay } from "@/utils/gameFormatters";
 
 export const useGamesList = (searchTerm) => {
   const { getAllGames, deleteGame, updateGame } = useApiGame();
@@ -26,18 +27,8 @@ export const useGamesList = (searchTerm) => {
         
         const rawGames = Array.isArray(gamesData) ? gamesData : gamesData.games || [];
 
-        const mappedGames = rawGames.map((game) => ({
-          ...game,
-          id: game._id,
-          // Mapping strict des données MongoDB[cite: 3, 5]
-          isSoon: game.isSoon === true || String(game.isSoon) === "true", 
-          isFavorite: game.isFavorite === true || String(game.isFavorite) === "true",
-          genre: metaData.genres?.find((g) => g._id === (game.genre_id?._id || game.genre_id))?.genre_name || "Inconnu",
-          platform: metaData.platforms?.find((p) => p._id === (game.platform_id?._id || game.platform_id))?.platform_name || "Inconnu",
-          status: metaData.statuses?.find((s) => s._id === (game.status_id?._id || game.status_id))?.status_name || "Inconnu",
-          rating: game.note ? `${Math.floor(game.note)} étoiles` : "Non noté",
-          imageUrl: game.image?.startsWith("http") ? game.image : `${import.meta.env.VITE_API_URL || "http://localhost:5000"}${game.image}`,
-        }));
+        // Utiliser le formatter centralisé pour éviter la duplication
+        const mappedGames = rawGames.map((game) => formatGameForDisplay(game, metaData));
         
         setGames(mappedGames);
       } catch (error) {

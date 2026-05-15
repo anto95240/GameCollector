@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "react-router";
-import "../../../screens/Login/Login.css"; 
-import "../../../screens/Register/Register.css";
+import "@/screens/Login/Login.css";
+import "@/screens/Register/Register.css";
 
 const AuthLayout = () => {
   const location = useLocation();
