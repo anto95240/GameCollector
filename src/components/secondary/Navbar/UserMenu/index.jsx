@@ -12,7 +12,7 @@ const UserMenu = ({ user, t, state, setters, actions, onClose }) => {
   const displayName = user?.username || "Pilote";
 
   const handleHelpClick = () => {
-    window.dispatchEvent(new CustomEvent('showKeyboardHelp'));
+    window.dispatchEvent(new CustomEvent("showKeyboardHelp"));
     onClose();
   };
 
@@ -33,7 +33,7 @@ const UserMenu = ({ user, t, state, setters, actions, onClose }) => {
 
         <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
 
-        <button 
+        <button
           className="help-button-menu"
           onClick={handleHelpClick}
           title="Afficher les raccourcis clavier (Ctrl+H)"
@@ -44,11 +44,8 @@ const UserMenu = ({ user, t, state, setters, actions, onClose }) => {
       </div>
 
       <hr className="separate" />
-
       <UserLinks t={t} onClose={onClose} />
-
       <hr className="separate-version" />
-
       <p className="version">v{import.meta.env.VITE_APP_VERSION}</p>
     </div>
   );

@@ -13,13 +13,9 @@ import KeyboardHelp from "./components/KeyboardHelp";
 import keyboardShortcutsService from "./services/keyboardShortcutsService";
 
 function App() {
-  // Tracker d'achievements - vérification sûre au démarrage
   useAchievementTracker();
-
-  // Récupérer l'utilisateur depuis le contexte (raccourcis inclus)
   const { user } = useAuth();
 
-  // Charger les raccourcis personnalisés de l'utilisateur
   useEffect(() => {
     if (user?.shortcuts && user.shortcuts.length > 0) {
       keyboardShortcutsService.loadCustomBindings(user.shortcuts);

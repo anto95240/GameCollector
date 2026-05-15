@@ -32,7 +32,6 @@ export const useAchievementTracker = () => {
       case "eclectique": return stats.uniqueGenresCount >= 7;
       case "retro_gamer": return stats.retroGamesCount > 0;
       case "archiviste": return stats.archivisteCount > 0;
-      case "player_2_ready": return stats.gamepadNavigationUsed;
       case "data_analyst": return stats.viewedStats;
       case "nostalgie": return stats.startupAnimationSeen;
       case "its_a_me": return stats.marioGames > 0;
@@ -108,17 +107,11 @@ export const useAchievementTracker = () => {
   useEffect(() => {
     checkAchievements(); // Vérif au démarrage
 
-    const handleGamepadConnected = () => {
-      mergeStoredUser({ gamepadNavigationUsed: true });
-      checkAchievements();
-    };
     const handleCheckAchievements = () => checkAchievements();
     
-    window.addEventListener('gamepadconnected', handleGamepadConnected);
     window.addEventListener('checkAchievements', handleCheckAchievements);
     
     return () => {
-      window.removeEventListener('gamepadconnected', handleGamepadConnected);
       window.removeEventListener('checkAchievements', handleCheckAchievements);
     };
   }, [checkAchievements]);
