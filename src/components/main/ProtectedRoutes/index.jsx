@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router";
-import { readStoredUser } from "../../../utils/userStorage";
+import { readStoredUser } from "@/utils/userStorage";
 
 const ProtectedRoutes = () => {
   const user = readStoredUser();

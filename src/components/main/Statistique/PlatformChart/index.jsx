@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Tooltip } from "recharts";
 import { useTranslation } from "react-i18next";
-import CustomSelect from "../../../common/CustomSelect";
+import CustomSelect from "@/components/common/CustomSelect";
 import "./PlatformChart.css";
 
 const PlatformChart = ({ stats, metadata = {} }) => {

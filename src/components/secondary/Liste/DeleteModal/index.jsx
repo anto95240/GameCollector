@@ -1,4 +1,4 @@
-import LoadingButton from "../../../common/LoadingButton";
+import LoadingButton from "@/components/common/LoadingButton";
 import "./DeleteModal.css";
 
 const DeleteModal = ({ game, onClose, onConfirm, t }) => {

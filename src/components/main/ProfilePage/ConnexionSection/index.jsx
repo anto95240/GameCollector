@@ -1,6 +1,6 @@
-import ProfileCard from "../../../secondary/Profile/ProfileCard";
-import ActionButtons from "../../../secondary/Profile/ActionButtons";
-import InlineFormItem from "../../../secondary/Profile/InlineFormItem";
+import ProfileCard from "@/components/secondary/Profile/ProfileCard";
+import ActionButtons from "@/components/secondary/Profile/ActionButtons";
+import InlineFormItem from "@/components/secondary/Profile/InlineFormItem";
 import "./ConnexionSection.css";
 
 const ConnexionSection = ({

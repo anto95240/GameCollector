@@ -7,6 +7,7 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router";
+import { formatImageUrl } from "@/utils/gameFormatters";
 import "./GameCard.css";
 
 const GameCard = ({
@@ -70,16 +71,8 @@ const GameCard = ({
   const isListVariant = variant === "list";
   const gameName = typeof game === "string" ? game : game.name;
 
-  // --- FORMATAGE DE L'URL DE L'IMAGE ---
-  // Si l'image est un chemin relatif (ex: /uploads/...), on ajoute l'URL du backend (5001)
-  const getImageUrl = (img) => {
-    if (!img) return null;
-    if (img.startsWith("http") || img.startsWith("data:")) return img;
-    const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:5001";
-    return `${backendUrl}${img}`;
-  };
-
-  const imageUrl = getImageUrl(game?.image);
+  // Utiliser le formatter centralisé pour éviter la duplication
+  const imageUrl = formatImageUrl(game?.image);
 
   const cardStyle = imageUrl
     ? {

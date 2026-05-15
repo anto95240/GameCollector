@@ -1,6 +1,6 @@
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import AuthInput from "../../common/AuthInput";
-import "../../../screens/Register/Register.css";
+import "@/screens/Register/Register.css";
 
 const SignUpPart3 = ({ data, update, t }) => {
   return (

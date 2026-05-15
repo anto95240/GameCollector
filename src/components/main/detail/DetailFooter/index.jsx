@@ -7,9 +7,10 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-import GameCard from "../../../common/GameCard";
-import { useActiveOnScroll } from "../../../../hooks/ui/useActiveOnScroll";
-import { useApiAuth } from "../../../../hooks/api/useApiAuth";
+import GameCard from "@/components/common/GameCard";
+import { useActiveOnScroll } from "@/hooks/ui/useActiveOnScroll";
+import { useApiAuth } from "@/hooks/api/useApiAuth";
+import { formatGamesForCarousel, deduplicateGames, isSameGame } from "@/utils/gameFormatters";
 import "./DetailFooter.css";
 
 const DetailFooter = () => {
@@ -29,35 +30,14 @@ const DetailFooter = () => {
         const historyGames = await getGameHistory();
         const currentIdentifier = id || slug || gameName;
 
-        // --- CORRECTION 1 : Filtrage strict pour éviter les doublons ---
-        const uniqueGames = [];
-        const seenIds = new Set();
+        // Filtrer les jeux: exclure le jeu courant et dédupliquer
+        const filteredGames = (historyGames || []).filter(g => 
+          g && !isSameGame(g, currentIdentifier)
+        );
 
-        for (const g of historyGames) {
-          if (!g) continue;
-          const gameSlug = g.name
-            .toLowerCase()
-            .replace(/ /g, "-")
-            .replace(/[^\w-]+/g, "");
-            
-          const isCurrentGame = 
-            String(g._id) === String(currentIdentifier) || 
-            gameSlug === currentIdentifier;
-
-          // On ajoute le jeu uniquement s'il n'est pas déjà dans la liste
-          if (!isCurrentGame && !seenIds.has(String(g._id))) {
-            seenIds.add(String(g._id));
-            uniqueGames.push(g);
-          }
-        }
-
-        const formattedGames = uniqueGames.slice(0, 5).map((g) => ({
-          ...g,
-          id: g._id,
-          image: g.image?.startsWith("http")
-            ? g.image
-            : `${import.meta.env.VITE_API_URL || "http://localhost:5001"}${g.image}`,
-        }));
+        const uniqueGames = deduplicateGames(filteredGames);
+        const topGames = uniqueGames.slice(0, 5);
+        const formattedGames = formatGamesForCarousel(topGames);
 
         setSuggestedGames(formattedGames);
       } catch (error) {
