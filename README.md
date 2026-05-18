@@ -10,8 +10,13 @@ Développé par Antoine RICHARD
 - Thème clair/sombre
 - Internationalisation (français / anglais)
 - Responsive design (mobile / desktop)
-- Statistiques 
+- Statistiques avancé
 - Page de profil (modification des infos, avatar, suppression)
+- Recherche fuzzy
+- Raccourci clavier
+- Trophées
+- Filtres avancés avec sauvegarde
+- Favori et Wishlist
 
 ---
 
@@ -27,7 +32,7 @@ Développé par Antoine RICHARD
 ## Design & Maquette
 
 La conception de l'interface a été réalisée en amont sur Figma. 
-[Consulter la maquette UI/UX de Budgee](https://www.figma.com/design/4e0GAyg6KClMIK3eYRMy7U/GameCollector-web?node-id=1-278&t=RLsssnaq8F1oA1KK-1)
+[Consulter la maquette UI/UX de GameCollector](https://www.figma.com/design/4e0GAyg6KClMIK3eYRMy7U/GameCollector-web?node-id=1-278&t=RLsssnaq8F1oA1KK-1)
 
 ---
 
@@ -71,4 +76,4 @@ npm run dev
 ```
 
 # Licence
-Projet personnel open-source. Utilisation libre pour apprentissage et développement personnel.
+Projet personnel open-source. Utilisation libre pour apprentissage et développement personnel uniquement.
