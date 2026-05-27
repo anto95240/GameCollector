@@ -12,7 +12,7 @@ import { useParams } from "react-router";
 import GameCard from "@/components/common/GameCard";
 import { useApiAuth } from "@/hooks/api/useApiAuth";
 import { useActiveOnScroll } from "@/hooks/ui/useActiveOnScroll";
-import { deduplicateGames, formatGamesForCarousel, isSameGame } from "@/utils/gameFormatters";
+import { deduplicateGames, formatGamesForCarousel, isSameGame } from "@/utils/formatters";
 
 const DetailFooter = () => {
   const scrollRef = useRef(null);

@@ -10,7 +10,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router";
 
-import { formatImageUrl } from "@/utils/gameFormatters";
+import { formatImageUrl } from "@/utils/formatters";
+import { createSlug } from "@/utils/helpers/slugGenerator";
 
 const GameCard = ({
   game,
@@ -26,15 +27,6 @@ const GameCard = ({
   isActive = false,
 }) => {
   const navigate = useNavigate();
-
-  const createSlug = (name) => {
-    return (
-      name
-        ?.toLowerCase()
-        .replace(/ /g, "-")
-        .replace(/[^\w-]+/g, "") || ""
-    );
-  };
 
   const handleCardClick = (e) => {
     if (
