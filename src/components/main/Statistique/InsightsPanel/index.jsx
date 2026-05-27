@@ -1,7 +1,8 @@
-import { useMemo, useState, useRef, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrophy, faGamepad, faStar, faLightbulb, faRocket } from "@fortawesome/free-solid-svg-icons";
 import "./InsightsPanel.css";
+
+import { faGamepad, faLightbulb, faRocket,faStar, faTrophy } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect,useMemo, useRef, useState } from "react";
 
 const ScrollableText = ({ text, className }) => {
   // ... (Garde ton composant ScrollableText exactement comme il était)

@@ -1,15 +1,16 @@
-import { useState, useRef, useEffect, useCallback } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus,
-  faExclamationTriangle,
-} from "@fortawesome/free-solid-svg-icons";
+import "./CategoryManager.css";
 
-import CategoryList from "@/components/secondary/Category/CategoryListe";
+import {
+  faExclamationTriangle,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useCallback,useEffect, useRef, useState } from "react";
+
 import CategoryForm from "@/components/secondary/Category/CategoryForm";
+import CategoryList from "@/components/secondary/Category/CategoryListe";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
 import { useEscapeKeyCloser } from "@/hooks/ui/useEscapeKeyCloser";
-import "./CategoryManager.css";
 
 const CategoryManager = ({ categoryType }) => {
   const [showForm, setShowForm] = useState(false);

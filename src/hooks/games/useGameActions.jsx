@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router";
-import { useApiGame } from "../api/useApiGame";
+import { useApiGame } from "@/hooks/api/useApiGame";
 import { incrementStoredUserMetric } from "@/utils/userStorage";
 
 /**

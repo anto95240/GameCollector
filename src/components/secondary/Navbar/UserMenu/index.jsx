@@ -1,9 +1,11 @@
-import LanguageSelector from "../UserMenuParts/LanguageSelector";
-import ThemeToggle from "../UserMenuParts/ThemeToggle";
-import UserLinks from "../UserMenuParts/UserLinks";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import "./UserMenu.css";
+
+import { faQuestion } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import LanguageSelector from "@/components/secondary/Navbar/UserMenuParts/LanguageSelector";
+import ThemeToggle from "@/components/secondary/Navbar/UserMenuParts/ThemeToggle";
+import UserLinks from "@/components/secondary/Navbar/UserMenuParts/UserLinks";
 
 const UserMenu = ({ user, t, state, setters, actions, onClose }) => {
   const { isDark, language, langMenuOpen } = state;

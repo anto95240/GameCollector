@@ -1,32 +1,34 @@
-import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./FilterPanel.css";
+
 import {
+  faCalendarAlt,
+  faCheckCircle,
+  faChevronDown,
+  faClock,
+  faGamepad,
+  faHeart,
+  faLayerGroup,
+  faStar,
   faTimes,
   faTrashAlt,
-  faLayerGroup,
-  faGamepad,
-  faCalendarAlt,
-  faStar,
-  faCheckCircle,
-  faHeart,
-  faClock,
-  faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { t } from "i18next";
+import { useEffect, useState } from "react";
 
-import FilterAccordionItem from "../FilterAccordionItem";
-import { RangeFilterItem, SortFilterItem } from "./SpecialFilters";
-import { SaveFiltersBox } from "./SaveFiltersBox";
-import { SavedFiltersList } from "./SavedFiltersList";
+import FilterAccordionItem from "@/components/secondary/Liste/filtre/FilterAccordionItem";
+
 import {
-  getOptionCount,
-  isFilterSelected,
   getActiveFilterValue,
   getActiveSort,
-  parseRangeDraft,
+  getOptionCount,
   handleClearCategory,
+  isFilterSelected,
+  parseRangeDraft,
 } from "./filterUtils";
-import "./FilterPanel.css";
-import { t } from "i18next";
+import { SavedFiltersList } from "./SavedFiltersList";
+import { SaveFiltersBox } from "./SaveFiltersBox";
+import { RangeFilterItem, SortFilterItem } from "./SpecialFilters";
 
 const ICONS = {
   genre: faLayerGroup,

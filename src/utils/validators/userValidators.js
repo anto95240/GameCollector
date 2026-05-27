@@ -1,6 +1,7 @@
-/**
- * Validation utilities pour les formulaires
- */
+export const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
 
 export const validateProfile = (form) => {
   const errors = {};
@@ -42,31 +43,4 @@ export const validateProfile = (form) => {
   }
 
   return errors;
-};
-
-export const validateCategory = (name) => {
-  const errors = {};
-
-  if (!name || !name.trim()) {
-    errors.name = "Le nom est requis";
-  } else if (name.trim().length < 2) {
-    errors.name = "Le nom doit contenir au moins 2 caractères";
-  } else if (name.trim().length > 50) {
-    errors.name = "Le nom ne doit pas dépasser 50 caractères";
-  }
-
-  return errors;
-};
-
-export const isValidEmail = (email) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
-
-export const getFirstValidationError = (errors) => {
-  const keys = Object.keys(errors);
-  if (keys.length > 0) {
-    return errors[keys[0]];
-  }
-  return null;
 };

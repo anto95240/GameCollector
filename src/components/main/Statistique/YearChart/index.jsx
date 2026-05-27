@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
-import { ResponsiveContainer, BarChart, Bar, XAxis, Cell } from "recharts";
-import { useTranslation } from "react-i18next";
 import "./YearChart.css";
+
+import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Bar, BarChart, Cell,ResponsiveContainer, XAxis } from "recharts";
 
 const CHART_MARGIN = { top: 30, right: 0, left: 0, bottom: 0 };
 

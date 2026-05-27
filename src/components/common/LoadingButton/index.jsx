@@ -1,5 +1,6 @@
-import { useNavigate } from "react-router";
 import "./LoadingButton.css";
+
+import { useNavigate } from "react-router";
 
 const LoadingButton = ({
   text,

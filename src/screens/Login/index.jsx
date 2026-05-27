@@ -2,9 +2,9 @@ import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
-import LoadingButton from "../../components/common/LoadingButton";
-import AuthInput from "../../components/common/AuthInput";
-import { useLogin } from "../../hooks/auth/useLogin";
+import LoadingButton from "@/components/common/LoadingButton";
+import AuthInput from "@/components/common/AuthInput";
+import { useLogin } from "@/hooks/auth/useLogin";
 import "./Login.css";
 
 const Login = () => {

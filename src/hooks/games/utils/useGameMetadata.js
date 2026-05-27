@@ -2,6 +2,7 @@
  * Hook pour gérer les métadonnées d'un jeu
  */
 import { useEffect, useState } from "react";
+
 import { MOCK_OPTIONS } from "@/config/constants";
 
 export const useGameMetadata = (getAllMetadata) => {

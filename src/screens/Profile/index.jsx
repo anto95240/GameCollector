@@ -1,11 +1,11 @@
-import { useProfile } from "../../hooks/auth/useProfile";
-import { useScrollSpy } from "../../hooks/ui/useScrollSpy";
-import { useEscapeKeyCloser } from "../../hooks/ui/useEscapeKeyCloser";
-import ProfilSection from "../../components/main/ProfilePage/ProfilSection";
-import ConnexionSection from "../../components/main/ProfilePage/ConnexionSection";
-import DeleteAccountSection from "../../components/main/ProfilePage/DeleteAccountSection";
-import SideNav from "../../components/common/SideNav";
-import { PROFILE_SECTIONS } from "../../config/constants";
+import { useProfile } from "@/hooks/auth/useProfile";
+import { useScrollSpy } from "@/hooks/ui/useScrollSpy";
+import { useEscapeKeyCloser } from "@/hooks/ui/useEscapeKeyCloser";
+import ProfilSection from "@/components/main/ProfilePage/ProfilSection";
+import ConnexionSection from "@/components/main/ProfilePage/ConnexionSection";
+import DeleteAccountSection from "@/components/main/ProfilePage/DeleteAccountSection";
+import SideNav from "@/components/common/SideNav";
+import { PROFILE_SECTIONS } from "@/config/constants";
 import "./Profile.css";
 
 const ProfilePage = () => {

@@ -1,16 +1,18 @@
-import { useState, useEffect, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./DetailHero.css";
+
+import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
 import {
-  faStar as faStarFull,
+  faArchive,
   faCalendarAlt,
-  faHeart,
   faCheck,
   faGamepad,
-  faArchive,
+  faHeart,
+  faStar as faStarFull,
 } from "@fortawesome/free-solid-svg-icons";
-import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
-import "./DetailHero.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useRef,useState } from "react";
 import { useTranslation } from "react-i18next";
+
 import { MOCK_OPTIONS } from "@/config/constants";
 
 const DetailHero = ({ game, onToggleFavorite, metadata = {}, isUpdating = false, onUpdateField = () => {}, onToggleSoon = () => {} }) => {

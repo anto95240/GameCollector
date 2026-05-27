@@ -1,8 +1,7 @@
 import "./Navbar.css";
 
-import NavbarInfo from "../../secondary/Navbar/NavbarInfo";
-import NavLinks from "../../secondary/Navbar/NavLinks";
-
+import NavbarInfo from "@/components/secondary/Navbar/NavbarInfo";
+import NavLinks from "@/components/secondary/Navbar/NavLinks";
 import { useNavbar } from "@/hooks/ui/useNavbar";
 
 const Navbar = () => {

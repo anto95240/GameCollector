@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt, faToggleOn, faToggleOff, faUndo } from '@fortawesome/free-solid-svg-icons';
 import './ShortcutItem.css';
+
+import { faPencilAlt, faToggleOff, faToggleOn, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect, useRef,useState } from 'react';
 
 const ShortcutItem = ({ item, onSave, onReset, onToggle, isMac, isToggling }) => {
   const [isEditing, setIsEditing] = useState(false);

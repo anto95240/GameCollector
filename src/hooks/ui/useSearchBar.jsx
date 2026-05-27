@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect,useState } from 'react';
 
 export const useSearchBar = (initialValue = '', delay = 300) => {
     const [searchTerm, setSearchTerm] = useState(initialValue);

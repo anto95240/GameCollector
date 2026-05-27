@@ -1,10 +1,11 @@
-import { useState, useCallback, useEffect } from "react";
+import { useCallback, useEffect,useState } from "react";
 import { useLocation } from "react-router";
-import { useApiGame } from "../api/useApiGame";
-import { useApiMetadata } from "../api/useApiMetadata";
-import { useApiAuth } from "../api/useApiAuth";
-import { formatGameForDetail, createGameSlug } from "@/utils/gameFormatters";
+
 import { MOCK_OPTIONS } from "@/config/constants";
+import { useApiAuth } from "@/hooks/api/useApiAuth";
+import { useApiGame } from "@/hooks/api/useApiGame";
+import { useApiMetadata } from "@/hooks/api/useApiMetadata";
+import { createGameSlug,formatGameForDetail } from "@/utils/formatters";
 
 /**
  * Hook pour fetcher et gérer les données du jeu

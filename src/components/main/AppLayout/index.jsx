@@ -1,12 +1,13 @@
-import { Outlet } from "react-router";
-import { useState, useEffect, useCallback, useRef } from "react";
-import { useTranslation } from "react-i18next";
-
-import Navbar from "../Navbar";
-import BottomNav from "../../secondary/Navbar/BottomNav";
 import "./AppLayout.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useCallback, useEffect, useRef,useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Outlet } from "react-router";
+
+import Navbar from "@/components/main/Navbar";
+import BottomNav from "@/components/secondary/Navbar/BottomNav";
 
 const AppLayout = () => {
   const { t } = useTranslation();

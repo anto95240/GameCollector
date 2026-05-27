@@ -1,9 +1,11 @@
-import FloatingInput from "@/components/common/FloatingInput";
-import CustomSelect from "@/components/common/CustomSelect";
-import SectionWrapper from "@/components/secondary/AddEditGame/SectionWrapper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./DetailsSection.css";
+
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import CustomSelect from "@/components/common/CustomSelect";
+import FloatingInput from "@/components/common/FloatingInput";
+import SectionWrapper from "@/components/secondary/AddEditGame/SectionWrapper";
 
 export const DetailsSection = ({
   t,

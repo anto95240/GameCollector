@@ -1,5 +1,6 @@
-import { useMemo } from "react";
 import "./StatusFunnelChart.css";
+
+import { useMemo } from "react";
 
 const StatusFunnelChart = ({ stats, metadata = {} }) => {
   const statusData = useMemo(() => {

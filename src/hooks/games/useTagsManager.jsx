@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useApiMetadata } from "../api/useApiMetadata";
+import { useApiMetadata } from "@/hooks/api/useApiMetadata";
 
 export const useTagsManager = (initialTags = []) => {
   const { createMetadata } = useApiMetadata();

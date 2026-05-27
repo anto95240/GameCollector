@@ -1,8 +1,10 @@
+import "./TagsSection.css";
+
+import { faPlus,faTag, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTag, faTimes, faPlus } from "@fortawesome/free-solid-svg-icons";
+
 import FloatingInput from "@/components/common/FloatingInput";
 import SectionWrapper from "@/components/secondary/AddEditGame/SectionWrapper";
-import "./TagsSection.css";
 
 export const TagsSection = ({
   t,

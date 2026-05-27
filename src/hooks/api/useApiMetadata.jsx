@@ -1,4 +1,4 @@
-import axios from "../../config/interceptor";
+import axios from "@/config/interceptor";
 import { useCallback } from "react";
 
 export const useApiMetadata = () => {

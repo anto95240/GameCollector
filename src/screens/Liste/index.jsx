@@ -9,20 +9,20 @@ import {
   faHeart,
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
-import ListeHeader from "../../components/secondary/Liste/ListeHeader";
-import FilterPanel from "../../components/secondary/Liste/filtre/FilterPanel";
-import Pagination from "../../components/secondary/Liste/Pagination";
-import GameCard from "../../components/common/GameCard";
-import DeleteModal from "../../components/secondary/Liste/DeleteModal";
-import { useGameFiltering } from "../../hooks/games/useGameFiltering";
-import { useActiveOnScroll } from "../../hooks/ui/useActiveOnScroll";
-import { useGamesList } from "../../hooks/games/useGamesList";
-import { useCarousel } from "../../hooks/ui/useCarousel";
-import { useSearchBar } from "../../hooks/ui/useSearchBar";
-import { useFuzzySearch } from "../../hooks/ui/useFuzzySearch";
-import { useSearchBarShortcuts } from "../../hooks/ui/useSearchBarShortcuts";
-import { useAuth } from "../../context/AuthContext";
-import { useApiFilters } from "../../hooks/api/useApiFilters";
+import ListeHeader from "@/components/secondary/Liste/ListeHeader";
+import FilterPanel from "@/components/secondary/Liste/filtre/FilterPanel";
+import Pagination from "@/components/secondary/Liste/Pagination";
+import GameCard from "@/components/common/GameCard";
+import DeleteModal from "@/components/secondary/Liste/DeleteModal";
+import { useGameFiltering } from "@/hooks/games/useGameFiltering";
+import { useActiveOnScroll } from "@/hooks/ui/useActiveOnScroll";
+import { useGamesList } from "@/hooks/games/useGamesList";
+import { useCarousel } from "@/hooks/ui/useCarousel";
+import { useSearchBar } from "@/hooks/ui/useSearchBar";
+import { useFuzzySearch } from "@/hooks/ui/useFuzzySearch";
+import { useSearchBarShortcuts } from "@/hooks/ui/useSearchBarShortcuts";
+import { useAuth } from "@/context/AuthContext";
+import { useApiFilters } from "@/hooks/api/useApiFilters";
 import "./Liste.css";
 
 const ListePage = () => {

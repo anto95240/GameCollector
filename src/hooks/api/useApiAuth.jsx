@@ -1,6 +1,6 @@
-import axios from "../../config/interceptor"; // On utilise l'instance configurée
+import axios from "@/config/interceptor"; // On utilise l'instance configurée
 import { useCallback } from "react";
-import { removeStoredUser } from "../../utils/userStorage";
+import { removeStoredUser } from "@/utils/userStorage";
 
 export const useApiAuth = () => {
 

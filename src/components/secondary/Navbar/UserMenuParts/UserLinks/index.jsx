@@ -1,11 +1,12 @@
-import { NavLink } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./UserLinks.css";
+
 import {
+  faRightFromBracket,
   faTrophy,
   faUser,
-  faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import "./UserLinks.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NavLink } from "react-router";
 
 const UserLinks = ({ t, onClose }) => (
   <div className="navbar-actions-links">

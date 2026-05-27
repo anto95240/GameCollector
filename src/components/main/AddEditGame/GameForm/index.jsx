@@ -1,13 +1,14 @@
+import "./GameForm.css";
+
 import LoadingButton from "@/components/common/LoadingButton";
 import {
   DescriptionSection,
-  RatingSection,
   DetailsSection,
   ImageSection,
+  RatingSection,
   StatusSection,
   TagsSection,
-} from "../Sections";
-import "./GameForm.css";
+} from "@/components/main/AddEditGame/Sections";
 
 const GameForm = ({
   formData,

@@ -1,6 +1,8 @@
-import Flag from "react-world-flags";
-import LangOption from "../langOption";
 import "./LanguageSelector.css";
+
+import Flag from "react-world-flags";
+
+import LangOption from "@/components/secondary/Navbar/UserMenuParts/langOption";
 
 const LanguageSelector = ({ currentLang, isOpen, setOpen, onChange }) => {
   return (

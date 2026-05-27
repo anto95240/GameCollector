@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Fuse from 'fuse.js';
-import axios from "../../config/interceptor";
+import axios from "@/config/interceptor";
 
 /**
  * Hook de recherche intelligente (Fuzzy Search)

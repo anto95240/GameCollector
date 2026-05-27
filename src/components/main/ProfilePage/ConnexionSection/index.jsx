@@ -1,7 +1,8 @@
-import ProfileCard from "@/components/secondary/Profile/ProfileCard";
+import "./ConnexionSection.css";
+
 import ActionButtons from "@/components/secondary/Profile/ActionButtons";
 import InlineFormItem from "@/components/secondary/Profile/InlineFormItem";
-import "./ConnexionSection.css";
+import ProfileCard from "@/components/secondary/Profile/ProfileCard";
 
 const ConnexionSection = ({
   user,
