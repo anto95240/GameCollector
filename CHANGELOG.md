@@ -1,3 +1,10 @@
+## [2.7.2](https://github.com/anto95240/GameCollector/compare/v2.7.1...v2.7.2) (2026-05-27)
+
+
+### Bug Fixes
+
+* couleur section detail -> add-edit-game ([d541d7c](https://github.com/anto95240/GameCollector/commit/d541d7cc07b0495c6701dbba7fa2a84bb39fc461))
+
 ## [2.7.1](https://github.com/anto95240/GameCollector/compare/v2.7.0...v2.7.1) (2026-05-06)
 
 
