@@ -18,11 +18,6 @@
   color: var(--text-primary, #1f2937);
 }
 
-.details-grid label span {
-  color: #ef4444;
-  margin-left: 0.25rem;
-}
-
 /* Tablet (2 columns) */
 @media (max-width: 1024px) and (min-width: 769px) {
   .details-grid {
