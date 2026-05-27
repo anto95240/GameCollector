@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import "./DetailHeader.css";
+
+import { faArrowLeft, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 const DetailHeader = ({ onEdit, onDelete }) => {
   const navigate = useNavigate();

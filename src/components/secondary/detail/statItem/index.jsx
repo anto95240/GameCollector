@@ -1,5 +1,6 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./StatItem.css";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const StatItem = ({ icon, label, value }) => (
   <div className="stat-item">

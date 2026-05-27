@@ -1,4 +1,5 @@
 import "./SectionStatPrimary.css";
+
 import { useDashboard } from "@/hooks/dashboard/useDashboard";
 
 const GameCard = ({ t }) => {

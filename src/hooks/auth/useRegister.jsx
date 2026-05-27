@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { useApiAuth } from "../api/useApiAuth";
-import { writeStoredUser } from "../../utils/userStorage";
+
+import { useApiAuth } from "@/hooks/api/useApiAuth";
+import { writeStoredUser } from "@/utils/userStorage";
 
 export const useRegister = () => {
   const { t } = useTranslation();

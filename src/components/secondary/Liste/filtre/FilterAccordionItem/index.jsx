@@ -1,11 +1,12 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./FilterAccordionItem.css";
+
 import {
+  faCheck,
   faChevronDown,
   faChevronUp,
-  faCheck,
   faUndo,
 } from "@fortawesome/free-solid-svg-icons";
-import "./FilterAccordionItem.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 
 const MAX_VISIBLE_OPTIONS = 5;

@@ -1,6 +1,8 @@
 import axios from "axios";
+
+import { removeStoredUser } from "@/utils/userStorage";
+
 import { API_URL } from "./constants";
-import { removeStoredUser } from "../utils/userStorage";
 
 axios.defaults.baseURL = API_URL;
 

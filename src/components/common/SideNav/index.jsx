@@ -1,6 +1,7 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faList } from "@fortawesome/free-solid-svg-icons";
 import "./SideNav.css";
+
+import { faList,faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SideNav = ({
   sections,

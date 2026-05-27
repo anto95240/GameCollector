@@ -2,11 +2,11 @@ import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
-import LoadingButton from "../../components/common/LoadingButton";
-import SignUpPart1 from "../../components/main/SignUpPart1";
-import SignUpPart2 from "../../components/main/SignUpPart2";
-import SignUpPart3 from "../../components/main/SignUpPart3";
-import { useRegister } from "../../hooks/auth/useRegister";
+import LoadingButton from "@/components/common/LoadingButton";
+import SignUpPart1 from "@/components/main/SignUpPart1";
+import SignUpPart2 from "@/components/main/SignUpPart2";
+import SignUpPart3 from "@/components/main/SignUpPart3";
+import { useRegister } from "@/hooks/auth/useRegister";
 import "./Register.css";
 
 const Register = () => {

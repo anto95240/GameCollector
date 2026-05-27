@@ -1,7 +1,8 @@
-import { useEffect, useCallback, useRef } from "react";
-import { useApiAuth } from "../api/useApiAuth";
-import { useApiAchievements } from "../api/useApiAchievements";
-import { readStoredUser, writeStoredUser, mergeStoredUser } from "../../utils/userStorage";
+import { useCallback, useEffect, useRef } from "react";
+
+import { useApiAchievements } from "@/hooks/api/useApiAchievements";
+import { useApiAuth } from "@/hooks/api/useApiAuth";
+import { mergeStoredUser,readStoredUser, writeStoredUser } from "@/utils/userStorage";
 
 export const useAchievementTracker = () => {
   const { getMe } = useApiAuth();

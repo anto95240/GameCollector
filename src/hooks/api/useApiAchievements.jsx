@@ -1,4 +1,4 @@
-import axios from "../../config/interceptor";
+import axios from "@/config/interceptor";
 
 const getAllAchievements = async () => {
   const { data } = await axios.get("/api/achievements");

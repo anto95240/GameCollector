@@ -1,10 +1,12 @@
-import { useState, useEffect, useRef } from "react";
+import "./CategoryForm.css";
+
+import { useEffect, useRef,useState } from "react";
 import { useTranslation } from "react-i18next";
+
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
 import { useValidationToast } from "@/hooks/ui/useValidationToast";
 import { incrementStoredUserMetric } from "@/utils/userStorage";
-import { validateCategory, getFirstValidationError } from "@/utils/validators";
-import "./CategoryForm.css";
+import { getFirstValidationError,validateCategory } from "@/utils/validators";
 
 const CategoryForm = ({
   categoryType,

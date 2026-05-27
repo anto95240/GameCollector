@@ -1,14 +1,16 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHeart,
-  faEllipsisVertical,
-  faPen,
-  faTrash,
-  faPlus,
-} from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router";
-import { formatImageUrl } from "@/utils/gameFormatters";
 import "./GameCard.css";
+
+import {
+  faEllipsisVertical,
+  faHeart,
+  faPen,
+  faPlus,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router";
+
+import { formatImageUrl } from "@/utils/gameFormatters";
 
 const GameCard = ({
   game,

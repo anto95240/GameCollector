@@ -1,5 +1,6 @@
-import { useEffect, useState, useRef } from "react";
-import { mergeStoredUser } from "../../utils/userStorage";
+import { useEffect, useRef,useState } from "react";
+
+import { mergeStoredUser } from "@/utils/userStorage";
 
 export const useLoadingAnimation = (variant = "login", navigate, returnTo = null) => {
   const [progress, setProgress] = useState(0);

@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useOutletContext } from "react-router";
-import { useAuth } from "../../context/AuthContext";
-import { useApiAuth } from "../api/useApiAuth";
-import { useValidationToast } from "../ui/useValidationToast";
-import { validateProfile, getFirstValidationError } from "../../utils/validators";
-import { API_URL } from "../../config/constants";
-import { incrementStoredUserMetric } from "../../utils/userStorage";
+
+import { API_URL } from "@/config/constants";
+import { useAuth } from "@/context/AuthContext";
+import { useApiAuth } from "@/hooks/api/useApiAuth";
 import {
-  handleSaveProfileAsync,
+  getInitialProfileForm,
   handleDeleteAccountAsync,
   handleDownloadUserData,
-  getInitialProfileForm,
-} from "./utils/profileHandlers";
+  handleSaveProfileAsync,
+} from "@/hooks/auth/utils/profileHandlers";
+import { useValidationToast } from "@/hooks/ui/useValidationToast";
+import { incrementStoredUserMetric } from "@/utils/userStorage";
+import { getFirstValidationError,validateProfile } from "@/utils/validators";
 
 export const useProfile = () => {
   const { t } = useOutletContext(); 

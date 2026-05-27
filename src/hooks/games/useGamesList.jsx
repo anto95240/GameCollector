@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useApiGame } from "../api/useApiGame";
-import { useApiMetadata } from "../api/useApiMetadata";
+import { useApiGame } from "@/hooks/api/useApiGame";
+import { useApiMetadata } from "@/hooks/api/useApiMetadata";
 import { formatGameForDisplay } from "@/utils/gameFormatters";
 
 export const useGamesList = (searchTerm) => {

@@ -1,6 +1,7 @@
-import { useMemo } from "react";
-import { RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from "recharts";
 import "./RadarGenreChart.css";
+
+import { useMemo } from "react";
+import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip } from "recharts";
 
 const RadarGenreChart = ({ stats, metadata = {} }) => {
   const data = useMemo(() => {

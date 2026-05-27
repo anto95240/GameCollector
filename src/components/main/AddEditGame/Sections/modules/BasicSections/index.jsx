@@ -1,9 +1,11 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
-import FloatingInput from "@/components/common/FloatingInput";
-import CustomSelect from "@/components/common/CustomSelect";
-import SectionWrapper from "@/components/secondary/AddEditGame/SectionWrapper";
 import "./BasicSections.css";
+
+import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import CustomSelect from "@/components/common/CustomSelect";
+import FloatingInput from "@/components/common/FloatingInput";
+import SectionWrapper from "@/components/secondary/AddEditGame/SectionWrapper";
 
 export const DescriptionSection = ({ t, formData, handleChange }) => (
   <SectionWrapper id="desc" title={t("gameForm.sections.description")}>

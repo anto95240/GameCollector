@@ -1,6 +1,7 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faMedal } from "@fortawesome/free-solid-svg-icons";
 import "./TopGamesWidget.css";
+
+import { faMedal,faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MEDALS = ["🥇", "🥈", "🥉"];
 

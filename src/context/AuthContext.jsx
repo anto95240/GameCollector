@@ -1,7 +1,8 @@
 // src/context/AuthContext.jsx
-import { createContext, useContext, useState, useEffect } from "react";
-import { useApiAuth } from "../hooks/api/useApiAuth";
-import { readStoredUser, writeStoredUser, removeStoredUser } from "../utils/userStorage";
+import { createContext, useContext, useEffect,useState } from "react";
+
+import { useApiAuth } from "@/hooks/api/useApiAuth";
+import { readStoredUser, removeStoredUser,writeStoredUser } from "@/utils/userStorage";
 
 const AuthContext = createContext(null);
 

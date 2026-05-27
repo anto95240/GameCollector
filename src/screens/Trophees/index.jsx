@@ -1,7 +1,9 @@
-import { useMemo, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useApiAchievements } from "../../hooks/api/useApiAchievements";
 import "./Trophees.css";
+
+import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import { useApiAchievements } from "@/hooks/api/useApiAchievements";
 
 const extractAchievementIdName = (entry) => {
   if (!entry) return null;

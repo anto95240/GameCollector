@@ -1,17 +1,18 @@
-import { useState, useRef, useEffect } from "react";
-import { useParams } from "react-router";
-import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./DetailFooter.css";
+
 import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect,useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useParams } from "react-router";
 
 import GameCard from "@/components/common/GameCard";
-import { useActiveOnScroll } from "@/hooks/ui/useActiveOnScroll";
 import { useApiAuth } from "@/hooks/api/useApiAuth";
-import { formatGamesForCarousel, deduplicateGames, isSameGame } from "@/utils/gameFormatters";
-import "./DetailFooter.css";
+import { useActiveOnScroll } from "@/hooks/ui/useActiveOnScroll";
+import { deduplicateGames, formatGamesForCarousel, isSameGame } from "@/utils/gameFormatters";
 
 const DetailFooter = () => {
   const scrollRef = useRef(null);

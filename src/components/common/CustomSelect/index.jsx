@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect, useCallback } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { useTranslation } from "react-i18next";
 import "./CustomSelect.css";
+
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useCallback,useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 // Hauteur estimée du dropdown (px). Ajuster si besoin ou mesurer dynamiquement.
 const DROPDOWN_ESTIMATED_HEIGHT = 220;

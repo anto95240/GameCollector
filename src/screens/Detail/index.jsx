@@ -1,10 +1,10 @@
 import { useLayoutEffect } from "react";
 import { useParams, useLocation } from "react-router";
-import DetailHeader from "../../components/main/Detail/DetailHeader";
-import DetailHero from "../../components/main/Detail/DetailHero";
-import DetailInfoGrid from "../../components/main/Detail/DetailInfoGrid";
-import DetailFooter from "../../components/main/Detail/DetailFooter";
-import { useGameDetail } from "../../hooks/games/useGameDetail";
+import DetailHeader from "@/components/main/Detail/DetailHeader";
+import DetailHero from "@/components/main/Detail/DetailHero";
+import DetailInfoGrid from "@/components/main/Detail/DetailInfoGrid";
+import DetailFooter from "@/components/main/Detail/DetailFooter";
+import { useGameDetail } from "@/hooks/games/useGameDetail";
 import "./Detail.css";
 
 const DetailPage = () => {

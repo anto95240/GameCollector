@@ -1,5 +1,6 @@
-import { useMemo } from "react";
 import "./HeatmapChart.css";
+
+import { useMemo } from "react";
 
 const MONTHS = ["Jan", "Fév", "Mar", "Avr", "Mai", "Jun", "Jul", "Aoû", "Sep", "Oct", "Nov", "Déc"];
 

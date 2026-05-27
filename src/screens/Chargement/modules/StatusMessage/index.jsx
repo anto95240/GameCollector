@@ -1,5 +1,6 @@
-import { useTranslation } from "react-i18next";
 import "./StatusMessage.css";
+
+import { useTranslation } from "react-i18next";
 
 const StatusMessage = ({ isLogout }) => {
   const { t } = useTranslation();

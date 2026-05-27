@@ -1,10 +1,11 @@
-import { useAddEditGame } from "../../hooks/games/useAddEditGame";
-import { SECTIONS } from "../../config/constants";
-import FormHeader from "../../components/secondary/AddEditGame/FormHeader";
-import SideNav from "../../components/common/SideNav";
-import GameForm from "../../components/main/AddEditGame/GameForm";
-import SuccessOverlay from "../../components/common/SuccessOverlay";
 import "./AddEditGame.css";
+
+import SideNav from "@/components/common/SideNav";
+import SuccessOverlay from "@/components/common/SuccessOverlay";
+import GameForm from "@/components/main/AddEditGame/GameForm";
+import FormHeader from "@/components/secondary/AddEditGame/FormHeader";
+import { SECTIONS } from "@/config/constants";
+import { useAddEditGame } from "@/hooks/games/useAddEditGame";
 
 const AddEditGamePage = () => {
   const {

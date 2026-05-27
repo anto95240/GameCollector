@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import './AchievementToast.css';
+
+import React, { useEffect,useState } from 'react';
 
 const AchievementToast = () => {
   const [isVisible, setIsVisible] = useState(false);

@@ -1,7 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilter, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { forwardRef } from "react";
 import "./ListeHeader.css";
+
+import { faFilter, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { forwardRef } from "react";
 
 const ListeHeader = forwardRef(({
   searchTerm,

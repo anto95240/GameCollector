@@ -1,16 +1,18 @@
+import "./DetailInfoGrid.css";
+
 import {
-  faGamepad,
-  faClock,
-  faTrophy,
-  faLayerGroup,
   faCalendarAlt,
+  faClock,
   faCode,
+  faGamepad,
+  faLayerGroup,
   faQuoteLeft,
+  faTrophy,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./DetailInfoGrid.css";
-import StatItem from "@/components/secondary/Detail/StatItem";
 import { useTranslation } from "react-i18next";
+
+import StatItem from "@/components/secondary/Detail/StatItem";
 
 const DetailInfoGrid = ({ game }) => {
   const { t } = useTranslation();

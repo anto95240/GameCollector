@@ -1,5 +1,6 @@
-import Flag from "react-world-flags";
 import "./LangOption.css";
+
+import Flag from "react-world-flags";
 
 const LangOption = ({ code, label, flagCode, onChange }) => (
   <button className="lang-option" onClick={(e) => onChange(code, e)}>

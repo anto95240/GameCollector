@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { useAuth } from '@/context/AuthContext';
-import { useApiShortcutsDefaults, getHardcodedDefaults } from '@/hooks/api/useApiShortcutsDefaults';
-import { useApiShortcuts } from '@/hooks/api/useApiShortcuts';
-import keyboardShortcutsService from '@/services/keyboardShortcutsService';
-import ShortcutItem from '../common/ShortcutItem';
 import './KeyboardHelp.css';
+
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect,useState } from 'react';
+
+import ShortcutItem from '@/components/common/ShortcutItem';
+import { useAuth } from '@/context/AuthContext';
+import { useApiShortcuts } from '@/hooks/api/useApiShortcuts';
+import { getHardcodedDefaults,useApiShortcutsDefaults } from '@/hooks/api/useApiShortcutsDefaults';
+import keyboardShortcutsService from '@/services/keyboardShortcutsService';
 
 const KeyboardHelp = () => {
   const [isVisible, setIsVisible] = useState(false);

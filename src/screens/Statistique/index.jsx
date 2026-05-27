@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartBar, faLayerGroup, faCalendarAlt, faStar } from "@fortawesome/free-solid-svg-icons";
-import SectionStatSecondary from "../../components/common/SectionStatSecondary";
-import PlatformChart from "../../components/main/Statistique/PlatformChart";
-import YearChart from "../../components/main/Statistique/YearChart";
-import InsightsPanel from "../../components/main/Statistique/InsightsPanel";
-import RadarGenreChart from "../../components/main/Statistique/RadarGenreChart";
-import HeatmapChart from "../../components/main/Statistique/HeatmapChart";
-import TopGamesWidget from "../../components/main/Statistique/TopGamesWidget";
-import StatusFunnelChart from "../../components/main/Statistique/StatusFunnelChart";
-import { useStatsData } from "../../hooks/dashboard/useStatsData";
-import { mergeStoredUser } from "../../utils/userStorage";
+import SectionStatSecondary from "@/components/common/SectionStatSecondary";
+import PlatformChart from "@/components/main/Statistique/PlatformChart";
+import YearChart from "@/components/main/Statistique/YearChart";
+import InsightsPanel from "@/components/main/Statistique/InsightsPanel";
+import RadarGenreChart from "@/components/main/Statistique/RadarGenreChart";
+import HeatmapChart from "@/components/main/Statistique/HeatmapChart";
+import TopGamesWidget from "@/components/main/Statistique/TopGamesWidget";
+import StatusFunnelChart from "@/components/main/Statistique/StatusFunnelChart";
+import { useStatsData } from "@/hooks/dashboard/useStatsData";
+import { mergeStoredUser } from "@/utils/userStorage";
 import "./Statistique.css";
 
 const TABS = [

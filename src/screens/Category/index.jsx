@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from "react";
-
-import CategorySelector from "../../components/main/Category/CategorySelector";
-import CategoryManager from "../../components/main/Category/CategoryManager";
 import "./Category.css";
+
+import { useEffect,useRef, useState } from "react";
+
+import CategoryManager from "@/components/main/Category/CategoryManager";
+import CategorySelector from "@/components/main/Category/CategorySelector";
 
 const CategoryPage = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);

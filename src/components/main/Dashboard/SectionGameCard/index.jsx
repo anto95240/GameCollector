@@ -1,11 +1,13 @@
-import { useState, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
-import GameCard from "../../../common/GameCard";
-import { useApiGame } from "../../../../hooks/api/useApiGame";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { useActiveOnScroll } from "../../../../hooks/ui/useActiveOnScroll";
 import "./SectionGameCard.css";
+
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useRef,useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import GameCard from "@/components/common/GameCard";
+import { useApiGame } from "@/hooks/api/useApiGame";
+import { useActiveOnScroll } from "@/hooks/ui/useActiveOnScroll";
 
 const SectionGameCard = () => {
   const { t } = useTranslation();

@@ -1,14 +1,14 @@
 import { useState, useEffect, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import { useApiGame } from "../api/useApiGame";
-import { useApiMetadata } from "../api/useApiMetadata";
+import { useApiGame } from "@/hooks/api/useApiGame";
+import { useApiMetadata } from "@/hooks/api/useApiMetadata";
 import { useTagsManager } from "./useTagsManager";
-import { useScrollSpy } from "../ui/useScrollSpy";
+import { useScrollSpy } from "@/hooks/ui/useScrollSpy";
 import { useGameMetadata } from "./utils/useGameMetadata";
 import { getInitialFormData, buildGamePayload, formatPreviewImage } from "./utils/gameFormHelpers";
-import { incrementStoredUserMetric } from "../../utils/userStorage";
-import { MOCK_OPTIONS, SECTIONS } from "../../config/constants"; 
+import { incrementStoredUserMetric } from "@/utils/userStorage";
+import { MOCK_OPTIONS, SECTIONS } from "@/config/constants"; 
 
 export const useAddEditGame = () => {
   const { t } = useTranslation();

@@ -1,12 +1,12 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./CategorySelector.css";
+
 import {
-  faThLarge,
+  faCrosshairs,
   faCube,
   faTag,
-  faCrosshairs,
+  faThLarge,
 } from "@fortawesome/free-solid-svg-icons";
-
-import "./CategorySelector.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CATEGORIES_CONFIG = [
   { id: "genre", label: "GENRE", icon: faThLarge },

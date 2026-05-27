@@ -1,5 +1,5 @@
 import { faUser, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import AuthInput from "../../common/AuthInput";
+import AuthInput from "@/components/common/AuthInput";
 import "@/screens/Register/Register.css";
 
 const SignUpPart2 = ({ data, update, t }) => (

@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
-import { useApiGame } from "../api/useApiGame";
-import { useApiMetadata } from "../api/useApiMetadata";
+import { useEffect,useState } from "react";
+
+import { useApiGame } from "@/hooks/api/useApiGame";
+import { useApiMetadata } from "@/hooks/api/useApiMetadata";
 
 export const useStatsData = () => {
   const { getAdvancedStats } = useApiGame();

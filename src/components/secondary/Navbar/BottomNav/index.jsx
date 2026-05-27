@@ -1,12 +1,13 @@
-import { NavLink } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./BottomNav.css";
+
 import {
+  faChartPie,
   faHome,
   faList,
   faTags,
-  faChartPie,
 } from "@fortawesome/free-solid-svg-icons";
-import "./BottomNav.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NavLink } from "react-router";
 
 const BottomNav = ({ t }) => {
   return (

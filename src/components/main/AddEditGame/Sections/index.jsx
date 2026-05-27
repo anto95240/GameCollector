@@ -2,24 +2,21 @@
 import "./Sections.css";
 
 export {
-  DescriptionSection,
-  RatingSection,
   CommentSection,
-  MetadataSection,
+  DescriptionSection,
   ImageSection,
-} from "./modules/BasicSections";
-
+  MetadataSection,
+  RatingSection,
+} from "@/components/main/AddEditGame/Sections/modules/BasicSections";
 export {
   DetailsSection,
-} from "./modules/DetailsSection";
-
+} from "@/components/main/AddEditGame/Sections/modules/DetailsSection";
 export {
-  InfoSection,
-  StatusSection,
   AchievementsSection,
   FavoriteAndSoonSection,
-} from "./modules/InfoSections";
-
+  InfoSection,
+  StatusSection,
+} from "@/components/main/AddEditGame/Sections/modules/InfoSections";
 export {
   TagsSection,
-} from "./modules/TagsSection";
+} from "@/components/main/AddEditGame/Sections/modules/TagsSection";

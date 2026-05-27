@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router";
-import ChargementPage from "../Chargement";
+import ChargementPage from "@/screens/Chargement";
 
 const LoadingScreen = () => {
   const [searchParams] = useSearchParams();

@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect } from "react";
 import { useLocation } from "react-router";
-import { useApiGame } from "../api/useApiGame";
-import { useApiMetadata } from "../api/useApiMetadata";
-import { useApiAuth } from "../api/useApiAuth";
+import { useApiGame } from "@/hooks/api/useApiGame";
+import { useApiMetadata } from "@/hooks/api/useApiMetadata";
+import { useApiAuth } from "@/hooks/api/useApiAuth";
 import { formatGameForDetail, createGameSlug } from "@/utils/gameFormatters";
 import { MOCK_OPTIONS } from "@/config/constants";
 

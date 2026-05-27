@@ -1,4 +1,5 @@
 import { Navigate, Outlet } from "react-router";
+
 import { readStoredUser } from "@/utils/userStorage";
 
 const ProtectedRoutes = () => {
