@@ -298,7 +298,7 @@
 }
 
 .save-filters-box input:focus {
-  border-color: var(--border-focus, #5af2ff);
+  border-color: var(--border-focus);
   box-shadow: 0 0 8px rgba(90, 242, 255, 0.2);
   background: var(--bg-input, rgba(255, 255, 255, 0.1));
 }
@@ -370,7 +370,7 @@
 
 .saved-filters-list .saved-item:hover {
   transform: translateY(-3px) scale(1.02);
-  border-color: var(--border-focus, #5af2ff);
+  border-color: var(--border-focus);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 10px rgba(90, 242, 255, 0.15);
   background: var(--bg-card-hover, rgba(0, 50, 110, 0.6));
 }
@@ -394,7 +394,7 @@
   margin: 0;
   font-size: 12px;
   line-height: 1.45;
-  color: var(--color-muted, #777);
+  color: var(--color-muted);
 }
 
 /* En-tête de l'item (Nom + Badge) */
