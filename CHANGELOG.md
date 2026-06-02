@@ -1,3 +1,11 @@
+## [2.7.3](https://github.com/anto95240/GameCollector/compare/v2.7.2...v2.7.3) (2026-06-02)
+
+
+### Bug Fixes
+
+* animation hover mobile/tablette ([757fde9](https://github.com/anto95240/GameCollector/commit/757fde9a1551c329d99ef33be242bef2d1e9130b))
+* bug d'affichage du filter panel ([e3a9886](https://github.com/anto95240/GameCollector/commit/e3a98864a3ef4391e69803d53c5ae35b36651c45))
+
 ## [2.7.2](https://github.com/anto95240/GameCollector/compare/v2.7.1...v2.7.2) (2026-05-27)
 
 
