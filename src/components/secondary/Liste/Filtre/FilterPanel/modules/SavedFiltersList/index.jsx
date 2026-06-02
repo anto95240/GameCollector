@@ -1,8 +1,6 @@
-export const SavedFiltersList = ({
-  savedFilters,
-  onApplySaved,
-  onDeleteSaved
-}) => {
+import "./SavedFiltersList.css";
+
+export const SavedFiltersList = ({ savedFilters, onApplySaved, onDeleteSaved }) => {
   if (savedFilters.length === 0) {
     return (
       <div className="saved-empty-state">

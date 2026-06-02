@@ -1,0 +1,14 @@
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./FilterPanelHeader.css";
+
+export const FilterPanelHeader = ({ onClose }) => {
+  return (
+    <div className="filter-header flex justify-center items-center shrink-0">
+      <h3>Filtrer</h3>
+      <button className="close-filter" onClick={onClose} aria-label="Fermer">
+        <FontAwesomeIcon icon={faTimes} />
+      </button>
+    </div>
+  );
+};

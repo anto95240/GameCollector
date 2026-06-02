@@ -1,5 +1,6 @@
-import { faChevronDown, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./SpecialFilters.css";
 
 export const RangeFilterItem = ({
   category,
@@ -10,7 +11,7 @@ export const RangeFilterItem = ({
   onClose,
   icon,
   specialExpanded,
-  toggleSpecial
+  toggleSpecial,
 }) => {
   const specialKey = `range_${category.id}`;
   const activeValue = getActiveFilterValue(category.label);
@@ -81,7 +82,7 @@ export const SortFilterItem = ({
   onClose,
   icon,
   specialExpanded,
-  toggleSpecial
+  toggleSpecial,
 }) => {
   const activeSort = getActiveFilterValue(category.label);
   const activeSortParts = activeSort ? activeSort.split("|") : [];

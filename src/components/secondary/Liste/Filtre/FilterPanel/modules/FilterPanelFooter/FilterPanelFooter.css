@@ -1,0 +1,28 @@
+.filter-footer {
+	background: var(--color-card-primary);
+	z-index: 10;
+	padding: 1rem;
+	flex-shrink: 0;
+}
+
+.btn-show-results {
+	background: var(--gradient-blue);
+	color: white;
+	font-family: var(--font-family-title);
+	font-size: 16px;
+	padding: 10px;
+	border-radius: 20px;
+	border: none;
+	cursor: pointer;
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	box-shadow: var(--shadow-filtre-result);
+	width: 100%;
+}
+
+.btn-show-results:active {
+	transform: scale(0.98);
+}
