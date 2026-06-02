@@ -1,8 +1,10 @@
+import "./FilterPanel.css";
+
 import { faCalendarAlt, faCheckCircle, faClock, faGamepad, faHeart, faLayerGroup, faStar } from "@fortawesome/free-solid-svg-icons";
 import { t } from "i18next";
 import { useEffect, useState } from "react";
 
-import FilterAccordionItem from "@/components/secondary/Liste/filtre/FilterAccordionItem";
+import FilterAccordionItem from "@/components/secondary/Liste/Filtre/FilterAccordionItem";
 
 import {
   getActiveFilterValue,
@@ -18,7 +20,6 @@ import { FilterPanelTabs } from "../FilterPanelTabs";
 import { SavedFiltersList } from "../SavedFiltersList";
 import { SaveFiltersBox } from "../SaveFiltersBox";
 import { RangeFilterItem, SortFilterItem } from "../SpecialFilters";
-import "./FilterPanel.css";
 
 const ICONS = {
   genre: faLayerGroup,

@@ -2,35 +2,14 @@ import './ValidationToast.css';
 
 import { faCheckCircle, faExclamationCircle, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect,useState } from 'react';
+import React from 'react';
+
+import { useToast } from '@/context';
 
 const ValidationToast = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [toast, setToast] = useState({
-    type: 'success', // 'success', 'error', 'info'
-    message: '',
-    duration: 3000,
-  });
+  const { toast } = useToast();
 
-  useEffect(() => {
-    const handleShowToast = (event) => {
-      const { detail } = event;
-      setToast(detail);
-      setIsVisible(true);
-
-      // Auto-hide après la durée spécifiée
-      const timer = setTimeout(() => {
-        setIsVisible(false);
-      }, detail.duration || 3000);
-
-      return () => clearTimeout(timer);
-    };
-
-    window.addEventListener('validationToast', handleShowToast);
-    return () => window.removeEventListener('validationToast', handleShowToast);
-  }, []);
-
-  if (!isVisible) return null;
+  if (!toast.isVisible) return null;
 
   const getIcon = () => {
     switch (toast.type) {

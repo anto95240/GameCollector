@@ -1,6 +1,7 @@
+import "./FilterPanelHeader.css";
+
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./FilterPanelHeader.css";
 
 export const FilterPanelHeader = ({ onClose }) => {
   return (

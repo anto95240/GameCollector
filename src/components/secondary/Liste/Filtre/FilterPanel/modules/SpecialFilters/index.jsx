@@ -1,6 +1,7 @@
+import "./SpecialFilters.css";
+
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./SpecialFilters.css";
 
 export const RangeFilterItem = ({
   category,

@@ -1,9 +1,10 @@
-import SectionGameCard from "@/components/main/Dashboard/SectionGameCard";
-import SectionStatSecondary from "@/components/common/SectionStatSecondary";
-import SectionStatPrimary from "@/components/main/Dashboard/SectionStatPrimary";
+import "./Dashboard.css";
+
 import { useTranslation } from "react-i18next";
 
-import "./Dashboard.css";
+import SectionStatSecondary from "@/components/common/SectionStatSecondary";
+import SectionGameCard from "@/components/main/Dashboard/SectionGameCard";
+import SectionStatPrimary from "@/components/main/Dashboard/SectionStatPrimary";
 
 function HomePage() {
   const { t } = useTranslation();

@@ -2,6 +2,7 @@ import { useEffect,useState } from "react";
 import { useOutletContext } from "react-router";
 
 import { API_URL } from "@/config/constants";
+import { useToast } from "@/context";
 import { useAuth } from "@/context/AuthContext";
 import { useApiAuth } from "@/hooks/api/useApiAuth";
 import {
@@ -10,7 +11,6 @@ import {
   handleDownloadUserData,
   handleSaveProfileAsync,
 } from "@/hooks/auth/utils/profileHandlers";
-import { useValidationToast } from "@/hooks/ui/useValidationToast";
 import { incrementStoredUserMetric } from "@/utils/userStorage";
 import { getFirstValidationError,validateProfile } from "@/utils/validators";
 
@@ -19,7 +19,7 @@ export const useProfile = () => {
   
   const { user, updateUser } = useAuth(); 
   const { updateProfile, deleteAccount, logout } = useApiAuth();
-  const { showSuccess, showError, showUpdated, showDeleted } = useValidationToast(); 
+  const { showSuccess, showError, showUpdated, showDeleted } = useToast(); 
 
   const [form, setForm] = useState(() => getInitialProfileForm(user, API_URL));
 

@@ -1,7 +1,9 @@
 import { useCallback, useState } from "react";
+
 import api from "@/config/interceptor";
 import { useAuth } from "@/context/AuthContext";
-import { normalizeUserId, extractFilterValues } from "./utils/filterExtractors";
+
+import { extractFilterValues,normalizeUserId } from "./utils/filterExtractors";
 import { mapApiFilterToLocal } from "./utils/filterMappers";
 
 export const useApiFilters = () => {

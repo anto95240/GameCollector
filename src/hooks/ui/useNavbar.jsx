@@ -1,33 +1,16 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { useLanguage,useTheme } from "@/context";
+
 export const useNavbar = () => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
+    const { isDark, toggleTheme } = useTheme();
+    const { language, changeLanguage: changeGlobalLanguage } = useLanguage();
+    
     const [actionsOpen, setActionsOpen] = useState(false);
     const [langMenuOpen, setLangMenuOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    
-    const [isDark, setIsDark] = useState(() => {
-        try {
-            return JSON.parse(localStorage.getItem("dark")) || false;
-        } catch {
-            return false;
-        }
-    });
-    
-    const [language, setLanguage] = useState(() => 
-        localStorage.getItem("language") || "FR"
-    );
-
-    useEffect(() => {
-        document.body.setAttribute("data-theme", isDark ? "dark" : "light");
-        localStorage.setItem("dark", JSON.stringify(isDark));
-    }, [isDark]);
-
-    useEffect(() => {
-        i18n.changeLanguage(language.toLowerCase());
-        localStorage.setItem("language", language);
-    }, [language, i18n]);
 
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -60,11 +43,9 @@ export const useNavbar = () => {
         return () => document.removeEventListener("click", handleClickOutside);
     }, [actionsOpen, langMenuOpen]); 
 
-    const toggleTheme = () => setIsDark(prev => !prev);
-    
     const changeLanguage = (lang, e) => {
         if (e) e.stopPropagation(); 
-        setLanguage(lang);
+        changeGlobalLanguage(lang);
         setLangMenuOpen(false); 
     };
 

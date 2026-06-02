@@ -1,15 +1,15 @@
 import { useCallback,useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { useToast } from "@/context";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
-import { useValidationToast } from "@/hooks/ui/useValidationToast";
 import { incrementStoredUserMetric } from "@/utils/userStorage";
 import { getFirstValidationError,validateCategory } from "@/utils/validators";
 
 export const useCategoryManager = () => {
   const { t } = useTranslation();
   const { getAllMetadata, createMetadata, updateMetadata, deleteMetadata } = useApiMetadata();
-  const { showSuccess, showError, showCreated, showUpdated, showDeleted } = useValidationToast();
+  const { showSuccess, showError, showCreated, showUpdated, showDeleted } = useToast();
 
   const [categories, setCategories] = useState({ genres: [], platforms: [], statuses: [], tags: [] });
   const [selectedCategory, setSelectedCategory] = useState("genres");

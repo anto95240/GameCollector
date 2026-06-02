@@ -1,8 +1,9 @@
-import { useState, useCallback } from "react";
+import { useCallback,useState } from "react";
+
 import api from "@/config/interceptor";
 import { useAuth } from "@/context/AuthContext";
-import keyboardShortcutsService from "@/services/keyboardShortcutsService";
 import { getHardcodedDefaults } from "@/hooks/api/useApiShortcutsDefaults";
+import keyboardShortcutsService from "@/services/keyboardShortcutsService";
 
 export const useApiShortcuts = () => {
   const { user, updateUser } = useAuth();

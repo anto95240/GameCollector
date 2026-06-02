@@ -1,6 +1,7 @@
+import "./ActiveFiltersBox.css";
+
 import { faTimes, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./ActiveFiltersBox.css";
 
 export const ActiveFiltersBox = ({
   selectedFilters,

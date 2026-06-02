@@ -1,7 +1,8 @@
-import { useGameData } from "./useGameData";
-import { useGameActions } from "./useGameActions";
-import { useGameMetadata } from "./useGameMetadata";
 import { useNavigate } from "react-router";
+
+import { useGameActions } from "./useGameActions";
+import { useGameData } from "./useGameData";
+import { useGameMetadata } from "./useGameMetadata";
 
 /**
  * Hook principal pour gérer les détails d'un jeu

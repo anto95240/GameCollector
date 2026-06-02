@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { useFilterGrouping } from "./useFilterGrouping";
+import { useFilters } from "@/context";
+
 import { useFilteredGamesList } from "./useFilteredGamesList";
+import { useFilterGrouping } from "./useFilterGrouping";
 
 /**
  * Hook principal pour gérer le filtrage des jeux
@@ -9,12 +10,19 @@ import { useFilteredGamesList } from "./useFilteredGamesList";
  * Responsabilités:
  * - useFilterGrouping: Grouper les filtres par catégorie
  * - useFilteredGamesList: Appliquer les filtres à la liste
- * - État: search, pagination, sélection des filtres
+ * - État: search, pagination, sélection des filtres géré par le FiltersContext
  */
 export const useGameFiltering = (initialGames) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedFilters, setSelectedFilters] = useState([]);
-  const [page, setPage] = useState(1);
+  const {
+    searchTerm,
+    setSearchTerm,
+    selectedFilters,
+    setSelectedFilters,
+    page,
+    setPage,
+    removeFilter,
+    clearAllFilters
+  } = useFilters();
 
   // Grouper les filtres par catégorie
   const groupedFilters = useFilterGrouping(selectedFilters);
@@ -83,15 +91,6 @@ export const useGameFiltering = (initialGames) => {
       setSelectedFilters(prev => [...prev, newTag]);
       setPage(1);
     }
-  };
-
-  const removeFilter = (tag) => {
-    setSelectedFilters(prev => prev.filter(t => t !== tag));
-  };
-
-  const clearAllFilters = () => {
-    setSelectedFilters([]);
-    setPage(1);
   };
 
   return {
