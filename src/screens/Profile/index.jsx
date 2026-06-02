@@ -5,7 +5,7 @@ import ConnexionSection from "@/components/main/ProfilePage/ConnexionSection";
 import DeleteAccountSection from "@/components/main/ProfilePage/DeleteAccountSection";
 import ProfilSection from "@/components/main/ProfilePage/ProfilSection";
 import { PROFILE_SECTIONS } from "@/config/constants";
-import { useProfile } from "@/hooks/auth/useProfile";
+import { useProfile } from "@/hooks/domains/auth/useProfile";
 import { useEscapeKeyCloser } from "@/hooks/ui/useEscapeKeyCloser";
 import { useScrollSpy } from "@/hooks/ui/useScrollSpy";
 

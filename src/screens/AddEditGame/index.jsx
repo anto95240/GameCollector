@@ -5,7 +5,7 @@ import SuccessOverlay from "@/components/common/SuccessOverlay";
 import GameForm from "@/components/main/AddEditGame/GameForm";
 import FormHeader from "@/components/secondary/AddEditGame/FormHeader";
 import { SECTIONS } from "@/config/constants";
-import { useAddEditGame } from "@/hooks/games/useAddEditGame";
+import { useAddEditGame } from "@/hooks/domains/games/useAddEditGame";
 
 const AddEditGamePage = () => {
   const {

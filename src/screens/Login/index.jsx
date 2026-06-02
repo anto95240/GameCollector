@@ -6,7 +6,7 @@ import { Link } from "react-router";
 
 import AuthInput from "@/components/common/AuthInput";
 import LoadingButton from "@/components/common/LoadingButton";
-import { useLogin } from "@/hooks/auth/useLogin";
+import { useLogin } from "@/hooks/domains/auth/useLogin";
 
 const Login = () => {
   // L'UI est totalement séparée de la logique !

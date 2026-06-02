@@ -7,7 +7,7 @@ import DetailFooter from "@/components/main/Detail/DetailFooter";
 import DetailHeader from "@/components/main/Detail/DetailHeader";
 import DetailHero from "@/components/main/Detail/DetailHero";
 import DetailInfoGrid from "@/components/main/Detail/DetailInfoGrid";
-import { useGameDetail } from "@/hooks/games/useGameDetail";
+import { useGameDetail } from "@/hooks/domains/games/useGameDetail";
 
 const DetailPage = () => {
   const { id, gameName, slug } = useParams();

@@ -13,7 +13,7 @@ import RadarGenreChart from "@/components/main/Statistique/RadarGenreChart";
 import StatusFunnelChart from "@/components/main/Statistique/StatusFunnelChart";
 import TopGamesWidget from "@/components/main/Statistique/TopGamesWidget";
 import YearChart from "@/components/main/Statistique/YearChart";
-import { useStatsData } from "@/hooks/dashboard/useStatsData";
+import { useStatsData } from "@/hooks/domains/dashboard/useStatsData";
 import { mergeStoredUser } from "@/utils/userStorage";
 
 const TABS = [
