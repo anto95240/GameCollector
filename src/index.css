@@ -167,7 +167,7 @@ body {
   --color-text-link: var(--text-link);
   --color-text-btn-account: var(--text-primary);
 
-  /* Shadows (Conservés en dur ou adaptés) */
+  --hover-btn-plus-filtre: rgba(0, 255, 255, 0.1);
   --shadow-auth: 0 0 20px rgba(var(--brand-glow), 0.3);
   --shadow-main: 0 0 10px rgba(0, 0, 0, 0.2);
   --shadow-secondary: 0 0 7px rgba(0, 0, 0, 0.1);
@@ -325,4 +325,14 @@ body {
   background-color: var(--color-border);
   border-radius: 4px;
   border: 2px solid var(--bg-app);
+}
+
+@media (hover: none), (pointer: coarse) {
+  *:hover {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
 }
