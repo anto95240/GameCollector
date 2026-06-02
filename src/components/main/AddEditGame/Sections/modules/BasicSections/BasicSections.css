@@ -10,7 +10,7 @@
 .textarea-group label {
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--text-primary, #1f2937);
+  color: var(--text-primary);
 }
 
 .textarea-container {
@@ -20,7 +20,7 @@
 .textarea-container textarea {
   width: 100%;
   padding: 0.875rem;
-  border: 1px solid var(--border-color, #e5e7eb);
+  border: 1px solid var(--border-color);
   border-radius: 0.5rem;
   font-family: inherit;
   font-size: 0.95rem;
@@ -30,7 +30,7 @@
 
 .textarea-container textarea:focus {
   outline: none;
-  border-color: var(--primary-color, #3b82f6);
+  border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
@@ -43,7 +43,7 @@
 .select-wrapper label {
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--text-primary, #1f2937);
+  color: var(--text-primary);
 }
 
 .image-upload-area {
@@ -54,21 +54,21 @@
 .upload-label {
   display: block;
   cursor: pointer;
-  border: 2px dashed var(--border-color, #e5e7eb);
+  border: 2px dashed var(--border-color);
   border-radius: 0.75rem;
   padding: 2rem;
   text-align: center;
   transition: all 0.3s ease;
-  background: var(--bg-secondary, #f9fafb);
+  background: var(--bg-secondary);
 }
 
 .upload-label:hover {
-  border-color: var(--primary-color, #3b82f6);
-  background: var(--bg-hover, #f3f4f6);
+  border-color: var(--primary-color);
+  background: var(--bg-hover);
 }
 
 #file-upload:focus + .upload-label {
-  border-color: var(--primary-color, #3b82f6);
+  border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
@@ -81,12 +81,12 @@
 
 .upload-placeholder .upload-icon {
   font-size: 2.5rem;
-  color: var(--text-secondary, #6b7280);
+  color: var(--text-secondary);
 }
 
 .upload-placeholder p {
   margin: 0;
-  color: var(--text-secondary, #6b7280);
+  color: var(--text-secondary);
   font-size: 0.95rem;
 }
 

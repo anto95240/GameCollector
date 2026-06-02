@@ -11,7 +11,7 @@ import KeyboardHelp from "@/components/KeyboardHelp";
 import KeyboardShortcutsProvider from "@/components/KeyboardShortcutsProvider";
 import router from "@/config/router";
 import { useAuth } from "@/context/AuthContext";
-import { useAchievementTracker } from "@/hooks/achievements/useAchievementTracker";
+import { useAchievementTracker } from "@/hooks/domains/achievements/useAchievementTracker";
 import keyboardShortcutsService from "@/services/keyboardShortcutsService";
 
 function App() {

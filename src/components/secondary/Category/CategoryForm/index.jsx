@@ -3,8 +3,8 @@ import "./CategoryForm.css";
 import { useEffect, useRef,useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { useToast } from "@/context";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
-import { useValidationToast } from "@/hooks/ui/useValidationToast";
 import { incrementStoredUserMetric } from "@/utils/userStorage";
 import { getFirstValidationError,validateCategory } from "@/utils/validators";
 
@@ -26,7 +26,7 @@ const CategoryForm = ({
 
   const nameInputRef = useRef(null);
   const { t } = useTranslation();
-  const { showSuccess, showError, showCreated, showUpdated } = useValidationToast();
+  const { showSuccess, showError, showCreated, showUpdated } = useToast();
 
   const { createMetadata, updateMetadata } = useApiMetadata();
 

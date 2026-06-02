@@ -1,0 +1,13 @@
+.filter-tabs .tab {
+	background: transparent;
+	border: 1px solid transparent;
+	padding: 6px 10px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+.filter-tabs .tab.active {
+	background: var(--bg-card-secondary);
+	border-color: var(--color-border-filtre);
+}

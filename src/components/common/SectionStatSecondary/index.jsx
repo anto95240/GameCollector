@@ -3,7 +3,7 @@ import "./SectionStatSecondary.css";
 import { useLocation } from "react-router";
 
 import StatCard from "@/components/common/StatCard";
-import { useDashboard } from "@/hooks/dashboard/useDashboard";
+import { useDashboard } from "@/hooks/domains/dashboard/useDashboard";
 
 const SectionStatSecondary = ({ t }) => {
   const { stats } = useDashboard();

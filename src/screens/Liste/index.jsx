@@ -1,29 +1,31 @@
-import { useState, useMemo, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./Liste.css";
+
 import {
   faChevronLeft,
   faChevronRight,
+  faClock,
   faGamepad,
   faHeart,
-  faClock,
 } from "@fortawesome/free-solid-svg-icons";
-import ListeHeader from "@/components/secondary/Liste/ListeHeader";
-import FilterPanel from "@/components/secondary/Liste/filtre/FilterPanel";
-import Pagination from "@/components/secondary/Liste/Pagination";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useMemo, useRef,useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
+
 import GameCard from "@/components/common/GameCard";
 import DeleteModal from "@/components/secondary/Liste/DeleteModal";
-import { useGameFiltering } from "@/hooks/games/useGameFiltering";
-import { useActiveOnScroll } from "@/hooks/ui/useActiveOnScroll";
-import { useGamesList } from "@/hooks/games/useGamesList";
-import { useCarousel } from "@/hooks/ui/useCarousel";
-import { useSearchBar } from "@/hooks/ui/useSearchBar";
-import { useFuzzySearch } from "@/hooks/ui/useFuzzySearch";
-import { useSearchBarShortcuts } from "@/hooks/ui/useSearchBarShortcuts";
+import FilterPanel from "@/components/secondary/Liste/Filtre/FilterPanel";
+import ListeHeader from "@/components/secondary/Liste/ListeHeader";
+import Pagination from "@/components/secondary/Liste/Pagination";
 import { useAuth } from "@/context/AuthContext";
 import { useApiFilters } from "@/hooks/api/useApiFilters";
-import "./Liste.css";
+import { useGameFiltering } from "@/hooks/domains/games/useGameFiltering";
+import { useGamesList } from "@/hooks/domains/games/useGamesList";
+import { useActiveOnScroll } from "@/hooks/ui/useActiveOnScroll";
+import { useCarousel } from "@/hooks/ui/useCarousel";
+import { useFuzzySearch } from "@/hooks/ui/useFuzzySearch";
+import { useSearchBar } from "@/hooks/ui/useSearchBar";
+import { useSearchBarShortcuts } from "@/hooks/ui/useSearchBarShortcuts";
 
 const ListePage = () => {
   const { t } = useTranslation();
@@ -196,7 +198,6 @@ const ListePage = () => {
   const handleApplySaved = (entry) => {
     if (!entry || !entry.filters) return;
     setSelectedFilters(entry.filters || []);
-    setIsFilterOpen(false);
     setPage(1);
 
     if (user && entry.source === "server" && entry.id) {

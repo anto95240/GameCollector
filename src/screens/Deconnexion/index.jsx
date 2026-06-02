@@ -1,9 +1,11 @@
+import "./Deconnexion.css";
+import "../Login/Login.css";
+
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
+
 import LoadingButton from "@/components/common/LoadingButton";
-import "./Deconnexion.css";
-import "../Login/Login.css";
 
 const DeconnexionPage = () => {
   const { t } = useTranslation();

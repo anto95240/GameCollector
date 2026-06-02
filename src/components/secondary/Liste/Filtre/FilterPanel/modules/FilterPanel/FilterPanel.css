@@ -1,0 +1,71 @@
+.filter-panel {
+	box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	height: 100%;
+	width: 320px;
+	background: var(--bg-filtre);
+	border: 1px solid var(--color-border-filtre);
+	border-radius: 20px;
+	padding: 20px;
+	transform: translateX(110%);
+	transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+	overflow: hidden;
+	z-index: 100;
+	display: flex;
+	flex-direction: column;
+}
+
+.filter-panel.open {
+	transform: translateX(0);
+}
+
+.filter-scroll-content {
+	flex-grow: 1;
+	overflow-y: auto;
+}
+
+.filter-accordion {
+	flex: 1;
+	overflow-y: auto;
+	padding-right: 5px;
+	padding-bottom: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.filter-accordion::-webkit-scrollbar {
+	width: 4px;
+}
+
+.filter-accordion::-webkit-scrollbar-thumb {
+	border-radius: 2px;
+}
+
+@media (min-width: 1024px) {
+	.filter-panel {
+		position: fixed;
+		top: 100px;
+		right: 20px;
+		bottom: 20px;
+		height: calc(100vh - 120px) !important;
+		border-radius: 20px;
+		z-index: 100;
+	}
+}
+
+@media (max-width: 768px) {
+	.filter-panel {
+		box-sizing: border-box;
+		width: 100%;
+		border-radius: 0;
+		padding: 15px;
+		backdrop-filter: blur(10px);
+		position: fixed;
+		top: 70px;
+		height: 80%;
+	}
+}

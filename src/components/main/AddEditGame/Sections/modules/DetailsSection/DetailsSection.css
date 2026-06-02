@@ -15,7 +15,7 @@
 .details-grid .select-wrapper label {
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--text-primary, #1f2937);
+  color: var(--text-primary);
 }
 
 /* Tablet (2 columns) */
