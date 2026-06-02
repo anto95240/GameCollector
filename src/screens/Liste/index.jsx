@@ -10,7 +10,7 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import ListeHeader from "@/components/secondary/Liste/ListeHeader";
-import FilterPanel from "@/components/secondary/Liste/filtre/FilterPanel";
+import FilterPanel from "@/components/secondary/Liste/Filtre/FilterPanel";
 import Pagination from "@/components/secondary/Liste/Pagination";
 import GameCard from "@/components/common/GameCard";
 import DeleteModal from "@/components/secondary/Liste/DeleteModal";
@@ -196,7 +196,6 @@ const ListePage = () => {
   const handleApplySaved = (entry) => {
     if (!entry || !entry.filters) return;
     setSelectedFilters(entry.filters || []);
-    setIsFilterOpen(false);
     setPage(1);
 
     if (user && entry.source === "server" && entry.id) {
