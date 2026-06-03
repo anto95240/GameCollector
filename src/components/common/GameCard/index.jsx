@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 
 import { formatImageUrl } from "@/utils/formatters";
 import { createSlug } from "@/utils/helpers/slugGenerator";
+import { usePreloadRoute } from "@/hooks/ui/usePreloadRoute";
 
 const GameCard = ({
   game,
@@ -27,6 +28,12 @@ const GameCard = ({
   isActive = false,
 }) => {
   const navigate = useNavigate();
+  const { preloadRoute } = usePreloadRoute();
+
+  const getGamePath = () => {
+    const name = typeof game === "string" ? game : game?.name;
+    return name ? `/game/${createSlug(name)}` : null;
+  };
 
   const handleCardClick = (e) => {
     if (
@@ -42,9 +49,17 @@ const GameCard = ({
       return;
     }
 
-    const name = typeof game === "string" ? game : game?.name;
-    if (name) {
-      navigate(`/game/${createSlug(name)}`);
+    const path = getGamePath();
+    if (path) {
+      navigate(path);
+    }
+  };
+
+  const handlePreload = () => {
+    if (variant === "add") return;
+    const path = getGamePath();
+    if (path) {
+      preloadRoute(path);
     }
   };
 
@@ -82,7 +97,10 @@ const GameCard = ({
       className={`game-card card-${variant} ${isActive ? "active-mobile" : ""} cursor-pointer ${className}`}
       style={cardStyle}
       onClick={handleCardClick}
+      onMouseEnter={handlePreload}
+      onFocus={handlePreload}
       data-id={game.id || index}
+      tabIndex={0}
     >
       <div className="card-overlay"></div>
 
