@@ -1,5 +1,6 @@
 import "./SectionStatSecondary.css";
 
+import React from "react";
 import { useLocation } from "react-router";
 
 import StatCard from "@/components/common/StatCard";
@@ -26,4 +27,4 @@ const SectionStatSecondary = ({ t }) => {
   );
 };
 
-export default SectionStatSecondary;
+export default React.memo(SectionStatSecondary);

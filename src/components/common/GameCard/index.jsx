@@ -1,5 +1,6 @@
 import "./GameCard.css";
 
+import React from "react";
 import {
   faEllipsisVertical,
   faHeart,
@@ -158,4 +159,29 @@ const GameCard = ({
   );
 };
 
-export default GameCard;
+// Custom comparison function for memoization
+// Only re-render if game data, variant, or visibility changes
+const arePropsEqual = (prevProps, nextProps) => {
+  const prevGame = prevProps.game;
+  const nextGame = nextProps.game;
+
+  // Compare critical game properties that affect rendering
+  const gameEqual =
+    prevGame?.id === nextGame?.id &&
+    prevGame?.name === nextGame?.name &&
+    prevGame?.image === nextGame?.image &&
+    prevGame?.rating === nextGame?.rating &&
+    prevGame?.isFavorite === nextGame?.isFavorite;
+
+  // Compare other critical props
+  return (
+    gameEqual &&
+    prevProps.variant === nextProps.variant &&
+    prevProps.index === nextProps.index &&
+    prevProps.activeMenuIndex === nextProps.activeMenuIndex &&
+    prevProps.isActive === nextProps.isActive &&
+    prevProps.className === nextProps.className
+  );
+};
+
+export default React.memo(GameCard, arePropsEqual);

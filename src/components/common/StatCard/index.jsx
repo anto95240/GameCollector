@@ -1,5 +1,7 @@
 import "./StatCard.css";
 
+import React from "react";
+
 const StatCard = ({ title, value }) => {
   return (
     <div className="stat-card">
@@ -9,4 +11,4 @@ const StatCard = ({ title, value }) => {
   );
 };
 
-export default StatCard;
+export default React.memo(StatCard);
