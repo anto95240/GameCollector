@@ -13,6 +13,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef,useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import LazyImage from "@/components/common/LazyImage";
+import { getOptimizedImageProps } from "@/utils/formatters";
 import { MOCK_OPTIONS } from "@/config/constants";
 
 const DetailHero = ({ game, onToggleFavorite, metadata = {}, isUpdating = false, onUpdateField = () => {}, onToggleSoon = () => {} }) => {
@@ -76,7 +78,20 @@ const DetailHero = ({ game, onToggleFavorite, metadata = {}, isUpdating = false,
   };
   return (
     <section className="hero-section">
-      <img src={game.imageUrl} alt={game.name} className="hero-cover" />
+      {game?.imageUrl && (
+        <LazyImage
+          {...getOptimizedImageProps(game.imageUrl, {
+            widths: [600, 1000, 1400],  // Optimized for hero display
+            autoWebp: true,
+          })}
+          alt={game.name}
+          width={1400}
+          height={400}
+          placeholder="blur"
+          placeholderQuality={8}
+          className="hero-cover"
+        />
+      )}
 
       <div className="hero-content">
         <div className="tags-row">

@@ -11,7 +11,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router";
 
-import { formatImageUrl } from "@/utils/formatters";
+import LazyImage from "@/components/common/LazyImage";
+import { formatImageUrl, getOptimizedImageProps } from "@/utils/formatters";
 import { createSlug } from "@/utils/helpers/slugGenerator";
 import { usePreloadRoute } from "@/hooks/ui/usePreloadRoute";
 
@@ -81,28 +82,36 @@ const GameCard = ({
   const isListVariant = variant === "list";
   const gameName = typeof game === "string" ? game : game.name;
 
-  // Utiliser le formatter centralisé pour éviter la duplication
-  const imageUrl = formatImageUrl(game?.image);
-
-  const cardStyle = imageUrl
-    ? {
-        backgroundImage: `url("${imageUrl}")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }
-    : {};
+  // Optimized image props with lazy-loading, WebP support, and responsive sizing
+  const imageProps = game?.image 
+    ? getOptimizedImageProps(game.image, {
+        widths: [300, 500, 800],  // Optimized for card display
+        autoWebp: true,
+      })
+    : null;
 
   return (
     <div
       className={`game-card card-${variant} ${isActive ? "active-mobile" : ""} cursor-pointer ${className}`}
-      style={cardStyle}
       onClick={handleCardClick}
       onMouseEnter={handlePreload}
       onFocus={handlePreload}
       data-id={game.id || index}
       tabIndex={0}
     >
+      {/* Lazy-loaded background image with optimization */}
+      {imageProps && (
+        <LazyImage
+          {...imageProps}
+          alt={gameName}
+          width={500}
+          height={350}
+          placeholder="blur"
+          placeholderQuality={10}
+          className="game-card-image-background"
+        />
+      )}
+
       <div className="card-overlay"></div>
 
       {isListVariant && (

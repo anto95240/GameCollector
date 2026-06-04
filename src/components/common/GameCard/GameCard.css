@@ -16,6 +16,18 @@
   background-color: #c65252;
 }
 
+/* LazyImage background positioning */
+.game-card .game-card-image-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
 .game-cards-container {
   display: flex;
   gap: 20px;
