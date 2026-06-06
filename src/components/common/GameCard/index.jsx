@@ -8,9 +8,12 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 import { useNavigate } from "react-router";
 
-import { formatImageUrl } from "@/utils/formatters";
+import LazyImage from "@/components/common/LazyImage";
+import { usePreloadRoute } from "@/hooks/ui/usePreloadRoute";
+import { formatImageUrl, getOptimizedImageProps } from "@/utils/formatters";
 import { createSlug } from "@/utils/helpers/slugGenerator";
 
 const GameCard = ({
@@ -27,6 +30,12 @@ const GameCard = ({
   isActive = false,
 }) => {
   const navigate = useNavigate();
+  const { preloadRoute } = usePreloadRoute();
+
+  const getGamePath = () => {
+    const name = typeof game === "string" ? game : game?.name;
+    return name ? `/game/${createSlug(name)}` : null;
+  };
 
   const handleCardClick = (e) => {
     if (
@@ -42,9 +51,17 @@ const GameCard = ({
       return;
     }
 
-    const name = typeof game === "string" ? game : game?.name;
-    if (name) {
-      navigate(`/game/${createSlug(name)}`);
+    const path = getGamePath();
+    if (path) {
+      navigate(path);
+    }
+  };
+
+  const handlePreload = () => {
+    if (variant === "add") return;
+    const path = getGamePath();
+    if (path) {
+      preloadRoute(path);
     }
   };
 
@@ -65,25 +82,34 @@ const GameCard = ({
   const isListVariant = variant === "list";
   const gameName = typeof game === "string" ? game : game.name;
 
-  // Utiliser le formatter centralisé pour éviter la duplication
-  const imageUrl = formatImageUrl(game?.image);
-
-  const cardStyle = imageUrl
-    ? {
-        backgroundImage: `url("${imageUrl}")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }
-    : {};
+  // Optimized image props with lazy-loading, WebP support, and responsive sizing
+  const imageProps = game?.image 
+    ? getOptimizedImageProps(game.image, {
+        widths: [300, 500, 800],  // Optimized for card display
+        autoWebp: true,
+      })
+    : null;
 
   return (
     <div
       className={`game-card card-${variant} ${isActive ? "active-mobile" : ""} cursor-pointer ${className}`}
-      style={cardStyle}
       onClick={handleCardClick}
+      onMouseEnter={handlePreload}
+      onFocus={handlePreload}
       data-id={game.id || index}
+      tabIndex={0}
     >
+      {imageProps && (
+        <LazyImage
+          {...imageProps}
+          alt={gameName}
+          width={300}
+          height={400}
+          sizes="(max-width: 787px) 180px, 210px"
+          className="game-card-image-background"
+        />
+      )}
+
       <div className="card-overlay"></div>
 
       {isListVariant && (
@@ -140,4 +166,29 @@ const GameCard = ({
   );
 };
 
-export default GameCard;
+// Custom comparison function for memoization
+// Only re-render if game data, variant, or visibility changes
+const arePropsEqual = (prevProps, nextProps) => {
+  const prevGame = prevProps.game;
+  const nextGame = nextProps.game;
+
+  // Compare critical game properties that affect rendering
+  const gameEqual =
+    prevGame?.id === nextGame?.id &&
+    prevGame?.name === nextGame?.name &&
+    prevGame?.image === nextGame?.image &&
+    prevGame?.rating === nextGame?.rating &&
+    prevGame?.isFavorite === nextGame?.isFavorite;
+
+  // Compare other critical props
+  return (
+    gameEqual &&
+    prevProps.variant === nextProps.variant &&
+    prevProps.index === nextProps.index &&
+    prevProps.activeMenuIndex === nextProps.activeMenuIndex &&
+    prevProps.isActive === nextProps.isActive &&
+    prevProps.className === nextProps.className
+  );
+};
+
+export default React.memo(GameCard, arePropsEqual);

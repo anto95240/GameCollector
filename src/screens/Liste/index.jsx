@@ -5,14 +5,17 @@ import {
   faChevronRight,
   faClock,
   faGamepad,
+  faGrip,
   faHeart,
+  faTableCells,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useMemo, useRef,useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
 import GameCard from "@/components/common/GameCard";
+import VirtualGameGrid from "@/components/common/VirtualGameGrid";
 import DeleteModal from "@/components/secondary/Liste/DeleteModal";
 import FilterPanel from "@/components/secondary/Liste/Filtre/FilterPanel";
 import ListeHeader from "@/components/secondary/Liste/ListeHeader";
@@ -26,6 +29,7 @@ import { useCarousel } from "@/hooks/ui/useCarousel";
 import { useFuzzySearch } from "@/hooks/ui/useFuzzySearch";
 import { useSearchBar } from "@/hooks/ui/useSearchBar";
 import { useSearchBarShortcuts } from "@/hooks/ui/useSearchBarShortcuts";
+import useVirtualGridDimensions from "@/hooks/ui/useVirtualGridDimensions";
 
 const ListePage = () => {
   const { t } = useTranslation();
@@ -68,11 +72,15 @@ const ListePage = () => {
   }, [debouncedTerm, setQuery, setPage]);
 
   const { scrollRef, scroll } = useCarousel();
-  const [activeTab, setActiveTab] = useState("all"); 
+  const [activeTab, setActiveTab] = useState("all");
+  const [viewMode, setViewMode] = useState("carousel"); // "carousel" | "grid"
   const [activeMenuIndex, setActiveMenuIndex] = useState(null);
   const [gameToDelete, setGameToDelete] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  // Virtual grid dimensions (only measured when grid view is active)
+  const { ref: gridContainerRef, width: gridW, height: gridH, colCount } = useVirtualGridDimensions(220);
 
   // --- filter metadata (genres, platforms, years, ratings, statuses)
   const filterData = useMemo(() => {
@@ -265,10 +273,55 @@ const ListePage = () => {
 
   const activeId = useActiveOnScroll(scrollRef, ".observer-item", paginatedGames);
 
-  const handleTabChange = (tab) => {
+  const handleTabChange = useCallback((tab) => {
     setActiveTab(tab);
     setPage(1);
-  };
+  }, []);
+
+  const handleToggleMenu = useCallback((i, e) => {
+    e.stopPropagation();
+    setActiveMenuIndex((prevIndex) => (prevIndex === i ? null : i));
+  }, []);
+
+  const handleDeleteRequest = useCallback((game) => {
+    setActiveMenuIndex(null);
+    setGameToDelete(game);
+  }, []);
+
+  const handleToggleFavorite = useCallback((g) => {
+    setActiveMenuIndex(null);
+    toggleFavorite(g);
+  }, [toggleFavorite]);
+
+  const handleScrollLeft = useCallback((e) => {
+    e.stopPropagation();
+    scroll("left");
+  }, [scroll]);
+
+  const handleScrollRight = useCallback((e) => {
+    e.stopPropagation();
+    scroll("right");
+  }, [scroll]);
+
+  const handleAddGame = useCallback(() => {
+    navigate("/game/add-edit-game");
+  }, [navigate]);
+
+  const handlePagePrev = useCallback(() => {
+    setPage((p) => Math.max(1, p - 1));
+  }, []);
+
+  const handlePageNext = useCallback(() => {
+    setPage((p) => Math.min(totalPages, p + 1));
+  }, [totalPages]);
+
+  const handlePageFirst = useCallback(() => {
+    setPage(1);
+  }, []);
+
+  const handlePageLast = useCallback(() => {
+    setPage(totalPages);
+  }, [totalPages]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -299,28 +352,74 @@ const ListePage = () => {
         totalGames={tabFilteredGames.length}
       />
 
-      {/* Onglets Responsives */}
-      <div className="list-tabs-navigation">
-        <button className={`tab-link ${activeTab === 'all' ? 'is-active' : ''}`} onClick={() => handleTabChange('all')}>
-          <FontAwesomeIcon icon={faGamepad} className="tab-icon" />
-          <span className="tab-text">Tous</span>
-        </button>
-        <button className={`tab-link ${activeTab === 'favorites' ? 'is-active' : ''}`} onClick={() => handleTabChange('favorites')}>
-          <FontAwesomeIcon icon={faHeart} className="tab-icon" />
-          <span className="tab-text">Favoris</span>
-        </button>
-        <button className={`tab-link ${activeTab === 'wishlist' ? 'is-active' : ''}`} onClick={() => handleTabChange('wishlist')}>
-          <FontAwesomeIcon icon={faClock} className="tab-icon" />
-          <span className="tab-text">Wishlist</span>
-        </button>
+      {/* Onglets + Toggle de vue */}
+      <div className="list-tabs-row">
+        <div className="list-tabs-navigation">
+          <button className={`tab-link ${activeTab === 'all' ? 'is-active' : ''}`} onClick={() => handleTabChange('all')}>
+            <FontAwesomeIcon icon={faGamepad} className="tab-icon" />
+            <span className="tab-text">Tous</span>
+          </button>
+          <button className={`tab-link ${activeTab === 'favorites' ? 'is-active' : ''}`} onClick={() => handleTabChange('favorites')}>
+            <FontAwesomeIcon icon={faHeart} className="tab-icon" />
+            <span className="tab-text">Favoris</span>
+          </button>
+          <button className={`tab-link ${activeTab === 'wishlist' ? 'is-active' : ''}`} onClick={() => handleTabChange('wishlist')}>
+            <FontAwesomeIcon icon={faClock} className="tab-icon" />
+            <span className="tab-text">Wishlist</span>
+          </button>
+        </div>
+
+        {/* Toggle Carousel / Grille virtuelle */}
+        <div className="view-mode-toggle" title={viewMode === 'carousel' ? 'Passer en vue grille (rapide)' : 'Passer en vue carousel'}>
+          <button
+            id="view-toggle-carousel"
+            className={`view-toggle-btn ${viewMode === 'carousel' ? 'active' : ''}`}
+            onClick={() => setViewMode('carousel')}
+            aria-label="Vue carousel"
+          >
+            <FontAwesomeIcon icon={faGrip} />
+          </button>
+          <button
+            id="view-toggle-grid"
+            className={`view-toggle-btn ${viewMode === 'grid' ? 'active' : ''}`}
+            onClick={() => setViewMode('grid')}
+            aria-label="Vue grille virtuelle"
+          >
+            <FontAwesomeIcon icon={faTableCells} />
+          </button>
+        </div>
       </div>
 
       <div className="main-stage">
         {isLoading && games.length === 0 ? (
           <p className="loading-text text-center w-full mt-12">Chargement...</p>
+        ) : viewMode === 'grid' ? (
+          /* ── VUE GRILLE VIRTUELLE (react-window) ── */
+          <div ref={gridContainerRef} className="vgrid-stage">
+            {sortedGames.length > 0 ? (
+              <VirtualGameGrid
+                games={sortedGames}
+                colCount={colCount}
+                containerW={gridW}
+                containerH={gridH}
+                itemHeight={260}
+                activeTab={activeTab}
+                activeMenuIndex={activeMenuIndex}
+                onToggleMenu={handleToggleMenu}
+                onDeleteRequest={handleDeleteRequest}
+                onToggleFavorite={handleToggleFavorite}
+                onAddGame={handleAddGame}
+                t={t}
+                deletingId={deletingId}
+              />
+            ) : (
+              <p className="no-result-text m-auto">Aucun jeu trouvé</p>
+            )}
+          </div>
         ) : (
+          /* ── VUE CAROUSEL (existante) ── */
           <div className="list-carousel mx-auto tab-content-anim" key={activeTab}>
-            <button className="list-arrow arrow-left" onClick={(e) => { e.stopPropagation(); scroll("left"); }}>
+            <button className="list-arrow arrow-left" onClick={handleScrollLeft}>
               <FontAwesomeIcon icon={faChevronLeft} />
             </button>
             <div className="cards-wrapper mx-auto" ref={scrollRef}>
@@ -334,35 +433,37 @@ const ListePage = () => {
                         variant="list"
                         isActive={activeId === String(game.id)}
                         activeMenuIndex={activeMenuIndex}
-                        onToggleMenu={(i, e) => { e.stopPropagation(); setActiveMenuIndex(activeMenuIndex === i ? null : i); }}
-                        onDeleteRequest={() => { setActiveMenuIndex(null); setGameToDelete(game); }}
-                        onToggleFavorite={(g) => { setActiveMenuIndex(null); toggleFavorite(g); }}
+                        onToggleMenu={handleToggleMenu}
+                        onDeleteRequest={handleDeleteRequest}
+                        onToggleFavorite={handleToggleFavorite}
                         t={t}
                       />
                     </div>
                   ))}
                   <div className="shrink-0 observer-item">
-                    <GameCard variant="add" t={t} onClick={() => navigate("/game/add-edit-game")} />
+                    <GameCard variant="add" t={t} onClick={handleAddGame} />
                   </div>
                 </>
               ) : (
                 <p className="no-result-text m-auto">Aucun jeu trouvé</p>
               )}
             </div>
-            <button className="list-arrow arrow-right" onClick={(e) => { e.stopPropagation(); scroll("right"); }}>
+            <button className="list-arrow arrow-right" onClick={handleScrollRight}>
               <FontAwesomeIcon icon={faChevronRight} />
             </button>
           </div>
         )}
       </div>
-      {totalPages > 1 && (
+
+      {/* Pagination uniquement en mode carousel */}
+      {viewMode === 'carousel' && totalPages > 1 && (
         <Pagination
           page={page}
           totalPages={totalPages}
-          onPrev={() => setPage((p) => Math.max(1, p - 1))}
-          onNext={() => setPage((p) => Math.min(totalPages, p + 1))}
-          onFirst={() => setPage(1)}
-          onLast={() => setPage(totalPages)}
+          onPrev={handlePagePrev}
+          onNext={handlePageNext}
+          onFirst={handlePageFirst}
+          onLast={handlePageLast}
         />
       )}
       <FilterPanel

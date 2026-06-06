@@ -7,13 +7,20 @@
   overflow: hidden;
   aspect-ratio: 3/4;
   width: 210px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   flex-shrink: 0;
   scroll-snap-align: center;
-  background-color: #c65252;
+  background-color: #1a1a2e;
+}
+
+/* LazyImage background positioning */
+.game-card .game-card-image-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 .game-cards-container {
@@ -43,9 +50,7 @@
 }
 
 /* --- VARIANT: LIST --- */
-.card-list {
-  background-color: #c65252; /* Couleur de secours */
-}
+/* .card-list inherits background-color from .game-card */
 
 .card-top {
   position: relative;

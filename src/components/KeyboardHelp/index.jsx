@@ -3,6 +3,7 @@ import './KeyboardHelp.css';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect,useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import ShortcutItem from '@/components/common/ShortcutItem';
 import { useAuth } from '@/context/AuthContext';
@@ -11,6 +12,7 @@ import { getHardcodedDefaults,useApiShortcutsDefaults } from '@/hooks/api/useApi
 import keyboardShortcutsService from '@/services/keyboardShortcutsService';
 
 const KeyboardHelp = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const { user } = useAuth();
   const { defaults, getDefaults } = useApiShortcutsDefaults();
@@ -75,23 +77,23 @@ const KeyboardHelp = () => {
       const updated = shortcuts.map(s => s.action === actionId ? { ...s, ...keys, isCustomized: true } : s);
       setShortcuts(updated);
       keyboardShortcutsService.loadCustomBindings(updated);
-      showNotification('success', 'Raccourci mis à jour !');
+      showNotification('success', t('keyboardShortcuts.savedSuccess'));
     } catch {
-      showNotification('error', 'Erreur lors de la sauvegarde');
+      showNotification('error', t('keyboardShortcuts.saveError'));
     }
   };
 
   const handleReset = async (actionId) => {
     const def = defaults?.find(d => d.action === actionId);
-    if (!def) return showNotification('error', 'Raccourci par défaut introuvable');
+    if (!def) return showNotification('error', t('keyboardShortcuts.defaultNotFound'));
     try {
       await updateShortcut(actionId, { key: def.key, ctrlKey: def.ctrlKey, altKey: def.altKey, shiftKey: def.shiftKey });
       const updated = shortcuts.map(s => s.action === actionId ? { ...s, ...def, isCustomized: false } : s);
       setShortcuts(updated);
       keyboardShortcutsService.loadCustomBindings(updated);
-      showNotification('success', 'Raccourci réinitialisé !');
+      showNotification('success', t('keyboardShortcuts.resetSuccess'));
     } catch {
-      showNotification('error', 'Erreur lors de la réinitialisation');
+      showNotification('error', t('keyboardShortcuts.resetError'));
     }
   };
 
@@ -114,8 +116,8 @@ const KeyboardHelp = () => {
     <div className="keyboard-help-overlay" onClick={() => setIsVisible(false)}>
       <div className="keyboard-help-modal" onClick={(e) => e.stopPropagation()}>
         <div className="keyboard-help-header">
-          <h2>Raccourcis clavier</h2>
-          <button className="keyboard-help-close" onClick={() => setIsVisible(false)} title="Fermer (Esc)">
+          <h2>{t('keyboardShortcuts.title')}</h2>
+          <button className="keyboard-help-close" onClick={() => setIsVisible(false)} title={`${t('keyboardShortcuts.footer')} Esc`}>
             <FontAwesomeIcon icon={faTimes} />
           </button>
         </div>
@@ -144,7 +146,7 @@ const KeyboardHelp = () => {
         </div>
         
         <div className="keyboard-help-footer">
-          <p>Appuyez sur <kbd>Esc</kbd> ou cliquez en dehors pour fermer</p>
+          <p>{t('keyboardShortcuts.footer')} <kbd>Esc</kbd> {t('keyboardShortcuts.footerClose')}</p>
         </div>
       </div>
     </div>

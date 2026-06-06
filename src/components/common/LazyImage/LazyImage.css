@@ -1,0 +1,106 @@
+/* =========================================
+   LazyImage — Conteneur
+   ========================================= */
+.lazy-image-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.lazy-image-container picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================================
+   Image réelle — toujours nette
+   ========================================= */
+.lazy-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* Fade-in doux à l'apparition */
+  opacity: 0;
+  transition: opacity 0.35s ease-in-out;
+  backface-visibility: hidden;
+}
+
+/* Quand chargée : pleine opacité */
+.lazy-image-container.loaded .lazy-image {
+  opacity: 1;
+}
+
+/* =========================================
+   Skeleton shimmer (pendant le chargement)
+   ========================================= */
+.lazy-image-skeleton {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.10) 50%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+.lazy-image-container.loaded .lazy-image-skeleton {
+  display: none;
+}
+
+@keyframes skeleton-loading {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* =========================================
+   État erreur
+   ========================================= */
+.lazy-image-container.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.lazy-image-error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.25);
+  z-index: 10;
+}
+
+/* =========================================
+   Responsive
+   ========================================= */
+@media (max-width: 768px) {
+  .lazy-image-container {
+    display: block;
+  }
+}
+
+/* =========================================
+   Respect des préférences d'accessibilité
+   ========================================= */
+@media (prefers-reduced-motion: reduce) {
+  .lazy-image {
+    transition: none;
+    opacity: 1; /* Montrer directement sans animation */
+  }
+  .lazy-image-skeleton {
+    animation: none;
+  }
+}

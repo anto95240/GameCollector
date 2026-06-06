@@ -2,7 +2,7 @@ import "./SectionGameCard.css";
 
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useRef,useState } from "react";
+import { useCallback, useEffect, useRef,useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import GameCard from "@/components/common/GameCard";
@@ -36,14 +36,22 @@ const SectionGameCard = () => {
     fetchRecentGames();
   }, [getAllGames]);
 
-  const scroll = (direction) => {
+  const scroll = useCallback((direction) => {
     if (scrollRef.current) {
       const itemNode = scrollRef.current.querySelector(".observer-item");
       const scrollAmount = itemNode ? itemNode.offsetWidth + (window.innerWidth <= 768 ? 15 : 20) : 230;
       if (direction === "left") scrollRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
       else scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
-  };
+  }, []);
+
+  const handleScrollLeft = useCallback(() => {
+    scroll("left");
+  }, [scroll]);
+
+  const handleScrollRight = useCallback(() => {
+    scroll("right");
+  }, [scroll]);
 
   return (
     <div className="section-game-card">
@@ -55,7 +63,7 @@ const SectionGameCard = () => {
         <p className="loading-text">{t("dashboard.loading")}</p>
       ) : recentGames.length > 0 ? (
         <div className="games-carousel">
-          <button className="carousel-arrow arrow-left" onClick={() => scroll("left")}>
+          <button className="carousel-arrow arrow-left" onClick={handleScrollLeft}>
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
 
@@ -76,7 +84,7 @@ const SectionGameCard = () => {
             ))}
           </div>
 
-          <button className="carousel-arrow arrow-right" onClick={() => scroll("right")}>
+          <button className="carousel-arrow arrow-right" onClick={handleScrollRight}>
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
         </div>

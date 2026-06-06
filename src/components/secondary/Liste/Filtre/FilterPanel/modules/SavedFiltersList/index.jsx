@@ -22,10 +22,10 @@ export const SavedFiltersList = ({ savedFilters, onApplySaved, onDeleteSaved }) 
             </div>
           </div>
           <div className="saved-actions flex gap-2">
-            <button className="btn" onClick={() => onApplySaved && onApplySaved(s)}>
+            <button type="button" className="btn" onClick={() => onApplySaved && onApplySaved(s)}>
               Appliquer
             </button>
-            <button className="btn btn-danger" onClick={() => onDeleteSaved && onDeleteSaved(s.id)}>
+            <button type="button" className="btn btn-danger" onClick={() => onDeleteSaved && onDeleteSaved(s.id)}>
               Supprimer
             </button>
           </div>
