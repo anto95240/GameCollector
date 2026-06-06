@@ -1,3 +1,19 @@
+# [2.8.0](https://github.com/anto95240/GameCollector/compare/v2.7.3...v2.8.0) (2026-06-06)
+
+
+### Features
+
+* add cache system, fix security vulnerabilities and refactor API hooks ([42bea36](https://github.com/anto95240/GameCollector/commit/42bea36b15c45c1b716419e54d1e812cedc7d614))
+
+
+### Performance Improvements
+
+* implement component memoization with useCallback hooks ([cf05976](https://github.com/anto95240/GameCollector/commit/cf0597621727caf5cbc66a0a54aeae52da40dfdf))
+* optimize bundle chunks and add vite analyzers ([8e070a4](https://github.com/anto95240/GameCollector/commit/8e070a41699812fc1bf4ecc04c3d7e5afa36d0a3))
+* optimize image ([643a69c](https://github.com/anto95240/GameCollector/commit/643a69cdc036163db0e82b3cf9ce6ed70195f736))
+* remove react-world-flags, replace with inline SVG FlagIcon ([6a3949c](https://github.com/anto95240/GameCollector/commit/6a3949ca7414319ed92cecc606f9f59fa96c70c3))
+* virtual scrolling react-window + toggle vue grille/carousel ([f278904](https://github.com/anto95240/GameCollector/commit/f27890400fded347c1139567c25af532c221c792))
+
 ## [2.7.3](https://github.com/anto95240/GameCollector/compare/v2.7.2...v2.7.3) (2026-06-02)
 
 
