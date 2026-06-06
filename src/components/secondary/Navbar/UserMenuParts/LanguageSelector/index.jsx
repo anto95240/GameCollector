@@ -1,6 +1,6 @@
 import "./LanguageSelector.css";
 
-import Flag from "react-world-flags";
+import FlagIcon from "@/components/common/FlagIcon";
 
 import LangOption from "@/components/secondary/Navbar/UserMenuParts/langOption";
 
@@ -15,7 +15,7 @@ const LanguageSelector = ({ currentLang, isOpen, setOpen, onChange }) => {
         }}
         aria-label="Changer la langue"
       >
-        <Flag code={currentLang === "FR" ? "FR" : "GB"} className="w-6 h-6" />
+        <FlagIcon code={currentLang === "FR" ? "FR" : "GB"} className="w-6 h-6" />
       </button>
 
       {isOpen && (

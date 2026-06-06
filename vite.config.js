@@ -16,9 +16,10 @@ export default defineConfig(({ mode }) => ({
       open: true,
       gzipSize: true,
       brotliSize: true,
+      template: 'treemap',
     }),
-    mode === 'analyze' && analyzer()
-  ],
+    mode === 'analyze' && analyzer({ analyzerMode: 'static' })
+  ].filter(Boolean),
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -29,26 +30,80 @@ export default defineConfig(({ mode }) => ({
     'import.meta.env.VITE_APP_VERSION': JSON.stringify(packageJson.version)
   },
   build: {
+    // Minification avancée via esbuild (défaut Vite) — ultra rapide
+    minify: 'esbuild',
+    // Cibler des navigateurs modernes pour des bundles plus petits
+    target: 'es2020',
+    // Seuil d'avertissement pour les gros chunks (600 kB)
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
+        // Nommage des assets avec hash pour le cache busting
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('/react/') || id.includes('/react-dom/') || id.includes('/react-router/') || id.includes('/react-router-dom/')) {
-              return 'vendor-react';
+            // React core — chargé en premier
+            if (
+              id.includes('/react/') ||
+              id.includes('/react-dom/') ||
+              id.includes('/scheduler/')
+            ) {
+              return 'vendor-react'
             }
-            if (id.includes('chart.js') || id.includes('react-chartjs-2') || id.includes('recharts') || id.includes('react-charts')) {
-              return 'vendor-charts';
+            // Routing
+            if (
+              id.includes('/react-router/') ||
+              id.includes('/react-router-dom/')
+            ) {
+              return 'vendor-router'
             }
+            // Charts — recharts uniquement (chart.js supprimé)
+            if (
+              id.includes('/recharts/') ||
+              id.includes('/d3-') ||
+              id.includes('/victory-')
+            ) {
+              return 'vendor-charts'
+            }
+            // Icônes FontAwesome — souvent volumineux
             if (id.includes('@fortawesome')) {
-              return 'vendor-icons';
+              return 'vendor-icons'
             }
-            if (id.includes('axios') || id.includes('i18next') || id.includes('fuse.js')) {
-              return 'vendor-utils';
+            // Internationalisation
+            if (id.includes('/i18next') || id.includes('/react-i18next/')) {
+              return 'vendor-i18n'
             }
-            return 'vendor-core'; // cache rest of node_modules
+            // Utilitaires HTTP + recherche
+            if (id.includes('/axios/') || id.includes('/fuse.js/')) {
+              return 'vendor-utils'
+            }
+            // Virtualisation listes
+            if (id.includes('/react-window/')) {
+              return 'vendor-virtual'
+            }
+            // Tout le reste de node_modules
+            return 'vendor-core'
           }
         }
-      }
+      },
+      // Supprimer les console.log en production
+      ...(mode === 'production' && {
+        treeshake: {
+          moduleSideEffects: false,
+        }
+      })
     }
+  },
+  // Optimisation des dépendances en dev
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router',
+      'recharts',
+      'axios',
+    ]
   }
 }))
