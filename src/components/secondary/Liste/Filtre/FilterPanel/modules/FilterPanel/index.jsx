@@ -170,7 +170,14 @@ const FilterPanel = ({
             />
           </div>
         ) : (
-          <SavedFiltersList savedFilters={savedFilters} onApplySaved={onApplySaved} onDeleteSaved={onDeleteSaved} />
+          <SavedFiltersList 
+            savedFilters={savedFilters} 
+            onApplySaved={(s) => {
+              if (onApplySaved) onApplySaved(s);
+              setActivePanelTab("all");
+            }} 
+            onDeleteSaved={onDeleteSaved} 
+          />
         )}
       </div>
 

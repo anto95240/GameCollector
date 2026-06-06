@@ -1,6 +1,7 @@
 import "./NavLinks.css";
 
 import { NavLink } from "react-router";
+
 import { usePreloadRoute } from "@/hooks/ui/usePreloadRoute";
 
 const NavLinks = ({ t, closeMenu }) => {

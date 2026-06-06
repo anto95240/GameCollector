@@ -42,13 +42,14 @@ export const generateWebpUrl = (imageUrl) => {
 export const generateResponsiveSrcSet = (baseUrl, widths = [500, 800, 1200]) => {
   if (!baseUrl) return '';
   
+  // If the image is a data URL, we cannot append query parameters
+  if (baseUrl.startsWith('data:')) return '';
+
   return widths
     .map((width) => {
-      const urlWithWidth = baseUrl.replace(
-        /\.(jpg|jpeg|png|webp)$/i,
-        (match) => `-${width}w${match}`
-      );
-      return `${urlWithWidth} ${width}w`;
+      // Use query parameters instead of changing the filename
+      const separator = baseUrl.includes('?') ? '&' : '?';
+      return `${baseUrl}${separator}w=${width} ${width}w`;
     })
     .join(', ');
 };

@@ -1,9 +1,9 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import react from '@vitejs/plugin-react'
+import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 import analyzer from 'vite-bundle-analyzer'
-import { visualizer } from 'rollup-plugin-visualizer'
 
 import packageJson from './package.json'
 

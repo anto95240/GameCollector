@@ -21,7 +21,7 @@
 	transform: translateY(-3px) scale(1.02);
 	border-color: var(--border-focus);
 	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 10px rgba(90, 242, 255, 0.15);
-	background: var(--bg-card-hover, rgba(0, 50, 110, 0.6));
+	background: var(--bg-card-hover);
 }
 
 .saved-empty-state {

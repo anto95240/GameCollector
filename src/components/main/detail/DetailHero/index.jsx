@@ -14,8 +14,8 @@ import { useEffect, useRef,useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import LazyImage from "@/components/common/LazyImage";
-import { getOptimizedImageProps } from "@/utils/formatters";
 import { MOCK_OPTIONS } from "@/config/constants";
+import { getOptimizedImageProps } from "@/utils/formatters";
 
 const DetailHero = ({ game, onToggleFavorite, metadata = {}, isUpdating = false, onUpdateField = () => {}, onToggleSoon = () => {} }) => {
   const { t } = useTranslation();
@@ -81,14 +81,13 @@ const DetailHero = ({ game, onToggleFavorite, metadata = {}, isUpdating = false,
       {game?.imageUrl && (
         <LazyImage
           {...getOptimizedImageProps(game.imageUrl, {
-            widths: [600, 1000, 1400],  // Optimized for hero display
+            widths: [300, 600, 1000],
             autoWebp: true,
           })}
           alt={game.name}
-          width={1400}
-          height={400}
-          placeholder="blur"
-          placeholderQuality={8}
+          width={280}
+          height={420}
+          sizes="(max-width: 600px) 140px, 280px"
           className="hero-cover"
         />
       )}

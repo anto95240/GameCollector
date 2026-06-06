@@ -282,6 +282,27 @@
         "or": "Or",
         "platine": "Platine"
       }
+    },
+
+    "keyboardShortcuts": {
+      "title": "Raccourcis clavier",
+      "footer": "Appuyez sur",
+      "footerClose": "ou cliquez en dehors pour fermer",
+      "recording": "Appuyez sur les touches...",
+      "waiting": "En attente...",
+      "customBadge": "Personnalisé",
+      "disabledBadge": "Désactivé",
+      "save": "Valider",
+      "cancel": "Annuler",
+      "modify": "Modifier",
+      "reset": "Réinitialiser",
+      "enable": "Activer",
+      "disable": "Désactiver",
+      "savedSuccess": "Raccourci mis à jour !",
+      "saveError": "Erreur lors de la sauvegarde",
+      "resetSuccess": "Raccourci réinitialisé !",
+      "resetError": "Erreur lors de la réinitialisation",
+      "defaultNotFound": "Raccourci par défaut introuvable"
     }
   }
 }

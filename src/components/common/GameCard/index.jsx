@@ -1,6 +1,5 @@
 import "./GameCard.css";
 
-import React from "react";
 import {
   faEllipsisVertical,
   faHeart,
@@ -9,12 +8,13 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 import { useNavigate } from "react-router";
 
 import LazyImage from "@/components/common/LazyImage";
+import { usePreloadRoute } from "@/hooks/ui/usePreloadRoute";
 import { formatImageUrl, getOptimizedImageProps } from "@/utils/formatters";
 import { createSlug } from "@/utils/helpers/slugGenerator";
-import { usePreloadRoute } from "@/hooks/ui/usePreloadRoute";
 
 const GameCard = ({
   game,
@@ -99,15 +99,13 @@ const GameCard = ({
       data-id={game.id || index}
       tabIndex={0}
     >
-      {/* Lazy-loaded background image with optimization */}
       {imageProps && (
         <LazyImage
           {...imageProps}
           alt={gameName}
-          width={500}
-          height={350}
-          placeholder="blur"
-          placeholderQuality={10}
+          width={300}
+          height={400}
+          sizes="(max-width: 787px) 180px, 210px"
           className="game-card-image-background"
         />
       )}

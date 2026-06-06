@@ -279,7 +279,27 @@
         "or": "Gold",
         "platine": "Platinum"
       }
+    },
 
+    "keyboardShortcuts": {
+      "title": "Keyboard shortcuts",
+      "footer": "Press",
+      "footerClose": "or click outside to close",
+      "recording": "Press keys...",
+      "waiting": "Waiting...",
+      "customBadge": "Customized",
+      "disabledBadge": "Disabled",
+      "save": "Confirm",
+      "cancel": "Cancel",
+      "modify": "Edit",
+      "reset": "Reset",
+      "enable": "Enable",
+      "disable": "Disable",
+      "savedSuccess": "Shortcut updated!",
+      "saveError": "Error while saving",
+      "resetSuccess": "Shortcut reset!",
+      "resetError": "Error while resetting",
+      "defaultNotFound": "Default shortcut not found"
     }
   }
 }
