@@ -29,6 +29,7 @@
     "react-dom": "^19.2.1",
     "react-i18next": "^15.5.2",
     "react-router": "^7.6.2",
+    "react-window": "^2.2.7",
     "react-world-flags": "^1.6.0",
     "recharts": "^3.6.0"
   },
