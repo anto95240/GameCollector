@@ -1,6 +1,4 @@
-/**
- * Utilitaires pour l'extraction et transformation des filtres
- */
+
 
 export const normalizeUserId = (user) => user?.uid || user?._id || user?.id || null;
 

@@ -2,16 +2,6 @@ import { useFilters } from "@/context";
 
 import { useFilteredGamesList } from "./useFilteredGamesList";
 import { useFilterGrouping } from "./useFilterGrouping";
-
-/**
- * Hook principal pour gérer le filtrage des jeux
- * Orchestrage de 3 sous-hooks spécialisés
- * 
- * Responsabilités:
- * - useFilterGrouping: Grouper les filtres par catégorie
- * - useFilteredGamesList: Appliquer les filtres à la liste
- * - État: search, pagination, sélection des filtres géré par le FiltersContext
- */
 export const useGameFiltering = (initialGames) => {
   const {
     searchTerm,
@@ -29,11 +19,6 @@ export const useGameFiltering = (initialGames) => {
 
   // Appliquer les filtres et le search term
   const filteredGames = useFilteredGamesList(initialGames, searchTerm, groupedFilters);
-
-  /**
-   * Sélectionner un filtre
-   * Gère les filtres simple (remplacement) et multi-select (merge)
-   */
   const handleSelectFilter = (category, option, mergeMulti = false) => {
     const cat = String(category).trim();
     const normalized = cat.toLowerCase();

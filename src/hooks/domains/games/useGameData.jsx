@@ -7,11 +7,6 @@ import { useApiGame } from "@/hooks/api/useApiGame";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
 import { createGameSlug,formatGameForDetail,extractGamesList } from "@/utils/formatters";
 import { triggerAchievementCheck } from "@/services/achievementService";
-
-/**
- * Hook pour fetcher et gérer les données du jeu
- * Responsabilité: Récupération, formatting et caching des données du jeu
- */
 export const useGameData = (id, slug, gameName) => {
   const { state } = useLocation();
   const { getAllGames, getGameById } = useApiGame();

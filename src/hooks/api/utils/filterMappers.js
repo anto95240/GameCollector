@@ -1,6 +1,4 @@
-/**
- * Mappage et normalisation des réponses API pour les filtres
- */
+
 
 export const mapApiFilterToLocal = (filter) => {
   let parsedDescription = null;

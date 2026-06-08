@@ -1,6 +1,4 @@
-/**
- * Handlers pour le profil utilisateur
- */
+
 
 export const handleSaveProfileAsync = async (form, user, updateProfile, showError, showUpdated) => {
   try {

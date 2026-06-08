@@ -1,11 +1,6 @@
 import { useMemo } from "react";
 
 import { applyFilterByCategory } from "./filterUtils";
-
-/**
- * Hook pour filtrer la liste de jeux basé sur les filtres groupés
- * Applique la logique: OR au sein d'une catégorie, AND entre catégories
- */
 export const useFilteredGamesList = (initialGames, searchTerm, groupedFilters) => {
   return useMemo(() => {
     if (!initialGames) return [];

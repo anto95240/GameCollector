@@ -1,10 +1,5 @@
 import React from 'react';
 import ErrorFallback from '../ErrorFallback';
-
-/**
- * Error Boundary - Capture les erreurs non gérées et affiche un fallback
- * Empêche l'app de crasher complètement
- */
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);

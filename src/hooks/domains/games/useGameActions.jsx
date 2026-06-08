@@ -5,20 +5,10 @@ import { useApiGame } from "@/hooks/api/useApiGame";
 import { triggerAchievementCheck } from "@/services/achievementService";
 import { isWishlistStatusName } from "@/utils/formatters";
 import { incrementStoredUserMetric } from "@/utils/userStorage";
-
-/**
- * Hook pour gérer les actions sur le jeu (favori, suppression, mise à jour)
- * Responsabilité: Mutations du jeu et interactions utilisateur
- */
 export const useGameActions = (game, setGame, metadata) => {
   const navigate = useNavigate();
   const { deleteGame, updateGame } = useApiGame();
   const [isUpdating, setIsUpdating] = useState(false);
-
-  /**
-   * Construit le FormData pour mettre à jour le jeu
-   * Extrait cette logique dupliquée pour éviter la répétition
-   */
   const buildUpdateFormData = useCallback((updatedGame, overrides = {}) => {
     const formData = new FormData();
 

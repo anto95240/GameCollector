@@ -1,18 +1,8 @@
 import { useCallback,useState } from "react";
-
-/**
- * Hook pour récupérer les raccourcis par défaut
- * Ces raccourcis sont les mêmes pour tous les utilisateurs
- * Utilise les raccourcis hardcodés (les appels API pour les defaults ne sont pas nécessaires)
- */
 export const useApiShortcutsDefaults = () => {
   const [defaults, setDefaults] = useState(getHardcodedDefaults());
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  /**
-   * Récupère les raccourcis par défaut (utilise les defaults hardcodés)
-   */
   const getDefaults = useCallback(() => {
     const fallbackDefaults = getHardcodedDefaults();
     setDefaults(fallbackDefaults);
@@ -26,10 +16,6 @@ export const useApiShortcutsDefaults = () => {
     getDefaults,
   };
 };
-
-/**
- * Raccourcis par défaut hardcodés (fallback si API indisponible)
- */
 export const getHardcodedDefaults = () => [
   {
     _id: "1",

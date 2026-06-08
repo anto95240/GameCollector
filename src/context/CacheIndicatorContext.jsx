@@ -1,7 +1,4 @@
-/**
- * Contexte pour partager l'état du cache avec les composants
- * Permet aux composants de savoir si les données affichées sont en cache
- */
+
 
 import { createContext, useCallback,useContext, useState } from 'react';
 

@@ -3,12 +3,7 @@ import { useNavigate } from "react-router";
 import { useGameActions } from "./useGameActions";
 import { useGameData } from "./useGameData";
 import { useGameMetadata } from "./useGameMetadata";
-
-/**
- * Hook principal pour gérer les détails d'un jeu
- * Combine useGameData, useGameActions et useGameMetadata
- * Responsabilité: Orchestration des trois hooks spécialisés
- */
+// Orchestrateur: Lie la donnée brute du jeu avec ses actions possibles et ses métadonnées
 export const useGameDetail = (id, slug, gameName) => {
   const navigate = useNavigate();
 

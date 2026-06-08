@@ -1,13 +1,6 @@
 import './LazyImage.css';
 
 import { useEffect, useRef, useState } from 'react';
-
-/**
- * LazyImage Component
- * Optimized image component with lazy-loading and smooth fade-in.
- * The image is always fully opaque once loaded — no blur placeholder
- * that could interfere with the visual rendering.
- */
 const LazyImage = ({
   src,
   srcWebp,

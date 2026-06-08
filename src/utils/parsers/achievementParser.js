@@ -1,19 +1,6 @@
-/**
- * Normalise le texte pour les comparaisons d'identifiants
- * (enlève les accents et met en minuscules)
- * @param {string} value 
- * @returns {string}
- */
 export const normalizeText = (value) => (
   String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
 );
-
-/**
- * Évalue si les conditions d'un achievement sont remplies
- * @param {Object} achievement 
- * @param {Object} stats 
- * @returns {boolean}
- */
 export const evaluateAchievementCondition = (achievement, stats) => {
   const idName = normalizeText(achievement?.id_name || achievement?.idName || achievement?.slug || achievement?.title);
   

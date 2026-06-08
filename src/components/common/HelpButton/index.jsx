@@ -3,10 +3,6 @@ import './HelpButton.css';
 import { faQuestion } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect,useState } from 'react';
-
-/**
- * Bouton d'aide pour afficher les raccourcis clavier
- */
 const HelpButton = () => {
   const [isHovered, setIsHovered] = useState(false);
 

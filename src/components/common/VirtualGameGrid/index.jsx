@@ -4,11 +4,6 @@ import React from "react";
 import { Grid } from "react-window";
 
 import GameCard from "@/components/common/GameCard";
-
-/**
- * CellComponent - individuelle cell pour react-window v2 Grid.
- * Reçoit automatiquement: columnIndex, rowIndex, style, data (via cellProps).
- */
 const CellComponent = ({
   columnIndex,
   rowIndex,
@@ -58,25 +53,6 @@ const CellComponent = ({
     </div>
   );
 };
-
-/**
- * VirtualGameGrid - renders a large game list with react-window v2 virtualization.
- * Only DOM nodes for visible rows are mounted, giving ~50% perf gain on 100+ items.
- *
- * @param {object[]} games        - full sorted/filtered game array
- * @param {number}   itemHeight   - height of each row in px (default 260)
- * @param {number}   colCount     - number of columns (responsive, computed by parent)
- * @param {number}   containerH   - height of the scrollable area in px
- * @param {number}   containerW   - width of the scrollable area in px
- * @param {string}   activeTab    - current tab key (for key prop reset)
- * @param {number}   activeMenuIndex
- * @param {Function} onToggleMenu
- * @param {Function} onDeleteRequest
- * @param {Function} onToggleFavorite
- * @param {Function} onAddGame
- * @param {Function} t            - i18n translate
- * @param {string}   deletingId   - id of game currently being deleted
- */
 const VirtualGameGrid = ({
   games,
   itemHeight = 260,

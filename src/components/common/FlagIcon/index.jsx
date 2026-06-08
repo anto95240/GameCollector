@@ -1,8 +1,4 @@
-/**
- * FlagIcon — composant léger remplaçant react-world-flags (3.7 MB → ~1 kB)
- * Seuls les drapeaux FR et GB sont utilisés dans l'application.
- * SVG inline : zéro dépendance, zéro bundle overhead, rendu instantané.
- */
+
 
 const FLAGS = {
   FR: (
@@ -35,12 +31,6 @@ const FLAGS = {
     </svg>
   ),
 };
-
-/**
- * @param {{ code: string, className?: string, style?: React.CSSProperties }} props
- * `code` doit être un code ISO 3166-1 alpha-2 majuscule (ex: "FR", "GB").
- * Les codes non supportés affichent un carré gris neutre en fallback.
- */
 const FlagIcon = ({ code, className, style }) => {
   const svg = FLAGS[code?.toUpperCase()];
 

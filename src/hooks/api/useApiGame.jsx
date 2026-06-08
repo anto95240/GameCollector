@@ -4,9 +4,9 @@ import axios from "@/config/interceptor";
 import CacheInvalidationService from "@/services/cacheInvalidationService";
 
 import cacheManager from "./utils/cacheManager";
-
+// Hook d'API pour les requêtes de jeux (gère les appels Axios et l'invalidation du cache)
 export const useApiGame = () => {
-
+    // Récupère tous les jeux, avec gestion de cache locale
     const getAllGames = useCallback(async (search = "") => {
         const cacheKey = `game:all:${search}`;
         const cached = cacheManager.get(cacheKey);
@@ -61,8 +61,10 @@ export const useApiGame = () => {
         }
     }, []);
 
+    // Mutation: création d'un jeu
     const createGame = async (gameData) => {
         const { data } = await axios.post("/api/games", gameData);
+        // On invalide le cache pour forcer un re-fetch au prochain appel
         CacheInvalidationService.invalidateGameCaches();
         return data;
     };

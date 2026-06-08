@@ -1,11 +1,6 @@
 import './CacheIndicator.css';
 
 import React from 'react';
-
-/**
- * Composant indicateur de cache
- * Affiche un badge quand les données sont en cache
- */
 export const CacheIndicator = ({ isCached, size = 'md', showLabel = false }) => {
   if (!isCached) return null;
 
@@ -25,10 +20,6 @@ export const CacheIndicator = ({ isCached, size = 'md', showLabel = false }) => 
     </div>
   );
 };
-
-/**
- * Badge de cache pour les listes
- */
 export const CacheBadge = ({ className = '' }) => (
   <span className={`cache-badge ${className}`} title="Données en cache">
     <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
@@ -36,10 +27,6 @@ export const CacheBadge = ({ className = '' }) => (
     </svg>
   </span>
 );
-
-/**
- * Label inline pour indiquer les données en cache
- */
 export const CacheLabel = ({ className = '' }) => (
   <span className={`cache-label ${className}`} title="Données en cache">
     Mis en cache

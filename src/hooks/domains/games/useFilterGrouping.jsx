@@ -1,9 +1,4 @@
 import { useMemo } from "react";
-
-/**
- * Hook pour grouper les filtres par catégorie
- * Permet OR comportement au sein d'une catégorie et AND entre catégories
- */
 export const useFilterGrouping = (selectedFilters) => {
   return useMemo(() => {
     const map = new Map();

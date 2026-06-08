@@ -13,10 +13,6 @@ export const useApiFilters = () => {
   const { user, updateUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  /**
-   * Invalide tous les caches de filtres pour l'utilisateur courant
-   */
   const invalidateUserFilterCache = useCallback(() => {
     const userId = normalizeUserId(user);
     if (userId) {

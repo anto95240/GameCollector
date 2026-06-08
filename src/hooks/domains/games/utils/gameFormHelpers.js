@@ -1,6 +1,4 @@
-/**
- * Logique d'initialisation et gestion des données du formulaire
- */
+
 import { formatImageUrl } from "@/utils/formatters/imageFormatters";
 
 export const getInitialFormData = (gameToEdit = null) => {
@@ -61,13 +59,6 @@ export const buildGamePayload = (formData, selectedTags, image = null, existingI
 
   return submitData;
 };
-
-/**
- * Formate l'image pour la prévisualisation du formulaire.
- * Délègue à formatImageUrl (centralisé dans imageFormatters).
- * @param {string} imageUrl - Chemin ou URL de l'image
- * @param {string} [apiUrl] - URL du backend (optionnel, formatImageUrl a son propre fallback)
- */
 export const formatPreviewImage = (imageUrl, apiUrl) => {
   return formatImageUrl(imageUrl, apiUrl);
 };

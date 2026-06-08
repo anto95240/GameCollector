@@ -2,12 +2,7 @@ import Fuse from 'fuse.js';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import axios from "@/config/interceptor";
-
-/**
- * Hook de recherche intelligente (Fuzzy Search)
- * @param {Array} itemsList - La liste d'objets à filtrer (ex: les jeux)
- * @param {Array} searchKeys - Les clés sur lesquelles chercher (ex: ['title', 'platform'])
- */
+// Hook UI: Gère la recherche intelligente (tolérance aux fautes) avec Fuse.js et fallback API
 export const useFuzzySearch = (itemsList, searchKeys = ['title']) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -55,6 +50,7 @@ export const useFuzzySearch = (itemsList, searchKeys = ['title']) => {
       };
     }
 
+    // Exécution de la recherche: Priorité backend, fallback Fuse.js local si échec
     const runSearch = async () => {
       if (backendDisabledRef.current) {
         const fallbackResults = fuse.search(trimmedQuery).map((result) => result.item);

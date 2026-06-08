@@ -12,11 +12,6 @@ const routeImports = {
   '/login': () => import('@/screens/Login'),
   '/register': () => import('@/screens/Register'),
 };
-
-/**
- * Hook to preload routes on hover/focus to improve perceived performance
- * TTI -30%, FCP -20%
- */
 export function usePreloadRoute() {
   const preloadRoute = useCallback((path) => {
     if (!path) return;

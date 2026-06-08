@@ -1,31 +1,16 @@
-/**
- * Utilitaires pour le filtrage par catégorie
- * Chaque fonction gère la logique de filtrage pour sa catégorie
- */
 
-/**
- * Filtre par genre
- */
 export const filterByGenre = (game, value) => {
   if (Array.isArray(value)) {
     return value.includes(game.genre);
   }
   return value ? game.genre === value : true;
 };
-
-/**
- * Filtre par plateforme
- */
 export const filterByPlatform = (game, value) => {
   if (Array.isArray(value)) {
     return value.includes(game.platform);
   }
   return value ? game.platform === value : true;
 };
-
-/**
- * Filtre par année (inclut range)
- */
 export const filterByYear = (game, value) => {
   if (typeof value === "object" && value.min !== undefined) {
     const y = Number(game.year) || 0;
@@ -36,10 +21,6 @@ export const filterByYear = (game, value) => {
   }
   return value ? String(game.year) === String(value) : true;
 };
-
-/**
- * Filtre par note/rating (inclut range)
- */
 export const filterByRating = (game, value) => {
   if (typeof value === "object" && value.min !== undefined) {
     const r = Number(game.rating) || 0;
@@ -50,20 +31,12 @@ export const filterByRating = (game, value) => {
   }
   return value ? Number(game.rating) === Number(value) : true;
 };
-
-/**
- * Filtre par statut
- */
 export const filterByStatus = (game, value) => {
   if (Array.isArray(value)) {
     return value.includes(game.status);
   }
   return value ? game.status === value : true;
 };
-
-/**
- * Filtre par favori (bool)
- */
 export const filterByFavorite = (game, value) => {
   if (Array.isArray(value)) {
     if (value.includes("Nos favoris") && !game.isFavorite) return false;
@@ -78,10 +51,6 @@ export const filterByFavorite = (game, value) => {
   }
   return true;
 };
-
-/**
- * Filtre par prochainement/à venir (bool)
- */
 export const filterBySoon = (game, value) => {
   if (Array.isArray(value)) {
     if (value.includes("Prochainement") && !game.isSoon) return false;
@@ -96,10 +65,6 @@ export const filterBySoon = (game, value) => {
   }
   return true;
 };
-
-/**
- * Determine le type de catégorie basé sur son nom
- */
 export const getCategoryType = (categoryName) => {
   const lower = categoryName.toLowerCase();
 
@@ -113,10 +78,6 @@ export const getCategoryType = (categoryName) => {
 
   return null;
 };
-
-/**
- * Applique le filtre basé sur la catégorie
- */
 export const applyFilterByCategory = (game, category, value) => {
   const type = getCategoryType(category);
 

@@ -1,6 +1,4 @@
-/**
- * Utilitaires pour le FilterPanel
- */
+
 
 export const getOptionCount = (games, categoryLabel, optionValue) => {
   if (!games) return 0;

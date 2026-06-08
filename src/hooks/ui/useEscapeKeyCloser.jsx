@@ -1,10 +1,4 @@
 import { useEffect } from 'react';
-
-/**
- * Hook pour fermer les popups/modals avec la touche Escape
- * @param {function} onClose - Fonction à appeler pour fermer le popup
- * @param {boolean} isOpen - État d'ouverture du popup (optionnel)
- */
 export const useEscapeKeyCloser = (onClose, isOpen = true) => {
   useEffect(() => {
     if (!isOpen || !onClose) return;
