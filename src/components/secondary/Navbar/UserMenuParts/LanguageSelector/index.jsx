@@ -1,8 +1,7 @@
 import "./LanguageSelector.css";
 
 import FlagIcon from "@/components/common/FlagIcon";
-
-import LangOption from "@/components/secondary/Navbar/UserMenuParts/langOption";
+import LangOption from "@/components/secondary/Navbar/UserMenuParts/LangOption";
 
 const LanguageSelector = ({ currentLang, isOpen, setOpen, onChange }) => {
   return (
