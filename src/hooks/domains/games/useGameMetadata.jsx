@@ -1,5 +1,7 @@
 import { useMemo } from "react";
 
+import { isWishlistStatusName } from "@/utils/formatters";
+
 /**
  * Hook pour enrichir et looker les métadonnées du jeu
  * Responsabilité: Résolution des IDs métadonnées vers leurs noms/valeurs
@@ -23,16 +25,13 @@ export const useGameMetadata = (game, metadata) => {
   const enrichedGame = useMemo(() => {
     if (!game) return null;
 
+    // Résoudre une seule fois plutôt que 3 appels identiques
+    const statusName = getStatusName(game.status_id?._id || game.status_id);
+
     return {
       ...game,
-      statusName: getStatusName(game.status_id?._id || game.status_id),
-      isWishlistStatus:
-        getStatusName(game.status_id?._id || game.status_id)
-          .toLowerCase()
-          .includes("wishlist") ||
-        getStatusName(game.status_id?._id || game.status_id)
-          .toLowerCase()
-          .includes("à venir")
+      statusName,
+      isWishlistStatus: isWishlistStatusName(statusName),
     };
   }, [game, getStatusName]);
 

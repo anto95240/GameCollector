@@ -3,6 +3,8 @@ import "./TopGamesWidget.css";
 import { faMedal,faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { formatImageUrl } from "@/utils/formatters/imageFormatters";
+
 const MEDALS = ["🥇", "🥈", "🥉"];
 
 const TopGamesWidget = ({ stats, metadata = {} }) => {
@@ -12,7 +14,7 @@ const TopGamesWidget = ({ stats, metadata = {} }) => {
     ...g,
     platformName: metadata.platforms?.find(p => p._id === g.platform)?.platform_name || "Inconnu",
     genreName: metadata.genres?.find(mg => mg._id === g.genre)?.genre_name || "",
-    imageUrl: g.image?.startsWith("http") ? g.image : `${import.meta.env.VITE_API_URL || "http://localhost:5000"}${g.image}`,
+    imageUrl: formatImageUrl(g.image),
   }));
 
   return (

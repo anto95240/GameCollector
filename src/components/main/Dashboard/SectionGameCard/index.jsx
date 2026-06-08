@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import GameCard from "@/components/common/GameCard";
 import { useApiGame } from "@/hooks/api/useApiGame";
 import { useActiveOnScroll } from "@/hooks/ui/useActiveOnScroll";
+import { extractGamesList, formatGamesForCarousel } from "@/utils/formatters";
 
 const SectionGameCard = () => {
   const { t } = useTranslation();
@@ -24,8 +25,7 @@ const SectionGameCard = () => {
       setIsLoading(true);
       try {
         const data = await getAllGames();
-        const gamesList = Array.isArray(data) ? data : data.games || [];
-        setRecentGames(gamesList.slice(0, 5));
+        setRecentGames(formatGamesForCarousel(extractGamesList(data).slice(0, 5)));
       } catch (error) {
         console.error("Erreur lors du chargement des jeux récents", error);
       } finally {
@@ -75,7 +75,7 @@ const SectionGameCard = () => {
                 data-id={String(game._id)}
               >
                 <GameCard
-                  game={{ ...game, id: game._id }}
+                  game={game}
                   variant="dashboard"
                   t={t}
                   isActive={activeId === String(game._id)}

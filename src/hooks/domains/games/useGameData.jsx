@@ -5,7 +5,8 @@ import { MOCK_OPTIONS } from "@/config/constants";
 import { useApiAuth } from "@/hooks/api/useApiAuth";
 import { useApiGame } from "@/hooks/api/useApiGame";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
-import { createGameSlug,formatGameForDetail } from "@/utils/formatters";
+import { createGameSlug,formatGameForDetail,extractGamesList } from "@/utils/formatters";
+import { triggerAchievementCheck } from "@/services/achievementService";
 
 /**
  * Hook pour fetcher et gérer les données du jeu
@@ -41,8 +42,7 @@ export const useGameData = (id, slug, gameName) => {
         if (id && id !== "undefined") {
           fetchedGame = await getGameById(id);
         } else {
-          const gamesData = await getAllGames();
-          const gamesList = Array.isArray(gamesData) ? gamesData : gamesData.games || [];
+          const gamesList = extractGamesList(await getAllGames());
           const target = createGameSlug(slug || gameName || "");
           fetchedGame = gamesList.find(g => createGameSlug(g.name) === target);
         }
@@ -56,7 +56,7 @@ export const useGameData = (id, slug, gameName) => {
         // Ajouter à l'historique si l'ID existe
         if (fetchedGame._id) {
           await addGameToHistory(fetchedGame._id);
-          window.dispatchEvent(new Event('checkAchievements'));
+          triggerAchievementCheck();
         }
       }
     } catch (e) {

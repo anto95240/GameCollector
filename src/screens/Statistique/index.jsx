@@ -14,6 +14,7 @@ import StatusFunnelChart from "@/components/main/Statistique/StatusFunnelChart";
 import TopGamesWidget from "@/components/main/Statistique/TopGamesWidget";
 import YearChart from "@/components/main/Statistique/YearChart";
 import { useStatsData } from "@/hooks/domains/dashboard/useStatsData";
+import { triggerAchievementCheck } from "@/services/achievementService";
 import { mergeStoredUser } from "@/utils/userStorage";
 
 const TABS = [
@@ -31,7 +32,7 @@ function StatistiquePage() {
 
   useEffect(() => {
     mergeStoredUser({ viewedStats: true });
-    window.dispatchEvent(new Event("checkAchievements"));
+    triggerAchievementCheck();
   }, []);
 
   if (isLoading || !stats) {

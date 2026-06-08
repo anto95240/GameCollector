@@ -2,6 +2,7 @@ import { useEffect,useState } from 'react';
 
 import { useApiGame } from '@/hooks/api/useApiGame';
 import { useApiMetadata } from '@/hooks/api/useApiMetadata';
+import { formatGamesForCarousel, extractGamesList } from '@/utils/formatters';
 
 export const useDashboard = () => {
     const { getAllGames } = useApiGame();
@@ -29,7 +30,7 @@ export const useDashboard = () => {
 
                 if (!isMounted) return;
 
-                const gamesList = Array.isArray(gamesData) ? gamesData : gamesData.games || [];
+                const gamesList = extractGamesList(gamesData);
                 
                 // --- Calcul des Stats ---
                 const total = gamesList.length;
@@ -47,12 +48,8 @@ export const useDashboard = () => {
                 });
 
                 // --- Récupération des jeux récents ---
-                // On formate les jeux pour qu'ils aient un "id" direct
-                const formattedRecent = gamesList.slice(0, 5).map(g => ({
-                    ...g,
-                    id: g._id,
-                    image: g.image?.startsWith('http') ? g.image : `${import.meta.env.VITE_API_URL || 'http://localhost:5001'}${g.image}`
-                }));
+                // Utiliser le formatter centralisé pour éviter la duplication
+                const formattedRecent = formatGamesForCarousel(gamesList.slice(0, 5));
 
                 setRecentGames(formattedRecent);
 

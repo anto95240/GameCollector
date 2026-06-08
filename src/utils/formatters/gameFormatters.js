@@ -4,6 +4,28 @@ import { formatImageUrl } from "./imageFormatters";
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
 
 /**
+ * Détermine si un nom de statut correspond à la wishlist/prochainement.
+ * Source unique de vérité — évite 3 clauses répétées dans plusieurs hooks.
+ * @param {string} statusName - Nom du statut (ex: "Wishlist", "À venir")
+ * @returns {boolean}
+ */
+export const isWishlistStatusName = (statusName = "") => {
+  const lower = statusName.toLowerCase();
+  return lower.includes("wishlist") ||
+    lower.includes("à venir") ||
+    lower.includes("prochainement");
+};
+
+/**
+ * Extrait la liste de jeux depuis une réponse API normalisée
+ * (l'API peut retourner un tableau direct ou un objet { games: [...] })
+ * @param {Array|Object} data - Réponse brute de l'API
+ * @returns {Array} Tableau de jeux (jamais undefined)
+ */
+export const extractGamesList = (data) =>
+  Array.isArray(data) ? data : data?.games || [];
+
+/**
  * Mappe les métadonnées d'un jeu avec les données API
  * @param {Object} game - Données brutes du jeu
  * @param {Object} metadata - Métadonnées (genres, platforms, statuses, tags)
@@ -51,9 +73,9 @@ export const formatGameForDisplay = (game, metadata, apiUrl = API_URL) => {
 export const formatGameForDetail = (game, metadata, apiUrl = API_URL) => {
   const baseGame = formatGameForDisplay(game, metadata, apiUrl);
   
+  // baseGame already has imageUrl from formatGameForDisplay — no need to recompute
   return {
     ...baseGame,
-    imageUrl: formatImageUrl(game.image, apiUrl),
     genre_id: game.genre_id,
     platform_id: game.platform_id,
     status_id: game.status_id,
@@ -131,3 +153,30 @@ export const normalizeGameBooleans = (game) => {
     isSoon: game.isSoon === true || String(game.isSoon) === "true",
   };
 };
+
+/**
+ * Normalise un jeu brut de l'API pour garantir les champs essentiels
+ * (id, booléens, imageUrl) sans avoir besoin de métadonnées.
+ * Utile pour les contextes où les métadonnées ne sont pas disponibles.
+ * @param {Object} game - Données brutes du jeu
+ * @param {string} [apiUrl] - URL du backend
+ * @returns {Object} Jeu normalisé
+ */
+export const normalizeGameData = (game, apiUrl = API_URL) => {
+  const withBooleans = normalizeGameBooleans(game);
+  return {
+    ...withBooleans,
+    id: game.id || game._id,
+    imageUrl: game.imageUrl || formatImageUrl(game.image, apiUrl),
+    rating: game.rating ?? (game.note || 0),
+  };
+};
+
+/**
+ * Normalise un tableau de jeux bruts
+ * @param {Array} games - Liste de jeux bruts
+ * @param {string} [apiUrl] - URL du backend
+ * @returns {Array} Jeux normalisés
+ */
+export const normalizeGamesArray = (games, apiUrl = API_URL) =>
+  games.map((game) => normalizeGameData(game, apiUrl));

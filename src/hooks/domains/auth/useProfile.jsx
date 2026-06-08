@@ -10,7 +10,8 @@ import {
   handleDeleteAccountAsync,
   handleDownloadUserData,
   handleSaveProfileAsync,
-} from "@/hooks/auth/utils/profileHandlers";
+} from "@/hooks/domains/auth/utils/profileHandlers";
+import { triggerAchievementCheck } from "@/services/achievementService";
 import { incrementStoredUserMetric } from "@/utils/userStorage";
 import { getFirstValidationError,validateProfile } from "@/utils/validators";
 
@@ -53,7 +54,7 @@ export const useProfile = () => {
       
       updateUser(updatedUser);
       incrementStoredUserMetric("profileUpdatedCount");
-      window.dispatchEvent(new Event('checkAchievements'));
+      triggerAchievementCheck();
 
       setForm(prev => ({ ...prev, password: "", confirmPassword: "" }));
       setUiState(prev => ({ ...prev, showEmailForm: false, showPasswordForm: false }));

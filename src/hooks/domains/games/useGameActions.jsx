@@ -2,6 +2,8 @@ import { useCallback,useState } from "react";
 import { useNavigate } from "react-router";
 
 import { useApiGame } from "@/hooks/api/useApiGame";
+import { triggerAchievementCheck } from "@/services/achievementService";
+import { isWishlistStatusName } from "@/utils/formatters";
 import { incrementStoredUserMetric } from "@/utils/userStorage";
 
 /**
@@ -63,7 +65,7 @@ export const useGameActions = (game, setGame, metadata) => {
     try {
       const formData = buildUpdateFormData(game, { isFavorite: newState });
       await updateGame(game._id, formData);
-      window.dispatchEvent(new Event('checkAchievements'));
+      triggerAchievementCheck();
     } catch (e) {
       console.error("Erreur lors de la mise en favori", e);
       setGame(prev => ({ ...prev, isFavorite: !newState }));
@@ -75,7 +77,7 @@ export const useGameActions = (game, setGame, metadata) => {
       try {
         await deleteGame(game._id);
         incrementStoredUserMetric("deletedGamesCount");
-        window.dispatchEvent(new Event('checkAchievements'));
+        triggerAchievementCheck();
         navigate("/list");
       } catch (e) {
         console.error("Erreur lors de la suppression", e);
@@ -93,7 +95,7 @@ export const useGameActions = (game, setGame, metadata) => {
     try {
       const formData = buildUpdateFormData(game, { isSoon: newSoonState });
       await updateGame(game._id, formData);
-      window.dispatchEvent(new Event('checkAchievements'));
+      triggerAchievementCheck();
     } catch (e) {
       console.error("Erreur lors du basculement wishlist", e);
       setGame(prev => ({ ...prev, isSoon: !newSoonState }));
@@ -116,10 +118,7 @@ export const useGameActions = (game, setGame, metadata) => {
         if (fieldName === "status_id") {
           const statusName =
             metadata.statuses?.find(s => s._id === fieldValue)?.status_name || "Inconnu";
-          const isWishlistStatus =
-            statusName.toLowerCase().includes("wishlist") ||
-            statusName.toLowerCase().includes("à venir") ||
-            statusName.toLowerCase().includes("prochainement");
+          const isWishlistStatus = isWishlistStatusName(statusName);
 
           overrides = {
             status_id: fieldValue,
@@ -148,7 +147,7 @@ export const useGameActions = (game, setGame, metadata) => {
 
         const formData = buildUpdateFormData(game, overrides);
         await updateGame(game._id, formData);
-        window.dispatchEvent(new Event('checkAchievements'));
+        triggerAchievementCheck();
       } catch (e) {
         console.error("Erreur lors de la mise à jour:", e);
         // Revert à la valeur précédente en cas d'erreur

@@ -2,7 +2,7 @@ import { useEffect,useState } from "react";
 
 import { useApiGame } from "@/hooks/api/useApiGame";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
-import { formatGameForDisplay } from "@/utils/formatters";
+import { formatGameForDisplay, extractGamesList } from "@/utils/formatters";
 
 export const useGamesList = (searchTerm) => {
   const { getAllGames, deleteGame, updateGame } = useApiGame();
@@ -26,7 +26,7 @@ export const useGamesList = (searchTerm) => {
         if (!isMounted) return;
         setMetadata(metaData);
         
-        const rawGames = Array.isArray(gamesData) ? gamesData : gamesData.games || [];
+        const rawGames = extractGamesList(gamesData);
 
         // Utiliser le formatter centralisé pour éviter la duplication
         const mappedGames = rawGames.map((game) => formatGameForDisplay(game, metaData));

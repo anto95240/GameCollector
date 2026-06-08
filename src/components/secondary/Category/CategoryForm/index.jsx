@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { useToast } from "@/context";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
+import { triggerAchievementCheck } from "@/services/achievementService";
 import { incrementStoredUserMetric } from "@/utils/userStorage";
 import { getFirstValidationError,validateCategory } from "@/utils/validators";
 
@@ -137,7 +138,7 @@ const CategoryForm = ({
         showCreated(`${categoryLabel}: "${formData.name}"`);
       }
 
-      window.dispatchEvent(new Event("checkAchievements"));
+      triggerAchievementCheck();
 
       if (onSuccess) onSuccess();
     } catch (error) {

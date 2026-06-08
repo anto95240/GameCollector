@@ -5,6 +5,7 @@ import { useToast } from "@/context";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
 import { incrementStoredUserMetric } from "@/utils/userStorage";
 import { getFirstValidationError,validateCategory } from "@/utils/validators";
+import { triggerAchievementCheck } from "@/services/achievementService";
 
 export const useCategoryManager = () => {
   const { t } = useTranslation();
@@ -102,7 +103,7 @@ export const useCategoryManager = () => {
         showCreated(`${categoryLabel}: "${formData.name}"`);
       }
 
-      window.dispatchEvent(new Event('checkAchievements'));
+      triggerAchievementCheck();
 
       await fetchMetadata();
       resetForm();
@@ -136,7 +137,7 @@ export const useCategoryManager = () => {
       incrementStoredUserMetric("deletedCategoriesCount");
 
       await fetchMetadata();
-      window.dispatchEvent(new Event('checkAchievements'));
+      triggerAchievementCheck();
 
       const categoryLabel = getCategoryLabel();
       showDeleted(categoryLabel);

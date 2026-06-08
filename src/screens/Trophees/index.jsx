@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useApiAchievements } from "@/hooks/api/useApiAchievements";
+import { triggerAchievementCheck } from "@/services/achievementService";
 
 const extractAchievementIdName = (entry) => {
   if (!entry) return null;
@@ -47,7 +48,7 @@ const TropheesPage = () => {
       }
     };
 
-    window.dispatchEvent(new Event('checkAchievements'));
+    triggerAchievementCheck();
     loadAchievements();
 
     const handleAchievementUnlocked = () => {

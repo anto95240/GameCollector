@@ -7,6 +7,7 @@ import { useApiGame } from "@/hooks/api/useApiGame";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
 import { useScrollSpy } from "@/hooks/ui/useScrollSpy";
 import { incrementStoredUserMetric } from "@/utils/userStorage";
+import { triggerAchievementCheck } from "@/services/achievementService";
 
 import { useTagsManager } from "./useTagsManager";
 import { buildGamePayload, formatPreviewImage,getInitialFormData } from "./utils/gameFormHelpers";
@@ -116,7 +117,7 @@ export const useAddEditGame = () => {
       
       // Déclencher la vérification des achievements
       setTimeout(() => {
-        window.dispatchEvent(new Event('checkAchievements'));
+        triggerAchievementCheck();
       }, 500);
       
       const gameId = createdOrUpdatedGame?._id || gameToEdit?._id;
