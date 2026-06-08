@@ -7,6 +7,7 @@ import AppLayout from "@/components/main/AppLayout";
 import AuthLayout from "@/components/main/AuthLayout";
 import SimpleLoadingSpinner from "@/components/common/SimpleLoadingSpinner";
 import LoadingScreen from "@/screens/LoadingScreen";
+import ErrorBoundary from "@/components/common/ErrorBoundary";
 
 // 🚀 LAZY LOADING : Ces pages ne seront téléchargées que lorsqu'elles seront visitées !
 const HomePage = lazy(() => import("../screens/Dashboard"));
@@ -21,14 +22,18 @@ const ListePage = lazy(() => import("../screens/Liste"));
 const DetailPage = lazy(() => import("../screens/Detail"));
 const TropheesPage = lazy(() => import("../screens/Trophees"));
 
-// Un composant qui enveloppe nos routes paresseuses pour afficher un spinner simple
+// Un composant qui enveloppe nos routes paresseuses pour afficher un spinner simple et capturer les erreurs de page
 const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
-  <Suspense fallback={<SimpleLoadingSpinner />}>{children}</Suspense>
+  <ErrorBoundary>
+    <Suspense fallback={<SimpleLoadingSpinner />}>{children}</Suspense>
+  </ErrorBoundary>
 );
 
 // Un wrapper léger pour la déconnexion (sans ChargementPage)
 const SimpleSuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
-  <Suspense fallback={<div></div>}>{children}</Suspense>
+  <ErrorBoundary>
+    <Suspense fallback={<div></div>}>{children}</Suspense>
+  </ErrorBoundary>
 );
 
 let router = createBrowserRouter([
