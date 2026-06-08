@@ -1,3 +1,3 @@
-export * from './useLogin';
-export * from './useProfile';
-export * from './useRegister';
+export * from './useLogin'
+export * from './useProfile'
+export * from './useRegister'

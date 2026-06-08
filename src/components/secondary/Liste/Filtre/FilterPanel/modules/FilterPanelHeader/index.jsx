@@ -1,7 +1,7 @@
-import "./FilterPanelHeader.css";
+import './FilterPanelHeader.css'
 
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const FilterPanelHeader = ({ onClose }) => {
   return (
@@ -11,5 +11,5 @@ export const FilterPanelHeader = ({ onClose }) => {
         <FontAwesomeIcon icon={faTimes} />
       </button>
     </div>
-  );
-};
+  )
+}

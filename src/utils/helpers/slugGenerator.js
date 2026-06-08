@@ -1,6 +1,6 @@
 export const createSlug = (name) => {
-  return (name || "")
+  return (name || '')
     .toLowerCase()
-    .replace(/ /g, "-")
-    .replace(/[^\w-]+/g, "");
-};
+    .replace(/ /g, '-')
+    .replace(/[^\w-]+/g, '')
+}

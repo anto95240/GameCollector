@@ -1,4 +1,4 @@
-import "./FilterPanelFooter.css";
+import './FilterPanelFooter.css'
 
 export const FilterPanelFooter = ({ resultCount, onClose }) => {
   return (
@@ -7,5 +7,5 @@ export const FilterPanelFooter = ({ resultCount, onClose }) => {
         Voir les {resultCount} jeux
       </button>
     </div>
-  );
-};
+  )
+}

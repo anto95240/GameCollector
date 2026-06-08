@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* =========================================
    1. CONFIGURATION GLOBALE
@@ -7,8 +7,8 @@
   line-height: 1.5;
   font-weight: 400;
 
-  --font-family-title: "Montserrat Alternates", sans-serif;
-  --font-family-text: "Lato", sans-serif;
+  --font-family-title: 'Montserrat Alternates', sans-serif;
+  --font-family-text: 'Lato', sans-serif;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -84,7 +84,7 @@
 }
 
 /* --- THÈME LIGHT ("LAB MODE") --- */
-[data-theme="light"] {
+[data-theme='light'] {
   /* --- BACKGROUNDS --- */
   /* Blanc légèrement bleuté "Clinique/Futuriste" */
   --bg-app: #f0f5fa;
@@ -187,12 +187,7 @@ body {
   --gradient-blue: var(--grad-btn-primary);
   --gradient-account: var(--grad-btn-primary); /* Ou créer un spécifique */
   --gradient-success: var(--grad-btn-success);
-  --gradient-deconnexion: linear-gradient(
-    90deg,
-    #ef4444 0%,
-    #b91c1c 50%,
-    #ef4444 100%
-  );
+  --gradient-deconnexion: linear-gradient(90deg, #ef4444 0%, #b91c1c 50%, #ef4444 100%);
   --gradient-delete: var(--grad-btn-danger);
   --gradient-auth: var(--grad-auth-bg);
   --gradient-option-selected-filtre: linear-gradient(
@@ -202,10 +197,7 @@ body {
   );
 
   /* Textures */
-  --gradient-chargment-vertical: linear-gradient(
-    rgba(0, 104, 172, 0.05) 1px,
-    transparent 1px
-  );
+  --gradient-chargment-vertical: linear-gradient(rgba(0, 104, 172, 0.05) 1px, transparent 1px);
   --gradient-chargement-horizontal: linear-gradient(
     90deg,
     rgba(0, 104, 172, 0.05) 1px,

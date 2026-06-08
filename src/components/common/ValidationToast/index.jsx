@@ -1,28 +1,28 @@
-import './ValidationToast.css';
+import './ValidationToast.css'
 
-import { faCheckCircle, faExclamationCircle, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import { faCheckCircle, faExclamationCircle, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react'
 
-import { useToast } from '@/context';
+import { useToast } from '@/context'
 
 const ValidationToast = () => {
-  const { toast } = useToast();
+  const { toast } = useToast()
 
-  if (!toast.isVisible) return null;
+  if (!toast.isVisible) return null
 
   const getIcon = () => {
     switch (toast.type) {
       case 'success':
-        return faCheckCircle;
+        return faCheckCircle
       case 'error':
-        return faExclamationCircle;
+        return faExclamationCircle
       case 'info':
-        return faInfoCircle;
+        return faInfoCircle
       default:
-        return faCheckCircle;
+        return faCheckCircle
     }
-  };
+  }
 
   return (
     <div className={`validation-toast validation-toast--${toast.type}`}>
@@ -33,7 +33,7 @@ const ValidationToast = () => {
         <p className="validation-toast__message">{toast.message}</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ValidationToast;
+export default ValidationToast

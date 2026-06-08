@@ -1,10 +1,10 @@
-import "./StatusMessage.css";
+import './StatusMessage.css'
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
 const StatusMessage = ({ isLogout }) => {
-  const { t } = useTranslation();
-  const statusKey = isLogout ? "auth.loading.statusLogout" : "auth.loading.statusLogin";
+  const { t } = useTranslation()
+  const statusKey = isLogout ? 'auth.loading.statusLogout' : 'auth.loading.statusLogin'
 
   return (
     <div className="status-message">
@@ -13,7 +13,7 @@ const StatusMessage = ({ isLogout }) => {
       <span className="dot dot-2"></span>
       <span className="dot dot-3"></span>
     </div>
-  );
-};
+  )
+}
 
-export default StatusMessage;
+export default StatusMessage

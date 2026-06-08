@@ -1,9 +1,9 @@
-import "./VirtualGameGrid.css";
+import './VirtualGameGrid.css'
 
-import React from "react";
-import { Grid } from "react-window";
+import React from 'react'
+import { Grid } from 'react-window'
 
-import GameCard from "@/components/common/GameCard";
+import GameCard from '@/components/common/GameCard'
 const CellComponent = ({
   columnIndex,
   rowIndex,
@@ -19,24 +19,23 @@ const CellComponent = ({
   t,
   deletingId,
 }) => {
+  const idx = rowIndex * colCount + columnIndex
+  if (idx >= allItems.length) return <div style={style} />
 
-  const idx = rowIndex * colCount + columnIndex;
-  if (idx >= allItems.length) return <div style={style} />;
-
-  const item = allItems[idx];
+  const item = allItems[idx]
 
   if (item.__isAddCard) {
     return (
       <div style={style} className="vgrid-cell">
         <GameCard variant="add" t={t} onClick={onAddGame} />
       </div>
-    );
+    )
   }
 
   return (
     <div
       style={style}
-      className={`vgrid-cell ${deletingId === item.id ? "deleting" : ""}`}
+      className={`vgrid-cell ${deletingId === item.id ? 'deleting' : ''}`}
       data-id={String(item.id)}
     >
       <GameCard
@@ -51,8 +50,8 @@ const CellComponent = ({
         t={t}
       />
     </div>
-  );
-};
+  )
+}
 const VirtualGameGrid = ({
   games,
   itemHeight = 260,
@@ -69,9 +68,9 @@ const VirtualGameGrid = ({
   deletingId,
 }) => {
   // Add a virtual "add" card at the end
-  const allItems = [...games, { __isAddCard: true }];
-  const rowCount = Math.ceil(allItems.length / colCount);
-  const colWidth = containerW / colCount;
+  const allItems = [...games, { __isAddCard: true }]
+  const rowCount = Math.ceil(allItems.length / colCount)
+  const colWidth = containerW / colCount
 
   // cellProps passes data to CellComponent (react-window v2 API)
   const cellProps = {
@@ -84,7 +83,7 @@ const VirtualGameGrid = ({
     onAddGame,
     t,
     deletingId,
-  };
+  }
 
   return (
     <Grid
@@ -100,7 +99,7 @@ const VirtualGameGrid = ({
       width={containerW}
       overscanCount={2}
     />
-  );
-};
+  )
+}
 
-export default React.memo(VirtualGameGrid);
+export default React.memo(VirtualGameGrid)

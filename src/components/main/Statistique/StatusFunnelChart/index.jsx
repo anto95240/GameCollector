@@ -1,24 +1,26 @@
-import "./StatusFunnelChart.css";
+import './StatusFunnelChart.css'
 
-import { useMemo } from "react";
+import { useMemo } from 'react'
 
 const StatusFunnelChart = ({ stats, metadata = {} }) => {
   const statusData = useMemo(() => {
-    if (!stats || !stats.funnel) return [];
-    
-    return stats.funnel.map(s => {
-      const meta = metadata.statuses?.find(m => m._id === s.name);
-      return {
-        name: meta ? meta.status_name : "Inconnu",
-        count: s.value,
-        color: meta ? meta.color : "#555",
-        pct: Math.round((s.value / stats.overview.totalGames) * 100) || 0
-      };
-    }).sort((a, b) => b.count - a.count);
-  }, [stats, metadata]);
+    if (!stats || !stats.funnel) return []
 
-  if (!statusData.length) return null;
-  const maxCount = statusData[0]?.count || 1;
+    return stats.funnel
+      .map((s) => {
+        const meta = metadata.statuses?.find((m) => m._id === s.name)
+        return {
+          name: meta ? meta.status_name : 'Inconnu',
+          count: s.value,
+          color: meta ? meta.color : '#555',
+          pct: Math.round((s.value / stats.overview.totalGames) * 100) || 0,
+        }
+      })
+      .sort((a, b) => b.count - a.count)
+  }, [stats, metadata])
+
+  if (!statusData.length) return null
+  const maxCount = statusData[0]?.count || 1
 
   return (
     <div className="funnel-wrapper">
@@ -34,7 +36,10 @@ const StatusFunnelChart = ({ stats, metadata = {} }) => {
               <span className="funnel-name">{s.name}</span>
             </div>
             <div className="funnel-track">
-              <div className="funnel-fill" style={{ width: `${(s.count / maxCount) * 100}%`, background: s.color }} />
+              <div
+                className="funnel-fill"
+                style={{ width: `${(s.count / maxCount) * 100}%`, background: s.color }}
+              />
             </div>
             <div className="funnel-stats">
               <span className="funnel-count">{s.count}</span>
@@ -44,6 +49,6 @@ const StatusFunnelChart = ({ stats, metadata = {} }) => {
         ))}
       </div>
     </div>
-  );
-};
-export default StatusFunnelChart;
+  )
+}
+export default StatusFunnelChart

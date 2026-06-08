@@ -1,7 +1,7 @@
-import "./SideNav.css";
+import './SideNav.css'
 
-import { faList,faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const SideNav = ({
   sections,
@@ -19,7 +19,7 @@ const SideNav = ({
           <button
             key={section.id}
             onClick={() => scrollToSection(section.id)}
-            className={`nav-anchor ${activeSection === section.id ? "active" : ""}`}
+            className={`nav-anchor ${activeSection === section.id ? 'active' : ''}`}
             type="button"
           >
             {section.icon && <FontAwesomeIcon icon={section.icon} />}
@@ -30,20 +30,14 @@ const SideNav = ({
 
       {/* Mobile Menu */}
       {showMobileMenu && (
-        <div
-          className="mobile-nav-overlay fade-in"
-          onClick={() => setShowMobileMenu(false)}
-        >
-          <div
-            className="mobile-nav-content"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="mobile-nav-overlay fade-in" onClick={() => setShowMobileMenu(false)}>
+          <div className="mobile-nav-content" onClick={(e) => e.stopPropagation()}>
             <h3>Menu</h3>
             {sections.map((section) => (
               <button
                 key={section.id}
                 onClick={() => scrollToSection(section.id)}
-                className={`mobile-nav-item ${activeSection === section.id ? "active" : ""}`}
+                className={`mobile-nav-item ${activeSection === section.id ? 'active' : ''}`}
                 type="button"
               >
                 {section.icon && <FontAwesomeIcon icon={section.icon} />}
@@ -56,15 +50,15 @@ const SideNav = ({
 
       {/* Floating Button Mobile */}
       <button
-        className={`floating-menu-btn mobile-only ${showMobileMenu ? "open" : ""}`}
+        className={`floating-menu-btn mobile-only ${showMobileMenu ? 'open' : ''}`}
         onClick={() => setShowMobileMenu(!showMobileMenu)}
         type="button"
-        aria-label={showMobileMenu ? "Fermer le menu" : "Ouvrir le menu"}
+        aria-label={showMobileMenu ? 'Fermer le menu' : 'Ouvrir le menu'}
       >
         <FontAwesomeIcon icon={showMobileMenu ? faTimes : faList} />
       </button>
     </>
-  );
-};
+  )
+}
 
-export default SideNav;
+export default SideNav

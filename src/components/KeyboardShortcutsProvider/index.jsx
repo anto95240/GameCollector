@@ -1,104 +1,97 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react'
 
-import keyboardShortcutsService from "@/services/keyboardShortcutsService";
+import keyboardShortcutsService from '@/services/keyboardShortcutsService'
 
 const KeyboardShortcutsProvider = () => {
-  const isInitializedRef = useRef(false);
+  const isInitializedRef = useRef(false)
 
   useEffect(() => {
-    if (isInitializedRef.current) return;
-    isInitializedRef.current = true;
+    if (isInitializedRef.current) return
+    isInitializedRef.current = true
 
     keyboardShortcutsService.register(
-      "searchBar",
-      "k",
+      'searchBar',
+      'k',
       () => {
-        window.dispatchEvent(new CustomEvent("focusSearchBar"));
+        window.dispatchEvent(new CustomEvent('focusSearchBar'))
       },
-      { ctrlKey: true },
-    );
+      { ctrlKey: true }
+    )
 
     keyboardShortcutsService.register(
-      "addGame",
-      "n",
+      'addGame',
+      'n',
       () => {
-        if (!window.location.pathname.includes("add"))
-          window.location.href = "/game/add-edit-game";
+        if (!window.location.pathname.includes('add')) window.location.href = '/game/add-edit-game'
       },
-      { ctrlKey: true, altKey: true },
-    );
+      { ctrlKey: true, altKey: true }
+    )
 
     keyboardShortcutsService.register(
-      "dashboard",
-      "d",
+      'dashboard',
+      'd',
       () => {
-        if (window.location.pathname !== "/dashboard")
-          window.location.href = "/dashboard";
+        if (window.location.pathname !== '/dashboard') window.location.href = '/dashboard'
       },
-      { ctrlKey: true },
-    );
+      { ctrlKey: true }
+    )
 
     keyboardShortcutsService.register(
-      "gamesList",
-      "l",
+      'gamesList',
+      'l',
       () => {
-        if (window.location.pathname !== "/list")
-          window.location.href = "/list";
+        if (window.location.pathname !== '/list') window.location.href = '/list'
       },
-      { ctrlKey: true },
-    );
+      { ctrlKey: true }
+    )
 
     keyboardShortcutsService.register(
-      "profile",
-      "p",
+      'profile',
+      'p',
       () => {
-        if (window.location.pathname !== "/profile")
-          window.location.href = "/profile";
+        if (window.location.pathname !== '/profile') window.location.href = '/profile'
       },
-      { ctrlKey: true },
-    );
+      { ctrlKey: true }
+    )
 
     keyboardShortcutsService.register(
-      "categories",
-      "c",
+      'categories',
+      'c',
       () => {
-        if (window.location.pathname !== "/categories")
-          window.location.href = "/categories";
+        if (window.location.pathname !== '/categories') window.location.href = '/categories'
       },
-      { ctrlKey: true },
-    );
+      { ctrlKey: true }
+    )
 
     keyboardShortcutsService.register(
-      "statistics",
-      "s",
+      'statistics',
+      's',
       () => {
-        if (window.location.pathname !== "/statistics")
-          window.location.href = "/statistics";
+        if (window.location.pathname !== '/statistics') window.location.href = '/statistics'
       },
-      { ctrlKey: true },
-    );
+      { ctrlKey: true }
+    )
 
     keyboardShortcutsService.register(
-      "trophies",
-      "t",
+      'trophies',
+      't',
       () => {
-        if (window.location.pathname !== "/trophies")
-          window.location.href = "/trophies";
+        if (window.location.pathname !== '/trophies') window.location.href = '/trophies'
       },
-      { ctrlKey: true, altKey: true },
-    );
+      { ctrlKey: true, altKey: true }
+    )
 
     keyboardShortcutsService.register(
-      "help",
-      "h",
+      'help',
+      'h',
       () => {
-        window.dispatchEvent(new CustomEvent("showKeyboardHelp"));
+        window.dispatchEvent(new CustomEvent('showKeyboardHelp'))
       },
-      { ctrlKey: true },
-    );
-  }, []);
+      { ctrlKey: true }
+    )
+  }, [])
 
-  return null;
-};
+  return null
+}
 
-export default KeyboardShortcutsProvider;
+export default KeyboardShortcutsProvider

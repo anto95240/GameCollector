@@ -1,5 +1,5 @@
 // Exporter les composants de sections modularisés
-import "./Sections.css";
+import './Sections.css'
 
 export {
   CommentSection,
@@ -7,16 +7,12 @@ export {
   ImageSection,
   MetadataSection,
   RatingSection,
-} from "@/components/main/AddEditGame/Sections/modules/BasicSections";
-export {
-  DetailsSection,
-} from "@/components/main/AddEditGame/Sections/modules/DetailsSection";
+} from '@/components/main/AddEditGame/Sections/modules/BasicSections'
+export { DetailsSection } from '@/components/main/AddEditGame/Sections/modules/DetailsSection'
 export {
   AchievementsSection,
   FavoriteAndSoonSection,
   InfoSection,
   StatusSection,
-} from "@/components/main/AddEditGame/Sections/modules/InfoSections";
-export {
-  TagsSection,
-} from "@/components/main/AddEditGame/Sections/modules/TagsSection";
+} from '@/components/main/AddEditGame/Sections/modules/InfoSections'
+export { TagsSection } from '@/components/main/AddEditGame/Sections/modules/TagsSection'

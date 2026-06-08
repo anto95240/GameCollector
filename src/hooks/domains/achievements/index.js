@@ -1,1 +1,1 @@
-export * from './useAchievementTracker';
+export * from './useAchievementTracker'

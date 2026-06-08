@@ -1,72 +1,74 @@
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react'
 
-import { useApiGame } from '@/hooks/api/useApiGame';
-import { useApiMetadata } from '@/hooks/api/useApiMetadata';
-import { formatGamesForCarousel, extractGamesList } from '@/utils/formatters';
+import { useApiGame } from '@/hooks/api/useApiGame'
+import { useApiMetadata } from '@/hooks/api/useApiMetadata'
+import { formatGamesForCarousel, extractGamesList } from '@/utils/formatters'
 
 export const useDashboard = () => {
-    const { getAllGames } = useApiGame();
-    const { getAllMetadata } = useApiMetadata();
+  const { getAllGames } = useApiGame()
+  const { getAllMetadata } = useApiMetadata()
 
-    const [stats, setStats] = useState({
-        totalGames: 0,
-        favoriteCount: 0,
-        platformCount: 0,
-        genreCount: 0
-    });
+  const [stats, setStats] = useState({
+    totalGames: 0,
+    favoriteCount: 0,
+    platformCount: 0,
+    genreCount: 0,
+  })
 
-    const [recentGames, setRecentGames] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+  const [recentGames, setRecentGames] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
-    useEffect(() => {
-        let isMounted = true;
-        const fetchDashboardData = async () => {
-            setIsLoading(true);
-            try {
-                const [gamesData] = await Promise.all([
-                    getAllGames(),
-                    getAllMetadata()
-                ]);
+  useEffect(() => {
+    let isMounted = true
+    const fetchDashboardData = async () => {
+      setIsLoading(true)
+      try {
+        const [gamesData] = await Promise.all([getAllGames(), getAllMetadata()])
 
-                if (!isMounted) return;
+        if (!isMounted) return
 
-                const gamesList = extractGamesList(gamesData);
-                
-                // --- Calcul des Stats ---
-                const total = gamesList.length;
-                const favCount = gamesList.filter(g => g.isFavorite).length;
+        const gamesList = extractGamesList(gamesData)
 
-                // Compter les plateformes et genres uniques utilisés par le joueur
-                const uniquePlatforms = new Set(gamesList.map(g => g.platform_id?._id || g.platform_id).filter(Boolean));
-                const uniqueGenres = new Set(gamesList.map(g => g.genre_id?._id || g.genre_id).filter(Boolean));
+        // --- Calcul des Stats ---
+        const total = gamesList.length
+        const favCount = gamesList.filter((g) => g.isFavorite).length
 
-                setStats({
-                    totalGames: total,
-                    favoriteCount: favCount,
-                    platformCount: uniquePlatforms.size,
-                    genreCount: uniqueGenres.size
-                });
+        // Compter les plateformes et genres uniques utilisés par le joueur
+        const uniquePlatforms = new Set(
+          gamesList.map((g) => g.platform_id?._id || g.platform_id).filter(Boolean)
+        )
+        const uniqueGenres = new Set(
+          gamesList.map((g) => g.genre_id?._id || g.genre_id).filter(Boolean)
+        )
 
-                // --- Récupération des jeux récents ---
-                // Utiliser le formatter centralisé pour éviter la duplication
-                const formattedRecent = formatGamesForCarousel(gamesList.slice(0, 5));
+        setStats({
+          totalGames: total,
+          favoriteCount: favCount,
+          platformCount: uniquePlatforms.size,
+          genreCount: uniqueGenres.size,
+        })
 
-                setRecentGames(formattedRecent);
+        // --- Récupération des jeux récents ---
+        // Utiliser le formatter centralisé pour éviter la duplication
+        const formattedRecent = formatGamesForCarousel(gamesList.slice(0, 5))
 
-            } catch (error) {
-                console.error("Erreur de chargement du dashboard", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+        setRecentGames(formattedRecent)
+      } catch (error) {
+        console.error('Erreur de chargement du dashboard', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
 
-        fetchDashboardData();
-        return () => { isMounted = false; };
-    }, []);
+    fetchDashboardData()
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
-    return {
-        stats,
-        recentGames,
-        isLoading
-    };
-};
+  return {
+    stats,
+    recentGames,
+    isLoading,
+  }
+}

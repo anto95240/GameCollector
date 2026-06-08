@@ -1,52 +1,54 @@
-import "./PlatformChart.css";
+import './PlatformChart.css'
 
-import { useMemo,useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
 
-import CustomSelect from "@/components/common/CustomSelect";
+import CustomSelect from '@/components/common/CustomSelect'
 
 const PlatformChart = ({ stats, metadata = {} }) => {
-  const { t } = useTranslation();
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [chartType, setChartType] = useState("platform");
+  const { t } = useTranslation()
+  const [activeIndex, setActiveIndex] = useState(null)
+  const [chartType, setChartType] = useState('platform')
 
   const chartData = useMemo(() => {
-    if (!stats || !metadata) return [];
-    
-    let rawData = [];
-    let metaList = [];
-    let nameKey = "name";
+    if (!stats || !metadata) return []
 
-    if (chartType === "platform") {
-      rawData = stats.platforms || [];
-      metaList = metadata.platforms || [];
-      nameKey = "platform_name";
-    } else if (chartType === "genre") {
-      rawData = (stats.radar || []).map(r => ({ name: r.subject, value: r.A }));
-      metaList = metadata.genres || [];
-      nameKey = "genre_name";
-    } else if (chartType === "status") {
-      rawData = stats.funnel || [];
-      metaList = metadata.statuses || [];
-      nameKey = "status_name";
+    let rawData = []
+    let metaList = []
+    let nameKey = 'name'
+
+    if (chartType === 'platform') {
+      rawData = stats.platforms || []
+      metaList = metadata.platforms || []
+      nameKey = 'platform_name'
+    } else if (chartType === 'genre') {
+      rawData = (stats.radar || []).map((r) => ({ name: r.subject, value: r.A }))
+      metaList = metadata.genres || []
+      nameKey = 'genre_name'
+    } else if (chartType === 'status') {
+      rawData = stats.funnel || []
+      metaList = metadata.statuses || []
+      nameKey = 'status_name'
     }
 
-    return rawData.map(item => {
-      const meta = metaList.find(m => m._id === item.name);
-      return {
-        name: meta ? meta[nameKey] : "Inconnu",
-        value: item.value,
-        color: meta?.color || "#5AF2FF"
-      };
-    }).filter(d => d.value > 0);
-  }, [stats, metadata, chartType]);
+    return rawData
+      .map((item) => {
+        const meta = metaList.find((m) => m._id === item.name)
+        return {
+          name: meta ? meta[nameKey] : 'Inconnu',
+          value: item.value,
+          color: meta?.color || '#5AF2FF',
+        }
+      })
+      .filter((d) => d.value > 0)
+  }, [stats, metadata, chartType])
 
   const options = [
-    { value: "platform", label: t("statistics.doughnut.platform") },
-    { value: "genre", label: t("statistics.doughnut.genre") },
-    { value: "status", label: t("statistics.doughnut.status") }
-  ];
+    { value: 'platform', label: t('statistics.doughnut.platform') },
+    { value: 'genre', label: t('statistics.doughnut.genre') },
+    { value: 'status', label: t('statistics.doughnut.status') },
+  ]
 
   return (
     <div className="platform-chart-wrapper">
@@ -68,6 +70,6 @@ const PlatformChart = ({ stats, metadata = {} }) => {
         </div>
       </div>
     </div>
-  );
-};
-export default PlatformChart;
+  )
+}
+export default PlatformChart

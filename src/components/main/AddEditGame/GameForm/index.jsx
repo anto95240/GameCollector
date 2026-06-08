@@ -1,6 +1,6 @@
-import "./GameForm.css";
+import './GameForm.css'
 
-import LoadingButton from "@/components/common/LoadingButton";
+import LoadingButton from '@/components/common/LoadingButton'
 import {
   DescriptionSection,
   DetailsSection,
@@ -8,7 +8,7 @@ import {
   RatingSection,
   StatusSection,
   TagsSection,
-} from "@/components/main/AddEditGame/Sections";
+} from '@/components/main/AddEditGame/Sections'
 
 const GameForm = ({
   formData,
@@ -33,11 +33,7 @@ const GameForm = ({
 }) => {
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-      <DescriptionSection
-        t={t}
-        formData={formData}
-        handleChange={handleChange}
-      />
+      <DescriptionSection t={t} formData={formData} handleChange={handleChange} />
       <RatingSection
         t={t}
         formData={formData}
@@ -53,11 +49,7 @@ const GameForm = ({
         optionsData={optionsData}
         handleAddNewMetadata={handleAddNewMetadata}
       />
-      <ImageSection
-        t={t}
-        previewImg={previewImg}
-        handleFileChange={handleFileChange}
-      />
+      <ImageSection t={t} previewImg={previewImg} handleFileChange={handleFileChange} />
       <StatusSection
         t={t}
         formData={formData}
@@ -78,24 +70,18 @@ const GameForm = ({
       />
 
       <div className="form-actions-footer">
-        <button
-          type="button"
-          className="btn-cancel-game"
-          onClick={() => navigate(-1)}
-        >
-          {t("common.cancel")}
+        <button type="button" className="btn-cancel-game" onClick={() => navigate(-1)}>
+          {t('common.cancel')}
         </button>
 
         <LoadingButton
-          text={
-            isEditMode ? t("gameForm.buttons.save") : t("gameForm.buttons.add")
-          }
+          text={isEditMode ? t('gameForm.buttons.save') : t('gameForm.buttons.add')}
           isAnimating={isAnimating}
           showLoading={false}
         />
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default GameForm;
+export default GameForm

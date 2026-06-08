@@ -1,162 +1,162 @@
-import { useCallback,useState } from "react";
-import { useNavigate } from "react-router";
+import { useCallback, useState } from 'react'
+import { useNavigate } from 'react-router'
 
-import { useApiGame } from "@/hooks/api/useApiGame";
-import { triggerAchievementCheck } from "@/services/achievementService";
-import { isWishlistStatusName } from "@/utils/formatters";
-import { incrementStoredUserMetric } from "@/utils/userStorage";
+import { useApiGame } from '@/hooks/api/useApiGame'
+import { triggerAchievementCheck } from '@/services/achievementService'
+import { isWishlistStatusName } from '@/utils/formatters'
+import { incrementStoredUserMetric } from '@/utils/userStorage'
 export const useGameActions = (game, setGame, metadata) => {
-  const navigate = useNavigate();
-  const { deleteGame, updateGame } = useApiGame();
-  const [isUpdating, setIsUpdating] = useState(false);
+  const navigate = useNavigate()
+  const { deleteGame, updateGame } = useApiGame()
+  const [isUpdating, setIsUpdating] = useState(false)
   const buildUpdateFormData = useCallback((updatedGame, overrides = {}) => {
-    const formData = new FormData();
+    const formData = new FormData()
 
     // Champs standards
-    formData.append("name", updatedGame.game_name || updatedGame.name || "");
-    formData.append("description", updatedGame.description || "");
-    formData.append("comment", updatedGame.comment || "");
-    formData.append("genre_id", updatedGame.genre_id?._id || updatedGame.genre_id || "");
-    formData.append("platform_id", updatedGame.platform_id?._id || updatedGame.platform_id || "");
-    formData.append("status_id", updatedGame.status_id?._id || updatedGame.status_id || "");
-    formData.append("year", updatedGame.year || "");
-    formData.append("playing_time", updatedGame.playing_time || "");
-    formData.append("developer", updatedGame.developer || "");
-    formData.append("succes", updatedGame.succes || "");
-    formData.append("isSoon", updatedGame.isSoon || false);
-    formData.append("isFavorite", updatedGame.isFavorite || false);
+    formData.append('name', updatedGame.game_name || updatedGame.name || '')
+    formData.append('description', updatedGame.description || '')
+    formData.append('comment', updatedGame.comment || '')
+    formData.append('genre_id', updatedGame.genre_id?._id || updatedGame.genre_id || '')
+    formData.append('platform_id', updatedGame.platform_id?._id || updatedGame.platform_id || '')
+    formData.append('status_id', updatedGame.status_id?._id || updatedGame.status_id || '')
+    formData.append('year', updatedGame.year || '')
+    formData.append('playing_time', updatedGame.playing_time || '')
+    formData.append('developer', updatedGame.developer || '')
+    formData.append('succes', updatedGame.succes || '')
+    formData.append('isSoon', updatedGame.isSoon || false)
+    formData.append('isFavorite', updatedGame.isFavorite || false)
 
     // Appliquer les overrides
-    Object.keys(overrides).forEach(key => {
-      formData.set(key, overrides[key]);
-    });
+    Object.keys(overrides).forEach((key) => {
+      formData.set(key, overrides[key])
+    })
 
     // Image (uniquement si elle existe)
     if (updatedGame.image) {
-      formData.append("image", updatedGame.image);
+      formData.append('image', updatedGame.image)
     }
 
     // Tags
     if (updatedGame.tags_ids && Array.isArray(updatedGame.tags_ids)) {
-      updatedGame.tags_ids.forEach(tag => {
-        formData.append("tags_ids", tag._id || tag);
-      });
+      updatedGame.tags_ids.forEach((tag) => {
+        formData.append('tags_ids', tag._id || tag)
+      })
     }
 
-    return formData;
-  }, []);
+    return formData
+  }, [])
 
   const handleToggleFavorite = useCallback(async () => {
-    if (!game) return;
+    if (!game) return
 
-    const newState = !game.isFavorite;
-    setGame(prev => ({ ...prev, isFavorite: newState }));
+    const newState = !game.isFavorite
+    setGame((prev) => ({ ...prev, isFavorite: newState }))
 
     try {
-      const formData = buildUpdateFormData(game, { isFavorite: newState });
-      await updateGame(game._id, formData);
-      triggerAchievementCheck();
+      const formData = buildUpdateFormData(game, { isFavorite: newState })
+      await updateGame(game._id, formData)
+      triggerAchievementCheck()
     } catch (e) {
-      console.error("Erreur lors de la mise en favori", e);
-      setGame(prev => ({ ...prev, isFavorite: !newState }));
+      console.error('Erreur lors de la mise en favori', e)
+      setGame((prev) => ({ ...prev, isFavorite: !newState }))
     }
-  }, [game, setGame, buildUpdateFormData, updateGame]);
+  }, [game, setGame, buildUpdateFormData, updateGame])
 
   const handleDelete = useCallback(async () => {
-    if (game && window.confirm("Supprimer ce jeu ?")) {
+    if (game && window.confirm('Supprimer ce jeu ?')) {
       try {
-        await deleteGame(game._id);
-        incrementStoredUserMetric("deletedGamesCount");
-        triggerAchievementCheck();
-        navigate("/list");
+        await deleteGame(game._id)
+        incrementStoredUserMetric('deletedGamesCount')
+        triggerAchievementCheck()
+        navigate('/list')
       } catch (e) {
-        console.error("Erreur lors de la suppression", e);
+        console.error('Erreur lors de la suppression', e)
       }
     }
-  }, [game, deleteGame, navigate]);
+  }, [game, deleteGame, navigate])
 
   const handleToggleSoon = useCallback(async () => {
-    if (!game) return;
+    if (!game) return
 
-    const newSoonState = !game.isSoon;
-    setGame(prev => ({ ...prev, isSoon: newSoonState }));
-    setIsUpdating(true);
+    const newSoonState = !game.isSoon
+    setGame((prev) => ({ ...prev, isSoon: newSoonState }))
+    setIsUpdating(true)
 
     try {
-      const formData = buildUpdateFormData(game, { isSoon: newSoonState });
-      await updateGame(game._id, formData);
-      triggerAchievementCheck();
+      const formData = buildUpdateFormData(game, { isSoon: newSoonState })
+      await updateGame(game._id, formData)
+      triggerAchievementCheck()
     } catch (e) {
-      console.error("Erreur lors du basculement wishlist", e);
-      setGame(prev => ({ ...prev, isSoon: !newSoonState }));
+      console.error('Erreur lors du basculement wishlist', e)
+      setGame((prev) => ({ ...prev, isSoon: !newSoonState }))
     } finally {
-      setIsUpdating(false);
+      setIsUpdating(false)
     }
-  }, [game, setGame, buildUpdateFormData, updateGame]);
+  }, [game, setGame, buildUpdateFormData, updateGame])
 
   const handleUpdateGameField = useCallback(
     async (fieldName, fieldValue) => {
-      if (!game) return;
+      if (!game) return
 
-      setIsUpdating(true);
-      const previousValue = game[fieldName];
+      setIsUpdating(true)
+      const previousValue = game[fieldName]
 
       try {
-        let overrides = {};
+        let overrides = {}
 
         // Logique spéciale pour le statut
-        if (fieldName === "status_id") {
+        if (fieldName === 'status_id') {
           const statusName =
-            metadata.statuses?.find(s => s._id === fieldValue)?.status_name || "Inconnu";
-          const isWishlistStatus = isWishlistStatusName(statusName);
+            metadata.statuses?.find((s) => s._id === fieldValue)?.status_name || 'Inconnu'
+          const isWishlistStatus = isWishlistStatusName(statusName)
 
           overrides = {
             status_id: fieldValue,
-            isSoon: isWishlistStatus
-          };
+            isSoon: isWishlistStatus,
+          }
 
-          setGame(prev => ({
+          setGame((prev) => ({
             ...prev,
             status_id: fieldValue,
             status: statusName,
-            isSoon: isWishlistStatus
-          }));
-        } else if (fieldName === "note") {
-          overrides = { note: Number(fieldValue) };
-          setGame(prev => ({
+            isSoon: isWishlistStatus,
+          }))
+        } else if (fieldName === 'note') {
+          overrides = { note: Number(fieldValue) }
+          setGame((prev) => ({
             ...prev,
-            note: fieldValue
-          }));
+            note: fieldValue,
+          }))
         } else {
-          overrides = { [fieldName]: fieldValue };
-          setGame(prev => ({
+          overrides = { [fieldName]: fieldValue }
+          setGame((prev) => ({
             ...prev,
-            [fieldName]: fieldValue
-          }));
+            [fieldName]: fieldValue,
+          }))
         }
 
-        const formData = buildUpdateFormData(game, overrides);
-        await updateGame(game._id, formData);
-        triggerAchievementCheck();
+        const formData = buildUpdateFormData(game, overrides)
+        await updateGame(game._id, formData)
+        triggerAchievementCheck()
       } catch (e) {
-        console.error("Erreur lors de la mise à jour:", e);
+        console.error('Erreur lors de la mise à jour:', e)
         // Revert à la valeur précédente en cas d'erreur
-        setGame(prev => ({
+        setGame((prev) => ({
           ...prev,
-          [fieldName]: previousValue
-        }));
+          [fieldName]: previousValue,
+        }))
       } finally {
-        setIsUpdating(false);
+        setIsUpdating(false)
       }
     },
     [game, setGame, metadata.statuses, buildUpdateFormData, updateGame]
-  );
+  )
 
   return {
     isUpdating,
     handleToggleFavorite,
     handleDelete,
     handleToggleSoon,
-    handleUpdateGameField
-  };
-};
+    handleUpdateGameField,
+  }
+}

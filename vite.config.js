@@ -11,23 +11,24 @@ import packageJson from './package.json'
 export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
-    mode === 'analyze' && visualizer({
-      filename: './dist/stats.html',
-      open: true,
-      gzipSize: true,
-      brotliSize: true,
-      template: 'treemap',
-    }),
-    mode === 'analyze' && analyzer({ analyzerMode: 'static' })
+    mode === 'analyze' &&
+      visualizer({
+        filename: './dist/stats.html',
+        open: true,
+        gzipSize: true,
+        brotliSize: true,
+        template: 'treemap',
+      }),
+    mode === 'analyze' && analyzer({ analyzerMode: 'static' }),
   ].filter(Boolean),
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
   },
   define: {
     // Crée une variable globale avec la version
-    'import.meta.env.VITE_APP_VERSION': JSON.stringify(packageJson.version)
+    'import.meta.env.VITE_APP_VERSION': JSON.stringify(packageJson.version),
   },
   build: {
     // Minification avancée via esbuild (défaut Vite) — ultra rapide
@@ -53,18 +54,11 @@ export default defineConfig(({ mode }) => ({
               return 'vendor-react'
             }
             // Routing
-            if (
-              id.includes('/react-router/') ||
-              id.includes('/react-router-dom/')
-            ) {
+            if (id.includes('/react-router/') || id.includes('/react-router-dom/')) {
               return 'vendor-router'
             }
             // Charts — recharts uniquement (chart.js supprimé)
-            if (
-              id.includes('/recharts/') ||
-              id.includes('/d3-') ||
-              id.includes('/victory-')
-            ) {
+            if (id.includes('/recharts/') || id.includes('/d3-') || id.includes('/victory-')) {
               return 'vendor-charts'
             }
             // Icônes FontAwesome — souvent volumineux
@@ -86,24 +80,18 @@ export default defineConfig(({ mode }) => ({
             // Tout le reste de node_modules
             return 'vendor-core'
           }
-        }
+        },
       },
       // Supprimer les console.log en production
       ...(mode === 'production' && {
         treeshake: {
           moduleSideEffects: false,
-        }
-      })
-    }
+        },
+      }),
+    },
   },
   // Optimisation des dépendances en dev
   optimizeDeps: {
-    include: [
-      'react',
-      'react-dom',
-      'react-router',
-      'recharts',
-      'axios',
-    ]
-  }
+    include: ['react', 'react-dom', 'react-router', 'recharts', 'axios'],
+  },
 }))

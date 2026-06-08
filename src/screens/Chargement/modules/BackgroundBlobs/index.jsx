@@ -1,4 +1,4 @@
-import "./BackgroundBlobs.css";
+import './BackgroundBlobs.css'
 
 const BackgroundBlobs = () => (
   <div className="loading-background">
@@ -6,6 +6,6 @@ const BackgroundBlobs = () => (
     <div className="gradient-blob gradient-blob-2"></div>
     <div className="gradient-blob gradient-blob-3"></div>
   </div>
-);
+)
 
-export default BackgroundBlobs;
+export default BackgroundBlobs

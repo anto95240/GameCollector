@@ -1,20 +1,20 @@
-import "./index.css";
-import "./Animations.css";
+import './index.css'
+import './Animations.css'
 
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
 
-import { 
-  AuthProvider, 
-  FiltersProvider, 
-  LanguageProvider, 
-  ThemeProvider, 
-  ToastProvider 
-} from "@/context";
+import {
+  AuthProvider,
+  FiltersProvider,
+  LanguageProvider,
+  ThemeProvider,
+  ToastProvider,
+} from '@/context'
 
-import App from "./App.jsx";
+import App from './App.jsx'
 
-createRoot(document.getElementById("root")).render(
+createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
       <ThemeProvider>
@@ -27,5 +27,5 @@ createRoot(document.getElementById("root")).render(
         </LanguageProvider>
       </ThemeProvider>
     </AuthProvider>
-  </StrictMode>,
-);
+  </StrictMode>
+)

@@ -1,5 +1,5 @@
-import React from 'react';
-import './ErrorFallback.css';
+import React from 'react'
+import './ErrorFallback.css'
 
 export const ErrorFallback = ({ error, retry }) => (
   <div className="error-fallback-container">
@@ -9,7 +9,7 @@ export const ErrorFallback = ({ error, retry }) => (
       <p className="error-fallback-message">
         {error?.message || "L'application a rencontré une erreur inattendue."}
       </p>
-      
+
       {process.env.NODE_ENV === 'development' && error?.stack && (
         <details className="error-fallback-details">
           <summary>Détails techniques (dev only)</summary>
@@ -23,12 +23,15 @@ export const ErrorFallback = ({ error, retry }) => (
             🔄 Réessayer
           </button>
         )}
-        <button className="error-fallback-btn secondary" onClick={() => window.location.href = '/'}>
+        <button
+          className="error-fallback-btn secondary"
+          onClick={() => (window.location.href = '/')}
+        >
           🏠 Retour à l'accueil
         </button>
       </div>
     </div>
   </div>
-);
+)
 
-export default ErrorFallback;
+export default ErrorFallback

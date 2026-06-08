@@ -1,4 +1,4 @@
-import "./GameCard.css";
+import './GameCard.css'
 
 import {
   faEllipsisVertical,
@@ -6,19 +6,19 @@ import {
   faPen,
   faPlus,
   faTrash,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { useNavigate } from "react-router";
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react'
+import { useNavigate } from 'react-router'
 
-import LazyImage from "@/components/common/LazyImage";
-import { usePreloadRoute } from "@/hooks/ui/usePreloadRoute";
-import { formatImageUrl, getOptimizedImageProps } from "@/utils/formatters";
-import { createSlug } from "@/utils/helpers/slugGenerator";
+import LazyImage from '@/components/common/LazyImage'
+import { usePreloadRoute } from '@/hooks/ui/usePreloadRoute'
+import { formatImageUrl, getOptimizedImageProps } from '@/utils/formatters'
+import { createSlug } from '@/utils/helpers/slugGenerator'
 
 const GameCard = ({
   game,
-  variant = "list",
+  variant = 'list',
   index,
   activeMenuIndex,
   onToggleMenu,
@@ -26,73 +26,70 @@ const GameCard = ({
   onDeleteRequest,
   onToggleFavorite,
   onClick,
-  className = "",
+  className = '',
   isActive = false,
 }) => {
-  const navigate = useNavigate();
-  const { preloadRoute } = usePreloadRoute();
+  const navigate = useNavigate()
+  const { preloadRoute } = usePreloadRoute()
 
   const getGamePath = () => {
-    const name = typeof game === "string" ? game : game?.name;
-    return name ? `/game/${createSlug(name)}` : null;
-  };
+    const name = typeof game === 'string' ? game : game?.name
+    return name ? `/game/${createSlug(name)}` : null
+  }
 
   const handleCardClick = (e) => {
     if (
-      e.target.closest(".btn-dots") ||
-      e.target.closest(".context-menu") ||
-      e.target.closest(".icon-heart")
+      e.target.closest('.btn-dots') ||
+      e.target.closest('.context-menu') ||
+      e.target.closest('.icon-heart')
     ) {
-      return;
+      return
     }
 
-    if (variant === "add") {
-      if (onClick) onClick();
-      return;
+    if (variant === 'add') {
+      if (onClick) onClick()
+      return
     }
 
-    const path = getGamePath();
+    const path = getGamePath()
     if (path) {
-      navigate(path);
+      navigate(path)
     }
-  };
-
-  const handlePreload = () => {
-    if (variant === "add") return;
-    const path = getGamePath();
-    if (path) {
-      preloadRoute(path);
-    }
-  };
-
-  if (variant === "add") {
-    return (
-      <div
-        className={`game-card card-add cursor-pointer ${className}`}
-        onClick={handleCardClick}
-      >
-        <div className="card-add-content">
-          <FontAwesomeIcon icon={faPlus} className="plus-icon" />
-          <span>{t("gameList.addGame")}</span>
-        </div>
-      </div>
-    );
   }
 
-  const isListVariant = variant === "list";
-  const gameName = typeof game === "string" ? game : game.name;
+  const handlePreload = () => {
+    if (variant === 'add') return
+    const path = getGamePath()
+    if (path) {
+      preloadRoute(path)
+    }
+  }
+
+  if (variant === 'add') {
+    return (
+      <div className={`game-card card-add cursor-pointer ${className}`} onClick={handleCardClick}>
+        <div className="card-add-content">
+          <FontAwesomeIcon icon={faPlus} className="plus-icon" />
+          <span>{t('gameList.addGame')}</span>
+        </div>
+      </div>
+    )
+  }
+
+  const isListVariant = variant === 'list'
+  const gameName = typeof game === 'string' ? game : game.name
 
   // Optimized image props with lazy-loading, WebP support, and responsive sizing
-  const imageProps = game?.image 
+  const imageProps = game?.image
     ? getOptimizedImageProps(game.image, {
-        widths: [300, 500, 800],  // Optimized for card display
+        widths: [300, 500, 800], // Optimized for card display
         autoWebp: true,
       })
-    : null;
+    : null
 
   return (
     <div
-      className={`game-card card-${variant} ${isActive ? "active-mobile" : ""} cursor-pointer ${className}`}
+      className={`game-card card-${variant} ${isActive ? 'active-mobile' : ''} cursor-pointer ${className}`}
       onClick={handleCardClick}
       onMouseEnter={handlePreload}
       onFocus={handlePreload}
@@ -116,17 +113,17 @@ const GameCard = ({
         <div className="card-top">
           <FontAwesomeIcon
             icon={faHeart}
-            className={`icon-heart ${game.isFavorite ? "favorite" : ""}`}
+            className={`icon-heart ${game.isFavorite ? 'favorite' : ''}`}
             onClick={(e) => {
-              e.stopPropagation();
-              if (onToggleFavorite) onToggleFavorite(game);
+              e.stopPropagation()
+              if (onToggleFavorite) onToggleFavorite(game)
             }}
           />
           <button
             className="btn-dots"
             onClick={(e) => {
-              e.stopPropagation();
-              onToggleMenu(index, e);
+              e.stopPropagation()
+              onToggleMenu(index, e)
             }}
           >
             <FontAwesomeIcon icon={faEllipsisVertical} />
@@ -139,38 +136,36 @@ const GameCard = ({
           <button
             className="ctx-item"
             onClick={(e) => {
-              e.stopPropagation();
-              navigate("/game/add-edit-game", { state: { game } });
+              e.stopPropagation()
+              navigate('/game/add-edit-game', { state: { game } })
             }}
           >
-            <FontAwesomeIcon icon={faPen} /> <span>{t("common.edit")}</span>
+            <FontAwesomeIcon icon={faPen} /> <span>{t('common.edit')}</span>
           </button>
           <button
             className="ctx-item delete"
             onClick={(e) => {
-              e.stopPropagation();
-              onDeleteRequest(game);
+              e.stopPropagation()
+              onDeleteRequest(game)
             }}
           >
-            <FontAwesomeIcon icon={faTrash} /> <span>{t("common.delete")}</span>
+            <FontAwesomeIcon icon={faTrash} /> <span>{t('common.delete')}</span>
           </button>
         </div>
       )}
 
-      <p
-        className={`game-title ${variant === "dashboard" ? "game-name-dashboard" : ""}`}
-      >
+      <p className={`game-title ${variant === 'dashboard' ? 'game-name-dashboard' : ''}`}>
         {gameName}
       </p>
     </div>
-  );
-};
+  )
+}
 
 // Custom comparison function for memoization
 // Only re-render if game data, variant, or visibility changes
 const arePropsEqual = (prevProps, nextProps) => {
-  const prevGame = prevProps.game;
-  const nextGame = nextProps.game;
+  const prevGame = prevProps.game
+  const nextGame = nextProps.game
 
   // Compare critical game properties that affect rendering
   const gameEqual =
@@ -178,7 +173,7 @@ const arePropsEqual = (prevProps, nextProps) => {
     prevGame?.name === nextGame?.name &&
     prevGame?.image === nextGame?.image &&
     prevGame?.rating === nextGame?.rating &&
-    prevGame?.isFavorite === nextGame?.isFavorite;
+    prevGame?.isFavorite === nextGame?.isFavorite
 
   // Compare other critical props
   return (
@@ -188,7 +183,7 @@ const arePropsEqual = (prevProps, nextProps) => {
     prevProps.activeMenuIndex === nextProps.activeMenuIndex &&
     prevProps.isActive === nextProps.isActive &&
     prevProps.className === nextProps.className
-  );
-};
+  )
+}
 
-export default React.memo(GameCard, arePropsEqual);
+export default React.memo(GameCard, arePropsEqual)

@@ -1,1 +1,1 @@
-export * from './useCategoryManager';
+export * from './useCategoryManager'

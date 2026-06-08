@@ -1,11 +1,11 @@
-import { Navigate, Outlet } from "react-router";
+import { Navigate, Outlet } from 'react-router'
 
-import { readStoredUser } from "@/utils/userStorage";
+import { readStoredUser } from '@/utils/userStorage'
 
 const ProtectedRoutes = () => {
-  const user = readStoredUser();
+  const user = readStoredUser()
 
-  return user ? <Outlet /> : <Navigate to="/" replace />;
-};
+  return user ? <Outlet /> : <Navigate to="/" replace />
+}
 
-export default ProtectedRoutes;
+export default ProtectedRoutes

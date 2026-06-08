@@ -1,47 +1,47 @@
-import { createBrowserRouter } from "react-router";
-import { lazy, Suspense } from "react";
+import { createBrowserRouter } from 'react-router'
+import { lazy, Suspense } from 'react'
 
 // On importe uniquement les layouts de base normalement
-import ProtectedRoutes from "@/components/main/ProtectedRoutes";
-import AppLayout from "@/components/main/AppLayout";
-import AuthLayout from "@/components/main/AuthLayout";
-import SimpleLoadingSpinner from "@/components/common/SimpleLoadingSpinner";
-import LoadingScreen from "@/screens/LoadingScreen";
-import ErrorBoundary from "@/components/common/ErrorBoundary";
+import ProtectedRoutes from '@/components/main/ProtectedRoutes'
+import AppLayout from '@/components/main/AppLayout'
+import AuthLayout from '@/components/main/AuthLayout'
+import SimpleLoadingSpinner from '@/components/common/SimpleLoadingSpinner'
+import LoadingScreen from '@/screens/LoadingScreen'
+import ErrorBoundary from '@/components/common/ErrorBoundary'
 
 // 🚀 LAZY LOADING : Ces pages ne seront téléchargées que lorsqu'elles seront visitées !
-const HomePage = lazy(() => import("../screens/Dashboard"));
-const LoginPage = lazy(() => import("../screens/Login"));
-const AddEditGamePage = lazy(() => import("../screens/AddEditGame"));
-const CategoryPage = lazy(() => import("../screens/Category"));
-const DeconnexionPage = lazy(() => import("../screens/Deconnexion"));
-const ProfilePage = lazy(() => import("../screens/Profile"));
-const RegisterPage = lazy(() => import("../screens/Register"));
-const StatistiquePage = lazy(() => import("../screens/Statistique"));
-const ListePage = lazy(() => import("../screens/Liste"));
-const DetailPage = lazy(() => import("../screens/Detail"));
-const TropheesPage = lazy(() => import("../screens/Trophees"));
+const HomePage = lazy(() => import('../screens/Dashboard'))
+const LoginPage = lazy(() => import('../screens/Login'))
+const AddEditGamePage = lazy(() => import('../screens/AddEditGame'))
+const CategoryPage = lazy(() => import('../screens/Category'))
+const DeconnexionPage = lazy(() => import('../screens/Deconnexion'))
+const ProfilePage = lazy(() => import('../screens/Profile'))
+const RegisterPage = lazy(() => import('../screens/Register'))
+const StatistiquePage = lazy(() => import('../screens/Statistique'))
+const ListePage = lazy(() => import('../screens/Liste'))
+const DetailPage = lazy(() => import('../screens/Detail'))
+const TropheesPage = lazy(() => import('../screens/Trophees'))
 
 // Un composant qui enveloppe nos routes paresseuses pour afficher un spinner simple et capturer les erreurs de page
 const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
   <ErrorBoundary>
     <Suspense fallback={<SimpleLoadingSpinner />}>{children}</Suspense>
   </ErrorBoundary>
-);
+)
 
 // Un wrapper léger pour la déconnexion (sans ChargementPage)
 const SimpleSuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
   <ErrorBoundary>
     <Suspense fallback={<div></div>}>{children}</Suspense>
   </ErrorBoundary>
-);
+)
 
 let router = createBrowserRouter([
   {
     Component: AuthLayout,
     children: [
       {
-        path: "/",
+        path: '/',
         element: (
           <SuspenseWrapper>
             <LoginPage />
@@ -49,7 +49,7 @@ let router = createBrowserRouter([
         ),
       },
       {
-        path: "/register",
+        path: '/register',
         element: (
           <SuspenseWrapper>
             <RegisterPage />
@@ -59,7 +59,7 @@ let router = createBrowserRouter([
     ],
   },
   {
-    path: "/logout",
+    path: '/logout',
     element: (
       <SimpleSuspenseWrapper>
         <DeconnexionPage />
@@ -67,7 +67,7 @@ let router = createBrowserRouter([
     ),
   },
   {
-    path: "/loading",
+    path: '/loading',
     element: <LoadingScreen />,
   },
   {
@@ -77,7 +77,7 @@ let router = createBrowserRouter([
         Component: AppLayout,
         children: [
           {
-            path: "/dashboard",
+            path: '/dashboard',
             element: (
               <SuspenseWrapper>
                 <HomePage />
@@ -85,7 +85,7 @@ let router = createBrowserRouter([
             ),
           },
           {
-            path: "/categories",
+            path: '/categories',
             element: (
               <SuspenseWrapper>
                 <CategoryPage />
@@ -93,7 +93,7 @@ let router = createBrowserRouter([
             ),
           },
           {
-            path: "/list",
+            path: '/list',
             element: (
               <SuspenseWrapper>
                 <ListePage />
@@ -101,7 +101,7 @@ let router = createBrowserRouter([
             ),
           },
           {
-            path: "/game/:gameName",
+            path: '/game/:gameName',
             element: (
               <SuspenseWrapper>
                 <DetailPage />
@@ -109,7 +109,7 @@ let router = createBrowserRouter([
             ),
           },
           {
-            path: "/game/add-edit-game",
+            path: '/game/add-edit-game',
             element: (
               <SuspenseWrapper>
                 <AddEditGamePage />
@@ -117,7 +117,7 @@ let router = createBrowserRouter([
             ),
           },
           {
-            path: "/profile",
+            path: '/profile',
             element: (
               <SuspenseWrapper>
                 <ProfilePage />
@@ -125,7 +125,7 @@ let router = createBrowserRouter([
             ),
           },
           {
-            path: "/statistics",
+            path: '/statistics',
             element: (
               <SuspenseWrapper>
                 <StatistiquePage />
@@ -133,7 +133,7 @@ let router = createBrowserRouter([
             ),
           },
           {
-            path: "/trophies",
+            path: '/trophies',
             element: (
               <SuspenseWrapper>
                 <TropheesPage />
@@ -144,6 +144,6 @@ let router = createBrowserRouter([
       },
     ],
   },
-]);
+])
 
-export default router;
+export default router

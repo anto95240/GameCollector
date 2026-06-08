@@ -1,4 +1,4 @@
-import "./SavedFiltersList.css";
+import './SavedFiltersList.css'
 
 export const SavedFiltersList = ({ savedFilters, onApplySaved, onDeleteSaved }) => {
   if (savedFilters.length === 0) {
@@ -9,7 +9,7 @@ export const SavedFiltersList = ({ savedFilters, onApplySaved, onDeleteSaved }) 
           Sauvegardez un ensemble de filtres pour le retrouver ici et le réappliquer en un clic.
         </p>
       </div>
-    );
+    )
   }
 
   return (
@@ -25,12 +25,16 @@ export const SavedFiltersList = ({ savedFilters, onApplySaved, onDeleteSaved }) 
             <button type="button" className="btn" onClick={() => onApplySaved && onApplySaved(s)}>
               Appliquer
             </button>
-            <button type="button" className="btn btn-danger" onClick={() => onDeleteSaved && onDeleteSaved(s.id)}>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={() => onDeleteSaved && onDeleteSaved(s.id)}
+            >
               Supprimer
             </button>
           </div>
         </div>
       ))}
     </div>
-  );
-};
+  )
+}

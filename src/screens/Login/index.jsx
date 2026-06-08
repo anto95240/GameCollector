@@ -1,20 +1,30 @@
-import "./Login.css";
+import './Login.css'
 
-import { faExclamationCircle,faLock, faUser } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router";
+import { faExclamationCircle, faLock, faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router'
 
-import AuthInput from "@/components/common/AuthInput";
-import LoadingButton from "@/components/common/LoadingButton";
-import { useLogin } from "@/hooks/domains/auth/useLogin";
+import AuthInput from '@/components/common/AuthInput'
+import LoadingButton from '@/components/common/LoadingButton'
+import { useLogin } from '@/hooks/domains/auth/useLogin'
 
 const Login = () => {
   // L'UI est totalement séparée de la logique !
-  const { email, setEmail, password, setPassword, error, isAnimating, showLoading, handleSubmit, t } = useLogin();
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    error,
+    isAnimating,
+    showLoading,
+    handleSubmit,
+    t,
+  } = useLogin()
 
   return (
     <>
-      <h2 className="auth-title">{t("auth.login.title")}</h2>
+      <h2 className="auth-title">{t('auth.login.title')}</h2>
 
       <form onSubmit={handleSubmit} className="auth-form">
         {error && (
@@ -26,7 +36,7 @@ const Login = () => {
 
         <AuthInput
           name="email"
-          placeholder={t("auth.login.usernameOrEmail")}
+          placeholder={t('auth.login.usernameOrEmail')}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           icon={faUser}
@@ -36,17 +46,17 @@ const Login = () => {
         <AuthInput
           type="password"
           name="password"
-          placeholder={t("auth.login.password")}
+          placeholder={t('auth.login.password')}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           icon={faLock}
           required={true}
           isPassword={true}
-          ariaLabelToggle={t("auth.login.arialLabelPassword")}
+          ariaLabelToggle={t('auth.login.arialLabelPassword')}
         />
 
         <LoadingButton
-          text={t("auth.login.submit")}
+          text={t('auth.login.submit')}
           isAnimating={isAnimating}
           showLoading={showLoading}
           loadingVariant="login"
@@ -57,14 +67,14 @@ const Login = () => {
 
       <div className="auth-footer">
         <p>
-          {t("auth.login.newUser")}
+          {t('auth.login.newUser')}
           <Link to="/register" className="cyber-link">
-            {t("auth.login.newUserLink")}
+            {t('auth.login.newUserLink')}
           </Link>
         </p>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

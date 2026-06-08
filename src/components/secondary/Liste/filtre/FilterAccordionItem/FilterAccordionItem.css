@@ -109,7 +109,7 @@
   gap: 10px;
 }
 
-.checkbox-container input[type="checkbox"] {
+.checkbox-container input[type='checkbox'] {
   appearance: none;
   width: 18px;
   height: 18px;
@@ -120,7 +120,7 @@
   flex-shrink: 0;
 }
 
-.checkbox-container input[type="checkbox"]:checked {
+.checkbox-container input[type='checkbox']:checked {
   background: white;
 }
 
@@ -134,7 +134,7 @@
   pointer-events: none;
 }
 
-.checkbox-container input[type="checkbox"]:checked + .checkmark .check-icon {
+.checkbox-container input[type='checkbox']:checked + .checkmark .check-icon {
   display: block;
 }
 

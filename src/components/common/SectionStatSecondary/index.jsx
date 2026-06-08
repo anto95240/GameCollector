@@ -1,30 +1,28 @@
-import "./SectionStatSecondary.css";
+import './SectionStatSecondary.css'
 
-import React from "react";
-import { useLocation } from "react-router";
+import React from 'react'
+import { useLocation } from 'react-router'
 
-import StatCard from "@/components/common/StatCard";
-import { useDashboard } from "@/hooks/domains/dashboard/useDashboard";
+import StatCard from '@/components/common/StatCard'
+import { useDashboard } from '@/hooks/domains/dashboard/useDashboard'
 
 const SectionStatSecondary = ({ t }) => {
-  const { stats } = useDashboard();
-  const location = useLocation();
+  const { stats } = useDashboard()
+  const location = useLocation()
 
-  const isStatisticsPage = location.pathname === "/statistics";
+  const isStatisticsPage = location.pathname === '/statistics'
 
   return (
     <div
-      className={`secondary-stats-grid ${isStatisticsPage ? "statistics-page" : "default-page"}`}
+      className={`secondary-stats-grid ${isStatisticsPage ? 'statistics-page' : 'default-page'}`}
     >
-      <StatCard title={t("dashboard.favorite")} value={stats.favoriteCount} />
-      <StatCard title={t("dashboard.platform")} value={stats.platformCount} />
-      <StatCard title={t("dashboard.genre")} value={stats.genreCount} />
+      <StatCard title={t('dashboard.favorite')} value={stats.favoriteCount} />
+      <StatCard title={t('dashboard.platform')} value={stats.platformCount} />
+      <StatCard title={t('dashboard.genre')} value={stats.genreCount} />
 
-      {isStatisticsPage && (
-        <StatCard title={t("dashboard.totalGame")} value={stats.totalGames} />
-      )}
+      {isStatisticsPage && <StatCard title={t('dashboard.totalGame')} value={stats.totalGames} />}
     </div>
-  );
-};
+  )
+}
 
-export default React.memo(SectionStatSecondary);
+export default React.memo(SectionStatSecondary)

@@ -31,7 +31,9 @@
 }
 
 @keyframes stats-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ── TABS ── */
@@ -88,7 +90,7 @@
 /* ── TAB CONTENT ── */
 .stats-tab-content {
   border: 1px solid var(--border-main);
-  border-top: 1px solid var(--border-subtle);;
+  border-top: 1px solid var(--border-subtle);
   border-radius: 0 16px 16px 16px;
   padding: 24px;
   background: var(--bg-card);

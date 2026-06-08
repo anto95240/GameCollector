@@ -14,8 +14,12 @@
 }
 
 @keyframes fadeInOverlay {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* =========================================
@@ -35,16 +39,36 @@
 }
 
 @keyframes crtTurnOn {
-  0% { transform: scale(0.8) scaleY(0.01); opacity: 0; filter: brightness(2); }
-  50% { transform: scale(1.02) scaleY(1.02); filter: brightness(1.2); }
-  100% { transform: scale(1) scaleY(1); opacity: 1; filter: brightness(1); }
+  0% {
+    transform: scale(0.8) scaleY(0.01);
+    opacity: 0;
+    filter: brightness(2);
+  }
+  50% {
+    transform: scale(1.02) scaleY(1.02);
+    filter: brightness(1.2);
+  }
+  100% {
+    transform: scale(1) scaleY(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
 }
 
 /* Scrollbar Cyberpunk pour la modale */
-.keyboard-help-modal::-webkit-scrollbar { width: 6px; }
-.keyboard-help-modal::-webkit-scrollbar-track { background: transparent; }
-.keyboard-help-modal::-webkit-scrollbar-thumb { background: var(--border-main); border-radius: 4px; }
-.keyboard-help-modal::-webkit-scrollbar-thumb:hover { background: var(--brand-glow); }
+.keyboard-help-modal::-webkit-scrollbar {
+  width: 6px;
+}
+.keyboard-help-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+.keyboard-help-modal::-webkit-scrollbar-thumb {
+  background: var(--border-main);
+  border-radius: 4px;
+}
+.keyboard-help-modal::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-glow);
+}
 
 /* =========================================
    HEADER
@@ -145,8 +169,14 @@
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* =========================================
@@ -179,11 +209,20 @@
    RESPONSIVE GÉNERAL
    ========================================= */
 @media (max-width: 768px) {
-  .keyboard-help-modal { width: 95%; max-height: 90vh; }
-  .keyboard-help-header h2 { font-size: 1.2rem; }
+  .keyboard-help-modal {
+    width: 95%;
+    max-height: 90vh;
+  }
+  .keyboard-help-header h2 {
+    font-size: 1.2rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .keyboard-help-overlay { animation: none; }
-  .keyboard-help-modal { animation: none; }
+  .keyboard-help-overlay {
+    animation: none;
+  }
+  .keyboard-help-modal {
+    animation: none;
+  }
 }

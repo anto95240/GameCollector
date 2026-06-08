@@ -1,13 +1,13 @@
-import "./Dashboard.css";
+import './Dashboard.css'
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next'
 
-import SectionStatSecondary from "@/components/common/SectionStatSecondary";
-import SectionGameCard from "@/components/main/Dashboard/SectionGameCard";
-import SectionStatPrimary from "@/components/main/Dashboard/SectionStatPrimary";
+import SectionStatSecondary from '@/components/common/SectionStatSecondary'
+import SectionGameCard from '@/components/main/Dashboard/SectionGameCard'
+import SectionStatPrimary from '@/components/main/Dashboard/SectionStatPrimary'
 
 function HomePage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <div className="dashboard-content">
@@ -22,7 +22,7 @@ function HomePage() {
 
       <SectionGameCard t={t} />
     </div>
-  );
+  )
 }
 
-export default HomePage;
+export default HomePage

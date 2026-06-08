@@ -27,7 +27,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
   }
   50% {
@@ -39,7 +40,7 @@
   background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 212, 255, 0.15));
   border-color: #00ff88;
   color: #00ff88;
-  box-shadow: 
+  box-shadow:
     0 0 15px rgba(0, 212, 255, 0.4),
     0 0 30px rgba(0, 255, 136, 0.2);
   transform: translateY(-2px);

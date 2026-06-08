@@ -1,7 +1,7 @@
-import "./ActiveFiltersBox.css";
+import './ActiveFiltersBox.css'
 
-import { faTimes, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const ActiveFiltersBox = ({
   selectedFilters,
@@ -17,8 +17,12 @@ export const ActiveFiltersBox = ({
       ) : (
         <>
           {selectedFilters.map((filter, i) => (
-            <span key={i} className="filter-tag flex cursor-pointer items-center gap-1.5" onClick={() => onRemoveFilter(filter)}>
-              {filter.split(":")[1]} <FontAwesomeIcon icon={faTimes} size="xs" />
+            <span
+              key={i}
+              className="filter-tag flex cursor-pointer items-center gap-1.5"
+              onClick={() => onRemoveFilter(filter)}
+            >
+              {filter.split(':')[1]} <FontAwesomeIcon icon={faTimes} size="xs" />
             </span>
           ))}
           <button className="reset-all-btn" onClick={onClearAll}>
@@ -27,5 +31,5 @@ export const ActiveFiltersBox = ({
         </>
       )}
     </div>
-  );
-};
+  )
+}

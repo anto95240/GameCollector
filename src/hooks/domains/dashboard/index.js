@@ -1,2 +1,2 @@
-export * from './useDashboard';
-export * from './useStatsData';
+export * from './useDashboard'
+export * from './useStatsData'

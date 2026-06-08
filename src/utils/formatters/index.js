@@ -1,2 +1,2 @@
-export * from "./gameFormatters";
-export * from "./imageFormatters";
+export * from './gameFormatters'
+export * from './imageFormatters'

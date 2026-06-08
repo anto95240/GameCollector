@@ -1,6 +1,6 @@
-import "./StatItem.css";
+import './StatItem.css'
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const StatItem = ({ icon, label, value }) => (
   <div className="stat-item">
@@ -9,6 +9,6 @@ const StatItem = ({ icon, label, value }) => (
     </span>
     <span className="stat-value">{value}</span>
   </div>
-);
+)
 
-export default StatItem;
+export default StatItem

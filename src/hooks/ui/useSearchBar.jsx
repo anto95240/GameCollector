@@ -1,26 +1,26 @@
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react'
 
 export const useSearchBar = (initialValue = '', delay = 300) => {
-    const [searchTerm, setSearchTerm] = useState(initialValue);
-    
-    const [debouncedTerm, setDebouncedTerm] = useState(initialValue);
+  const [searchTerm, setSearchTerm] = useState(initialValue)
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setDebouncedTerm(searchTerm);
-        }, delay);
+  const [debouncedTerm, setDebouncedTerm] = useState(initialValue)
 
-        return () => clearTimeout(timer);
-    }, [searchTerm, delay]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedTerm(searchTerm)
+    }, delay)
 
-    const clearSearch = () => {
-        setSearchTerm('');
-    };
+    return () => clearTimeout(timer)
+  }, [searchTerm, delay])
 
-    return {
-        searchTerm,
-        setSearchTerm,
-        debouncedTerm,
-        clearSearch
-    };
-};
+  const clearSearch = () => {
+    setSearchTerm('')
+  }
+
+  return {
+    searchTerm,
+    setSearchTerm,
+    debouncedTerm,
+    clearSearch,
+  }
+}

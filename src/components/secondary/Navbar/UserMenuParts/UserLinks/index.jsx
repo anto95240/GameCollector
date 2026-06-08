@@ -1,38 +1,34 @@
-import "./UserLinks.css";
+import './UserLinks.css'
 
-import {
-  faRightFromBracket,
-  faTrophy,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink } from "react-router";
+import { faRightFromBracket, faTrophy, faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NavLink } from 'react-router'
 
-import { usePreloadRoute } from "@/hooks/ui/usePreloadRoute";
+import { usePreloadRoute } from '@/hooks/ui/usePreloadRoute'
 
 const UserLinks = ({ t, onClose }) => {
-  const { preloadRoute } = usePreloadRoute();
+  const { preloadRoute } = usePreloadRoute()
 
   return (
     <div className="navbar-actions-links">
-      <NavLink 
-        className="navbar-link-profile" 
-        to="/profile" 
+      <NavLink
+        className="navbar-link-profile"
+        to="/profile"
         onClick={onClose}
         onMouseEnter={() => preloadRoute('/profile')}
         onFocus={() => preloadRoute('/profile')}
       >
-        <FontAwesomeIcon icon={faUser} /> {t("navbar.profile")}
+        <FontAwesomeIcon icon={faUser} /> {t('navbar.profile')}
       </NavLink>
 
-      <NavLink 
-        className="navbar-link-profile" 
-        to="/trophies" 
+      <NavLink
+        className="navbar-link-profile"
+        to="/trophies"
         onClick={onClose}
         onMouseEnter={() => preloadRoute('/trophies')}
         onFocus={() => preloadRoute('/trophies')}
       >
-        <FontAwesomeIcon icon={faTrophy} /> {t("navbar.trophies")}
+        <FontAwesomeIcon icon={faTrophy} /> {t('navbar.trophies')}
       </NavLink>
 
       <NavLink className="navbar-link-deconnect" to="/logout" onClick={onClose}>
@@ -40,10 +36,10 @@ const UserLinks = ({ t, onClose }) => {
           <span className="logo-deconect">
             <FontAwesomeIcon icon={faRightFromBracket} />
           </span>
-          <span className="logout-text">{t("navbar.logout")}</span>
+          <span className="logout-text">{t('navbar.logout')}</span>
         </div>
       </NavLink>
     </div>
-  );
-};
-export default UserLinks;
+  )
+}
+export default UserLinks

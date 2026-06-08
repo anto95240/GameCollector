@@ -1,6 +1,6 @@
-import './LazyImage.css';
+import './LazyImage.css'
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react'
 const LazyImage = ({
   src,
   srcWebp,
@@ -16,67 +16,67 @@ const LazyImage = ({
   onError,
   style = {},
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  const [supportsWebP, setSupportsWebP] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [hasError, setHasError] = useState(false)
+  const [isIntersecting, setIsIntersecting] = useState(false)
+  const [supportsWebP, setSupportsWebP] = useState(false)
 
-  const containerRef = useRef(null);
-  const imgRef = useRef(null);
+  const containerRef = useRef(null)
+  const imgRef = useRef(null)
 
   // Detect WebP support once
   useEffect(() => {
-    const canvas = document.createElement('canvas');
-    canvas.width = 1;
-    canvas.height = 1;
+    const canvas = document.createElement('canvas')
+    canvas.width = 1
+    canvas.height = 1
     const isSupported =
       canvas.toDataURL('image/webp') !==
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
-    setSupportsWebP(isSupported);
-  }, []);
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='
+    setSupportsWebP(isSupported)
+  }, [])
 
   // IntersectionObserver for lazy loading
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
+    const el = containerRef.current
+    if (!el) return
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsIntersecting(true);
-            observer.unobserve(entry.target);
+            setIsIntersecting(true)
+            observer.unobserve(entry.target)
           }
-        });
+        })
       },
       { rootMargin: '100px', threshold: 0.01 }
-    );
+    )
 
-    observer.observe(el);
-    return () => observer.unobserve(el);
-  }, []);
+    observer.observe(el)
+    return () => observer.unobserve(el)
+  }, [])
 
   // If already in browser cache, mark loaded immediately
   useEffect(() => {
-    const img = imgRef.current;
+    const img = imgRef.current
     if (img && img.complete && img.naturalWidth > 1) {
-      setIsLoaded(true);
+      setIsLoaded(true)
     }
-  }, [isIntersecting]);
+  }, [isIntersecting])
 
   const handleLoad = () => {
-    setIsLoaded(true);
-    onLoad?.();
-  };
+    setIsLoaded(true)
+    onLoad?.()
+  }
 
   const handleError = () => {
-    setHasError(true);
-    onError?.();
-  };
+    setHasError(true)
+    onError?.()
+  }
 
   // Empty placeholder while not intersecting
   const placeholderSrc =
-    'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1 1%22%3E%3C/svg%3E';
+    'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1 1%22%3E%3C/svg%3E'
 
   return (
     <div
@@ -125,7 +125,7 @@ const LazyImage = ({
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default LazyImage;
+export default LazyImage

@@ -1,13 +1,13 @@
-import "./Navbar.css";
+import './Navbar.css'
 
-import NavbarInfo from "@/components/secondary/Navbar/NavbarInfo";
-import NavLinks from "@/components/secondary/Navbar/NavLinks";
-import { useNavbar } from "@/hooks/ui/useNavbar";
+import NavbarInfo from '@/components/secondary/Navbar/NavbarInfo'
+import NavLinks from '@/components/secondary/Navbar/NavLinks'
+import { useNavbar } from '@/hooks/ui/useNavbar'
 
 const Navbar = () => {
-  const { t, state, setters } = useNavbar();
-  const { actionsOpen } = state;
-  const { setActionsOpen } = setters;
+  const { t, state, setters } = useNavbar()
+  const { actionsOpen } = state
+  const { setActionsOpen } = setters
 
   return (
     <>
@@ -18,14 +18,10 @@ const Navbar = () => {
           <NavLinks t={t} />
         </nav>
 
-        <NavbarInfo
-          t={t}
-          setActionsOpen={setActionsOpen}
-          actionsOpen={actionsOpen}
-        />
+        <NavbarInfo t={t} setActionsOpen={setActionsOpen} actionsOpen={actionsOpen} />
       </header>
     </>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

@@ -1,7 +1,7 @@
-import "./LanguageSelector.css";
+import './LanguageSelector.css'
 
-import FlagIcon from "@/components/common/FlagIcon";
-import LangOption from "@/components/secondary/Navbar/UserMenuParts/LangOption";
+import FlagIcon from '@/components/common/FlagIcon'
+import LangOption from '@/components/secondary/Navbar/UserMenuParts/LangOption'
 
 const LanguageSelector = ({ currentLang, isOpen, setOpen, onChange }) => {
   return (
@@ -9,31 +9,21 @@ const LanguageSelector = ({ currentLang, isOpen, setOpen, onChange }) => {
       <button
         className="lang-btn"
         onClick={(e) => {
-          e.stopPropagation();
-          setOpen((prev) => !prev);
+          e.stopPropagation()
+          setOpen((prev) => !prev)
         }}
         aria-label="Changer la langue"
       >
-        <FlagIcon code={currentLang === "FR" ? "FR" : "GB"} className="w-6 h-6" />
+        <FlagIcon code={currentLang === 'FR' ? 'FR' : 'GB'} className="w-6 h-6" />
       </button>
 
       {isOpen && (
         <div className="lang-menu">
-          <LangOption
-            code="FR"
-            flagCode="FR"
-            label="Français"
-            onChange={onChange}
-          />
-          <LangOption
-            code="EN"
-            flagCode="GB"
-            label="English"
-            onChange={onChange}
-          />
+          <LangOption code="FR" flagCode="FR" label="Français" onChange={onChange} />
+          <LangOption code="EN" flagCode="GB" label="English" onChange={onChange} />
         </div>
       )}
     </>
-  );
-};
-export default LanguageSelector;
+  )
+}
+export default LanguageSelector

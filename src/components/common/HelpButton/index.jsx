@@ -1,14 +1,14 @@
-import './HelpButton.css';
+import './HelpButton.css'
 
-import { faQuestion } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect,useState } from 'react';
+import { faQuestion } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useEffect, useState } from 'react'
 const HelpButton = () => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false)
 
   const handleClick = () => {
-    window.dispatchEvent(new CustomEvent('showKeyboardHelp'));
-  };
+    window.dispatchEvent(new CustomEvent('showKeyboardHelp'))
+  }
 
   return (
     <button
@@ -23,7 +23,7 @@ const HelpButton = () => {
       <span className="help-button-label">Ctrl+H</span>
       {isHovered && <div className="help-button-tooltip">Raccourcis clavier</div>}
     </button>
-  );
-};
+  )
+}
 
-export default HelpButton;
+export default HelpButton

@@ -1,5 +1,3 @@
-
-
 const FLAGS = {
   FR: (
     <svg
@@ -30,9 +28,9 @@ const FLAGS = {
       <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" strokeWidth="6" />
     </svg>
   ),
-};
+}
 const FlagIcon = ({ code, className, style }) => {
-  const svg = FLAGS[code?.toUpperCase()];
+  const svg = FLAGS[code?.toUpperCase()]
 
   if (!svg) {
     // Fallback visuel pour tout code inconnu — évite un rendu cassé
@@ -40,31 +38,31 @@ const FlagIcon = ({ code, className, style }) => {
       <span
         className={className}
         style={{
-          display: "inline-block",
-          background: "#444",
+          display: 'inline-block',
+          background: '#444',
           borderRadius: 2,
           ...style,
         }}
         aria-label={`Flag: ${code}`}
         role="img"
       />
-    );
+    )
   }
 
   return (
     <span
       className={className}
       style={{
-        display: "inline-flex",
-        alignItems: "center",
-        overflow: "hidden",
+        display: 'inline-flex',
+        alignItems: 'center',
+        overflow: 'hidden',
         borderRadius: 2,
         ...style,
       }}
     >
       {svg}
     </span>
-  );
-};
+  )
+}
 
-export default FlagIcon;
+export default FlagIcon

@@ -1,43 +1,43 @@
-import "./Deconnexion.css";
-import "../Login/Login.css";
+import './Deconnexion.css'
+import '../Login/Login.css'
 
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router'
 
-import LoadingButton from "@/components/common/LoadingButton";
+import LoadingButton from '@/components/common/LoadingButton'
 
 const DeconnexionPage = () => {
-  const { t } = useTranslation();
-  const navigate = useNavigate();
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const { t } = useTranslation()
+  const navigate = useNavigate()
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
 
   const handleLogout = async () => {
-    setIsLoggingOut(true);
-    await new Promise((resolve) => setTimeout(resolve, 400));
+    setIsLoggingOut(true)
+    await new Promise((resolve) => setTimeout(resolve, 400))
     // Redirection vers la page de chargement fullscreen
-    navigate("/loading?variant=logout&returnTo=/");
-  };
+    navigate('/loading?variant=logout&returnTo=/')
+  }
 
   return (
     <>
       <div className="auth-container logout-page">
         <div className="auth-card logout-card console-border-card">
-          <h2 className="auth-title">{t("auth.logout.title")}</h2>
+          <h2 className="auth-title">{t('auth.logout.title')}</h2>
 
           <div className="logout-content">
-            <p className="logout-message">{t("auth.logout.message")}</p>
+            <p className="logout-message">{t('auth.logout.message')}</p>
 
             <div className="form-navigation">
               <LoadingButton
-                text={t("common.cancel")}
+                text={t('common.cancel')}
                 type="button"
                 onClick={() => navigate(-1)}
                 variant="secondary"
                 className="flex-1"
               />
               <LoadingButton
-                text={t("auth.logout.returnLogin")}
+                text={t('auth.logout.returnLogin')}
                 isAnimating={isLoggingOut}
                 variant="danger"
                 loadingVariant="logout"
@@ -50,7 +50,7 @@ const DeconnexionPage = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default DeconnexionPage;
+export default DeconnexionPage

@@ -1,24 +1,43 @@
-import "./AddEditGame.css";
+import './AddEditGame.css'
 
-import SideNav from "@/components/common/SideNav";
-import SuccessOverlay from "@/components/common/SuccessOverlay";
-import GameForm from "@/components/main/AddEditGame/GameForm";
-import FormHeader from "@/components/secondary/AddEditGame/FormHeader";
-import { SECTIONS } from "@/config/constants";
-import { useAddEditGame } from "@/hooks/domains/games/useAddEditGame";
+import SideNav from '@/components/common/SideNav'
+import SuccessOverlay from '@/components/common/SuccessOverlay'
+import GameForm from '@/components/main/AddEditGame/GameForm'
+import FormHeader from '@/components/secondary/AddEditGame/FormHeader'
+import { SECTIONS } from '@/config/constants'
+import { useAddEditGame } from '@/hooks/domains/games/useAddEditGame'
 
 const AddEditGamePage = () => {
   const {
-    t, navigate, isEditMode, gameToEdit, activeSection, showMobileMenu,
-    setShowMobileMenu, scrollToSection, formData, setFormData, handleChange,
-    handleFileChange, handleSubmit, tagInput, setTagInput, suggestedTags,
-    handleTagKeyDown, addTag, handleRemoveTag, previewImg, isAnimating,
-    optionsData, availableTags, handleAddNewMetadata,
-  } = useAddEditGame();
+    t,
+    navigate,
+    isEditMode,
+    gameToEdit,
+    activeSection,
+    showMobileMenu,
+    setShowMobileMenu,
+    scrollToSection,
+    formData,
+    setFormData,
+    handleChange,
+    handleFileChange,
+    handleSubmit,
+    tagInput,
+    setTagInput,
+    suggestedTags,
+    handleTagKeyDown,
+    addTag,
+    handleRemoveTag,
+    previewImg,
+    isAnimating,
+    optionsData,
+    availableTags,
+    handleAddNewMetadata,
+  } = useAddEditGame()
 
   const title = isEditMode
-    ? `${t("common.edit")} ${gameToEdit?.name ?? ""}`
-    : t("gameForm.addTitle");
+    ? `${t('common.edit')} ${gameToEdit?.name ?? ''}`
+    : t('gameForm.addTitle')
 
   return (
     <div className="add-edit-page fade-in">
@@ -38,8 +57,8 @@ const AddEditGamePage = () => {
 
         {isAnimating ? (
           <SuccessOverlay
-            message={isEditMode ? t("gameForm.loading.editTitle") : t("gameForm.loading.addTitle")}
-            subMessage={t("gameForm.loading.message")}
+            message={isEditMode ? t('gameForm.loading.editTitle') : t('gameForm.loading.addTitle')}
+            subMessage={t('gameForm.loading.message')}
           />
         ) : (
           <GameForm
@@ -66,7 +85,7 @@ const AddEditGamePage = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AddEditGamePage;
+export default AddEditGamePage

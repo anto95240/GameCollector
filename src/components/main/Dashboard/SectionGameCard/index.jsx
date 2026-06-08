@@ -1,66 +1,69 @@
-import "./SectionGameCard.css";
+import './SectionGameCard.css'
 
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useCallback, useEffect, useRef,useState } from "react";
-import { useTranslation } from "react-i18next";
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
-import GameCard from "@/components/common/GameCard";
-import { useApiGame } from "@/hooks/api/useApiGame";
-import { useActiveOnScroll } from "@/hooks/ui/useActiveOnScroll";
-import { extractGamesList, formatGamesForCarousel } from "@/utils/formatters";
+import GameCard from '@/components/common/GameCard'
+import { useApiGame } from '@/hooks/api/useApiGame'
+import { useActiveOnScroll } from '@/hooks/ui/useActiveOnScroll'
+import { extractGamesList, formatGamesForCarousel } from '@/utils/formatters'
 
 const SectionGameCard = () => {
-  const { t } = useTranslation();
-  const { getAllGames } = useApiGame();
+  const { t } = useTranslation()
+  const { getAllGames } = useApiGame()
 
-  const [recentGames, setRecentGames] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [recentGames, setRecentGames] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
-  const scrollRef = useRef(null);
-  const activeId = useActiveOnScroll(scrollRef, ".observer-item", recentGames);
+  const scrollRef = useRef(null)
+  const activeId = useActiveOnScroll(scrollRef, '.observer-item', recentGames)
 
   useEffect(() => {
     const fetchRecentGames = async () => {
-      setIsLoading(true);
+      setIsLoading(true)
       try {
-        const data = await getAllGames();
-        setRecentGames(formatGamesForCarousel(extractGamesList(data).slice(0, 5)));
+        const data = await getAllGames()
+        setRecentGames(formatGamesForCarousel(extractGamesList(data).slice(0, 5)))
       } catch (error) {
-        console.error("Erreur lors du chargement des jeux récents", error);
+        console.error('Erreur lors du chargement des jeux récents', error)
       } finally {
-        setIsLoading(false);
+        setIsLoading(false)
       }
-    };
+    }
 
-    fetchRecentGames();
-  }, [getAllGames]);
+    fetchRecentGames()
+  }, [getAllGames])
 
   const scroll = useCallback((direction) => {
     if (scrollRef.current) {
-      const itemNode = scrollRef.current.querySelector(".observer-item");
-      const scrollAmount = itemNode ? itemNode.offsetWidth + (window.innerWidth <= 768 ? 15 : 20) : 230;
-      if (direction === "left") scrollRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-      else scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      const itemNode = scrollRef.current.querySelector('.observer-item')
+      const scrollAmount = itemNode
+        ? itemNode.offsetWidth + (window.innerWidth <= 768 ? 15 : 20)
+        : 230
+      if (direction === 'left')
+        scrollRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+      else scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
     }
-  }, []);
+  }, [])
 
   const handleScrollLeft = useCallback(() => {
-    scroll("left");
-  }, [scroll]);
+    scroll('left')
+  }, [scroll])
 
   const handleScrollRight = useCallback(() => {
-    scroll("right");
-  }, [scroll]);
+    scroll('right')
+  }, [scroll])
 
   return (
     <div className="section-game-card">
       <div className="section-header">
-        <h2 className="section-title">{t("dashboard.recentlyAdded")}</h2>
+        <h2 className="section-title">{t('dashboard.recentlyAdded')}</h2>
       </div>
 
       {isLoading ? (
-        <p className="loading-text">{t("dashboard.loading")}</p>
+        <p className="loading-text">{t('dashboard.loading')}</p>
       ) : recentGames.length > 0 ? (
         <div className="games-carousel">
           <button className="carousel-arrow arrow-left" onClick={handleScrollLeft}>
@@ -69,9 +72,9 @@ const SectionGameCard = () => {
 
           <div className="game-cards-container" ref={scrollRef}>
             {recentGames.map((game, index) => (
-              <div 
-                key={game._id || index} 
-                className="console-entry-anim observer-item" 
+              <div
+                key={game._id || index}
+                className="console-entry-anim observer-item"
                 data-id={String(game._id)}
               >
                 <GameCard
@@ -89,10 +92,10 @@ const SectionGameCard = () => {
           </button>
         </div>
       ) : (
-        <p className="no-game-txt">{t("dashboard.noGame")}</p>
+        <p className="no-game-txt">{t('dashboard.noGame')}</p>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default SectionGameCard;
+export default SectionGameCard

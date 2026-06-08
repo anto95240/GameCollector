@@ -1,69 +1,61 @@
-import "./ProfilSection.css";
+import './ProfilSection.css'
 
-import { useRef } from "react";
+import { useRef } from 'react'
 
-import ActionButtons from "@/components/secondary/Profile/ActionButtons";
-import ProfileCard from "@/components/secondary/Profile/ProfileCard";
-import SimpleInput from "@/components/secondary/Profile/SimpleInput";
+import ActionButtons from '@/components/secondary/Profile/ActionButtons'
+import ProfileCard from '@/components/secondary/Profile/ProfileCard'
+import SimpleInput from '@/components/secondary/Profile/SimpleInput'
 
 const ProfilSection = ({ user, form, setForm, t, handleSaveProfile }) => {
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef(null)
 
   const handleCancel = () => {
     setForm((prev) => ({
       ...prev,
-      firstname: user?.firstname || "",
-      lastname: user?.lastname || "",
-      username: user?.username || "",
+      firstname: user?.firstname || '',
+      lastname: user?.lastname || '',
+      username: user?.username || '',
       imageFile: null,
-      avatarURL: user?.image || "",
-    }));
-  };
+      avatarURL: user?.image || '',
+    }))
+  }
 
   const handleImageClick = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.click();
+      fileInputRef.current.click()
     }
-  };
+  }
 
   const getInitials = () => {
-    const first = form.firstname?.charAt(0) || "";
-    const last = form.lastname?.charAt(0) || "";
-    return `${first}${last}`.toUpperCase();
-  };
+    const first = form.firstname?.charAt(0) || ''
+    const last = form.lastname?.charAt(0) || ''
+    return `${first}${last}`.toUpperCase()
+  }
 
   const isDefaultImage =
-    form.avatarURL ===
-      "https://cdn-icons-png.flaticon.com/512/847/847969.png" ||
-    !form.avatarURL;
+    form.avatarURL === 'https://cdn-icons-png.flaticon.com/512/847/847969.png' || !form.avatarURL
 
   return (
     <ProfileCard
       id="profile-section"
-      title={t("profile.links.details")}
-      actions={
-        <ActionButtons
-          onCancel={handleCancel}
-          onSave={handleSaveProfile}
-          t={t}
-        />
-      }
+      title={t('profile.links.details')}
+      actions={<ActionButtons onCancel={handleCancel} onSave={handleSaveProfile} t={t} />}
     >
       <div className="profile-form-layout">
         {/* Champs texte */}
         <div className="profile-fields">
           <SimpleInput
-            label={t("profile.labels.firstName")}
+            label={t('profile.labels.firstName')}
             value={form.firstname}
             onChange={(e) => setForm({ ...form, firstname: e.target.value })}
           />
           <SimpleInput
-            label={t("profile.labels.name")}
+            label={t('profile.labels.name')}
             value={form.lastname}
             onChange={(e) => setForm({ ...form, lastname: e.target.value })}
           />
           <SimpleInput
-            label={t("profile.labels.username")}
+            label={t('profile.labels.username')}
             value={form.username}
             onChange={(e) => setForm({ ...form, username: e.target.value })}
           />
@@ -75,10 +67,10 @@ const ProfilSection = ({ user, form, setForm, t, handleSaveProfile }) => {
             type="file"
             accept="image/*"
             ref={fileInputRef}
-            style={{ display: "none" }}
+            style={{ display: 'none' }}
             onChange={(e) => {
               if (e.target.files && e.target.files[0]) {
-                setForm({ ...form, imageFile: e.target.files[0] });
+                setForm({ ...form, imageFile: e.target.files[0] })
               }
             }}
           />
@@ -101,13 +93,13 @@ const ProfilSection = ({ user, form, setForm, t, handleSaveProfile }) => {
             onDownload={handleImageClick}
             t={t}
             labels={{
-              download: t("profile.labels.profilePicture"),
+              download: t('profile.labels.profilePicture'),
             }}
           />
         </div>
       </div>
     </ProfileCard>
-  );
-};
+  )
+}
 
-export default ProfilSection;
+export default ProfilSection

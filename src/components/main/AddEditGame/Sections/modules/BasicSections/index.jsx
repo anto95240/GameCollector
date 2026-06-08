@@ -1,23 +1,23 @@
-import "./BasicSections.css";
+import './BasicSections.css'
 
-import { faImage } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import CustomSelect from "@/components/common/CustomSelect";
-import FloatingInput from "@/components/common/FloatingInput";
-import SectionWrapper from "@/components/secondary/AddEditGame/SectionWrapper";
+import CustomSelect from '@/components/common/CustomSelect'
+import FloatingInput from '@/components/common/FloatingInput'
+import SectionWrapper from '@/components/secondary/AddEditGame/SectionWrapper'
 
 export const DescriptionSection = ({ t, formData, handleChange }) => (
-  <SectionWrapper id="desc" title={t("gameForm.sections.description")}>
+  <SectionWrapper id="desc" title={t('gameForm.sections.description')}>
     <FloatingInput
       name="name"
-      label={t("gameForm.fields.name")}
+      label={t('gameForm.fields.name')}
       value={formData.name}
       onChange={handleChange}
       required={true}
     />
     <div className="textarea-group">
-      <label>{t("gameForm.fields.description")}</label>
+      <label>{t('gameForm.fields.description')}</label>
       <div className="textarea-container">
         <textarea
           name="description"
@@ -28,18 +28,12 @@ export const DescriptionSection = ({ t, formData, handleChange }) => (
       </div>
     </div>
   </SectionWrapper>
-);
+)
 
-export const RatingSection = ({
-  t,
-  formData,
-  handleChange,
-  setFormData,
-  optionsData,
-}) => (
-  <SectionWrapper id="rate" title={t("gameForm.sections.rating")}>
+export const RatingSection = ({ t, formData, handleChange, setFormData, optionsData }) => (
+  <SectionWrapper id="rate" title={t('gameForm.sections.rating')}>
     <div className="select-wrapper">
-      <label>{t("gameForm.fields.rating")}</label>
+      <label>{t('gameForm.fields.rating')}</label>
       <CustomSelect
         options={optionsData?.rating || []}
         value={formData.rating}
@@ -47,23 +41,18 @@ export const RatingSection = ({
       />
     </div>
   </SectionWrapper>
-);
+)
 
 export const CommentSection = ({ t, formData, handleChange }) => (
-  <SectionWrapper id="com" title={t("gameForm.sections.comment")}>
+  <SectionWrapper id="com" title={t('gameForm.sections.comment')}>
     <div className="textarea-group">
-      <label>{t("gameForm.fields.comment")}</label>
+      <label>{t('gameForm.fields.comment')}</label>
       <div className="textarea-container">
-        <textarea
-          name="comment"
-          rows="3"
-          value={formData.comment}
-          onChange={handleChange}
-        />
+        <textarea name="comment" rows="3" value={formData.comment} onChange={handleChange} />
       </div>
     </div>
   </SectionWrapper>
-);
+)
 
 export const MetadataSection = ({
   t,
@@ -72,18 +61,14 @@ export const MetadataSection = ({
   optionsData,
   handleAddNewMetadata,
 }) => (
-  <SectionWrapper id="meta" title={t("gameForm.sections.metadata")}>
+  <SectionWrapper id="meta" title={t('gameForm.sections.metadata')}>
     <div className="flex gap-2.5 items-center">
       <CustomSelect
         options={optionsData?.genre || []}
         value={formData.genre}
         onChange={(val) => setFormData((p) => ({ ...p, genre: val }))}
       />
-      <button
-        type="button"
-        className="btn-quick-add"
-        onClick={() => handleAddNewMetadata("genre")}
-      >
+      <button type="button" className="btn-quick-add" onClick={() => handleAddNewMetadata('genre')}>
         <FontAwesomeIcon icon={faImage} />
       </button>
     </div>
@@ -96,20 +81,20 @@ export const MetadataSection = ({
       <button
         type="button"
         className="btn-quick-add"
-        onClick={() => handleAddNewMetadata("platform")}
+        onClick={() => handleAddNewMetadata('platform')}
       >
         <FontAwesomeIcon icon={faImage} />
       </button>
     </div>
   </SectionWrapper>
-);
+)
 
 export const ImageSection = ({ t, previewImg, handleFileChange }) => (
   <SectionWrapper
     id="img"
     title={
       <span>
-        {t("gameForm.sections.image")} <span>*</span>
+        {t('gameForm.sections.image')} <span>*</span>
       </span>
     }
   >
@@ -129,11 +114,11 @@ export const ImageSection = ({ t, previewImg, handleFileChange }) => (
           <div className="upload-placeholder">
             <FontAwesomeIcon icon={faImage} className="upload-icon" />
             <p>
-              {t("gameForm.fields.downloadImage")} <span>*</span>
+              {t('gameForm.fields.downloadImage')} <span>*</span>
             </p>
           </div>
         )}
       </label>
     </div>
   </SectionWrapper>
-);
+)

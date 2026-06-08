@@ -73,7 +73,8 @@
 /* =========================================
    BADGES
    ========================================= */
-.custom-badge, .disabled-badge {
+.custom-badge,
+.disabled-badge {
   display: inline-block;
   margin-left: 12px;
   padding: 2px 6px;
@@ -127,8 +128,13 @@
   transform: translateY(1px);
 }
 
-.keyboard-help-btn.toggle.enabled { color: var(--status-success); border-color: var(--status-success); }
-.keyboard-help-btn.toggle.disabled { color: var(--text-secondary); }
+.keyboard-help-btn.toggle.enabled {
+  color: var(--status-success);
+  border-color: var(--status-success);
+}
+.keyboard-help-btn.toggle.disabled {
+  color: var(--text-secondary);
+}
 
 /* =========================================
    MODE ÉDITION (TERMINAL INPUT)
@@ -155,8 +161,13 @@
 }
 
 @keyframes terminalBlink {
-  0%, 100% { border-color: var(--brand-glow); }
-  50% { border-color: var(--border-main); }
+  0%,
+  100% {
+    border-color: var(--brand-glow);
+  }
+  50% {
+    border-color: var(--border-main);
+  }
 }
 
 .keyboard-help-recording-hint {
@@ -168,18 +179,47 @@
   letter-spacing: 1px;
 }
 
-.keyboard-help-btn.save { background: var(--bg-card); color: var(--status-success); border-color: var(--status-success); }
-.keyboard-help-btn.cancel { background: var(--bg-card); color: var(--status-danger); border-color: var(--status-danger); }
+.keyboard-help-btn.save {
+  background: var(--bg-card);
+  color: var(--status-success);
+  border-color: var(--status-success);
+}
+.keyboard-help-btn.cancel {
+  background: var(--bg-card);
+  color: var(--status-danger);
+  border-color: var(--status-danger);
+}
 
 /* RESPONSIVE SPECIFIQUE A L'ITEM */
 @media (max-width: 768px) {
-  .keyboard-help-item { flex-direction: column; align-items: flex-start; }
-  .keyboard-help-item-content { width: 100%; flex-direction: column; align-items: flex-start; gap: 8px;}
-  .keyboard-help-keys { width: 100%; justify-content: center; }
-  .keyboard-help-actions { width: 100%; justify-content: flex-end; margin-top: 8px; }
-  .custom-badge, .disabled-badge { margin-left: 0; margin-top: 6px; }
+  .keyboard-help-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .keyboard-help-item-content {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .keyboard-help-keys {
+    width: 100%;
+    justify-content: center;
+  }
+  .keyboard-help-actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 8px;
+  }
+  .custom-badge,
+  .disabled-badge {
+    margin-left: 0;
+    margin-top: 6px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .keyboard-help-recording-input { animation: none; }
+  .keyboard-help-recording-input {
+    animation: none;
+  }
 }

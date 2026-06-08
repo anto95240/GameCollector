@@ -1,12 +1,12 @@
-import "./Pagination.css";
+import './Pagination.css'
 
 import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
   faAngleLeft,
   faAngleRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Pagination = ({ page, totalPages, onPrev, onNext, onFirst, onLast }) => {
   return (
@@ -27,24 +27,16 @@ const Pagination = ({ page, totalPages, onPrev, onNext, onFirst, onLast }) => {
       </span>
 
       {/* Page suivante */}
-      <button
-        className="page-btn"
-        onClick={onNext}
-        disabled={page === totalPages}
-      >
+      <button className="page-btn" onClick={onNext} disabled={page === totalPages}>
         <FontAwesomeIcon icon={faAngleRight} />
       </button>
 
       {/* Dernière page */}
-      <button
-        className="page-btn"
-        onClick={onLast}
-        disabled={page === totalPages}
-      >
+      <button className="page-btn" onClick={onLast} disabled={page === totalPages}>
         <FontAwesomeIcon icon={faAngleDoubleRight} />
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default Pagination;
+export default Pagination

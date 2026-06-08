@@ -1,39 +1,39 @@
-import "./Statistique.css";
+import './Statistique.css'
 
-import { faCalendarAlt, faChartBar, faLayerGroup, faStar } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { faCalendarAlt, faChartBar, faLayerGroup, faStar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
-import SectionStatSecondary from "@/components/common/SectionStatSecondary";
-import HeatmapChart from "@/components/main/Statistique/HeatmapChart";
-import InsightsPanel from "@/components/main/Statistique/InsightsPanel";
-import PlatformChart from "@/components/main/Statistique/PlatformChart";
-import RadarGenreChart from "@/components/main/Statistique/RadarGenreChart";
-import StatusFunnelChart from "@/components/main/Statistique/StatusFunnelChart";
-import TopGamesWidget from "@/components/main/Statistique/TopGamesWidget";
-import YearChart from "@/components/main/Statistique/YearChart";
-import { useStatsData } from "@/hooks/domains/dashboard/useStatsData";
-import { triggerAchievementCheck } from "@/services/achievementService";
-import { mergeStoredUser } from "@/utils/userStorage";
+import SectionStatSecondary from '@/components/common/SectionStatSecondary'
+import HeatmapChart from '@/components/main/Statistique/HeatmapChart'
+import InsightsPanel from '@/components/main/Statistique/InsightsPanel'
+import PlatformChart from '@/components/main/Statistique/PlatformChart'
+import RadarGenreChart from '@/components/main/Statistique/RadarGenreChart'
+import StatusFunnelChart from '@/components/main/Statistique/StatusFunnelChart'
+import TopGamesWidget from '@/components/main/Statistique/TopGamesWidget'
+import YearChart from '@/components/main/Statistique/YearChart'
+import { useStatsData } from '@/hooks/domains/dashboard/useStatsData'
+import { triggerAchievementCheck } from '@/services/achievementService'
+import { mergeStoredUser } from '@/utils/userStorage'
 
 const TABS = [
-  { id: "overview", label: "Vue d'ensemble", icon: faChartBar },
-  { id: "genres", label: "Genres & Plateformes", icon: faLayerGroup },
-  { id: "activity", label: "Activité", icon: faCalendarAlt },
-  { id: "rankings", label: "Classements", icon: faStar }
-];
+  { id: 'overview', label: "Vue d'ensemble", icon: faChartBar },
+  { id: 'genres', label: 'Genres & Plateformes', icon: faLayerGroup },
+  { id: 'activity', label: 'Activité', icon: faCalendarAlt },
+  { id: 'rankings', label: 'Classements', icon: faStar },
+]
 
 function StatistiquePage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   // Utilisation de stats au lieu de games
-  const { stats, metadata, isLoading } = useStatsData();
-  const [activeTab, setActiveTab] = useState("overview");
+  const { stats, metadata, isLoading } = useStatsData()
+  const [activeTab, setActiveTab] = useState('overview')
 
   useEffect(() => {
-    mergeStoredUser({ viewedStats: true });
-    triggerAchievementCheck();
-  }, []);
+    mergeStoredUser({ viewedStats: true })
+    triggerAchievementCheck()
+  }, [])
 
   if (isLoading || !stats) {
     return (
@@ -43,7 +43,7 @@ function StatistiquePage() {
           <p>Calcul des statistiques...</p>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -51,10 +51,10 @@ function StatistiquePage() {
       <SectionStatSecondary t={t} />
 
       <div className="stats-tabs">
-        {TABS.map(tab => (
+        {TABS.map((tab) => (
           <button
             key={tab.id}
-            className={`stats-tab ${activeTab === tab.id ? "active" : ""}`}
+            className={`stats-tab ${activeTab === tab.id ? 'active' : ''}`}
             onClick={() => setActiveTab(tab.id)}
           >
             <FontAwesomeIcon className="tab-icon" icon={tab.icon} />
@@ -64,7 +64,7 @@ function StatistiquePage() {
       </div>
 
       <div className="stats-tab-content" key={activeTab}>
-        {activeTab === "overview" && (
+        {activeTab === 'overview' && (
           <div className="stats-section fade-in-tab">
             <InsightsPanel stats={stats} metadata={metadata} />
             <div className="stats-two-col mt-stats">
@@ -74,7 +74,7 @@ function StatistiquePage() {
           </div>
         )}
 
-        {activeTab === "genres" && (
+        {activeTab === 'genres' && (
           <div className="stats-section fade-in-tab">
             <div className="stats-two-col">
               <RadarGenreChart stats={stats} metadata={metadata} />
@@ -86,7 +86,7 @@ function StatistiquePage() {
           </div>
         )}
 
-        {activeTab === "activity" && (
+        {activeTab === 'activity' && (
           <div className="stats-section fade-in-tab">
             <HeatmapChart stats={stats} />
             <div className="mt-stats">
@@ -95,7 +95,7 @@ function StatistiquePage() {
           </div>
         )}
 
-        {activeTab === "rankings" && (
+        {activeTab === 'rankings' && (
           <div className="stats-section fade-in-tab">
             <TopGamesWidget stats={stats} metadata={metadata} />
             <div className="mt-stats">
@@ -105,6 +105,6 @@ function StatistiquePage() {
         )}
       </div>
     </div>
-  );
+  )
 }
-export default StatistiquePage;
+export default StatistiquePage

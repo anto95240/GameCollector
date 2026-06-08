@@ -1,10 +1,18 @@
-import "./FilterPanel.css";
+import './FilterPanel.css'
 
-import { faCalendarAlt, faCheckCircle, faClock, faGamepad, faHeart, faLayerGroup, faStar } from "@fortawesome/free-solid-svg-icons";
-import { t } from "i18next";
-import { useEffect, useState } from "react";
+import {
+  faCalendarAlt,
+  faCheckCircle,
+  faClock,
+  faGamepad,
+  faHeart,
+  faLayerGroup,
+  faStar,
+} from '@fortawesome/free-solid-svg-icons'
+import { t } from 'i18next'
+import { useEffect, useState } from 'react'
 
-import FilterAccordionItem from "@/components/secondary/Liste/Filtre/FilterAccordionItem";
+import FilterAccordionItem from '@/components/secondary/Liste/Filtre/FilterAccordionItem'
 
 import {
   getActiveFilterValue,
@@ -12,14 +20,14 @@ import {
   getOptionCount,
   handleClearCategory,
   parseRangeDraft,
-} from "../../filterUtils";
-import { ActiveFiltersBox } from "../ActiveFiltersBox";
-import { FilterPanelFooter } from "../FilterPanelFooter";
-import { FilterPanelHeader } from "../FilterPanelHeader";
-import { FilterPanelTabs } from "../FilterPanelTabs";
-import { SavedFiltersList } from "../SavedFiltersList";
-import { SaveFiltersBox } from "../SaveFiltersBox";
-import { RangeFilterItem, SortFilterItem } from "../SpecialFilters";
+} from '../../filterUtils'
+import { ActiveFiltersBox } from '../ActiveFiltersBox'
+import { FilterPanelFooter } from '../FilterPanelFooter'
+import { FilterPanelHeader } from '../FilterPanelHeader'
+import { FilterPanelTabs } from '../FilterPanelTabs'
+import { SavedFiltersList } from '../SavedFiltersList'
+import { SaveFiltersBox } from '../SaveFiltersBox'
+import { RangeFilterItem, SortFilterItem } from '../SpecialFilters'
 
 const ICONS = {
   genre: faLayerGroup,
@@ -29,7 +37,7 @@ const ICONS = {
   status: faCheckCircle,
   favorite: faHeart,
   soon: faClock,
-};
+}
 
 const FilterPanel = ({
   isOpen,
@@ -46,54 +54,56 @@ const FilterPanel = ({
   onApplySaved,
   onDeleteSaved,
 }) => {
-  const [expandedFilter, setExpandedFilter] = useState(null);
-  const [showAllOptions, setShowAllOptions] = useState({});
-  const [activePanelTab, setActivePanelTab] = useState("all");
-  const [saveName, setSaveName] = useState("");
+  const [expandedFilter, setExpandedFilter] = useState(null)
+  const [showAllOptions, setShowAllOptions] = useState({})
+  const [activePanelTab, setActivePanelTab] = useState('all')
+  const [saveName, setSaveName] = useState('')
   const [specialExpanded, setSpecialExpanded] = useState({
     sort: false,
     ratingRange: false,
     yearRange: false,
-  });
-  const [sortDraft, setSortDraft] = useState({ field: "Nom", order: "asc" });
+  })
+  const [sortDraft, setSortDraft] = useState({ field: 'Nom', order: 'asc' })
   const [rangeDrafts, setRangeDrafts] = useState({
-    yearRange: { min: "", max: "" },
-    ratingRange: { min: "", max: "" },
-  });
+    yearRange: { min: '', max: '' },
+    ratingRange: { min: '', max: '' },
+  })
 
-  const toggleFilterCategory = (id) =>
-    setExpandedFilter(expandedFilter === id ? null : id);
+  const toggleFilterCategory = (id) => setExpandedFilter(expandedFilter === id ? null : id)
 
   const toggleShowAll = (categoryId) => {
-    setShowAllOptions((prev) => ({ ...prev, [categoryId]: !prev[categoryId] }));
-  };
+    setShowAllOptions((prev) => ({ ...prev, [categoryId]: !prev[categoryId] }))
+  }
 
   const handleClearCategoryLocal = (categoryLabel) => {
-    handleClearCategory(selectedFilters, onRemoveFilter, categoryLabel);
-  };
+    handleClearCategory(selectedFilters, onRemoveFilter, categoryLabel)
+  }
 
   const getOptionCountLocal = (categoryLabel, optionValue) =>
-    getOptionCount(games, categoryLabel, optionValue);
+    getOptionCount(games, categoryLabel, optionValue)
 
   const getActiveFilterValueLocal = (categoryLabel) =>
-    getActiveFilterValue(selectedFilters, categoryLabel);
+    getActiveFilterValue(selectedFilters, categoryLabel)
 
-  const getActiveSortLocal = () => getActiveSort(selectedFilters);
+  const getActiveSortLocal = () => getActiveSort(selectedFilters)
 
   const toggleSpecial = (key) => {
-    setSpecialExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
+    setSpecialExpanded((prev) => ({ ...prev, [key]: !prev[key] }))
+  }
 
   useEffect(() => {
     setRangeDrafts({
-      yearRange: parseRangeDraft(selectedFilters, "Année"),
-      ratingRange: parseRangeDraft(selectedFilters, "Note"),
-    });
-    setSortDraft(getActiveSortLocal());
-  }, [selectedFilters]);
+      yearRange: parseRangeDraft(selectedFilters, 'Année'),
+      ratingRange: parseRangeDraft(selectedFilters, 'Note'),
+    })
+    setSortDraft(getActiveSortLocal())
+  }, [selectedFilters])
 
   return (
-    <div className={`filter-panel flex flex-col ${isOpen ? "open" : ""}`} onClick={(e) => e.stopPropagation()}>
+    <div
+      className={`filter-panel flex flex-col ${isOpen ? 'open' : ''}`}
+      onClick={(e) => e.stopPropagation()}
+    >
       <FilterPanelHeader onClose={onClose} />
 
       <div className="filter-scroll-content grow overflow-y-auto custom-scrollbar">
@@ -101,16 +111,16 @@ const FilterPanel = ({
           selectedFilters={selectedFilters}
           onRemoveFilter={onRemoveFilter}
           onClearAll={onClearAll}
-          noFilterLabel={t("gameList.filters.noFilter")}
-          clearAllLabel={t("gameList.filters.clearAll")}
+          noFilterLabel={t('gameList.filters.noFilter')}
+          clearAllLabel={t('gameList.filters.clearAll')}
         />
 
         <FilterPanelTabs activePanelTab={activePanelTab} setActivePanelTab={setActivePanelTab} />
 
-        {activePanelTab === "all" ? (
+        {activePanelTab === 'all' ? (
           <div className="filter-accordion flex flex-col gap-3 pb-4">
             {filterData.map((cat) => {
-              if (cat.type === "range") {
+              if (cat.type === 'range') {
                 return (
                   <RangeFilterItem
                     key={cat.id}
@@ -124,10 +134,10 @@ const FilterPanel = ({
                     specialExpanded={specialExpanded}
                     toggleSpecial={toggleSpecial}
                   />
-                );
+                )
               }
 
-              if (cat.type === "sort") {
+              if (cat.type === 'sort') {
                 return (
                   <SortFilterItem
                     key={cat.id}
@@ -141,7 +151,7 @@ const FilterPanel = ({
                     specialExpanded={specialExpanded}
                     toggleSpecial={toggleSpecial}
                   />
-                );
+                )
               }
 
               return (
@@ -159,7 +169,7 @@ const FilterPanel = ({
                   toggleShowAll={toggleShowAll}
                   handleClearCategory={handleClearCategoryLocal}
                 />
-              );
+              )
             })}
 
             <SaveFiltersBox
@@ -170,20 +180,20 @@ const FilterPanel = ({
             />
           </div>
         ) : (
-          <SavedFiltersList 
-            savedFilters={savedFilters} 
+          <SavedFiltersList
+            savedFilters={savedFilters}
             onApplySaved={(s) => {
-              if (onApplySaved) onApplySaved(s);
-              setActivePanelTab("all");
-            }} 
-            onDeleteSaved={onDeleteSaved} 
+              if (onApplySaved) onApplySaved(s)
+              setActivePanelTab('all')
+            }}
+            onDeleteSaved={onDeleteSaved}
           />
         )}
       </div>
 
       <FilterPanelFooter resultCount={resultCount} onClose={onClose} />
     </div>
-  );
-};
+  )
+}
 
-export default FilterPanel;
+export default FilterPanel

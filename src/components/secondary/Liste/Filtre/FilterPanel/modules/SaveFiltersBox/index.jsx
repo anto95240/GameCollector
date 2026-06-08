@@ -1,11 +1,6 @@
-import "./SaveFiltersBox.css";
+import './SaveFiltersBox.css'
 
-export const SaveFiltersBox = ({
-  saveName,
-  setSaveName,
-  onSaveCurrentFilters,
-  onClearAll,
-}) => {
+export const SaveFiltersBox = ({ saveName, setSaveName, onSaveCurrentFilters, onClearAll }) => {
   return (
     <div className="save-filters-box p-3">
       <input
@@ -17,8 +12,8 @@ export const SaveFiltersBox = ({
         <button
           className="btn"
           onClick={() => {
-            onSaveCurrentFilters && onSaveCurrentFilters(saveName);
-            setSaveName("");
+            onSaveCurrentFilters && onSaveCurrentFilters(saveName)
+            setSaveName('')
           }}
         >
           Sauvegarder les filtres
@@ -26,12 +21,12 @@ export const SaveFiltersBox = ({
         <button
           className="btn btn-ghost"
           onClick={() => {
-            onClearAll && onClearAll();
+            onClearAll && onClearAll()
           }}
         >
           Réinitialiser
         </button>
       </div>
     </div>
-  );
-};
+  )
+}

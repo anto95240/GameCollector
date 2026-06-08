@@ -1,30 +1,30 @@
-import './AchievementToast.css';
+import './AchievementToast.css'
 
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react'
 
 const AchievementToast = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [achievement, setAchievement] = useState(null);
+  const [isVisible, setIsVisible] = useState(false)
+  const [achievement, setAchievement] = useState(null)
 
   useEffect(() => {
     const handleAchievementUnlock = (event) => {
-      const { detail } = event;
-      setAchievement(detail);
-      setIsVisible(true);
-      
+      const { detail } = event
+      setAchievement(detail)
+      setIsVisible(true)
+
       // Auto-hide après 3 secondes
       const timer = setTimeout(() => {
-        setIsVisible(false);
-      }, 3000);
-      
-      return () => clearTimeout(timer);
-    };
+        setIsVisible(false)
+      }, 3000)
 
-    window.addEventListener('achievementUnlocked', handleAchievementUnlock);
-    return () => window.removeEventListener('achievementUnlocked', handleAchievementUnlock);
-  }, []);
+      return () => clearTimeout(timer)
+    }
 
-  if (!isVisible || !achievement) return null;
+    window.addEventListener('achievementUnlocked', handleAchievementUnlock)
+    return () => window.removeEventListener('achievementUnlocked', handleAchievementUnlock)
+  }, [])
+
+  if (!isVisible || !achievement) return null
 
   return (
     <div className="achv-masterpiece">
@@ -40,10 +40,12 @@ const AchievementToast = () => {
       <div className="achv-info-panel">
         <span className="achv-tag">SYSTÈME // ARCHIVE DÉVERROUILLÉE</span>
         <h3 className="achv-title">{achievement.title || 'Trophée'}</h3>
-        <p className="achv-desc">{achievement.description || 'Vous avez accompli quelque chose d\'extraordinaire!'}</p>
+        <p className="achv-desc">
+          {achievement.description || "Vous avez accompli quelque chose d'extraordinaire!"}
+        </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AchievementToast;
+export default AchievementToast

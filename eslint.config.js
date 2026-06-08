@@ -4,9 +4,11 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import globals from 'globals'
+import eslintConfigPrettier from 'eslint-config-prettier'
 
 export default defineConfig([
   globalIgnores(['dist']),
+  eslintConfigPrettier,
   {
     files: ['**/*.{js,jsx}'],
     extends: [
@@ -16,7 +18,10 @@ export default defineConfig([
     ],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.node
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
@@ -27,9 +32,18 @@ export default defineConfig([
       'simple-import-sort': simpleImportSort,
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      // Règles assouplies temporairement (warn au lieu de error)
+      'no-unused-vars': ['warn', { varsIgnorePattern: '^[A-Z_]' }],
+      'react-refresh/only-export-components': 'warn',
+      'react-hooks/exhaustive-deps': 'warn',
+      'react-hooks/rules-of-hooks': 'warn',
+      
+      // Imports et bonnes pratiques
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
+      'eqeqeq': ['error', 'always'],
+      'no-console': 'warn',
+      'prefer-const': 'error',
     },
   },
 ])

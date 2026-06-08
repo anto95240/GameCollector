@@ -56,8 +56,14 @@
 }
 
 @keyframes scrollMarquee {
-  0%, 15% { transform: translateX(0); }
-  85%, 100% { transform: translateX(var(--scroll-amount)); }
+  0%,
+  15% {
+    transform: translateX(0);
+  }
+  85%,
+  100% {
+    transform: translateX(var(--scroll-amount));
+  }
 }
 
 .floating-label .form-input:focus {

@@ -1,15 +1,11 @@
-import "./ThemeToggle.css";
+import './ThemeToggle.css'
 
-import { faMoon,faSun } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ThemeToggle = ({ isDark, toggleTheme }) => (
-  <button
-    className="theme-btn"
-    onClick={toggleTheme}
-    aria-label="Changer le thème"
-  >
+  <button className="theme-btn" onClick={toggleTheme} aria-label="Changer le thème">
     <FontAwesomeIcon icon={isDark ? faSun : faMoon} />
   </button>
-);
-export default ThemeToggle;
+)
+export default ThemeToggle

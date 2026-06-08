@@ -1,11 +1,11 @@
-import "./InlineFormItem.css";
+import './InlineFormItem.css'
 
 const InlineFormItem = ({
   label,
   value,
   placeholder,
   showForm,
-  inputType = "text",
+  inputType = 'text',
   toggleForm,
   formValue,
   onFormChange,
@@ -22,7 +22,7 @@ const InlineFormItem = ({
       </button>
     </div>
 
-    <div className={`inline-form-wrapper ${showForm ? "open" : ""}`}>
+    <div className={`inline-form-wrapper ${showForm ? 'open' : ''}`}>
       <div className="inline-form-content">
         <input
           type={inputType}
@@ -33,6 +33,6 @@ const InlineFormItem = ({
       </div>
     </div>
   </>
-);
+)
 
-export default InlineFormItem;
+export default InlineFormItem

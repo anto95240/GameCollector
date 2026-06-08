@@ -1,11 +1,11 @@
-import "./AuthInput.css";
+import './AuthInput.css'
 
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect,useRef, useState } from "react";
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useEffect, useRef, useState } from 'react'
 
 const AuthInput = ({
-  type = "text",
+  type = 'text',
   name,
   value,
   onChange,
@@ -14,36 +14,36 @@ const AuthInput = ({
   required = false,
   isPassword = false,
 }) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const containerRef = useRef(null);
-  const textRef = useRef(null);
-  const [isOverflowing, setIsOverflowing] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
+  const containerRef = useRef(null)
+  const textRef = useRef(null)
+  const [isOverflowing, setIsOverflowing] = useState(false)
 
   useEffect(() => {
     const checkOverflow = () => {
       setTimeout(() => {
         if (containerRef.current && textRef.current) {
-          const cw = containerRef.current.clientWidth;
-          const sw = textRef.current.scrollWidth;
+          const cw = containerRef.current.clientWidth
+          const sw = textRef.current.scrollWidth
           if (sw > cw) {
-            setIsOverflowing(true);
-            textRef.current.style.setProperty("--scroll-amount", `-${sw - cw}px`);
+            setIsOverflowing(true)
+            textRef.current.style.setProperty('--scroll-amount', `-${sw - cw}px`)
           } else {
-            setIsOverflowing(false);
+            setIsOverflowing(false)
           }
         }
-      }, 100);
-    };
+      }, 100)
+    }
 
-    const observer = new ResizeObserver(checkOverflow);
-    if (containerRef.current) observer.observe(containerRef.current);
-    
-    checkOverflow();
+    const observer = new ResizeObserver(checkOverflow)
+    if (containerRef.current) observer.observe(containerRef.current)
 
-    return () => observer.disconnect();
-  }, [placeholder, value]);
+    checkOverflow()
 
-  const inputType = isPassword ? (showPassword ? "text" : "password") : type;
+    return () => observer.disconnect()
+  }, [placeholder, value])
+
+  const inputType = isPassword ? (showPassword ? 'text' : 'password') : type
 
   return (
     <div className="input-group">
@@ -60,10 +60,7 @@ const AuthInput = ({
 
       {/* Faux placeholder animé */}
       <div className="auth-label-container" ref={containerRef}>
-        <span
-          className={`auth-label-text ${isOverflowing ? "scrolling" : ""}`}
-          ref={textRef}
-        >
+        <span className={`auth-label-text ${isOverflowing ? 'scrolling' : ''}`} ref={textRef}>
           {placeholder}
         </span>
       </div>
@@ -79,7 +76,7 @@ const AuthInput = ({
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default AuthInput;
+export default AuthInput

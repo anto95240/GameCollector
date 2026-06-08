@@ -1,4 +1,3 @@
-
 # GameCollector
 
 Application web dédié a la gestion et à la collection de tous vos jeux video.
@@ -31,7 +30,7 @@ Développé par Antoine RICHARD
 
 ## Design & Maquette
 
-La conception de l'interface a été réalisée en amont sur Figma. 
+La conception de l'interface a été réalisée en amont sur Figma.
 [Consulter la maquette UI/UX de GameCollector](https://www.figma.com/design/4e0GAyg6KClMIK3eYRMy7U/GameCollector-web?node-id=1-278&t=RLsssnaq8F1oA1KK-1)
 
 ---
@@ -71,9 +70,11 @@ VITE_API_URL=http://localhost:5001
 
 **4.Lancer le serveur de développement**
 Lancer l'application (après s'etre assurer que le backend est lancé : [voir ici](https://github.com/zkerkeb-class/back-projet-final-anto95240/tree/main)) :
+
 ```bash
 npm run dev
 ```
 
 # Licence
+
 Projet personnel open-source. Utilisation libre pour apprentissage et développement personnel uniquement.

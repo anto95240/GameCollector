@@ -1,7 +1,7 @@
-import "./SuccessOverlay.css";
+import './SuccessOverlay.css'
 
-import { faCheckCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const SuccessOverlay = ({ message, subMessage }) => (
   <div className="save-success-overlay fade-in">
@@ -15,5 +15,5 @@ const SuccessOverlay = ({ message, subMessage }) => (
       <FontAwesomeIcon icon={faSpinner} spin className="redirect-spinner" />
     </div>
   </div>
-);
-export default SuccessOverlay;
+)
+export default SuccessOverlay

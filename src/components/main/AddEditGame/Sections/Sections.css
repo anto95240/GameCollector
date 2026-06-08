@@ -1,9 +1,9 @@
 /* AddEditGame Sections - Central CSS Import */
 
-@import "./modules/BasicSections/BasicSections.css";
-@import "./modules/DetailsSection/DetailsSection.css";
-@import "./modules/InfoSections/InfoSections.css";
-@import "./modules/TagsSection/TagsSection.css";
+@import './modules/BasicSections/BasicSections.css';
+@import './modules/DetailsSection/DetailsSection.css';
+@import './modules/InfoSections/InfoSections.css';
+@import './modules/TagsSection/TagsSection.css';
 
 .form-grid > .form-group {
   height: fit-content;
