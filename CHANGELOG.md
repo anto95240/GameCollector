@@ -1,3 +1,13 @@
+# [2.9.0](https://github.com/anto95240/GameCollector/compare/v2.8.1...v2.9.0) (2026-06-09)
+
+
+### Features
+
+* amélioration globale de la validation et UX des formulaires ([6306e1a](https://github.com/anto95240/GameCollector/commit/6306e1a8f990dfd8657ab4dd60f10419809ff1ca))
+* implémentation de skeleton screens et loading states améliorés ([d5814fb](https://github.com/anto95240/GameCollector/commit/d5814fbcf004d09e3a083944f87a43299da3b885))
+* improve accessibility, focus management and enable WebP ([4604320](https://github.com/anto95240/GameCollector/commit/4604320972dba9a4088ab905b18ef47bd2c2a347))
+* refonte du système de toasts (file d'attente, actions, empilement) ([b6f5964](https://github.com/anto95240/GameCollector/commit/b6f596489c23f761d7ae0f15c1349f631da81d30))
+
 ## [2.8.1](https://github.com/anto95240/GameCollector/compare/v2.8.0...v2.8.1) (2026-06-09)
 
 
