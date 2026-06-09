@@ -1,5 +1,0 @@
-export * from './achievements'
-export * from './auth'
-export * from './categories'
-export * from './dashboard'
-export * from './games'

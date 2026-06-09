@@ -1,0 +1,31 @@
+import '@/screens/Register/Register.css'
+
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+
+import AuthInput from '@/components/common/AuthInput'
+
+const SignUpPart1 = ({ data, update, t }: any) => {
+  return (
+    <div className="step-form-anim">
+      <AuthInput
+        name="firstname"
+        placeholder={t('auth.register.firstName')}
+        value={data.firstname}
+        onChange={update}
+        icon={faUser}
+        required={true}
+      />
+
+      <AuthInput
+        name="lastname"
+        placeholder={t('auth.register.name')}
+        value={data.lastname}
+        onChange={update}
+        icon={faUser}
+        required={true}
+      />
+    </div>
+  )
+}
+
+export default SignUpPart1

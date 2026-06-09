@@ -1,13 +1,13 @@
-import { createBrowserRouter } from 'react-router'
 import { lazy, Suspense } from 'react'
+import { createBrowserRouter } from 'react-router'
 
 // On importe uniquement les layouts de base normalement
-import ProtectedRoutes from '@/components/main/ProtectedRoutes'
+import ErrorBoundary from '@/components/common/ErrorBoundary'
+import SimpleLoadingSpinner from '@/components/common/SimpleLoadingSpinner'
 import AppLayout from '@/components/main/AppLayout'
 import AuthLayout from '@/components/main/AuthLayout'
-import SimpleLoadingSpinner from '@/components/common/SimpleLoadingSpinner'
+import ProtectedRoutes from '@/components/main/ProtectedRoutes'
 import LoadingScreen from '@/screens/LoadingScreen'
-import ErrorBoundary from '@/components/common/ErrorBoundary'
 
 // 🚀 LAZY LOADING : Ces pages ne seront téléchargées que lorsqu'elles seront visitées !
 const HomePage = lazy(() => import('../screens/Dashboard'))
