@@ -1,9 +1,9 @@
 /* Loading Page - Modularized CSS Structure */
 
-@import "./modules/LoadingVariants/LoadingVariants.css";
-@import "./modules/BackgroundBlobs/BackgroundBlobs.css";
-@import "./modules/LoadingContent/LoadingContent.css";
-@import "./modules/Spinner/Spinner.css";
-@import "./modules/ProgressBar/ProgressBar.css";
-@import "./modules/StatusMessage/StatusMessage.css";
-@import "./modules/Particles/Particles.css";
+@import './modules/LoadingVariants/LoadingVariants.css';
+@import './modules/BackgroundBlobs/BackgroundBlobs.css';
+@import './modules/LoadingContent/LoadingContent.css';
+@import './modules/Spinner/Spinner.css';
+@import './modules/ProgressBar/ProgressBar.css';
+@import './modules/StatusMessage/StatusMessage.css';
+@import './modules/Particles/Particles.css';

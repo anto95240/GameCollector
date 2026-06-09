@@ -1,71 +1,71 @@
 .save-filters-box {
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-	padding: 15px;
-	background: rgba(0, 0, 0, 0.15);
-	border-radius: 12px;
-	border: 1px solid var(--color-border-filtre);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  border: 1px solid var(--color-border-filtre);
 }
 
 .save-filters-box input {
-	width: 100%;
-	padding: 12px 14px;
-	border-radius: 8px;
-	border: 1px solid var(--color-border-filtre);
-	background: var(--bg-input);
-	color: var(--color-text);
-	font-family: var(--font-family-text);
-	transition: all 0.3s ease;
-	outline: none;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-filtre);
+  background: var(--bg-input);
+  color: var(--color-text);
+  font-family: var(--font-family-text);
+  transition: all 0.3s ease;
+  outline: none;
 }
 
 .save-filters-box input:focus {
-	border-color: var(--border-focus);
-	box-shadow: 0 0 8px rgba(90, 242, 255, 0.2);
-	background: var(--bg-input);
+  border-color: var(--border-focus);
+  box-shadow: 0 0 8px rgba(90, 242, 255, 0.2);
+  background: var(--bg-input);
 }
 
 .save-actions {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-	justify-content: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
 }
 
 .save-actions .btn {
-	padding: 8px 16px;
-	border-radius: 8px;
-	font-weight: 600;
-	font-size: 13px;
-	transition: all 0.2s ease;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex: 1;
-	min-width: fit-content;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: fit-content;
 }
 
 .save-actions .btn:not(.btn-ghost) {
-	background: var(--gradient-blue);
-	color: white;
-	border: none;
-	box-shadow: 0 4px 10px rgba(0, 104, 172, 0.3);
+  background: var(--gradient-blue);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 104, 172, 0.3);
 }
 
 .save-actions .btn:not(.btn-ghost):hover {
-	transform: translateY(-2px);
-	box-shadow: 0 6px 15px rgba(0, 104, 172, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 104, 172, 0.5);
 }
 
 .save-actions .btn-ghost {
-	background: transparent;
-	color: var(--color-text);
-	border: 1px solid var(--color-border-filtre);
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border-filtre);
 }
 
 .save-actions .btn-ghost:hover {
-	background: rgba(255, 255, 255, 0.05);
-	border-color: var(--color-text);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-text);
 }

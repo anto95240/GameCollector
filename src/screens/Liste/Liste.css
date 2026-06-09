@@ -145,8 +145,12 @@
   cursor: pointer;
 }
 
-.arrow-left { left: 10px; }
-.arrow-right { right: 10px; }
+.arrow-left {
+  left: 10px;
+}
+.arrow-right {
+  right: 10px;
+}
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
@@ -155,7 +159,7 @@
     padding: 0;
     gap: 6px;
   }
-  
+
   .tab-link {
     font-size: 10px;
     padding: 10px 5px;
@@ -174,7 +178,8 @@
 }
 
 @media (min-width: 768px) {
-  .arrow-left, .arrow-right {
+  .arrow-left,
+  .arrow-right {
     display: none;
   }
 }

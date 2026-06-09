@@ -11,10 +11,9 @@
 }
 
 @media (hover: hover) {
-
-.cache-indicator:hover {
-  opacity: 1;
-}
+  .cache-indicator:hover {
+    opacity: 1;
+  }
 }
 
 .cache-indicator--sm .cache-indicator__icon {
@@ -75,7 +74,8 @@
 
 /* Animation */
 @keyframes cache-pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.7;
     transform: scale(1);
   }

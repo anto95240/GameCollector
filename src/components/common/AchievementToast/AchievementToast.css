@@ -1,7 +1,3 @@
-/* ==============================================
-   ACHIEVEMENT MODIFIÉ : EXTRACTION SANS ROTATION
-   ============================================== */
-
 .achv-masterpiece {
   position: fixed; /* Fixé à l'écran */
   bottom: 40px;
@@ -16,7 +12,9 @@
   border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: 16px;
-  box-shadow: var(--shadow-navbar), 0 0 20px rgba(90, 242, 255, 0.1);
+  box-shadow:
+    var(--shadow-navbar),
+    0 0 20px rgba(90, 242, 255, 0.1);
   overflow: hidden;
   font-family: var(--font-family-text);
   /* L'animation de glissement fait apparaître tout le panneau d'un coup */
@@ -57,7 +55,7 @@
 
 /* Bordure holographique (Conserved, it just spins on the static card) */
 .achv-card-static::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: -2px;
   border-radius: 10px;
@@ -69,10 +67,9 @@
 .achv-icon {
   font-size: 28px;
   filter: drop-shadow(0 0 8px var(--brand-glow));
-  /* No transform: translateZ needed since there's no 3D perspective */
 }
 
-/* Les Textes / Données */
+/* Les Textes/Données */
 .achv-info-panel {
   flex-grow: 1;
   opacity: 0;
@@ -91,7 +88,7 @@
 .achv-title {
   margin: 0 0 4px 0;
   font-family: var(--font-family-title);
-  color: var(--color-text-alt); /* S'adapte au mode clair/sombre */
+  color: var(--color-text-alt);
   font-size: 1.15rem;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
@@ -104,31 +101,61 @@
   line-height: 1.4;
 }
 
-/* Animations */
 @keyframes slideInOS {
-  from { transform: translateX(100px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes slideInMobile {
-  from { transform: translateY(18px) scale(0.98); opacity: 0; }
-  to { transform: translateY(0) scale(1); opacity: 1; }
+  from {
+    transform: translateY(18px) scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes laserSweep {
-  0% { left: -10px; opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; left: 100%; }
-  100% { left: 100%; opacity: 0; }
+  0% {
+    left: -10px;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeInText {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes spinHolo {
-  100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 900px) {

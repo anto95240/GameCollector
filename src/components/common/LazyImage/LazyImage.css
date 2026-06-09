@@ -45,7 +45,7 @@
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0.04) 0%,
-    rgba(255, 255, 255, 0.10) 50%,
+    rgba(255, 255, 255, 0.1) 50%,
     rgba(255, 255, 255, 0.04) 100%
   );
   background-size: 200% 100%;
@@ -57,8 +57,12 @@
 }
 
 @keyframes skeleton-loading {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* =========================================

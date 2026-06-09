@@ -1,62 +1,62 @@
 .active-filters-box {
-	min-height: 50px;
-	max-height: 100px;
-	background: var(--bg-filtre-active);
-	border: 1px solid var(--color-border-filtre);
-	border-radius: 12px;
-	margin-bottom: 15px;
-	padding: 10px;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 8px;
-	overflow-y: auto;
-	flex-shrink: 0;
-	align-items: center;
+  min-height: 50px;
+  max-height: 100px;
+  background: var(--bg-filtre-active);
+  border: 1px solid var(--color-border-filtre);
+  border-radius: 12px;
+  margin-bottom: 15px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  align-items: center;
 }
 
 .active-filters-box::-webkit-scrollbar {
-	width: 4px;
+  width: 4px;
 }
 
 .active-filters-box::-webkit-scrollbar-thumb {
-	border-radius: 2px;
+  border-radius: 2px;
 }
 
 .filter-tag {
-	background: white;
-	color: var(--color-text-btn);
-	font-size: 11px;
-	padding: 4px 8px;
-	border-radius: 4px;
-	font-weight: bold;
-	height: fit-content;
-	transition: background 0.2s;
-	display: flex;
-	cursor: pointer;
-	align-items: center;
-	gap: 6px;
+  background: white;
+  color: var(--color-text-btn);
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  height: fit-content;
+  transition: background 0.2s;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  gap: 6px;
 }
 
 .placeholder-text {
-	font-size: 12px;
-	font-style: italic;
-	margin: auto;
+  font-size: 12px;
+  font-style: italic;
+  margin: auto;
 }
 
 .reset-all-btn {
-	font-size: 11px;
-	color: var(--color-reset-filter);
-	background: var(--bg-boder-reset-filter);
-	border: 1px solid var(--bg-boder-reset-filter);
-	padding: 4px 8px;
-	border-radius: 4px;
-	cursor: pointer;
-	margin-left: auto;
-	font-weight: bold;
-	transition: all 0.2s;
+  font-size: 11px;
+  color: var(--color-reset-filter);
+  background: var(--bg-boder-reset-filter);
+  border: 1px solid var(--bg-boder-reset-filter);
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto;
+  font-weight: bold;
+  transition: all 0.2s;
 }
 
 .reset-all-btn:hover {
-	background: var(--color-reset-filter);
-	color: white;
+  background: var(--color-reset-filter);
+  color: white;
 }

@@ -58,7 +58,9 @@
 .insight-card:hover {
   border-color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3), 0 0 12px color-mix(in srgb, var(--accent) 20%, transparent);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.3),
+    0 0 12px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 .insight-card.pulse {
@@ -124,26 +126,35 @@
 }
 
 /* Comportement commun aux textes défilants */
-.insight-label, .insight-sub {
+.insight-label,
+.insight-sub {
   display: block;
   white-space: nowrap;
 }
 
 /* Si ça ne défile pas, on coupe avec des points de suspension */
-.insight-label:not(.scrolling), .insight-sub:not(.scrolling) {
+.insight-label:not(.scrolling),
+.insight-sub:not(.scrolling) {
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 /* Si ça file, on applique l'animation */
-.insight-label.scrolling, .insight-sub.scrolling {
+.insight-label.scrolling,
+.insight-sub.scrolling {
   animation: scrollMarquee 4s linear infinite alternate;
   padding-right: 5px;
 }
 
 @keyframes scrollMarquee {
-  0%, 15% { transform: translateX(0); }
-  85%, 100% { transform: translateX(var(--scroll-amount)); }
+  0%,
+  15% {
+    transform: translateX(0);
+  }
+  85%,
+  100% {
+    transform: translateX(var(--scroll-amount));
+  }
 }
 
 .insight-glow {
@@ -153,25 +164,40 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 20%, transparent), transparent 70%);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent) 20%, transparent),
+    transparent 70%
+  );
   pointer-events: none;
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; filter: drop-shadow(0 0 10px var(--text-primary)); }
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px var(--text-primary));
+  }
 }
 
 @keyframes card-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 20%, transparent); }
-  50% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 10%, transparent); }
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 10%, transparent);
+  }
 }
 
 @media (max-width: 768px) {
   .insights-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .insight-card {
     flex-direction: column;
     align-items: flex-start;

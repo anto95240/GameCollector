@@ -1,0 +1,70 @@
+import './ListeHeader.css';
+
+import { faFilter, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { forwardRef } from 'react';
+
+export interface ListeHeaderProps {
+  searchTerm: string;
+  onSearchChange: (value: string) => void;
+  onToggleFilter: () => void;
+  t: any;
+  onClick: () => void;
+  totalGames: number;
+}
+
+const ListeHeader = forwardRef<HTMLInputElement, ListeHeaderProps>(
+  ({ searchTerm, onSearchChange, onToggleFilter, t, onClick, totalGames }: any, ref: any) => {
+    return (
+      <div className="liste-header flex items-center justify-center mx-auto">
+        {/* Barre de recherche */}
+        <div className="search-wrapper flex items-center gap-5">
+          <input
+            ref={ref}
+            type="text"
+            className="search-input"
+            placeholder={t('gameList.searchPlaceholder')}
+            value={searchTerm}
+            onChange={(e: any) => onSearchChange(e.target.value)}
+            title="Raccourci: Ctrl+K ou Cmd+K pour focus"
+          />
+          {searchTerm && (
+            <button className="btn-clear-search" onClick={() => onSearchChange('')}>
+              <FontAwesomeIcon icon={faTimes} />
+            </button>
+          )}
+        </div>
+        <p className="nb-jeux w-auto mx-auto font-bold text-white uppercase tracking-wider">
+          {totalGames} {t('gameList.totalGames')}
+        </p>
+
+        {/* Boutons d'action */}
+        <div className="header-buttons flex gap-5">
+          <button
+            className="btn-filter flex items-center justify-center gap-2.5 cursor-pointer"
+            onClick={(e: any) => {
+              e.stopPropagation()
+              onToggleFilter()
+            }}
+          >
+            <FontAwesomeIcon icon={faFilter} />
+            <span>{t('gameList.filters.title')}</span>
+          </button>
+
+          <button
+            className="btn-add flex items-center justify-center gap-2.5 cursor-pointer"
+            onClick={onClick}
+            title="Raccourci: Ctrl+N ou Cmd+N pour ajouter un jeu"
+          >
+            <FontAwesomeIcon icon={faPlus} />
+            <span>{t('gameList.addGame')}</span>
+          </button>
+        </div>
+      </div>
+    )
+  }
+)
+
+ListeHeader.displayName = 'ListeHeader'
+
+export default ListeHeader
