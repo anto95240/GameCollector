@@ -1,4 +1,6 @@
-export const validateCategory = (name: any) => {
+import { isValidUrl } from "./userValidators";
+
+export const validateCategory = (name: string) => {
   const errors: Record<string, string> = {};
 
   if (!name || !name.trim()) {
@@ -7,6 +9,8 @@ export const validateCategory = (name: any) => {
     errors.name = "Le nom doit contenir au moins 2 caractères";
   } else if (name.trim().length > 50) {
     errors.name = "Le nom ne doit pas dépasser 50 caractères";
+  } else if (!/^[a-zA-Z0-9\s-_]+$/.test(name)) {
+    errors.name = "Le nom contient des caractères non autorisés";
   }
 
   return errors;
@@ -35,6 +39,8 @@ export const validateGameForm = (formData: any) => {
   
   if (!formData.image && typeof formData.image !== 'string') {
     errors.image = "Une image de couverture est requise";
+  } else if (typeof formData.image === 'string' && formData.image.startsWith('http') && !isValidUrl(formData.image)) {
+    errors.image = "L'URL de l'image n'est pas valide";
   }
 
   return errors;

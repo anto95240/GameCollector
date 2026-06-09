@@ -21,6 +21,7 @@
     "@fortawesome/react-fontawesome": "^0.2.6",
     "@tailwindcss/postcss": "^4.1.17",
     "axios": "^1.13.2",
+    "dompurify": "^3.4.8",
     "fuse.js": "^7.3.0",
     "i18next": "^25.7.1",
     "react": "^19.2.1",
