@@ -1,3 +1,10 @@
+## [2.8.1](https://github.com/anto95240/GameCollector/compare/v2.8.0...v2.8.1) (2026-06-09)
+
+
+### Performance Improvements
+
+* élimination duplication code ([4a292aa](https://github.com/anto95240/GameCollector/commit/4a292aad3ede3e9c2b9373ecb3f4a8c3ae86210d))
+
 # [2.8.0](https://github.com/anto95240/GameCollector/compare/v2.7.3...v2.8.0) (2026-06-06)
 
 ### Features
