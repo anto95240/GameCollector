@@ -15,6 +15,7 @@ const AddEditGamePage = () => {
     handleFileChange, handleSubmit, tagInput, setTagInput, suggestedTags,
     handleTagKeyDown, addTag, handleRemoveTag, previewImg, isAnimating, isLoading,
     optionsData, availableTags, handleAddNewMetadata,
+    errors, touched, handleBlur, showConfirmModal, setShowConfirmModal, confirmSubmit
   } = useAddEditGame();
 
   const title = isEditMode
@@ -70,6 +71,12 @@ const AddEditGamePage = () => {
             optionsData={optionsData}
             availableTags={availableTags}
             handleAddNewMetadata={handleAddNewMetadata}
+            errors={errors}
+            touched={touched}
+            handleBlur={handleBlur}
+            showConfirmModal={showConfirmModal}
+            setShowConfirmModal={setShowConfirmModal}
+            confirmSubmit={confirmSubmit}
           />
         )}
       </div>

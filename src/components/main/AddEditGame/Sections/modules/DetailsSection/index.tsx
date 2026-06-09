@@ -7,23 +7,17 @@ import CustomSelect from "@/components/common/CustomSelect";
 import FloatingInput from "@/components/common/FloatingInput";
 import SectionWrapper from "@/components/secondary/AddEditGame/SectionWrapper";
 
-interface SectionProps {
-  t: any;
-  formData?: any;
-  handleChange: any;
-  setFormData?: React.Dispatch<React.SetStateAction<any>>;
-  optionsData?: any;
-  handleAddNewMetadata?: (type: string) => void;
-}
-
-export const DetailsSection: React.FC<SectionProps> = ({
+export const DetailsSection = ({
   t,
   formData,
   handleChange,
   setFormData,
   optionsData,
   handleAddNewMetadata,
-}) => (
+  errors,
+  touched,
+  handleBlur
+}: any) => (
   <SectionWrapper id="detail" title={t("gameForm.sections.details")}>
     <div className="details-grid">
       <div className="select-wrapper">
@@ -34,12 +28,16 @@ export const DetailsSection: React.FC<SectionProps> = ({
           <CustomSelect
             options={optionsData?.genre || []}
             value={formData.genre}
-            onChange={(val) => setFormData?.((p: any) => ({ ...p, genre: val }))}
+            name="genre"
+            onBlur={(name: any, val: any) => handleBlur && handleBlur(name, val, formData)}
+            error={errors?.genre}
+            touched={touched?.genre}
+            onChange={(val: any) => setFormData((p: any) => ({ ...p, genre: val }))}
           />
           <button
             type="button"
             className="btn-quick-add"
-            onClick={() => handleAddNewMetadata?.("genre")}
+            onClick={() => handleAddNewMetadata("genre")}
             aria-label={t("common.add", { defaultValue: "Ajouter" })}
           >
             <FontAwesomeIcon icon={faPlus} />
@@ -54,12 +52,16 @@ export const DetailsSection: React.FC<SectionProps> = ({
           <CustomSelect
             options={optionsData?.platform || []}
             value={formData.platform}
-            onChange={(val) => setFormData?.((p: any) => ({ ...p, platform: val }))}
+            name="platform"
+            onBlur={(name: any, val: any) => handleBlur && handleBlur(name, val, formData)}
+            error={errors?.platform}
+            touched={touched?.platform}
+            onChange={(val: any) => setFormData((p: any) => ({ ...p, platform: val }))}
           />
           <button
             type="button"
             className="btn-quick-add"
-            onClick={() => handleAddNewMetadata?.("platform")}
+            onClick={() => handleAddNewMetadata("platform")}
             aria-label={t("common.add", { defaultValue: "Ajouter" })}
           >
             <FontAwesomeIcon icon={faPlus} />

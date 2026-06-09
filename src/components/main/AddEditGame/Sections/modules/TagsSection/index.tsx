@@ -6,19 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FloatingInput from "@/components/common/FloatingInput";
 import SectionWrapper from "@/components/secondary/AddEditGame/SectionWrapper";
 
-interface TagsSectionProps {
-  t: any;
-  formData: any;
-  tagInput: string;
-  setTagInput: React.Dispatch<React.SetStateAction<string>>;
-  suggestedTags: any[];
-  handleTagKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
-  addTag: (tag: any) => void;
-  handleRemoveTag: (tagId: string | number) => void;
-  availableTags: any[];
-}
-
-export const TagsSection: React.FC<TagsSectionProps> = ({
+export const TagsSection = ({
   t,
   formData,
   tagInput,
@@ -28,11 +16,14 @@ export const TagsSection: React.FC<TagsSectionProps> = ({
   addTag,
   handleRemoveTag,
   availableTags,
-}) => (
+  errors,
+  touched,
+  handleBlur,
+}: any) => (
   <SectionWrapper id="tags" title={t("gameForm.sections.tags")}>
     {formData.tags.length > 0 && (
       <div className="tags-preview-container">
-        {formData.tags.map((tagId: any, index: number) => {
+        {formData.tags.map((tagId: any, index: any) => {
           const tagObj = availableTags?.find((t: any) => t._id === tagId);
           const tagName = tagObj ? tagObj.tag_name : "Tag inconnu";
 
@@ -55,11 +46,14 @@ export const TagsSection: React.FC<TagsSectionProps> = ({
     <div className="tag-input-wrapper">
       <div className="tag-search-container">
         <FloatingInput
-          name="tagInput"
+          name="tags"
           label={t("gameForm.fields.newTag")}
           value={tagInput}
-          onChange={(e) => setTagInput(e.target.value)}
+          onChange={(e: any) => setTagInput(e.target.value)}
           onKeyDown={handleTagKeyDown}
+          onBlur={(e: any) => handleBlur && handleBlur("tags", e.target.value, formData)}
+          error={errors?.tags}
+          touched={touched?.tags}
           autocomplete="off"
         />
         {suggestedTags.length > 0 && (

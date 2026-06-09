@@ -7,23 +7,14 @@ import CustomSelect from "@/components/common/CustomSelect";
 import FloatingInput from "@/components/common/FloatingInput";
 import SectionWrapper from "@/components/secondary/AddEditGame/SectionWrapper";
 
-interface SectionProps {
-  t: any;
-  formData?: any;
-  handleChange: any;
-  setFormData?: React.Dispatch<React.SetStateAction<any>>;
-  optionsData?: any;
-  handleAddNewMetadata?: (type: string) => void;
-}
-
-export const InfoSection: React.FC<SectionProps> = ({
+export const InfoSection = ({
   t,
   formData,
   handleChange,
   setFormData,
   optionsData,
   handleAddNewMetadata,
-}) => (
+}: any) => (
   <SectionWrapper id="info" title={t("gameForm.sections.infos")}>
     <div className="info-grid">
       <FloatingInput
@@ -50,13 +41,16 @@ export const InfoSection: React.FC<SectionProps> = ({
   </SectionWrapper>
 );
 
-export const StatusSection: React.FC<SectionProps> = ({
+export const StatusSection = ({
   t,
   formData,
   setFormData,
   optionsData,
   handleAddNewMetadata,
-}) => (
+  errors,
+  touched,
+  handleBlur
+}: any) => (
   <SectionWrapper
     id="status"
     title={
@@ -69,12 +63,16 @@ export const StatusSection: React.FC<SectionProps> = ({
       <CustomSelect
         options={optionsData?.status || []}
         value={formData.status}
-        onChange={(val) => setFormData?.((p: any) => ({ ...p, status: val }))}
+        name="status"
+        onBlur={(name: any, val: any) => handleBlur && handleBlur(name, val, formData)}
+        error={errors?.status}
+        touched={touched?.status}
+        onChange={(val: any) => setFormData((p: any) => ({ ...p, status: val }))}
       />
       <button
         type="button"
         className="btn-quick-add"
-        onClick={() => handleAddNewMetadata?.("status")}
+        onClick={() => handleAddNewMetadata("status")}
         aria-label={t("common.add", { defaultValue: "Ajouter" })}
       >
         <FontAwesomeIcon icon={faPlus} />
@@ -83,7 +81,7 @@ export const StatusSection: React.FC<SectionProps> = ({
   </SectionWrapper>
 );
 
-export const AchievementsSection: React.FC<SectionProps> = ({ t, formData, handleChange }) => (
+export const AchievementsSection = ({ t, formData, handleChange }: any) => (
   <SectionWrapper id="achievements" title={t("gameForm.sections.achievements")}>
     <div className="textarea-group">
       <label>{t("gameForm.fields.achievements")}</label>
@@ -99,7 +97,7 @@ export const AchievementsSection: React.FC<SectionProps> = ({ t, formData, handl
   </SectionWrapper>
 );
 
-export const FavoriteAndSoonSection: React.FC<SectionProps> = ({ t, formData, handleChange }) => (
+export const FavoriteAndSoonSection = ({ t, formData, handleChange }: any) => (
   <SectionWrapper id="flags" title={t("gameForm.sections.flags")}>
     <div className="checkbox-group">
       <label>

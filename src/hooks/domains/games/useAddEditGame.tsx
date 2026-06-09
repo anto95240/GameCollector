@@ -6,8 +6,10 @@ import { MOCK_OPTIONS, SECTIONS } from "@/config/constants";
 import { useApiGame } from "@/hooks/api/useApiGame";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
 import { useScrollSpy } from "@/hooks/ui/useScrollSpy";
-import { incrementStoredUserMetric } from "@/utils/userStorage";
+import { useFormValidation } from "@/hooks/ui/useFormValidation";
 import { triggerAchievementCheck } from "@/services/achievementService";
+import { incrementStoredUserMetric } from "@/utils/userStorage";
+import { validateGameForm } from "@/utils/validators/gameValidators";
 
 import { useTagsManager } from "./useTagsManager";
 import { buildGamePayload, formatPreviewImage,getInitialFormData } from "./utils/gameFormHelpers";
@@ -39,10 +41,16 @@ export const useAddEditGame = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState(() => getInitialFormData(null));
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+
+  const { errors, touched, handleBlur, validateAll } = useFormValidation(
+    validateGameForm, 
+    { ...formData, image: formData.image || previewImg }
+  );
 
   // Synchroniser les tags avec le formulaire
   useEffect(() => {
-    setFormData(prev => ({ ...prev, tags: tagsMgr.selectedTags }));
+    setFormData((prev: any) => ({ ...prev, tags: tagsMgr.selectedTags }));
   }, [tagsMgr.selectedTags]);
 
   // Charger les tags disponibles et initialiser le formulaire en mode édition
@@ -72,12 +80,12 @@ export const useAddEditGame = () => {
 
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
+    setFormData((prev: any) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
   const handleFileChange = (e: any) => {
     const file = e.target.files[0];
-    setFormData((prev) => ({ ...prev, image: file }));
+    setFormData((prev: any) => ({ ...prev, image: file }));
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => setPreviewImg(reader.result);
@@ -98,8 +106,25 @@ export const useAddEditGame = () => {
     alert("Fonctionnalité d'ajout rapide de " + type + " à implémenter.");
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
+
+    if (!validateAll({ ...formData, image: formData.image || previewImg })) {
+      setTimeout(() => {
+        const firstError = document.querySelector('.border-red-500, .has-error') as HTMLElement;
+        if (firstError) {
+          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (firstError.focus) firstError.focus();
+        }
+      }, 100);
+      return;
+    }
+    
+    setShowConfirmModal(true);
+  };
+
+  const confirmSubmit = async () => {
+    setShowConfirmModal(false);
     setIsAnimating(true);
     
     try {
@@ -146,10 +171,10 @@ export const useAddEditGame = () => {
 
   return {
     t, navigate, isEditMode, gameToEdit, activeSection, showMobileMenu, setShowMobileMenu, scrollToSection,
-    formData, setFormData, handleChange, handleFileChange, handleSubmit,
+    formData, setFormData, handleChange, handleFileChange, handleSubmit, confirmSubmit, showConfirmModal, setShowConfirmModal,
     tagInput: tagsMgr.tagInput, setTagInput: tagsMgr.setTagInput, suggestedTags: tagsMgr.suggestedTags,
     handleTagKeyDown, addTag: tagsMgr.addTag, handleRemoveTag: tagsMgr.removeTag,
     previewImg, isAnimating, isLoading, optionsData, availableTags: tagsMgr.availableTags,
-    handleAddNewMetadata
+    handleAddNewMetadata, errors, touched, handleBlur
   };
 };

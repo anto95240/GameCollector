@@ -8,13 +8,16 @@ import CustomSelect from "@/components/common/CustomSelect";
 import FloatingInput from "@/components/common/FloatingInput";
 import SectionWrapper from "@/components/secondary/AddEditGame/SectionWrapper";
 
-export const DescriptionSection = ({ t, formData, handleChange }: any) => (
+export const DescriptionSection = ({ t, formData, handleChange, errors, touched, handleBlur }: any) => (
   <SectionWrapper id="desc" title={t("gameForm.sections.description")}>
     <FloatingInput
       name="name"
       label={t("gameForm.fields.name")}
       value={formData.name}
       onChange={handleChange}
+      onBlur={(e: any) => handleBlur && handleBlur("name", e.target.value, formData)}
+      error={errors?.name}
+      touched={touched?.name}
       required={true}
     />
     <div className="textarea-group">
@@ -44,7 +47,7 @@ export const RatingSection = ({
       <CustomSelect
         options={optionsData?.rating || []}
         value={formData.rating}
-        onChange={(val) => setFormData((p: any) => ({ ...p, rating: val }))}
+        onChange={(val: any) => setFormData((p: any) => ({ ...p, rating: val }))}
       />
     </div>
   </SectionWrapper>
@@ -72,13 +75,20 @@ export const MetadataSection = ({
   setFormData,
   optionsData,
   handleAddNewMetadata,
+  errors,
+  touched,
+  handleBlur
 }: any) => (
   <SectionWrapper id="meta" title={t("gameForm.sections.metadata")}>
     <div className="flex gap-2.5 items-center">
       <CustomSelect
         options={optionsData?.genre || []}
         value={formData.genre}
-        onChange={(val) => setFormData((p: any) => ({ ...p, genre: val }))}
+        name="genre"
+        onBlur={(name: any, val: any) => handleBlur && handleBlur(name, val, formData)}
+        error={errors?.genre}
+        touched={touched?.genre}
+        onChange={(val: any) => setFormData((p: any) => ({ ...p, genre: val }))}
       />
       <button
         type="button"
@@ -93,7 +103,11 @@ export const MetadataSection = ({
       <CustomSelect
         options={optionsData?.platform || []}
         value={formData.platform}
-        onChange={(val) => setFormData((p: any) => ({ ...p, platform: val }))}
+        name="platform"
+        onBlur={(name: any, val: any) => handleBlur && handleBlur(name, val, formData)}
+        error={errors?.platform}
+        touched={touched?.platform}
+        onChange={(val: any) => setFormData((p: any) => ({ ...p, platform: val }))}
       />
       <button
         type="button"
@@ -107,7 +121,7 @@ export const MetadataSection = ({
   </SectionWrapper>
 );
 
-export const ImageSection = ({ t, previewImg, handleFileChange }: any) => {
+export const ImageSection = ({ t, previewImg, handleFileChange, errors, touched }: any) => {
   const [isUploading, setIsUploading] = useState(false);
   const [progress, setProgress] = useState(0);
 
@@ -149,7 +163,7 @@ export const ImageSection = ({ t, previewImg, handleFileChange }: any) => {
           onChange={onFileChange}
           hidden
         />
-        <label htmlFor="file-upload" className="upload-label">
+        <label htmlFor="file-upload" className={`upload-label ${errors?.image && touched?.image ? 'border-red-500 border-2' : ''}`}>
           {previewImg ? (
             <img src={previewImg} alt="Preview" className={`img-preview ${isUploading ? 'opacity-50' : 'opacity-100'} transition-opacity`} />
           ) : (
@@ -161,6 +175,9 @@ export const ImageSection = ({ t, previewImg, handleFileChange }: any) => {
             </div>
           )}
         </label>
+        {errors?.image && touched?.image && (
+          <span className="error-text text-red-500 text-sm mt-1 ml-1 block">{errors.image}</span>
+        )}
         {isUploading && (
           <div className="absolute bottom-0 left-0 w-full h-1.5 bg-gray-800/50 z-10">
             <div 
