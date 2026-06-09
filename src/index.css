@@ -301,6 +301,7 @@ body {
 .main-content {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   height: 100%;
   position: relative;
 }
@@ -333,6 +334,14 @@ body {
     transform: none !important;
     box-shadow: none !important;
     filter: none !important;
+  }
+
+  /* Touch Targets Standards >= 44px */
+  button,
+  [role='button'],
+  .console-btn-click,
+  select {
+    min-height: 44px;
   }
 }
 
