@@ -43,12 +43,20 @@ export const useFuzzySearch = (itemsList: any, searchKeys = ['title']) => {
     [safeItemsList, searchKeys]
   )
 
+  // Synchronisation de la liste complète si la recherche est vide
+  const [prevQuery, setPrevQuery] = useState(query)
+  if (query !== prevQuery) {
+    setPrevQuery(query)
+    if (!query.trim()) {
+      setResults(safeItemsList)
+    }
+  }
+
   useEffect(() => {
     let isActive = true
     const trimmedQuery = query.trim()
 
     if (!trimmedQuery) {
-      setResults(safeItemsList)
       return () => {
         isActive = false
       }

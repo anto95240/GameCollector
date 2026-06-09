@@ -8,7 +8,7 @@ export const useGameMetadata = (game: any, metadata: any) => {
       const status = metadata.statuses.find((s: any) => s._id === statusId)
       return status?.status_name || 'Inconnu'
     }
-  }, [metadata?.statuses])
+  }, [metadata])
   const enrichedGame = useMemo(() => {
     if (!game) return null
 

@@ -1,6 +1,7 @@
 import './SectionStatPrimary.css'
 
 import { useTranslation } from 'react-i18next'
+
 import { useDashboard } from '@/hooks/domains/dashboard/useDashboard'
 
 const SectionStatPrimary = () => {

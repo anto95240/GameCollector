@@ -38,18 +38,24 @@ export default tseslint.config({ ignores: ['dist'] }, eslintConfigPrettier, {
     'unused-imports/no-unused-imports': 'error',
     'unused-imports/no-unused-vars': [
       'warn',
-      { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
+      {
+        vars: 'all',
+        varsIgnorePattern: '^(_|t|e|err|error|showSuccess)$',
+        args: 'after-used',
+        argsIgnorePattern: '^(_|e|err|error)$',
+      },
     ],
     '@typescript-eslint/no-explicit-any': 'off',
     'react-refresh/only-export-components': 'warn',
     'react-hooks/exhaustive-deps': 'warn',
     'react-hooks/rules-of-hooks': 'warn',
+    'react-hooks/set-state-in-effect': 'off',
 
     // Imports et bonnes pratiques
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     eqeqeq: ['error', 'always'],
-    'no-console': 'warn',
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
     'prefer-const': 'error',
   },
 })

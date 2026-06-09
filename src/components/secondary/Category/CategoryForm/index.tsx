@@ -36,7 +36,15 @@ const CategoryForm = ({
   const validateFn = (data: any) => validateCategory(data.name);
   const { errors, touched, handleBlur, validateAll } = useFormValidation(validateFn, formData);
 
-  useEffect(() => {
+  const [prevInitData, setPrevInitData] = useState(initialData)
+  const [prevCatType, setPrevCatType] = useState(categoryType)
+  const [prevIsEdit, setPrevIsEdit] = useState(isEdit)
+
+  if (initialData !== prevInitData || categoryType !== prevCatType || isEdit !== prevIsEdit) {
+    setPrevInitData(initialData)
+    setPrevCatType(categoryType)
+    setPrevIsEdit(isEdit)
+
     if (isEdit && initialData) {
       // Lecture dynamique du nom pour l'édition
       const itemName =
@@ -57,7 +65,7 @@ const CategoryForm = ({
     } else {
       setFormData({ name: "", brand: "", order: "", color: "#ffffff" });
     }
-  }, [isEdit, initialData, categoryType]);
+  }
 
   useEffect(() => {
     if (isOpen && nameInputRef.current) {

@@ -1,8 +1,8 @@
-import { useState } from "react";
 import "./BasicSections.css";
 
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 
 import CustomSelect from "@/components/common/CustomSelect";
 import FloatingInput from "@/components/common/FloatingInput";

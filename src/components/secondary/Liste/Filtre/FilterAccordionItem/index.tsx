@@ -78,7 +78,11 @@ const FilterAccordionItem = ({
                       checked={selected}
                       onChange={() => {
                         const tag = `${category.label}: ${opt}`
-                        selected ? onRemoveFilter(tag) : onSelectFilter(category.label, opt)
+                        if (selected) {
+                          onRemoveFilter(tag)
+                        } else {
+                          onSelectFilter(category.label, opt)
+                        }
                       }}
                     />
                     <span className="checkmark">

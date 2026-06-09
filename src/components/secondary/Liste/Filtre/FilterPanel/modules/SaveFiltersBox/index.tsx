@@ -12,7 +12,7 @@ export const SaveFiltersBox = ({ saveName, setSaveName, onSaveCurrentFilters, on
         <button
           className="btn"
           onClick={() => {
-            onSaveCurrentFilters && onSaveCurrentFilters(saveName)
+            if (onSaveCurrentFilters) onSaveCurrentFilters(saveName)
             setSaveName('')
           }}
         >
@@ -21,7 +21,7 @@ export const SaveFiltersBox = ({ saveName, setSaveName, onSaveCurrentFilters, on
         <button
           className="btn btn-ghost"
           onClick={() => {
-            onClearAll && onClearAll()
+            if (onClearAll) onClearAll()
           }}
         >
           Réinitialiser

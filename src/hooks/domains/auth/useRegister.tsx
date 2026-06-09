@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, SyntheticEvent } from "react";
+import { ChangeEvent, SyntheticEvent,useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 

@@ -10,7 +10,7 @@ import {
     faStar,
 } from '@fortawesome/free-solid-svg-icons'
 import { t } from 'i18next'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import FilterAccordionItem from '@/components/secondary/Liste/Filtre/FilterAccordionItem'
 
@@ -91,13 +91,15 @@ const FilterPanel = ({
     setSpecialExpanded((prev: any) => ({ ...prev, [key]: !prev[key] }))
   }
 
-  useEffect(() => {
+  const [prevFilters, setPrevFilters] = useState(selectedFilters)
+  if (selectedFilters !== prevFilters) {
+    setPrevFilters(selectedFilters)
     setRangeDrafts({
       yearRange: parseRangeDraft(selectedFilters, 'Année'),
       ratingRange: parseRangeDraft(selectedFilters, 'Note'),
     })
     setSortDraft(getActiveSortLocal())
-  }, [selectedFilters])
+  }
 
   return (
     <div

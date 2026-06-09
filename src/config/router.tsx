@@ -36,7 +36,7 @@ const SimpleSuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
   </ErrorBoundary>
 )
 
-let router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     Component: AuthLayout,
     children: [

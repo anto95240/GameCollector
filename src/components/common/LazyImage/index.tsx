@@ -36,21 +36,19 @@ const LazyImage: React.FC<LazyImageProps> = ({
   const [isLoaded, setIsLoaded] = useState(false)
   const [hasError, setHasError] = useState(false)
   const [isIntersecting, setIsIntersecting] = useState(false)
-  const [supportsWebP, setSupportsWebP] = useState(false)
-
-  const containerRef = useRef<HTMLDivElement>(null)
-  const imgRef = useRef<HTMLImageElement>(null)
-
-  // Detect WebP support once
-  useEffect(() => {
+  const [supportsWebP, setSupportsWebP] = useState(() => {
+    if (typeof document === 'undefined') return false
     const canvas = document.createElement('canvas')
     canvas.width = 1
     canvas.height = 1
-    const isSupported =
+    return (
       canvas.toDataURL('image/webp') !==
       'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='
-    setSupportsWebP(isSupported)
-  }, [])
+    )
+  })
+
+  const containerRef = useRef<HTMLDivElement>(null)
+  const imgRef = useRef<HTMLImageElement>(null)
 
   // IntersectionObserver for lazy loading
   useEffect(() => {

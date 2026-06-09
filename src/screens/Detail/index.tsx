@@ -3,11 +3,11 @@ import "./Detail.css";
 import { useLayoutEffect } from "react";
 import { useLocation,useParams } from "react-router";
 
+import SkeletonText from "@/components/common/Skeleton/SkeletonText";
 import DetailFooter from "@/components/main/Detail/DetailFooter";
 import DetailHeader from "@/components/main/Detail/DetailHeader";
 import DetailHero from "@/components/main/Detail/DetailHero";
 import DetailInfoGrid from "@/components/main/Detail/DetailInfoGrid";
-import SkeletonText from "@/components/common/Skeleton/SkeletonText";
 import { useGameDetail } from "@/hooks/domains/games/useGameDetail";
 
 const DetailPage = () => {

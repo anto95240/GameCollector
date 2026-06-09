@@ -1,10 +1,9 @@
 import "./AuthInput.css";
 
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect,useRef, useState } from "react";
-
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 interface AuthInputProps {
   type?: string;

@@ -7,9 +7,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCallback,useEffect, useRef, useState } from "react";
 
+import SkeletonText from "@/components/common/Skeleton/SkeletonText";
 import CategoryForm from "@/components/secondary/Category/CategoryForm";
 import CategoryList from "@/components/secondary/Category/CategoryListe";
-import SkeletonText from "@/components/common/Skeleton/SkeletonText";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
 import { useEscapeKeyCloser } from "@/hooks/ui/useEscapeKeyCloser";
 import { useFocusTrap } from "@/hooks/ui/useFocusTrap";
@@ -38,6 +38,7 @@ const CategoryManager = ({ categoryType }: { categoryType: string }) => {
 
   const fetchCategories = useCallback(async () => {
     if (!categoryType) return;
+    await Promise.resolve();
     setIsLoading(true);
     try {
       const data = await getMetadataByType(categoryType);

@@ -1,8 +1,8 @@
 import './SectionStatSecondary.css'
 
 import React from 'react'
-import { useLocation } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router'
 
 import StatCard from '@/components/common/StatCard'
 import { useDashboard } from '@/hooks/domains/dashboard/useDashboard'

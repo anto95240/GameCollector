@@ -76,10 +76,12 @@ const DetailHero: React.FC<DetailHeroProps> = ({
   }, [statusDropdownOpen, ratingDropdownOpen])
 
   // Calculer isOwned en fonction du status (Wishlist = false, autres = true)
-  useEffect(() => {
+  const [prevStatus, setPrevStatus] = useState(game.status)
+  if (game.status !== prevStatus) {
+    setPrevStatus(game.status)
     const statusName = game.status || ''
     setIsOwned(statusName.toLowerCase() !== 'wishlist')
-  }, [game.status])
+  }
 
   const statusOptions = [
     { value: '', label: t('gameForm.fields.selectStatus') || 'Sélectionner un statut' },

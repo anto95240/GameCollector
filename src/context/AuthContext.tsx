@@ -1,5 +1,5 @@
 // src/context/AuthContext.jsx
-import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import { useApiAuth } from '@/hooks/api/useApiAuth';
 import { readStoredUser, removeStoredUser, writeStoredUser } from '@/utils/userStorage';
@@ -41,7 +41,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         if (freshUser) {
           updateUser(freshUser)
         }
-      } catch (error: any) {}
+      } catch (error: any) {
+        // Ignorer l'erreur silencieusement
+      }
     }
 
     checkUser()

@@ -2,11 +2,11 @@ import { useEffect, useMemo,useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
 
-import { MOCK_OPTIONS, SECTIONS } from "@/config/constants"; 
+import { SECTIONS } from "@/config/constants"; 
 import { useApiGame } from "@/hooks/api/useApiGame";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
-import { useScrollSpy } from "@/hooks/ui/useScrollSpy";
 import { useFormValidation } from "@/hooks/ui/useFormValidation";
+import { useScrollSpy } from "@/hooks/ui/useScrollSpy";
 import { triggerAchievementCheck } from "@/services/achievementService";
 import { incrementStoredUserMetric } from "@/utils/userStorage";
 import { validateGameForm } from "@/utils/validators/gameValidators";
@@ -48,10 +48,12 @@ export const useAddEditGame = () => {
     { ...formData, image: formData.image || previewImg }
   );
 
-  // Synchroniser les tags avec le formulaire
-  useEffect(() => {
+  // Synchroniser les tags avec le formulaire via un état dérivé
+  const [prevSelectedTags, setPrevSelectedTags] = useState(tagsMgr.selectedTags);
+  if (tagsMgr.selectedTags !== prevSelectedTags) {
+    setPrevSelectedTags(tagsMgr.selectedTags);
     setFormData((prev: any) => ({ ...prev, tags: tagsMgr.selectedTags }));
-  }, [tagsMgr.selectedTags]);
+  }
 
   // Charger les tags disponibles et initialiser le formulaire en mode édition
   useEffect(() => {

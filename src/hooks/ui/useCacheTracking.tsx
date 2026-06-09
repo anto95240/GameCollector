@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import cacheManager from '@/hooks/api/utils/cacheManager'
 export const useCacheTracking = (cacheKeyPrefix: any, dependencies = []) => {
@@ -27,10 +27,11 @@ export const useCacheTracking = (cacheKeyPrefix: any, dependencies = []) => {
     [cacheKeyPrefix]
   )
 
-  useEffect(() => {
-    // Réinitialise le flag quand les dépendances changent
+  const [prevDeps, setPrevDeps] = useState(dependencies)
+  if (JSON.stringify(prevDeps) !== JSON.stringify(dependencies)) {
+    setPrevDeps(dependencies)
     resetCacheFlag()
-  }, dependencies)
+  }
 
   return {
     isCached,

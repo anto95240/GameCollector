@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useOutletContext } from 'react-router'
 
 import { API_URL } from '@/config/constants'
@@ -31,9 +31,12 @@ export const useProfile = () => {
     showMobileMenu: false,
   })
 
-  useEffect(() => {
+  const [prevUser, setPrevUser] = useState(user)
+
+  if (user !== prevUser) {
+    setPrevUser(user)
     setForm(getInitialProfileForm(user, API_URL))
-  }, [user])
+  }
 
   const handleSaveProfile = async () => {
     try {

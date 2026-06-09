@@ -5,8 +5,8 @@ import { MOCK_OPTIONS } from "@/config/constants";
 import { useApiAuth } from "@/hooks/api/useApiAuth";
 import { useApiGame } from "@/hooks/api/useApiGame";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
-import { createGameSlug,formatGameForDetail,extractGamesList } from "@/utils/formatters";
 import { triggerAchievementCheck } from "@/services/achievementService";
+import { createGameSlug,extractGamesList,formatGameForDetail } from "@/utils/formatters";
 export const useGameData = (id: string | undefined, slug: string | undefined, gameName: string | undefined) => {
   const { state } = useLocation();
   const { getAllGames, getGameById } = useApiGame();
@@ -21,6 +21,7 @@ export const useGameData = (id: string | undefined, slug: string | undefined, ga
   });
 
   const fetchGameData = useCallback(async () => {
+    await Promise.resolve();
     setIsLoading(true);
     try {
       // Récupérer les métadata
@@ -62,7 +63,7 @@ export const useGameData = (id: string | undefined, slug: string | undefined, ga
     } finally {
       setIsLoading(false);
     }
-  }, [id, slug, gameName, getAllGames, getGameById, getAllMetadata, addGameToHistory, state?.game]);
+  }, [id, slug, gameName, getAllGames, getGameById, getAllMetadata, addGameToHistory, state]);
 
   useEffect(() => {
     fetchGameData();
