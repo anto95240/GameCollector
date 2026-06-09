@@ -14,6 +14,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* --- ANIMATIONS & TRANSITIONS --- */
+  --duration-fast: 200ms;
+  --duration-standard: 300ms;
+  --duration-slow: 500ms;
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* =========================================
@@ -271,8 +278,8 @@ body {
   background-color: #81dbff;
   color: var(--color-text);
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+    background-color var(--duration-standard) ease,
+    color var(--duration-standard) ease;
 }
 
 #app-container {
@@ -294,6 +301,7 @@ body {
 .main-content {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   height: 100%;
   position: relative;
 }
@@ -326,5 +334,27 @@ body {
     transform: none !important;
     box-shadow: none !important;
     filter: none !important;
+  }
+
+  /* Touch Targets Standards >= 44px */
+  button,
+  [role='button'],
+  .console-btn-click,
+  select {
+    min-height: 44px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITÉ: REDUCED MOTION
+   ========================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

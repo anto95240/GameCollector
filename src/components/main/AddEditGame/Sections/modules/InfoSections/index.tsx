@@ -1,11 +1,11 @@
-import './InfoSections.css'
+import "./InfoSections.css";
 
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import CustomSelect from '@/components/common/CustomSelect'
-import FloatingInput from '@/components/common/FloatingInput'
-import SectionWrapper from '@/components/secondary/AddEditGame/SectionWrapper'
+import CustomSelect from "@/components/common/CustomSelect";
+import FloatingInput from "@/components/common/FloatingInput";
+import SectionWrapper from "@/components/secondary/AddEditGame/SectionWrapper";
 
 export const InfoSection = ({
   t,
@@ -15,38 +15,47 @@ export const InfoSection = ({
   optionsData,
   handleAddNewMetadata,
 }: any) => (
-  <SectionWrapper id="info" title={t('gameForm.sections.infos')}>
+  <SectionWrapper id="info" title={t("gameForm.sections.infos")}>
     <div className="info-grid">
       <FloatingInput
         name="year"
-        label={t('gameForm.fields.year')}
+        label={t("gameForm.fields.year")}
         value={formData.year}
         onChange={handleChange}
         type="number"
       />
       <FloatingInput
         name="playTime"
-        label={t('gameForm.fields.playingTime')}
+        label={t("gameForm.fields.playingTime")}
         value={formData.playTime}
         onChange={handleChange}
         type="number"
       />
       <FloatingInput
         name="developer"
-        label={t('gameForm.fields.developer')}
+        label={t("gameForm.fields.developer")}
         value={formData.developer}
         onChange={handleChange}
       />
     </div>
   </SectionWrapper>
-)
+);
 
-export const StatusSection = ({ t, formData, setFormData, optionsData, handleAddNewMetadata }: any) => (
+export const StatusSection = ({
+  t,
+  formData,
+  setFormData,
+  optionsData,
+  handleAddNewMetadata,
+  errors,
+  touched,
+  handleBlur
+}: any) => (
   <SectionWrapper
     id="status"
     title={
       <span>
-        {t('gameForm.sections.status')} <span>*</span>
+        {t("gameForm.sections.status")} <span>*</span>
       </span>
     }
   >
@@ -54,23 +63,28 @@ export const StatusSection = ({ t, formData, setFormData, optionsData, handleAdd
       <CustomSelect
         options={optionsData?.status || []}
         value={formData.status}
+        name="status"
+        onBlur={(name: any, val: any) => handleBlur && handleBlur(name, val, formData)}
+        error={errors?.status}
+        touched={touched?.status}
         onChange={(val: any) => setFormData((p: any) => ({ ...p, status: val }))}
       />
       <button
         type="button"
         className="btn-quick-add"
-        onClick={() => handleAddNewMetadata('status')}
+        onClick={() => handleAddNewMetadata("status")}
+        aria-label={t("common.add", { defaultValue: "Ajouter" })}
       >
         <FontAwesomeIcon icon={faPlus} />
       </button>
     </div>
   </SectionWrapper>
-)
+);
 
 export const AchievementsSection = ({ t, formData, handleChange }: any) => (
-  <SectionWrapper id="achievements" title={t('gameForm.sections.achievements')}>
+  <SectionWrapper id="achievements" title={t("gameForm.sections.achievements")}>
     <div className="textarea-group">
-      <label>{t('gameForm.fields.achievements')}</label>
+      <label>{t("gameForm.fields.achievements")}</label>
       <div className="textarea-container">
         <textarea
           name="achievements"
@@ -81,10 +95,10 @@ export const AchievementsSection = ({ t, formData, handleChange }: any) => (
       </div>
     </div>
   </SectionWrapper>
-)
+);
 
 export const FavoriteAndSoonSection = ({ t, formData, handleChange }: any) => (
-  <SectionWrapper id="flags" title={t('gameForm.sections.flags')}>
+  <SectionWrapper id="flags" title={t("gameForm.sections.flags")}>
     <div className="checkbox-group">
       <label>
         <input
@@ -93,14 +107,19 @@ export const FavoriteAndSoonSection = ({ t, formData, handleChange }: any) => (
           checked={formData.isFavorite}
           onChange={handleChange}
         />
-        {t('gameForm.fields.isFavorite')}
+        {t("gameForm.fields.isFavorite")}
       </label>
     </div>
     <div className="checkbox-group">
       <label>
-        <input type="checkbox" name="isSoon" checked={formData.isSoon} onChange={handleChange} />
-        {t('gameForm.fields.isSoon')}
+        <input
+          type="checkbox"
+          name="isSoon"
+          checked={formData.isSoon}
+          onChange={handleChange}
+        />
+        {t("gameForm.fields.isSoon")}
       </label>
     </div>
   </SectionWrapper>
-)
+);

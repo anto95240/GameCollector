@@ -1,24 +1,27 @@
-import './FloatingInput.css';
+import "./FloatingInput.css";
 
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useRef, useState } from 'react';
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect,useRef, useState } from "react";
 
-export interface FloatingInputProps {
+interface FloatingInputProps {
   type?: string;
   id?: string;
   name?: string;
-  value: string | number;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  label: React.ReactNode;
+  value?: string | number;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  label?: string;
   required?: boolean;
   isPassword?: boolean;
   autocomplete?: string;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  error?: string | boolean;
+  touched?: boolean;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 const FloatingInput: React.FC<FloatingInputProps> = ({
-  type = 'text',
+  type = "text",
   id,
   name,
   value,
@@ -28,59 +31,63 @@ const FloatingInput: React.FC<FloatingInputProps> = ({
   isPassword = false,
   autocomplete,
   onKeyDown,
-}: any) => {
-  const [showPassword, setShowPassword] = useState(false)
+  error,
+  touched,
+  onBlur,
+}) => {
+  const [showPassword, setShowPassword] = useState(false);
+  
+  const containerRef = useRef<HTMLLabelElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
+  const [isOverflowing, setIsOverflowing] = useState(false);
 
-  const containerRef = useRef<HTMLLabelElement>(null)
-  const textRef = useRef<HTMLSpanElement>(null)
-  const [isOverflowing, setIsOverflowing] = useState(false)
-
-  const inputType = isPassword ? (showPassword ? 'text' : 'password') : type
+  const inputType = isPassword ? (showPassword ? "text" : "password") : type;
 
   useEffect(() => {
     const checkOverflow = () => {
       // Un petit setTimeout garantit que le navigateur a fini de dessiner le texte
       setTimeout(() => {
         if (containerRef.current && textRef.current) {
-          const cw = containerRef.current.clientWidth
-          const sw = textRef.current.scrollWidth
-
+          const cw = containerRef.current.clientWidth;
+          const sw = textRef.current.scrollWidth;
+          
           if (sw > cw) {
-            setIsOverflowing(true)
+            setIsOverflowing(true);
             // On calcule la distance (négative pour aller vers la gauche)
-            textRef.current.style.setProperty('--scroll-amount', `-${sw - cw}px`)
+            textRef.current.style.setProperty('--scroll-amount', `-${sw - cw}px`);
           } else {
-            setIsOverflowing(false)
+            setIsOverflowing(false);
           }
         }
-      }, 100)
-    }
+      }, 100); 
+    };
 
-    const observer = new ResizeObserver(() => checkOverflow())
+    const observer = new ResizeObserver(() => checkOverflow());
     if (containerRef.current) {
-      observer.observe(containerRef.current)
+      observer.observe(containerRef.current);
     }
-
-    checkOverflow()
-    return () => observer.disconnect()
-  }, [label, value])
+    
+    checkOverflow();
+    return () => observer.disconnect();
+  }, [label, value]);
 
   return (
     <div className="form-group floating-label w-full">
       <input
         type={inputType}
         id={id}
-        className="form-input w-full"
+        className={`form-input w-full ${error && touched ? 'border-red-500' : ''}`}
         name={name}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         onKeyDown={onKeyDown}
         required={required}
         placeholder=" "
         autoComplete={autocomplete}
       />
       <label htmlFor={id} ref={containerRef}>
-        <span className={`label-text ${isOverflowing ? 'scrolling' : ''}`} ref={textRef}>
+        <span className={`label-text ${isOverflowing ? "scrolling" : ""}`} ref={textRef}>
           {label} {required && <span>*</span>}
         </span>
       </label>
@@ -95,8 +102,11 @@ const FloatingInput: React.FC<FloatingInputProps> = ({
           <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
         </button>
       )}
+      {error && touched && (
+        <span className="error-text text-red-500 text-sm mt-1 ml-1 block">{error}</span>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default FloatingInput
+export default FloatingInput;
