@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const useActiveOnScroll = (containerRef: any, selector: any, items = []) => {
+export const useActiveOnScroll = (containerRef: any, selector: any, items: any[] = []) => {
   const [activeId, setActiveId] = useState<any>(null)
 
   useEffect(() => {

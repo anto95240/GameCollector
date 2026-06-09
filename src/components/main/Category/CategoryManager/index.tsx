@@ -9,35 +9,22 @@ import { useCallback,useEffect, useRef, useState } from "react";
 
 import CategoryForm from "@/components/secondary/Category/CategoryForm";
 import CategoryList from "@/components/secondary/Category/CategoryListe";
+import SkeletonText from "@/components/common/Skeleton/SkeletonText";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
 import { useEscapeKeyCloser } from "@/hooks/ui/useEscapeKeyCloser";
 import { useFocusTrap } from "@/hooks/ui/useFocusTrap";
 
-interface CategoryItem {
-  _id?: string;
-  id?: string;
-  genre_name?: string;
-  platform_name?: string;
-  tag_name?: string;
-  status_name?: string;
-  [key: string]: any;
-}
-
-interface CategoryManagerProps {
-  categoryType: "genre" | "platform" | "tag" | "status" | string;
-}
-
-const CategoryManager: React.FC<CategoryManagerProps> = ({ categoryType }) => {
+const CategoryManager = ({ categoryType }: { categoryType: string }) => {
   const [showForm, setShowForm] = useState(false);
   const [editMode, setEditMode] = useState(false);
-  const [itemToEdit, setItemToEdit] = useState<CategoryItem | null>(null);
+  const [itemToEdit, setItemToEdit] = useState<any>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [itemToDelete, setItemToDelete] = useState<CategoryItem | null>(null);
+  const [itemToDelete, setItemToDelete] = useState<any>(null);
 
-  const [listItems, setListItems] = useState<CategoryItem[]>([]);
+  const [listItems, setListItems] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const formRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef(null);
 
   const { getMetadataByType, deleteMetadata } = useApiMetadata();
 
@@ -54,6 +41,7 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ categoryType }) => {
     setIsLoading(true);
     try {
       const data = await getMetadataByType(categoryType);
+      await new Promise(resolve => setTimeout(resolve, 800)); // Artificial delay
       setListItems(data || []);
     } catch (error) {
       console.error(`Erreur lors du chargement de ${categoryType}:`, error);
@@ -71,7 +59,7 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ categoryType }) => {
     const isMobile = window.innerWidth < 1024;
     if (showForm && formRef.current && isMobile) {
       setTimeout(() => {
-        formRef.current?.scrollIntoView({
+        (formRef.current as any).scrollIntoView({
           behavior: "smooth",
           block: "center",
           inline: "nearest",
@@ -81,13 +69,13 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ categoryType }) => {
   }, [showForm]);
 
   const getCategoryLabel = () => {
-    const labels: Record<string, string> = {
+    const labels = {
       genre: "Genre",
       platform: "Plateforme",
       tag: "Tag",
       status: "Status",
     };
-    return labels[categoryType] || "Catégorie";
+    return (labels as any)[categoryType] || "Catégorie";
   };
 
   const handleAddClick = () => {
@@ -102,13 +90,13 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ categoryType }) => {
     }
   };
 
-  const handleEdit = (item: CategoryItem) => {
+  const handleEdit = (item: any) => {
     setEditMode(true);
     setItemToEdit(item);
     setShowForm(true);
   };
 
-  const handleDeleteRequest = (item: CategoryItem) => {
+  const handleDeleteRequest = (item: any) => {
     setItemToDelete(item);
     setShowDeleteModal(true);
   };
@@ -145,12 +133,11 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ categoryType }) => {
 
       <div className="manager-content">
         {isLoading ? (
-          <p
-            className="loading-text"
-            style={{ padding: "2rem", textAlign: "center" }}
-          >
-            Chargement en cours...
-          </p>
+          <div className="flex flex-col gap-2 p-4 w-full">
+            <SkeletonText height="40px" className="rounded w-full" />
+            <SkeletonText height="40px" className="rounded w-full" />
+            <SkeletonText height="40px" className="rounded w-full" />
+          </div>
         ) : (
           <CategoryList
             items={listItems}
@@ -189,7 +176,7 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ categoryType }) => {
           <div 
             className="modal-content" 
             onClick={(e) => e.stopPropagation()}
-            ref={modalRef}
+            ref={modalRef as any}
             tabIndex={-1}
             role="dialog"
             aria-modal="true"
