@@ -1,120 +1,143 @@
-import './CategoryManager.css'
+import "./CategoryManager.css";
 
-import { faExclamationTriangle, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import {
+  faExclamationTriangle,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useCallback,useEffect, useRef, useState } from "react";
 
-import CategoryForm from '@/components/secondary/Category/CategoryForm'
-import CategoryList from '@/components/secondary/Category/CategoryListe'
-import { useApiMetadata } from '@/hooks/api/useApiMetadata'
-import { useEscapeKeyCloser } from '@/hooks/ui/useEscapeKeyCloser'
+import CategoryForm from "@/components/secondary/Category/CategoryForm";
+import CategoryList from "@/components/secondary/Category/CategoryListe";
+import { useApiMetadata } from "@/hooks/api/useApiMetadata";
+import { useEscapeKeyCloser } from "@/hooks/ui/useEscapeKeyCloser";
+import { useFocusTrap } from "@/hooks/ui/useFocusTrap";
 
-const CategoryManager = ({ categoryType }: { categoryType: string }) => {
-  const [showForm, setShowForm] = useState(false)
-  const [editMode, setEditMode] = useState(false)
-  const [itemToEdit, setItemToEdit] = useState<any>(null)
-  const [showDeleteModal, setShowDeleteModal] = useState(false)
-  const [itemToDelete, setItemToDelete] = useState<any>(null)
+interface CategoryItem {
+  _id?: string;
+  id?: string;
+  genre_name?: string;
+  platform_name?: string;
+  tag_name?: string;
+  status_name?: string;
+  [key: string]: any;
+}
 
-  const [listItems, setListItems] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
+interface CategoryManagerProps {
+  categoryType: "genre" | "platform" | "tag" | "status" | string;
+}
 
-  const formRef = useRef<HTMLDivElement>(null)
+const CategoryManager: React.FC<CategoryManagerProps> = ({ categoryType }) => {
+  const [showForm, setShowForm] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [itemToEdit, setItemToEdit] = useState<CategoryItem | null>(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState<CategoryItem | null>(null);
 
-  const { getMetadataByType, deleteMetadata } = useApiMetadata()
+  const [listItems, setListItems] = useState<CategoryItem[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const formRef = useRef<HTMLDivElement>(null);
+
+  const { getMetadataByType, deleteMetadata } = useApiMetadata();
+
+  const modalRef = useFocusTrap(showDeleteModal);
 
   // Fermer le modal de suppression avec Escape
-  useEscapeKeyCloser(() => setShowDeleteModal(false), showDeleteModal)
+  useEscapeKeyCloser(
+    () => setShowDeleteModal(false),
+    showDeleteModal
+  );
 
   const fetchCategories = useCallback(async () => {
-    if (!categoryType) return
-    setIsLoading(true)
+    if (!categoryType) return;
+    setIsLoading(true);
     try {
-      const data = await getMetadataByType(categoryType)
-      setListItems(data || [])
-    } catch (error: any) {
-      console.error(`Erreur lors du chargement de ${categoryType}:`, error)
-      setListItems([])
+      const data = await getMetadataByType(categoryType);
+      setListItems(data || []);
+    } catch (error) {
+      console.error(`Erreur lors du chargement de ${categoryType}:`, error);
+      setListItems([]);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }, [categoryType, getMetadataByType])
+  }, [categoryType, getMetadataByType]);
 
   useEffect(() => {
-    fetchCategories()
-  }, [fetchCategories])
+    fetchCategories();
+  }, [fetchCategories]);
 
   useEffect(() => {
-    const isMobile = window.innerWidth < 1024
+    const isMobile = window.innerWidth < 1024;
     if (showForm && formRef.current && isMobile) {
       setTimeout(() => {
         formRef.current?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-          inline: 'nearest',
-        })
-      }, 300)
+          behavior: "smooth",
+          block: "center",
+          inline: "nearest",
+        });
+      }, 300);
     }
-  }, [showForm])
+  }, [showForm]);
 
   const getCategoryLabel = () => {
     const labels: Record<string, string> = {
-      genre: 'Genre',
-      platform: 'Plateforme',
-      tag: 'Tag',
-      status: 'Status',
-    }
-    return labels[categoryType] || 'Catégorie'
-  }
+      genre: "Genre",
+      platform: "Plateforme",
+      tag: "Tag",
+      status: "Status",
+    };
+    return labels[categoryType] || "Catégorie";
+  };
 
   const handleAddClick = () => {
     if (showForm) {
-      setShowForm(false)
-      setEditMode(false)
-      setItemToEdit(null)
+      setShowForm(false);
+      setEditMode(false);
+      setItemToEdit(null);
     } else {
-      setEditMode(false)
-      setItemToEdit(null)
-      setShowForm(true)
+      setEditMode(false);
+      setItemToEdit(null);
+      setShowForm(true);
     }
-  }
+  };
 
-  const handleEdit = (item: any) => {
-    setEditMode(true)
-    setItemToEdit(item)
-    setShowForm(true)
-  }
+  const handleEdit = (item: CategoryItem) => {
+    setEditMode(true);
+    setItemToEdit(item);
+    setShowForm(true);
+  };
 
-  const handleDeleteRequest = (item: any) => {
-    setItemToDelete(item)
-    setShowDeleteModal(true)
-  }
+  const handleDeleteRequest = (item: CategoryItem) => {
+    setItemToDelete(item);
+    setShowDeleteModal(true);
+  };
 
   const confirmDelete = async () => {
-    if (!itemToDelete) return
+    if (!itemToDelete) return;
     try {
-      await deleteMetadata(categoryType, itemToDelete._id || itemToDelete.id)
-      setShowDeleteModal(false)
-      setItemToDelete(null)
-      fetchCategories()
-    } catch (error: any) {
-      console.error('Erreur de suppression:', error)
+      await deleteMetadata(categoryType, itemToDelete._id || itemToDelete.id);
+      setShowDeleteModal(false);
+      setItemToDelete(null);
+      fetchCategories();
+    } catch (error) {
+      console.error("Erreur de suppression:", error);
     }
-  }
+  };
 
   const handleSuccess = () => {
-    fetchCategories()
-    setShowForm(false)
-  }
+    fetchCategories();
+    setShowForm(false);
+  };
 
   return (
     <div className="manager-container">
       <div className="manager-header">
         <span className="manager-title">{getCategoryLabel()}</span>
         <button
-          className={`add-icon-btn ${showForm ? 'active' : ''}`}
+          className={`add-icon-btn ${showForm ? "active" : ""}`}
           onClick={handleAddClick}
-          title={showForm ? 'Fermer' : 'Ajouter'}
+          title={showForm ? "Fermer" : "Ajouter"}
         >
           <FontAwesomeIcon icon={faPlus} />
         </button>
@@ -122,7 +145,10 @@ const CategoryManager = ({ categoryType }: { categoryType: string }) => {
 
       <div className="manager-content">
         {isLoading ? (
-          <p className="loading-text" style={{ padding: '2rem', textAlign: 'center' }}>
+          <p
+            className="loading-text"
+            style={{ padding: "2rem", textAlign: "center" }}
+          >
             Chargement en cours...
           </p>
         ) : (
@@ -134,15 +160,18 @@ const CategoryManager = ({ categoryType }: { categoryType: string }) => {
           />
         )}
 
-        <div ref={formRef} className={`form-collapsible ${showForm ? 'open' : ''}`}>
+        <div
+          ref={formRef}
+          className={`form-collapsible ${showForm ? "open" : ""}`}
+        >
           <div className="form-inner">
             <CategoryForm
               categoryType={categoryType}
               isOpen={true}
               onClose={() => {
-                setShowForm(false)
-                setEditMode(false)
-                setItemToEdit(null)
+                setShowForm(false);
+                setEditMode(false);
+                setItemToEdit(null);
               }}
               isEdit={editMode}
               initialData={itemToEdit}
@@ -153,11 +182,25 @@ const CategoryManager = ({ categoryType }: { categoryType: string }) => {
       </div>
 
       {showDeleteModal && (
-        <div className="modal-overlay" onClick={() => setShowDeleteModal(false)}>
-          <div className="modal-content" onClick={(e: any) => e.stopPropagation()}>
+        <div
+          className="modal-overlay"
+          onClick={() => setShowDeleteModal(false)}
+        >
+          <div 
+            className="modal-content" 
+            onClick={(e) => e.stopPropagation()}
+            ref={modalRef}
+            tabIndex={-1}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="category-delete-modal-title"
+          >
             <div className="modal-header-danger">
-              <FontAwesomeIcon icon={faExclamationTriangle} className="modal-icon-warning" />
-              <h3>Confirmer la suppression</h3>
+              <FontAwesomeIcon
+                icon={faExclamationTriangle}
+                className="modal-icon-warning"
+              />
+              <h3 id="category-delete-modal-title">Confirmer la suppression</h3>
             </div>
 
             <div className="modal-body">
@@ -168,14 +211,22 @@ const CategoryManager = ({ categoryType }: { categoryType: string }) => {
                   itemToDelete?.tag_name ||
                   itemToDelete?.status_name}
               </span>
-              <p className="modal-warning-text">Cette action est irréversible.</p>
+              <p className="modal-warning-text">
+                Cette action est irréversible.
+              </p>
             </div>
 
             <div className="modal-actions">
-              <button className="btn-modal btn-cancel" onClick={() => setShowDeleteModal(false)}>
+              <button
+                className="btn-modal btn-cancel"
+                onClick={() => setShowDeleteModal(false)}
+              >
                 Annuler
               </button>
-              <button className="btn-modal btn-confirm-delete" onClick={confirmDelete}>
+              <button
+                className="btn-modal btn-confirm-delete"
+                onClick={confirmDelete}
+              >
                 Supprimer
               </button>
             </div>
@@ -183,7 +234,7 @@ const CategoryManager = ({ categoryType }: { categoryType: string }) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default CategoryManager
+export default CategoryManager;

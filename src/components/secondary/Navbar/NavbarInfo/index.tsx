@@ -1,100 +1,110 @@
-import './NavbarInfo.css'
+import "./NavbarInfo.css";
 
-import { useEffect, useState } from 'react'
+import { useEffect,useState } from "react";
 
-import UserMenu from '@/components/secondary/Navbar/UserMenu'
-import { API_URL } from '@/config/constants'
-import { useAuth } from '@/context/AuthContext'
-import { useNavbar } from '@/hooks/ui/useNavbar'
+import UserMenu from "@/components/secondary/Navbar/UserMenu";
+import { API_URL } from "@/config/constants";
+import { useAuth } from "@/context/AuthContext";
+import { useNavbar } from "@/hooks/ui/useNavbar";
 
-const NavbarInfo = ({ t, setActionsOpen, actionsOpen }: any) => {
-  const [dateTime, setDateTime] = useState('')
-  const [batteryLevel, setBatteryLevel] = useState<any>(null)
-  const { state, setters, actions } = useNavbar()
+interface NavbarInfoProps {
+  t: any;
+  setActionsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  actionsOpen: boolean;
+}
 
-  const { user } = useAuth()
+const NavbarInfo: React.FC<NavbarInfoProps> = ({ t, setActionsOpen, actionsOpen }) => {
+  const [dateTime, setDateTime] = useState("");
+  const [batteryLevel, setBatteryLevel] = useState<number | null>(null);
+  const { state, setters, actions } = useNavbar();
+
+  const { user } = useAuth();
 
   const handleCloseMenu = () => {
-    setActionsOpen(false)
-  }
+    setActionsOpen(false);
+  };
 
   // Gestion de la Date et de l'Heure
   useEffect(() => {
     const updateDateTime = () => {
-      const now = new Date()
-      const day = String(now.getDate()).padStart(2, '0')
-      const month = String(now.getMonth() + 1).padStart(2, '0')
-      const year = String(now.getFullYear()).slice(-2) // "2025" -> "25"
-      const date = `${day}/${month}/${year}`
-      const time = now.toLocaleTimeString('fr-FR', {
-        hour: '2-digit',
-        minute: '2-digit',
-      })
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, "0");
+      const month = String(now.getMonth() + 1).padStart(2, "0");
+      const year = String(now.getFullYear()).slice(-2); // "2025" -> "25"
+      const date = `${day}/${month}/${year}`;
+      const time = now.toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
 
-      setDateTime(`${date} - ${time}`)
-    }
+      setDateTime(`${date} - ${time}`);
+    };
 
-    updateDateTime()
-    const interval = setInterval(updateDateTime, 1000)
-    return () => clearInterval(interval)
-  }, [])
+    updateDateTime();
+    const interval = setInterval(updateDateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   // Gestion de la Batterie
   useEffect(() => {
-    if ('getBattery' in navigator) {
-      ;(navigator as any).getBattery().then((battery: any) => {
-        const updateBattery = () => setBatteryLevel(Math.floor(battery.level * 100))
-        updateBattery()
-        battery.addEventListener('levelchange', updateBattery)
-        return () => battery.removeEventListener('levelchange', updateBattery)
-      })
+    const nav = navigator as any;
+    if ("getBattery" in nav) {
+      nav.getBattery().then((battery: any) => {
+        const updateBattery = () =>
+          setBatteryLevel(Math.floor(battery.level * 100));
+        updateBattery();
+        battery.addEventListener("levelchange", updateBattery);
+        return () => battery.removeEventListener("levelchange", updateBattery);
+      });
     }
-  }, [])
+  }, []);
 
   const getInitials = () => {
-    if (!user) return 'GC'
-    const first = user.firstname?.charAt(0) || ''
-    const last = user.lastname?.charAt(0) || ''
-    return (first + last).toUpperCase()
-  }
+    if (!user) return "GC";
+    const first = user.firstname?.charAt(0) || "";
+    const last = user.lastname?.charAt(0) || "";
+    return (first + last).toUpperCase();
+  };
 
   // === NOUVELLES VÉRIFICATIONS (Comme sur la page profil) ===
   const isDefaultImage =
-    !user?.image || user.image === 'https://cdn-icons-png.flaticon.com/512/847/847969.png'
+    !user?.image ||
+    user.image === "https://cdn-icons-png.flaticon.com/512/847/847969.png";
 
   const avatarURL = user?.image
-    ? user.image.startsWith('http')
+    ? user.image.startsWith("http")
       ? user.image
       : `${API_URL}/${user.image}`
-    : ''
+    : "";
 
   return (
     <div className="navbar-info">
       <div className="flex flex-row items-center gap-2">
         <span className="status-indicator"></span>
-        <p className="hidden sm:block">{t('navbar.online')}</p>
+        <p className="hidden sm:block">{t("navbar.online")}</p>
       </div>
       <p>{dateTime}</p>
-      <p>{batteryLevel !== null ? `${batteryLevel}%` : '⚡'}</p>
+      <p>{batteryLevel !== null ? `${batteryLevel}%` : "⚡"}</p>
 
       <div className="relative">
         <button
           className="navbar-connection-button"
-          onClick={(e: any) => {
-            e.stopPropagation()
-            setActionsOpen((prev: any) => !prev)
+          onClick={(e) => {
+            e.stopPropagation();
+            setActionsOpen((prev) => !prev);
           }}
-          style={!isDefaultImage ? { padding: 0, overflow: 'hidden' } : {}}
+          style={!isDefaultImage ? { padding: 0, overflow: "hidden" } : {}}
+          aria-label={t("navbar.userMenu", { defaultValue: "Menu utilisateur" })}
         >
           {!isDefaultImage ? (
             <img
               src={avatarURL}
               alt="Profile"
               style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                borderRadius: 'inherit',
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                borderRadius: "inherit",
               }}
             />
           ) : (
@@ -114,7 +124,7 @@ const NavbarInfo = ({ t, setActionsOpen, actionsOpen }: any) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NavbarInfo
+export default NavbarInfo;
