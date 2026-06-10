@@ -1,3 +1,12 @@
+# [2.10.0](https://github.com/anto95240/GameCollector/compare/v2.9.0...v2.10.0) (2026-06-10)
+
+
+### Features
+
+* **security:** implement local storage expiration for user data ([d5a3a39](https://github.com/anto95240/GameCollector/commit/d5a3a3918da251ab720d493b43c616e7de0bef4e))
+* **security:** implement strict data validation and HTML sanitization ([fc55e52](https://github.com/anto95240/GameCollector/commit/fc55e520e8a0fac41c168bdf20b656d8afe24f59))
+* **security:** implémentation de la Content Security Policy (CSP) ([5cc3911](https://github.com/anto95240/GameCollector/commit/5cc39110db486f6781540c97e1be9171c14c92dd))
+
 # [2.9.0](https://github.com/anto95240/GameCollector/compare/v2.8.1...v2.9.0) (2026-06-09)
 
 
