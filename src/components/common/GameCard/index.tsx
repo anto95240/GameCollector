@@ -13,7 +13,7 @@ import { useNavigate } from "react-router";
 
 import LazyImage from "@/components/common/LazyImage";
 import { usePreloadRoute } from "@/hooks/ui/usePreloadRoute";
-import { formatImageUrl, getOptimizedImageProps } from "@/utils/formatters";
+import { getOptimizedImageProps } from "@/utils/formatters";
 import { createSlug } from "@/utils/helpers/slugGenerator";
 
 interface Game {

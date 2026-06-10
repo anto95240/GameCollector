@@ -17,14 +17,10 @@ export const useApiCache = (apiFunction: any, cacheKeyPrefix: any, ttl = 5 * 60 
 
       // Si pas en cache, exécute la fonction réelle
       setIsCached(false)
-      try {
-        const result = await apiFunction(...args)
-        // Stocke dans le cache
-        cacheManager.set(cacheKey, result, ttl)
-        return result
-      } catch (error: any) {
-        throw error
-      }
+      const result = await apiFunction(...args)
+      // Stocke dans le cache
+      cacheManager.set(cacheKey, result, ttl)
+      return result
     },
     [apiFunction, cacheKeyPrefix, ttl]
   )

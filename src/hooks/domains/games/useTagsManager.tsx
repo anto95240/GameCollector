@@ -24,7 +24,13 @@ export const useTagsManager = (initialTags: any[] = []) => {
   }, [initialTags])
 
   // Logique de suggestion
-  useEffect(() => {
+  const [prevSuggestDeps, setPrevSuggestDeps] = useState({ tagInput, selectedTags, availableTags })
+  if (
+    tagInput !== prevSuggestDeps.tagInput ||
+    selectedTags !== prevSuggestDeps.selectedTags ||
+    availableTags !== prevSuggestDeps.availableTags
+  ) {
+    setPrevSuggestDeps({ tagInput, selectedTags, availableTags })
     if (tagInput.trim() === '') {
       setSuggestedTags([])
     } else {
@@ -34,7 +40,7 @@ export const useTagsManager = (initialTags: any[] = []) => {
       )
       setSuggestedTags(suggestions)
     }
-  }, [tagInput, selectedTags, availableTags])
+  }
 
   const addTag = async (tagVal: any) => {
     if (!tagVal) return

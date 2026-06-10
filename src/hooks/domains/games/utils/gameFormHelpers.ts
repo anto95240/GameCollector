@@ -91,7 +91,7 @@ export const buildGamePayload = (
   formData: GameFormData,
   selectedTags: string[],
   image: File | null = null,
-  existingImage: string | null = null
+  _existingImage: string | null = null
 ): FormData => {
   const submitData = new FormData()
 

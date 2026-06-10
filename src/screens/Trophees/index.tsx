@@ -3,8 +3,8 @@ import "./Trophees.css";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useApiAchievements } from "@/hooks/api/useApiAchievements";
 import SkeletonText from "@/components/common/Skeleton/SkeletonText";
+import { useApiAchievements } from "@/hooks/api/useApiAchievements";
 import { triggerAchievementCheck } from "@/services/achievementService";
 
 const extractAchievementIdName = (entry: any) => {

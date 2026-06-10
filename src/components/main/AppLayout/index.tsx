@@ -6,8 +6,8 @@ import { useCallback, useEffect, useRef,useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Outlet } from "react-router";
 
-import Navbar from "@/components/main/Navbar";
 import SkipLink from "@/components/common/SkipLink";
+import Navbar from "@/components/main/Navbar";
 import BottomNav from "@/components/secondary/Navbar/BottomNav";
 
 const AppLayout = () => {

@@ -1,5 +1,5 @@
 // src/context/AuthContext.jsx
-import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 import { useApiAuth } from '@/hooks/api/useApiAuth';
 import { readStoredUser, removeStoredUser, writeStoredUser } from '@/utils/userStorage';
@@ -41,11 +41,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         if (freshUser) {
           updateUser(freshUser)
         }
-      } catch (error: any) {}
+      } catch (_error: any) {
+        // Ignorer l'erreur silencieusement
+      }
     }
 
     checkUser()
-  }, []) // S'exécute une fois au montage de l'app
+  }, [getMe]) // S'exécute une fois au montage de l'app ou si getMe change
 
   return <AuthContext.Provider value={{ user, updateUser }}>{children}</AuthContext.Provider>
 }

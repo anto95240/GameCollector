@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react'
 export const useApiShortcutsDefaults = () => {
   const [defaults, setDefaults] = useState(getHardcodedDefaults())
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<any>(null)
+  const [loading, _setLoading] = useState(false)
+  const [error, _setError] = useState<any>(null)
   const getDefaults = useCallback(() => {
     const fallbackDefaults = getHardcodedDefaults()
     setDefaults(fallbackDefaults)

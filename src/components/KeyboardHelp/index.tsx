@@ -47,27 +47,33 @@ const KeyboardHelp = () => {
   }, [isVisible])
 
   // Fusionner les raccourcis par défaut avec ceux de l'utilisateur
-  useEffect(() => {
-    if (!defaults) return
-    const shortcutList = (defaults.length > 0 ? defaults : getHardcodedDefaults()).map((def: any) => {
-      const custom = user?.shortcuts?.find((s: any) => s.action === def.action)
-      return {
-        ...def,
-        isCustomized: !!custom,
-        isEnabled: custom?.isEnabled !== false,
-        customBinding:
-          custom && custom.key
-            ? {
-                key: custom.key,
-                ctrlKey: custom.ctrlKey,
-                altKey: custom.altKey,
-                shiftKey: custom.shiftKey,
-              }
-            : null,
-      }
-    })
-    setShortcuts(shortcutList)
-  }, [defaults, user?.shortcuts])
+  const [prevDefaults, setPrevDefaults] = useState(defaults)
+  const [prevUserShortcuts, setPrevUserShortcuts] = useState(user?.shortcuts)
+
+  if (defaults !== prevDefaults || user?.shortcuts !== prevUserShortcuts) {
+    setPrevDefaults(defaults)
+    setPrevUserShortcuts(user?.shortcuts)
+    if (defaults) {
+      const shortcutList = (defaults.length > 0 ? defaults : getHardcodedDefaults()).map((def: any) => {
+        const custom = user?.shortcuts?.find((s: any) => s.action === def.action)
+        return {
+          ...def,
+          isCustomized: !!custom,
+          isEnabled: custom?.isEnabled !== false,
+          customBinding:
+            custom && custom.key
+              ? {
+                  key: custom.key,
+                  ctrlKey: custom.ctrlKey,
+                  altKey: custom.altKey,
+                  shiftKey: custom.shiftKey,
+                }
+              : null,
+        }
+      })
+      setShortcuts(shortcutList)
+    }
+  }
 
   const showNotification = (type: string, text: string) => {
     setMessage({ type, text })

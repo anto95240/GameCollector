@@ -6,7 +6,7 @@ import { Bar, BarChart, Cell, ResponsiveContainer, XAxis } from 'recharts'
 
 const CHART_MARGIN = { top: 30, right: 0, left: 0, bottom: 0 }
 
-const YearTooltip = ({ label, value }: any) => {
+const _YearTooltip = ({ label, value }: any) => {
   if (label === null || label === undefined) return null
 
   return (

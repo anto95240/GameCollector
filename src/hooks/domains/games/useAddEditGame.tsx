@@ -2,11 +2,11 @@ import { useEffect, useMemo,useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
 
-import { MOCK_OPTIONS, SECTIONS } from "@/config/constants"; 
+import { SECTIONS } from "@/config/constants"; 
 import { useApiGame } from "@/hooks/api/useApiGame";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
-import { useScrollSpy } from "@/hooks/ui/useScrollSpy";
 import { useFormValidation } from "@/hooks/ui/useFormValidation";
+import { useScrollSpy } from "@/hooks/ui/useScrollSpy";
 import { triggerAchievementCheck } from "@/services/achievementService";
 import { incrementStoredUserMetric } from "@/utils/userStorage";
 import { validateGameForm } from "@/utils/validators/gameValidators";
@@ -48,35 +48,35 @@ export const useAddEditGame = () => {
     { ...formData, image: formData.image || previewImg }
   );
 
-  // Synchroniser les tags avec le formulaire
-  useEffect(() => {
+  // Synchroniser les tags avec le formulaire via un état dérivé
+  const [prevSelectedTags, setPrevSelectedTags] = useState(tagsMgr.selectedTags);
+  if (tagsMgr.selectedTags !== prevSelectedTags) {
+    setPrevSelectedTags(tagsMgr.selectedTags);
     setFormData((prev: any) => ({ ...prev, tags: tagsMgr.selectedTags }));
-  }, [tagsMgr.selectedTags]);
+  }
 
   // Charger les tags disponibles et initialiser le formulaire en mode édition
+  const setAvailableTags = tagsMgr.setAvailableTags;
   useEffect(() => {
     const initForm = async () => {
-      setIsLoading(true);
       try {
-        const [meta] = await Promise.all([
-          getAllMetadata(),
-          new Promise(resolve => setTimeout(resolve, 800))
-        ]);
-        tagsMgr.setAvailableTags(meta.tags || []);
-
-        if (isEditMode && gameToEdit?.name) {
+        const metas = await getAllMetadata();
+        if (metas?.tags) {
+          setAvailableTags(metas.tags);
+        }
+        if (isEditMode && gameToEdit) {
           const initialData = getInitialFormData(gameToEdit);
-          setFormData({ ...initialData, tags: tagsMgr.selectedTags });
+          setFormData({ ...initialData, tags: initialTags });
           setPreviewImg(formatPreviewImage(gameToEdit.image, import.meta.env.VITE_API_URL));
         }
-      } catch (e) { 
-        console.error("Erreur initialisation formulaire :", e); 
+      } catch (_e) { 
+        // ignore
       } finally {
         setIsLoading(false);
       }
     };
     initForm();
-  }, [isEditMode, gameToEdit?._id]);
+  }, [isEditMode, gameToEdit, getAllMetadata, initialTags, setAvailableTags]);
 
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;

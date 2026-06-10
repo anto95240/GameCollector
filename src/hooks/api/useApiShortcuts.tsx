@@ -37,7 +37,7 @@ export const useApiShortcuts = () => {
         const currentShortcuts = shortcuts || []
         const existingIndex = currentShortcuts.findIndex((s: any) => s.action === actionId)
 
-        let updatedShortcuts = [...currentShortcuts]
+        const updatedShortcuts = [...currentShortcuts]
         if (existingIndex >= 0) {
           updatedShortcuts[existingIndex] = {
             ...updatedShortcuts[existingIndex],
@@ -79,7 +79,7 @@ export const useApiShortcuts = () => {
       try {
         const currentShortcuts = shortcuts || []
         const existingIndex = currentShortcuts.findIndex((s: any) => s.action === actionId)
-        let updatedShortcuts = [...currentShortcuts]
+        const updatedShortcuts = [...currentShortcuts]
 
         if (existingIndex >= 0) {
           updatedShortcuts[existingIndex].isEnabled = !updatedShortcuts[existingIndex].isEnabled

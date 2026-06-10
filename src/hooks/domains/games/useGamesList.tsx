@@ -2,7 +2,7 @@ import { useEffect,useState } from "react";
 
 import { useApiGame } from "@/hooks/api/useApiGame";
 import { useApiMetadata } from "@/hooks/api/useApiMetadata";
-import { formatGameForDisplay, extractGamesList } from "@/utils/formatters";
+import { extractGamesList,formatGameForDisplay } from "@/utils/formatters";
 
 export const useGamesList = (searchTerm: string) => {
   const { getAllGames, deleteGame, updateGame } = useApiGame();

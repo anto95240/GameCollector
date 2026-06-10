@@ -11,9 +11,9 @@ export const InfoSection = ({
   t,
   formData,
   handleChange,
-  setFormData,
-  optionsData,
-  handleAddNewMetadata,
+  _setFormData,
+  _optionsData,
+  _handleAddNewMetadata,
 }: any) => (
   <SectionWrapper id="info" title={t("gameForm.sections.infos")}>
     <div className="info-grid">

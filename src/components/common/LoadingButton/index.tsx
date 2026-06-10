@@ -1,6 +1,6 @@
-import React from 'react';
 import './LoadingButton.css';
 
+import React from 'react';
 import { useNavigate } from 'react-router';
 
 interface LoadingButtonProps {

@@ -26,6 +26,7 @@ export const useCategoryManager = () => {
 
   // Fonction pour recharger les données
   const fetchMetadata = useCallback(async () => {
+    await Promise.resolve()
     setIsLoading(true)
     try {
       const data = await getAllMetadata()
