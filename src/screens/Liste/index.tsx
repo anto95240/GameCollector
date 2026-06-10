@@ -41,7 +41,7 @@ const ListePage = () => {
   useSearchBarShortcuts(searchInputRef);
   const { getUserFilters, saveUserFilter, deleteUserFilter, setActiveUserFilter } = useApiFilters();
   
-  const { games, metadata, isLoading, toggleFavorite, toggleSoon, removeGame } = useGamesList(debouncedTerm);
+  const { games, isLoading, toggleFavorite, removeGame } = useGamesList(debouncedTerm);
   const fuzzySearchKeys = useMemo(() => ["name", "genre", "platform", "status", "year"], []);
   const { setQuery, results: fuzzyGames } = useFuzzySearch(games, fuzzySearchKeys);
 
@@ -120,7 +120,7 @@ const ListePage = () => {
     try {
       const raw = localStorage.getItem(SAVED_KEY);
       return raw ? JSON.parse(raw) : [];
-    } catch (e) {
+    } catch (_e) {
       return [];
     }
   });
@@ -128,7 +128,7 @@ const ListePage = () => {
   const persistSaved = (items: any[]) => {
     try {
       localStorage.setItem(SAVED_KEY, JSON.stringify(items));
-    } catch (e) {
+    } catch (_e) {
       // ignore
     }
   };
@@ -144,7 +144,7 @@ const ListePage = () => {
           setSavedFilters(normalized);
           persistSaved(normalized);
         }
-      } catch (error) {
+      } catch (_error) {
         // fallback to localStorage already loaded
       }
     };
@@ -277,7 +277,7 @@ const ListePage = () => {
   const handleTabChange = useCallback((tab: string) => {
     setActiveTab(tab);
     setPage(1);
-  }, []);
+  }, [setPage]);
 
   const handleToggleMenu = useCallback((i: number, e: any) => {
     e.stopPropagation();
@@ -310,25 +310,25 @@ const ListePage = () => {
 
   const handlePagePrev = useCallback(() => {
     setPage((p: number) => Math.max(1, p - 1));
-  }, []);
+  }, [setPage]);
 
   const handlePageNext = useCallback(() => {
     setPage((p: number) => Math.min(totalPages, p + 1));
-  }, [totalPages]);
+  }, [totalPages, setPage]);
 
   const handlePageFirst = useCallback(() => {
     setPage(1);
-  }, []);
+  }, [setPage]);
 
   const handlePageLast = useCallback(() => {
     setPage(totalPages);
-  }, [totalPages]);
+  }, [totalPages, setPage]);
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({ left: 0, behavior: "instant" });
     }
-  }, [page, activeTab, selectedFilters]);
+  }, [page, activeTab, selectedFilters, scrollRef]);
 
   const confirmDelete = () => {
     if (!gameToDelete) return;

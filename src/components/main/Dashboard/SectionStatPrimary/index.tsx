@@ -2,11 +2,11 @@ import './SectionStatPrimary.css'
 
 import { useTranslation } from 'react-i18next'
 
-import { useDashboard } from '@/hooks/domains/dashboard/useDashboard'
+import { useStatsData } from '@/hooks/domains/dashboard/useStatsData'
 
 const SectionStatPrimary = () => {
   const { t } = useTranslation()
-  const { stats } = useDashboard()
+  const { stats } = useStatsData()
   return (
     <div className="main-total-card">
       <h1 className="main-title">{t('dashboard.title')}</h1>

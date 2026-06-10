@@ -54,7 +54,7 @@ export const useApiGame = () => {
       const { data } = await axios.get('/api/search/fuzzy', { params: payload })
       cacheManager.set(cacheKey, data)
       return data
-    } catch (getError: any) {
+    } catch (_getError: any) {
       const { data } = await axios.post('/api/search/fuzzy', payload)
       cacheManager.set(cacheKey, data)
       return data

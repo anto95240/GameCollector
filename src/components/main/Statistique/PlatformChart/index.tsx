@@ -18,7 +18,7 @@ export interface PlatformChartProps {
 
 const PlatformChart: React.FC<PlatformChartProps> = ({ stats, metadata = {} }: any) => {
   const { t } = useTranslation()
-  const [activeIndex, setActiveIndex] = useState<any>(null)
+  const [_activeIndex, _setActiveIndex] = useState<any>(null)
   const [chartType, setChartType] = useState('platform')
 
   const chartData = useMemo(() => {

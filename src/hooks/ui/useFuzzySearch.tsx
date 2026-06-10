@@ -6,11 +6,11 @@ import axios from '@/config/interceptor'
 export const useFuzzySearch = (itemsList: any, searchKeys = ['title']) => {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<any[]>([])
-  const safeItemsList = Array.isArray(itemsList) ? itemsList : []
+  const safeItemsList = useMemo(() => Array.isArray(itemsList) ? itemsList : [], [itemsList])
   const isDev = import.meta.env.DEV
   const backendDisabledRef = useRef(false)
 
-  const resolveLocalMatches = (candidateItems: any) => {
+  const _resolveLocalMatches = (candidateItems: any) => {
     const candidates = Array.isArray(candidateItems) ? candidateItems : []
 
     if (candidates.length === 0) {

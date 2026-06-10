@@ -28,7 +28,6 @@ const LazyImage: React.FC<LazyImageProps> = ({
   width,
   height,
   className = '',
-  placeholder = 'blur',
   onLoad,
   onError,
   style = {},
@@ -36,7 +35,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
   const [isLoaded, setIsLoaded] = useState(false)
   const [hasError, setHasError] = useState(false)
   const [isIntersecting, setIsIntersecting] = useState(false)
-  const [supportsWebP, setSupportsWebP] = useState(() => {
+  const [supportsWebP] = useState(() => {
     if (typeof document === 'undefined') return false
     const canvas = document.createElement('canvas')
     canvas.width = 1

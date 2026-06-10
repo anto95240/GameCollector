@@ -37,7 +37,7 @@ export const DescriptionSection = ({ t, formData, handleChange, errors, touched,
 export const RatingSection = ({
   t,
   formData,
-  handleChange,
+  _handleChange,
   setFormData,
   optionsData,
 }: any) => (

@@ -14,6 +14,8 @@ interface AuthInputProps {
   icon?: IconDefinition;
   required?: boolean;
   isPassword?: boolean;
+  autoComplete?: string;
+  ariaLabelToggle?: string;
 }
 
 const AuthInput: React.FC<AuthInputProps> = ({

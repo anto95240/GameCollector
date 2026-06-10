@@ -67,7 +67,7 @@ export const useGameData = (id: string | undefined, slug: string | undefined, ga
 
   useEffect(() => {
     fetchGameData();
-  }, [id, slug, gameName, state?.game]);
+  }, [id, slug, gameName, state?.game, fetchGameData]);
 
   return {
     game,

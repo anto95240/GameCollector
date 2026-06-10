@@ -56,29 +56,27 @@ export const useAddEditGame = () => {
   }
 
   // Charger les tags disponibles et initialiser le formulaire en mode édition
+  const setAvailableTags = tagsMgr.setAvailableTags;
   useEffect(() => {
     const initForm = async () => {
-      setIsLoading(true);
       try {
-        const [meta] = await Promise.all([
-          getAllMetadata(),
-          new Promise(resolve => setTimeout(resolve, 800))
-        ]);
-        tagsMgr.setAvailableTags(meta.tags || []);
-
-        if (isEditMode && gameToEdit?.name) {
+        const metas = await getAllMetadata();
+        if (metas?.tags) {
+          setAvailableTags(metas.tags);
+        }
+        if (isEditMode && gameToEdit) {
           const initialData = getInitialFormData(gameToEdit);
-          setFormData({ ...initialData, tags: tagsMgr.selectedTags });
+          setFormData({ ...initialData, tags: initialTags });
           setPreviewImg(formatPreviewImage(gameToEdit.image, import.meta.env.VITE_API_URL));
         }
-      } catch (e) { 
-        console.error("Erreur initialisation formulaire :", e); 
+      } catch (_e) { 
+        // ignore
       } finally {
         setIsLoading(false);
       }
     };
     initForm();
-  }, [isEditMode, gameToEdit?._id]);
+  }, [isEditMode, gameToEdit, getAllMetadata, initialTags, setAvailableTags]);
 
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;

@@ -36,7 +36,7 @@ const DetailHero: React.FC<DetailHeroProps> = ({
   metadata = {},
   isUpdating = false,
   onUpdateField = () => {},
-  onToggleSoon = () => {},
+  _onToggleSoon = () => {},
 }: any) => {
   const { t } = useTranslation()
   const [isOwned, setIsOwned] = useState(false)
