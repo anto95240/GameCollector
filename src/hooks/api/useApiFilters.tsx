@@ -1,165 +1,143 @@
+// src/hooks/api/useApiFilters.tsx
 import { useCallback, useState } from 'react'
 
-import api from '@/config/interceptor'
-import { useAuth } from '@/context/AuthContext'
+import { supabase } from '@/lib/supabase'
 
 import cacheManager from './utils/cacheManager'
-import { extractFilterValues, normalizeUserId } from './utils/filterExtractors'
+import { extractFilterValues } from './utils/filterExtractors'
 import { mapApiFilterToLocal } from './utils/filterMappers'
 
-const FILTERS_TTL = 3 * 60 * 1000 // 3 minutes
+const FILTERS_TTL = 3 * 60 * 1000
 
 export const useApiFilters = () => {
-  const { user, updateUser } = useAuth()
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<any>(null)
-  const invalidateUserFilterCache = useCallback(() => {
-    const userId = normalizeUserId(user)
-    if (userId) {
-      cacheManager.invalidatePattern(new RegExp(`^filters:${userId}:`))
-    }
-  }, [user])
+  const [error, setError]     = useState<any>(null)
+
+  const invalidateCache = () => {
+    cacheManager.invalidatePattern(/^filters:/)
+  }
 
   const getUserFilters = useCallback(async () => {
-    const userId = normalizeUserId(user)
-    if (!userId) return []
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return []
 
-    const cacheKey = `filters:${userId}:all`
+    const cacheKey = `filters:${user.id}:all`
     const cached = cacheManager.get(cacheKey)
     if (cached) return cached
 
     setLoading(true)
-    setError(null)
     try {
-      const { data } = await api.get(`/api/user/${userId}/filters`)
-      const filters = Array.isArray(data) ? data : data?.filters || []
-      const mapped = filters.map(mapApiFilterToLocal)
+      const { data, error } = await supabase
+        .from('saved_filters')
+        .select('*')
+        .order('created_at', { ascending: false })
+      if (error) throw error
+
+      const mapped = (data ?? []).map(mapApiFilterToLocal)
       cacheManager.set(cacheKey, mapped, FILTERS_TTL)
       return mapped
     } catch (err: any) {
-      setError(
-        err.response?.data?.message || 'Erreur lors de la récupération des filtres sauvegardés'
-      )
+      setError(err.message)
       throw err
     } finally {
       setLoading(false)
     }
-  }, [user])
+  }, [])
 
-  const saveUserFilter = useCallback(
-    async ({ name, selectedFilters, description, isActive = false }: any) => {
-      const userId = normalizeUserId(user)
-      if (!userId) {
-        throw new Error('Utilisateur non connecté')
-      }
+  const saveUserFilter = useCallback(async ({ name, selectedFilters, description, isActive = false }: any) => {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) throw new Error('Non connecté')
 
-      setLoading(true)
-      setError(null)
-      try {
-        const payloadValues = extractFilterValues(selectedFilters)
-        const payload = {
+    setLoading(true)
+    try {
+      const payloadValues = extractFilterValues(selectedFilters)
+      const { data, error } = await supabase
+        .from('saved_filters')
+        .insert({
+          user_id:      user.id,
           name,
-          description: description || payloadValues.description,
-          genre: payloadValues.genre,
-          platform: payloadValues.platform,
-          minRating: payloadValues.minRating,
-          maxRating: payloadValues.maxRating,
-          releaseYear: payloadValues.releaseYear,
-          isActive,
-        }
+          description:  description || payloadValues.description,
+          genre:        payloadValues.genre,
+          platform:     payloadValues.platform,
+          min_rating:   payloadValues.minRating,
+          max_rating:   payloadValues.maxRating,
+          release_year: payloadValues.releaseYear,
+          is_active:    isActive,
+        })
+        .select()
+        .single()
+      if (error) throw error
 
-        const { data } = await api.post(`/api/user/${userId}/filters`, payload)
-        const savedFilter = mapApiFilterToLocal(data?.filter || data)
+      invalidateCache()
+      return mapApiFilterToLocal(data)
+    } catch (err: any) {
+      setError(err.message)
+      throw err
+    } finally {
+      setLoading(false)
+    }
+  }, [])
 
-        if (typeof updateUser === 'function' && data?.user) {
-          updateUser(data.user)
-        }
+  const deleteUserFilter = useCallback(async (filterId: string) => {
+    setLoading(true)
+    try {
+      const { error } = await supabase.from('saved_filters').delete().eq('id', filterId)
+      if (error) throw error
+      invalidateCache()
+      return true
+    } catch (err: any) {
+      setError(err.message)
+      throw err
+    } finally {
+      setLoading(false)
+    }
+  }, [])
 
-        // Invalider le cache après ajout
-        invalidateUserFilterCache()
-        return savedFilter
-      } catch (err: any) {
-        setError(err.response?.data?.message || 'Erreur lors de la sauvegarde du filtre')
-        throw err
-      } finally {
-        setLoading(false)
-      }
-    },
-    [user, updateUser, invalidateUserFilterCache]
-  )
-
-  const deleteUserFilter = useCallback(
-    async (filterId: any) => {
-      const userId = normalizeUserId(user)
-      if (!userId) {
-        throw new Error('Utilisateur non connecté')
-      }
-
-      setLoading(true)
-      setError(null)
-      try {
-        await api.delete(`/api/user/${userId}/filters/${filterId}`)
-        // Invalider le cache après suppression
-        invalidateUserFilterCache()
-        return true
-      } catch (err: any) {
-        setError(err.response?.data?.message || 'Erreur lors de la suppression du filtre')
-        throw err
-      } finally {
-        setLoading(false)
-      }
-    },
-    [user, invalidateUserFilterCache]
-  )
-
-  const setActiveUserFilter = useCallback(
-    async (filterId: any) => {
-      const userId = normalizeUserId(user)
-      if (!userId) {
-        throw new Error('Utilisateur non connecté')
-      }
-
-      setLoading(true)
-      setError(null)
-      try {
-        const { data } = await api.put(`/api/user/${userId}/filters/${filterId}/active`)
-        // Invalider le cache car l'état actif a changé
-        invalidateUserFilterCache()
-        return data
-      } catch (err: any) {
-        setError(err.response?.data?.message || "Erreur lors de l'activation du filtre")
-        throw err
-      } finally {
-        setLoading(false)
-      }
-    },
-    [user, invalidateUserFilterCache]
-  )
+  const setActiveUserFilter = useCallback(async (filterId: string) => {
+    setLoading(true)
+    try {
+      // RPC atomique : désactive les autres, active celui-ci
+      const { data, error } = await supabase.rpc('set_active_filter', {
+        p_filter_id: filterId,
+      })
+      if (error) throw error
+      invalidateCache()
+      return data
+    } catch (err: any) {
+      setError(err.message)
+      throw err
+    } finally {
+      setLoading(false)
+    }
+  }, [])
 
   const getActiveUserFilter = useCallback(async () => {
-    const userId = normalizeUserId(user)
-    if (!userId) return null
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return null
 
-    const cacheKey = `filters:${userId}:active`
+    const cacheKey = `filters:${user.id}:active`
     const cached = cacheManager.get(cacheKey)
     if (cached) return cached
 
     setLoading(true)
-    setError(null)
     try {
-      const { data } = await api.get(`/api/user/${userId}/filters/active`)
+      const { data, error } = await supabase
+        .from('saved_filters')
+        .select('*')
+        .eq('is_active', true)
+        .maybeSingle()
+      if (error) throw error
+
       const mapped = data ? mapApiFilterToLocal(data) : null
-      if (mapped) {
-        cacheManager.set(cacheKey, mapped, FILTERS_TTL)
-      }
+      if (mapped) cacheManager.set(cacheKey, mapped, FILTERS_TTL)
       return mapped
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Erreur lors de la récupération du filtre actif')
+      setError(err.message)
       throw err
     } finally {
       setLoading(false)
     }
-  }, [user])
+  }, [])
 
   return {
     loading,

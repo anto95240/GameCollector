@@ -61,13 +61,12 @@ export const handleDownloadUserData = (user: any) => {
   downloadAnchorNode.remove()
 }
 
-export const formatUserAvatarURL = (user: any, apiUrl: any) => {
+export const formatUserAvatarURL = (user: any) => {
   if (!user?.image) return ''
-  if (user.image.startsWith('http')) return user.image
-  return `${apiUrl}/${user.image}`
+  return user.image
 }
 
-export const getInitialProfileForm = (user: any, apiUrl: any) => {
+export const getInitialProfileForm = (user: any) => {
   if (!user) {
     return {
       firstname: '',
@@ -89,6 +88,6 @@ export const getInitialProfileForm = (user: any, apiUrl: any) => {
     password: '',
     confirmPassword: '',
     imageFile: null,
-    avatarURL: formatUserAvatarURL(user, apiUrl),
+    avatarURL: formatUserAvatarURL(user),
   }
 }

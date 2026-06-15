@@ -3,7 +3,6 @@ import "./NavbarInfo.css";
 import { useEffect,useState } from "react";
 
 import UserMenu from "@/components/secondary/Navbar/UserMenu";
-import { API_URL } from "@/config/constants";
 import { useAuth } from "@/context/AuthContext";
 import { useNavbar } from "@/hooks/ui/useNavbar";
 
@@ -18,7 +17,7 @@ const NavbarInfo: React.FC<NavbarInfoProps> = ({ t, setActionsOpen, actionsOpen 
   const [batteryLevel, setBatteryLevel] = useState<number | null>(null);
   const { state, setters, actions } = useNavbar();
 
-  const { user } = useAuth();
+  const { user, profile } = useAuth();
 
   const handleCloseMenu = () => {
     setActionsOpen(false);
@@ -60,22 +59,17 @@ const NavbarInfo: React.FC<NavbarInfoProps> = ({ t, setActionsOpen, actionsOpen 
   }, []);
 
   const getInitials = () => {
-    if (!user) return "GC";
-    const first = user.firstname?.charAt(0) || "";
-    const last = user.lastname?.charAt(0) || "";
+    if (!profile) return "GC";
+    const first = profile.firstname?.charAt(0) || "";
+    const last = profile.lastname?.charAt(0) || "";
     return (first + last).toUpperCase();
   };
 
-  // === NOUVELLES VÉRIFICATIONS (Comme sur la page profil) ===
   const isDefaultImage =
-    !user?.image ||
-    user.image === "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+    !profile?.image ||
+    profile.image === "https://cdn-icons-png.flaticon.com/512/847/847969.png";
 
-  const avatarURL = user?.image
-    ? user.image.startsWith("http")
-      ? user.image
-      : `${API_URL}/${user.image}`
-    : "";
+  const avatarURL = profile?.image || "";
 
   return (
     <div className="navbar-info">

@@ -1,9 +1,10 @@
 import Fuse from 'fuse.js'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-import axios from '@/config/interceptor'
+import { useApiGame } from '@/hooks/api/useApiGame'
 // Hook UI: Gère la recherche intelligente (tolérance aux fautes) avec Fuse.js et fallback API
 export const useFuzzySearch = (itemsList: any, searchKeys = ['title']) => {
+  const { getFuzzyGames } = useApiGame()
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<any[]>([])
   const safeItemsList = useMemo(() => Array.isArray(itemsList) ? itemsList : [], [itemsList])
@@ -74,16 +75,7 @@ export const useFuzzySearch = (itemsList: any, searchKeys = ['title']) => {
       }
 
       try {
-        const response = await axios.get('/api/games/search/fuzzy', {
-          params: {
-            search: trimmedQuery,
-            q: trimmedQuery,
-            query: trimmedQuery,
-            term: trimmedQuery,
-          },
-        })
-
-        const apiResponse = response?.data
+        const apiResponse = await getFuzzyGames(trimmedQuery)
 
         const normalizedResults = Array.isArray(apiResponse)
           ? apiResponse
@@ -113,7 +105,7 @@ export const useFuzzySearch = (itemsList: any, searchKeys = ['title']) => {
     return () => {
       isActive = false
     }
-  }, [query, fuse, safeItemsList, searchKeys, isDev])
+  }, [query, fuse, safeItemsList, searchKeys, isDev, getFuzzyGames])
 
   return { query, setQuery, results }
 }

@@ -1,61 +1,99 @@
-// src/context/AuthContext.jsx
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+// src/context/AuthContext.tsx
+import { Session, User } from '@supabase/supabase-js'
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
-import { useApiAuth } from '@/hooks/api/useApiAuth';
-import { readStoredUser, removeStoredUser, writeStoredUser } from '@/utils/userStorage';
+import { supabase } from '@/lib/supabase'
+
+interface Profile {
+  id: string
+  firstname: string
+  lastname: string
+  username: string
+  image: string
+}
 
 interface AuthContextType {
-  user: any;
-  updateUser: (user: any) => void;
+  user: User | null
+  profile: Profile | null
+  session: Session | null
+  loading: boolean
+  updateProfile: (updates: Partial<Profile>) => Promise<void>
+  refreshProfile: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | null>(null)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const { getMe } = useApiAuth()
+  const [user, setUser]       = useState<User | null>(null)
+  const [profile, setProfile] = useState<Profile | null>(null)
+  const [session, setSession] = useState<Session | null>(null)
+  const [loading, setLoading] = useState(true)
 
-  const [user, setUser] = useState<any>(() => {
-    return readStoredUser()
-  })
-
-  const updateUser = (newUser: any) => {
-    setUser(newUser)
-    if (newUser) {
-      writeStoredUser(newUser)
-    } else {
-      removeStoredUser()
-    }
+  // Charger le profil depuis la table `profiles`
+  const loadProfile = async (userId: string) => {
+    const { data } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', userId)
+      .single()
+    if (data) setProfile(data)
   }
 
   useEffect(() => {
-    const checkUser = async () => {
-      try {
-        // Vérifier seulement si on a un utilisateur en localStorage
-        const saved = readStoredUser()
-        if (!saved) {
-          return
-        }
+    // 1. Récupérer la session existante au montage
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+      setUser(session?.user ?? null)
+      if (session?.user) loadProfile(session.user.id)
+      setLoading(false)
+    })
 
-        // On vérifie avec le backend
-        const freshUser = await getMe()
-        if (freshUser) {
-          updateUser(freshUser)
+    // 2. Écouter les changements de session (login, logout, refresh token)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session)
+        setUser(session?.user ?? null)
+        if (session?.user) {
+          loadProfile(session.user.id)
+        } else {
+          setProfile(null)
         }
-      } catch (_error: any) {
-        // Ignorer l'erreur silencieusement
       }
-    }
+    )
 
-    checkUser()
-  }, [getMe]) // S'exécute une fois au montage de l'app ou si getMe change
+    return () => subscription.unsubscribe()
+  }, [])
 
-  return <AuthContext.Provider value={{ user, updateUser }}>{children}</AuthContext.Provider>
+  const updateProfile = async (updates: Partial<Profile>) => {
+    if (!user) return
+    const { data } = await supabase
+      .from('profiles')
+      .update({ ...updates, updated_at: new Date().toISOString() })
+      .eq('id', user.id)
+      .select()
+      .single()
+    if (data) setProfile(data)
+  }
+
+  const refreshProfile = async () => {
+    if (user) await loadProfile(user.id)
+  }
+
+  return (
+    <AuthContext.Provider value={{ user, profile, session, loading, updateProfile, refreshProfile }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export const useAuth = () => {
   const context = useContext(AuthContext)
-  if (!context) {
-    throw new Error("useAuth doit être utilisé à l'intérieur d'un AuthProvider")
-  }
+  if (!context) throw new Error("useAuth doit être utilisé dans un AuthProvider")
   return context
 }

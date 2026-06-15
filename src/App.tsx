@@ -1,5 +1,4 @@
 import '@/config/i18n'
-import '@/config/interceptor'
 
 import { useEffect } from 'react'
 import { RouterProvider } from 'react-router'
@@ -11,18 +10,24 @@ import KeyboardHelp from '@/components/KeyboardHelp'
 import KeyboardShortcutsProvider from '@/components/KeyboardShortcutsProvider'
 import router from '@/config/router'
 import { useAuth } from '@/context/AuthContext'
+import { useApiShortcuts } from '@/hooks/api/useApiShortcuts'
 import { useAchievementTracker } from '@/hooks/domains/achievements/useAchievementTracker'
 import keyboardShortcutsService from '@/services/keyboardShortcutsService'
 
 function App() {
   useAchievementTracker()
   const { user } = useAuth()
+  const { getShortcuts } = useApiShortcuts()
 
   useEffect(() => {
-    if (user?.shortcuts && user.shortcuts.length > 0) {
-      keyboardShortcutsService.loadCustomBindings(user.shortcuts)
+    if (user) {
+      getShortcuts().then((shortcuts: any) => {
+        if (shortcuts && shortcuts.length > 0) {
+          keyboardShortcutsService.loadCustomBindings(shortcuts)
+        }
+      })
     }
-  }, [user?.shortcuts])
+  }, [user, getShortcuts])
 
   return (
     <ErrorBoundary>
