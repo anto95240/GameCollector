@@ -31,11 +31,16 @@ export const useApiMetadata = () => {
       supabase.rpc('get_resolved_tags'),
     ])
 
+    if (statuses.error) console.error("Statuses RPC error:", statuses.error)
+    if (genres.error) console.error("Genres RPC error:", genres.error)
+    if (platforms.error) console.error("Platforms RPC error:", platforms.error)
+    if (tags.error) console.error("Tags RPC error:", tags.error)
+
     const data = {
-      statuses: statuses.data ?? [],
-      genres:   genres.data   ?? [],
-      platforms: platforms.data ?? [],
-      tags:     tags.data     ?? [],
+      statuses: (statuses.data ?? []).map((x: any) => ({ ...x, _id: x.id })),
+      genres:   (genres.data   ?? []).map((x: any) => ({ ...x, _id: x.id })),
+      platforms: (platforms.data ?? []).map((x: any) => ({ ...x, _id: x.id })),
+      tags:     (tags.data     ?? []).map((x: any) => ({ ...x, _id: x.id })),
     }
     cacheManager.set(cacheKey, data, METADATA_TTL)
     return data
@@ -55,8 +60,9 @@ export const useApiMetadata = () => {
     const { data, error } = await supabase.rpc(rpcName)
     if (error) throw error
 
-    cacheManager.set(cacheKey, data, METADATA_TTL)
-    return data
+    const mappedData = data.map((x: any) => ({ ...x, _id: x.id }))
+    cacheManager.set(cacheKey, mappedData, METADATA_TTL)
+    return mappedData
   }, [])
 
   // ── CREATE (élément privé uniquement) ────────────────────────────────
