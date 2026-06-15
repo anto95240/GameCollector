@@ -67,7 +67,7 @@ export const useAddEditGame = () => {
         if (isEditMode && gameToEdit) {
           const initialData = getInitialFormData(gameToEdit);
           setFormData({ ...initialData, tags: initialTags });
-          setPreviewImg(formatPreviewImage(gameToEdit.image, import.meta.env.VITE_API_URL));
+          setPreviewImg(formatPreviewImage(gameToEdit.image));
         }
       } catch (_e) { 
         // ignore

@@ -34,7 +34,7 @@
     "auth": {
       "login": {
         "title": "Login",
-        "usernameOrEmail": "Login email or username",
+        "usernameOrEmail": "Email Address",
         "password": "Password",
         "showPassword": "Show password",
         "submit": "Submit",

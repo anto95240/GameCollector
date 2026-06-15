@@ -1,7 +1,7 @@
 import { createSlug } from '../helpers/slugGenerator'
 import { formatImageUrl } from './imageFormatters'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001'
+
 export const isWishlistStatusName = (statusName: string = '') => {
   const lower = statusName.toLowerCase()
   return lower.includes('wishlist') || lower.includes('à venir') || lower.includes('prochainement')
@@ -27,7 +27,7 @@ export const mapGameWithMetadata = (game: any, metadata: any) => {
       ) || [],
   }
 }
-export const formatGameForDisplay = (game: any, metadata: any, apiUrl = API_URL) => {
+export const formatGameForDisplay = (game: any, metadata: any, apiUrl?: string) => {
   const mappedGame = mapGameWithMetadata(game, metadata)
 
   return {
@@ -39,7 +39,7 @@ export const formatGameForDisplay = (game: any, metadata: any, apiUrl = API_URL)
     imageUrl: formatImageUrl(game.image, apiUrl),
   }
 }
-export const formatGameForDetail = (game: any, metadata: any, apiUrl = API_URL) => {
+export const formatGameForDetail = (game: any, metadata: any, apiUrl?: string) => {
   const baseGame = formatGameForDisplay(game, metadata, apiUrl)
 
   // baseGame already has imageUrl from formatGameForDisplay — no need to recompute
@@ -51,7 +51,7 @@ export const formatGameForDetail = (game: any, metadata: any, apiUrl = API_URL) 
     tags_ids: game.tags_ids,
   }
 }
-export const formatGamesForCarousel = (games: any[], apiUrl = API_URL) => {
+export const formatGamesForCarousel = (games: any[], apiUrl?: string) => {
   return games.map((game: any) => ({
     ...game,
     id: game._id,
@@ -92,7 +92,7 @@ export const normalizeGameBooleans = (game: any) => {
     isSoon: game.isSoon === true || String(game.isSoon) === 'true',
   }
 }
-export const normalizeGameData = (game: any, apiUrl = API_URL) => {
+export const normalizeGameData = (game: any, apiUrl?: string) => {
   const withBooleans = normalizeGameBooleans(game)
   return {
     ...withBooleans,
@@ -101,5 +101,5 @@ export const normalizeGameData = (game: any, apiUrl = API_URL) => {
     rating: game.rating ?? (game.note || 0),
   }
 }
-export const normalizeGamesArray = (games: any[], apiUrl = API_URL) =>
+export const normalizeGamesArray = (games: any[], apiUrl?: string) =>
   games.map((game: any) => normalizeGameData(game, apiUrl))

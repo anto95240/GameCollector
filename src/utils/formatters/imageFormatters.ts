@@ -1,4 +1,3 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001'
 
 export interface OptimizedImageProps {
   src: string | null;
@@ -7,14 +6,9 @@ export interface OptimizedImageProps {
   srcSetWebp?: string;
 }
 
-export const formatImageUrl = (imageUrl: string | null | undefined, apiUrl: string = API_URL): string | null => {
+export const formatImageUrl = (imageUrl: string | null | undefined, _apiUrl?: string): string | null => {
   if (!imageUrl) return null
-  // Si c'est déjà une URL complète ou une data URL, retourner tel quel
-  if (imageUrl.startsWith('http') || imageUrl.startsWith('data:')) {
-    return imageUrl
-  }
-  // Sinon, ajouter l'URL du backend
-  return `${apiUrl}${imageUrl}`
+  return imageUrl
 }
 export const generateWebpUrl = (imageUrl: string | null | undefined): string | null => {
   if (!imageUrl) return null
@@ -42,7 +36,7 @@ export const generateResponsiveWebpSrcSet = (baseUrl: string | null | undefined,
 }
 export const getOptimizedImageProps = (
   imagePath: string | null | undefined,
-  { widths = [500, 800, 1200], autoWebp = true, apiUrl = API_URL }: { widths?: number[], autoWebp?: boolean, apiUrl?: string } = {}
+  { widths = [500, 800, 1200], autoWebp = true, apiUrl }: { widths?: number[], autoWebp?: boolean, apiUrl?: string } = {}
 ): OptimizedImageProps => {
   if (!imagePath) return { src: null, srcSet: '' }
 
