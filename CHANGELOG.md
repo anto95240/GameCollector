@@ -1,3 +1,10 @@
+## [3.0.6](https://github.com/anto95240/GameCollector/compare/v3.0.5...v3.0.6) (2026-06-15)
+
+
+### Bug Fixes
+
+* affichage des erreurs Supabase et sécurité sur les raccourcis clavier ([74f2c0e](https://github.com/anto95240/GameCollector/commit/74f2c0eac80b6e295d963509fcc54631af054fde))
+
 ## [3.0.5](https://github.com/anto95240/GameCollector/compare/v3.0.4...v3.0.5) (2026-06-15)
 
 
