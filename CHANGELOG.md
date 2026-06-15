@@ -1,3 +1,10 @@
+## [3.0.9](https://github.com/anto95240/GameCollector/compare/v3.0.8...v3.0.9) (2026-06-15)
+
+
+### Bug Fixes
+
+* correction du bug du s final sur le mot status ([23a6953](https://github.com/anto95240/GameCollector/commit/23a695314214f3d1690ed9314c8347fa5c4c2d14))
+
 ## [3.0.8](https://github.com/anto95240/GameCollector/compare/v3.0.7...v3.0.8) (2026-06-15)
 
 
