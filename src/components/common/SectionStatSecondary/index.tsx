@@ -18,11 +18,11 @@ const SectionStatSecondary = () => {
     <div
       className={`secondary-stats-grid ${isStatisticsPage ? 'statistics-page' : 'default-page'}`}
     >
-      <StatCard title={t('dashboard.favorite')} value={stats.favoriteCount} />
-      <StatCard title={t('dashboard.platform')} value={stats.platformCount} />
-      <StatCard title={t('dashboard.genre')} value={stats.genreCount} />
+      <StatCard title={t('dashboard.favorite')} value={stats?.favoriteCount ?? '-'} />
+      <StatCard title={t('dashboard.platform')} value={stats?.platformCount ?? '-'} />
+      <StatCard title={t('dashboard.genre')} value={stats?.genreCount ?? '-'} />
 
-      {isStatisticsPage && <StatCard title={t('dashboard.totalGame')} value={stats.totalGames} />}
+      {isStatisticsPage && <StatCard title={t('dashboard.totalGame')} value={stats?.totalGames ?? '-'} />}
     </div>
   )
 }
