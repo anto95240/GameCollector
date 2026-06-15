@@ -20,18 +20,20 @@
 .textarea-container textarea {
   width: 100%;
   padding: 0.875rem;
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
+  background: var(--gradient-card-main-input);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
   font-family: inherit;
   font-size: 0.95rem;
   resize: vertical;
-  transition: border-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .textarea-container textarea:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-input-simple-focus);
 }
 
 .select-wrapper {
