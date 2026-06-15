@@ -1,3 +1,10 @@
+## [3.0.7](https://github.com/anto95240/GameCollector/compare/v3.0.6...v3.0.7) (2026-06-15)
+
+
+### Bug Fixes
+
+* sécurité pour le chargement asynchrone des statistiques du dashboard ([87c6a5b](https://github.com/anto95240/GameCollector/commit/87c6a5b0802d1701be9c5eb3f1f757f37e768ca5))
+
 ## [3.0.6](https://github.com/anto95240/GameCollector/compare/v3.0.5...v3.0.6) (2026-06-15)
 
 
