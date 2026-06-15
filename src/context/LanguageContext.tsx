@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { I18nextProvider } from 'react-i18next'
+
 import i18n from '@/config/i18n'
 
 interface LanguageContextType {
