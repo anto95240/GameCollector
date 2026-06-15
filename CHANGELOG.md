@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/anto95240/GameCollector/compare/v3.0.0...v3.0.1) (2026-06-15)
+
+
+### Bug Fixes
+
+* correction de la casse des dossiers Profile et Detail pour Vercel ([9a4e56c](https://github.com/anto95240/GameCollector/commit/9a4e56cb58df1863e9dd75d94093f95576405179))
+
 # [3.0.0](https://github.com/anto95240/GameCollector/compare/v2.10.0...v3.0.0) (2026-06-15)
 
 
