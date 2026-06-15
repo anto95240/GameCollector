@@ -1,5 +1,3 @@
-import '@/config/i18n'
-
 import { useEffect } from 'react'
 import { RouterProvider } from 'react-router'
 

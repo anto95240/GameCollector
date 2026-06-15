@@ -1,3 +1,4 @@
+import '@/config/i18n'
 import './Animations.css'
 import './index.css'
 
