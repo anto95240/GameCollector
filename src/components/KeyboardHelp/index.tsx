@@ -16,12 +16,18 @@ const KeyboardHelp = () => {
   const [isVisible, setIsVisible] = useState(false)
   const { user } = useAuth()
   const { defaults, getDefaults } = useApiShortcutsDefaults()
-  const { toggleShortcut, updateShortcut } = useApiShortcuts()
-  const [shortcuts, setShortcuts] = useState<any[]>([])
+  const { shortcuts: apiShortcuts, getShortcuts, toggleShortcut, updateShortcut } = useApiShortcuts()
   const [togglingId, setTogglingId] = useState<string | null>(null)
   const [message, setMessage] = useState<{ type: string; text: string } | null>(null)
 
   const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform)
+
+  // Fetch API shortcuts when modal opens
+  useEffect(() => {
+    if (isVisible) {
+      getShortcuts().catch(console.error)
+    }
+  }, [isVisible, getShortcuts])
 
   // Charger les valeurs par défaut
   useEffect(() => {
@@ -46,34 +52,25 @@ const KeyboardHelp = () => {
     }
   }, [isVisible])
 
-  // Fusionner les raccourcis par défaut avec ceux de l'utilisateur
-  const [prevDefaults, setPrevDefaults] = useState(defaults)
-  const [prevUserShortcuts, setPrevUserShortcuts] = useState(user?.shortcuts)
+  const customShortcuts = apiShortcuts || [];
+  const activeDefaults = defaults && defaults.length > 0 ? defaults : getHardcodedDefaults();
 
-  if (defaults !== prevDefaults || user?.shortcuts !== prevUserShortcuts) {
-    setPrevDefaults(defaults)
-    setPrevUserShortcuts(user?.shortcuts)
-    if (defaults) {
-      const shortcutList = (defaults.length > 0 ? defaults : getHardcodedDefaults()).map((def: any) => {
-        const custom = user?.shortcuts?.find((s: any) => s.action === def.action)
-        return {
-          ...def,
-          isCustomized: !!custom,
-          isEnabled: custom?.isEnabled !== false,
-          customBinding:
-            custom && custom.key
-              ? {
-                  key: custom.key,
-                  ctrlKey: custom.ctrlKey,
-                  altKey: custom.altKey,
-                  shiftKey: custom.shiftKey,
-                }
-              : null,
-        }
-      })
-      setShortcuts(shortcutList)
-    }
-  }
+  const displayShortcuts = activeDefaults.map((def: any) => {
+    const custom = customShortcuts.find((s: any) => s.action === def.action);
+    return {
+      ...def,
+      isCustomized: !!custom,
+      isEnabled: custom?.isEnabled !== false,
+      customBinding: custom?.key
+        ? {
+            key: custom.key,
+            ctrlKey: custom.ctrlKey,
+            altKey: custom.altKey,
+            shiftKey: custom.shiftKey,
+          }
+        : null,
+    };
+  });
 
   const showNotification = (type: string, text: string) => {
     setMessage({ type, text })
@@ -83,11 +80,8 @@ const KeyboardHelp = () => {
   const handleSave = async (actionId: string, keys: any) => {
     try {
       await updateShortcut(actionId, keys)
-      const updated = shortcuts.map((s: any) =>
-        s.action === actionId ? { ...s, ...keys, isCustomized: true } : s
-      )
-      setShortcuts(updated)
-      keyboardShortcutsService.loadCustomBindings(updated)
+      getShortcuts() // Refresh local list
+      // Note: useApiShortcuts updates keyboardShortcutsService inside saveShortcutsToDb
       showNotification('success', t('keyboardShortcuts.savedSuccess'))
     } catch {
       showNotification('error', t('keyboardShortcuts.saveError'))
@@ -104,11 +98,7 @@ const KeyboardHelp = () => {
         altKey: def.altKey,
         shiftKey: def.shiftKey,
       })
-      const updated = shortcuts.map((s: any) =>
-        s.action === actionId ? { ...s, ...def, isCustomized: false } : s
-      )
-      setShortcuts(updated)
-      keyboardShortcutsService.loadCustomBindings(updated)
+      getShortcuts() // Refresh local list
       showNotification('success', t('keyboardShortcuts.resetSuccess'))
     } catch {
       showNotification('error', t('keyboardShortcuts.resetError'))
@@ -119,6 +109,7 @@ const KeyboardHelp = () => {
     setTogglingId(actionId)
     try {
       await toggleShortcut(actionId)
+      getShortcuts()
     } catch (err: any) {
       console.error(err)
     } finally {
@@ -128,7 +119,7 @@ const KeyboardHelp = () => {
 
   if (!isVisible) return null
 
-  const categories = [...new Set(shortcuts.map((s: any) => s.category))]
+  const categories = [...new Set(displayShortcuts.map((s: any) => s.category))]
 
   return (
     <div className="keyboard-help-overlay" onClick={() => setIsVisible(false)}>
@@ -151,7 +142,7 @@ const KeyboardHelp = () => {
             <div key={cat} className="keyboard-help-category">
               <h3>{cat}</h3>
               <div className="keyboard-help-items">
-                {shortcuts
+                {displayShortcuts
                   .filter((s: any) => s.category === cat)
                   .map((item: any) => (
                     <ShortcutItem
