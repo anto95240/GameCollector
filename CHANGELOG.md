@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/anto95240/GameCollector/compare/v3.0.1...v3.0.2) (2026-06-15)
+
+
+### Bug Fixes
+
+* correction de casse pour Filtre et StatItem ([d0d2f10](https://github.com/anto95240/GameCollector/commit/d0d2f1074671922f0a569d178297ef430f86a1cb))
+
 ## [3.0.1](https://github.com/anto95240/GameCollector/compare/v3.0.0...v3.0.1) (2026-06-15)
 
 
