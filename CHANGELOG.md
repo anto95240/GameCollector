@@ -1,3 +1,10 @@
+## [3.0.11](https://github.com/anto95240/GameCollector/compare/v3.0.10...v3.0.11) (2026-06-15)
+
+
+### Bug Fixes
+
+* restauration du champ commentaire et harmonisation du style focus des textareas ([7a30919](https://github.com/anto95240/GameCollector/commit/7a309192acbef3dff7b6bc594bdf9dd67f90a62b))
+
 ## [3.0.10](https://github.com/anto95240/GameCollector/compare/v3.0.9...v3.0.10) (2026-06-15)
 
 
