@@ -2,7 +2,6 @@ import './GameForm.css'
 
 import LoadingButton from '@/components/common/LoadingButton'
 import {
-  CommentSection,
   DescriptionSection,
   DetailsSection,
   ImageSection,
@@ -56,7 +55,6 @@ const GameForm = ({
           setFormData={setFormData}
           optionsData={optionsData}
         />
-        <CommentSection t={t} formData={formData} handleChange={handleChange} />
         <DetailsSection
           t={t}
           formData={formData}
