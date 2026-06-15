@@ -10,8 +10,8 @@ export const useLogin = () => {
   const { login } = useApiAuth()
   const navigate = useNavigate()
 
-  const [email, setEmail] = useState('antoine@test.com')
-  const [password, setPassword] = useState('Test1234!')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [isAnimating, setIsAnimating] = useState(false)
 
@@ -21,7 +21,7 @@ export const useLogin = () => {
     setIsAnimating(true)
 
     try {
-      const response = await login({ login: email, password })
+      const response = await login({ email, password })
       if (response.user) {
         writeStoredUser(response.user)
         // Redirection vers la page de chargement fullscreen
