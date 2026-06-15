@@ -69,8 +69,7 @@ export default defineConfig(({ mode }) => ({
             if (id.includes('/i18next') || id.includes('/react-i18next/')) {
               return 'vendor-i18n'
             }
-            // Utilitaires HTTP + recherche
-            if (id.includes('/axios/') || id.includes('/fuse.js/')) {
+            if (id.includes('/fuse.js/')) {
               return 'vendor-utils'
             }
             // Virtualisation listes
@@ -92,6 +91,6 @@ export default defineConfig(({ mode }) => ({
   },
   // Optimisation des dépendances en dev
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router', 'recharts', 'axios'],
+    include: ['react', 'react-dom', 'react-router', 'recharts'],
   },
 }))

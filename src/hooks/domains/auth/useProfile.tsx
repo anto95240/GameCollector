@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import { useOutletContext } from 'react-router'
-
-import { API_URL } from '@/config/constants'
 import { useToast } from '@/context'
 import { useAuth } from '@/context/AuthContext'
 import { useApiAuth } from '@/hooks/api/useApiAuth'
@@ -18,11 +16,12 @@ import { getFirstValidationError, validateProfile } from '@/utils/validators'
 export const useProfile = () => {
   const { t } = useOutletContext<any>()
 
-  const { user, updateUser } = useAuth()
+  const { user, profile, refreshProfile } = useAuth()
+  const mergedUser = user && profile ? { ...user, ...profile } : user
   const { updateProfile, deleteAccount, logout } = useApiAuth()
   const { showSuccess, showError, showUpdated, showDeleted } = useToast()
 
-  const [form, setForm] = useState(() => getInitialProfileForm(user, API_URL))
+  const [form, setForm] = useState(() => getInitialProfileForm(mergedUser))
 
   const [uiState, setUiState] = useState({
     showEmailForm: false,
@@ -31,11 +30,11 @@ export const useProfile = () => {
     showMobileMenu: false,
   })
 
-  const [prevUser, setPrevUser] = useState(user)
+  const [prevUser, setPrevUser] = useState(mergedUser)
 
-  if (user !== prevUser) {
-    setPrevUser(user)
-    setForm(getInitialProfileForm(user, API_URL))
+  if (JSON.stringify(mergedUser) !== JSON.stringify(prevUser)) {
+    setPrevUser(mergedUser)
+    setForm(getInitialProfileForm(mergedUser))
   }
 
   const handleSaveProfile = async () => {
@@ -47,15 +46,15 @@ export const useProfile = () => {
         return
       }
 
-      const updatedUser = await handleSaveProfileAsync(
+      await handleSaveProfileAsync(
         form,
-        user,
+        mergedUser,
         updateProfile,
         showError,
         showUpdated
       )
 
-      updateUser(updatedUser)
+      if (refreshProfile) refreshProfile()
       incrementStoredUserMetric('profileUpdatedCount')
       triggerAchievementCheck()
 
@@ -68,18 +67,18 @@ export const useProfile = () => {
 
   const handleDeleteUser = async () => {
     try {
-      await handleDeleteAccountAsync(user, deleteAccount, logout, showDeleted, showError)
+      await handleDeleteAccountAsync(mergedUser, deleteAccount, logout, showDeleted, showError)
     } catch (err: any) {
       console.error(err)
     }
   }
 
   const handleDownloadData = () => {
-    handleDownloadUserData(user)
+    handleDownloadUserData(mergedUser)
   }
 
   return {
-    user,
+    user: mergedUser,
     form,
     setForm,
     uiState,

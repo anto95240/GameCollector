@@ -1,13 +1,11 @@
 import { useCallback, useState } from 'react'
 
-import api from '@/config/interceptor'
-import { useAuth } from '@/context/AuthContext'
 import { getHardcodedDefaults } from '@/hooks/api/useApiShortcutsDefaults'
+import { supabase } from '@/lib/supabase'
 import keyboardShortcutsService from '@/services/keyboardShortcutsService'
 
 export const useApiShortcuts = () => {
-  const { user, updateUser } = useAuth()
-  const [shortcuts, setShortcuts] = useState(user?.shortcuts || [])
+  const [shortcuts, setShortcuts] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<any>(null)
 
@@ -15,19 +13,41 @@ export const useApiShortcuts = () => {
     setLoading(true)
     setError(null)
     try {
-      const response = await api.get('/api/user/me')
-      const userShortcuts = response.data.shortcuts || []
+      const { data, error } = await supabase
+        .from('shortcuts')
+        .select('shortcuts')
+        .single()
+      
+      if (error && error.code !== 'PGRST116') throw error
+
+      const userShortcuts = data?.shortcuts || []
       setShortcuts(userShortcuts)
       return userShortcuts
     } catch (err: any) {
-      const errorMessage =
-        err.response?.data?.message || 'Erreur lors de la récupération des raccourcis'
-      setError(errorMessage)
+      setError(err.message || 'Erreur lors de la récupération des raccourcis')
       throw err
     } finally {
       setLoading(false)
     }
   }, [])
+
+  const saveShortcutsToDb = async (updatedShortcuts: any[]) => {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) throw new Error('Non connecté')
+
+    const { error } = await supabase
+      .from('shortcuts')
+      .upsert(
+        { user_id: user.id, shortcuts: updatedShortcuts, updated_at: new Date().toISOString() },
+        { onConflict: 'user_id' }
+      )
+
+    if (error) throw error
+
+    setShortcuts(updatedShortcuts)
+    keyboardShortcutsService.loadCustomBindings(updatedShortcuts)
+    return updatedShortcuts
+  }
 
   const updateShortcut = useCallback(
     async (actionId: any, newBinding: any) => {
@@ -51,25 +71,15 @@ export const useApiShortcuts = () => {
           })
         }
 
-        const formData = new FormData()
-        formData.append('shortcuts', JSON.stringify(updatedShortcuts))
-
-        const response = await api.put(`/api/user/${user.uid || user._id}`, formData)
-        const userShortcuts = response.data.shortcuts || []
-
-        setShortcuts(userShortcuts)
-        updateUser(response.data)
-        keyboardShortcutsService.loadCustomBindings(userShortcuts)
-
-        return userShortcuts
+        return await saveShortcutsToDb(updatedShortcuts)
       } catch (err: any) {
-        setError(err.response?.data?.message || 'Erreur de mise à jour')
+        setError(err.message || 'Erreur de mise à jour')
         throw err
       } finally {
         setLoading(false)
       }
     },
-    [user, shortcuts, updateUser]
+    [shortcuts]
   )
 
   const toggleShortcut = useCallback(
@@ -96,25 +106,15 @@ export const useApiShortcuts = () => {
           })
         }
 
-        const formData = new FormData()
-        formData.append('shortcuts', JSON.stringify(updatedShortcuts))
-
-        const response = await api.put(`/api/user/${user.uid || user._id}`, formData)
-        const userShortcuts = response.data.shortcuts || []
-
-        setShortcuts(userShortcuts)
-        updateUser(response.data)
-        keyboardShortcutsService.loadCustomBindings(userShortcuts)
-
-        return userShortcuts
+        return await saveShortcutsToDb(updatedShortcuts)
       } catch (err: any) {
-        setError(err.response?.data?.message || 'Erreur lors du toggle')
+        setError(err.message || 'Erreur lors du toggle')
         throw err
       } finally {
         setLoading(false)
       }
     },
-    [user, shortcuts, updateUser]
+    [shortcuts]
   )
 
   const resetShortcut = useCallback(
@@ -123,50 +123,29 @@ export const useApiShortcuts = () => {
       setError(null)
       try {
         const updatedShortcuts = (shortcuts || []).filter((s: any) => s.action !== actionId)
-
-        const formData = new FormData()
-        formData.append('shortcuts', JSON.stringify(updatedShortcuts))
-
-        const response = await api.put(`/api/user/${user.uid || user._id}`, formData)
-        const userShortcuts = response.data.shortcuts || []
-
-        setShortcuts(userShortcuts)
-        updateUser(response.data)
-        keyboardShortcutsService.loadCustomBindings(userShortcuts)
-
-        return userShortcuts
+        return await saveShortcutsToDb(updatedShortcuts)
       } catch (err: any) {
-        setError(err.response?.data?.message || 'Erreur lors du reset')
+        setError(err.message || 'Erreur lors du reset')
         throw err
       } finally {
         setLoading(false)
       }
     },
-    [user, shortcuts, updateUser]
+    [shortcuts]
   )
 
   const resetAllShortcuts = useCallback(async () => {
     setLoading(true)
     setError(null)
     try {
-      const formData = new FormData()
-      formData.append('shortcuts', JSON.stringify([]))
-
-      const response = await api.put(`/api/user/${user.uid || user._id}`, formData)
-      const userShortcuts: any[] = []
-
-      setShortcuts(userShortcuts)
-      updateUser(response.data)
-      keyboardShortcutsService.loadCustomBindings(userShortcuts)
-
-      return userShortcuts
+      return await saveShortcutsToDb([])
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Erreur lors du reset total')
+      setError(err.message || 'Erreur lors du reset total')
       throw err
     } finally {
       setLoading(false)
     }
-  }, [user, updateUser])
+  }, [])
 
   return {
     shortcuts,
