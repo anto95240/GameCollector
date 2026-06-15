@@ -1,3 +1,10 @@
+## [3.0.8](https://github.com/anto95240/GameCollector/compare/v3.0.7...v3.0.8) (2026-06-15)
+
+
+### Bug Fixes
+
+* crach après refresh ([9aa52fd](https://github.com/anto95240/GameCollector/commit/9aa52fd291059edad803b3d0d177b2efc5b45396))
+
 ## [3.0.7](https://github.com/anto95240/GameCollector/compare/v3.0.6...v3.0.7) (2026-06-15)
 
 
