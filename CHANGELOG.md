@@ -1,3 +1,10 @@
+## [3.0.10](https://github.com/anto95240/GameCollector/compare/v3.0.9...v3.0.10) (2026-06-15)
+
+
+### Bug Fixes
+
+* affichage et fusion des raccourcis par défaut et utilisateurs dans la popup ([3a3e3ab](https://github.com/anto95240/GameCollector/commit/3a3e3abbb754adcf98615d1dd49ca3bddc987a49))
+
 ## [3.0.9](https://github.com/anto95240/GameCollector/compare/v3.0.8...v3.0.9) (2026-06-15)
 
 
