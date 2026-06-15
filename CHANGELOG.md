@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/anto95240/GameCollector/compare/v3.0.2...v3.0.3) (2026-06-15)
+
+
+### Bug Fixes
+
+* chargement synchrone de i18n pour la production ([69a4ebb](https://github.com/anto95240/GameCollector/commit/69a4ebb070048dd50f0fb968694f700737d39d06))
+
 ## [3.0.2](https://github.com/anto95240/GameCollector/compare/v3.0.1...v3.0.2) (2026-06-15)
 
 
