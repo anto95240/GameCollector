@@ -13,7 +13,7 @@ const SectionStatPrimary = () => {
 
       <div className="total-info">
         <p className="total-label">{t('dashboard.totalGame')}</p>
-        <p className="total-value">{stats.totalGames}</p>
+        <p className="total-value">{stats?.totalGames ?? '-'}</p>
       </div>
     </div>
   )
