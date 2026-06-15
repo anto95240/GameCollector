@@ -1,3 +1,18 @@
+# [3.0.0](https://github.com/anto95240/GameCollector/compare/v2.10.0...v3.0.0) (2026-06-15)
+
+
+* Merge pull request [#24](https://github.com/anto95240/GameCollector/issues/24) from anto95240/develop ([bd4e564](https://github.com/anto95240/GameCollector/commit/bd4e56474c17ae767fdc9148ce6645449bb4a7df))
+
+
+### Bug Fixes
+
+* erreur ci ([133be52](https://github.com/anto95240/GameCollector/commit/133be5233834bd276b41c16459e25b62ea3238b3))
+
+
+### BREAKING CHANGES
+
+* migration complète vers Supabase
+
 # [2.10.0](https://github.com/anto95240/GameCollector/compare/v2.9.0...v2.10.0) (2026-06-10)
 
 
