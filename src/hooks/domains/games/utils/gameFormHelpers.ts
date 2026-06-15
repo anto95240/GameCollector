@@ -123,6 +123,6 @@ export const buildGamePayload = (
   return submitData
 }
 
-export const formatPreviewImage = (imageUrl: string, apiUrl: string): string | null => {
-  return formatImageUrl(imageUrl, apiUrl)
+export const formatPreviewImage = (imageUrl: string): string | null => {
+  return formatImageUrl(imageUrl)
 }
