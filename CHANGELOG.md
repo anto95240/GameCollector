@@ -1,3 +1,11 @@
+## [3.0.4](https://github.com/anto95240/GameCollector/compare/v3.0.3...v3.0.4) (2026-06-15)
+
+
+### Bug Fixes
+
+* ajout du I18nextProvider pour sécuriser l'instance i18n en production ([5a1549b](https://github.com/anto95240/GameCollector/commit/5a1549b19957d546557938ea393a397f2b3ff0c9))
+* tri des imports dans LanguageContext ([4d6ae9b](https://github.com/anto95240/GameCollector/commit/4d6ae9b190f09ab73663621e865e3d4fb12268d5))
+
 ## [3.0.3](https://github.com/anto95240/GameCollector/compare/v3.0.2...v3.0.3) (2026-06-15)
 
 
