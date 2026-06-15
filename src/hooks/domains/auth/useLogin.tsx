@@ -28,7 +28,7 @@ export const useLogin = () => {
         navigate('/loading?variant=login&returnTo=/dashboard')
       }
     } catch (err: any) {
-      setError(err.response?.data?.message || t('auth.login.errorGeneric'))
+      setError(err.message || err.response?.data?.message || t('auth.login.errorGeneric'))
       setIsAnimating(false)
     }
   }

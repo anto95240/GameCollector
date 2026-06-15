@@ -49,7 +49,7 @@ export const useRegister = () => {
         navigate("/loading?variant=login&returnTo=/dashboard");
       }
     } catch (err: any) {
-      setError(err.response?.data?.message || "Erreur d'inscription.");
+      setError(err.message || err.response?.data?.message || "Erreur d'inscription.");
       setIsAnimating(false);
     }
   };

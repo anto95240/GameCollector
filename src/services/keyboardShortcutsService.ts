@@ -14,7 +14,7 @@ class KeyboardShortcutsService {
   register(action: string, defaultKey: string, callback: (e: KeyboardEvent) => void, options: any = {}) {
     this.shortcuts.set(action, {
       action,
-      defaultKey: defaultKey.toLowerCase(),
+      defaultKey: defaultKey ? defaultKey.toLowerCase() : '',
       callback,
       defaultOptions: options,
     })
@@ -51,7 +51,7 @@ class KeyboardShortcutsService {
 
       // S'il est activé, on retourne sa version personnalisée
       return {
-        key: custom.key.toLowerCase(),
+        key: custom.key ? custom.key.toLowerCase() : '',
         options: {
           ctrlKey: custom.ctrlKey,
           altKey: custom.altKey,
@@ -107,6 +107,7 @@ class KeyboardShortcutsService {
   }
 
   _matchesShortcut(event: KeyboardEvent, targetKey: string, options: any) {
+    if (!event || !event.key) return false
     const eventKey = event.key.toLowerCase()
     if (eventKey !== targetKey) return false
     const hasCtrlModifier = event.ctrlKey || event.metaKey
