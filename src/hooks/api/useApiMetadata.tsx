@@ -53,7 +53,10 @@ export const useApiMetadata = () => {
     if (cached) return cached
 
     // Normaliser : 'statuses' → 'status', 'genres' → 'genre', etc.
-    const normalized = type.replace(/s$/, '')
+    let normalized = type;
+    if (type === 'statuses') normalized = 'status';
+    else if (type !== 'status' && type.endsWith('s')) normalized = type.slice(0, -1);
+
     const rpcName = RPC_MAP[normalized]
     if (!rpcName) throw new Error(`Type inconnu : ${type}`)
 
@@ -70,7 +73,7 @@ export const useApiMetadata = () => {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) throw new Error('Non connecté')
 
-    const table     = type.endsWith('s') ? type : type + 's'
+    const table     = type === 'status' ? 'statuses' : (type.endsWith('s') ? type : type + 's')
     const nameCol   = `${type}_name`
 
     const { data, error } = await supabase
@@ -88,7 +91,7 @@ export const useApiMetadata = () => {
   // Si l'élément est global → crée une surcharge personnelle
   // Si l'élément est privé  → mise à jour directe
   const updateMetadata = async (type: string, id: string, itemData: Record<string, any>) => {
-    const table = type.endsWith('s') ? type : type + 's'
+    const table = type === 'status' ? 'statuses' : (type.endsWith('s') ? type : type + 's')
 
     const { data, error } = await supabase.rpc('upsert_metadata_override', {
       p_table:   table,
@@ -104,7 +107,7 @@ export const useApiMetadata = () => {
 
   // ── DELETE — Masquage (global) ou suppression réelle (privé) ─────────
   const deleteMetadata = async (type: string, id: string) => {
-    const table = type.endsWith('s') ? type : type + 's'
+    const table = type === 'status' ? 'statuses' : (type.endsWith('s') ? type : type + 's')
 
     const { data, error } = await supabase.rpc('delete_metadata_item', {
       p_table:   table,
