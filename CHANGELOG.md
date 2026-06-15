@@ -1,3 +1,10 @@
+## [3.0.5](https://github.com/anto95240/GameCollector/compare/v3.0.4...v3.0.5) (2026-06-15)
+
+
+### Bug Fixes
+
+* mise à jour du payload de login et autorisation CSP Supabase ([49f739a](https://github.com/anto95240/GameCollector/commit/49f739aa32ef5fdd15ebe82c008b93aba4f6cf2e))
+
 ## [3.0.4](https://github.com/anto95240/GameCollector/compare/v3.0.3...v3.0.4) (2026-06-15)
 
 
