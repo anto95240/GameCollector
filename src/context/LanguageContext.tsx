@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { I18nextProvider } from 'react-i18next'
+
+import i18n from '@/config/i18n'
 
 interface LanguageContextType {
   language: string
@@ -9,22 +11,23 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | null>(null)
 
 export const LanguageProvider = ({ children }: any) => {
-  const { i18n } = useTranslation()
   const [language, setLanguage] = useState(() => localStorage.getItem('language') || 'FR')
 
   useEffect(() => {
     i18n.changeLanguage(language.toLowerCase())
     localStorage.setItem('language', language)
-  }, [language, i18n])
+  }, [language])
 
   const changeLanguage = (lang: string) => {
     setLanguage(lang)
   }
 
   return (
-    <LanguageContext.Provider value={{ language, changeLanguage }}>
-      {children}
-    </LanguageContext.Provider>
+    <I18nextProvider i18n={i18n}>
+      <LanguageContext.Provider value={{ language, changeLanguage }}>
+        {children}
+      </LanguageContext.Provider>
+    </I18nextProvider>
   )
 }
 

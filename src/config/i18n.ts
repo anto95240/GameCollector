@@ -1,4 +1,4 @@
-import i18n from 'i18next'
+import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
 import en from '@/config/translations/en.json'
@@ -10,6 +10,9 @@ const resources = {
 }
 
 const savedLanguage = localStorage.getItem('language') || 'fr'
+
+// Sécurisation de l'instance pour les modules ES/Vite
+const i18n = (i18next && (i18next as any).default) ? (i18next as any).default : i18next
 
 i18n.use(initReactI18next).init({
   resources,
