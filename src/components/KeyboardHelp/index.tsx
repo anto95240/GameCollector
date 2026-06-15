@@ -6,17 +6,19 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import ShortcutItem from '@/components/common/ShortcutItem'
-import { useAuth } from '@/context/AuthContext'
 import { useApiShortcuts } from '@/hooks/api/useApiShortcuts'
 import { getHardcodedDefaults, useApiShortcutsDefaults } from '@/hooks/api/useApiShortcutsDefaults'
-import keyboardShortcutsService from '@/services/keyboardShortcutsService'
 
 const KeyboardHelp = () => {
   const { t } = useTranslation()
   const [isVisible, setIsVisible] = useState(false)
-  const { user } = useAuth()
   const { defaults, getDefaults } = useApiShortcutsDefaults()
-  const { shortcuts: apiShortcuts, getShortcuts, toggleShortcut, updateShortcut } = useApiShortcuts()
+  const {
+    shortcuts: apiShortcuts,
+    getShortcuts,
+    toggleShortcut,
+    updateShortcut,
+  } = useApiShortcuts()
   const [togglingId, setTogglingId] = useState<string | null>(null)
   const [message, setMessage] = useState<{ type: string; text: string } | null>(null)
 
@@ -52,11 +54,11 @@ const KeyboardHelp = () => {
     }
   }, [isVisible])
 
-  const customShortcuts = apiShortcuts || [];
-  const activeDefaults = defaults && defaults.length > 0 ? defaults : getHardcodedDefaults();
+  const customShortcuts = apiShortcuts || []
+  const activeDefaults = defaults && defaults.length > 0 ? defaults : getHardcodedDefaults()
 
   const displayShortcuts = activeDefaults.map((def: any) => {
-    const custom = customShortcuts.find((s: any) => s.action === def.action);
+    const custom = customShortcuts.find((s: any) => s.action === def.action)
     return {
       ...def,
       isCustomized: !!custom,
@@ -69,8 +71,8 @@ const KeyboardHelp = () => {
             shiftKey: custom.shiftKey,
           }
         : null,
-    };
-  });
+    }
+  })
 
   const showNotification = (type: string, text: string) => {
     setMessage({ type, text })
