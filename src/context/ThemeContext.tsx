@@ -11,9 +11,9 @@ export const ThemeProvider = ({ children }: any) => {
   const [isDark, setIsDark] = useState<boolean>(() => {
     try {
       const item = localStorage.getItem('dark')
-      return item ? JSON.parse(item) : false
+      return item ? JSON.parse(item) : true
     } catch {
-      return false
+      return true
     }
   })
 
