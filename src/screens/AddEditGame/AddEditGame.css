@@ -26,3 +26,68 @@
     position: relative;
   }
 }
+
+/* Custom Tooltips for AddEditGame Form */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]:hover::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: var(--color-bg-light, #1e1e24);
+  color: var(--color-text, #ffffff);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 50;
+  border: 1px solid var(--color-primary-dark, #6b21a8);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  animation: tooltipFadeIn 0.2s ease forwards;
+  animation-delay: 0.4s;
+}
+
+/* Petite flèche en bas du tooltip */
+[data-tooltip]:hover::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(2px);
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--color-primary-dark, #6b21a8) transparent transparent transparent;
+  pointer-events: none;
+  z-index: 51;
+  opacity: 0;
+  animation: tooltipFadeInArrow 0.2s ease forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-8px);
+  }
+}
+
+@keyframes tooltipFadeInArrow {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(2px);
+  }
+}

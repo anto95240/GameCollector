@@ -1,0 +1,133 @@
+.game-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.game-field-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 0 4px;
+}
+
+.game-field-header label {
+  font-family: var(--font-family-title);
+  color: var(--color-input-text, #a0a0b0);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.game-field-tooltip-container {
+  position: relative;
+  color: var(--color-primary, #8b5cf6);
+  cursor: help;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.1);
+  transition: all 0.3s ease;
+}
+
+.game-field-tooltip-container:hover {
+  background: rgba(139, 92, 246, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+}
+
+.game-field-content {
+  position: relative;
+  width: 100%;
+}
+
+/* Base input styling for children inside GameField */
+.game-field-content input[type='text'],
+.game-field-content input[type='number'],
+.game-field-content textarea {
+  width: 100%;
+  background: var(--gradient-card-main-input);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--color-text);
+  font-family: var(--font-family-text);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.game-field-content input:focus,
+.game-field-content textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+  background: rgba(40, 40, 50, 0.9);
+}
+
+.game-field.has-error .game-field-content input,
+.game-field.has-error .game-field-content textarea {
+  border-color: #ef4444;
+}
+
+.game-field-error {
+  color: #ef4444;
+  font-size: 0.85rem;
+  margin-top: -4px;
+  margin-left: 4px;
+}
+
+/* Tooltip styles applied ONLY to the info icon container */
+.game-field-tooltip-container::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 140%;
+  left: 50%; /* Center relative to icon */
+  transform: translateX(-50%) translateY(5px);
+  background: var(--color-bg-light, #1e1e24);
+  color: var(--color-text, #ffffff);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  white-space: normal;
+  width: max-content;
+  max-width: 250px;
+  text-align: center;
+  line-height: 1.4;
+  pointer-events: none;
+  z-index: 50;
+  border: 1px solid var(--color-primary-dark, #6b21a8);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.game-field-tooltip-container::after {
+  content: '';
+  position: absolute;
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: var(--color-primary-dark, #6b21a8) transparent transparent transparent;
+  pointer-events: none;
+  z-index: 51;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.game-field-tooltip-container:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.game-field-tooltip-container:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(100%);
+}

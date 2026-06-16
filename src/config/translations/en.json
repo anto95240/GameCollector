@@ -79,7 +79,10 @@
       "links": {
         "details": "Profile details",
         "authMethod": "Login method",
-        "deleteAccount": "Delete account"
+        "deleteAccount": "Delete account",
+        "myProfile": "My Profile",
+        "loginSection": "Login",
+        "dangerZone": "Danger Zone"
       },
 
       "labels": {
@@ -224,7 +227,26 @@
         "achievements": "Achievements",
         "achievementsExample": "Achievements (Ex: 25/40)",
         "downloadImage": "Drag or click to add",
-        "newTag": "Search or create a tag..."
+        "newTag": "Search or create a tag...",
+        "selectRating": "Select a rating",
+        "star": "star",
+        "stars": "stars"
+      },
+
+      "tooltips": {
+        "name": "Game name",
+        "description": "Personal game description",
+        "rating": "Our opinion on the game",
+        "comment": "Our opinion on the game",
+        "genre": "Game genre",
+        "platform": "Game platform",
+        "releaseYear": "Game release date",
+        "playtime": "Time spent on the game",
+        "developer": "The studio that developed the game",
+        "achievements": "The number of unlocked trophies for the game",
+        "image": "Game cover image",
+        "status": "Game status (in progress, wishlist, etc.)",
+        "tags": "Game tags"
       },
 
       "buttons": {
