@@ -1,27 +1,28 @@
-import "./FloatingInput.css";
+import './FloatingInput.css'
 
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect,useRef, useState } from "react";
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useEffect, useRef, useState } from 'react'
 
 interface FloatingInputProps {
-  type?: string;
-  id?: string;
-  name?: string;
-  value?: string | number;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  label?: string;
-  required?: boolean;
-  isPassword?: boolean;
-  autocomplete?: string;
-  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  error?: string | boolean;
-  touched?: boolean;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  type?: string
+  id?: string
+  name?: string
+  value?: string | number
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  label?: string
+  required?: boolean
+  isPassword?: boolean
+  autocomplete?: string
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  error?: string | boolean
+  touched?: boolean
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
+  title?: string
 }
 
 const FloatingInput: React.FC<FloatingInputProps> = ({
-  type = "text",
+  type = 'text',
   id,
   name,
   value,
@@ -34,45 +35,46 @@ const FloatingInput: React.FC<FloatingInputProps> = ({
   error,
   touched,
   onBlur,
+  title,
 }) => {
-  const [showPassword, setShowPassword] = useState(false);
-  
-  const containerRef = useRef<HTMLLabelElement>(null);
-  const textRef = useRef<HTMLSpanElement>(null);
-  const [isOverflowing, setIsOverflowing] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
 
-  const inputType = isPassword ? (showPassword ? "text" : "password") : type;
+  const containerRef = useRef<HTMLLabelElement>(null)
+  const textRef = useRef<HTMLSpanElement>(null)
+  const [isOverflowing, setIsOverflowing] = useState(false)
+
+  const inputType = isPassword ? (showPassword ? 'text' : 'password') : type
 
   useEffect(() => {
     const checkOverflow = () => {
       // Un petit setTimeout garantit que le navigateur a fini de dessiner le texte
       setTimeout(() => {
         if (containerRef.current && textRef.current) {
-          const cw = containerRef.current.clientWidth;
-          const sw = textRef.current.scrollWidth;
-          
+          const cw = containerRef.current.clientWidth
+          const sw = textRef.current.scrollWidth
+
           if (sw > cw) {
-            setIsOverflowing(true);
+            setIsOverflowing(true)
             // On calcule la distance (négative pour aller vers la gauche)
-            textRef.current.style.setProperty('--scroll-amount', `-${sw - cw}px`);
+            textRef.current.style.setProperty('--scroll-amount', `-${sw - cw}px`)
           } else {
-            setIsOverflowing(false);
+            setIsOverflowing(false)
           }
         }
-      }, 100); 
-    };
-
-    const observer = new ResizeObserver(() => checkOverflow());
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+      }, 100)
     }
-    
-    checkOverflow();
-    return () => observer.disconnect();
-  }, [label, value]);
+
+    const observer = new ResizeObserver(() => checkOverflow())
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
+    }
+
+    checkOverflow()
+    return () => observer.disconnect()
+  }, [label, value])
 
   return (
-    <div className="form-group floating-label w-full">
+    <div className="form-group floating-label w-full" data-tooltip={title}>
       <input
         type={inputType}
         id={id}
@@ -87,7 +89,7 @@ const FloatingInput: React.FC<FloatingInputProps> = ({
         autoComplete={autocomplete}
       />
       <label htmlFor={id} ref={containerRef}>
-        <span className={`label-text ${isOverflowing ? "scrolling" : ""}`} ref={textRef}>
+        <span className={`label-text ${isOverflowing ? 'scrolling' : ''}`} ref={textRef}>
           {label} {required && <span>*</span>}
         </span>
       </label>
@@ -106,7 +108,7 @@ const FloatingInput: React.FC<FloatingInputProps> = ({
         <span className="error-text text-red-500 text-sm mt-1 ml-1 block">{error}</span>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default FloatingInput;
+export default FloatingInput

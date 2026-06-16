@@ -80,7 +80,10 @@
       "links": {
         "details": "Détail du profil",
         "authMethod": "Méthode de connexion",
-        "deleteAccount": "Supprimer le compte"
+        "deleteAccount": "Supprimer le compte",
+        "myProfile": "Mon Profil",
+        "loginSection": "Connexion",
+        "dangerZone": "Zone Danger"
       },
 
       "labels": {
@@ -225,7 +228,26 @@
         "achievements": "Succès",
         "achievementsExample": "Succès (Ex: 25/40)",
         "downloadImage": "Glisser ou cliquer pour ajouter",
-        "newTag": "Rechercher ou créer un tag..."
+        "newTag": "Rechercher ou créer un tag...",
+        "selectRating": "Sélectionner une note",
+        "star": "étoile",
+        "stars": "étoiles"
+      },
+
+      "tooltips": {
+        "name": "Nom du jeu",
+        "description": "Description personnelle du jeu",
+        "rating": "Notre avis sur le jeu",
+        "comment": "Notre avis sur le jeu",
+        "genre": "Genre du jeu",
+        "platform": "Plateforme du jeu",
+        "releaseYear": "Date de sortie du jeu",
+        "playtime": "Le temps passé sur le jeu",
+        "developer": "Le studio qui a développé le jeu",
+        "achievements": "Le nombre de trophées débloqués du jeu",
+        "image": "L'image de couverture du jeu",
+        "status": "Le statut du jeu (en cours, wishlist, etc.)",
+        "tags": "Les tags du jeu"
       },
 
       "buttons": {

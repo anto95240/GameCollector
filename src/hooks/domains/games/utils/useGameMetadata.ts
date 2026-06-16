@@ -14,12 +14,15 @@ interface OptionsData {
   rating: Option[]
 }
 
-export const useGameMetadata = (getAllMetadata: any) => {
+export const useGameMetadata = (getAllMetadata: any, t: any) => {
   const [optionsData, setOptionsData] = useState<OptionsData>({
     genre: [],
     platform: [],
     status: [],
-    rating: MOCK_OPTIONS.rating,
+    rating: MOCK_OPTIONS.rating.map((r: any) => ({
+      value: r.value,
+      label: r.count ? `${r.count} ${t(r.labelKey)}` : t(r.labelKey),
+    })),
   })
 
   useEffect(() => {
@@ -39,7 +42,10 @@ export const useGameMetadata = (getAllMetadata: any) => {
             { value: '', label: 'Sélectionner un statut' },
             ...meta.statuses.map((s: any) => ({ value: s._id, label: s.status_name })),
           ],
-          rating: MOCK_OPTIONS.rating,
+          rating: MOCK_OPTIONS.rating.map((r: any) => ({
+            value: r.value,
+            label: r.count ? `${r.count} ${t(r.labelKey)}` : t(r.labelKey),
+          })),
         })
         return meta.tags || []
       } catch (e: any) {
