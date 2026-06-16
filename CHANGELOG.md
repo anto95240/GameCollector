@@ -1,3 +1,12 @@
+## [3.1.1](https://github.com/anto95240/GameCollector/compare/v3.1.0...v3.1.1) (2026-06-16)
+
+
+### Bug Fixes
+
+* **list:** prevent hidden filter panel from blocking right-side click ([59f9185](https://github.com/anto95240/GameCollector/commit/59f918579fcca5e99790dd02b67059f8a662b5e9))
+* **nav:** prevent profile avatar from becoming an ellipse on mobile ([7b59d5e](https://github.com/anto95240/GameCollector/commit/7b59d5effe4c90e5628c50192c9474edc3ce9d6f))
+* **nav:** resolve mobile horizontal scroll shift on bottom bar focus ([15eeae5](https://github.com/anto95240/GameCollector/commit/15eeae5c4526e1cf0068669c15b583d47ac99dcb))
+
 # [3.1.0](https://github.com/anto95240/GameCollector/compare/v3.0.11...v3.1.0) (2026-06-16)
 
 
