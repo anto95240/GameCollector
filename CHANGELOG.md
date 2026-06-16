@@ -1,3 +1,17 @@
+# [3.1.0](https://github.com/anto95240/GameCollector/compare/v3.0.11...v3.1.0) (2026-06-16)
+
+
+### Bug Fixes
+
+* **theme:** activation du dark mode par défaut au premier lancement ([d285540](https://github.com/anto95240/GameCollector/commit/d2855407c5e8219bf1b733e0ce29f6b51326181d))
+
+
+### Features
+
+* **i18n:** traduction des constantes en anglais ([bb944de](https://github.com/anto95240/GameCollector/commit/bb944deccc3466c201ca5098c8df18834fe04ab7))
+* **ui:** refonte des inputs avec GameField et tooltips intégrés ([048844d](https://github.com/anto95240/GameCollector/commit/048844dde314ad10286a601f6d798aadccf5b9a8))
+* **ui:** scrollspy dynamique avec IntersectionObserver pour la navbar ([267660f](https://github.com/anto95240/GameCollector/commit/267660fe10bcb9b36b361f60a55ac58dd2ab310d))
+
 ## [3.0.11](https://github.com/anto95240/GameCollector/compare/v3.0.10...v3.0.11) (2026-06-15)
 
 
