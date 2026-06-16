@@ -2,12 +2,12 @@ import './DetailHero.css'
 
 import { faStar as faStarEmpty } from '@fortawesome/free-regular-svg-icons'
 import {
-    faArchive,
-    faCalendarAlt,
-    faCheck,
-    faGamepad,
-    faHeart,
-    faStar as faStarFull,
+  faArchive,
+  faCalendarAlt,
+  faCheck,
+  faGamepad,
+  faHeart,
+  faStar as faStarFull,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useRef, useState } from 'react'
@@ -18,16 +18,16 @@ import { MOCK_OPTIONS } from '@/config/constants'
 import { getOptimizedImageProps } from '@/utils/formatters'
 
 export interface DetailHeroProps {
-  game: any;
-  onToggleFavorite?: () => void;
+  game: any
+  onToggleFavorite?: () => void
   metadata?: {
-    statuses?: any[];
-    rating?: any[];
-    [key: string]: any;
-  };
-  isUpdating?: boolean;
-  onUpdateField?: (field: string, value: any) => void;
-  onToggleSoon?: () => void;
+    statuses?: any[]
+    rating?: any[]
+    [key: string]: any
+  }
+  isUpdating?: boolean
+  onUpdateField?: (field: string, value: any) => void
+  onToggleSoon?: () => void
 }
 
 const DetailHero: React.FC<DetailHeroProps> = ({
@@ -48,11 +48,17 @@ const DetailHero: React.FC<DetailHeroProps> = ({
   // Fermer les dropdowns quand on clique en dehors ou appuie sur Escape
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as Node;
-      if (statusDropdownRef.current && !(statusDropdownRef.current as HTMLElement).contains(target)) {
+      const target = e.target as Node
+      if (
+        statusDropdownRef.current &&
+        !(statusDropdownRef.current as HTMLElement).contains(target)
+      ) {
         setStatusDropdownOpen(false)
       }
-      if (ratingDropdownRef.current && !(ratingDropdownRef.current as HTMLElement).contains(target)) {
+      if (
+        ratingDropdownRef.current &&
+        !(ratingDropdownRef.current as HTMLElement).contains(target)
+      ) {
         setRatingDropdownOpen(false)
       }
     }
@@ -137,7 +143,9 @@ const DetailHero: React.FC<DetailHeroProps> = ({
                   disabled={isUpdating}
                   title={`${star} étoile${star > 1 ? 's' : ''}`}
                 >
-                  <FontAwesomeIcon icon={(star <= (game.note || 0) ? faStarFull : faStarEmpty) as any} />
+                  <FontAwesomeIcon
+                    icon={(star <= (game.note || 0) ? faStarFull : faStarEmpty) as any}
+                  />
                 </button>
               ))}
               <span className="rating-value">
@@ -152,7 +160,11 @@ const DetailHero: React.FC<DetailHeroProps> = ({
                     className={`dropdown-item ${game.note === parseInt(opt.value) ? 'active' : ''}`}
                     onClick={() => handleRatingSelect(opt.value)}
                   >
-                    {opt.label}
+                    {opt.labelKey
+                      ? opt.count !== undefined
+                        ? `${opt.count} ${t(opt.labelKey)}`
+                        : t(opt.labelKey)
+                      : opt.label}
                   </div>
                 ))}
               </div>
