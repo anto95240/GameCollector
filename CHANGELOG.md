@@ -1,3 +1,10 @@
+## [3.2.1](https://github.com/anto95240/GameCollector/compare/v3.2.0...v3.2.1) (2026-06-17)
+
+
+### Bug Fixes
+
+* **mobile:** resolve UI/UX issues on category page & global layout ([389ef12](https://github.com/anto95240/GameCollector/commit/389ef12512aa602618b27514c336daa7eb723cb1))
+
 # [3.2.0](https://github.com/anto95240/GameCollector/compare/v3.1.1...v3.2.0) (2026-06-17)
 
 
