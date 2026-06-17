@@ -1,11 +1,19 @@
 import '@/screens/Login/Login.css'
 import '@/screens/Register/Register.css'
 
-import { Outlet, useLocation } from 'react-router'
+import { useEffect } from 'react'
+import { Outlet, useLocation, useNavigate } from 'react-router'
 
 const AuthLayout = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   const isRegister = location.pathname === '/register'
+
+  useEffect(() => {
+    if (!localStorage.getItem('last_seen_version')) {
+      navigate('/')
+    }
+  }, [navigate])
 
   return (
     <div className="auth-container">
