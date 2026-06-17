@@ -328,7 +328,7 @@
     },
 
     "welcome": {
-      "title": "Bienvenue dans votre nouvelle Base de Données personnelle ! 👾",
+      "title": "Bienvenue dans votre nouvelle Base de Données personnelle !",
       "collection": {
         "title": "Collection infinie",
         "description": "Ajout, classement, filtres, fuzzy search. Retrouvez vos jeux en un clin d'œil."

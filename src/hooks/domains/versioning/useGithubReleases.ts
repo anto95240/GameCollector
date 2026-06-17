@@ -1,3 +1,5 @@
+import { useCallback } from 'react'
+
 export interface GitHubRelease {
   id: number
   tag_name: string
@@ -7,7 +9,7 @@ export interface GitHubRelease {
 }
 
 export const useGithubReleases = () => {
-  const fetchPatchNotes = async (): Promise<GitHubRelease | null> => {
+  const fetchPatchNotes = useCallback(async (): Promise<GitHubRelease | null> => {
     try {
       const res = await fetch('https://api.github.com/repos/anto95240/GameCollector/releases')
       if (!res.ok) throw new Error('Erreur récupération releases')
@@ -22,7 +24,7 @@ export const useGithubReleases = () => {
       console.error('Erreur API GitHub:', error)
       return null
     }
-  }
+  }, [])
 
   return { fetchPatchNotes }
 }

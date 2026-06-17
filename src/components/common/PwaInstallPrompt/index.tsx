@@ -12,7 +12,7 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 const PwaInstallPrompt = () => {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
+  const [_deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
   const { showToast, dismissToast } = useToast()
 
   useEffect(() => {
@@ -36,9 +36,9 @@ const PwaInstallPrompt = () => {
             // Wait for the user to respond to the prompt
             const { outcome } = await promptEvent.userChoice
             if (outcome === 'accepted') {
-              console.log('User accepted the install prompt')
+              console.debug('User accepted the install prompt')
             } else {
-              console.log('User dismissed the install prompt')
+              console.debug('User dismissed the install prompt')
             }
             // We no longer need the prompt. Clear it up.
             setDeferredPrompt(null)
@@ -54,7 +54,7 @@ const PwaInstallPrompt = () => {
     window.addEventListener('appinstalled', () => {
       // Clear the deferredPrompt so it can be garbage collected
       setDeferredPrompt(null)
-      console.log('PWA was installed')
+      console.debug('PWA was installed')
     })
 
     return () => {

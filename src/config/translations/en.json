@@ -327,7 +327,7 @@
     },
 
     "welcome": {
-      "title": "Welcome to your new personal Database! 👾",
+      "title": "Welcome to your new personal Database!",
       "collection": {
         "title": "Infinite Collection",
         "description": "Add, sort, filter, fuzzy search. Find your games in a blink."
