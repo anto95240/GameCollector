@@ -55,7 +55,7 @@ export const useGameMetadata = (getAllMetadata: any, t: any) => {
     }
 
     fetchMetadata()
-  }, [getAllMetadata])
+  }, [getAllMetadata, t])
 
   return { optionsData, setOptionsData }
 }

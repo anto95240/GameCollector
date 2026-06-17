@@ -10,11 +10,11 @@ const PwaUpdater = () => {
     needRefresh: [needRefresh],
     updateServiceWorker,
   } = useRegisterSW({
-    onRegistered(r: ServiceWorkerRegistration | undefined) {
-      console.log('SW Registered')
+    onRegistered(_r: ServiceWorkerRegistration | undefined) {
+      console.debug('SW Registered')
     },
     onRegisterError(error: unknown) {
-      console.log('SW registration error', error)
+      console.error('SW registration error', error)
     },
   })
 

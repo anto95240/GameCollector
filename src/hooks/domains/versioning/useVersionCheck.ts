@@ -38,7 +38,7 @@ export const useVersionCheck = () => {
     }
 
     checkVersion()
-  }, [])
+  }, [fetchPatchNotes])
 
   useEffect(() => {
     const handleShowPatchNotes = async () => {
@@ -52,7 +52,7 @@ export const useVersionCheck = () => {
 
     window.addEventListener('showPatchNotes', handleShowPatchNotes)
     return () => window.removeEventListener('showPatchNotes', handleShowPatchNotes)
-  }, [])
+  }, [fetchPatchNotes])
 
   const closePatchNotes = () => {
     setIsPatchNotesVisible(false)
