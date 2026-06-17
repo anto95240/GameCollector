@@ -3,6 +3,7 @@ import { RouterProvider } from 'react-router'
 
 import AchievementToast from '@/components/common/AchievementToast'
 import ErrorBoundary from '@/components/common/ErrorBoundary'
+import PwaUpdater from '@/components/common/PwaUpdater'
 import ValidationToast from '@/components/common/ValidationToast'
 import KeyboardHelp from '@/components/KeyboardHelp'
 import KeyboardShortcutsProvider from '@/components/KeyboardShortcutsProvider'
@@ -35,6 +36,7 @@ function App() {
         <AchievementToast />
         <ValidationToast />
         <KeyboardHelp />
+        <PwaUpdater />
       </div>
     </ErrorBoundary>
   )

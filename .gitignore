@@ -5,6 +5,7 @@ node_modules/
 .DS_Store
 dist/
 dist-ssr/
+dev-dist/
 .vite/
 uploads/
 logs/

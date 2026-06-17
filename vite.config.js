@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 import analyzer from 'vite-bundle-analyzer'
+import { VitePWA } from 'vite-plugin-pwa'
 
 import packageJson from './package.json'
 
@@ -11,6 +12,13 @@ import packageJson from './package.json'
 export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
+    VitePWA({
+      registerType: 'prompt',
+      devOptions: {
+        enabled: true,
+      },
+      manifest: false, // Prevent warnings if no manifest is provided yet
+    }),
     mode === 'analyze' &&
       visualizer({
         filename: './dist/stats.html',

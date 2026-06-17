@@ -40,6 +40,20 @@ export const useVersionCheck = () => {
     checkVersion()
   }, [])
 
+  useEffect(() => {
+    const handleShowPatchNotes = async () => {
+      // On affiche la modale (même si on a pas encore la release, ça charge)
+      setIsPatchNotesVisible(true)
+      const release = await fetchPatchNotes()
+      if (release) {
+        setLatestRelease(release)
+      }
+    }
+
+    window.addEventListener('showPatchNotes', handleShowPatchNotes)
+    return () => window.removeEventListener('showPatchNotes', handleShowPatchNotes)
+  }, [])
+
   const closePatchNotes = () => {
     setIsPatchNotesVisible(false)
     localStorage.setItem('last_seen_version', APP_VERSION)
