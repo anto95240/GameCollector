@@ -325,6 +325,28 @@
       "resetSuccess": "Raccourci réinitialisé !",
       "resetError": "Erreur lors de la réinitialisation",
       "defaultNotFound": "Raccourci par défaut introuvable"
+    },
+
+    "welcome": {
+      "title": "Bienvenue dans votre nouvelle Base de Données personnelle ! 👾",
+      "collection": {
+        "title": "Collection infinie",
+        "description": "Ajout, classement, filtres, fuzzy search. Retrouvez vos jeux en un clin d'œil."
+      },
+      "stats": {
+        "title": "Statistiques",
+        "description": "Graphiques et évolution de la ludothèque. Analysez vos habitudes de jeu."
+      },
+      "trophies": {
+        "title": "Chasseur de Trophées",
+        "description": "Défis et succès uniques. Progressez et complétez votre profil."
+      },
+      "startBtn": "Commencer ma collection — Press Start"
+    },
+
+    "patchNotes": {
+      "title": "Mise à jour disponible",
+      "closeBtn": "Super !"
     }
   }
 }

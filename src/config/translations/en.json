@@ -324,6 +324,28 @@
       "resetSuccess": "Shortcut reset!",
       "resetError": "Error while resetting",
       "defaultNotFound": "Default shortcut not found"
+    },
+
+    "welcome": {
+      "title": "Welcome to your new personal Database! 👾",
+      "collection": {
+        "title": "Infinite Collection",
+        "description": "Add, sort, filter, fuzzy search. Find your games in a blink."
+      },
+      "stats": {
+        "title": "Statistics",
+        "description": "Charts and evolution of your library. Analyze your gaming habits."
+      },
+      "trophies": {
+        "title": "Trophy Hunter",
+        "description": "Unique challenges and achievements. Progress and complete your profile."
+      },
+      "startBtn": "Start my collection — Press Start"
+    },
+
+    "patchNotes": {
+      "title": "Update available",
+      "closeBtn": "Awesome !"
     }
   }
 }
