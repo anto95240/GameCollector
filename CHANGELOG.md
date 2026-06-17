@@ -1,3 +1,14 @@
+# [3.2.0](https://github.com/anto95240/GameCollector/compare/v3.1.1...v3.2.0) (2026-06-17)
+
+
+### Features
+
+* add automated patch notes modal from github releases ([ac87176](https://github.com/anto95240/GameCollector/commit/ac8717698160adf19bc1f6d4aa831d9c92da4def))
+* add PWA update toast notification and manual patch notes trigger ([3030f89](https://github.com/anto95240/GameCollector/commit/3030f89aa728e694a348c91c00c9b8ca4627f92b))
+* add vercel analytics ([53dc2e2](https://github.com/anto95240/GameCollector/commit/53dc2e2297c5c0f2307ff0651871e35c9a2c08eb))
+* **onboarding:** implémentation de la landing page et refonte du routage ([3865ffa](https://github.com/anto95240/GameCollector/commit/3865ffad8be9d8177c3d37a7151f322fc671b68d))
+* **ui:** improve statistics skeleton and adjust animation timings ([fb04938](https://github.com/anto95240/GameCollector/commit/fb04938c71435fa19f81fba3b736190bafc4d385))
+
 ## [3.1.1](https://github.com/anto95240/GameCollector/compare/v3.1.0...v3.1.1) (2026-06-16)
 
 
