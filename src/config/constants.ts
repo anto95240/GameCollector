@@ -5,6 +5,8 @@ export const PROFILE_SECTIONS = [
   { id: 'account-delete-section', label: 'profile.links.dangerZone' },
 ]
 
+export const APP_VERSION = '3.1.1'
+
 // Options statiques utilisées dans les formulaires (ex: AddEditGame)
 export const MOCK_OPTIONS = {
   rating: [

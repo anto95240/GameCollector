@@ -5,7 +5,7 @@ import { readStoredUser } from '@/utils/userStorage'
 const ProtectedRoutes = () => {
   const user = readStoredUser()
 
-  return user ? <Outlet /> : <Navigate to="/" replace />
+  return user ? <Outlet /> : <Navigate to="/login" replace />
 }
 
 export default ProtectedRoutes

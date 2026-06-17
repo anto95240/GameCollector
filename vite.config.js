@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 import analyzer from 'vite-bundle-analyzer'
+import { VitePWA } from 'vite-plugin-pwa'
 
 import packageJson from './package.json'
 
@@ -11,6 +12,39 @@ import packageJson from './package.json'
 export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
+    VitePWA({
+      registerType: 'prompt',
+      includeAssets: ['logo.png', 'icon-192x192.png', 'icon-512x512.png'],
+      manifest: {
+        name: 'GameCollector',
+        short_name: 'GC',
+        description: 'Gérez votre collection de jeux vidéo.',
+        theme_color: '#0f172a',
+        background_color: '#0f172a',
+        display: 'standalone',
+        icons: [
+          {
+            src: 'icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable',
+          },
+        ],
+      },
+      devOptions: {
+        enabled: true,
+      },
+    }),
     mode === 'analyze' &&
       visualizer({
         filename: './dist/stats.html',

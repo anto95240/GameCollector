@@ -48,7 +48,18 @@ const UserMenu = ({ user, t, state, setters, actions, onClose }: any) => {
       <hr className="separate" />
       <UserLinks t={t} onClose={onClose} />
       <hr className="separate-version" />
-      <p className="version">v{import.meta.env.VITE_APP_VERSION}</p>
+      <button
+        className="version"
+        onClick={() => {
+          window.dispatchEvent(new CustomEvent('showPatchNotes'))
+          onClose()
+        }}
+        title="Voir les notes de mise à jour"
+        aria-label="Voir les nouveautés"
+        style={{ background: 'none', border: 'none', cursor: 'pointer', width: '100%' }}
+      >
+        v{import.meta.env.VITE_APP_VERSION}
+      </button>
     </div>
   )
 }

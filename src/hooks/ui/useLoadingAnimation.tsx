@@ -2,7 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 
 import { mergeStoredUser } from '@/utils/userStorage'
 
-export const useLoadingAnimation = (variant = 'login', navigate: any, returnTo: string | null = null) => {
+export const useLoadingAnimation = (
+  variant = 'login',
+  navigate: any,
+  returnTo: string | null = null
+) => {
   const [progress, setProgress] = useState(0)
   const hasCompletedRef = useRef(false)
 
@@ -39,7 +43,9 @@ export const useLoadingAnimation = (variant = 'login', navigate: any, returnTo: 
       const finalTimer = setTimeout(() => {
         if (!isMounted) return
 
-        mergeStoredUser({ startupAnimationSeen: true })
+        if (variant !== 'logout') {
+          mergeStoredUser({ startupAnimationSeen: true })
+        }
 
         if (navigate) {
           const destination = returnTo || (variant === 'logout' ? '/' : '/dashboard')
