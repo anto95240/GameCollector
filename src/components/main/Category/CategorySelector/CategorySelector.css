@@ -22,10 +22,12 @@
   max-width: 250px;
 }
 
-.category-card-btn:hover {
-  border-color: var(--color-text);
-  box-shadow: 0 0 15px var(--bg-custom-select);
-  transform: translateY(-5px);
+@media (hover: hover) {
+  .category-card-btn:hover {
+    border-color: var(--color-text);
+    box-shadow: 0 0 15px var(--bg-custom-select);
+    transform: translateY(-5px);
+  }
 }
 
 .category-card-btn.active {

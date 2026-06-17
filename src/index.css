@@ -328,14 +328,6 @@ body {
 }
 
 @media (hover: none), (pointer: coarse) {
-  *:hover {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-  }
-
   /* Touch Targets Standards >= 44px */
   button,
   [role='button'],
