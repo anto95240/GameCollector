@@ -14,10 +14,36 @@ export default defineConfig(({ mode }) => ({
     react(),
     VitePWA({
       registerType: 'prompt',
+      includeAssets: ['logo.png', 'icon-192x192.png', 'icon-512x512.png'],
+      manifest: {
+        name: 'GameCollector',
+        short_name: 'GC',
+        description: 'Gérez votre collection de jeux vidéo.',
+        theme_color: '#0f172a',
+        background_color: '#0f172a',
+        display: 'standalone',
+        icons: [
+          {
+            src: 'icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable',
+          },
+        ],
+      },
       devOptions: {
         enabled: true,
       },
-      manifest: false, // Prevent warnings if no manifest is provided yet
     }),
     mode === 'analyze' &&
       visualizer({
