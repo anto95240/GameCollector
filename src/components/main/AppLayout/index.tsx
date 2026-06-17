@@ -4,7 +4,7 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Outlet } from 'react-router'
+import { Outlet, useLocation } from 'react-router'
 
 import SkipLink from '@/components/common/SkipLink'
 import Navbar from '@/components/main/Navbar'
@@ -22,6 +22,12 @@ const AppLayout = () => {
       setShowScrollToTopButton(scrollContainerRef.current.scrollTop > 50)
     }
   }, [])
+
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    scrollContainerRef.current?.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname])
 
   useEffect(() => {
     const container = scrollContainerRef.current
