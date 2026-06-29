@@ -4,6 +4,28 @@ import { getHardcodedDefaults } from '@/hooks/api/useApiShortcutsDefaults'
 import { supabase } from '@/lib/supabase'
 import keyboardShortcutsService from '@/services/keyboardShortcutsService'
 
+// Mapping BDD (snake_case) → Frontend (camelCase)
+const mapRowToShortcut = (row: any) => ({
+  action: row.action,
+  key: row.key,
+  ctrlKey: row.ctrl_key,
+  altKey: row.alt_key,
+  shiftKey: row.shift_key,
+  isEnabled: row.is_enabled,
+})
+
+// Mapping Frontend (camelCase) → BDD (snake_case)
+const mapShortcutToRow = (shortcut: any, userId: string) => ({
+  user_id: userId,
+  action: shortcut.action,
+  key: shortcut.key,
+  ctrl_key: shortcut.ctrlKey ?? false,
+  alt_key: shortcut.altKey ?? false,
+  shift_key: shortcut.shiftKey ?? false,
+  is_enabled: shortcut.isEnabled !== false,
+  updated_at: new Date().toISOString(),
+})
+
 export const useApiShortcuts = () => {
   const [shortcuts, setShortcuts] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
@@ -13,14 +35,11 @@ export const useApiShortcuts = () => {
     setLoading(true)
     setError(null)
     try {
-      const { data, error } = await supabase
-        .from('shortcuts')
-        .select('shortcuts')
-        .single()
-      
-      if (error && error.code !== 'PGRST116') throw error
+      const { data, error } = await supabase.from('shortcuts').select('*')
 
-      const userShortcuts = data?.shortcuts || []
+      if (error) throw error
+
+      const userShortcuts = (data || []).map(mapRowToShortcut)
       setShortcuts(userShortcuts)
       return userShortcuts
     } catch (err: any) {
@@ -31,47 +50,31 @@ export const useApiShortcuts = () => {
     }
   }, [])
 
-  const saveShortcutsToDb = async (updatedShortcuts: any[]) => {
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) throw new Error('Non connecté')
-
-    const { error } = await supabase
-      .from('shortcuts')
-      .upsert(
-        { user_id: user.id, shortcuts: updatedShortcuts, updated_at: new Date().toISOString() },
-        { onConflict: 'user_id' }
-      )
-
-    if (error) throw error
-
-    setShortcuts(updatedShortcuts)
-    keyboardShortcutsService.loadCustomBindings(updatedShortcuts)
-    return updatedShortcuts
-  }
-
   const updateShortcut = useCallback(
     async (actionId: any, newBinding: any) => {
       setLoading(true)
       setError(null)
       try {
-        const currentShortcuts = shortcuts || []
-        const existingIndex = currentShortcuts.findIndex((s: any) => s.action === actionId)
+        const {
+          data: { user },
+        } = await supabase.auth.getUser()
+        if (!user) throw new Error('Non connecté')
 
-        const updatedShortcuts = [...currentShortcuts]
-        if (existingIndex >= 0) {
-          updatedShortcuts[existingIndex] = {
-            ...updatedShortcuts[existingIndex],
-            ...newBinding,
-          }
-        } else {
-          updatedShortcuts.push({
-            action: actionId,
-            ...newBinding,
-            isEnabled: true,
-          })
-        }
+        const row = mapShortcutToRow(
+          { action: actionId, ...newBinding, isEnabled: newBinding.isEnabled !== false },
+          user.id
+        )
 
-        return await saveShortcutsToDb(updatedShortcuts)
+        const { error } = await supabase
+          .from('shortcuts')
+          .upsert(row, { onConflict: 'user_id, action' })
+
+        if (error) throw error
+
+        // Refresh la liste locale après l'upsert
+        const updatedShortcuts = await getShortcuts()
+        keyboardShortcutsService.loadCustomBindings(updatedShortcuts)
+        return updatedShortcuts
       } catch (err: any) {
         setError(err.message || 'Erreur de mise à jour')
         throw err
@@ -79,7 +82,7 @@ export const useApiShortcuts = () => {
         setLoading(false)
       }
     },
-    [shortcuts]
+    [getShortcuts]
   )
 
   const toggleShortcut = useCallback(
@@ -87,26 +90,47 @@ export const useApiShortcuts = () => {
       setLoading(true)
       setError(null)
       try {
-        const currentShortcuts = shortcuts || []
-        const existingIndex = currentShortcuts.findIndex((s: any) => s.action === actionId)
-        const updatedShortcuts = [...currentShortcuts]
+        const {
+          data: { user },
+        } = await supabase.auth.getUser()
+        if (!user) throw new Error('Non connecté')
 
-        if (existingIndex >= 0) {
-          updatedShortcuts[existingIndex].isEnabled = !updatedShortcuts[existingIndex].isEnabled
+        // Chercher si le raccourci existe déjà en BDD
+        const existing = shortcuts.find((s: any) => s.action === actionId)
+
+        if (existing) {
+          // Inverser is_enabled directement en BDD
+          const { error } = await supabase
+            .from('shortcuts')
+            .update({ is_enabled: !existing.isEnabled, updated_at: new Date().toISOString() })
+            .eq('user_id', user.id)
+            .eq('action', actionId)
+
+          if (error) throw error
         } else {
           // Récupération de la touche par défaut si elle n'existe pas en BDD
           const defaultShortcut = getHardcodedDefaults().find((d: any) => d.action === actionId)
-          updatedShortcuts.push({
-            action: actionId,
-            key: defaultShortcut?.key || '',
-            ctrlKey: defaultShortcut?.ctrlKey || false,
-            altKey: defaultShortcut?.altKey || false,
-            shiftKey: defaultShortcut?.shiftKey || false,
-            isEnabled: false,
-          })
+          const row = mapShortcutToRow(
+            {
+              action: actionId,
+              key: defaultShortcut?.key || '',
+              ctrlKey: defaultShortcut?.ctrlKey || false,
+              altKey: defaultShortcut?.altKey || false,
+              shiftKey: defaultShortcut?.shiftKey || false,
+              isEnabled: false,
+            },
+            user.id
+          )
+
+          const { error } = await supabase.from('shortcuts').insert(row)
+
+          if (error) throw error
         }
 
-        return await saveShortcutsToDb(updatedShortcuts)
+        // Refresh la liste locale
+        const updatedShortcuts = await getShortcuts()
+        keyboardShortcutsService.loadCustomBindings(updatedShortcuts)
+        return updatedShortcuts
       } catch (err: any) {
         setError(err.message || 'Erreur lors du toggle')
         throw err
@@ -114,7 +138,7 @@ export const useApiShortcuts = () => {
         setLoading(false)
       }
     },
-    [shortcuts]
+    [shortcuts, getShortcuts]
   )
 
   const resetShortcut = useCallback(
@@ -122,8 +146,23 @@ export const useApiShortcuts = () => {
       setLoading(true)
       setError(null)
       try {
-        const updatedShortcuts = (shortcuts || []).filter((s: any) => s.action !== actionId)
-        return await saveShortcutsToDb(updatedShortcuts)
+        const {
+          data: { user },
+        } = await supabase.auth.getUser()
+        if (!user) throw new Error('Non connecté')
+
+        const { error } = await supabase
+          .from('shortcuts')
+          .delete()
+          .eq('user_id', user.id)
+          .eq('action', actionId)
+
+        if (error) throw error
+
+        // Refresh la liste locale
+        const updatedShortcuts = await getShortcuts()
+        keyboardShortcutsService.loadCustomBindings(updatedShortcuts)
+        return updatedShortcuts
       } catch (err: any) {
         setError(err.message || 'Erreur lors du reset')
         throw err
@@ -131,14 +170,25 @@ export const useApiShortcuts = () => {
         setLoading(false)
       }
     },
-    [shortcuts]
+    [getShortcuts]
   )
 
   const resetAllShortcuts = useCallback(async () => {
     setLoading(true)
     setError(null)
     try {
-      return await saveShortcutsToDb([])
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+      if (!user) throw new Error('Non connecté')
+
+      const { error } = await supabase.from('shortcuts').delete().eq('user_id', user.id)
+
+      if (error) throw error
+
+      setShortcuts([])
+      keyboardShortcutsService.loadCustomBindings([])
+      return []
     } catch (err: any) {
       setError(err.message || 'Erreur lors du reset total')
       throw err
