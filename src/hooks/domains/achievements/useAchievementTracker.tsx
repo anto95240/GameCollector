@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import { useApiAchievements } from '@/hooks/api/useApiAchievements'
 import { useApiAuth } from '@/hooks/api/useApiAuth'
 import { evaluateAchievementCondition } from '@/utils/parsers/achievementParser'
-import { readStoredUser, writeStoredUser } from '@/utils/userStorage'
+import { readStoredUser } from '@/utils/userStorage'
 
 export const useAchievementTracker = () => {
   const { getMe } = useApiAuth()
@@ -22,7 +22,7 @@ export const useAchievementTracker = () => {
       const fallbackUser = readStoredUser() || {}
       const user = { ...fallbackUser, ...(currentUser || {}) }
 
-      const userId = currentUser?._id || currentUser?.id || currentUser?.uid
+      const userId = currentUser?.id
       if (!userId) return
 
       // On fusionne les stats UI locales avec les stats Jeux venues du Backend
@@ -44,13 +44,8 @@ export const useAchievementTracker = () => {
         // Vérification de la condition avec les stats consolidées
         if (evaluateAchievementCondition(achievement, stats)) {
           try {
-            const response = await unlockAchievement(idName)
+            await unlockAchievement(idName)
             processedRef.current.add(idName)
-
-            // Mise à jour locale pour éviter une désynchronisation
-            if (response?.user) {
-              writeStoredUser(response.user)
-            }
 
             // Déclencher la notification visuelle (Toast)
             window.dispatchEvent(

@@ -100,7 +100,7 @@ export const useCategoryManager = () => {
       const categoryLabel = getCategoryLabel()
 
       if (isEditMode) {
-        await updateMetadata(endpointCategory, formData.id, payload)
+        await updateMetadata(endpointCategory, formData.id!, payload)
 
         incrementStoredUserMetric('updatedCategoriesCount')
 

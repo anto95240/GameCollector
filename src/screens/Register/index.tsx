@@ -12,8 +12,7 @@ import { useRegister } from '@/hooks/domains/auth/useRegister'
 
 const Register = () => {
   // L'UI est totalement séparée de la logique !
-  const { step, setStep, formData, handleChange, handleNext, error, isAnimating, t } =
-    useRegister()
+  const { step, setStep, formData, handleChange, handleNext, error, isAnimating, t } = useRegister()
 
   return (
     <>
@@ -79,7 +78,7 @@ const Register = () => {
       <div className="auth-footer">
         <p>
           {t('auth.register.alreadyUser')}
-          <Link to="/" className="cyber-link bold">
+          <Link to="/login" className="cyber-link bold">
             {t('auth.register.alreadyUserLink')}
           </Link>
         </p>
