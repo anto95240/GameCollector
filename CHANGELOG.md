@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/anto95240/GameCollector/compare/v3.2.1...v3.2.2) (2026-06-29)
+
+
+### Bug Fixes
+
+* normalize shortcuts table, fix TS errors & register navigation ([4b268ec](https://github.com/anto95240/GameCollector/commit/4b268ec5bd6cb42b4c520dbf4dc6905b684b209b))
+
 ## [3.2.1](https://github.com/anto95240/GameCollector/compare/v3.2.0...v3.2.1) (2026-06-17)
 
 
