@@ -1,0 +1,47 @@
+name: Supabase Keep-Alive
+
+on:
+  schedule:
+    # Tous les jours à 10:00 UTC (12:00 heure française été)
+    - cron: '0 10 * * *'
+  workflow_dispatch: # Permet de lancer manuellement
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase via API endpoint
+        run: |
+          echo "🏓 Pinging keep-alive endpoint..."
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
+            --max-time 30 \
+            "https://arichard-gamecollector.vercel.app/api/keep-alive")
+          
+          echo "Response status: $RESPONSE"
+          
+          if [ "$RESPONSE" -eq 200 ]; then
+            echo "✅ Keep-alive ping successful"
+          else
+            echo "❌ Keep-alive ping failed with status $RESPONSE"
+            exit 1
+          fi
+
+      - name: Direct Supabase ping (backup)
+        env:
+          SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+        run: |
+          echo "🔄 Direct Supabase ping as backup..."
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
+            --max-time 30 \
+            -H "apikey: $SUPABASE_ANON_KEY" \
+            -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+            "$SUPABASE_URL/rest/v1/games?select=id&limit=1")
+          
+          echo "Response status: $RESPONSE"
+          
+          if [ "$RESPONSE" -eq 200 ]; then
+            echo "✅ Direct Supabase ping successful"
+          else
+            echo "⚠️ Direct ping returned status $RESPONSE (secrets may not be configured)"
+          fi
