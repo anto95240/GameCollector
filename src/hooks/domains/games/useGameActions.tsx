@@ -9,42 +9,48 @@ export const useGameActions = (game: any, setGame: any, metadata: any) => {
   const navigate = useNavigate()
   const { deleteGame, updateGame } = useApiGame()
   const [isUpdating, setIsUpdating] = useState(false)
-  const buildUpdateFormData = useCallback((updatedGame: any, overrides: Record<string, any> = {}) => {
-    const formData = new FormData()
+  const buildUpdateFormData = useCallback(
+    (updatedGame: any, overrides: Record<string, any> = {}) => {
+      const formData = new FormData()
 
-    // Champs standards
-    formData.append('name', updatedGame.game_name || updatedGame.name || '')
-    formData.append('description', updatedGame.description || '')
-    formData.append('comment', updatedGame.comment || '')
-    formData.append('genre_id', updatedGame.genre_id?._id || updatedGame.genre_id || '')
-    formData.append('platform_id', updatedGame.platform_id?._id || updatedGame.platform_id || '')
-    formData.append('status_id', updatedGame.status_id?._id || updatedGame.status_id || '')
-    formData.append('year', updatedGame.year || '')
-    formData.append('playing_time', updatedGame.playing_time || '')
-    formData.append('developer', updatedGame.developer || '')
-    formData.append('succes', updatedGame.succes || '')
-    formData.append('isSoon', updatedGame.isSoon || false)
-    formData.append('isFavorite', updatedGame.isFavorite || false)
+      // Champs standards
+      formData.append('name', updatedGame.game_name || updatedGame.name || '')
+      formData.append('description', updatedGame.description || '')
+      formData.append('comment', updatedGame.comment || '')
+      formData.append('genre_id', updatedGame.genre_id?._id || updatedGame.genre_id || '')
+      formData.append('platform_id', updatedGame.platform_id?._id || updatedGame.platform_id || '')
+      formData.append('status_id', updatedGame.status_id?._id || updatedGame.status_id || '')
+      formData.append('year', updatedGame.year || '')
+      formData.append('playing_time', updatedGame.playing_time || '')
+      formData.append('developer', updatedGame.developer || '')
+      formData.append('succes', updatedGame.succes || '')
+      formData.append('is_soon', String(updatedGame.isSoon || false))
+      formData.append('is_favorite', String(updatedGame.isFavorite || false))
 
-    // Appliquer les overrides
-    Object.keys(overrides).forEach((key: any) => {
-      formData.set(key, overrides[key])
-    })
-
-    // Image (uniquement si elle existe)
-    if (updatedGame.image) {
-      formData.append('image', updatedGame.image)
-    }
-
-    // Tags
-    if (updatedGame.tags_ids && Array.isArray(updatedGame.tags_ids)) {
-      updatedGame.tags_ids.forEach((tag: any) => {
-        formData.append('tags_ids', tag._id || tag)
+      // Appliquer les overrides
+      Object.keys(overrides).forEach((key: any) => {
+        let formKey = key
+        if (key === 'isFavorite') formKey = 'is_favorite'
+        if (key === 'isSoon') formKey = 'is_soon'
+        formData.set(formKey, String(overrides[key]))
       })
-    }
 
-    return formData
-  }, [])
+      // Image (uniquement si elle existe)
+      if (updatedGame.image) {
+        formData.append('image', updatedGame.image)
+      }
+
+      // Tags
+      if (updatedGame.tags_ids && Array.isArray(updatedGame.tags_ids)) {
+        updatedGame.tags_ids.forEach((tag: any) => {
+          formData.append('tags_ids', tag._id || tag)
+        })
+      }
+
+      return formData
+    },
+    []
+  )
 
   const handleToggleFavorite = useCallback(async () => {
     if (!game) return
@@ -54,7 +60,7 @@ export const useGameActions = (game: any, setGame: any, metadata: any) => {
 
     try {
       const formData = buildUpdateFormData(game, { isFavorite: newState })
-      await updateGame(game._id, formData)
+      await updateGame(game._id || game.id, formData)
       triggerAchievementCheck()
     } catch (e: any) {
       console.error('Erreur lors de la mise en favori', e)
@@ -65,7 +71,7 @@ export const useGameActions = (game: any, setGame: any, metadata: any) => {
   const handleDelete = useCallback(async () => {
     if (game && window.confirm('Supprimer ce jeu ?')) {
       try {
-        await deleteGame(game._id)
+        await deleteGame(game._id || game.id)
         incrementStoredUserMetric('deletedGamesCount')
         triggerAchievementCheck()
         navigate('/list')
@@ -84,7 +90,7 @@ export const useGameActions = (game: any, setGame: any, metadata: any) => {
 
     try {
       const formData = buildUpdateFormData(game, { isSoon: newSoonState })
-      await updateGame(game._id, formData)
+      await updateGame(game._id || game.id, formData)
       triggerAchievementCheck()
     } catch (e: any) {
       console.error('Erreur lors du basculement wishlist', e)
@@ -136,7 +142,7 @@ export const useGameActions = (game: any, setGame: any, metadata: any) => {
         }
 
         const formData = buildUpdateFormData(game, overrides)
-        await updateGame(game._id, formData)
+        await updateGame(game._id || game.id, formData)
         triggerAchievementCheck()
       } catch (e: any) {
         console.error('Erreur lors de la mise à jour:', e)

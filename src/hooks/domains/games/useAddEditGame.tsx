@@ -20,7 +20,7 @@ export const useAddEditGame = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const { createGame, updateGame } = useApiGame()
-  const { getAllMetadata } = useApiMetadata()
+  const { getAllMetadata, createMetadata } = useApiMetadata()
 
   const gameToEdit = location.state?.game
   const isEditMode = !!gameToEdit
@@ -34,7 +34,7 @@ export const useAddEditGame = () => {
   )
 
   const tagsMgr = useTagsManager(initialTags)
-  const { optionsData } = useGameMetadata(getAllMetadata, t)
+  const { optionsData, refreshMetadata } = useGameMetadata(getAllMetadata, t)
 
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const [previewImg, setPreviewImg] = useState<string | ArrayBuffer | null>(null)
@@ -102,8 +102,30 @@ export const useAddEditGame = () => {
     }
   }
 
-  const handleAddNewMetadata = (type: string) => {
-    alert("Fonctionnalité d'ajout rapide de " + type + ' à implémenter.')
+  const handleAddNewMetadata = async (type: string) => {
+    let title = 'Nouvel élément'
+    if (type === 'genre') title = 'Nouveau genre'
+    if (type === 'platform') title = 'Nouvelle plateforme'
+    if (type === 'status') title = 'Nouveau statut'
+
+    const newName = window.prompt(title + ' :')
+    if (!newName || !newName.trim()) return
+
+    try {
+      setIsAnimating(true)
+      const newItem = await createMetadata(type, { name: newName.trim() })
+
+      // Rafraîchir les métadonnées pour mettre à jour les select
+      await refreshMetadata()
+
+      // Auto-sélectionner le nouvel élément
+      setFormData((prev: any) => ({ ...prev, [type]: newItem.id || newItem._id }))
+    } catch (e: any) {
+      console.error(`Erreur lors de l'ajout rapide de ${type}:`, e)
+      alert(`Erreur lors de l'ajout: ${e.message || e}`)
+    } finally {
+      setIsAnimating(false)
+    }
   }
 
   const handleSubmit = (e: any) => {
@@ -136,7 +158,8 @@ export const useAddEditGame = () => {
 
       let createdOrUpdatedGame
       if (isEditMode) {
-        createdOrUpdatedGame = await updateGame(gameToEdit._id, submitData)
+        const gameIdToUpdate = gameToEdit._id || gameToEdit.id
+        createdOrUpdatedGame = await updateGame(gameIdToUpdate, submitData)
       } else {
         createdOrUpdatedGame = await createGame(submitData)
       }

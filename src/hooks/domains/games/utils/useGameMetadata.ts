@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { MOCK_OPTIONS } from '@/config/constants'
 
@@ -25,37 +25,37 @@ export const useGameMetadata = (getAllMetadata: any, t: any) => {
     })),
   })
 
-  useEffect(() => {
-    const fetchMetadata = async () => {
-      try {
-        const meta = await getAllMetadata()
-        setOptionsData({
-          genre: [
-            { value: '', label: 'Sélectionner un genre' },
-            ...meta.genres.map((g: any) => ({ value: g._id, label: g.genre_name })),
-          ],
-          platform: [
-            { value: '', label: 'Sélectionner une plateforme' },
-            ...meta.platforms.map((p: any) => ({ value: p._id, label: p.platform_name })),
-          ],
-          status: [
-            { value: '', label: 'Sélectionner un statut' },
-            ...meta.statuses.map((s: any) => ({ value: s._id, label: s.status_name })),
-          ],
-          rating: MOCK_OPTIONS.rating.map((r: any) => ({
-            value: r.value,
-            label: r.count ? `${r.count} ${t(r.labelKey)}` : t(r.labelKey),
-          })),
-        })
-        return meta.tags || []
-      } catch (e: any) {
-        console.error('Erreur métadonnées :', e)
-        return []
-      }
+  const fetchMetadata = useCallback(async () => {
+    try {
+      const meta = await getAllMetadata()
+      setOptionsData({
+        genre: [
+          { value: '', label: 'Sélectionner un genre' },
+          ...meta.genres.map((g: any) => ({ value: g._id, label: g.genre_name })),
+        ],
+        platform: [
+          { value: '', label: 'Sélectionner une plateforme' },
+          ...meta.platforms.map((p: any) => ({ value: p._id, label: p.platform_name })),
+        ],
+        status: [
+          { value: '', label: 'Sélectionner un statut' },
+          ...meta.statuses.map((s: any) => ({ value: s._id, label: s.status_name })),
+        ],
+        rating: MOCK_OPTIONS.rating.map((r: any) => ({
+          value: r.value,
+          label: r.count ? `${r.count} ${t(r.labelKey)}` : t(r.labelKey),
+        })),
+      })
+      return meta.tags || []
+    } catch (e: any) {
+      console.error('Erreur métadonnées :', e)
+      return []
     }
-
-    fetchMetadata()
   }, [getAllMetadata, t])
 
-  return { optionsData, setOptionsData }
+  useEffect(() => {
+    fetchMetadata()
+  }, [fetchMetadata])
+
+  return { optionsData, setOptionsData, refreshMetadata: fetchMetadata }
 }

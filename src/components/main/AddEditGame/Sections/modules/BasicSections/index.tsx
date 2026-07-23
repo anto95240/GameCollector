@@ -145,6 +145,7 @@ export const MetadataSection = ({
 export const ImageSection = ({ t, previewImg, handleFileChange, errors, touched }: any) => {
   const [isUploading, setIsUploading] = useState(false)
   const [progress, setProgress] = useState(0)
+  const [isDragOver, setIsDragOver] = useState(false)
 
   const onFileChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -166,6 +167,24 @@ export const ImageSection = ({ t, previewImg, handleFileChange, errors, touched 
     }
   }
 
+  const handleDragOver = (e: any) => {
+    e.preventDefault()
+    setIsDragOver(true)
+  }
+
+  const handleDragLeave = (e: any) => {
+    e.preventDefault()
+    setIsDragOver(false)
+  }
+
+  const handleDrop = (e: any) => {
+    e.preventDefault()
+    setIsDragOver(false)
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      onFileChange({ target: { files: e.dataTransfer.files } })
+    }
+  }
+
   return (
     <SectionWrapper id="img" title={t('gameForm.sections.image')}>
       <GameField
@@ -175,7 +194,12 @@ export const ImageSection = ({ t, previewImg, handleFileChange, errors, touched 
         error={errors?.image}
         touched={touched?.image}
       >
-        <div className="image-upload-area relative overflow-hidden">
+        <div
+          className={`image-upload-area relative overflow-hidden transition-all duration-200 ${isDragOver ? 'ring-2 ring-brand-primary ring-offset-2 ring-offset-[var(--bg-card)] scale-[1.02]' : ''}`}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+        >
           <input
             type="file"
             id="file-upload"
@@ -186,7 +210,7 @@ export const ImageSection = ({ t, previewImg, handleFileChange, errors, touched 
           />
           <label
             htmlFor="file-upload"
-            className={`upload-label ${errors?.image && touched?.image ? 'border-red-500 border-2' : ''}`}
+            className={`upload-label ${errors?.image && touched?.image ? 'border-red-500 border-2' : ''} ${isDragOver ? 'border-brand-primary bg-white/5' : ''}`}
           >
             {previewImg ? (
               <img
