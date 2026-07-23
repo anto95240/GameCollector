@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next'
 
 import LazyImage from '@/components/common/LazyImage'
 import { MOCK_OPTIONS } from '@/config/constants'
-import { getOptimizedImageProps } from '@/utils/formatters'
+import { getOptimizedImageProps, isWishlistStatusName } from '@/utils/formatters'
 
 export interface DetailHeroProps {
   game: any
@@ -39,7 +39,6 @@ const DetailHero: React.FC<DetailHeroProps> = ({
   _onToggleSoon = () => {},
 }: any) => {
   const { t } = useTranslation()
-  const [isOwned, setIsOwned] = useState(false)
   const [statusDropdownOpen, setStatusDropdownOpen] = useState(false)
   const [ratingDropdownOpen, setRatingDropdownOpen] = useState(false)
   const statusDropdownRef = useRef(null)
@@ -82,12 +81,7 @@ const DetailHero: React.FC<DetailHeroProps> = ({
   }, [statusDropdownOpen, ratingDropdownOpen])
 
   // Calculer isOwned en fonction du status (Wishlist = false, autres = true)
-  const [prevStatus, setPrevStatus] = useState(game.status)
-  if (game.status !== prevStatus) {
-    setPrevStatus(game.status)
-    const statusName = game.status || ''
-    setIsOwned(statusName.toLowerCase() !== 'wishlist')
-  }
+  const isOwned = !isWishlistStatusName(game.status)
 
   const statusOptions = [
     { value: '', label: t('gameForm.fields.selectStatus') || 'Sélectionner un statut' },
@@ -122,15 +116,17 @@ const DetailHero: React.FC<DetailHeroProps> = ({
       )}
 
       <div className="hero-content">
-        <div className="tags-row">
-          {game.tags.map((tag: any, i: number) => (
-            <span key={i} className="tag-pill">
-              {tag}
-            </span>
-          ))}
-        </div>
-
         <h1 className="detail-title">{game.name}</h1>
+
+        {(game.tags || []).length > 0 && (
+          <div className="tags-row">
+            {(game.tags || []).map((tag: any, i: number) => (
+              <span key={i} className="tag-pill">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
 
         <div className="meta-bar">
           <div className="meta-item rating-interactive">
