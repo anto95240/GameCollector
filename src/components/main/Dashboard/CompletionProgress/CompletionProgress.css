@@ -1,0 +1,175 @@
+.completion-progress {
+  position: relative;
+  padding: 20px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.completion-progress::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--grad-card-surface);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.completion-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.completion-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family-title);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+}
+
+.completion-title svg {
+  color: var(--text-primary);
+  filter: drop-shadow(0 0 4px var(--text-primary));
+}
+
+.completion-fraction {
+  font-family: var(--font-family-title);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.completion-fraction .completion-total {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ── Progress Bar ── */
+.completion-bar-wrapper {
+  position: relative;
+  z-index: 1;
+  height: 12px;
+  background: rgba(90, 242, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.completion-bar-fill {
+  height: 100%;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--text-primary));
+  box-shadow: 0 0 12px rgba(90, 242, 255, 0.3);
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.completion-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  animation: completionShimmer 2s ease-in-out infinite;
+}
+
+@keyframes completionShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ── Status Breakdown ── */
+.completion-breakdown {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.completion-status-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-family-title);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.completion-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.completion-status-dot.dot-completed {
+  background: var(--status-success);
+  box-shadow: 0 0 6px rgba(110, 178, 105, 0.4);
+}
+
+.completion-status-dot.dot-in-progress {
+  background: var(--status-warning);
+  box-shadow: 0 0 6px rgba(233, 162, 59, 0.4);
+}
+
+.completion-status-dot.dot-other {
+  background: var(--text-secondary);
+}
+
+.completion-status-count {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ── Percentage Label ── */
+.completion-pct {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+  font-family: var(--font-family-title);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+  opacity: 0.7;
+}
+
+/* ── Responsive ── */
+@media (max-width: 500px) {
+  .completion-progress {
+    padding: 16px;
+  }
+
+  .completion-breakdown {
+    gap: 10px;
+  }
+
+  .completion-status-item {
+    font-size: 10px;
+  }
+}

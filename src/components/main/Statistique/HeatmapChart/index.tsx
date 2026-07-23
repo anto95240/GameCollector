@@ -6,18 +6,18 @@ const MONTHS = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep',
 
 const HeatmapChart = ({ stats }: any) => {
   const { heatData, maxCount, years } = useMemo(() => {
-    if (!stats || !stats.heatmap) return { heatData: {}, maxCount: 1, years: [] }
+    if (!stats || !stats.rawGames) return { heatData: {}, maxCount: 1, years: [] }
 
     const counts: Record<string, any> = {}
     const yearSet = new Set()
 
-    stats.heatmap.forEach((h: any) => {
-      const d = new Date(h.date)
+    stats.rawGames.forEach((g: any) => {
+      const d = new Date(g.created_at)
       if (isNaN(d.getTime())) return
       const y = d.getFullYear()
       const m = d.getMonth()
       yearSet.add(y)
-      counts[`${y}-${m}`] = (counts[`${y}-${m}`] || 0) + h.count
+      counts[`${y}-${m}`] = (counts[`${y}-${m}`] || 0) + 1
     })
 
     const sortedYears = Array.from(yearSet)

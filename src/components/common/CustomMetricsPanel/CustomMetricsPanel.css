@@ -1,0 +1,187 @@
+.custom-metrics-panel {
+  margin-bottom: 20px;
+  animation: metricsFadeIn 0.4s ease forwards;
+}
+
+@keyframes metricsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-metrics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.custom-metrics-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family-title);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+}
+
+.custom-metrics-title svg {
+  filter: drop-shadow(0 0 4px var(--text-primary));
+}
+
+/* ── Metrics Grid (valeurs affichées) ── */
+.custom-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.custom-metric-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  transition: all 0.25s ease;
+}
+
+.custom-metric-card:hover {
+  border-color: var(--border-main);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.custom-metric-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(90, 242, 255, 0.08);
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.custom-metric-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.custom-metric-label {
+  font-family: var(--font-family-title);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-metric-value {
+  font-family: var(--font-family-title);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ── Edit Mode: Toggle List ── */
+.custom-metrics-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.custom-metric-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.custom-metric-toggle-row:hover {
+  border-color: var(--border-main);
+}
+
+.custom-metric-toggle-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.custom-metric-toggle-left svg {
+  color: var(--text-secondary);
+  width: 16px;
+}
+
+.custom-metric-toggle-name {
+  font-family: var(--font-family-title);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ── Toggle Switch ── */
+.metric-switch {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  background: var(--border-subtle);
+  border-radius: 11px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  padding: 0;
+}
+
+.metric-switch.active {
+  background: var(--text-primary);
+}
+
+.metric-switch-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: var(--bg-main);
+  border-radius: 50%;
+  transition: transform 0.25s ease;
+}
+
+.metric-switch.active .metric-switch-knob {
+  transform: translateX(18px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .custom-metrics-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 8px;
+  }
+
+  .custom-metric-card {
+    padding: 10px 12px;
+  }
+
+  .custom-metric-value {
+    font-size: 15px;
+  }
+}

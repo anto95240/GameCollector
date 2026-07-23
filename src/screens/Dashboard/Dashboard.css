@@ -7,20 +7,93 @@
   padding: 1rem;
   height: calc(100vh - 100px);
   overflow: hidden;
+  position: relative;
+}
+
+.dashboard-content.is-edit-mode {
+  padding-bottom: 120px;
+  overflow-y: auto;
+  height: auto;
+  min-height: calc(100vh - 100px);
 }
 
 .main-stats-grid {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.dashboard-header-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0px;
+}
+
+/* ── Edit Button ── */
+.dashboard-edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 10;
+}
+
+.dashboard-edit-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+  box-shadow: 0 0 12px rgba(90, 242, 255, 0.15);
+}
+
+.dashboard-edit-btn.active {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+  background: rgba(90, 242, 255, 0.08);
+  animation: editBtnPulse 2s ease-in-out infinite;
+}
+
+@keyframes editBtnPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(90, 242, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(90, 242, 255, 0.25);
+  }
+}
+
+.dashboard-edit-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.dashboard-edit-btn.active svg {
+  transform: rotate(90deg);
 }
 
 @media (min-width: 768px) {
   .main-stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .stat-primary-wrapper {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  .stat-secondary-wrapper {
+    flex: 0 0 auto;
+    min-width: 0;
   }
 }
 
