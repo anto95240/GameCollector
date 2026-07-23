@@ -1,7 +1,6 @@
 import { createSlug } from '../helpers/slugGenerator'
 import { formatImageUrl } from './imageFormatters'
 
-
 export const isWishlistStatusName = (statusName: string = '') => {
   const lower = statusName.toLowerCase()
   return lower.includes('wishlist') || lower.includes('à venir') || lower.includes('prochainement')
@@ -13,8 +12,8 @@ export const mapGameWithMetadata = (game: any, metadata: any) => {
   return {
     ...game,
     genre:
-      metadata.genres?.find((g: any) => g._id === (game.genre_id?._id || game.genre_id))?.genre_name ||
-      'Inconnu',
+      metadata.genres?.find((g: any) => g._id === (game.genre_id?._id || game.genre_id))
+        ?.genre_name || 'Inconnu',
     platform:
       metadata.platforms?.find((p: any) => p._id === (game.platform_id?._id || game.platform_id))
         ?.platform_name || 'Inconnu',
@@ -22,9 +21,13 @@ export const mapGameWithMetadata = (game: any, metadata: any) => {
       metadata.statuses?.find((s: any) => s._id === (game.status_id?._id || game.status_id))
         ?.status_name || 'Inconnu',
     tags:
+      game.tags
+        ?.map((t: any) => t.tag?.tag_name || t.tag_name || t)
+        ?.filter((t: any) => typeof t === 'string') ||
       game.tags_ids?.map(
         (t: any) => metadata.tags?.find((mt: any) => mt._id === (t._id || t))?.tag_name || 'Tag'
-      ) || [],
+      ) ||
+      [],
   }
 }
 export const formatGameForDisplay = (game: any, metadata: any, apiUrl?: string) => {
@@ -32,9 +35,18 @@ export const formatGameForDisplay = (game: any, metadata: any, apiUrl?: string) 
 
   return {
     ...mappedGame,
-    id: game._id,
-    isSoon: game.isSoon === true || String(game.isSoon) === 'true',
-    isFavorite: game.isFavorite === true || String(game.isFavorite) === 'true',
+    id: game._id || game.id,
+    _id: game._id || game.id,
+    isSoon:
+      game.is_soon === true ||
+      game.isSoon === true ||
+      String(game.is_soon) === 'true' ||
+      String(game.isSoon) === 'true',
+    isFavorite:
+      game.is_favorite === true ||
+      game.isFavorite === true ||
+      String(game.is_favorite) === 'true' ||
+      String(game.isFavorite) === 'true',
     rating: game.note ? `${Math.floor(game.note)} étoiles` : 'Non noté',
     imageUrl: formatImageUrl(game.image, apiUrl),
   }
@@ -48,7 +60,7 @@ export const formatGameForDetail = (game: any, metadata: any, apiUrl?: string) =
     genre_id: game.genre_id,
     platform_id: game.platform_id,
     status_id: game.status_id,
-    tags_ids: game.tags_ids,
+    tags_ids: game.tags_ids || game.tags?.map((t: any) => t.tag?.id || t.tag_id || t.id) || [],
   }
 }
 export const formatGamesForCarousel = (games: any[], apiUrl?: string) => {
@@ -88,8 +100,16 @@ export const deduplicateGames = (games: any[]) => {
 export const normalizeGameBooleans = (game: any) => {
   return {
     ...game,
-    isFavorite: game.isFavorite === true || String(game.isFavorite) === 'true',
-    isSoon: game.isSoon === true || String(game.isSoon) === 'true',
+    isFavorite:
+      game.is_favorite === true ||
+      game.isFavorite === true ||
+      String(game.is_favorite) === 'true' ||
+      String(game.isFavorite) === 'true',
+    isSoon:
+      game.is_soon === true ||
+      game.isSoon === true ||
+      String(game.is_soon) === 'true' ||
+      String(game.isSoon) === 'true',
   }
 }
 export const normalizeGameData = (game: any, apiUrl?: string) => {

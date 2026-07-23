@@ -152,9 +152,11 @@
       "favorite": "Favoris",
       "platform": "Plateforme",
       "genre": "Genre",
+      "wishlist": "À faire",
       "recentlyAdded": "Ajoutés récemment",
       "loading": "Chargement de votre collection...",
-      "noGame": "Aucun jeu trouvé. Commencez par en ajouter un !"
+      "noGame": "Aucun jeu trouvé. Commencez par en ajouter un !",
+      "status": "Statut"
     },
 
     "gameList": {
@@ -347,6 +349,66 @@
     "patchNotes": {
       "title": "Mise à jour disponible",
       "closeBtn": "Super !"
+    },
+
+    "editMode": {
+      "toggle": "Personnaliser",
+      "save": "Sauvegarder",
+      "cancel": "Annuler",
+      "unsavedChanges": "Changements non sauvegardés",
+      "showWidget": "Visible",
+      "hideWidget": "Masqué",
+      "dragHint": "Glisser pour réordonner",
+      "widgets": {
+        "statPrimary": "Statistique Principale",
+        "statSecondary": "Statistique Secondaire",
+        "customMetrics": "Métriques personnalisées",
+        "recentGames": "Derniers jeux",
+        "topGames": "Jeux les plus joués",
+        "insights": "Insights",
+        "heatmap": "Carte de chaleur (Activité)",
+        "collectionOverview": "Aperçu de la collection",
+        "completionProgress": "Progression de complétion",
+        "dynamicDoughnut": "Graphique Circulaire Dynamique",
+        "dynamicBarChart": "Graphique en Barres Dynamique",
+        "totalPlayingTime": "Temps de jeu total",
+        "avgRating": "Note moyenne",
+        "completed": "Terminés",
+        "inProgress": "En cours",
+        "otherStatus": "Autres"
+      }
+    },
+
+    "customMetrics": {
+      "title": "Métriques personnalisées",
+      "gamesCompletedYear": "Jeux terminés cette année",
+      "avgTimeByGenre": "Temps moyen de jeu",
+      "gamesByDecade": "Décennie la plus jouée",
+      "completionRate": "Taux de complétion",
+      "favoriteRatio": "Ratio favoris"
+    },
+
+    "yearChart": {
+      "games": "Jeux",
+      "tags": "Tags",
+      "allDecades": "Toutes décennies"
+    },
+
+    "dynamicChart": {
+      "platform": "Nombre de plateforme",
+      "genre": "Répartition par genre",
+      "rating": "Répartition par notation",
+      "status": "Répartition par statut",
+      "barYear": "Nb de jeux par année de sortie",
+      "barTag": "Nb de jeux par tag"
+    },
+
+    "stats": {
+      "tabs": {
+        "overview": "Vue d'ensemble",
+        "charts": "Graphiques",
+        "activity": "Activité"
+      }
     }
   }
 }

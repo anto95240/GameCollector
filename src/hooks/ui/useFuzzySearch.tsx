@@ -7,7 +7,7 @@ export const useFuzzySearch = (itemsList: any, searchKeys = ['title']) => {
   const { getFuzzyGames } = useApiGame()
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<any[]>([])
-  const safeItemsList = useMemo(() => Array.isArray(itemsList) ? itemsList : [], [itemsList])
+  const safeItemsList = useMemo(() => (Array.isArray(itemsList) ? itemsList : []), [itemsList])
   const isDev = import.meta.env.DEV
   const backendDisabledRef = useRef(false)
 
@@ -45,13 +45,11 @@ export const useFuzzySearch = (itemsList: any, searchKeys = ['title']) => {
   )
 
   // Synchronisation de la liste complète si la recherche est vide
-  const [prevQuery, setPrevQuery] = useState(query)
-  if (query !== prevQuery) {
-    setPrevQuery(query)
+  useEffect(() => {
     if (!query.trim()) {
       setResults(safeItemsList)
     }
-  }
+  }, [query, safeItemsList])
 
   useEffect(() => {
     let isActive = true

@@ -1,8 +1,8 @@
-// src/hooks/api/useApiAuth.tsx
+import { useCallback } from 'react'
+
 import { supabase } from '@/lib/supabase'
 
 export const useApiAuth = () => {
-
   // ── Inscription ──────────────────────────────────────────────────────
   const register = async (userData: {
     email: string
@@ -44,34 +44,37 @@ export const useApiAuth = () => {
 
   // ── Utilisateur courant (session) ─────────────────────────────────────
   const getMe = async () => {
-    const { data: { user }, error } = await supabase.auth.getUser()
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser()
     if (error) throw error
     return user
   }
 
   // ── Mise à jour du profil (avec ou sans image) ────────────────────────
   const updateProfile = async (_userId: string, formData: FormData) => {
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
     if (!user) throw new Error('Non connecté')
 
     const updates: Record<string, any> = {}
     if (formData.has('firstname')) updates.firstname = formData.get('firstname')
-    if (formData.has('lastname'))  updates.lastname  = formData.get('lastname')
-    if (formData.has('username'))  updates.username  = formData.get('username')
+    if (formData.has('lastname')) updates.lastname = formData.get('lastname')
+    if (formData.has('username')) updates.username = formData.get('username')
 
     // Upload de l'image si présente
     const imageFile = formData.get('image') as File | null
     if (imageFile && imageFile.size > 0) {
-      const ext      = imageFile.name.split('.').pop()
+      const ext = imageFile.name.split('.').pop()
       const filePath = `${user.id}/${Date.now()}.${ext}`
       const { error: uploadError } = await supabase.storage
         .from('game-images')
         .upload(filePath, imageFile, { upsert: true })
       if (uploadError) throw uploadError
 
-      const { data: urlData } = supabase.storage
-        .from('game-images')
-        .getPublicUrl(filePath)
+      const { data: urlData } = supabase.storage.from('game-images').getPublicUrl(filePath)
       updates.image = urlData.publicUrl
     }
 
@@ -93,16 +96,20 @@ export const useApiAuth = () => {
   }
 
   // ── Historique de navigation ──────────────────────────────────────────
-  const addGameToHistory = async (gameId: string) => {
-    const { data: { user } } = await supabase.auth.getUser()
+  const addGameToHistory = useCallback(async (gameId: string) => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
     if (!user) return
-    await supabase.from('recently_viewed').upsert(
-      { user_id: user.id, game_id: gameId, viewed_at: new Date().toISOString() },
-      { onConflict: 'user_id,game_id' }
-    )
-  }
+    await supabase
+      .from('recently_viewed')
+      .upsert(
+        { user_id: user.id, game_id: gameId, viewed_at: new Date().toISOString() },
+        { onConflict: 'user_id,game_id' }
+      )
+  }, [])
 
-  const getGameHistory = async () => {
+  const getGameHistory = useCallback(async () => {
     const { data, error } = await supabase
       .from('recently_viewed')
       .select('*, game:games(id, name, image, genre:genres(genre_name))')
@@ -110,7 +117,7 @@ export const useApiAuth = () => {
       .limit(20)
     if (error) throw error
     return data
-  }
+  }, [])
 
   return {
     login,

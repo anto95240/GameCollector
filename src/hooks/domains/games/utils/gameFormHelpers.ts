@@ -61,21 +61,18 @@ export const getInitialFormData = (gameToEdit: GameToEdit | null = null): GameFo
     description: gameToEdit.description || '',
     rating: gameToEdit.note || '',
     comment: gameToEdit.comment || '',
-    genre: (
+    genre:
       typeof gameToEdit.genre_id === 'object'
         ? (gameToEdit.genre_id?._id ?? '')
-        : (gameToEdit.genre_id as string) ?? ''
-    ),
-    platform: (
+        : ((gameToEdit.genre_id as string) ?? ''),
+    platform:
       typeof gameToEdit.platform_id === 'object'
         ? (gameToEdit.platform_id?._id ?? '')
-        : (gameToEdit.platform_id as string) ?? ''
-    ),
-    status: (
+        : ((gameToEdit.platform_id as string) ?? ''),
+    status:
       typeof gameToEdit.status_id === 'object'
         ? (gameToEdit.status_id?._id ?? '')
-        : (gameToEdit.status_id as string) ?? ''
-    ),
+        : ((gameToEdit.status_id as string) ?? ''),
     year: gameToEdit.year || '',
     playTime: gameToEdit.playing_time || '',
     developer: gameToEdit.developer || '',
@@ -95,20 +92,26 @@ export const buildGamePayload = (
 ): FormData => {
   const submitData = new FormData()
 
-  // Mapper les champs correctement
-  if (formData.name) submitData.append('name', formData.name)
-  if (formData.description) submitData.append('description', formData.description)
+  // Mapper les champs correctement en évitant les chaînes "undefined"
+  if (formData.name && formData.name !== 'undefined') submitData.append('name', formData.name)
+  if (formData.description && formData.description !== 'undefined')
+    submitData.append('description', formData.description)
   if (formData.rating) submitData.append('note', String(Number(formData.rating)))
-  if (formData.comment) submitData.append('comment', formData.comment)
-  if (formData.genre) submitData.append('genre_id', formData.genre)
-  if (formData.platform) submitData.append('platform_id', formData.platform)
-  if (formData.status) submitData.append('status_id', formData.status)
+  if (formData.comment && formData.comment !== 'undefined')
+    submitData.append('comment', formData.comment)
+  if (formData.genre && String(formData.genre) !== 'undefined')
+    submitData.append('genre_id', formData.genre)
+  if (formData.platform && String(formData.platform) !== 'undefined')
+    submitData.append('platform_id', formData.platform)
+  if (formData.status && String(formData.status) !== 'undefined')
+    submitData.append('status_id', formData.status)
   if (formData.year) submitData.append('year', String(Number(formData.year)))
   if (formData.playTime) submitData.append('playing_time', String(Number(formData.playTime)))
   if (formData.developer) submitData.append('developer', formData.developer)
   if (formData.achievements) submitData.append('succes', String(formData.achievements))
-  if (formData.isSoon !== undefined) submitData.append('isSoon', String(formData.isSoon))
-  if (formData.isFavorite !== undefined) submitData.append('isFavorite', String(formData.isFavorite))
+  if (formData.isSoon !== undefined) submitData.append('is_soon', String(formData.isSoon))
+  if (formData.isFavorite !== undefined)
+    submitData.append('is_favorite', String(formData.isFavorite))
 
   // Gestion de l'image - IMPORTANT: Envoyer UNIQUEMENT les fichiers File, jamais les strings
   if (image instanceof File) {

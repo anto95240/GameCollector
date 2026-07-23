@@ -151,9 +151,11 @@
       "favorite": "Favorites",
       "platform": "Platform",
       "genre": "Genre",
+      "wishlist": "Wishlist",
       "recentlyAdded": "Recently added",
       "loading": "Loading your collection...",
-      "noGame": "No games found. Start by adding one!"
+      "noGame": "No games found. Start by adding one!",
+      "status": "Status"
     },
 
     "gameList": {
@@ -346,6 +348,66 @@
     "patchNotes": {
       "title": "Update available",
       "closeBtn": "Awesome !"
+    },
+
+    "editMode": {
+      "toggle": "Customize",
+      "save": "Save",
+      "cancel": "Cancel",
+      "unsavedChanges": "Unsaved changes",
+      "showWidget": "Visible",
+      "hideWidget": "Hidden",
+      "dragHint": "Drag to reorder",
+      "widgets": {
+        "statPrimary": "Primary Statistic",
+        "statSecondary": "Secondary Statistic",
+        "customMetrics": "Custom metrics",
+        "recentGames": "Recent games",
+        "topGames": "Most played games",
+        "insights": "Insights",
+        "heatmap": "Activity Heatmap",
+        "collectionOverview": "Collection Overview",
+        "completionProgress": "Completion Progress",
+        "dynamicDoughnut": "Dynamic Doughnut Chart",
+        "dynamicBarChart": "Dynamic Bar Chart",
+        "totalPlayingTime": "Total playing time",
+        "avgRating": "Average rating",
+        "completed": "Completed",
+        "inProgress": "In progress",
+        "otherStatus": "Other"
+      }
+    },
+
+    "customMetrics": {
+      "title": "Custom metrics",
+      "gamesCompletedYear": "Games completed this year",
+      "avgTimeByGenre": "Average play time",
+      "gamesByDecade": "Most played decade",
+      "completionRate": "Completion rate",
+      "favoriteRatio": "Favorite ratio"
+    },
+
+    "yearChart": {
+      "games": "Games",
+      "tags": "Tags",
+      "allDecades": "All decades"
+    },
+
+    "dynamicChart": {
+      "platform": "Platform Count",
+      "genre": "Genre Distribution",
+      "rating": "Rating Distribution",
+      "status": "Status Distribution",
+      "barYear": "Games by Release Year",
+      "barTag": "Games by Tag"
+    },
+
+    "stats": {
+      "tabs": {
+        "overview": "Overview",
+        "charts": "Charts",
+        "activity": "Activity"
+      }
     }
   }
 }

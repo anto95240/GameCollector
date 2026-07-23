@@ -1,4 +1,5 @@
 export { AuthProvider, useAuth } from './AuthContext'
+export { DashboardSettingsProvider, useDashboardSettings } from './DashboardSettingsContext'
 export { FiltersProvider, useFilters } from './FiltersContext'
 export { LanguageProvider, useLanguage } from './LanguageContext'
 export { ThemeProvider, useTheme } from './ThemeContext'

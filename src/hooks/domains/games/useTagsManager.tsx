@@ -36,7 +36,8 @@ export const useTagsManager = (initialTags: any[] = []) => {
     } else {
       const lowerInput = tagInput.toLowerCase()
       const suggestions = availableTags.filter(
-        (tag: any) => tag.tag_name?.toLowerCase().includes(lowerInput) && !selectedTags.includes(tag._id)
+        (tag: any) =>
+          tag.tag_name?.toLowerCase().includes(lowerInput) && !selectedTags.includes(tag._id)
       )
       setSuggestedTags(suggestions)
     }
@@ -69,8 +70,9 @@ export const useTagsManager = (initialTags: any[] = []) => {
       }
     }
 
-    if (tagToAdd && !selectedTags.includes(tagToAdd._id)) {
-      setSelectedTags((prev: any) => [...prev, tagToAdd._id])
+    const actualTagId = tagToAdd._id || tagToAdd.id
+    if (tagToAdd && actualTagId && !selectedTags.includes(actualTagId)) {
+      setSelectedTags((prev: any) => [...prev, actualTagId])
       setTagInput('')
     }
   }
