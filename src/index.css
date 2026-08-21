@@ -98,7 +98,8 @@
   --bg-panel: rgba(255, 255, 255, 0.95);
   --bg-card: #ffffff;
   --bg-card-hover: #edf6ff;
-  --bg-input: #ffffff;
+  --bg-input: #fffbeb;
+  --text-search: var(--brand-primary);
   --bg-modal-overlay: rgba(0, 20, 40, 0.3);
 
   /* --- TYPOGRAPHY --- */
@@ -147,6 +148,334 @@
   --tag-bg-owned: #dcfce7;
   --tag-border-owned: #22c55e;
   --tag-text-owned: #15803d;
+}
+
+/* --- PRESETS (Surcharges) --- */
+[data-preset='ember'] {
+  --bg-app: #161211;
+  --bg-panel: rgba(22, 18, 17, 0.95);
+  --bg-card: rgba(35, 25, 23, 0.4);
+  --bg-card-hover: rgba(50, 35, 30, 0.6);
+  --bg-input: #120e0d;
+  --text-primary: #ff7a45;
+  --brand-primary: #d65c2f;
+  --brand-glow: #ff7a45;
+  --border-main: #d65c2f;
+  --border-focus: #ff7a45;
+  --grad-card-surface: linear-gradient(47deg, #1f1816 0%, #161211 80%);
+  --grad-input-surface: linear-gradient(47deg, #181210 0%, #120e0d 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ff9b6a 0%, #d65c2f 60%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #d65c2f 90deg,
+    #ff7a45 180deg,
+    #d65c2f 270deg,
+    transparent 360deg
+  );
+}
+
+[data-preset='void'] {
+  --bg-app: #120e15;
+  --bg-panel: rgba(18, 14, 21, 0.95);
+  --bg-card: rgba(30, 20, 40, 0.4);
+  --bg-card-hover: rgba(45, 30, 60, 0.6);
+  --bg-input: #0d0a10;
+  --text-primary: #b673f8;
+  --brand-primary: #8a34d6;
+  --brand-glow: #b673f8;
+  --border-main: #8a34d6;
+  --border-focus: #b673f8;
+  --grad-card-surface: linear-gradient(47deg, #181020 0%, #120e15 80%);
+  --grad-input-surface: linear-gradient(47deg, #140d1a 0%, #0d0a10 80%);
+  --grad-btn-primary: linear-gradient(47deg, #c794fc 0%, #8a34d6 60%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #8a34d6 90deg,
+    #b673f8 180deg,
+    #8a34d6 270deg,
+    transparent 360deg
+  );
+}
+
+[data-preset='matrix'] {
+  --bg-app: #050a05;
+  --bg-panel: rgba(5, 10, 5, 0.95);
+  --bg-card: rgba(10, 25, 10, 0.4);
+  --bg-card-hover: rgba(15, 35, 15, 0.6);
+  --bg-input: #030603;
+  --text-primary: #4ade80;
+  --brand-primary: #22c55e;
+  --brand-glow: #4ade80;
+  --border-main: #22c55e;
+  --border-focus: #4ade80;
+  --grad-card-surface: linear-gradient(47deg, #071507 0%, #050a05 80%);
+  --grad-input-surface: linear-gradient(47deg, #050a05 0%, #030603 80%);
+  --grad-btn-primary: linear-gradient(47deg, #4ade80 0%, #16a34a 60%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #16a34a 90deg,
+    #4ade80 180deg,
+    #16a34a 270deg,
+    transparent 360deg
+  );
+}
+
+[data-preset='sakura'] {
+  --bg-app: #fdf9fa;
+  --bg-panel: rgba(253, 249, 250, 0.95);
+  --bg-card: #ffffff;
+  --bg-card-hover: #f9eef2;
+  --bg-input: #fffbeb;
+  --text-search: var(--brand-primary);
+  --text-primary: #e879a9;
+  --text-secondary: #be185d;
+  --brand-primary: #d64a85;
+  --brand-glow: #e879a9;
+  --border-main: #fbcfe8;
+  --border-focus: #e879a9;
+  --grad-card-surface: linear-gradient(47deg, #ffffff 0%, #fdf9fa 100%);
+  --grad-input-surface: linear-gradient(47deg, #fffafa 0%, #fdf9fa 100%);
+  --grad-btn-primary: linear-gradient(47deg, #f472b6 0%, #db2777 100%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #db2777 90deg,
+    #ec4899 180deg,
+    #db2777 270deg,
+    transparent 360deg
+  );
+}
+
+/* --- THEMES SAISONNIERS --- */
+/* Chaque thème saisonnier possède une palette très distinctive et des décorations (voir seasonal-decor.css) */
+
+[data-preset='halloween'] {
+  --font-family-title: 'Creepster', cursive;
+  --bg-app: #0f0a05; /* Noir très profond légèrement orangé */
+  --bg-panel: rgba(15, 10, 5, 0.95);
+  --bg-card: rgba(30, 15, 40, 0.6); /* Cartes avec une teinte violacée fantomatique */
+  --bg-card-hover: rgba(45, 25, 60, 0.7);
+  --bg-input: #0a0502;
+  --text-search: #f97316;
+  --text-primary: #f97316; /* Orange Citrouille */
+  --brand-primary: #ea580c;
+  --brand-glow: #a855f7; /* Violet spectral en glow */
+  --border-main: #ea580c;
+  --border-focus: #f97316;
+  --grad-card-surface: linear-gradient(47deg, #251030 0%, #0f0a05 80%);
+  --grad-input-surface: linear-gradient(47deg, #1a0820 0%, #0a0502 80%);
+  --grad-btn-primary: linear-gradient(47deg, #f97316 0%, #c2410c 60%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #ea580c 90deg,
+    #a855f7 180deg,
+    #ea580c 270deg,
+    transparent 360deg
+  );
+}
+
+[data-preset='christmas'] {
+  --font-family-title: 'Mountains of Christmas', cursive;
+  --bg-app: #021810; /* Vert sapin très profond, différent du noir/vert Matrix */
+  --bg-panel: rgba(2, 24, 16, 0.95);
+  --bg-card: rgba(20, 45, 30, 0.5); /* Vert forêt festif */
+  --bg-card-hover: rgba(30, 60, 40, 0.6);
+  --bg-input: #010f0a;
+  --text-primary: #facc15; /* Or/Guirlande */
+  --brand-primary: #dc2626; /* Rouge Père Noël */
+  --brand-glow: #facc15;
+  --border-main: #dc2626;
+  --border-focus: #facc15;
+  --grad-card-surface: linear-gradient(47deg, #103020 0%, #021810 80%);
+  --grad-input-surface: linear-gradient(47deg, #0a2015 0%, #010f0a 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, #b91c1c 60%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #dc2626 90deg,
+    #facc15 180deg,
+    #dc2626 270deg,
+    transparent 360deg
+  );
+}
+
+[data-preset='spring'] {
+  --font-family-title: 'Quicksand', sans-serif;
+  --bg-app: #dcfce7; /* Vert herbe fraîche, lumineux */
+  --bg-panel: rgba(220, 252, 231, 0.95);
+  --bg-card: rgba(255, 255, 255, 0.6);
+  --bg-card-hover: #ffffff;
+  --bg-input: rgba(255, 255, 255, 0.9);
+  --text-primary: #be185d; /* Rose floral intense */
+  --text-secondary: #065f46;
+  --brand-primary: #10b981; /* Vert nature vibrant */
+  --brand-glow: #f472b6; /* Rose tendre */
+  --border-main: #6ee7b7;
+  --border-focus: #f472b6;
+  --grad-card-surface: linear-gradient(47deg, #ffffff 0%, #dcfce7 100%);
+  --grad-input-surface: linear-gradient(47deg, #f0fdf4 0%, #dcfce7 100%);
+  --grad-btn-primary: linear-gradient(47deg, #10b981 0%, #059669 100%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #10b981 90deg,
+    #f472b6 180deg,
+    #10b981 270deg,
+    transparent 360deg
+  );
+}
+
+[data-preset='easter'] {
+  --font-family-title: 'Sniglet', cursive;
+  --bg-app: #fef08a; /* Jaune poussin / Gourmand */
+  --bg-panel: rgba(254, 240, 138, 0.95);
+  --bg-card: rgba(255, 255, 255, 0.6);
+  --bg-card-hover: rgba(255, 255, 255, 0.9);
+  --bg-input: #fffbeb;
+  --text-search: var(--brand-primary);
+  --text-primary: #451a03; /* Marron Chocolat intense */
+  --text-secondary: #713f12; /* Chocolat au lait */
+  --brand-primary: #78350f; /* Chocolat profond */
+  --brand-glow: #facc15;
+  --border-main: #fde047;
+  --border-focus: #78350f;
+  --grad-card-surface: linear-gradient(47deg, #ffffff 0%, #fef9c3 100%);
+  --grad-input-surface: linear-gradient(47deg, #fffbeb 0%, #fef08a 100%);
+  --grad-btn-primary: linear-gradient(47deg, #78350f 0%, #451a03 100%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #78350f 90deg,
+    #facc15 180deg,
+    #78350f 270deg,
+    transparent 360deg
+  );
+}
+
+[data-preset='summer'] {
+  --font-family-title: 'Quicksand', sans-serif;
+  --bg-app: #bae6fd; /* Ciel tropical / Eau claire */
+  --bg-panel: rgba(186, 230, 253, 0.95);
+  --bg-card: rgba(255, 255, 255, 0.7);
+  --bg-card-hover: rgba(255, 255, 255, 0.9);
+  --bg-input: #fffbeb; /* Sable fin très clair */
+  --text-primary: #ea580c; /* Orange coucher de soleil */
+  --text-secondary: #0369a1;
+  --brand-primary: #0284c7; /* Bleu océan */
+  --brand-glow: #fde047; /* Jaune sable/soleil */
+  --border-main: #fde047;
+  --border-focus: #ea580c;
+  --grad-card-surface: linear-gradient(47deg, #ffffff 0%, #fffbeb 100%); /* Sable blanc */
+  --grad-input-surface: linear-gradient(47deg, #fffbeb 0%, #fef3c7 100%); /* Sable fin doré */
+  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, #0284c7 100%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #0ea5e9 90deg,
+    #fde047 180deg,
+    #0ea5e9 270deg,
+    transparent 360deg
+  );
+}
+
+[data-preset='winter'] {
+  --font-family-title: 'Quicksand', sans-serif;
+  --bg-app: #082f49; /* Nuit arctique très profonde */
+  --bg-panel: rgba(8, 47, 73, 0.95);
+  --bg-card: rgba(12, 74, 110, 0.5); /* Glace fumée */
+  --bg-card-hover: rgba(2, 132, 199, 0.6);
+  --bg-input: #042f2e;
+  --text-primary: #e0f2fe; /* Blanc givré cyan */
+  --text-secondary: #7dd3fc;
+  --brand-primary: #0284c7; /* Bleu froid */
+  --brand-glow: #ffffff; /* Neige */
+  --border-main: #0369a1;
+  --border-focus: #ffffff;
+  --grad-card-surface: linear-gradient(47deg, #0f172a 0%, #082f49 100%);
+  --grad-input-surface: linear-gradient(47deg, #020617 0%, #082f49 100%);
+  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, #0284c7 100%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #0284c7 90deg,
+    #ffffff 180deg,
+    #0284c7 270deg,
+    transparent 360deg
+  );
+}
+
+[data-preset='autumn'] {
+  --font-family-title: 'Quicksand', sans-serif;
+  --bg-app: #451a03; /* Terre d'automne */
+  --bg-panel: rgba(69, 26, 3, 0.95);
+  --bg-card: rgba(120, 53, 15, 0.5);
+  --bg-card-hover: rgba(146, 64, 14, 0.7);
+  --bg-input: #291a10;
+  --text-primary: #fde047; /* Or des feuilles */
+  --brand-primary: #ea580c; /* Rouge érable / Orange */
+  --brand-glow: #facc15;
+  --border-main: #b45309;
+  --border-focus: #fde047;
+  --grad-card-surface: linear-gradient(47deg, #3a2215 0%, #451a03 80%);
+  --grad-input-surface: linear-gradient(47deg, #23140b 0%, #291a10 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ea580c 0%, #c2410c 60%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #ea580c 90deg,
+    #facc15 180deg,
+    #ea580c 270deg,
+    transparent 360deg
+  );
+}
+
+[data-preset='chandeleur'] {
+  --font-family-title: 'Pacifico', cursive;
+  --bg-app: #fef08a; /* Pâte à crêpe lumineuse */
+  --bg-panel: rgba(254, 240, 138, 0.95);
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --bg-card-hover: #ffffff;
+  --bg-input: #fffbeb;
+  --text-search: var(--brand-primary);
+  --text-primary: #451a03; /* Nutella profond */
+  --text-secondary: #713f12;
+  --brand-primary: #78350f; /* Marron chocolat/tartinade */
+  --brand-glow: #fde047;
+  --border-main: #facc15;
+  --border-focus: #78350f;
+  --grad-card-surface: linear-gradient(47deg, #ffffff 0%, #fef9c3 100%);
+  --grad-input-surface: linear-gradient(47deg, #fefce8 0%, #fef08a 100%);
+  --grad-btn-primary: linear-gradient(47deg, #78350f 0%, #451a03 100%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #78350f 90deg,
+    #fde047 180deg,
+    #78350f 270deg,
+    transparent 360deg
+  );
+}
+
+[data-preset='epiphanie'] {
+  --font-family-title: 'Cinzel', serif;
+  --bg-app: #0f172a; /* Bleu royal foncé très solennel */
+  --bg-panel: rgba(15, 23, 42, 0.95);
+  --bg-card: rgba(30, 41, 59, 0.5); /* Gris-bleu ardoise */
+  --bg-card-hover: rgba(51, 65, 85, 0.6);
+  --bg-input: #020617;
+  --text-primary: #fde047; /* Couronne Or brillante */
+  --brand-primary: #eab308;
+  --brand-glow: #fef08a;
+  --border-main: #ca8a04;
+  --border-focus: #fde047;
+  --grad-card-surface: linear-gradient(47deg, #1e293b 0%, #0f172a 80%);
+  --grad-input-surface: linear-gradient(47deg, #0b1120 0%, #020617 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, #ca8a04 60%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #eab308 90deg,
+    #fde047 180deg,
+    #eab308 270deg,
+    transparent 360deg
+  );
+}
+
+body.has-custom-accent {
+  --brand-primary: var(--custom-accent);
+  --brand-glow: var(--custom-accent);
+  --text-primary: var(--custom-accent);
 }
 
 /* =========================================

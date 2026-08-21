@@ -8,6 +8,7 @@ import PwaUpdater from '@/components/common/PwaUpdater'
 import ValidationToast from '@/components/common/ValidationToast'
 import KeyboardHelp from '@/components/KeyboardHelp'
 import KeyboardShortcutsProvider from '@/components/KeyboardShortcutsProvider'
+import SeasonalDecorations from '@/components/secondary/SeasonalDecorations'
 import router from '@/config/router'
 import { useAuth } from '@/context/AuthContext'
 import { useApiShortcuts } from '@/hooks/api/useApiShortcuts'
@@ -39,6 +40,7 @@ function App() {
         <KeyboardHelp />
         <PwaUpdater />
         <PwaInstallPrompt />
+        <SeasonalDecorations />
       </div>
     </ErrorBoundary>
   )

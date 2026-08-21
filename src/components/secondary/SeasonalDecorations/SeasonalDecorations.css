@@ -1,0 +1,186 @@
+.seasonal-decorations-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10; /* Suffisamment haut pour être vu sur l'app, assez bas pour ne pas bloquer */
+  overflow: hidden;
+}
+
+/* Fix static decor corners */
+.decor-corner {
+  position: absolute;
+  font-size: 8rem;
+  opacity: 0.15;
+}
+.decor-corner.top-left {
+  top: -20px;
+  left: -20px;
+}
+.decor-corner.top-right {
+  top: -20px;
+  right: -20px;
+}
+.decor-corner.bottom-left {
+  bottom: -20px;
+  left: -20px;
+}
+.decor-corner.bottom-right {
+  bottom: -20px;
+  right: -20px;
+}
+.decor-corner.top-center {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.decor-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30rem;
+}
+
+/* Animations for static decors */
+.spin-slow {
+  animation: spin 40s linear infinite;
+}
+.swing {
+  transform-origin: top center;
+  animation: swing 4s ease-in-out infinite;
+}
+.float-slow {
+  animation: floatY 6s ease-in-out infinite alternate;
+}
+
+@keyframes spin {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+@keyframes swing {
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(-10deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(10deg);
+  }
+}
+
+/* Particle system base */
+.particles-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.particle {
+  position: absolute;
+  left: calc(var(--random-x) * 100vw);
+  font-size: var(--random-size);
+  animation-delay: var(--random-delay);
+  animation-duration: var(--random-duration);
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+/* Animations */
+.particle-fall {
+  top: -10vh;
+  animation-name: fall, sway;
+  animation-timing-function: linear, ease-in-out;
+  animation-direction: normal, alternate;
+}
+.particle-fall-spin {
+  top: -10vh;
+  animation-name: fall, sway, spinSelf;
+  animation-timing-function: linear, ease-in-out, linear;
+  animation-direction: normal, alternate, normal;
+}
+.particle-float {
+  bottom: -10vh;
+  animation-name: floatUp, sway;
+  animation-timing-function: linear, ease-in-out;
+  animation-direction: normal, alternate;
+}
+.particle-float-light {
+  bottom: -10vh;
+  animation-name: floatUp, floatX;
+  animation-timing-function: linear, ease-in-out;
+  animation-direction: normal, alternate;
+}
+.particle-wave {
+  bottom: -5vh;
+  animation-name: waveX, floatY;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+.particle-sparkle {
+  top: calc(var(--random-x) * 100vh);
+  animation-name: sparklePulse;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+/* Keyframes */
+@keyframes fall {
+  to {
+    top: 110vh;
+  }
+}
+@keyframes floatUp {
+  to {
+    bottom: 110vh;
+  }
+}
+@keyframes sway {
+  0% {
+    transform: translateX(-30px);
+  }
+  100% {
+    transform: translateX(30px);
+  }
+}
+@keyframes floatX {
+  0% {
+    transform: translateX(-50px) rotate(-10deg);
+  }
+  100% {
+    transform: translateX(50px) rotate(10deg);
+  }
+}
+@keyframes spinSelf {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes floatY {
+  0% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(20px);
+  }
+}
+@keyframes waveX {
+  0% {
+    transform: translateX(-5vw);
+  }
+  100% {
+    transform: translateX(5vw);
+  }
+}
+@keyframes sparklePulse {
+  0% {
+    opacity: 0.1;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1.5);
+  }
+}

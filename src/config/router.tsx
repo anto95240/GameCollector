@@ -22,6 +22,7 @@ const ListePage = lazy(() => import('../screens/Liste'))
 const DetailPage = lazy(() => import('../screens/Detail'))
 const TropheesPage = lazy(() => import('../screens/Trophees'))
 const WelcomePage = lazy(() => import('../screens/Welcome'))
+const SettingsPage = lazy(() => import('../screens/Settings'))
 
 // Un composant qui enveloppe nos routes paresseuses pour afficher un spinner simple et capturer les erreurs de page
 const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
@@ -146,6 +147,14 @@ const router = createBrowserRouter([
             element: (
               <SuspenseWrapper>
                 <TropheesPage />
+              </SuspenseWrapper>
+            ),
+          },
+          {
+            path: '/settings',
+            element: (
+              <SuspenseWrapper>
+                <SettingsPage />
               </SuspenseWrapper>
             ),
           },

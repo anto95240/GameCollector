@@ -10,7 +10,7 @@ import UserLinks from '@/components/secondary/Navbar/UserMenuParts/UserLinks'
 const UserMenu = ({ user, t, state, setters, actions, onClose }: any) => {
   const { isDark, language, langMenuOpen } = state
   const { setLangMenuOpen } = setters
-  const { toggleTheme, changeLanguage } = actions
+  const { changeLanguage } = actions
   const displayName = user?.username || 'Pilote'
 
   const handleHelpClick = () => {
@@ -33,7 +33,7 @@ const UserMenu = ({ user, t, state, setters, actions, onClose }: any) => {
           onChange={changeLanguage}
         />
 
-        <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
+        <ThemeToggle onClose={onClose} />
 
         <button
           className="help-button-menu"

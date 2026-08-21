@@ -181,14 +181,13 @@ tags: les tags du jeu
 
 ### 2.2 · Nouveaux Trophées
 > Ajouter des trophées pour les nouvelles interactions et fonctionnalités et pertinants.
-- [ ] Trophée pour l'utilisation des raccourcis clavier (ex: 10, 50, 100 utilisations)
-- [ ] Trophée pour la personnalisation des statistiques
-- [ ] Trophée pour la personnalisation du thème
-- [ ] Trophée pour le nombre de jeux dans la Wishlist
-- [ ] Trophée pour la sauvegarde de filtres
-- [ ] Trophée pour la personnalisation du dashboard
-- [ ] Revoir et compléter le catalogue existant de trophées
-- etc... 
+- [x] Trophée pour l'utilisation des raccourcis clavier (ex: 10, 50, 100 utilisations)
+- [x] Trophée pour la personnalisation des statistiques
+- [x] Trophée pour la personnalisation du thème
+- [x] Trophée pour le nombre de jeux dans la Wishlist
+- [x] Trophée pour la sauvegarde de filtres
+- [x] Trophée pour la personnalisation du dashboard
+- [x] Revoir et compléter le catalogue existant de trophées
 
 ---
 
@@ -224,16 +223,16 @@ tags: les tags du jeu
 - `--bg-app` & `--bg-card` — fonds de page et de carte
 
 **Color Picker d'accent (liberté totale dans un cadre sûr) :**
-- [ ] En plus des presets, ajouter **un sélecteur de couleur d'accent personnalisé** (composant `<input type="color">` ou une roue HSL)
-- [ ] Le picker ne modifie que les 3 variables d'accent clés : `--brand-primary`, `--brand-glow`, et `--text-primary` — le reste du thème (fonds, typographie de base, etc.) reste intact pour préserver la lisibilité
-- [ ] Afficher un **aperçu en temps réel** dans la page Paramètres avant de valider
+- [x] En plus des presets, ajouter **un sélecteur de couleur d'accent personnalisé** (composant `<input type="color">` ou une roue HSL)
+- [x] Le picker ne modifie que les 3 variables d'accent clés : `--brand-primary`, `--brand-glow`, et `--text-primary` — le reste du thème (fonds, typographie de base, etc.) reste intact pour préserver la lisibilité
+- [x] Afficher un **aperçu en temps réel** dans la page Paramètres avant de valider
 
 **Implémentation technique :**
-- [ ] Créer un `ThemePresetContext.tsx` (ou étendre `ThemeContext`) avec les états : `activePreset` (string) et `customAccentColor` (hex)
-- [ ] Sauvegarder dans `localStorage` : clé `theme-preset` (ex: `"ember"`) + clé `theme-accent` (ex: `"#ff6b35"`)
-- [ ] Appliquer via `document.body.setAttribute('data-preset', preset)` et en injectant les CSS vars custom via `document.documentElement.style.setProperty('--brand-primary', color)`
-- [ ] Créer une **page ou section Paramètres** (si elle n'existe pas encore) dans le menu utilisateur de la Navbar
-- [ ] Dans le composant [`ThemeToggle`](../src/components/secondary/Navbar/UserMenuParts/ThemeToggle/index.tsx) de la Navbar : ajouter un lien rapide "⚙️ Personnaliser" qui redirige vers la page Paramètres
+- [x] Créer un `ThemePresetContext.tsx` (ou étendre `ThemeContext`) avec les états : `activePreset` (string) et `customAccentColor` (hex)
+- [x] Sauvegarder dans `localStorage` : clé `theme-preset` (ex: `"ember"`) + clé `theme-accent` (ex: `"#ff6b35"`)
+- [x] Appliquer via `document.body.setAttribute('data-preset', preset)` et en injectant les CSS vars custom via `document.documentElement.style.setProperty('--brand-primary', color)`
+- [x] Créer une **page ou section Paramètres** (si elle n'existe pas encore) dans le menu utilisateur de la Navbar
+- [x] Dans le composant [`ThemeToggle`](../src/components/secondary/Navbar/UserMenuParts/ThemeToggle/index.tsx) de la Navbar : ajouter un lien rapide "⚙️ Personnaliser" qui redirige vers la page Paramètres
 
 ---
 
