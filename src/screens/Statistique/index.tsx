@@ -1,11 +1,10 @@
 import './Statistique.css'
 
 import {
-  closestCenter,
   DndContext,
-  DragOverlay,
   KeyboardSensor,
   PointerSensor,
+  pointerWithin,
   useSensor,
   useSensors,
 } from '@dnd-kit/core'
@@ -110,7 +109,6 @@ function StatistiquePage() {
   const { isEditMode, toggleEditMode, getWidgetOrder, reorderWidgets } = useDashboardSettings()
 
   const [activeTab, setActiveTab] = useState<StatsTab>('overview')
-  const [activeDragId, setActiveDragId] = useState<StatsWidgetId | null>(null)
 
   useEffect(() => {
     mergeStoredUser({ viewedStats: true })
@@ -124,10 +122,9 @@ function StatistiquePage() {
 
   const widgetOrder = getWidgetOrder('stats')
 
-  const handleDragStart = (event: any) => setActiveDragId(event.active.id as StatsWidgetId)
+  const handleDragStart = () => {}
 
   const handleDragEnd = (event: any) => {
-    setActiveDragId(null)
     const { active, over } = event
     if (!over || active.id === over.id) return
 
@@ -138,7 +135,7 @@ function StatistiquePage() {
     }
   }
 
-  const handleDragCancel = () => setActiveDragId(null)
+  const handleDragCancel = () => {}
 
   const getWidgetLabel = (widgetId: StatsWidgetId): string => {
     const def = STATS_WIDGETS.find((w) => w.id === widgetId)
@@ -165,15 +162,14 @@ function StatistiquePage() {
       if (!renderFn) return
 
       elements.push(
-        <div key={widgetId}>
-          <WidgetWrapper
-            widgetId={widgetId}
-            page="stats"
-            label={getWidgetLabel(widgetId as StatsWidgetId)}
-          >
-            {renderFn(stats, metadata)}
-          </WidgetWrapper>
-        </div>
+        <WidgetWrapper
+          key={widgetId}
+          widgetId={widgetId}
+          page="stats"
+          label={getWidgetLabel(widgetId as StatsWidgetId)}
+        >
+          {renderFn(stats, metadata)}
+        </WidgetWrapper>
       )
     })
 
@@ -241,7 +237,7 @@ function StatistiquePage() {
       <div className="stats-tab-content">
         <DndContext
           sensors={sensors}
-          collisionDetection={closestCenter}
+          collisionDetection={pointerWithin}
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
           onDragCancel={handleDragCancel}
@@ -257,23 +253,6 @@ function StatistiquePage() {
               {renderWidgets()}
             </div>
           </SortableContext>
-
-          <DragOverlay zIndex={1500}>
-            {activeDragId ? (
-              <div className="drag-overlay-item">
-                <WidgetWrapper
-                  widgetId={activeDragId}
-                  page="stats"
-                  label={getWidgetLabel(activeDragId)}
-                  isOverlay
-                >
-                  <div className="opacity-80 pointer-events-none">
-                    {WIDGET_MAP[activeDragId]?.(stats, metadata)}
-                  </div>
-                </WidgetWrapper>
-              </div>
-            ) : null}
-          </DragOverlay>
         </DndContext>
       </div>
 

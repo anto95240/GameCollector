@@ -174,6 +174,26 @@ export const DashboardSettingsProvider = ({ children }: { children: ReactNode })
     []
   )
 
+  // ── Reorder Custom Metrics ──────────────────────────────────────────────
+  const reorderCustomMetrics = useCallback((fromIndex: number, toIndex: number) => {
+    setSettings((prev) => {
+      const metrics = [...(prev.custom_metrics || [])]
+      const [moved] = metrics.splice(fromIndex, 1)
+      metrics.splice(toIndex, 0, moved)
+      return { ...prev, custom_metrics: metrics }
+    })
+  }, [])
+
+  // ── Reorder Secondary Stats ─────────────────────────────────────────────
+  const reorderSecondaryStats = useCallback((fromIndex: number, toIndex: number) => {
+    setSettings((prev) => {
+      const stats = [...(prev.secondary_stats || [])]
+      const [moved] = stats.splice(fromIndex, 1)
+      stats.splice(toIndex, 0, moved)
+      return { ...prev, secondary_stats: stats }
+    })
+  }, [])
+
   // ── Toggle Custom Metric ──────────────────────────────────────────────
   const toggleCustomMetric = useCallback((metricId: CustomMetricId) => {
     setSettings((prev) => {
@@ -254,6 +274,8 @@ export const DashboardSettingsProvider = ({ children }: { children: ReactNode })
         toggleEditMode,
         toggleWidgetVisibility,
         reorderWidgets,
+        reorderCustomMetrics,
+        reorderSecondaryStats,
         toggleCustomMetric,
         toggleSecondaryStat,
         saveSettings,

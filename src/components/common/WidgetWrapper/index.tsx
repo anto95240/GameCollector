@@ -35,11 +35,15 @@ const WidgetWrapper: React.FC<WidgetWrapperProps> = ({
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: widgetId,
     disabled: !isEditMode || isOverlay,
+    transition: null,
   })
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
+  const style: React.CSSProperties = {
+    transform: CSS.Translate.toString(transform),
+    transition: null,
+    zIndex: isDragging && !isOverlay ? 100 : 1,
+    opacity: isDragging && !isOverlay ? 0.9 : 1,
+    boxShadow: isDragging && !isOverlay ? '0 8px 32px rgba(0, 0, 0, 0.4)' : undefined,
   }
 
   // En mode normal : cacher si non visible

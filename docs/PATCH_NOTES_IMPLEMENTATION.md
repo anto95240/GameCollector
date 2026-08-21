@@ -170,12 +170,12 @@ tags: les tags du jeu
 
 ### 2.1 · Statistiques Personnalisables
 > Chaque utilisateur configure son Dashboard et sa page Stats selon ses préférences.
-- [ ] Ajouter une table/colonne `user_settings` dans Supabase pour stocker les préférences de widgets
-- [ ] Créer un mode "Édition" sur le Dashboard (drag & drop ou checkboxes)
+- [x] Ajouter une table/colonne `user_settings` dans Supabase pour stocker les préférences de widgets
+- [x] Créer un mode "Édition" sur le Dashboard (drag & drop ou checkboxes)
   - Librairie suggérée : `dnd-kit` (léger et compatible React)
-- [ ] Permettre à l'utilisateur d'afficher/masquer chaque graphique
-- [ ] Permettre la création de métriques custom (ex: "Jeux terminés cette année", "Temps moyen par genre")
-- [ ] Appliquer les mêmes options sur la page Statistiques
+- [x] Permettre à l'utilisateur d'afficher/masquer chaque graphique
+- [x] Permettre la création de métriques custom (ex: "Jeux terminés cette année", "Temps moyen par genre")
+- [x] Appliquer les mêmes options sur la page Statistiques
 
 ---
 
@@ -191,7 +191,11 @@ tags: les tags du jeu
 
 ---
 
-#### 2.3  Système de personnalisation du thème
+### 2.3 · Stat personnalisé amélioré
+> possibilité de changé l'ordre des éléments dans l'édition des stats pour permettre à l'utilisateur, d'adapter les statistiques à ses envies.
+- [x] Implémentation du système de réorganisation par flèches de haut/bas pour les métriques personnalisées et secondaires.
+
+### 2.4 · Système de personnalisation du thème
 
 **Approche choisie : Thèmes prédéfinis + Personnalisation de la couleur d'accent**
 
@@ -232,14 +236,15 @@ tags: les tags du jeu
 
 ---
 
-### 2.4 · Intégration Steam DB
-> Pré-remplir automatiquement les informations d'un jeu lors de son ajout et gardé la main pour des modifications.
-- [ ] Explorer l'API Steam (publique) pour récupérer : cover, genre, date de sortie, plateforme, tags, developpeur
+### 2.5 · Intégration Steam DB
+> Pré-remplir automatiquement les informations (nom, date de sortie, genre, plateforme, developpeur, cover) d'un jeu lors de son ajout et gardé la main pour des modifications.
+- [ ] Explorer Steam API pour récupérer : cover, genre, date de sortie, plateforme, tags, developpeur
 - [ ] Ajouter un champ de recherche "Importer depuis Steam" dans `AddEditGame`
 - [ ] Mapper les données Steam vers les champs du formulaire existant
 - [ ] Améliorer l'interface utilisateur pour faciliter la recherche et la sélection des jeux
 - [ ] Possibilité d'ajouté plateforme, genre depuis la page d'ajout de jeu, sans avoir à quitter la page (comme pour les tags).
 - [ ] si un jeu n'est pas encore sortie, le mettre dans la wishlist automatiquement.
+- [ ] si on a déjà un cover, ne pas le remplacer par un autre (du moins pas par défaut, laisser le choix à l'utilisateur) et ainsi mettre les informations (développeur, date de sortie, plateforme, éditeur, genre qui doivent être récupéré) liée au jeu automatiquement.
 
 ---
 

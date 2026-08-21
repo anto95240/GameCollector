@@ -109,11 +109,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 14px;
-  background: var(--bg-card);
+  padding: 8px 12px;
+  background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
-  transition: all 0.2s ease;
+  margin-bottom: 8px;
+  transition:
+    opacity 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .custom-metric-toggle-row:hover {
@@ -136,6 +141,31 @@
   font-size: 12px;
   font-weight: 600;
   color: var(--text-primary);
+}
+
+/* ── Drag Handle ── */
+.custom-metric-drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: grab;
+  padding: 4px;
+  margin-right: 4px;
+  border-radius: 4px;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.custom-metric-drag-handle:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.custom-metric-drag-handle:active {
+  cursor: grabbing;
 }
 
 /* ── Toggle Switch ── */

@@ -1,11 +1,10 @@
 import './Dashboard.css'
 
 import {
-  closestCenter,
   DndContext,
-  DragOverlay,
   KeyboardSensor,
   PointerSensor,
+  pointerWithin,
   useSensor,
   useSensors,
 } from '@dnd-kit/core'
@@ -16,7 +15,7 @@ import {
 } from '@dnd-kit/sortable'
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import CustomMetricsPanel from '@/components/common/CustomMetricsPanel'
@@ -44,8 +43,6 @@ function HomePage() {
   const { isEditMode, toggleEditMode, getWidgetOrder, reorderWidgets } = useDashboardSettings()
   const { stats, metadata, isLoading } = useStatsData()
 
-  const [activeDragId, setActiveDragId] = useState<DashboardWidgetId | null>(null)
-
   const widgetOrder = getWidgetOrder('dashboard')
 
   // ── Drag & Drop Sensors ─────────────────────────────────────────────
@@ -54,12 +51,9 @@ function HomePage() {
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   )
 
-  const handleDragStart = (event: any) => {
-    setActiveDragId(event.active.id as DashboardWidgetId)
-  }
+  const handleDragStart = () => {}
 
   const handleDragEnd = (event: any) => {
-    setActiveDragId(null)
     const { active, over } = event
     if (!over || active.id === over.id) return
 
@@ -70,9 +64,7 @@ function HomePage() {
     }
   }
 
-  const handleDragCancel = () => {
-    setActiveDragId(null)
-  }
+  const handleDragCancel = () => {}
 
   // ── Résoudre le label d'un widget ─────────────────────────────────────
   const getWidgetLabel = (widgetId: DashboardWidgetId): string => {
@@ -145,7 +137,7 @@ function HomePage() {
 
       <DndContext
         sensors={sensors}
-        collisionDetection={closestCenter}
+        collisionDetection={pointerWithin}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         onDragCancel={handleDragCancel}
@@ -156,23 +148,6 @@ function HomePage() {
 
           {otherWidgets}
         </SortableContext>
-
-        <DragOverlay zIndex={1500}>
-          {activeDragId ? (
-            <div className="drag-overlay-item">
-              <WidgetWrapper
-                widgetId={activeDragId}
-                page="dashboard"
-                label={getWidgetLabel(activeDragId)}
-                isOverlay
-              >
-                <div className="mb-6 opacity-80 pointer-events-none">
-                  {WIDGET_MAP[activeDragId]?.(stats, metadata)}
-                </div>
-              </WidgetWrapper>
-            </div>
-          ) : null}
-        </DragOverlay>
       </DndContext>
 
       {/* Toolbar flottante en mode édition */}
