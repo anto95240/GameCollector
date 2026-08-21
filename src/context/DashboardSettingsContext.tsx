@@ -237,6 +237,18 @@ export const DashboardSettingsProvider = ({ children }: { children: ReactNode })
         secondary_stats: settings.secondary_stats,
       })
       settingsBeforeEdit.current = null
+
+      try {
+        import('@/utils/userStorage').then(({ incrementStoredUserMetric, mergeStoredUser }) => {
+          incrementStoredUserMetric('dashboardCustomizations')
+          mergeStoredUser({
+            customStatsCount: settings.custom_metrics.filter((m) => m.enabled).length,
+          })
+          window.dispatchEvent(new CustomEvent('checkAchievements'))
+        })
+      } catch (err) {
+        console.error('[Dashboard] Error updating metrics', err)
+      }
     } catch (err) {
       console.error('Erreur sauvegarde settings:', err)
       // Even on error, we exit edit mode so the user isn't stuck

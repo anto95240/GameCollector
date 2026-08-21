@@ -180,7 +180,7 @@ tags: les tags du jeu
 ---
 
 ### 2.2 · Nouveaux Trophées
-> Ajouter des trophées pour les nouvelles interactions et fonctionnalités.
+> Ajouter des trophées pour les nouvelles interactions et fonctionnalités et pertinants.
 - [ ] Trophée pour l'utilisation des raccourcis clavier (ex: 10, 50, 100 utilisations)
 - [ ] Trophée pour la personnalisation des statistiques
 - [ ] Trophée pour la personnalisation du thème
@@ -188,6 +188,7 @@ tags: les tags du jeu
 - [ ] Trophée pour la sauvegarde de filtres
 - [ ] Trophée pour la personnalisation du dashboard
 - [ ] Revoir et compléter le catalogue existant de trophées
+- etc... 
 
 ---
 

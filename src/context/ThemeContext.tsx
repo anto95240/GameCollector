@@ -22,7 +22,19 @@ export const ThemeProvider = ({ children }: any) => {
     localStorage.setItem('dark', JSON.stringify(isDark))
   }, [isDark])
 
-  const toggleTheme = () => setIsDark((prev: boolean) => !prev)
+  const toggleTheme = () => {
+    setIsDark((prev: boolean) => !prev)
+    try {
+      import('@/utils/userStorage').then(({ incrementStoredUserMetric }) => {
+        const customizations = incrementStoredUserMetric('themeCustomizations')
+        if (customizations === 1) {
+          window.dispatchEvent(new CustomEvent('checkAchievements'))
+        }
+      })
+    } catch (err) {
+      console.error('[Theme] Error incrementing metric', err)
+    }
+  }
 
   return <ThemeContext.Provider value={{ isDark, toggleTheme }}>{children}</ThemeContext.Provider>
 }
