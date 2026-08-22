@@ -265,20 +265,21 @@ tags: les tags du jeu
 ### 3.1 · Système d'Emails (SMTP)
 > Emails transactionnels pour la gestion de compte et la communauté.
 - [ ] Configurer **Nodemailer** avec **Gmail** (Production) et **Mailtrap** (Développement), comme sur ToyVerse (gratuit et efficace)
+- [ ] n'avoir aucun problème quand on crée des compte de test, pour l'envoie de mail de confirmation.
 - [ ] Réinitialisation de mot de passe par email
 - [ ] Changement d'adresse email avec confirmation
 - [ ] Formulaire de signalement de bug / suggestion (envoi par email).
 
 ---
 
-## 💡 Banque d'idées futures
+## 💡 Banque d'idées futures/roadmap futur
 
 *Ces idées ne sont pas encore planifiées, mais méritent d'être gardées en tête.*
 
 | Idée | Description courte |
 |---|---|
-| 🎮 **Mode Défi Hebdomadaire** | Un défi communautaire ou personnel qui reset chaque semaine (ex: "Terminer 1 jeu cette semaine") |
 | 📤 **Export de collection** | Exporter sa collection en CSV, JSON ou PDF stylisé (carte de visite du collectionneur) |
 | 🔔 **Notifications in-app** | Centre de notifications pour les trophées débloqués, sorties de jeux wishlistés, mises à jour |
 | 📅 **Calendrier de sorties** | Intégrer un calendrier des prochaines sorties liées aux jeux de la Wishlist |
 | 🔍 **Recommandations** | Suggérer des jeux à ajouter basés sur les genres et plateformes déjà présents dans la collection |
+| **GamePad** | utilisation de la manette pour naviguer et interagir avec l'application 

@@ -7,6 +7,26 @@
   ],
   "rewrites": [
     {
+      "source": "/api/steam-image-shared/(.*)",
+      "destination": "https://shared.akamai.steamstatic.com/$1"
+    },
+    {
+      "source": "/api/steam-image-cdn/(.*)",
+      "destination": "https://cdn.akamai.steamstatic.com/$1"
+    },
+    {
+      "source": "/api/steam-image-store/(.*)",
+      "destination": "https://store.akamai.steamstatic.com/$1"
+    },
+    {
+      "source": "/api/steamspy/(.*)",
+      "destination": "https://steamspy.com/$1"
+    },
+    {
+      "source": "/api/steam/(.*)",
+      "destination": "https://store.steampowered.com/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

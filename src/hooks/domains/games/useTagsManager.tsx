@@ -44,14 +44,14 @@ export const useTagsManager = (initialTags: any[] = []) => {
   }
 
   const addTag = async (tagVal: any) => {
-    if (!tagVal) return
+    if (!tagVal) return null
     let tagToAdd: any = null
 
     if (typeof tagVal === 'object') {
       tagToAdd = availableTags.find((t: any) => t._id === tagVal._id)
     } else {
       const trimmed = tagVal.trim()
-      if (!trimmed) return
+      if (!trimmed) return null
       tagToAdd = availableTags.find((t: any) => t.tag_name?.toLowerCase() === trimmed.toLowerCase())
 
       if (!tagToAdd) {
@@ -65,7 +65,7 @@ export const useTagsManager = (initialTags: any[] = []) => {
           setAvailableTags((prev: any) => [...prev, tagToAdd])
         } catch (error: any) {
           console.error('Erreur création tag', error)
-          return
+          return null
         }
       }
     }
@@ -75,6 +75,7 @@ export const useTagsManager = (initialTags: any[] = []) => {
       setSelectedTags((prev: any) => [...prev, actualTagId])
       setTagInput('')
     }
+    return actualTagId
   }
 
   const removeTag = (tagIdToRemove: any) => {

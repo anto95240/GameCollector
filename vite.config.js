@@ -56,6 +56,35 @@ export default defineConfig(({ mode }) => ({
       }),
     mode === 'analyze' && analyzer({ analyzerMode: 'static' }),
   ].filter(Boolean),
+  server: {
+    proxy: {
+      '/api/steam-image-shared': {
+        target: 'https://shared.akamai.steamstatic.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/steam-image-shared/, ''),
+      },
+      '/api/steam-image-cdn': {
+        target: 'https://cdn.akamai.steamstatic.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/steam-image-cdn/, ''),
+      },
+      '/api/steam-image-store': {
+        target: 'https://store.akamai.steamstatic.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/steam-image-store/, ''),
+      },
+      '/api/steamspy': {
+        target: 'https://steamspy.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/steamspy/, ''),
+      },
+      '/api/steam': {
+        target: 'https://store.steampowered.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/steam/, ''),
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
