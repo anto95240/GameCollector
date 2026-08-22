@@ -70,7 +70,6 @@ const Settings = () => {
                   <span className="preset-name">
                     {preset.label || key.replace('-', ' ').toUpperCase()}
                   </span>
-                  <span className="preset-mode">{preset.isDark ? 'Dark Mode' : 'Light Mode'}</span>
                 </button>
               ))}
           </div>
@@ -104,7 +103,6 @@ const Settings = () => {
                   <span className="preset-name">
                     {preset.label || key.replace('-', ' ').toUpperCase()}
                   </span>
-                  <span className="preset-mode">{preset.isDark ? 'Dark Mode' : 'Light Mode'}</span>
                 </button>
               ))}
           </div>

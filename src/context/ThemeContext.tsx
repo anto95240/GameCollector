@@ -11,12 +11,13 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | null>(null)
 
 export const PRESETS: Record<string, { isDark: boolean; defaultColor: string; label?: string }> = {
-  'neon-night': { isDark: true, defaultColor: '#5af2ff' },
-  ember: { isDark: true, defaultColor: '#ff6b35' },
-  void: { isDark: true, defaultColor: '#a855f7' },
-  matrix: { isDark: true, defaultColor: '#4ade80' },
-  arctic: { isDark: false, defaultColor: '#2c8fff' },
-  sakura: { isDark: false, defaultColor: '#ec4899' },
+  'neon-night': { isDark: true, defaultColor: '#5af2ff', label: 'Neon Night' },
+  arctic: { isDark: false, defaultColor: '#2c8fff', label: 'Arctic Day' },
+  cyberpunk: { isDark: true, defaultColor: '#fde047', label: 'Cyberpunk' },
+  dracula: { isDark: true, defaultColor: '#ef4444', label: 'Dracula' },
+  abyss: { isDark: true, defaultColor: '#06b6d4', label: 'Abyss' },
+  dune: { isDark: false, defaultColor: '#f97316', label: 'Dune' },
+  amethyst: { isDark: true, defaultColor: '#8b5cf6', label: 'Amethyst' },
   halloween: { isDark: true, defaultColor: '#f97316', label: 'Halloween' },
   christmas: { isDark: true, defaultColor: '#ef4444', label: 'Noël' },
   spring: { isDark: false, defaultColor: '#84cc16', label: 'Printemps' },

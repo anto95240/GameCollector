@@ -203,16 +203,28 @@ tags: les tags du jeu
 >
 > La solution : **des thèmes prédéfinis soignés** (garantissant l'ADN du site) + **un color picker uniquement sur la couleur d'accent principale** (néon, bordures, boutons), ce qui donne une impression de liberté totale sans risquer de briser le design.
 
-**Thèmes prédéfinis à créer (Dark & Light, chacun avec son identité) :**
+**Thèmes prédéfinis à créer :**
 
+*(Note : Pas de déclinaison Dark/Light obligatoire pour chaque thème. Chaque thème possède sa propre identité visuelle unique).*
+
+### Thèmes Classiques
 | Nom | Ambiance | Couleur d'accent principale |
 |---|---|---|
-| 🌌 **Neon Night** *(défaut actuel)* | Sombre, Bleu Nuit, Néon Cyan | `#5af2ff` |
-| 🔥 **Ember** | Sombre, Fond Anthracite, Accent Orange-Rouge | `#ff6b35` |
-| 💜 **Void** | Sombre, Fond Prune, Accent Violet | `#a855f7` |
-| 🌿 **Matrix** | Sombre, Fond Noir, Accent Vert Terminal | `#4ade80` |
-| ☀️ **Arctic** *(Light Mode)* | Clair, Blanc Glacé, Accent Bleu Ciel | `#2c8fff` |
-| 🌸 **Sakura** *(Light Mode)* | Clair, Fond Crème, Accent Rose | `#ec4899` |
+| 🌌 **Neon Night** *(Défaut)* | Sombre, Bleu Nuit, Néon Cyan | `#5af2ff` |
+| ☀️ **Arctic Day** *(Light)* | Clair, Blanc Glacé, Accent Bleu Ciel | `#2c8fff` |
+| 🐉 **Cyberpunk** | Sombre, Noir Profond, Accent Jaune Néon | `#fde047` |
+| 🧛 **Dracula** | Sombre, Gris Anthracite, Accent Rouge Sang | `#ef4444` |
+| 🌊 **Abyss** | Sombre, Bleu Océan, Accent Aqua | `#06b6d4` |
+| 🏜️ **Dune** | Clair, Fond Sable, Accent Orange Brûlé | `#f97316` |
+| 🔮 **Amethyst** | Sombre, Violet Profond, Accent Violet Brillant | `#8b5cf6` |
+
+### Thèmes Saisonniers
+| Nom | Ambiance | Couleur d'accent principale |
+|---|---|---|
+| 🎃 **Spooky (Halloween)** | Sombre, Noir, Accent Citrouille | `#f97316` |
+| 🎄 **Festive (Noël)** | Sombre, Vert Sapin, Accent Or | `#eab308` |
+| ❄️ **Frostbite (Hiver)** | Sombre, Bleu Glacial, Accent Blanc Neige | `#ffffff` |
+
 
 **Ce que chaque thème surcharge dans `index.css` :**
 - `--brand-primary` — couleur principale des boutons et bordures fortes
