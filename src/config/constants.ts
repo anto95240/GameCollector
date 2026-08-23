@@ -6,7 +6,7 @@ export const PROFILE_SECTIONS = [
   { id: 'account-delete-section', label: 'profile.links.dangerZone' },
 ]
 
-export const APP_VERSION = '3.1.1'
+export const APP_VERSION = import.meta.env.VITE_APP_VERSION || '3.4.0'
 
 // Options statiques utilisées dans les formulaires (ex: AddEditGame)
 export const MOCK_OPTIONS = {
