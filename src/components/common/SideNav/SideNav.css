@@ -63,7 +63,8 @@
 }
 
 .mobile-nav-content {
-  background: var(--color-text-btn);
+  background: var(--bg-panel);
+  border: 1px solid var(--color-border);
   padding: 30px;
   border-radius: 20px;
   width: 80%;
@@ -84,7 +85,7 @@
 
 .mobile-nav-item {
   background: transparent;
-  border: none;
+  border: 1px solid transparent;
   color: var(--color-text);
   font-size: 16px;
   padding: 12px;
@@ -93,12 +94,15 @@
   align-items: center;
   gap: 15px;
   border-radius: 10px;
+  transition: all 0.2s ease-out;
 }
 
 .mobile-nav-item.active {
-  background: var(--color-custom-select);
-  color: var(--color-text-alt);
+  background: transparent;
+  color: var(--color-text);
   font-weight: bold;
+  border: 1px solid var(--brand-primary);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
 }
 
 .floating-menu-btn {

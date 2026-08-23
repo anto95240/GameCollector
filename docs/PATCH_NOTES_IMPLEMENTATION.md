@@ -250,13 +250,13 @@ tags: les tags du jeu
 
 ### 2.5 · Intégration Steam DB
 > Pré-remplir automatiquement les informations (nom, date de sortie, genre, plateforme, developpeur, cover) d'un jeu lors de son ajout et gardé la main pour des modifications.
-- [ ] Explorer Steam API pour récupérer : cover, genre, date de sortie, plateforme, tags, developpeur
-- [ ] Ajouter un champ de recherche "Importer depuis Steam" dans `AddEditGame`
-- [ ] Mapper les données Steam vers les champs du formulaire existant
-- [ ] Améliorer l'interface utilisateur pour faciliter la recherche et la sélection des jeux
-- [ ] Possibilité d'ajouté plateforme, genre depuis la page d'ajout de jeu, sans avoir à quitter la page (comme pour les tags).
-- [ ] si un jeu n'est pas encore sortie, le mettre dans la wishlist automatiquement.
-- [ ] si on a déjà un cover, ne pas le remplacer par un autre (du moins pas par défaut, laisser le choix à l'utilisateur) et ainsi mettre les informations (développeur, date de sortie, plateforme, éditeur, genre qui doivent être récupéré) liée au jeu automatiquement.
+- [x] Explorer Steam API pour récupérer : cover, genre, date de sortie, plateforme, tags, developpeur
+- [x] Ajouter un champ de recherche "Importer depuis Steam" dans `AddEditGame`
+- [x] Mapper les données Steam vers les champs du formulaire existant
+- [x] Améliorer l'interface utilisateur pour faciliter la recherche et la sélection des jeux
+- [x] Possibilité d'ajouté plateforme, genre depuis la page d'ajout de jeu, sans avoir à quitter la page (comme pour les tags).
+- [x] si un jeu n'est pas encore sortie, le mettre dans la wishlist automatiquement.
+- [x] si on a déjà un cover, ne pas le remplacer par un autre (du moins pas par défaut, laisser le choix à l'utilisateur) et ainsi mettre les informations (développeur, date de sortie, plateforme, éditeur, genre qui doivent être récupéré) liée au jeu automatiquement.
 
 ---
 
@@ -264,11 +264,18 @@ tags: les tags du jeu
 
 ### 3.1 · Système d'Emails (SMTP)
 > Emails transactionnels pour la gestion de compte et la communauté.
-- [ ] Configurer **Nodemailer** avec **Gmail** (Production) et **Mailtrap** (Développement), comme sur ToyVerse (gratuit et efficace)
-- [ ] n'avoir aucun problème quand on crée des compte de test, pour l'envoie de mail de confirmation.
-- [ ] Réinitialisation de mot de passe par email
-- [ ] Changement d'adresse email avec confirmation
-- [ ] Formulaire de signalement de bug / suggestion (envoi par email).
+- [x] Configurer **Nodemailer** avec **Gmail** (Production) et **Mailtrap** (Développement), comme sur ToyVerse (gratuit et efficace)
+- [x] n'avoir aucun problème quand on crée des compte de test, pour l'envoie de mail de confirmation.
+- [x] Réinitialisation de mot de passe par email
+- [x] Changement d'adresse email avec confirmation
+- [x] Formulaire de signalement de bug / suggestion (envoi par email).
+
+---
+
+### 3.2 · Amélioration des thèmes
+- [ ] Améliore les couleurs des thèmes.
+- [ ] amélioré les animations des thèmes notamment ceux du thèms "Ete" et "Hiver".
+- [ ] amélioré les polices pour une meilleures immersion.
 
 ---
 
