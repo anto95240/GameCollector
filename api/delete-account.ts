@@ -29,7 +29,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       },
     })
 
-    const { data, error } = await supabaseAdmin.auth.admin.deleteUser(userId)
+    const { error } = await supabaseAdmin.auth.admin.deleteUser(userId)
 
     if (error) {
       throw error

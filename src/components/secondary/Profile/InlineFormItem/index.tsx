@@ -1,30 +1,34 @@
 import './InlineFormItem.css'
-import { useState } from 'react'
+
+import { faChevronDown, faChevronUp, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye, faEyeSlash, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react'
 
 const InlineFormItem = ({
   label,
-  value,
+  value: _value,
   placeholder,
   showForm,
   inputType = 'text',
   toggleForm,
   formValue,
   onFormChange,
-  buttonLabel,
+  buttonLabel: _buttonLabel,
   hideInput = false,
-  children
+  children,
 }: any) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const actualType = inputType === 'password' && showPassword ? 'text' : inputType;
+  const [showPassword, setShowPassword] = useState(false)
+  const actualType = inputType === 'password' && showPassword ? 'text' : inputType
 
   return (
     <>
       <div className="account-info-item" onClick={toggleForm} style={{ cursor: 'pointer' }}>
         <div className="account-info-header">
           <p className="label">{label}</p>
-          <FontAwesomeIcon icon={showForm ? faChevronUp : faChevronDown} className="accordion-icon" />
+          <FontAwesomeIcon
+            icon={showForm ? faChevronUp : faChevronDown}
+            className="accordion-icon"
+          />
         </div>
       </div>
 
@@ -54,7 +58,7 @@ const InlineFormItem = ({
                     border: 'none',
                     color: 'var(--color-text-muted)',
                     cursor: 'pointer',
-                    padding: '5px'
+                    padding: '5px',
                   }}
                 >
                   <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
@@ -66,7 +70,7 @@ const InlineFormItem = ({
         </div>
       </div>
     </>
-  );
+  )
 }
 
 export default InlineFormItem

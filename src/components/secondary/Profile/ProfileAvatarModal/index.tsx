@@ -1,13 +1,23 @@
 import './ProfileAvatarModal.css'
 
+import { faCloudUploadAlt, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCloudUploadAlt, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import ActionButtons from '@/components/secondary/Profile/ActionButtons'
 
-const ProfileAvatarModal = ({ isOpen, onClose, form, setForm, onSave, isSaving, t, getInitials, isDefaultImage }: any) => {
+const ProfileAvatarModal = ({
+  isOpen,
+  onClose,
+  form,
+  setForm,
+  onSave,
+  isSaving,
+  t,
+  getInitials,
+  isDefaultImage,
+}: any) => {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [dragActive, setDragActive] = useState(false)
 
@@ -56,7 +66,7 @@ const ProfileAvatarModal = ({ isOpen, onClose, form, setForm, onSave, isSaving, 
             )}
           </div>
 
-          <div 
+          <div
             className={`avatar-drop-zone ${dragActive ? 'drag-active' : ''}`}
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
@@ -83,12 +93,7 @@ const ProfileAvatarModal = ({ isOpen, onClose, form, setForm, onSave, isSaving, 
         />
 
         <div className="avatar-modal-actions">
-          <ActionButtons 
-            onCancel={onClose} 
-            onSave={onSave} 
-            isSaving={isSaving} 
-            t={t} 
-          />
+          <ActionButtons onCancel={onClose} onSave={onSave} isSaving={isSaving} t={t} />
         </div>
       </div>
     </div>,

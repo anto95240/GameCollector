@@ -1,12 +1,10 @@
 import './BugReportSection.css'
 
 import { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBug, faLightbulb, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
-import ProfileCard from '@/components/secondary/Profile/ProfileCard'
 import LoadingButton from '@/components/common/LoadingButton'
 import InlineFormItem from '@/components/secondary/Profile/InlineFormItem'
+import ProfileCard from '@/components/secondary/Profile/ProfileCard'
 
 const BugReportSection = ({ user, t }: any) => {
   const [type, setType] = useState<'bug' | 'suggestion' | ''>('')

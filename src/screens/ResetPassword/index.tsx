@@ -1,10 +1,10 @@
 import './ResetPassword.css'
 
-import { faExclamationCircle, faLock, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faExclamationCircle, faLock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link, useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
 
 import AuthInput from '@/components/common/AuthInput'
 import LoadingButton from '@/components/common/LoadingButton'
@@ -21,8 +21,8 @@ const ResetPassword = () => {
 
   // Supabase parse le fragment de l'URL contenant l'access_token si on arrive d'un email
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      if (event == 'PASSWORD_RECOVERY') {
+    supabase.auth.onAuthStateChange((event, _session) => {
+      if (event === 'PASSWORD_RECOVERY') {
         // L'utilisateur est prêt à réinitialiser son mot de passe
       }
     })

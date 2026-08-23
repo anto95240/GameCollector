@@ -1,6 +1,6 @@
 import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   ExternalGameSearchResult,
@@ -13,7 +13,7 @@ interface ExternalSearchSectionProps {
   onGameSelected: (gameDetails: any) => void
 }
 
-export const ExternalSearchSection = ({ t, onGameSelected }: ExternalSearchSectionProps) => {
+export const ExternalSearchSection = ({ t: _t, onGameSelected }: ExternalSearchSectionProps) => {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<ExternalGameSearchResult[]>([])
   const [isSearching, setIsSearching] = useState(false)

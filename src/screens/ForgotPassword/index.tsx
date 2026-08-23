@@ -1,6 +1,6 @@
 import './ForgotPassword.css'
 
-import { faExclamationCircle, faUser, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faExclamationCircle, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'

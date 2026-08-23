@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import nodemailer from 'nodemailer'
 import { config } from 'dotenv'
+import nodemailer from 'nodemailer'
 
 // Charge explicitement le .env.local pour Vercel Dev
 config({ path: '.env.local' })

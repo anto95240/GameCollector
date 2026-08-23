@@ -1,11 +1,12 @@
-import { useState } from 'react'
 import './Profile.css'
 
+import { useState } from 'react'
+
 import SideNav from '@/components/common/SideNav'
+import BugReportSection from '@/components/main/ProfilePage/BugReportSection'
 import ConnexionSection from '@/components/main/ProfilePage/ConnexionSection'
 import DeleteAccountSection from '@/components/main/ProfilePage/DeleteAccountSection'
 import ProfilSection from '@/components/main/ProfilePage/ProfilSection'
-import BugReportSection from '@/components/main/ProfilePage/BugReportSection'
 import { PROFILE_SECTIONS } from '@/config/constants'
 import { useProfile } from '@/hooks/domains/auth/useProfile'
 import { useEscapeKeyCloser } from '@/hooks/ui/useEscapeKeyCloser'
@@ -45,7 +46,9 @@ const ProfilePage = () => {
         activeSection={activeTab}
         scrollToSection={handleTabChange}
         showMobileMenu={uiState.showMobileMenu}
-        setShowMobileMenu={(val: any) => setUiState((prev: any) => ({ ...prev, showMobileMenu: val }))}
+        setShowMobileMenu={(val: any) =>
+          setUiState((prev: any) => ({ ...prev, showMobileMenu: val }))
+        }
         t={t}
       />
 
@@ -65,7 +68,7 @@ const ProfilePage = () => {
             />
           </div>
         )}
-        
+
         {activeTab === 'login-section' && (
           <div className="profile-section-item fade-in-tab">
             <ConnexionSection

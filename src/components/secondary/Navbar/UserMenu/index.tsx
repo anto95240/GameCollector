@@ -8,7 +8,7 @@ import ThemeToggle from '@/components/secondary/Navbar/UserMenuParts/ThemeToggle
 import UserLinks from '@/components/secondary/Navbar/UserMenuParts/UserLinks'
 
 const UserMenu = ({ user, t, state, setters, actions, onClose }: any) => {
-  const { isDark, language, langMenuOpen } = state
+  const { language, langMenuOpen } = state
   const { setLangMenuOpen } = setters
   const { changeLanguage } = actions
   const displayName = user?.username || 'Pilote'
