@@ -18,10 +18,12 @@
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 1px;
+  color: var(--color-text-btn, white);
 }
 
 .btn-primary {
   background: var(--gradient-blue);
+  color: var(--color-text-btn, white);
 }
 
 .btn-secondary {

@@ -170,28 +170,32 @@ tags: les tags du jeu
 
 ### 2.1 · Statistiques Personnalisables
 > Chaque utilisateur configure son Dashboard et sa page Stats selon ses préférences.
-- [ ] Ajouter une table/colonne `user_settings` dans Supabase pour stocker les préférences de widgets
-- [ ] Créer un mode "Édition" sur le Dashboard (drag & drop ou checkboxes)
+- [x] Ajouter une table/colonne `user_settings` dans Supabase pour stocker les préférences de widgets
+- [x] Créer un mode "Édition" sur le Dashboard (drag & drop ou checkboxes)
   - Librairie suggérée : `dnd-kit` (léger et compatible React)
-- [ ] Permettre à l'utilisateur d'afficher/masquer chaque graphique
-- [ ] Permettre la création de métriques custom (ex: "Jeux terminés cette année", "Temps moyen par genre")
-- [ ] Appliquer les mêmes options sur la page Statistiques
+- [x] Permettre à l'utilisateur d'afficher/masquer chaque graphique
+- [x] Permettre la création de métriques custom (ex: "Jeux terminés cette année", "Temps moyen par genre")
+- [x] Appliquer les mêmes options sur la page Statistiques
 
 ---
 
 ### 2.2 · Nouveaux Trophées
-> Ajouter des trophées pour les nouvelles interactions et fonctionnalités.
-- [ ] Trophée pour l'utilisation des raccourcis clavier (ex: 10, 50, 100 utilisations)
-- [ ] Trophée pour la personnalisation des statistiques
-- [ ] Trophée pour la personnalisation du thème
-- [ ] Trophée pour le nombre de jeux dans la Wishlist
-- [ ] Trophée pour la sauvegarde de filtres
-- [ ] Trophée pour la personnalisation du dashboard
-- [ ] Revoir et compléter le catalogue existant de trophées
+> Ajouter des trophées pour les nouvelles interactions et fonctionnalités et pertinants.
+- [x] Trophée pour l'utilisation des raccourcis clavier (ex: 10, 50, 100 utilisations)
+- [x] Trophée pour la personnalisation des statistiques
+- [x] Trophée pour la personnalisation du thème
+- [x] Trophée pour le nombre de jeux dans la Wishlist
+- [x] Trophée pour la sauvegarde de filtres
+- [x] Trophée pour la personnalisation du dashboard
+- [x] Revoir et compléter le catalogue existant de trophées
 
 ---
 
-#### 2.3  Système de personnalisation du thème
+### 2.3 · Stat personnalisé amélioré
+> possibilité de changé l'ordre des éléments dans l'édition des stats pour permettre à l'utilisateur, d'adapter les statistiques à ses envies.
+- [x] Implémentation du système de réorganisation par flèches de haut/bas pour les métriques personnalisées et secondaires.
+
+### 2.4 · Système de personnalisation du thème
 
 **Approche choisie : Thèmes prédéfinis + Personnalisation de la couleur d'accent**
 
@@ -199,16 +203,28 @@ tags: les tags du jeu
 >
 > La solution : **des thèmes prédéfinis soignés** (garantissant l'ADN du site) + **un color picker uniquement sur la couleur d'accent principale** (néon, bordures, boutons), ce qui donne une impression de liberté totale sans risquer de briser le design.
 
-**Thèmes prédéfinis à créer (Dark & Light, chacun avec son identité) :**
+**Thèmes prédéfinis à créer :**
 
+*(Note : Pas de déclinaison Dark/Light obligatoire pour chaque thème. Chaque thème possède sa propre identité visuelle unique).*
+
+### Thèmes Classiques
 | Nom | Ambiance | Couleur d'accent principale |
 |---|---|---|
-| 🌌 **Neon Night** *(défaut actuel)* | Sombre, Bleu Nuit, Néon Cyan | `#5af2ff` |
-| 🔥 **Ember** | Sombre, Fond Anthracite, Accent Orange-Rouge | `#ff6b35` |
-| 💜 **Void** | Sombre, Fond Prune, Accent Violet | `#a855f7` |
-| 🌿 **Matrix** | Sombre, Fond Noir, Accent Vert Terminal | `#4ade80` |
-| ☀️ **Arctic** *(Light Mode)* | Clair, Blanc Glacé, Accent Bleu Ciel | `#2c8fff` |
-| 🌸 **Sakura** *(Light Mode)* | Clair, Fond Crème, Accent Rose | `#ec4899` |
+| 🌌 **Neon Night** *(Défaut)* | Sombre, Bleu Nuit, Néon Cyan | `#5af2ff` |
+| ☀️ **Arctic Day** *(Light)* | Clair, Blanc Glacé, Accent Bleu Ciel | `#2c8fff` |
+| 🐉 **Cyberpunk** | Sombre, Noir Profond, Accent Jaune Néon | `#fde047` |
+| 🧛 **Dracula** | Sombre, Gris Anthracite, Accent Rouge Sang | `#ef4444` |
+| 🌊 **Abyss** | Sombre, Bleu Océan, Accent Aqua | `#06b6d4` |
+| 🏜️ **Dune** | Clair, Fond Sable, Accent Orange Brûlé | `#f97316` |
+| 🔮 **Amethyst** | Sombre, Violet Profond, Accent Violet Brillant | `#8b5cf6` |
+
+### Thèmes Saisonniers
+| Nom | Ambiance | Couleur d'accent principale |
+|---|---|---|
+| 🎃 **Spooky (Halloween)** | Sombre, Noir, Accent Citrouille | `#f97316` |
+| 🎄 **Festive (Noël)** | Sombre, Vert Sapin, Accent Or | `#eab308` |
+| ❄️ **Frostbite (Hiver)** | Sombre, Bleu Glacial, Accent Blanc Neige | `#ffffff` |
+
 
 **Ce que chaque thème surcharge dans `index.css` :**
 - `--brand-primary` — couleur principale des boutons et bordures fortes
@@ -219,27 +235,28 @@ tags: les tags du jeu
 - `--bg-app` & `--bg-card` — fonds de page et de carte
 
 **Color Picker d'accent (liberté totale dans un cadre sûr) :**
-- [ ] En plus des presets, ajouter **un sélecteur de couleur d'accent personnalisé** (composant `<input type="color">` ou une roue HSL)
-- [ ] Le picker ne modifie que les 3 variables d'accent clés : `--brand-primary`, `--brand-glow`, et `--text-primary` — le reste du thème (fonds, typographie de base, etc.) reste intact pour préserver la lisibilité
-- [ ] Afficher un **aperçu en temps réel** dans la page Paramètres avant de valider
+- [x] En plus des presets, ajouter **un sélecteur de couleur d'accent personnalisé** (composant `<input type="color">` ou une roue HSL)
+- [x] Le picker ne modifie que les 3 variables d'accent clés : `--brand-primary`, `--brand-glow`, et `--text-primary` — le reste du thème (fonds, typographie de base, etc.) reste intact pour préserver la lisibilité
+- [x] Afficher un **aperçu en temps réel** dans la page Paramètres avant de valider
 
 **Implémentation technique :**
-- [ ] Créer un `ThemePresetContext.tsx` (ou étendre `ThemeContext`) avec les états : `activePreset` (string) et `customAccentColor` (hex)
-- [ ] Sauvegarder dans `localStorage` : clé `theme-preset` (ex: `"ember"`) + clé `theme-accent` (ex: `"#ff6b35"`)
-- [ ] Appliquer via `document.body.setAttribute('data-preset', preset)` et en injectant les CSS vars custom via `document.documentElement.style.setProperty('--brand-primary', color)`
-- [ ] Créer une **page ou section Paramètres** (si elle n'existe pas encore) dans le menu utilisateur de la Navbar
-- [ ] Dans le composant [`ThemeToggle`](../src/components/secondary/Navbar/UserMenuParts/ThemeToggle/index.tsx) de la Navbar : ajouter un lien rapide "⚙️ Personnaliser" qui redirige vers la page Paramètres
+- [x] Créer un `ThemePresetContext.tsx` (ou étendre `ThemeContext`) avec les états : `activePreset` (string) et `customAccentColor` (hex)
+- [x] Sauvegarder dans `localStorage` : clé `theme-preset` (ex: `"ember"`) + clé `theme-accent` (ex: `"#ff6b35"`)
+- [x] Appliquer via `document.body.setAttribute('data-preset', preset)` et en injectant les CSS vars custom via `document.documentElement.style.setProperty('--brand-primary', color)`
+- [x] Créer une **page ou section Paramètres** (si elle n'existe pas encore) dans le menu utilisateur de la Navbar
+- [x] Dans le composant [`ThemeToggle`](../src/components/secondary/Navbar/UserMenuParts/ThemeToggle/index.tsx) de la Navbar : ajouter un lien rapide "⚙️ Personnaliser" qui redirige vers la page Paramètres
 
 ---
 
-### 2.4 · Intégration Steam DB
-> Pré-remplir automatiquement les informations d'un jeu lors de son ajout et gardé la main pour des modifications.
-- [ ] Explorer l'API Steam (publique) pour récupérer : cover, genre, date de sortie, plateforme, tags, developpeur
+### 2.5 · Intégration Steam DB
+> Pré-remplir automatiquement les informations (nom, date de sortie, genre, plateforme, developpeur, cover) d'un jeu lors de son ajout et gardé la main pour des modifications.
+- [ ] Explorer Steam API pour récupérer : cover, genre, date de sortie, plateforme, tags, developpeur
 - [ ] Ajouter un champ de recherche "Importer depuis Steam" dans `AddEditGame`
 - [ ] Mapper les données Steam vers les champs du formulaire existant
 - [ ] Améliorer l'interface utilisateur pour faciliter la recherche et la sélection des jeux
 - [ ] Possibilité d'ajouté plateforme, genre depuis la page d'ajout de jeu, sans avoir à quitter la page (comme pour les tags).
 - [ ] si un jeu n'est pas encore sortie, le mettre dans la wishlist automatiquement.
+- [ ] si on a déjà un cover, ne pas le remplacer par un autre (du moins pas par défaut, laisser le choix à l'utilisateur) et ainsi mettre les informations (développeur, date de sortie, plateforme, éditeur, genre qui doivent être récupéré) liée au jeu automatiquement.
 
 ---
 
@@ -248,20 +265,21 @@ tags: les tags du jeu
 ### 3.1 · Système d'Emails (SMTP)
 > Emails transactionnels pour la gestion de compte et la communauté.
 - [ ] Configurer **Nodemailer** avec **Gmail** (Production) et **Mailtrap** (Développement), comme sur ToyVerse (gratuit et efficace)
+- [ ] n'avoir aucun problème quand on crée des compte de test, pour l'envoie de mail de confirmation.
 - [ ] Réinitialisation de mot de passe par email
 - [ ] Changement d'adresse email avec confirmation
 - [ ] Formulaire de signalement de bug / suggestion (envoi par email).
 
 ---
 
-## 💡 Banque d'idées futures
+## 💡 Banque d'idées futures/roadmap futur
 
 *Ces idées ne sont pas encore planifiées, mais méritent d'être gardées en tête.*
 
 | Idée | Description courte |
 |---|---|
-| 🎮 **Mode Défi Hebdomadaire** | Un défi communautaire ou personnel qui reset chaque semaine (ex: "Terminer 1 jeu cette semaine") |
 | 📤 **Export de collection** | Exporter sa collection en CSV, JSON ou PDF stylisé (carte de visite du collectionneur) |
 | 🔔 **Notifications in-app** | Centre de notifications pour les trophées débloqués, sorties de jeux wishlistés, mises à jour |
 | 📅 **Calendrier de sorties** | Intégrer un calendrier des prochaines sorties liées aux jeux de la Wishlist |
 | 🔍 **Recommandations** | Suggérer des jeux à ajouter basés sur les genres et plateformes déjà présents dans la collection |
+| **GamePad** | utilisation de la manette pour naviguer et interagir avec l'application 

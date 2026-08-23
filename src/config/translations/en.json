@@ -72,6 +72,22 @@
       "loading": {
         "statusLogin": "Loading your collection...",
         "statusLogout": "Logging out..."
+      },
+
+      "forgotPassword": {
+        "title": "Forgot Password",
+        "description": "Enter your email address. If it matches a profile, you will receive a reset link.",
+        "submit": "Send Link",
+        "success": "An email has been sent if the address exists.",
+        "backToLogin": "Back to login"
+      },
+
+      "resetPassword": {
+        "title": "New Password",
+        "description": "Please enter your new password.",
+        "submit": "Update",
+        "success": "Password updated successfully!",
+        "error": "The link is invalid or has expired."
       }
     },
 
@@ -109,6 +125,16 @@
         "popupTitle": "Confirm deletion",
         "popupMessage": "Are you sure you want to delete your account?",
         "confirmDelete": "Delete permanently"
+      },
+
+      "bugReport": {
+        "title": "Reporting Console",
+        "typeBug": "Report a Bug",
+        "typeSuggestion": "Propose an Idea",
+        "messagePlaceholder": "Describe your issue or idea here...",
+        "submit": "Transmit",
+        "success": "Transmission successful. Thank you!",
+        "error": "Error during transmission."
       }
     },
 

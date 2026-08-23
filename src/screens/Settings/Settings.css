@@ -1,0 +1,153 @@
+.settings-page {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.settings-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border-separator);
+  padding-bottom: 1rem;
+}
+
+.settings-header .title-section {
+  font-family: var(--font-family-title);
+  color: var(--text-title);
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.settings-header .subtitle-section {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.settings-section {
+  background: var(--gradient-card-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-main);
+}
+
+.settings-section h2 {
+  color: var(--text-title);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-family-title);
+}
+
+.presets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.preset-card {
+  background: var(--bg-card);
+  border: 2px solid var(--color-border-separator);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.preset-card:hover {
+  border-color: var(--preset-color);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+.preset-card.active {
+  border-color: var(--preset-color);
+  box-shadow: 0 0 10px var(--preset-color);
+  background: var(--bg-card-hover);
+}
+
+.preset-color-preview {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--preset-color);
+  margin-bottom: 1rem;
+  box-shadow: 0 0 8px var(--preset-color);
+}
+
+.preset-name {
+  color: var(--color-text);
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.preset-mode {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+
+.custom-color-section .color-desc {
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.color-picker-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.color-picker-input {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+}
+
+.color-picker-input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.color-picker-input::-webkit-color-swatch {
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.color-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.color-hex {
+  color: var(--color-text);
+  font-family: monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.btn-reset-color {
+  background: var(--bg-cancel-btn);
+  color: var(--color-reset-filter);
+  border: 1px solid var(--color-reset-filter);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all var(--duration-fast);
+}
+
+.btn-reset-color:hover {
+  background: var(--color-reset-filter);
+  color: white;
+}

@@ -2,6 +2,7 @@
 export const PROFILE_SECTIONS = [
   { id: 'profile-section', label: 'profile.links.myProfile' },
   { id: 'login-section', label: 'profile.links.loginSection' },
+  { id: 'bug-report-section', label: 'profile.bugReport.title' },
   { id: 'account-delete-section', label: 'profile.links.dangerZone' },
 ]
 

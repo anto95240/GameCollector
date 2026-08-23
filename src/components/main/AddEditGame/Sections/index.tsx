@@ -8,6 +8,7 @@ export {
   RatingSection,
 } from '@/components/main/AddEditGame/Sections/modules/BasicSections'
 export { DetailsSection } from '@/components/main/AddEditGame/Sections/modules/DetailsSection'
+export { ExternalSearchSection } from '@/components/main/AddEditGame/Sections/modules/ExternalSearchSection'
 export {
   AchievementsSection,
   FavoriteAndSoonSection,

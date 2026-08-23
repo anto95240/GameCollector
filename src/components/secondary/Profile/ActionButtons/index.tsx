@@ -6,6 +6,7 @@ export interface ActionButtonsProps {
   onSave?: () => void;
   onDelete?: () => void;
   t: any;
+  isSaving?: boolean;
   labels?: {
     download?: string;
     cancel?: string;
@@ -15,29 +16,29 @@ export interface ActionButtonsProps {
   };
 }
 
-const ActionButtons: React.FC<ActionButtonsProps> = ({ onCancel, onDownload, onSave, onDelete, t, labels = {} }: any) => {
+const ActionButtons: React.FC<ActionButtonsProps> = ({ onCancel, onDownload, onSave, onDelete, t, isSaving, labels = {} }: any) => {
   return (
     <>
       {onDownload && (
-        <button className="btn-action btn-download" onClick={onDownload}>
+        <button className="btn-action btn-download" onClick={onDownload} disabled={isSaving}>
           {labels.download || t('profile.labels.profilePicture')}
         </button>
       )}
 
       {onCancel && (
-        <button className="btn-action btn-cancel" onClick={onCancel}>
+        <button className="btn-action btn-cancel" onClick={onCancel} disabled={isSaving}>
           {labels.cancel || t('common.cancel')}
         </button>
       )}
 
       {onSave && (
-        <button className="btn-action btn-save" onClick={onSave}>
-          {labels.save || t('common.save')}
+        <button className="btn-action btn-save" onClick={onSave} disabled={isSaving}>
+          {isSaving ? <span className="loader-circle-small"></span> : (labels.save || t('common.save'))}
         </button>
       )}
 
       {onDelete && (
-        <button className="btn-action btn-delete" onClick={onDelete}>
+        <button className="btn-action btn-delete" onClick={onDelete} disabled={isSaving}>
           {labels.delete || t('profile.delete.button')}
         </button>
       )}

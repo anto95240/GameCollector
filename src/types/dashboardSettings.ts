@@ -86,6 +86,8 @@ export interface DashboardSettingsContextType {
   toggleEditMode: () => void
   toggleWidgetVisibility: (page: 'dashboard' | 'stats', widgetId: WidgetId) => void
   reorderWidgets: (page: 'dashboard' | 'stats', fromIndex: number, toIndex: number) => void
+  reorderCustomMetrics: (fromIndex: number, toIndex: number) => void
+  reorderSecondaryStats: (fromIndex: number, toIndex: number) => void
   toggleCustomMetric: (metricId: CustomMetricId) => void
   toggleSecondaryStat: (statId: SecondaryStatId) => void
   saveSettings: () => Promise<void>

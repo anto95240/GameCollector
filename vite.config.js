@@ -56,6 +56,48 @@ export default defineConfig(({ mode }) => ({
       }),
     mode === 'analyze' && analyzer({ analyzerMode: 'static' }),
   ].filter(Boolean),
+  server: {
+    proxy: {
+      // Proxy pour Vercel API (vercel dev -p 3001)
+      '/api/send-bug-report': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+      '/api/delete-account': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+      '/api/keep-alive': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+      '/api/steam-image-shared': {
+        target: 'https://shared.akamai.steamstatic.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/steam-image-shared/, ''),
+      },
+      '/api/steam-image-cdn': {
+        target: 'https://cdn.akamai.steamstatic.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/steam-image-cdn/, ''),
+      },
+      '/api/steam-image-store': {
+        target: 'https://store.akamai.steamstatic.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/steam-image-store/, ''),
+      },
+      '/api/steamspy': {
+        target: 'https://steamspy.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/steamspy/, ''),
+      },
+      '/api/steam': {
+        target: 'https://store.steampowered.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/steam/, ''),
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

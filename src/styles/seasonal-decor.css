@@ -1,0 +1,1336 @@
+/* =========================================
+   SEASONAL DECORATIONS (PURE CSS ATMOSPHERES)
+   ========================================= */
+
+body[data-preset] {
+  position: relative;
+  overflow-x: hidden;
+}
+
+body[data-preset]::before,
+body[data-preset]::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --- BACKGROUNDS --- */
+body[data-preset='halloween']::before {
+  background: radial-gradient(circle, transparent 40%, rgba(15, 0, 0, 0.9) 120%);
+  z-index: 100;
+}
+/* Fantômes flottants en CSS (au lieu des particules) */
+@keyframes float-ghost {
+  0% {
+    transform: translateY(100vh) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.15;
+  }
+  80% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(-20vh) scale(1.2);
+    opacity: 0;
+  }
+}
+body[data-preset='halloween']::after {
+  content: '👻';
+  font-size: 80px;
+  filter: drop-shadow(0 0 10px white) blur(1px);
+  opacity: 0;
+  left: 10%;
+  animation: float-ghost 15s ease-in-out infinite;
+  z-index: 0;
+}
+
+body[data-preset='christmas']::before,
+body[data-preset='winter']::before {
+  background: radial-gradient(circle, transparent 50%, rgba(255, 255, 255, 0.1) 150%);
+  box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.15);
+  z-index: 100;
+}
+
+/* =========================================
+   NAVBAR DECORATIONS (Sous les titres)
+   ========================================= */
+.nav-item {
+  position: relative;
+  overflow: visible !important;
+}
+
+/* Halloween : Araignée */
+[data-preset='halloween'] .nav-item::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 1px;
+  height: 0;
+  background: rgba(255, 255, 255, 0.4);
+  transition: height 0.4s ease-in-out;
+  pointer-events: none;
+}
+[data-preset='halloween'] .nav-item::after {
+  content: '🕷️';
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 12px);
+  font-size: 1.5rem;
+  /* Double contour lumineux blanc très net pour détacher l'émoji du fond noir */
+  filter: drop-shadow(0 0 2px #ffffff) drop-shadow(0 0 4px #ffffff);
+  transition:
+    top 0.4s ease-in-out,
+    opacity 0.4s;
+  pointer-events: none;
+  opacity: 0;
+}
+[data-preset='halloween'] .nav-item:hover::before {
+  height: 35px;
+}
+[data-preset='halloween'] .nav-item:hover::after {
+  top: calc(100% + 30px);
+  opacity: 1;
+}
+
+/* Noël : Boule de sapin 3D */
+[data-preset='christmas'] .nav-item::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 1px;
+  height: 0;
+  background: #eab308;
+  transition: height 0.4s ease-in-out;
+  pointer-events: none;
+}
+[data-preset='christmas'] .nav-item::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 6px);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow:
+    inset -2px -2px 4px rgba(0, 0, 0, 0.5),
+    0 0 8px #ef4444;
+  transition:
+    top 0.4s ease-in-out,
+    opacity 0.4s;
+  pointer-events: none;
+  opacity: 0;
+}
+[data-preset='christmas'] .nav-item:hover::before {
+  height: 20px;
+}
+[data-preset='christmas'] .nav-item:hover::after {
+  top: calc(100% + 20px);
+  opacity: 1;
+}
+
+/* Hiver : Flocon de neige */
+@keyframes spin-slow {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+[data-preset='winter'] .nav-item::after {
+  content: '❄️';
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 10px);
+  font-size: 1.2rem;
+  transition:
+    top 0.4s ease-in-out,
+    opacity 0.4s;
+  animation: spin-slow 4s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+}
+[data-preset='winter'] .nav-item:hover::after {
+  top: calc(100% + 10px);
+  opacity: 1;
+}
+
+/* Printemps : Bourgeon/Feuille */
+[data-preset='spring'] .nav-item::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 0px;
+  background: #10b981;
+  border-radius: 0 10px 0 10px;
+  transition:
+    height 0.4s ease-in-out,
+    top 0.4s;
+  pointer-events: none;
+}
+[data-preset='spring'] .nav-item:hover::after {
+  height: 10px;
+  top: calc(100% + 5px);
+}
+
+/* Pâques : Oeuf en chocolat */
+[data-preset='easter'] .nav-item::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 6px);
+  width: 12px;
+  height: 16px;
+  background: radial-gradient(circle at 30% 30%, #a16207 0%, #451a03 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition:
+    top 0.4s ease-in-out,
+    opacity 0.4s;
+  pointer-events: none;
+  opacity: 0;
+}
+[data-preset='easter'] .nav-item:hover::after {
+  top: calc(100% + 5px);
+  opacity: 1;
+}
+
+/* Été : Vague inversée (Goutte) */
+[data-preset='summer'] .nav-item::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 6px);
+  width: 12px;
+  height: 12px;
+  background: #0ea5e9;
+  border-radius: 0 50% 50% 50%;
+  transform: rotate(45deg);
+  box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.5);
+  transition:
+    top 0.4s ease-in-out,
+    opacity 0.4s;
+  pointer-events: none;
+  opacity: 0;
+}
+[data-preset='summer'] .nav-item:hover::after {
+  top: calc(100% + 5px);
+  opacity: 1;
+}
+
+/* Automne : Feuille tombante */
+@keyframes nav-leaf-fall {
+  0% {
+    top: 100%;
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% + 30px);
+    transform: rotate(180deg);
+    opacity: 0;
+  }
+}
+[data-preset='autumn'] .nav-item::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 6px);
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #ea580c, #facc15);
+  border-radius: 0 10px 0 10px;
+  pointer-events: none;
+  opacity: 0;
+}
+[data-preset='autumn'] .nav-item:hover::after {
+  animation: nav-leaf-fall 1s ease-in-out forwards;
+}
+
+/* Chandeleur : Crêpe */
+[data-preset='chandeleur'] .nav-item::after {
+  content: '🥞';
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 12px);
+  font-size: 1.2rem;
+  transition:
+    top 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.4s;
+  pointer-events: none;
+  opacity: 0;
+}
+[data-preset='chandeleur'] .nav-item:hover::after {
+  top: calc(100% + 8px);
+  opacity: 1;
+}
+
+/* Epiphanie : Couronne Or */
+[data-preset='epiphanie'] .nav-item::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 8px);
+  width: 16px;
+  height: 10px;
+  background: linear-gradient(to right, #eab308, #fef08a, #eab308);
+  clip-path: polygon(0 100%, 0 20%, 25% 60%, 50% 0, 75% 60%, 100% 20%, 100% 100%);
+  transition:
+    top 0.4s ease-in-out,
+    opacity 0.4s;
+  pointer-events: none;
+  opacity: 0;
+}
+[data-preset='epiphanie'] .nav-item:hover::after {
+  top: calc(100% + 5px);
+  opacity: 1;
+}
+
+/* =========================================
+   INTERACTIONS TACTILES ULTRA-RÉALISTES SUR TOUS LES GRANDS BOUTONS
+   ========================================= */
+
+:is(
+  .btn-add,
+  .btn-filter,
+  .tab-link,
+  .btn-save,
+  .btn-download,
+  .btn-show-results,
+  .btn-addEdit-category,
+  .category-card-btn,
+  .btn-back,
+  .btn-cancel-game,
+  .btn-cancel-category,
+  .btn-modal,
+  .btn-action,
+  .btn-confirm-delete
+) {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  isolation: isolate; /* Garde le pseudo-element en-dessous du texte ! */
+  transition:
+    color 0.3s,
+    background-color 0.3s;
+}
+
+/* ========================================================
+   🎃 HALLOWEEN : Sang Organique Gluant
+   ======================================================== */
+[data-preset='halloween']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::before {
+  content: '';
+  position: absolute;
+  top: -120%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background:
+    radial-gradient(ellipse at 15% 100%, #8b0000 7px, transparent 8px),
+    radial-gradient(ellipse at 35% 100%, #5e0000 12px, transparent 13px),
+    radial-gradient(ellipse at 60% 100%, #aa0000 9px, transparent 10px),
+    radial-gradient(ellipse at 85% 100%, #8b0000 5px, transparent 6px),
+    linear-gradient(to bottom, #2a0000 0%, #7a0000 80%, #aa0000 100%);
+  box-shadow: inset 0 -4px 10px rgba(255, 50, 50, 0.6);
+  transition: top 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Plus de rebondissement */
+  pointer-events: none;
+  z-index: -1; /* Sous le texte, sur le fond */
+  opacity: 0.95;
+  mix-blend-mode: hard-light;
+}
+[data-preset='halloween']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover::before {
+  top: 0;
+}
+
+/* ========================================================
+   🎄 NOËL : Guirlande Lumineuse Dynamique (Répétition)
+   ======================================================== */
+@keyframes christmas-glow-all {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.3) drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+  }
+}
+
+[data-preset='christmas']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ) {
+  overflow: hidden;
+}
+[data-preset='christmas']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover {
+  color: #ffffff !important;
+}
+[data-preset='christmas']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 16px;
+  /* Fil vert foncé continu, puis ampoules de couleur espacées de 30px */
+  background-image:
+    radial-gradient(ellipse at 50% -50%, transparent 80%, #064e3b 82%, transparent 85%),
+    repeating-radial-gradient(
+      circle at 10px 10px,
+      #ef4444 0,
+      #ef4444 4px,
+      transparent 5px,
+      transparent 60px
+    ),
+    repeating-radial-gradient(
+      circle at 25px 10px,
+      #eab308 0,
+      #eab308 4px,
+      transparent 5px,
+      transparent 60px
+    ),
+    repeating-radial-gradient(
+      circle at 40px 10px,
+      #3b82f6 0,
+      #3b82f6 4px,
+      transparent 5px,
+      transparent 60px
+    ),
+    repeating-radial-gradient(
+      circle at 55px 10px,
+      #22c55e 0,
+      #22c55e 4px,
+      transparent 5px,
+      transparent 60px
+    );
+  background-size:
+    100% 100%,
+    60px 16px,
+    60px 16px,
+    60px 16px,
+    60px 16px;
+  animation: christmas-glow-all 1.5s infinite alternate;
+  pointer-events: none;
+  z-index: -1; /* Les ampoules sont sous le texte ! */
+}
+[data-preset='christmas']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover::after {
+  animation-duration: 0.3s;
+}
+
+/* ========================================================
+   ❄️ HIVER : Monticule de neige volumétrique
+   ======================================================== */
+[data-preset='winter']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ) {
+  overflow: visible !important;
+}
+[data-preset='winter']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 2%;
+  width: 96%;
+  height: 16px;
+  background:
+    radial-gradient(circle at 10% 3px, rgba(255, 255, 255, 0.9) 1px, transparent 2px),
+    radial-gradient(circle at 30% 5px, rgba(255, 255, 255, 0.8) 1.5px, transparent 2.5px),
+    radial-gradient(circle at 70% 4px, rgba(255, 255, 255, 0.9) 1px, transparent 2px),
+    linear-gradient(to bottom, #ffffff 0%, #e0f2fe 100%);
+  border-radius: 12px 12px 6px 6px;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    inset 0 3px 0 #ffffff,
+    inset 0 -3px 6px #7dd3fc;
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.4s;
+  pointer-events: none;
+  z-index: 2; /* Sur le bord du bouton */
+}
+[data-preset='winter']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover::after {
+  height: 22px;
+  transform: scaleX(1.02) translateY(3px);
+  border-radius: 20px 20px 8px 8px;
+}
+
+/* ========================================================
+   🥚 PÂQUES : Chocolat au lait fondu onctueux
+   ======================================================== */
+[data-preset='easter']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover {
+  color: #ffffff !important;
+}
+[data-preset='easter']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::before {
+  content: '';
+  position: absolute;
+  top: -120%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.4) 0%, transparent 10%),
+    radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 15%),
+    linear-gradient(to bottom, #5c2607 0%, #3a1501 100%);
+  border-radius: 0 0 50% 40% / 0 0 60% 40%;
+  box-shadow:
+    inset 0 -5px 15px rgba(0, 0, 0, 0.6),
+    0 8px 10px rgba(69, 26, 3, 0.7);
+  transition:
+    top 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-radius 0.6s;
+  pointer-events: none;
+  z-index: -1;
+}
+[data-preset='easter']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover::before {
+  top: -10%;
+  border-radius: 0 0 10% 15% / 0 0 20% 25%;
+}
+[data-preset='easter']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::after {
+  content: '🥚';
+  position: absolute;
+  top: -20px;
+  right: 15px;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition:
+    top 0.4s ease-in-out,
+    opacity 0.4s;
+  pointer-events: none;
+  z-index: 1; /* L'oeuf est au-dessus ! */
+}
+[data-preset='easter']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover::after {
+  top: 10px;
+  opacity: 1;
+}
+
+/* ========================================================
+   🥞 CHANDELEUR : Tartinade de Nutella épaisse
+   ======================================================== */
+[data-preset='chandeleur']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover {
+  color: #ffffff !important;
+}
+[data-preset='chandeleur']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::after {
+  content: '';
+  position: absolute;
+  left: -150%;
+  top: 0;
+  width: 150%;
+  height: 100%;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 15%,
+      transparent 85%,
+      rgba(255, 255, 255, 0.05) 100%
+    ),
+    linear-gradient(45deg, #1f0b01 0%, #381303 50%, #1f0b01 100%);
+  border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+  box-shadow:
+    6px 0 12px rgba(0, 0, 0, 0.7),
+    inset -4px 0 8px rgba(0, 0, 0, 0.9);
+  transition:
+    left 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+    border-radius 0.7s;
+  pointer-events: none;
+  z-index: -1;
+}
+[data-preset='chandeleur']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover::after {
+  left: -5%;
+  border-radius: 0 30% 40% 0 / 0 15% 25% 0;
+}
+
+/* ========================================================
+   🏖️ ÉTÉ : Vague d'eau avec écume
+   ======================================================== */
+[data-preset='summer']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover {
+  color: #0369a1 !important;
+}
+[data-preset='summer']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::before {
+  content: '';
+  position: absolute;
+  bottom: -150%;
+  left: -20%;
+  width: 140%;
+  height: 150%;
+  background:
+    radial-gradient(circle at 50% 0, rgba(255, 255, 255, 0.3) 0%, transparent 20%),
+    linear-gradient(to top, #0284c7 0%, #38bdf8 100%);
+  border-radius: 40% 50% 60% 40%;
+  transition:
+    bottom 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s;
+  pointer-events: none;
+  z-index: -1;
+  box-shadow: 0 -5px 15px rgba(2, 132, 199, 0.5);
+}
+[data-preset='summer']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::after {
+  content: '';
+  position: absolute;
+  bottom: -160%;
+  left: -20%;
+  width: 140%;
+  height: 150%;
+  background: radial-gradient(circle at 50% 0%, #ffffff 0%, rgba(255, 255, 255, 0) 60%);
+  border-radius: 40% 60% 50% 55%;
+  filter: blur(1px);
+  transition:
+    bottom 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.7s;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.8;
+}
+[data-preset='summer']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover::before {
+  bottom: -30%;
+  transform: rotate(15deg) scale(1.1);
+}
+[data-preset='summer']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover::after {
+  bottom: -25%;
+  transform: rotate(20deg) scale(1.1);
+}
+
+/* ========================================================
+   🍂 AUTOMNE : Tornade de feuilles 3D
+   ======================================================== */
+@keyframes leaf-fall-3d {
+  0% {
+    top: -20px;
+    transform: translateX(0) translateY(0) rotate3d(1, 1, 0, 0deg);
+    opacity: 1;
+  }
+  100% {
+    top: 120%;
+    transform: translateX(40px) translateY(20px) rotate3d(1, 1, 1, 540deg);
+    opacity: 0;
+  }
+}
+[data-preset='autumn']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::before,
+[data-preset='autumn']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 0 12px 0 12px;
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.4),
+    30px -10px 0 -2px #b45309,
+    -20px -20px 0 -4px #fbbf24,
+    40px 10px 0 -3px #ea580c,
+    -30px 5px 0 -1px #ca8a04; /* Beaucoup plus de feuilles ! */
+  top: -40px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+[data-preset='autumn']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::before {
+  left: 15%;
+  background: linear-gradient(135deg, #ea580c, #9a3412);
+}
+[data-preset='autumn']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::after {
+  right: 25%;
+  background: linear-gradient(135deg, #facc15, #ca8a04);
+}
+
+[data-preset='autumn']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover::before {
+  animation: leaf-fall-3d 2.5s ease-in-out forwards;
+}
+[data-preset='autumn']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover::after {
+  animation: leaf-fall-3d 3s ease-in-out 0.3s forwards;
+}
+
+/* ========================================================
+   👑 EPIPHANIE : Couronne d'or brossé
+   ======================================================== */
+[data-preset='epiphanie']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ) {
+  overflow: visible !important;
+}
+[data-preset='epiphanie']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 16px;
+  background: linear-gradient(
+    to right,
+    #854d0e 0%,
+    #facc15 30%,
+    #fef08a 50%,
+    #facc15 70%,
+    #854d0e 100%
+  );
+  clip-path: polygon(0 100%, 0 20%, 25% 60%, 50% 0, 75% 60%, 100% 20%, 100% 100%);
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.4s;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
+}
+[data-preset='epiphanie']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover::after {
+  transform: translateX(-50%) scale(1.3) translateY(-4px);
+  filter: drop-shadow(0 4px 6px rgba(250, 204, 21, 0.6));
+}
+
+/* ========================================================
+   🌸 PRINTEMPS : Envolée de Fleurs de Cerisier (Sakura)
+   ======================================================== */
+@keyframes sakura-fall {
+  0% {
+    top: -20px;
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    top: 120%;
+    transform: translateX(40px) rotate(360deg);
+    opacity: 0;
+  }
+}
+[data-preset='spring']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover {
+  color: #064e3b !important; /* Texte vert foncé très lisible sur pétales roses clairs */
+}
+[data-preset='spring']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::before,
+[data-preset='spring']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle at 30% 30%, #fbcfe8, #f472b6);
+  border-radius: 12px 0 12px 0;
+  box-shadow:
+    -20px -20px 0 -2px #f472b6,
+    40px -10px 0 -3px #fbcfe8,
+    30px 20px 0 -4px #ec4899,
+    -10px 30px 0 -1px #f9a8d4;
+  top: -40px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1; /* Derrière le texte */
+}
+[data-preset='spring']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::before {
+  left: 20%;
+}
+[data-preset='spring']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  )::after {
+  right: 30%;
+}
+
+[data-preset='spring']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover::before {
+  animation: sakura-fall 2s ease-in-out forwards;
+}
+[data-preset='spring']
+  :is(
+    .btn-add,
+    .btn-filter,
+    .tab-link,
+    .btn-save,
+    .btn-download,
+    .btn-show-results,
+    .btn-addEdit-category,
+    .category-card-btn,
+    .btn-back,
+    .btn-cancel-game,
+    .btn-cancel-category,
+    .btn-modal,
+    .btn-action,
+    .btn-confirm-delete
+  ):hover::after {
+  animation: sakura-fall 2.5s ease-in-out 0.2s forwards;
+}

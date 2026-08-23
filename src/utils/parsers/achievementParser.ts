@@ -51,6 +51,22 @@ export const evaluateAchievementCondition = (achievement: any, stats: any) => {
       return stats.historyCount >= 10
     case 'insomniaque':
       return stats.lateNightActionsCount > 0
+    case 'shortcut_novice':
+      return stats.keyboardShortcutsUses >= 10
+    case 'shortcut_pro':
+      return stats.keyboardShortcutsUses >= 50
+    case 'shortcut_master':
+      return stats.keyboardShortcutsUses >= 100
+    case 'theme_customizer':
+      return stats.themeCustomizations > 0
+    case 'dashboard_architect':
+      return stats.dashboardCustomizations > 0
+    case 'filter_saver':
+      return stats.savedFiltersCount > 0
+    case 'wishlist_curator':
+      return stats.soonGamesCount >= 10
+    case 'custom_stats':
+      return stats.customStatsCount > 0
     default:
       return false
   }

@@ -10,7 +10,7 @@ export interface ProfileCardProps {
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ id, title, children, actions, className = '' }: any) => {
   return (
-    <section className={`profile-card console-border-card-profile ${className}`} id={id}>
+    <section className={`profile-card ${className}`} id={id}>
       {title && (
         <>
           <h3>{title}</h3>

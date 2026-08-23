@@ -1,30 +1,23 @@
 import './ProfilSection.css'
 
-import { useRef } from 'react'
+import { useState } from 'react'
 
 import ActionButtons from '@/components/secondary/Profile/ActionButtons'
+import InlineFormItem from '@/components/secondary/Profile/InlineFormItem'
+import ProfileAvatarModal from '@/components/secondary/Profile/ProfileAvatarModal'
 import ProfileCard from '@/components/secondary/Profile/ProfileCard'
-import SimpleInput from '@/components/secondary/Profile/SimpleInput'
 
-const ProfilSection = ({ user, form, setForm, t, handleSaveProfile }: any) => {
-  const fileInputRef = useRef<HTMLInputElement>(null)
-
-  const handleCancel = () => {
-    setForm((prev: any) => ({
-      ...prev,
-      firstname: user?.firstname || '',
-      lastname: user?.lastname || '',
-      username: user?.username || '',
-      imageFile: null,
-      avatarURL: user?.image || '',
-    }))
-  }
-
-  const handleImageClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click()
-    }
-  }
+const ProfilSection = ({
+  user,
+  form,
+  setForm,
+  uiState,
+  setUiState,
+  t,
+  isSaving,
+  handleSaveProfile,
+}: any) => {
+  const [showAvatarModal, setShowAvatarModal] = useState(false)
 
   const getInitials = () => {
     const first = form.firstname?.charAt(0) || ''
@@ -36,68 +29,94 @@ const ProfilSection = ({ user, form, setForm, t, handleSaveProfile }: any) => {
     form.avatarURL === 'https://cdn-icons-png.flaticon.com/512/847/847969.png' || !form.avatarURL
 
   return (
-    <ProfileCard
-      id="profile-section"
-      title={t('profile.links.details')}
-      actions={<ActionButtons onCancel={handleCancel} onSave={handleSaveProfile} t={t} />}
-    >
-      <div className="profile-form-layout">
-        {/* Champs texte */}
-        <div className="profile-fields">
-          <SimpleInput
-            label={t('profile.labels.firstName')}
-            value={form.firstname}
-            onChange={(e: any) => setForm({ ...form, firstname: e.target.value })}
-          />
-          <SimpleInput
-            label={t('profile.labels.name')}
-            value={form.lastname}
-            onChange={(e: any) => setForm({ ...form, lastname: e.target.value })}
-          />
-          <SimpleInput
-            label={t('profile.labels.username')}
-            value={form.username}
-            onChange={(e: any) => setForm({ ...form, username: e.target.value })}
-          />
-        </div>
-
-        {/* Avatar */}
-        <div className="profile-avatar">
-          <input
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            style={{ display: 'none' }}
-            onChange={(e: any) => {
-              if (e.target.files && e.target.files[0]) {
-                setForm({ ...form, imageFile: e.target.files[0] })
-              }
-            }}
-          />
-
-          <div className="avatar-wrapper">
-            {form.imageFile ? (
-              <img
-                className="avatar-circle"
-                src={URL.createObjectURL(form.imageFile)}
-                alt="Preview"
-              />
-            ) : !isDefaultImage ? (
-              <img className="avatar-circle" src={form.avatarURL} alt="User" />
-            ) : (
-              <div className="avatar-circle no-img">{getInitials()}</div>
-            )}
+    <ProfileCard id="profile-section" title={t('profile.links.details')}>
+      <div
+        className="profile-form-layout"
+        style={{ display: 'flex', flexDirection: 'column', gap: '0' }}
+      >
+        <InlineFormItem
+          label={t('profile.labels.firstName')}
+          showForm={uiState.showFirstnameForm}
+          toggleForm={() =>
+            setUiState((p: any) => ({ ...p, showFirstnameForm: !p.showFirstnameForm }))
+          }
+          formValue={form.firstname}
+          onFormChange={(e: any) => setForm((p: any) => ({ ...p, firstname: e.target.value }))}
+        >
+          <div className="profile-actions-container" style={{ marginTop: '1rem' }}>
+            <ActionButtons
+              onCancel={() => setUiState((p: any) => ({ ...p, showFirstnameForm: false }))}
+              onSave={() => handleSaveProfile('firstname')}
+              isSaving={isSaving}
+              t={t}
+            />
           </div>
+        </InlineFormItem>
 
-          <ActionButtons
-            onDownload={handleImageClick}
-            t={t}
-            labels={{
-              download: t('profile.labels.profilePicture'),
-            }}
-          />
+        <InlineFormItem
+          label={t('profile.labels.name')}
+          showForm={uiState.showLastnameForm}
+          toggleForm={() =>
+            setUiState((p: any) => ({ ...p, showLastnameForm: !p.showLastnameForm }))
+          }
+          formValue={form.lastname}
+          onFormChange={(e: any) => setForm((p: any) => ({ ...p, lastname: e.target.value }))}
+        >
+          <div className="profile-actions-container" style={{ marginTop: '1rem' }}>
+            <ActionButtons
+              onCancel={() => setUiState((p: any) => ({ ...p, showLastnameForm: false }))}
+              onSave={() => handleSaveProfile('lastname')}
+              isSaving={isSaving}
+              t={t}
+            />
+          </div>
+        </InlineFormItem>
+
+        <InlineFormItem
+          label={t('profile.labels.username')}
+          showForm={uiState.showUsernameForm}
+          toggleForm={() =>
+            setUiState((p: any) => ({ ...p, showUsernameForm: !p.showUsernameForm }))
+          }
+          formValue={form.username}
+          onFormChange={(e: any) => setForm((p: any) => ({ ...p, username: e.target.value }))}
+        >
+          <div className="profile-actions-container" style={{ marginTop: '1rem' }}>
+            <ActionButtons
+              onCancel={() => setUiState((p: any) => ({ ...p, showUsernameForm: false }))}
+              onSave={() => handleSaveProfile('username')}
+              isSaving={isSaving}
+              t={t}
+            />
+          </div>
+        </InlineFormItem>
+
+        {/* Avatar trigger */}
+        <div
+          className="account-info-item"
+          onClick={() => setShowAvatarModal(true)}
+          style={{ cursor: 'pointer', marginTop: '1rem' }}
+        >
+          <div className="account-info-header">
+            <p className="label">{t('profile.labels.profilePicture')}</p>
+          </div>
         </div>
       </div>
+
+      <ProfileAvatarModal
+        isOpen={showAvatarModal}
+        onClose={() => setShowAvatarModal(false)}
+        form={form}
+        setForm={setForm}
+        onSave={() => {
+          handleSaveProfile('avatar')
+          setShowAvatarModal(false)
+        }}
+        isSaving={isSaving}
+        t={t}
+        getInitials={getInitials}
+        isDefaultImage={isDefaultImage}
+      />
     </ProfileCard>
   )
 }

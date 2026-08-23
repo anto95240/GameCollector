@@ -64,6 +64,24 @@ export const useApiAuth = () => {
     if (formData.has('lastname')) updates.lastname = formData.get('lastname')
     if (formData.has('username')) updates.username = formData.get('username')
 
+    // Mise à jour de l'email dans l'Auth Supabase (enverra un email de confirmation)
+    if (formData.has('email')) {
+      const newEmail = formData.get('email') as string
+      if (newEmail !== user.email) {
+        const { error: emailError } = await supabase.auth.updateUser({ email: newEmail })
+        if (emailError) throw emailError
+      }
+    }
+
+    // Mise à jour du mot de passe dans l'Auth Supabase
+    if (formData.has('password')) {
+      const newPassword = formData.get('password') as string
+      if (newPassword) {
+        const { error: passwordError } = await supabase.auth.updateUser({ password: newPassword })
+        if (passwordError) throw passwordError
+      }
+    }
+
     // Upload de l'image si présente
     const imageFile = formData.get('image') as File | null
     if (imageFile && imageFile.size > 0) {
@@ -89,10 +107,20 @@ export const useApiAuth = () => {
   }
 
   // ── Suppression du compte ─────────────────────────────────────────────
-  // Note : nécessite une Edge Function Supabase ou service_role (pas faisable côté client)
-  // Voir section 12 pour l'alternative
-  const deleteAccount = async (_userId: string) => {
-    throw new Error('La suppression de compte requiert une Supabase Edge Function.')
+  // Appelle la Vercel Serverless Function qui utilise le service_role
+  const deleteAccount = async (userId: string) => {
+    const response = await fetch('/api/delete-account', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId }),
+    })
+
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}))
+      throw new Error(errData.error || 'Erreur lors de la suppression du compte')
+    }
+
+    return await response.json()
   }
 
   // ── Historique de navigation ──────────────────────────────────────────

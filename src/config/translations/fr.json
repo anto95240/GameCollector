@@ -73,6 +73,22 @@
       "loading": {
         "statusLogin": "Chargement de votre collection...",
         "statusLogout": "Déconnexion en cours..."
+      },
+
+      "forgotPassword": {
+        "title": "Mot de passe oublié",
+        "description": "Entrez votre adresse email. Si elle correspond à un profil, vous recevrez un lien de réinitialisation.",
+        "submit": "Envoyer le lien",
+        "success": "Un email a été envoyé si l'adresse existe.",
+        "backToLogin": "Retour à la connexion"
+      },
+
+      "resetPassword": {
+        "title": "Nouveau mot de passe",
+        "description": "Veuillez entrer votre nouveau mot de passe.",
+        "submit": "Mettre à jour",
+        "success": "Mot de passe mis à jour avec succès !",
+        "error": "Le lien est invalide ou a expiré."
       }
     },
 
@@ -87,11 +103,11 @@
       },
 
       "labels": {
-        "firstName": "Prénom :",
-        "name": "Nom :",
-        "username": "Nom d'utilisateur :",
-        "email": "Email :",
-        "password": "Mot de passe :",
+        "firstName": "Prénom",
+        "name": "Nom",
+        "username": "Nom d'utilisateur",
+        "email": "Email",
+        "password": "Mot de passe",
         "profilePicture": "Télécharger une photo"
       },
 
@@ -110,6 +126,16 @@
         "popupTitle": "Confirmer la suppression",
         "popupMessage": "Êtes-vous sûr de vouloir supprimer votre compte ?",
         "confirmDelete": "Supprimer définitivement"
+      },
+
+      "bugReport": {
+        "title": "Console de Signalement",
+        "typeBug": "Signaler un Bug",
+        "typeSuggestion": "Proposer une idée",
+        "messagePlaceholder": "Décrivez votre problème ou idée ici...",
+        "submit": "Transmettre",
+        "success": "Transmission réussie. Merci !",
+        "error": "Erreur lors de la transmission."
       }
     },
 

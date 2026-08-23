@@ -11,7 +11,12 @@ class KeyboardShortcutsService {
     this.listenerAttached = false
   }
 
-  register(action: string, defaultKey: string, callback: (e: KeyboardEvent) => void, options: any = {}) {
+  register(
+    action: string,
+    defaultKey: string,
+    callback: (e: KeyboardEvent) => void,
+    options: any = {}
+  ) {
     this.shortcuts.set(action, {
       action,
       defaultKey: defaultKey ? defaultKey.toLowerCase() : '',
@@ -100,6 +105,19 @@ class KeyboardShortcutsService {
         if (activeBinding.options.preventDefault !== false) {
           event.preventDefault()
         }
+
+        try {
+          // Import dynamique pour éviter les dépendances circulaires
+          import('@/utils/userStorage').then(({ incrementStoredUserMetric }) => {
+            const newUses = incrementStoredUserMetric('keyboardShortcutsUses')
+            if ([10, 50, 100].includes(newUses)) {
+              window.dispatchEvent(new CustomEvent('checkAchievements'))
+            }
+          })
+        } catch (err) {
+          console.error('[Shortcuts] Error incrementing metric', err)
+        }
+
         activeBinding.callback(event)
         return
       }

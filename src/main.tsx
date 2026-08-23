@@ -1,6 +1,7 @@
 import '@/config/i18n'
 import './Animations.css'
 import './index.css'
+import './styles/seasonal-decor.css'
 
 import { Analytics } from '@vercel/analytics/react'
 import { StrictMode } from 'react'

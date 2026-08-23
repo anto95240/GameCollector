@@ -11,6 +11,32 @@
   gap: 20px;
 }
 
+.profile-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.input-grid-col {
+  grid-column: span 1;
+}
+
+.input-grid-full {
+  grid-column: span 2;
+}
+
+@media (max-width: 600px) {
+  .profile-fields-grid {
+    grid-template-columns: 1fr;
+  }
+  .input-grid-col {
+    grid-column: span 1;
+  }
+  .input-grid-full {
+    grid-column: span 1;
+  }
+}
+
 .profile-avatar {
   display: flex;
   flex-direction: column;

@@ -192,6 +192,152 @@ export const useAddEditGame = () => {
     }
   }
 
+  const handleExternalGameSelected = async (gameDetails: any) => {
+    setIsAnimating(true)
+    try {
+      const updates: any = {
+        name: gameDetails.name || formData.name,
+        year: gameDetails.releaseYear || formData.year,
+        description: gameDetails.description || formData.description,
+      }
+
+      if (gameDetails.developers && gameDetails.developers.length > 0) {
+        updates.developer = gameDetails.developers.join(', ')
+      }
+
+      const fetchImageWithProxy = async (url: string) => {
+        let proxyUrl = url
+        if (proxyUrl.includes('shared.akamai.steamstatic.com')) {
+          proxyUrl = proxyUrl.replace(
+            'https://shared.akamai.steamstatic.com',
+            '/api/steam-image-shared'
+          )
+        } else if (proxyUrl.includes('cdn.akamai.steamstatic.com')) {
+          proxyUrl = proxyUrl.replace('https://cdn.akamai.steamstatic.com', '/api/steam-image-cdn')
+        } else if (proxyUrl.includes('store.akamai.steamstatic.com')) {
+          proxyUrl = proxyUrl.replace(
+            'https://store.akamai.steamstatic.com',
+            '/api/steam-image-store'
+          )
+        }
+        return fetch(proxyUrl + (proxyUrl.includes('?') ? '&' : '?') + 'cb=' + Date.now())
+      }
+
+      if (gameDetails.boxArtUrl || gameDetails.coverUrl) {
+        try {
+          let imageUrlToFetch = gameDetails.boxArtUrl || gameDetails.coverUrl
+          let response = await fetchImageWithProxy(imageUrlToFetch)
+
+          // Si la jaquette n'existe pas (404), retomber sur l'image de couverture large
+          if (!response.ok && gameDetails.boxArtUrl && gameDetails.coverUrl) {
+            imageUrlToFetch = gameDetails.coverUrl
+            response = await fetchImageWithProxy(imageUrlToFetch)
+          }
+
+          if (!response.ok) throw new Error('Erreur réseau miniature')
+          const blob = await response.blob()
+
+          if (!blob.type.startsWith('image/')) {
+            throw new Error(
+              `Le fichier téléchargé n'est pas une image (type: ${blob.type}). Le proxy Vite nécessite un redémarrage.`
+            )
+          }
+
+          const file = new File([blob], 'cover.jpg', { type: blob.type })
+          updates.image = file
+          setPreviewImg(URL.createObjectURL(file))
+        } catch (imgError) {
+          console.error("Impossible de télécharger l'image:", imgError)
+        }
+      }
+
+      // Assignation automatique du statut "Wishlist" si le jeu n'est pas encore sorti
+      if (gameDetails.isComingSoon && optionsData.status) {
+        try {
+          const targetStatusName = 'Wishlist'
+          const existingStatus = (optionsData.status as any[]).find(
+            (s) =>
+              (s.label || s.name || s.status_name || '').toLowerCase() ===
+              targetStatusName.toLowerCase()
+          )
+          if (existingStatus) {
+            updates.status = existingStatus.value || existingStatus.id || existingStatus._id
+          } else {
+            const newStatus = await createMetadata('status', { name: targetStatusName })
+            await refreshMetadata()
+            updates.status = newStatus.id || newStatus._id
+          }
+        } catch (e) {
+          console.error('Erreur statut auto', e)
+        }
+      }
+
+      // Création auto Genre
+      if (gameDetails.genres && gameDetails.genres.length > 0 && optionsData.genre) {
+        try {
+          const primaryGenre = gameDetails.genres[0]
+          const existingGenre = (optionsData.genre as any[]).find(
+            (g) =>
+              (g.label || g.name || g.genre_name || '').toLowerCase() === primaryGenre.toLowerCase()
+          )
+          if (existingGenre) {
+            updates.genre = existingGenre.value || existingGenre.id || existingGenre._id
+          } else {
+            const newGenre = await createMetadata('genre', {
+              name: primaryGenre.charAt(0).toUpperCase() + primaryGenre.slice(1),
+            })
+            await refreshMetadata()
+            updates.genre = newGenre.id || newGenre._id
+          }
+        } catch (e) {
+          console.error('Erreur genre auto', e)
+        }
+      }
+
+      // Création auto Plateforme
+      if (gameDetails.platforms && gameDetails.platforms.length > 0 && optionsData.platform) {
+        try {
+          const primaryPlatform = gameDetails.platforms[0]
+          const existingPlatform = (optionsData.platform as any[]).find(
+            (p) =>
+              (p.label || p.name || p.platform_name || '').toLowerCase() ===
+              primaryPlatform.toLowerCase()
+          )
+          if (existingPlatform) {
+            updates.platform = existingPlatform.value || existingPlatform.id || existingPlatform._id
+          } else {
+            const newPlatform = await createMetadata('platform', {
+              name: primaryPlatform.charAt(0).toUpperCase() + primaryPlatform.slice(1),
+            })
+            await refreshMetadata()
+            updates.platform = newPlatform.id || newPlatform._id
+          }
+        } catch (e) {
+          console.error('Erreur plateforme auto', e)
+        }
+      }
+
+      // Ajout auto des Tags (séquentiellement)
+      if (gameDetails.tags && gameDetails.tags.length > 0) {
+        const collectedTagIds = []
+        for (const tag of gameDetails.tags) {
+          const tagId = await tagsMgr.addTag(tag)
+          if (tagId) collectedTagIds.push(tagId)
+        }
+        if (collectedTagIds.length > 0) {
+          // On s'assure d'écraser la liste des tags dans les données du formulaire
+          updates.tags = collectedTagIds
+        }
+      }
+
+      setFormData((prev: any) => ({ ...prev, ...updates }))
+    } catch (error) {
+      console.error('Erreur traitement jeu importé', error)
+    } finally {
+      setIsAnimating(false)
+    }
+  }
+
   return {
     t,
     navigate,
@@ -224,5 +370,6 @@ export const useAddEditGame = () => {
     errors,
     touched,
     handleBlur,
+    handleExternalGameSelected,
   }
 }

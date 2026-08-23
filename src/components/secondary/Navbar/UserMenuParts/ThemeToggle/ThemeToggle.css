@@ -1,15 +1,38 @@
-.theme-btn {
-  width: 52px;
+.theme-toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.theme-settings-link {
+  width: auto;
+  min-width: 44px;
   height: 34px;
+  padding: 0 10px;
   border-radius: 10px;
   background: var(--color-bg);
   transition: 0.25s;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   cursor: pointer;
+  color: var(--color-text);
+  border: none;
+  text-decoration: none;
+  font-size: 1.1rem;
 }
 
-.theme-btn:hover {
+.theme-emoji-badge {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.theme-settings-link:hover {
   background: var(--bg-hover-theme-lang);
+  transform: scale(1.05);
+}
+
+.theme-settings-link:active {
+  transform: scale(0.95);
 }

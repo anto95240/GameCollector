@@ -4,6 +4,7 @@ import LoadingButton from '@/components/common/LoadingButton'
 import {
   DescriptionSection,
   DetailsSection,
+  ExternalSearchSection,
   ImageSection,
   RatingSection,
   StatusSection,
@@ -36,10 +37,12 @@ const GameForm = ({
   showConfirmModal,
   setShowConfirmModal,
   confirmSubmit,
+  handleExternalGameSelected,
 }: any) => {
   return (
     <>
       <form className="form-container" onSubmit={handleSubmit}>
+        {!isEditMode && <ExternalSearchSection t={t} onGameSelected={handleExternalGameSelected} />}
         <DescriptionSection
           t={t}
           formData={formData}
