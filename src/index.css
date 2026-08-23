@@ -40,7 +40,7 @@
   /* --- TYPOGRAPHY (Textes) --- */
   --text-primary: #5af2ff; /* Titres et infos principales (Cyan Néon) */
   --text-secondary: #838e9e; /* Sous-titres, descriptions */
-  --text-inverse: #004e8a; /* Texte sur bouton clair (souvent noir/bleu nuit) */
+  --text-inverse: #ffffff; /* Texte blanc sur fond de bouton bleu */
   --text-placeholder: #64748b; /* Texte dans les inputs vides */
   --text-link: #36cdfa; /* Liens */
   --color-text-btn-profile: #004e8a;
@@ -106,7 +106,7 @@
   /* Bleu profond pour le contraste au lieu du cyan clair */
   --text-primary: #004e8a;
   --text-secondary: #586981;
-  --text-inverse: #5af2ff;
+  --text-inverse: #ffffff;
   --text-placeholder: #94a3b8;
   --text-link: #0077cc;
   --color-text-btn-profile: white;
@@ -152,6 +152,7 @@
 
 /* --- PRESETS (Surcharges) --- */
 [data-preset='cyberpunk'] {
+  --text-inverse: #000000;
   --bg-app: #0d0d0d;
   --bg-panel: rgba(13, 13, 13, 0.95);
   --bg-card: rgba(26, 26, 26, 0.4);
@@ -175,6 +176,7 @@
 }
 
 [data-preset='dracula'] {
+  --text-inverse: #ffffff;
   --bg-app: #18181b;
   --bg-panel: rgba(24, 24, 27, 0.95);
   --bg-card: rgba(39, 39, 42, 0.5);
@@ -198,6 +200,7 @@
 }
 
 [data-preset='abyss'] {
+  --text-inverse: #000000;
   --bg-app: #020617;
   --bg-panel: rgba(2, 6, 23, 0.95);
   --bg-card: rgba(15, 23, 42, 0.4);
@@ -247,6 +250,7 @@
 }
 
 [data-preset='amethyst'] {
+  --text-inverse: #ffffff;
   --bg-app: #0f071f;
   --bg-panel: rgba(15, 7, 31, 0.95);
   --bg-card: rgba(30, 15, 60, 0.4);
@@ -273,6 +277,7 @@
 /* Chaque thème saisonnier possède une palette très distinctive et des décorations (voir seasonal-decor.css) */
 
 [data-preset='halloween'] {
+  --text-inverse: #ffffff;
   --font-family-title: 'Creepster', cursive;
   --bg-app: #0f0a05; /* Noir très profond légèrement orangé */
   --bg-panel: rgba(15, 10, 5, 0.95);
@@ -298,6 +303,7 @@
 }
 
 [data-preset='christmas'] {
+  --text-inverse: #ffffff;
   --font-family-title: 'Mountains of Christmas', cursive;
   --bg-app: #021810; /* Vert sapin très profond, différent du noir/vert Matrix */
   --bg-panel: rgba(2, 24, 16, 0.95);
@@ -322,6 +328,7 @@
 }
 
 [data-preset='spring'] {
+  --text-inverse: #ffffff;
   --font-family-title: 'Quicksand', sans-serif;
   --bg-app: #dcfce7; /* Vert herbe fraîche, lumineux */
   --bg-panel: rgba(220, 252, 231, 0.95);
@@ -347,6 +354,7 @@
 }
 
 [data-preset='easter'] {
+  --text-inverse: #ffffff;
   --font-family-title: 'Sniglet', cursive;
   --bg-app: #fef08a; /* Jaune poussin / Gourmand */
   --bg-panel: rgba(254, 240, 138, 0.95);
@@ -373,6 +381,7 @@
 }
 
 [data-preset='summer'] {
+  --text-inverse: #ffffff;
   --font-family-title: 'Quicksand', sans-serif;
   --bg-app: #bae6fd; /* Ciel tropical / Eau claire */
   --bg-panel: rgba(186, 230, 253, 0.95);
@@ -398,6 +407,7 @@
 }
 
 [data-preset='winter'] {
+  --text-inverse: #ffffff;
   --font-family-title: 'Quicksand', sans-serif;
   --bg-app: #082f49; /* Nuit arctique très profonde */
   --bg-panel: rgba(8, 47, 73, 0.95);
@@ -423,6 +433,7 @@
 }
 
 [data-preset='autumn'] {
+  --text-inverse: #ffffff;
   --font-family-title: 'Quicksand', sans-serif;
   --bg-app: #451a03; /* Terre d'automne */
   --bg-panel: rgba(69, 26, 3, 0.95);
@@ -447,6 +458,7 @@
 }
 
 [data-preset='chandeleur'] {
+  --text-inverse: #ffffff;
   --font-family-title: 'Pacifico', cursive;
   --bg-app: #fef08a; /* Pâte à crêpe lumineuse */
   --bg-panel: rgba(254, 240, 138, 0.95);
@@ -473,6 +485,7 @@
 }
 
 [data-preset='epiphanie'] {
+  --text-inverse: #000000;
   --font-family-title: 'Cinzel', serif;
   --bg-app: #0f172a; /* Bleu royal foncé très solennel */
   --bg-panel: rgba(15, 23, 42, 0.95);

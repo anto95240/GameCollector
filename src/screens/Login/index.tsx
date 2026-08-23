@@ -10,16 +10,7 @@ import { useLogin } from '@/hooks/domains/auth/useLogin'
 
 const Login = () => {
   // L'UI est totalement séparée de la logique !
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    error,
-    isAnimating,
-    handleSubmit,
-    t,
-  } = useLogin()
+  const { email, setEmail, password, setPassword, error, isAnimating, handleSubmit, t } = useLogin()
 
   return (
     <>
@@ -65,6 +56,20 @@ const Login = () => {
       </form>
 
       <div className="auth-footer">
+        <p>
+          <Link
+            to="/forgot-password"
+            className="cyber-link"
+            style={{
+              fontSize: '0.9em',
+              opacity: 0.8,
+              marginBottom: '0.5rem',
+              display: 'inline-block',
+            }}
+          >
+            {t('auth.forgotPassword.title')} ?
+          </Link>
+        </p>
         <p>
           {t('auth.login.newUser')}
           <Link to="/register" className="cyber-link">
