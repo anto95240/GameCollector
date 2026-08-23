@@ -1,3 +1,10 @@
+## [3.4.1](https://github.com/anto95240/GameCollector/compare/v3.4.0...v3.4.1) (2026-08-23)
+
+
+### Bug Fixes
+
+* affichage du menu mobile (contraste thèmes) et détection de version pour le patch note ([1ed9c64](https://github.com/anto95240/GameCollector/commit/1ed9c64f6aa8b2cddab1b81c0f53cca8862a95c6))
+
 # [3.4.0](https://github.com/anto95240/GameCollector/compare/v3.3.0...v3.4.0) (2026-08-23)
 
 
