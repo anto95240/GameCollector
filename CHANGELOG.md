@@ -1,3 +1,22 @@
+# [3.4.0](https://github.com/anto95240/GameCollector/compare/v3.3.0...v3.4.0) (2026-08-23)
+
+
+### Bug Fixes
+
+* eye icon bug in login/register ([dbef396](https://github.com/anto95240/GameCollector/commit/dbef3960a5a027a0b4b7559a048ae6d970214118))
+* vulnerabilite build ([ec966c1](https://github.com/anto95240/GameCollector/commit/ec966c14f1dc8af12536494ab402380ad4877979))
+
+
+### Features
+
+* **achievements:** ajout de trophées pour les interactions UI et personnalisations ([5870e30](https://github.com/anto95240/GameCollector/commit/5870e309685f30aa370a0f5532402ad4447eae84))
+* complete profile page revamp ([c4906da](https://github.com/anto95240/GameCollector/commit/c4906da34c2e67e21e45c7a5f2bdfe659d0c0855))
+* **import:** intégration/importation Steam, jaquettes et traductions ([8de6fd5](https://github.com/anto95240/GameCollector/commit/8de6fd5000e5bd37d564868d4e27bf48ec74de19))
+* SMTP integration and bug report system ([15572b5](https://github.com/anto95240/GameCollector/commit/15572b5fe647708bd0db0329e027ec83bbf789e5))
+* **stats:** implémentation du Drag & Drop fluide pour la réorganisation des widgets ([563fd87](https://github.com/anto95240/GameCollector/commit/563fd87a2ced26e1ff9965ab0dab2138ab58a7c1))
+* **theme:** intégration des thèmes Cyberpunk, Dracula, Abyss, Dune et Amethyst ([bd7fbd8](https://github.com/anto95240/GameCollector/commit/bd7fbd894cc25a4b777880ee652cead997ebe192))
+* **theme:** système de thèmes prédéfinis et color picker personnalisé ([4b67608](https://github.com/anto95240/GameCollector/commit/4b676080853d8512a61722eefbdd93eebe9a79d6))
+
 # [3.3.0](https://github.com/anto95240/GameCollector/compare/v3.2.2...v3.3.0) (2026-07-23)
 
 
