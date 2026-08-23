@@ -4,6 +4,20 @@ import { createClient } from '@supabase/supabase-js'
 // Vercel Serverless Function
 export default async function handler(req: any, res: any) {
   try {
+    // Vérification de sécurité CRON_SECRET
+    const authHeader = req.headers.authorization
+    const expectedAuth = `Bearer ${process.env.CRON_SECRET}`
+
+    // Optionnel : si vous voulez le tester depuis le navigateur, on peut l'ignorer en dev, mais en prod on bloque.
+    if (
+      process.env.CRON_SECRET &&
+      authHeader !== expectedAuth &&
+      req.query.secret !== process.env.CRON_SECRET
+    ) {
+      console.warn('Unauthorized attempt to trigger keep-alive')
+      return res.status(401).json({ error: 'Unauthorized' })
+    }
+
     const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL
     const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY
 

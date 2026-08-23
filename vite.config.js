@@ -58,6 +58,19 @@ export default defineConfig(({ mode }) => ({
   ].filter(Boolean),
   server: {
     proxy: {
+      // Proxy pour Vercel API (vercel dev -p 3001)
+      '/api/send-bug-report': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+      '/api/delete-account': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+      '/api/keep-alive': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
       '/api/steam-image-shared': {
         target: 'https://shared.akamai.steamstatic.com',
         changeOrigin: true,
