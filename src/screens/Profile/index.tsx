@@ -1,13 +1,14 @@
+import { useState } from 'react'
 import './Profile.css'
 
 import SideNav from '@/components/common/SideNav'
 import ConnexionSection from '@/components/main/ProfilePage/ConnexionSection'
 import DeleteAccountSection from '@/components/main/ProfilePage/DeleteAccountSection'
 import ProfilSection from '@/components/main/ProfilePage/ProfilSection'
+import BugReportSection from '@/components/main/ProfilePage/BugReportSection'
 import { PROFILE_SECTIONS } from '@/config/constants'
 import { useProfile } from '@/hooks/domains/auth/useProfile'
 import { useEscapeKeyCloser } from '@/hooks/ui/useEscapeKeyCloser'
-import { useScrollSpy } from '@/hooks/ui/useScrollSpy'
 
 const ProfilePage = () => {
   const {
@@ -17,16 +18,14 @@ const ProfilePage = () => {
     uiState,
     setUiState,
     t,
+    isSaving,
     handleSaveProfile,
     handleDeleteUser,
     handleDownloadData,
   } = useProfile()
 
-  // Remplacement de toute la logique d'IntersectionObserver par le hook
-  const { activeSection, scrollToSection } = useScrollSpy(
-    'profile-section',
-    '.profile-section-item'
-  )
+  // PS5 Style: Un seul onglet actif à la fois
+  const [activeTab, setActiveTab] = useState('profile-section')
 
   // Fermer la modal de suppression avec Escape
   useEscapeKeyCloser(
@@ -34,44 +33,65 @@ const ProfilePage = () => {
     uiState.showDeletePopup
   )
 
+  const handleTabChange = (id: string) => {
+    setActiveTab(id)
+    setUiState((p: any) => ({ ...p, showMobileMenu: false }))
+  }
+
   return (
     <div className="profile-container">
       <SideNav
         sections={PROFILE_SECTIONS}
-        activeSection={activeSection}
-        scrollToSection={(id: any) =>
-          scrollToSection(id, () => setUiState((p: any) => ({ ...p, showMobileMenu: false })))
-        }
+        activeSection={activeTab}
+        scrollToSection={handleTabChange}
         showMobileMenu={uiState.showMobileMenu}
         setShowMobileMenu={(val: any) => setUiState((prev: any) => ({ ...prev, showMobileMenu: val }))}
         t={t}
       />
 
-      <div className="profile-content">
-        <div id="profile-section" className="profile-section-item">
-          <ProfilSection
-            user={user}
-            form={form}
-            setForm={setForm}
-            t={t}
-            handleSaveProfile={handleSaveProfile}
-            handleDownloadData={handleDownloadData}
-          />
-        </div>
-        <div id="login-section" className="profile-section-item">
-          <ConnexionSection
-            user={user}
-            form={form}
-            setForm={setForm}
-            uiState={uiState}
-            setUiState={setUiState}
-            t={t}
-            handleSaveProfile={handleSaveProfile}
-          />
-        </div>
-        <div id="account-delete-section" className="profile-section-item">
-          <DeleteAccountSection setUiState={setUiState} t={t} />
-        </div>
+      <div className="profile-content ps5-style">
+        {activeTab === 'profile-section' && (
+          <div className="profile-section-item fade-in-tab">
+            <ProfilSection
+              user={user}
+              form={form}
+              setForm={setForm}
+              uiState={uiState}
+              setUiState={setUiState}
+              t={t}
+              isSaving={isSaving}
+              handleSaveProfile={handleSaveProfile}
+              handleDownloadData={handleDownloadData}
+            />
+          </div>
+        )}
+        
+        {activeTab === 'login-section' && (
+          <div className="profile-section-item fade-in-tab">
+            <ConnexionSection
+              user={user}
+              form={form}
+              setForm={setForm}
+              uiState={uiState}
+              setUiState={setUiState}
+              t={t}
+              isSaving={isSaving}
+              handleSaveProfile={handleSaveProfile}
+            />
+          </div>
+        )}
+
+        {activeTab === 'bug-report-section' && (
+          <div className="profile-section-item fade-in-tab">
+            <BugReportSection user={user} t={t} />
+          </div>
+        )}
+
+        {activeTab === 'account-delete-section' && (
+          <div className="profile-section-item fade-in-tab">
+            <DeleteAccountSection setUiState={setUiState} t={t} />
+          </div>
+        )}
       </div>
 
       {uiState.showDeletePopup && (

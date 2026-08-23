@@ -31,7 +31,6 @@ const SideNav: React.FC<SideNavProps> = ({
             className={`nav-anchor ${activeSection === section.id ? 'active' : ''}`}
             type="button"
           >
-            {section.icon && <FontAwesomeIcon icon={section.icon} />}
             <span>{t(section.label)}</span>
           </button>
         ))}

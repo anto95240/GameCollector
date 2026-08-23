@@ -16,13 +16,38 @@
 }
 
 .btn-cancel {
-  background: var(--bg-cancel-btn);
+  background: rgba(255, 255, 255, 0.1);
   color: var(--color-text);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .btn-save {
-  background: var(--gradient-blue);
-  color: white;
+  background: var(--brand-primary, #007bff);
+  color: var(--text-inverse, white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+}
+
+.loader-circle-small {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  display: inline-block;
+  animation: loader-spin-small 1s linear infinite;
+}
+
+@keyframes loader-spin-small {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .btn-download {

@@ -10,9 +10,9 @@ export interface SimpleInputProps {
 
 const SimpleInput: React.FC<SimpleInputProps> = ({ label, value, onChange, type = 'text', placeholder }: any) => {
   return (
-    <div className="simple-input-group">
+    <div className="simple-input-group floating-label-group">
+      <input type={type} value={value} onChange={onChange} placeholder={placeholder || " "} />
       <label>{label}</label>
-      <input type={type} value={value} onChange={onChange} placeholder={placeholder} />
     </div>
   )
 }

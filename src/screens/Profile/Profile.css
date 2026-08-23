@@ -1,11 +1,15 @@
 .profile-container {
   display: flex;
-  gap: 40px;
+  justify-content: center;
+  gap: 120px;
   padding: 40px;
-  max-width: 1200px;
+  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
   position: relative;
-  min-height: 80vh;
+  min-height: calc(100vh - 80px);
+  background: transparent;
+  box-sizing: border-box;
 }
 
 .profile-content {
@@ -14,9 +18,32 @@
   gap: 20px;
   min-width: 0;
   position: relative;
-  flex: 1;
-  /* Limiter le contenu à ~75% de la largeur (sachant que la sidebar prend ~25%) */
+  flex: 0 1 700px;
   max-width: 700px;
+}
+
+.profile-content.ps5-style {
+  animation: fadeInPS5 0.3s ease-out;
+}
+
+.fade-in-tab {
+  animation: slideFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInPS5 {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* =========================================

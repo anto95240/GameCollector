@@ -12,6 +12,8 @@ import LoadingScreen from '@/screens/LoadingScreen'
 // 🚀 LAZY LOADING : Ces pages ne seront téléchargées que lorsqu'elles seront visitées !
 const HomePage = lazy(() => import('../screens/Dashboard'))
 const LoginPage = lazy(() => import('../screens/Login'))
+const ForgotPasswordPage = lazy(() => import('../screens/ForgotPassword'))
+const ResetPasswordPage = lazy(() => import('../screens/ResetPassword'))
 const AddEditGamePage = lazy(() => import('../screens/AddEditGame'))
 const CategoryPage = lazy(() => import('../screens/Category'))
 const DeconnexionPage = lazy(() => import('../screens/Deconnexion'))
@@ -55,6 +57,22 @@ const router = createBrowserRouter([
         element: (
           <SuspenseWrapper>
             <LoginPage />
+          </SuspenseWrapper>
+        ),
+      },
+      {
+        path: '/forgot-password',
+        element: (
+          <SuspenseWrapper>
+            <ForgotPasswordPage />
+          </SuspenseWrapper>
+        ),
+      },
+      {
+        path: '/reset-password',
+        element: (
+          <SuspenseWrapper>
+            <ResetPasswordPage />
           </SuspenseWrapper>
         ),
       },
