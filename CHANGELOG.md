@@ -1,3 +1,16 @@
+# [3.5.0](https://github.com/anto95240/GameCollector/compare/v3.4.1...v3.5.0) (2026-09-03)
+
+
+### Bug Fixes
+
+* ajout du CRON_SECRET au workflow keep-alive ([059b6e6](https://github.com/anto95240/GameCollector/commit/059b6e6803c4dabbd742e13b525af7b42d90760e))
+
+
+### Features
+
+* création de la Edge Function Supabase pour le proxy IGDB ([6016556](https://github.com/anto95240/GameCollector/commit/601655669d42edd023e553bacf2e3f27792b9832))
+* migration de la recherche vers IGDB avec cache, parallélisation et proxy ([bd38a36](https://github.com/anto95240/GameCollector/commit/bd38a367223a57eb415df9cf471f74922945d58c))
+
 ## [3.4.1](https://github.com/anto95240/GameCollector/compare/v3.4.0...v3.4.1) (2026-08-23)
 
 
