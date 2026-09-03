@@ -11,10 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Supabase via API endpoint
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
           echo "🏓 Pinging keep-alive endpoint..."
           RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
             --max-time 30 \
+            -H "Authorization: Bearer $CRON_SECRET" \
             "https://arichard-gamecollector.vercel.app/api/keep-alive")
           
           echo "Response status: $RESPONSE"
