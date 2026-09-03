@@ -8,6 +8,7 @@ import { useApiMetadata } from '@/hooks/api/useApiMetadata'
 import { useFormValidation } from '@/hooks/ui/useFormValidation'
 import { useScrollSpy } from '@/hooks/ui/useScrollSpy'
 import { triggerAchievementCheck } from '@/services/achievementService'
+import { getExternalGameDetails } from '@/services/externalApiService'
 import { incrementStoredUserMetric } from '@/utils/userStorage'
 import { validateGameForm } from '@/utils/validators/gameValidators'
 
@@ -192,22 +193,14 @@ export const useAddEditGame = () => {
     }
   }
 
-  const handleExternalGameSelected = async (gameDetails: any) => {
+  const handleExternalGameSelected = async (gameSearchResult: any) => {
     setIsAnimating(true)
     try {
-      const updates: any = {
-        name: gameDetails.name || formData.name,
-        year: gameDetails.releaseYear || formData.year,
-        description: gameDetails.description || formData.description,
-      }
-
-      if (gameDetails.developers && gameDetails.developers.length > 0) {
-        updates.developer = gameDetails.developers.join(', ')
-      }
-
       const fetchImageWithProxy = async (url: string) => {
         let proxyUrl = url
-        if (proxyUrl.includes('shared.akamai.steamstatic.com')) {
+        if (proxyUrl.includes('images.igdb.com')) {
+          proxyUrl = proxyUrl.replace('https://images.igdb.com', '/api/igdb-image')
+        } else if (proxyUrl.includes('shared.akamai.steamstatic.com')) {
           proxyUrl = proxyUrl.replace(
             'https://shared.akamai.steamstatic.com',
             '/api/steam-image-shared'
@@ -223,32 +216,47 @@ export const useAddEditGame = () => {
         return fetch(proxyUrl + (proxyUrl.includes('?') ? '&' : '?') + 'cb=' + Date.now())
       }
 
-      if (gameDetails.boxArtUrl || gameDetails.coverUrl) {
-        try {
-          let imageUrlToFetch = gameDetails.boxArtUrl || gameDetails.coverUrl
-          let response = await fetchImageWithProxy(imageUrlToFetch)
+      // Parallélisation du fetch des détails complets ET de l'image de couverture
+      const detailsPromise = getExternalGameDetails(gameSearchResult.id)
 
-          // Si la jaquette n'existe pas (404), retomber sur l'image de couverture large
-          if (!response.ok && gameDetails.boxArtUrl && gameDetails.coverUrl) {
-            imageUrlToFetch = gameDetails.coverUrl
-            response = await fetchImageWithProxy(imageUrlToFetch)
-          }
+      let imagePromise: Promise<File | null> = Promise.resolve(null)
+      const imageUrlToFetch = gameSearchResult.boxArtUrl || gameSearchResult.coverUrl
+      if (imageUrlToFetch) {
+        imagePromise = fetchImageWithProxy(imageUrlToFetch)
+          .then(async (response) => {
+            if (!response.ok && gameSearchResult.boxArtUrl && gameSearchResult.coverUrl) {
+              return fetchImageWithProxy(gameSearchResult.coverUrl)
+            }
+            return response
+          })
+          .then(async (response) => {
+            if (!response.ok) throw new Error('Erreur réseau miniature')
+            const blob = await response.blob()
+            if (!blob.type.startsWith('image/')) throw new Error('Type invalide')
+            return new File([blob], 'cover.jpg', { type: blob.type })
+          })
+          .catch((err) => {
+            console.error("Impossible de télécharger l'image:", err)
+            return null
+          })
+      }
 
-          if (!response.ok) throw new Error('Erreur réseau miniature')
-          const blob = await response.blob()
+      const [fetchedDetails, downloadedImage] = await Promise.all([detailsPromise, imagePromise])
+      const gameDetails = fetchedDetails || gameSearchResult
 
-          if (!blob.type.startsWith('image/')) {
-            throw new Error(
-              `Le fichier téléchargé n'est pas une image (type: ${blob.type}). Le proxy Vite nécessite un redémarrage.`
-            )
-          }
+      const updates: any = {
+        name: gameDetails.name || formData.name,
+        year: gameDetails.releaseYear || formData.year,
+        description: gameDetails.description || formData.description,
+      }
 
-          const file = new File([blob], 'cover.jpg', { type: blob.type })
-          updates.image = file
-          setPreviewImg(URL.createObjectURL(file))
-        } catch (imgError) {
-          console.error("Impossible de télécharger l'image:", imgError)
-        }
+      if (gameDetails.developers && gameDetails.developers.length > 0) {
+        updates.developer = gameDetails.developers.join(', ')
+      }
+
+      if (downloadedImage) {
+        updates.image = downloadedImage
+        setPreviewImg(URL.createObjectURL(downloadedImage))
       }
 
       // Assignation automatique du statut "Wishlist" si le jeu n'est pas encore sorti

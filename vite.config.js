@@ -91,6 +91,11 @@ export default defineConfig(({ mode }) => ({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/steamspy/, ''),
       },
+      '/api/igdb-image': {
+        target: 'https://images.igdb.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/igdb-image/, ''),
+      },
       '/api/steam': {
         target: 'https://store.steampowered.com',
         changeOrigin: true,
