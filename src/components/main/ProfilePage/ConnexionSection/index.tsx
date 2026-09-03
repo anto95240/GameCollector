@@ -1,6 +1,6 @@
 import './ConnexionSection.css'
 
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faEyeSlash, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 
@@ -35,10 +35,58 @@ const ConnexionSection = ({
           onFormChange={(e: any) => setForm((p: any) => ({ ...p, email: e.target.value }))}
           buttonLabel={t('profile.edit.changeEmail')}
         >
+          {/* Champ confirmation email */}
+          <input
+            type="email"
+            placeholder={t('profile.edit.confirmEmail') || 'Confirmer le nouvel email'}
+            value={form.confirmEmail || ''}
+            onChange={(e: any) => setForm((p: any) => ({ ...p, confirmEmail: e.target.value }))}
+            style={{ width: '100%', marginTop: '0.5rem' }}
+          />
+
+          {/* Message informatif sur le processus de changement d'email */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '8px',
+              marginTop: '0.75rem',
+              padding: '10px 12px',
+              background: 'rgba(54, 205, 250, 0.08)',
+              borderRadius: '8px',
+              border: '1px solid rgba(54, 205, 250, 0.2)',
+              fontSize: '0.8rem',
+              color: 'var(--color-text-muted)',
+              lineHeight: '1.4',
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faInfoCircle}
+              style={{ color: 'var(--text-link)', marginTop: '2px', flexShrink: 0 }}
+            />
+            <span>
+              Deux emails de confirmation seront envoyés : un à votre{' '}
+              <strong>ancienne adresse</strong> pour valider le changement, et un à votre{' '}
+              <strong>nouvelle adresse</strong> pour confirmer. Le changement ne sera effectif
+              qu'après confirmation des deux.
+            </span>
+          </div>
+
           <div className="profile-actions-container" style={{ marginTop: '1rem' }}>
             <ActionButtons
-              onCancel={() => setUiState((p: any) => ({ ...p, showEmailForm: false }))}
-              onSave={() => handleSaveProfile('email')}
+              onCancel={() => {
+                setUiState((p: any) => ({ ...p, showEmailForm: false }))
+                setForm((p: any) => ({ ...p, email: user?.email || '', confirmEmail: '' }))
+              }}
+              onSave={() => {
+                if (form.email !== form.confirmEmail) {
+                  alert(
+                    t('profile.edit.emailMismatch') || 'Les adresses email ne correspondent pas.'
+                  )
+                  return
+                }
+                handleSaveProfile('email')
+              }}
               isSaving={isSaving}
               t={t}
             />

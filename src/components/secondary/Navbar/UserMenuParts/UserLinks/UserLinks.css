@@ -26,6 +26,18 @@
   gap: 14px;
 }
 
+.navbar-link-wishlist {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  padding: 0;
+  gap: 14px;
+  color: var(--color-text, currentColor);
+}
+
 .logout-text {
   background: var(--gradient-deconnexion);
   -webkit-background-clip: text;
