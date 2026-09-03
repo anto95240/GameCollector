@@ -273,10 +273,13 @@ tags: les tags du jeu
 ---
 
 ### 3.2 · Amélioration des thèmes
-- [ ] Améliore les couleurs des thèmes.
-- [ ] amélioré les animations des thèmes notamment ceux du thèms "Ete" et "Hiver".
-- [ ] amélioré les polices pour une meilleures immersion.
-
+- [ ] Améliore les couleurs des thèmes si c'est possible.
+- [x] amélioré les animations des thèmes notamment ceux du thèms "Ete" et "Hiver" si c'est possible.
+- [ ] amélioré les polices pour une meilleures immersion si c'est possible.
+- [ ] me donner et uniquement me donner d'autres idées de nouveaux thèmes que se soit classique, saisonnier ou d'autres type de thème. J'en veux au moins 50 idées de chaque type de thèmes avec les couleurs, polices et animations qui vont avec si c'est possible.
+- [ ] dans le menu de la navbar c'est écrit "pilot" alors que ca doit être le nom de l'utilisateur,  dans le menu de la navbar, quand on clique sur son avatar, on voit "pilot" au lieu de son nom. Dans ce menu ajoute un accès direct à la page wishlist.
+- [ ] je peux changer les mdp mais pas les mail, pour les mail ca va trop vite contrairement au mdp.
+- [x] migration vers igdb (récupération des clé client et secret fait, reste à implementé dans le code, phase 1)
 ---
 
 ## 💡 Banque d'idées futures/roadmap futur
