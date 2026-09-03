@@ -6,12 +6,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LanguageSelector from '@/components/secondary/Navbar/UserMenuParts/LanguageSelector'
 import ThemeToggle from '@/components/secondary/Navbar/UserMenuParts/ThemeToggle'
 import UserLinks from '@/components/secondary/Navbar/UserMenuParts/UserLinks'
+import { useAuth } from '@/context/AuthContext'
 
 const UserMenu = ({ user, t, state, setters, actions, onClose }: any) => {
+  const { profile } = useAuth()
   const { language, langMenuOpen } = state
   const { setLangMenuOpen } = setters
   const { changeLanguage } = actions
-  const displayName = user?.username || 'Pilote'
+  // Priorité : username du profil > prénom > partie avant le @ de l'email > fallback
+  const displayName =
+    profile?.username || profile?.firstname || user?.email?.split('@')[0] || 'Utilisateur'
 
   const handleHelpClick = () => {
     window.dispatchEvent(new CustomEvent('showKeyboardHelp'))

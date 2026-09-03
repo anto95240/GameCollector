@@ -153,122 +153,137 @@
 /* --- PRESETS (Surcharges) --- */
 [data-preset='cyberpunk'] {
   --text-inverse: #000000;
-  --bg-app: #0d0d0d;
-  --bg-panel: rgba(13, 13, 13, 0.95);
-  --bg-card: rgba(26, 26, 26, 0.4);
-  --bg-card-hover: rgba(38, 38, 38, 0.6);
-  --bg-input: #000000;
-  --text-primary: #fde047;
-  --brand-primary: #eab308;
-  --brand-glow: #fde047;
-  --border-main: #eab308;
-  --border-focus: #fde047;
-  --grad-card-surface: linear-gradient(47deg, #1a1a1a 0%, #0d0d0d 80%);
-  --grad-input-surface: linear-gradient(47deg, #0a0a0a 0%, #000000 80%);
-  --grad-btn-primary: linear-gradient(47deg, #fde047 0%, #ca8a04 60%);
+  --font-family-title: 'Orbitron', sans-serif;
+  --font-size-title-boost: 1.1em; /* Légère augmentation des titres */
+  --bg-app: #080808; /* Noir absolu dystopique */
+  --bg-panel: rgba(8, 8, 8, 0.97);
+  --bg-card: rgba(30, 20, 0, 0.5); /* Légère teinte ambre */
+  --bg-card-hover: rgba(50, 35, 0, 0.65);
+  --bg-input: #0a0800;
+  --text-primary: #ffe600; /* Jaune vif, plus punchy */
+  --text-secondary: #b38800;
+  --brand-primary: #f0a500;
+  --brand-glow: #ffe600;
+  --border-main: #f0a500;
+  --border-subtle: rgba(255, 230, 0, 0.2);
+  --border-focus: #ffe600;
+  --grad-card-surface: linear-gradient(47deg, #1c1400 0%, #080808 80%);
+  --grad-input-surface: linear-gradient(47deg, #100e00 0%, #0a0800 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ffe600 0%, #c27d00 60%);
   --grad-glow-border: conic-gradient(
     transparent 0deg,
-    #ca8a04 90deg,
-    #fde047 180deg,
-    #ca8a04 270deg,
+    #c27d00 90deg,
+    #ffe600 180deg,
+    #c27d00 270deg,
     transparent 360deg
   );
 }
 
 [data-preset='dracula'] {
   --text-inverse: #ffffff;
-  --bg-app: #18181b;
-  --bg-panel: rgba(24, 24, 27, 0.95);
-  --bg-card: rgba(39, 39, 42, 0.5);
-  --bg-card-hover: rgba(63, 63, 70, 0.6);
-  --bg-input: #09090b;
-  --text-primary: #f87171;
-  --brand-primary: #dc2626;
-  --brand-glow: #f87171;
-  --border-main: #b91c1c;
-  --border-focus: #f87171;
-  --grad-card-surface: linear-gradient(47deg, #27272a 0%, #18181b 80%);
-  --grad-input-surface: linear-gradient(47deg, #18181b 0%, #09090b 80%);
-  --grad-btn-primary: linear-gradient(47deg, #f87171 0%, #991b1b 100%);
+  --font-family-title: 'Cinzel Decorative', serif;
+  --bg-app: #120007; /* Bordeaux très sombre, plus dramatique */
+  --bg-panel: rgba(18, 0, 7, 0.97);
+  --bg-card: rgba(45, 5, 18, 0.55); /* Rouge sang profond */
+  --bg-card-hover: rgba(70, 10, 28, 0.7);
+  --bg-input: #0a0003;
+  --text-primary: #ff6b8a; /* Rose sang vif */
+  --text-secondary: #994466;
+  --brand-primary: #e0133a;
+  --brand-glow: #ff6b8a;
+  --border-main: #b80030;
+  --border-subtle: rgba(255, 107, 138, 0.2);
+  --border-focus: #ff6b8a;
+  --grad-card-surface: linear-gradient(47deg, #2d0512 0%, #120007 80%);
+  --grad-input-surface: linear-gradient(47deg, #1a0008 0%, #0a0003 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ff4d70 0%, #8b0020 100%);
   --grad-glow-border: conic-gradient(
     transparent 0deg,
-    #991b1b 90deg,
-    #f87171 180deg,
-    #991b1b 270deg,
+    #8b0020 90deg,
+    #ff6b8a 180deg,
+    #8b0020 270deg,
     transparent 360deg
   );
 }
 
 [data-preset='abyss'] {
   --text-inverse: #000000;
-  --bg-app: #020617;
-  --bg-panel: rgba(2, 6, 23, 0.95);
-  --bg-card: rgba(15, 23, 42, 0.4);
-  --bg-card-hover: rgba(30, 41, 59, 0.6);
-  --bg-input: #000000;
-  --text-primary: #06b6d4;
-  --brand-primary: #0891b2;
-  --brand-glow: #06b6d4;
-  --border-main: #0891b2;
-  --border-focus: #06b6d4;
-  --grad-card-surface: linear-gradient(47deg, #0f172a 0%, #020617 80%);
-  --grad-input-surface: linear-gradient(47deg, #080c17 0%, #000000 80%);
-  --grad-btn-primary: linear-gradient(47deg, #22d3ee 0%, #0891b2 60%);
+  --font-family-title: 'Exo 2', sans-serif;
+  --bg-app: #000d18; /* Noir abyssal, profond des mers */
+  --bg-panel: rgba(0, 13, 24, 0.98);
+  --bg-card: rgba(0, 30, 55, 0.45); /* Bleu abyssal */
+  --bg-card-hover: rgba(0, 50, 90, 0.6);
+  --bg-input: #000810;
+  --text-primary: #00e5ff; /* Cyan bioluminescent */
+  --text-secondary: #0097a7;
+  --brand-primary: #0091bd;
+  --brand-glow: #00e5ff;
+  --border-main: #006d8a;
+  --border-subtle: rgba(0, 229, 255, 0.15);
+  --border-focus: #00e5ff;
+  --grad-card-surface: linear-gradient(47deg, #001e37 0%, #000d18 80%);
+  --grad-input-surface: linear-gradient(47deg, #001020 0%, #000810 80%);
+  --grad-btn-primary: linear-gradient(47deg, #00c8e8 0%, #005f7a 60%);
   --grad-glow-border: conic-gradient(
     transparent 0deg,
-    #0891b2 90deg,
-    #06b6d4 180deg,
-    #0891b2 270deg,
+    #005f7a 90deg,
+    #00e5ff 180deg,
+    #005f7a 270deg,
     transparent 360deg
   );
 }
 
 [data-preset='dune'] {
-  --bg-app: #fffbeb;
-  --bg-panel: rgba(255, 251, 235, 0.95);
-  --bg-card: #ffffff;
-  --bg-card-hover: #fef3c7;
-  --bg-input: #fef3c7;
+  --font-family-title: 'Josefin Slab', serif;
+  --bg-app: #f5e8c8; /* Sable chaud, plus désertique */
+  --bg-panel: rgba(245, 232, 200, 0.97);
+  --bg-card: rgba(255, 247, 225, 0.85);
+  --bg-card-hover: #fff0d0;
+  --bg-input: #fdf5e0;
   --text-search: var(--brand-primary);
-  --text-primary: #d97706;
-  --text-secondary: #92400e;
+  --text-primary: #b35000; /* Ocre rouge profond */
+  --text-secondary: #7a3c00;
   --text-inverse: #ffffff;
-  --brand-primary: #ea580c;
-  --brand-glow: #f97316;
-  --border-main: #fcd34d;
-  --border-focus: #f97316;
-  --grad-card-surface: linear-gradient(47deg, #ffffff 0%, #fffbeb 100%);
-  --grad-input-surface: linear-gradient(47deg, #fffdf4 0%, #fffbeb 100%);
-  --grad-btn-primary: linear-gradient(47deg, #f97316 0%, #c2410c 100%);
+  --brand-primary: #d4620a;
+  --brand-glow: #e87820;
+  --border-main: #d4a843; /* Or désertique */
+  --border-subtle: rgba(180, 100, 20, 0.2);
+  --border-focus: #e87820;
+  --grad-card-surface: linear-gradient(160deg, #fff7e0 0%, #f5e8c8 100%);
+  --grad-input-surface: linear-gradient(160deg, #fdf5e0 0%, #ede0c0 100%);
+  --grad-btn-primary: linear-gradient(47deg, #e87820 0%, #9b3500 100%);
   --grad-glow-border: conic-gradient(
     transparent 0deg,
-    #ea580c 90deg,
-    #f97316 180deg,
-    #ea580c 270deg,
+    #9b3500 90deg,
+    #e87820 180deg,
+    #9b3500 270deg,
     transparent 360deg
   );
 }
 
 [data-preset='amethyst'] {
   --text-inverse: #ffffff;
-  --bg-app: #0f071f;
-  --bg-panel: rgba(15, 7, 31, 0.95);
-  --bg-card: rgba(30, 15, 60, 0.4);
-  --bg-card-hover: rgba(45, 20, 90, 0.6);
-  --bg-input: #0a0414;
-  --text-primary: #c084fc;
-  --brand-primary: #9333ea;
-  --brand-glow: #d8b4fe;
-  --border-main: #7e22ce;
-  --border-focus: #c084fc;
-  --grad-card-surface: linear-gradient(47deg, #1e0f3c 0%, #0f071f 80%);
-  --grad-input-surface: linear-gradient(47deg, #160a2b 0%, #0a0414 80%);
-  --grad-btn-primary: linear-gradient(47deg, #a855f7 0%, #6b21a8 100%);
+  --font-family-title: 'Philosopher', serif;
+  --bg-app: #0a0218; /* Violet noir minéral */
+  --bg-panel: rgba(10, 2, 24, 0.98);
+  --bg-card: rgba(35, 10, 75, 0.5); /* Cristal d'améthyste */
+  --bg-card-hover: rgba(60, 20, 120, 0.65);
+  --bg-input: #060010;
+  --text-primary: #d8aaff; /* Améthyste claire */
+  --text-secondary: #9955cc;
+  --brand-primary: #a030f0;
+  --brand-glow: #e8c0ff;
+  --border-main: #7020b8;
+  --border-subtle: rgba(200, 150, 255, 0.18);
+  --border-focus: #d8aaff;
+  --grad-card-surface: linear-gradient(135deg, #230a4b 0%, #0a0218 80%);
+  --grad-input-surface: linear-gradient(135deg, #180730 0%, #060010 80%);
+  --grad-btn-primary: linear-gradient(47deg, #b84dff 0%, #5a0098 100%);
   --grad-glow-border: conic-gradient(
     transparent 0deg,
-    #7e22ce 90deg,
-    #d8b4fe 180deg,
-    #7e22ce 270deg,
+    #5a0098 90deg,
+    #e8c0ff 180deg,
+    #5a0098 270deg,
     transparent 360deg
   );
 }
@@ -279,25 +294,28 @@
 [data-preset='halloween'] {
   --text-inverse: #ffffff;
   --font-family-title: 'Creepster', cursive;
-  --bg-app: #0f0a05; /* Noir très profond légèrement orangé */
-  --bg-panel: rgba(15, 10, 5, 0.95);
-  --bg-card: rgba(30, 15, 40, 0.6); /* Cartes avec une teinte violacée fantomatique */
-  --bg-card-hover: rgba(45, 25, 60, 0.7);
-  --bg-input: #0a0502;
-  --text-search: #f97316;
-  --text-primary: #f97316; /* Orange Citrouille */
-  --brand-primary: #ea580c;
-  --brand-glow: #a855f7; /* Violet spectral en glow */
-  --border-main: #ea580c;
-  --border-focus: #f97316;
-  --grad-card-surface: linear-gradient(47deg, #251030 0%, #0f0a05 80%);
-  --grad-input-surface: linear-gradient(47deg, #1a0820 0%, #0a0502 80%);
-  --grad-btn-primary: linear-gradient(47deg, #f97316 0%, #c2410c 60%);
+  --font-size-title-boost: 1.15em;
+  --bg-app: #0c0603; /* Nuit d'Halloween, noir charbonneux */
+  --bg-panel: rgba(12, 6, 3, 0.98);
+  --bg-card: rgba(35, 10, 45, 0.65); /* Violet spectre profond */
+  --bg-card-hover: rgba(55, 18, 70, 0.75);
+  --bg-input: #080302;
+  --text-search: #ff7010;
+  --text-primary: #ff7010; /* Orange citrouille vif */
+  --text-secondary: #c04010;
+  --brand-primary: #dd4a00;
+  --brand-glow: #c060ff; /* Violet spectral lumineux */
+  --border-main: #dd4a00;
+  --border-subtle: rgba(255, 112, 16, 0.2);
+  --border-focus: #ff7010;
+  --grad-card-surface: linear-gradient(47deg, #2a0a38 0%, #0c0603 80%);
+  --grad-input-surface: linear-gradient(47deg, #1c0525 0%, #080302 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ff7010 0%, #aa1a00 60%);
   --grad-glow-border: conic-gradient(
     transparent 0deg,
-    #ea580c 90deg,
-    #a855f7 180deg,
-    #ea580c 270deg,
+    #aa1a00 90deg,
+    #c060ff 180deg,
+    #aa1a00 270deg,
     transparent 360deg
   );
 }
@@ -305,24 +323,27 @@
 [data-preset='christmas'] {
   --text-inverse: #ffffff;
   --font-family-title: 'Mountains of Christmas', cursive;
-  --bg-app: #021810; /* Vert sapin très profond, différent du noir/vert Matrix */
-  --bg-panel: rgba(2, 24, 16, 0.95);
-  --bg-card: rgba(20, 45, 30, 0.5); /* Vert forêt festif */
-  --bg-card-hover: rgba(30, 60, 40, 0.6);
-  --bg-input: #010f0a;
-  --text-primary: #facc15; /* Or/Guirlande */
-  --brand-primary: #dc2626; /* Rouge Père Noël */
-  --brand-glow: #facc15;
-  --border-main: #dc2626;
-  --border-focus: #facc15;
-  --grad-card-surface: linear-gradient(47deg, #103020 0%, #021810 80%);
-  --grad-input-surface: linear-gradient(47deg, #0a2015 0%, #010f0a 80%);
-  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, #b91c1c 60%);
+  --font-size-title-boost: 1.12em;
+  --bg-app: #011408; /* Sapin de Noël, vert très sombre velouté */
+  --bg-panel: rgba(1, 20, 8, 0.98);
+  --bg-card: rgba(15, 48, 28, 0.6); /* Branches de sapin */
+  --bg-card-hover: rgba(25, 68, 40, 0.72);
+  --bg-input: #010d05;
+  --text-primary: #ffd700; /* Or brillant des étoiles */
+  --text-secondary: #a0cc80;
+  --brand-primary: #cc1818; /* Rouge Noël profond */
+  --brand-glow: #ffd700;
+  --border-main: #cc1818;
+  --border-subtle: rgba(255, 215, 0, 0.2);
+  --border-focus: #ffd700;
+  --grad-card-surface: linear-gradient(47deg, #0d3018 0%, #011408 80%);
+  --grad-input-surface: linear-gradient(47deg, #081a0e 0%, #010d05 80%);
+  --grad-btn-primary: linear-gradient(47deg, #e82020 0%, #8b0000 60%);
   --grad-glow-border: conic-gradient(
     transparent 0deg,
-    #dc2626 90deg,
-    #facc15 180deg,
-    #dc2626 270deg,
+    #8b0000 90deg,
+    #ffd700 180deg,
+    #8b0000 270deg,
     transparent 360deg
   );
 }
@@ -383,25 +404,27 @@
 [data-preset='summer'] {
   --text-inverse: #ffffff;
   --font-family-title: 'Quicksand', sans-serif;
-  --bg-app: #bae6fd; /* Ciel tropical / Eau claire */
-  --bg-panel: rgba(186, 230, 253, 0.95);
-  --bg-card: rgba(255, 255, 255, 0.7);
-  --bg-card-hover: rgba(255, 255, 255, 0.9);
-  --bg-input: #fffbeb; /* Sable fin très clair */
-  --text-primary: #ea580c; /* Orange coucher de soleil */
-  --text-secondary: #0369a1;
-  --brand-primary: #0284c7; /* Bleu océan */
-  --brand-glow: #fde047; /* Jaune sable/soleil */
-  --border-main: #fde047;
-  --border-focus: #ea580c;
-  --grad-card-surface: linear-gradient(47deg, #ffffff 0%, #fffbeb 100%); /* Sable blanc */
-  --grad-input-surface: linear-gradient(47deg, #fffbeb 0%, #fef3c7 100%); /* Sable fin doré */
-  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, #0284c7 100%);
+  --font-weight-title: 700;
+  --bg-app: #a8d8f0; /* Bleu ciel méditerranéen chaud */
+  --bg-panel: rgba(168, 216, 240, 0.97);
+  --bg-card: rgba(255, 255, 255, 0.75);
+  --bg-card-hover: rgba(255, 255, 255, 0.92);
+  --bg-input: #fff8e8; /* Sable doré */
+  --text-primary: #c94a00; /* Orange soleil couchant profond */
+  --text-secondary: #005f8a;
+  --brand-primary: #0073b0; /* Bleu mer profond */
+  --brand-glow: #fbc600; /* Jaune soleil intense */
+  --border-main: #fbc600;
+  --border-subtle: rgba(251, 198, 0, 0.25);
+  --border-focus: #c94a00;
+  --grad-card-surface: linear-gradient(160deg, #ffffff 0%, #fff3d0 100%); /* Sable nacré */
+  --grad-input-surface: linear-gradient(160deg, #fff8e8 0%, #ffe8b0 100%);
+  --grad-btn-primary: linear-gradient(47deg, #10b4e8 0%, #005f8a 100%);
   --grad-glow-border: conic-gradient(
     transparent 0deg,
-    #0ea5e9 90deg,
-    #fde047 180deg,
-    #0ea5e9 270deg,
+    #0073b0 90deg,
+    #fbc600 180deg,
+    #0073b0 270deg,
     transparent 360deg
   );
 }
@@ -409,25 +432,27 @@
 [data-preset='winter'] {
   --text-inverse: #ffffff;
   --font-family-title: 'Quicksand', sans-serif;
-  --bg-app: #082f49; /* Nuit arctique très profonde */
-  --bg-panel: rgba(8, 47, 73, 0.95);
-  --bg-card: rgba(12, 74, 110, 0.5); /* Glace fumée */
-  --bg-card-hover: rgba(2, 132, 199, 0.6);
-  --bg-input: #042f2e;
-  --text-primary: #e0f2fe; /* Blanc givré cyan */
-  --text-secondary: #7dd3fc;
-  --brand-primary: #0284c7; /* Bleu froid */
-  --brand-glow: #ffffff; /* Neige */
-  --border-main: #0369a1;
-  --border-focus: #ffffff;
-  --grad-card-surface: linear-gradient(47deg, #0f172a 0%, #082f49 100%);
-  --grad-input-surface: linear-gradient(47deg, #020617 0%, #082f49 100%);
-  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, #0284c7 100%);
+  --font-weight-title: 600;
+  --bg-app: #04223a; /* Minuit arctique, bleu nuit intense */
+  --bg-panel: rgba(4, 34, 58, 0.98);
+  --bg-card: rgba(5, 65, 105, 0.55); /* Glace bleue profonde */
+  --bg-card-hover: rgba(10, 100, 160, 0.65);
+  --bg-input: #021a2e;
+  --text-primary: #cceeff; /* Blanc givré presque pur */
+  --text-secondary: #60c8f0;
+  --brand-primary: #0a7fc0; /* Bleu glacier profond */
+  --brand-glow: #d0f4ff; /* Lueur de neige */
+  --border-main: #0555a0;
+  --border-subtle: rgba(200, 240, 255, 0.18);
+  --border-focus: #cceeff;
+  --grad-card-surface: linear-gradient(135deg, #09355a 0%, #04223a 100%);
+  --grad-input-surface: linear-gradient(135deg, #041525 0%, #021a2e 100%);
+  --grad-btn-primary: linear-gradient(47deg, #10b8ee 0%, #0555a0 100%);
   --grad-glow-border: conic-gradient(
     transparent 0deg,
-    #0284c7 90deg,
-    #ffffff 180deg,
-    #0284c7 270deg,
+    #0555a0 90deg,
+    #d0f4ff 180deg,
+    #0555a0 270deg,
     transparent 360deg
   );
 }
@@ -435,24 +460,27 @@
 [data-preset='autumn'] {
   --text-inverse: #ffffff;
   --font-family-title: 'Quicksand', sans-serif;
-  --bg-app: #451a03; /* Terre d'automne */
-  --bg-panel: rgba(69, 26, 3, 0.95);
-  --bg-card: rgba(120, 53, 15, 0.5);
-  --bg-card-hover: rgba(146, 64, 14, 0.7);
-  --bg-input: #291a10;
-  --text-primary: #fde047; /* Or des feuilles */
-  --brand-primary: #ea580c; /* Rouge érable / Orange */
-  --brand-glow: #facc15;
-  --border-main: #b45309;
-  --border-focus: #fde047;
-  --grad-card-surface: linear-gradient(47deg, #3a2215 0%, #451a03 80%);
-  --grad-input-surface: linear-gradient(47deg, #23140b 0%, #291a10 80%);
-  --grad-btn-primary: linear-gradient(47deg, #ea580c 0%, #c2410c 60%);
+  --font-weight-title: 700;
+  --bg-app: #3b1200; /* Sous-bois automnal très profond */
+  --bg-panel: rgba(59, 18, 0, 0.98);
+  --bg-card: rgba(110, 45, 5, 0.55); /* Châtaigne chaud */
+  --bg-card-hover: rgba(140, 60, 10, 0.72);
+  --bg-input: #210d00;
+  --text-primary: #ffcc00; /* Or feuillage lumineux */
+  --text-secondary: #e07020;
+  --brand-primary: #e04500; /* Rouge érable intense */
+  --brand-glow: #ffcc00;
+  --border-main: #a03e00;
+  --border-subtle: rgba(255, 180, 0, 0.2);
+  --border-focus: #ffcc00;
+  --grad-card-surface: linear-gradient(135deg, #4a1a00 0%, #3b1200 80%);
+  --grad-input-surface: linear-gradient(135deg, #2a0e00 0%, #210d00 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ff5500 0%, #991e00 60%);
   --grad-glow-border: conic-gradient(
     transparent 0deg,
-    #ea580c 90deg,
-    #facc15 180deg,
-    #ea580c 270deg,
+    #991e00 90deg,
+    #ffcc00 180deg,
+    #991e00 270deg,
     transparent 360deg
   );
 }

@@ -23,6 +23,10 @@
       "destination": "https://steamspy.com/$1"
     },
     {
+      "source": "/api/igdb-image/(.*)",
+      "destination": "https://images.igdb.com/$1"
+    },
+    {
       "source": "/api/steam/(.*)",
       "destination": "https://store.steampowered.com/$1"
     },

@@ -1,13 +1,19 @@
 import './UserLinks.css'
 
-import { faRightFromBracket, faTrophy, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faRightFromBracket, faTrophy, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NavLink } from 'react-router'
+import { NavLink, useNavigate } from 'react-router'
 
 import { usePreloadRoute } from '@/hooks/ui/usePreloadRoute'
 
 const UserLinks = ({ t, onClose }: any) => {
   const { preloadRoute } = usePreloadRoute()
+  const navigate = useNavigate()
+
+  const handleWishlistClick = () => {
+    onClose()
+    navigate('/liste', { state: { tab: 'wishlist' } })
+  }
 
   return (
     <div className="navbar-actions-links">
@@ -30,6 +36,14 @@ const UserLinks = ({ t, onClose }: any) => {
       >
         <FontAwesomeIcon icon={faTrophy} /> {t('navbar.trophies')}
       </NavLink>
+
+      <button
+        className="navbar-link-profile navbar-link-wishlist"
+        onClick={handleWishlistClick}
+        type="button"
+      >
+        <FontAwesomeIcon icon={faHeart} /> {t('dashboard.wishlist') || 'Wishlist'}
+      </button>
 
       <NavLink className="navbar-link-deconnect" to="/logout" onClick={onClose}>
         <div className="deconnect-text">

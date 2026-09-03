@@ -8,7 +8,6 @@ import ProfileAvatarModal from '@/components/secondary/Profile/ProfileAvatarModa
 import ProfileCard from '@/components/secondary/Profile/ProfileCard'
 
 const ProfilSection = ({
-  user,
   form,
   setForm,
   uiState,
