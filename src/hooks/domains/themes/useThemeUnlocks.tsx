@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
+import { normalizeThemeId } from '@/config/themeMigration'
 import { THEME_RULES } from '@/config/themeRules'
 import { useAuth } from '@/context/AuthContext'
 import { useApiAchievements } from '@/hooks/api/useApiAchievements'
@@ -40,18 +41,35 @@ export const useThemeUnlocks = () => {
     const fetchThemes = async () => {
       const { data, error } = await supabase.from('themes').select('*')
       if (!error && data) {
-        // Ensure default themes are always present
-        const dbThemes = data as ThemeDB[]
-        if (!dbThemes.find(t => t.id_name === 'neon_night')) {
+        // Normaliser les IDs au cas où la migration SQL n'a pas encore été appliquée
+        const dbThemes = (data as ThemeDB[]).map((t) => ({
+          ...t,
+          id_name: normalizeThemeId(t.id_name),
+        }))
+        if (!dbThemes.find((t) => t.id_name === 'neon_night')) {
           dbThemes.push({
-            id: 'neon_night', id_name: 'neon_night', display_name: 'Neon Night',
-            unlock_type: 'default', required_achievement_id_name: null, required_item_count: null, required_genre: null, date_start: null, date_end: null
+            id: 'neon_night',
+            id_name: 'neon_night',
+            display_name: 'Neon Night',
+            unlock_type: 'default',
+            required_achievement_id_name: null,
+            required_item_count: null,
+            required_genre: null,
+            date_start: null,
+            date_end: null,
           })
         }
-        if (!dbThemes.find(t => t.id_name === 'arctic_day')) {
+        if (!dbThemes.find((t) => t.id_name === 'arctic_day')) {
           dbThemes.push({
-            id: 'arctic_day', id_name: 'arctic_day', display_name: 'Arctic Day',
-            unlock_type: 'default', required_achievement_id_name: null, required_item_count: null, required_genre: null, date_start: null, date_end: null
+            id: 'arctic_day',
+            id_name: 'arctic_day',
+            display_name: 'Arctic Day',
+            unlock_type: 'default',
+            required_achievement_id_name: null,
+            required_item_count: null,
+            required_genre: null,
+            date_start: null,
+            date_end: null,
           })
         }
         setThemes(dbThemes)
@@ -63,12 +81,14 @@ export const useThemeUnlocks = () => {
   // Fetch user achievements and all achievements
   useEffect(() => {
     if (user) {
-      Promise.all([getUserAchievements(), getAllAchievements()]).then(([achievements, allAch]) => {
-        setUserAchievements(achievements)
-        setAllAchievements(allAch)
-      }).finally(() => {
-        setIsLoading(false)
-      })
+      Promise.all([getUserAchievements(), getAllAchievements()])
+        .then(([achievements, allAch]) => {
+          setUserAchievements(achievements)
+          setAllAchievements(allAch)
+        })
+        .finally(() => {
+          setIsLoading(false)
+        })
     } else {
       setUserAchievements([])
       setAllAchievements([])
@@ -84,10 +104,12 @@ export const useThemeUnlocks = () => {
     try {
       const stored = localStorage.getItem('gc_known_unlocked_themes')
       if (stored) {
-         knownUnlockedRef.current = new Set(JSON.parse(stored))
-         isFirstLoadRef.current = false
+        knownUnlockedRef.current = new Set(JSON.parse(stored))
+        isFirstLoadRef.current = false
       }
-    } catch {}
+    } catch {
+      /* Valeur corrompue dans localStorage, on ignore */
+    }
   }, [])
 
   const [alwaysShowSeasonal, setAlwaysShowSeasonal] = useState(() => {
@@ -114,12 +136,15 @@ export const useThemeUnlocks = () => {
       let type = theme.unlock_type
       let requiredAchId = theme.required_achievement_id_name
 
-      const rule = THEME_RULES.find(r => r.id === (theme.id_name || theme.id))
+      const rule = THEME_RULES.find((r) => r.id === (theme.id_name || theme.id))
       if (rule) {
         if (rule.condition.match(/Trophée\s+`?([^`\s]+)`?/i)) {
           type = 'achievement'
           requiredAchId = rule.condition.match(/Trophée\s+`?([^`\s]+)`?/i)?.[1] || requiredAchId
-        } else if (rule.condition.includes('Événementielle') || rule.condition.includes('Saisonnière')) {
+        } else if (
+          rule.condition.includes('Événementielle') ||
+          rule.condition.includes('Saisonnière')
+        ) {
           type = 'date'
         } else {
           type = 'collection'
@@ -130,33 +155,33 @@ export const useThemeUnlocks = () => {
         isUnlocked = true
         unlockMessage = 'Thème par défaut'
       } else if (type === 'achievement') {
-        const ach = userAchievements.find(a => a.id_name === requiredAchId)
+        const ach = userAchievements.find((a) => a.id_name === requiredAchId)
         isUnlocked = !!ach
         progress = isUnlocked ? 1 : 0
-        const achDef = allAchievements.find(a => a.id_name === requiredAchId)
+        const achDef = allAchievements.find((a) => a.id_name === requiredAchId)
         let achTitle = achDef?.title || requiredAchId?.replace(/_/g, ' ') || 'Trophée Inconnu'
         if (achTitle.toLowerCase() === 'unknown achievement') achTitle = 'Trophée Mystère'
         unlockMessage = `Débloqué via le trophée: ${achTitle}`
       } else if (type === 'collection') {
         if (rule) {
-            maxProgress = rule.max
-            progress = Math.min(rule.evaluate(games || []), maxProgress)
-            isUnlocked = progress >= maxProgress
-            unlockMessage = rule.condition.replace(/_/g, ' ')
-            if (/^\d+\s+jeu/.test(unlockMessage)) {
-                unlockMessage = 'Ajouter ' + unlockMessage
-            }
+          maxProgress = rule.max
+          progress = Math.min(rule.evaluate(games || []), maxProgress)
+          isUnlocked = progress >= maxProgress
+          unlockMessage = rule.condition.replace(/_/g, ' ')
+          if (/^\d+\s+jeu/.test(unlockMessage)) {
+            unlockMessage = 'Ajouter ' + unlockMessage
+          }
         } else {
-            maxProgress = theme.required_item_count || 1
-            progress = 0
-            isUnlocked = false
-            unlockMessage = `Débloquer la collection requise`
+          maxProgress = theme.required_item_count || 1
+          progress = 0
+          isUnlocked = false
+          unlockMessage = `Débloquer la collection requise`
         }
       } else if (type === 'date') {
         const now = new Date()
         const month = now.getMonth() + 1
         const id = theme.id_name || theme.id
-        
+
         if (alwaysShowSeasonal) {
           isUnlocked = true
         } else {
@@ -171,10 +196,12 @@ export const useThemeUnlocks = () => {
           else if (id === 'epiphanie') isUnlocked = month === 1
           else isUnlocked = false
         }
-        
+
         progress = isUnlocked ? 1 : 0
         maxProgress = 0 // Masque la barre de progression pour les thèmes saisonniers
-        unlockMessage = isUnlocked ? 'Thème saisonnier (Débloqué)' : 'Débloqué durant sa saison ou événement'
+        unlockMessage = isUnlocked
+          ? 'Thème saisonnier (Débloqué)'
+          : 'Débloqué durant sa saison ou événement'
       }
 
       return {
@@ -182,7 +209,7 @@ export const useThemeUnlocks = () => {
         isUnlocked,
         progress,
         maxProgress,
-        unlockMessage
+        unlockMessage,
       } as UnlockedTheme
     })
   }, [themes, userAchievements, games, allAchievements, alwaysShowSeasonal])
@@ -195,27 +222,30 @@ export const useThemeUnlocks = () => {
     let hasNewUnlocks = false
     const newlyUnlocked: UnlockedTheme[] = []
 
-    evaluatedThemes.forEach(theme => {
-       if (theme.isUnlocked && !knownUnlockedRef.current.has(theme.id_name)) {
-          knownUnlockedRef.current.add(theme.id_name)
-          hasNewUnlocks = true
-          if (!isFirstLoadRef.current) {
-             newlyUnlocked.push(theme)
-          }
-       }
+    evaluatedThemes.forEach((theme) => {
+      if (theme.isUnlocked && !knownUnlockedRef.current.has(theme.id_name)) {
+        knownUnlockedRef.current.add(theme.id_name)
+        hasNewUnlocks = true
+        if (!isFirstLoadRef.current) {
+          newlyUnlocked.push(theme)
+        }
+      }
     })
 
     if (hasNewUnlocks) {
-       localStorage.setItem('gc_known_unlocked_themes', JSON.stringify(Array.from(knownUnlockedRef.current)))
+      localStorage.setItem(
+        'gc_known_unlocked_themes',
+        JSON.stringify(Array.from(knownUnlockedRef.current))
+      )
     }
 
     if (newlyUnlocked.length > 0) {
-       // Déclencher les toasts séquentiellement pour ne pas tout empiler d'un coup
-       newlyUnlocked.forEach((theme, index) => {
-          setTimeout(() => {
-            window.dispatchEvent(new CustomEvent('themeUnlocked', { detail: theme }))
-          }, index * 4000)
-       })
+      // Déclencher les toasts séquentiellement pour ne pas tout empiler d'un coup
+      newlyUnlocked.forEach((theme, index) => {
+        setTimeout(() => {
+          window.dispatchEvent(new CustomEvent('themeUnlocked', { detail: theme }))
+        }, index * 4000)
+      })
     }
 
     // Après la première vérification post-chargement complet, on désactive le mode premier chargement
@@ -226,6 +256,6 @@ export const useThemeUnlocks = () => {
     themes: evaluatedThemes,
     isLoading: isLoading || gamesLoading,
     alwaysShowSeasonal,
-    setAlwaysShowSeasonal
+    setAlwaysShowSeasonal,
   }
 }
