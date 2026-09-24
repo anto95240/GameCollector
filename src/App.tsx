@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { RouterProvider } from 'react-router'
 
 import AchievementToast from '@/components/common/AchievementToast'
+import ThemeUnlockToast from '@/components/common/ThemeUnlockToast'
 import ErrorBoundary from '@/components/common/ErrorBoundary'
 import PwaInstallPrompt from '@/components/common/PwaInstallPrompt'
 import PwaUpdater from '@/components/common/PwaUpdater'
@@ -36,6 +37,7 @@ function App() {
         <RouterProvider router={router} />
         <KeyboardShortcutsProvider />
         <AchievementToast />
+        <ThemeUnlockToast />
         <ValidationToast />
         <KeyboardHelp />
         <PwaUpdater />

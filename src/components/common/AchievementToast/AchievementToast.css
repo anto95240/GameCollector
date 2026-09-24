@@ -51,6 +51,15 @@
   justify-content: center;
   align-items: center;
   z-index: 2;
+  /* Nouvel effet 3D Flip à l'apparition */
+  transform: perspective(400px) rotateY(-180deg);
+  animation: flip3D 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 0.2s;
+}
+
+@keyframes flip3D {
+  0% { transform: perspective(400px) rotateY(-180deg) scale(0.8); }
+  50% { box-shadow: inset 0 0 30px rgba(90, 242, 255, 0.6); }
+  100% { transform: perspective(400px) rotateY(0) scale(1); box-shadow: inset 0 0 15px rgba(90, 242, 255, 0.2); }
 }
 
 /* Bordure holographique (Conserved, it just spins on the static card) */
@@ -67,6 +76,8 @@
 .achv-icon {
   font-size: 28px;
   filter: drop-shadow(0 0 8px var(--brand-glow));
+  transform: scale(0);
+  animation: popIcon 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.6s;
 }
 
 /* Les Textes/Données */
@@ -80,7 +91,7 @@
   display: block;
   font-size: 0.6rem;
   letter-spacing: 2px;
-  color: var(--text-primary);
+  color: var(--brand-primary); /* Remplacé pour faire un effet 'néon' / thème-dépendant */
   margin-bottom: 6px;
   text-transform: uppercase;
 }
@@ -88,9 +99,9 @@
 .achv-title {
   margin: 0 0 4px 0;
   font-family: var(--font-family-title);
-  color: var(--color-text-alt);
+  color: var(--text-primary); /* Remplacé pour être toujours lisible sur fond sombre */
   font-size: 1.15rem;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .achv-desc {

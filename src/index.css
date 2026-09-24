@@ -28,7 +28,7 @@
    ========================================= */
 
 /* --- THÈME DARK (DÉFAUT / "NIGHT MODE") --- */
-:root {
+:root, [data-preset="neon_night"] {
   /* --- BACKGROUNDS (Fonds) --- */
   --bg-app: #001128; /* Fond principal de l'app */
   --bg-panel: rgba(0, 15, 36, 0.95); /* Fond des panneaux latéraux/filtres */
@@ -91,7 +91,11 @@
 }
 
 /* --- THÈME LIGHT ("LAB MODE") --- */
-[data-theme='light'] {
+[data-preset="arctic_day"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  
   /* --- BACKGROUNDS --- */
   /* Blanc légèrement bleuté "Clinique/Futuriste" */
   --bg-app: #f0f5fa;
@@ -669,7 +673,10 @@ body {
 body {
   font-family: var(--font-family-text);
   margin: 0;
-  background-color: #81dbff;
+  /* Utilise la couleur d'accentuation (brand-primary) pour que les 4 coins aient la couleur du thème ! */
+  background-color: var(--brand-primary, var(--color-bg-btn));
+  /* Ajout d'un léger dégradé pour un effet premium dans les coins */
+  background-image: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.4) 100%);
   color: var(--color-text);
   transition:
     background-color var(--duration-standard) ease,
@@ -684,6 +691,9 @@ body {
   height: 100vh;
   overflow: hidden;
   position: relative;
+  transition: 
+    background-color var(--duration-standard) ease, 
+    border-color var(--duration-standard) ease;
 }
 
 .app-container {

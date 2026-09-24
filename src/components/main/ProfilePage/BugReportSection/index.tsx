@@ -45,6 +45,7 @@ const BugReportSection = ({ user, t }: any) => {
           label={t('profile.bugReport.typeBug')}
           showForm={type === 'bug'}
           toggleForm={() => setType(type === 'bug' ? '' : 'bug')}
+          hideInput={true}
         >
           <form onSubmit={handleSubmit} className="bug-report-form" style={{ marginTop: '1rem' }}>
             <textarea
@@ -93,6 +94,7 @@ const BugReportSection = ({ user, t }: any) => {
           label={t('profile.bugReport.typeSuggestion')}
           showForm={type === 'suggestion'}
           toggleForm={() => setType(type === 'suggestion' ? '' : 'suggestion')}
+          hideInput={true}
         >
           <form onSubmit={handleSubmit} className="bug-report-form" style={{ marginTop: '1rem' }}>
             <textarea

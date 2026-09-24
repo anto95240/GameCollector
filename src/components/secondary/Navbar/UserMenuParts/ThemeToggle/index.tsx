@@ -1,6 +1,6 @@
 import './ThemeToggle.css'
 
-import { faCog } from '@fortawesome/free-solid-svg-icons'
+import { faPalette } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NavLink } from 'react-router'
 
@@ -12,13 +12,13 @@ const ThemeToggle = ({ onClose }: any) => {
   return (
     <div className="theme-toggle-container">
       <NavLink
-        to="/settings"
+        to="/themes"
         className="theme-settings-link"
         onClick={onClose}
-        onMouseEnter={() => preloadRoute('/settings')}
-        title="Personnaliser l'apparence"
+        onMouseEnter={() => preloadRoute('/themes')}
+        title="Galerie des Thèmes"
       >
-        <FontAwesomeIcon icon={faCog} />
+        <FontAwesomeIcon icon={faPalette} />
       </NavLink>
     </div>
   )

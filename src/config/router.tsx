@@ -25,6 +25,12 @@ const DetailPage = lazy(() => import('../screens/Detail'))
 const TropheesPage = lazy(() => import('../screens/Trophees'))
 const WelcomePage = lazy(() => import('../screens/Welcome'))
 const SettingsPage = lazy(() => import('../screens/Settings'))
+const SandboxThemesPage = lazy(() => import('../screens/SandboxThemes'))
+const AdminIndexPage = lazy(() => import('../screens/AdminIndex'))
+const ThemePreviewPage = lazy(() => import('../screens/ThemePreview'))
+const ThemesGalleryPage = lazy(() => import('../screens/ThemesGallery'))
+const AdminThemeWelcomePage = lazy(() => import('../screens/AdminThemeWelcome'))
+const AdminDsGamesPage = lazy(() => import('../screens/AdminDsGames'))
 
 // Un composant qui enveloppe nos routes paresseuses pour afficher un spinner simple et capturer les erreurs de page
 const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
@@ -176,6 +182,55 @@ const router = createBrowserRouter([
               </SuspenseWrapper>
             ),
           },
+          {
+            path: '/admin',
+            element: (
+              <SuspenseWrapper>
+                <AdminIndexPage />
+              </SuspenseWrapper>
+            ),
+          },
+          {
+            path: '/admin/test-theme',
+            element: (
+              <SuspenseWrapper>
+                <SandboxThemesPage />
+              </SuspenseWrapper>
+            ),
+          },
+          {
+            path: '/admin/theme-preview',
+            element: (
+              <SuspenseWrapper>
+                <ThemePreviewPage />
+              </SuspenseWrapper>
+            ),
+          },
+          {
+            path: '/admin/theme-welcome',
+            element: (
+              <SuspenseWrapper>
+                <AdminThemeWelcomePage />
+              </SuspenseWrapper>
+            ),
+          },
+          {
+            path: '/admin/ds-games',
+            element: (
+              <SuspenseWrapper>
+                <AdminDsGamesPage />
+              </SuspenseWrapper>
+            ),
+          },
+          {
+            path: '/themes',
+            element: (
+              <SuspenseWrapper>
+                <ThemesGalleryPage />
+              </SuspenseWrapper>
+            ),
+          },
+
         ],
       },
     ],

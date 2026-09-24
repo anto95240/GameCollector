@@ -1,0 +1,3410 @@
+/* Generated Themes CSS */
+
+[data-preset="neon_night"] {
+  --bg-app: #001128;
+  --bg-panel: color-mix(in srgb, #001128 96%, white);
+  --bg-card: color-mix(in srgb, #001128 92%, white);
+  --bg-card-hover: color-mix(in srgb, #001128 88%, white);
+  --bg-input: color-mix(in srgb, #001128 90%, black);
+  --text-primary: color-mix(in srgb, #0068ac 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0068ac 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0068ac 15%, transparent);
+  --border-focus: #0068ac;
+  --brand-primary: #0068ac;
+  --brand-glow: #0068ac;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #001128 95%, white) 0%, color-mix(in srgb, #001128 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0068ac 0%, color-mix(in srgb, #0068ac 60%, white) 60%);
+}
+
+[data-preset="arctic_day"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #f0f5fa;
+  --bg-panel: color-mix(in srgb, #f0f5fa 96%, black);
+  --bg-card: color-mix(in srgb, #f0f5fa 92%, black);
+  --bg-card-hover: color-mix(in srgb, #f0f5fa 88%, black);
+  --bg-input: color-mix(in srgb, #f0f5fa 90%, black);
+  --text-primary: color-mix(in srgb, #0068ac 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0068ac 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0068ac 15%, transparent);
+  --border-focus: #0068ac;
+  --brand-primary: #0068ac;
+  --brand-glow: #0068ac;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #f0f5fa 95%, black) 0%, color-mix(in srgb, #f0f5fa 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0068ac 0%, color-mix(in srgb, #0068ac 60%, white) 60%);
+}
+
+[data-preset="emerald_city"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #f8fafc;
+  --bg-panel: color-mix(in srgb, #f8fafc 96%, black);
+  --bg-card: color-mix(in srgb, #f8fafc 92%, black);
+  --bg-card-hover: color-mix(in srgb, #f8fafc 88%, black);
+  --bg-input: color-mix(in srgb, #f8fafc 90%, black);
+  --text-primary: color-mix(in srgb, #059669 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #059669 40%, transparent);
+  --border-subtle: color-mix(in srgb, #059669 15%, transparent);
+  --border-focus: #059669;
+  --brand-primary: #059669;
+  --brand-glow: #059669;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #f8fafc 95%, black) 0%, color-mix(in srgb, #f8fafc 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #059669 0%, color-mix(in srgb, #059669 60%, white) 60%);
+}
+
+[data-preset="coral_reef"] {
+  --bg-app: #082f49;
+  --bg-panel: color-mix(in srgb, #082f49 96%, white);
+  --bg-card: color-mix(in srgb, #082f49 92%, white);
+  --bg-card-hover: color-mix(in srgb, #082f49 88%, white);
+  --bg-input: color-mix(in srgb, #082f49 90%, black);
+  --text-primary: color-mix(in srgb, #ff6b6b 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ff6b6b 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ff6b6b 15%, transparent);
+  --border-focus: #ff6b6b;
+  --brand-primary: #ff6b6b;
+  --brand-glow: #ff6b6b;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #082f49 95%, white) 0%, color-mix(in srgb, #082f49 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ff6b6b 0%, color-mix(in srgb, #ff6b6b 60%, white) 60%);
+}
+
+[data-preset="ember"] {
+  --bg-app: #7f1d1d;
+  --bg-panel: color-mix(in srgb, #7f1d1d 96%, white);
+  --bg-card: color-mix(in srgb, #7f1d1d 92%, white);
+  --bg-card-hover: color-mix(in srgb, #7f1d1d 88%, white);
+  --bg-input: color-mix(in srgb, #7f1d1d 90%, black);
+  --text-primary: color-mix(in srgb, #ea580c 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ea580c 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ea580c 15%, transparent);
+  --border-focus: #ea580c;
+  --brand-primary: #ea580c;
+  --brand-glow: #ea580c;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #7f1d1d 95%, white) 0%, color-mix(in srgb, #7f1d1d 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ea580c 0%, color-mix(in srgb, #ea580c 60%, white) 60%);
+}
+
+[data-preset="arctic_neon"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #f8fafc;
+  --bg-panel: color-mix(in srgb, #f8fafc 96%, black);
+  --bg-card: color-mix(in srgb, #f8fafc 92%, black);
+  --bg-card-hover: color-mix(in srgb, #f8fafc 88%, black);
+  --bg-input: color-mix(in srgb, #f8fafc 90%, black);
+  --text-primary: color-mix(in srgb, #00f0ff 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #00f0ff 40%, transparent);
+  --border-subtle: color-mix(in srgb, #00f0ff 15%, transparent);
+  --border-focus: #00f0ff;
+  --brand-primary: #00f0ff;
+  --brand-glow: #00f0ff;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #f8fafc 95%, black) 0%, color-mix(in srgb, #f8fafc 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #00f0ff 0%, color-mix(in srgb, #00f0ff 60%, white) 60%);
+}
+
+[data-preset="gold_rush"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #f8fafc;
+  --bg-panel: color-mix(in srgb, #f8fafc 96%, black);
+  --bg-card: color-mix(in srgb, #f8fafc 92%, black);
+  --bg-card-hover: color-mix(in srgb, #f8fafc 88%, black);
+  --bg-input: color-mix(in srgb, #f8fafc 90%, black);
+  --text-primary: color-mix(in srgb, #f59e0b 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #f59e0b 40%, transparent);
+  --border-subtle: color-mix(in srgb, #f59e0b 15%, transparent);
+  --border-focus: #f59e0b;
+  --brand-primary: #f59e0b;
+  --brand-glow: #f59e0b;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #f8fafc 95%, black) 0%, color-mix(in srgb, #f8fafc 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #f59e0b 0%, color-mix(in srgb, #f59e0b 60%, white) 60%);
+}
+
+[data-preset="midnight_ocean"] {
+  --bg-app: #020617;
+  --bg-panel: color-mix(in srgb, #020617 96%, white);
+  --bg-card: color-mix(in srgb, #020617 92%, white);
+  --bg-card-hover: color-mix(in srgb, #020617 88%, white);
+  --bg-input: color-mix(in srgb, #020617 90%, black);
+  --text-primary: color-mix(in srgb, #06b6d4 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #06b6d4 40%, transparent);
+  --border-subtle: color-mix(in srgb, #06b6d4 15%, transparent);
+  --border-focus: #06b6d4;
+  --brand-primary: #06b6d4;
+  --brand-glow: #06b6d4;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #020617 95%, white) 0%, color-mix(in srgb, #020617 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #06b6d4 0%, color-mix(in srgb, #06b6d4 60%, white) 60%);
+}
+
+[data-preset="ocean_deep"] {
+  --bg-app: #003459;
+  --bg-panel: color-mix(in srgb, #003459 96%, white);
+  --bg-card: color-mix(in srgb, #003459 92%, white);
+  --bg-card-hover: color-mix(in srgb, #003459 88%, white);
+  --bg-input: color-mix(in srgb, #003459 90%, black);
+  --text-primary: color-mix(in srgb, #00b4d8 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #00b4d8 40%, transparent);
+  --border-subtle: color-mix(in srgb, #00b4d8 15%, transparent);
+  --border-focus: #00b4d8;
+  --brand-primary: #00b4d8;
+  --brand-glow: #00b4d8;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #003459 95%, white) 0%, color-mix(in srgb, #003459 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #00b4d8 0%, color-mix(in srgb, #00b4d8 60%, white) 60%);
+}
+
+[data-preset="lava"] {
+  --bg-app: #020617;
+  --bg-panel: color-mix(in srgb, #020617 96%, white);
+  --bg-card: color-mix(in srgb, #020617 92%, white);
+  --bg-card-hover: color-mix(in srgb, #020617 88%, white);
+  --bg-input: color-mix(in srgb, #020617 90%, black);
+  --text-primary: color-mix(in srgb, #ff4500 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ff4500 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ff4500 15%, transparent);
+  --border-focus: #ff4500;
+  --brand-primary: #ff4500;
+  --brand-glow: #ff4500;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #020617 95%, white) 0%, color-mix(in srgb, #020617 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ff4500 0%, color-mix(in srgb, #ff4500 60%, white) 60%);
+}
+
+[data-preset="forest_dark"] {
+  --bg-app: #064e3b;
+  --bg-panel: color-mix(in srgb, #064e3b 96%, white);
+  --bg-card: color-mix(in srgb, #064e3b 92%, white);
+  --bg-card-hover: color-mix(in srgb, #064e3b 88%, white);
+  --bg-input: color-mix(in srgb, #064e3b 90%, black);
+  --text-primary: color-mix(in srgb, #065f46 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #065f46 40%, transparent);
+  --border-subtle: color-mix(in srgb, #065f46 15%, transparent);
+  --border-focus: #065f46;
+  --brand-primary: #065f46;
+  --brand-glow: #065f46;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #064e3b 95%, white) 0%, color-mix(in srgb, #064e3b 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #065f46 0%, color-mix(in srgb, #065f46 60%, white) 60%);
+}
+
+[data-preset="parchment"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #fef3c7;
+  --bg-panel: color-mix(in srgb, #fef3c7 96%, black);
+  --bg-card: color-mix(in srgb, #fef3c7 92%, black);
+  --bg-card-hover: color-mix(in srgb, #fef3c7 88%, black);
+  --bg-input: color-mix(in srgb, #fef3c7 90%, black);
+  --text-primary: color-mix(in srgb, #b45309 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #b45309 40%, transparent);
+  --border-subtle: color-mix(in srgb, #b45309 15%, transparent);
+  --border-focus: #b45309;
+  --brand-primary: #b45309;
+  --brand-glow: #b45309;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #fef3c7 95%, black) 0%, color-mix(in srgb, #fef3c7 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #b45309 0%, color-mix(in srgb, #b45309 60%, white) 60%);
+}
+
+[data-preset="ice_cave"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #f8fafc;
+  --bg-panel: color-mix(in srgb, #f8fafc 96%, black);
+  --bg-card: color-mix(in srgb, #f8fafc 92%, black);
+  --bg-card-hover: color-mix(in srgb, #f8fafc 88%, black);
+  --bg-input: color-mix(in srgb, #f8fafc 90%, black);
+  --text-primary: color-mix(in srgb, #a5f3fc 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #a5f3fc 40%, transparent);
+  --border-subtle: color-mix(in srgb, #a5f3fc 15%, transparent);
+  --border-focus: #a5f3fc;
+  --brand-primary: #a5f3fc;
+  --brand-glow: #a5f3fc;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #f8fafc 95%, black) 0%, color-mix(in srgb, #f8fafc 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #a5f3fc 0%, color-mix(in srgb, #a5f3fc 60%, white) 60%);
+}
+
+[data-preset="aurora"] {
+  --bg-app: #020617;
+  --bg-panel: color-mix(in srgb, #020617 96%, white);
+  --bg-card: color-mix(in srgb, #020617 92%, white);
+  --bg-card-hover: color-mix(in srgb, #020617 88%, white);
+  --bg-input: color-mix(in srgb, #020617 90%, black);
+  --text-primary: color-mix(in srgb, #10b981 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #10b981 40%, transparent);
+  --border-subtle: color-mix(in srgb, #10b981 15%, transparent);
+  --border-focus: #10b981;
+  --brand-primary: #10b981;
+  --brand-glow: #10b981;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #020617 95%, white) 0%, color-mix(in srgb, #020617 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #10b981 0%, color-mix(in srgb, #10b981 60%, white) 60%);
+}
+
+[data-preset="desert_night"] {
+  --bg-app: #0f172a;
+  --bg-panel: color-mix(in srgb, #0f172a 96%, white);
+  --bg-card: color-mix(in srgb, #0f172a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #0f172a 88%, white);
+  --bg-input: color-mix(in srgb, #0f172a 90%, black);
+  --text-primary: color-mix(in srgb, #d97706 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d97706 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d97706 15%, transparent);
+  --border-focus: #d97706;
+  --brand-primary: #d97706;
+  --brand-glow: #d97706;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #0f172a 95%, white) 0%, color-mix(in srgb, #0f172a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d97706 0%, color-mix(in srgb, #d97706 60%, white) 60%);
+}
+
+[data-preset="vapor"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #f8fafc;
+  --bg-panel: color-mix(in srgb, #f8fafc 96%, black);
+  --bg-card: color-mix(in srgb, #f8fafc 92%, black);
+  --bg-card-hover: color-mix(in srgb, #f8fafc 88%, black);
+  --bg-input: color-mix(in srgb, #f8fafc 90%, black);
+  --text-primary: color-mix(in srgb, #0ea5e9 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0ea5e9 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0ea5e9 15%, transparent);
+  --border-focus: #0ea5e9;
+  --brand-primary: #0ea5e9;
+  --brand-glow: #0ea5e9;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #f8fafc 95%, black) 0%, color-mix(in srgb, #f8fafc 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, color-mix(in srgb, #0ea5e9 60%, white) 60%);
+}
+
+[data-preset="champagne"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #f8fafc;
+  --bg-panel: color-mix(in srgb, #f8fafc 96%, black);
+  --bg-card: color-mix(in srgb, #f8fafc 92%, black);
+  --bg-card-hover: color-mix(in srgb, #f8fafc 88%, black);
+  --bg-input: color-mix(in srgb, #f8fafc 90%, black);
+  --text-primary: color-mix(in srgb, #eab308 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #eab308 40%, transparent);
+  --border-subtle: color-mix(in srgb, #eab308 15%, transparent);
+  --border-focus: #eab308;
+  --brand-primary: #eab308;
+  --brand-glow: #eab308;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #f8fafc 95%, black) 0%, color-mix(in srgb, #f8fafc 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #eab308 0%, color-mix(in srgb, #eab308 60%, white) 60%);
+}
+
+[data-preset="inferno"] {
+  --bg-app: #020617;
+  --bg-panel: color-mix(in srgb, #020617 96%, white);
+  --bg-card: color-mix(in srgb, #020617 92%, white);
+  --bg-card-hover: color-mix(in srgb, #020617 88%, white);
+  --bg-input: color-mix(in srgb, #020617 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #020617 95%, white) 0%, color-mix(in srgb, #020617 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="halloween"] {
+  --bg-app: #020617;
+  --bg-panel: color-mix(in srgb, #020617 96%, white);
+  --bg-card: color-mix(in srgb, #020617 92%, white);
+  --bg-card-hover: color-mix(in srgb, #020617 88%, white);
+  --bg-input: color-mix(in srgb, #020617 90%, black);
+  --text-primary: color-mix(in srgb, #f97316 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #f97316 40%, transparent);
+  --border-subtle: color-mix(in srgb, #f97316 15%, transparent);
+  --border-focus: #f97316;
+  --brand-primary: #f97316;
+  --brand-glow: #f97316;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #020617 95%, white) 0%, color-mix(in srgb, #020617 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #f97316 0%, color-mix(in srgb, #f97316 60%, white) 60%);
+}
+
+[data-preset="christmas"] {
+  --bg-app: #450a0a;
+  --bg-panel: color-mix(in srgb, #450a0a 96%, white);
+  --bg-card: color-mix(in srgb, #450a0a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #450a0a 88%, white);
+  --bg-input: color-mix(in srgb, #450a0a 90%, black);
+  --text-primary: color-mix(in srgb, #22c55e 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #22c55e 40%, transparent);
+  --border-subtle: color-mix(in srgb, #22c55e 15%, transparent);
+  --border-focus: #22c55e;
+  --brand-primary: #22c55e;
+  --brand-glow: #22c55e;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #450a0a 95%, white) 0%, color-mix(in srgb, #450a0a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #22c55e 0%, color-mix(in srgb, #22c55e 60%, white) 60%);
+}
+
+[data-preset="spring"] {
+  --bg-app: #064e3b;
+  --bg-panel: color-mix(in srgb, #064e3b 96%, white);
+  --bg-card: color-mix(in srgb, #064e3b 92%, white);
+  --bg-card-hover: color-mix(in srgb, #064e3b 88%, white);
+  --bg-input: color-mix(in srgb, #064e3b 90%, black);
+  --text-primary: color-mix(in srgb, #ec4899 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ec4899 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ec4899 15%, transparent);
+  --border-focus: #ec4899;
+  --brand-primary: #ec4899;
+  --brand-glow: #ec4899;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #064e3b 95%, white) 0%, color-mix(in srgb, #064e3b 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ec4899 0%, color-mix(in srgb, #ec4899 60%, white) 60%);
+}
+
+[data-preset="easter"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #fef08a;
+  --bg-panel: color-mix(in srgb, #fef08a 96%, black);
+  --bg-card: color-mix(in srgb, #fef08a 92%, black);
+  --bg-card-hover: color-mix(in srgb, #fef08a 88%, black);
+  --bg-input: color-mix(in srgb, #fef08a 90%, black);
+  --text-primary: color-mix(in srgb, #8b5cf6 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #8b5cf6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #8b5cf6 15%, transparent);
+  --border-focus: #8b5cf6;
+  --brand-primary: #8b5cf6;
+  --brand-glow: #8b5cf6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #fef08a 95%, black) 0%, color-mix(in srgb, #fef08a 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #8b5cf6 0%, color-mix(in srgb, #8b5cf6 60%, white) 60%);
+}
+
+[data-preset="summer"] {
+  --bg-app: #082f49;
+  --bg-panel: color-mix(in srgb, #082f49 96%, white);
+  --bg-card: color-mix(in srgb, #082f49 92%, white);
+  --bg-card-hover: color-mix(in srgb, #082f49 88%, white);
+  --bg-input: color-mix(in srgb, #082f49 90%, black);
+  --text-primary: color-mix(in srgb, #eab308 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #eab308 40%, transparent);
+  --border-subtle: color-mix(in srgb, #eab308 15%, transparent);
+  --border-focus: #eab308;
+  --brand-primary: #eab308;
+  --brand-glow: #eab308;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #082f49 95%, white) 0%, color-mix(in srgb, #082f49 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #eab308 0%, color-mix(in srgb, #eab308 60%, white) 60%);
+}
+
+[data-preset="winter"] {
+  --bg-app: #020617;
+  --bg-panel: color-mix(in srgb, #020617 96%, white);
+  --bg-card: color-mix(in srgb, #020617 92%, white);
+  --bg-card-hover: color-mix(in srgb, #020617 88%, white);
+  --bg-input: color-mix(in srgb, #020617 90%, black);
+  --text-primary: color-mix(in srgb, #0ea5e9 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0ea5e9 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0ea5e9 15%, transparent);
+  --border-focus: #0ea5e9;
+  --brand-primary: #0ea5e9;
+  --brand-glow: #0ea5e9;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #020617 95%, white) 0%, color-mix(in srgb, #020617 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, color-mix(in srgb, #0ea5e9 60%, white) 60%);
+}
+
+[data-preset="autumn"] {
+  --bg-app: #450a0a;
+  --bg-panel: color-mix(in srgb, #450a0a 96%, white);
+  --bg-card: color-mix(in srgb, #450a0a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #450a0a 88%, white);
+  --bg-input: color-mix(in srgb, #450a0a 90%, black);
+  --text-primary: color-mix(in srgb, #d97706 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d97706 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d97706 15%, transparent);
+  --border-focus: #d97706;
+  --brand-primary: #d97706;
+  --brand-glow: #d97706;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #450a0a 95%, white) 0%, color-mix(in srgb, #450a0a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d97706 0%, color-mix(in srgb, #d97706 60%, white) 60%);
+}
+
+[data-preset="chandeleur"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #fef08a;
+  --bg-panel: color-mix(in srgb, #fef08a 96%, black);
+  --bg-card: color-mix(in srgb, #fef08a 92%, black);
+  --bg-card-hover: color-mix(in srgb, #fef08a 88%, black);
+  --bg-input: color-mix(in srgb, #fef08a 90%, black);
+  --text-primary: color-mix(in srgb, #8b4513 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #8b4513 40%, transparent);
+  --border-subtle: color-mix(in srgb, #8b4513 15%, transparent);
+  --border-focus: #8b4513;
+  --brand-primary: #8b4513;
+  --brand-glow: #8b4513;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #fef08a 95%, black) 0%, color-mix(in srgb, #fef08a 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #8b4513 0%, color-mix(in srgb, #8b4513 60%, white) 60%);
+}
+
+[data-preset="epiphanie"] {
+  --bg-app: #334155;
+  --bg-panel: color-mix(in srgb, #334155 96%, white);
+  --bg-card: color-mix(in srgb, #334155 92%, white);
+  --bg-card-hover: color-mix(in srgb, #334155 88%, white);
+  --bg-input: color-mix(in srgb, #334155 90%, black);
+  --text-primary: color-mix(in srgb, #eab308 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #eab308 40%, transparent);
+  --border-subtle: color-mix(in srgb, #eab308 15%, transparent);
+  --border-focus: #eab308;
+  --brand-primary: #eab308;
+  --brand-glow: #eab308;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #334155 95%, white) 0%, color-mix(in srgb, #334155 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #eab308 0%, color-mix(in srgb, #eab308 60%, white) 60%);
+}
+
+[data-preset="retro_pixel"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #00ff00 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #00ff00 40%, transparent);
+  --border-subtle: color-mix(in srgb, #00ff00 15%, transparent);
+  --border-focus: #00ff00;
+  --brand-primary: #00ff00;
+  --brand-glow: #00ff00;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #00ff00 0%, color-mix(in srgb, #00ff00 60%, white) 60%);
+}
+
+[data-preset="ps2_era"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #00439c 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #00439c 40%, transparent);
+  --border-subtle: color-mix(in srgb, #00439c 15%, transparent);
+  --border-focus: #00439c;
+  --brand-primary: #00439c;
+  --brand-glow: #00439c;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #00439c 0%, color-mix(in srgb, #00439c 60%, white) 60%);
+}
+
+[data-preset="game_boy"] {
+  --bg-app: #787b82;
+  --bg-panel: color-mix(in srgb, #787b82 96%, white);
+  --bg-card: color-mix(in srgb, #787b82 92%, white);
+  --bg-card-hover: color-mix(in srgb, #787b82 88%, white);
+  --bg-input: color-mix(in srgb, #787b82 90%, black);
+  --text-primary: color-mix(in srgb, #8bac0f 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #8bac0f 40%, transparent);
+  --border-subtle: color-mix(in srgb, #8bac0f 15%, transparent);
+  --border-focus: #8bac0f;
+  --brand-primary: #8bac0f;
+  --brand-glow: #8bac0f;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #787b82 95%, white) 0%, color-mix(in srgb, #787b82 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #8bac0f 0%, color-mix(in srgb, #8bac0f 60%, white) 60%);
+}
+
+[data-preset="retro_arcade"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="egypte_antique"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #fef3c7;
+  --bg-panel: color-mix(in srgb, #fef3c7 96%, black);
+  --bg-card: color-mix(in srgb, #fef3c7 92%, black);
+  --bg-card-hover: color-mix(in srgb, #fef3c7 88%, black);
+  --bg-input: color-mix(in srgb, #fef3c7 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #fef3c7 95%, black) 0%, color-mix(in srgb, #fef3c7 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="viking_norse"] {
+  --bg-app: #334155;
+  --bg-panel: color-mix(in srgb, #334155 96%, white);
+  --bg-card: color-mix(in srgb, #334155 92%, white);
+  --bg-card-hover: color-mix(in srgb, #334155 88%, white);
+  --bg-input: color-mix(in srgb, #334155 90%, black);
+  --text-primary: color-mix(in srgb, #991b1b 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #991b1b 40%, transparent);
+  --border-subtle: color-mix(in srgb, #991b1b 15%, transparent);
+  --border-focus: #991b1b;
+  --brand-primary: #991b1b;
+  --brand-glow: #991b1b;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #334155 95%, white) 0%, color-mix(in srgb, #334155 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #991b1b 0%, color-mix(in srgb, #991b1b 60%, white) 60%);
+}
+
+[data-preset="tundra"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #f8fafc;
+  --bg-panel: color-mix(in srgb, #f8fafc 96%, black);
+  --bg-card: color-mix(in srgb, #f8fafc 92%, black);
+  --bg-card-hover: color-mix(in srgb, #f8fafc 88%, black);
+  --bg-input: color-mix(in srgb, #f8fafc 90%, black);
+  --text-primary: color-mix(in srgb, #0ea5e9 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0ea5e9 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0ea5e9 15%, transparent);
+  --border-focus: #0ea5e9;
+  --brand-primary: #0ea5e9;
+  --brand-glow: #0ea5e9;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #f8fafc 95%, black) 0%, color-mix(in srgb, #f8fafc 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, color-mix(in srgb, #0ea5e9 60%, white) 60%);
+}
+
+[data-preset="andalousie"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #fff7ed;
+  --bg-panel: color-mix(in srgb, #fff7ed 96%, black);
+  --bg-card: color-mix(in srgb, #fff7ed 92%, black);
+  --bg-card-hover: color-mix(in srgb, #fff7ed 88%, black);
+  --bg-input: color-mix(in srgb, #fff7ed 90%, black);
+  --text-primary: color-mix(in srgb, #ea580c 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ea580c 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ea580c 15%, transparent);
+  --border-focus: #ea580c;
+  --brand-primary: #ea580c;
+  --brand-glow: #ea580c;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #fff7ed 95%, black) 0%, color-mix(in srgb, #fff7ed 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ea580c 0%, color-mix(in srgb, #ea580c 60%, white) 60%);
+}
+
+[data-preset="medieval_kingdom"] {
+  --bg-app: #450a0a;
+  --bg-panel: color-mix(in srgb, #450a0a 96%, white);
+  --bg-card: color-mix(in srgb, #450a0a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #450a0a 88%, white);
+  --bg-input: color-mix(in srgb, #450a0a 90%, black);
+  --text-primary: color-mix(in srgb, #eab308 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #eab308 40%, transparent);
+  --border-subtle: color-mix(in srgb, #eab308 15%, transparent);
+  --border-focus: #eab308;
+  --brand-primary: #eab308;
+  --brand-glow: #eab308;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #450a0a 95%, white) 0%, color-mix(in srgb, #450a0a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #eab308 0%, color-mix(in srgb, #eab308 60%, white) 60%);
+}
+
+[data-preset="roman_empire"] {
+  --bg-app: #7f1d1d;
+  --bg-panel: color-mix(in srgb, #7f1d1d 96%, white);
+  --bg-card: color-mix(in srgb, #7f1d1d 92%, white);
+  --bg-card-hover: color-mix(in srgb, #7f1d1d 88%, white);
+  --bg-input: color-mix(in srgb, #7f1d1d 90%, black);
+  --text-primary: color-mix(in srgb, #fef3c7 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #fef3c7 40%, transparent);
+  --border-subtle: color-mix(in srgb, #fef3c7 15%, transparent);
+  --border-focus: #fef3c7;
+  --brand-primary: #fef3c7;
+  --brand-glow: #fef3c7;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #7f1d1d 95%, white) 0%, color-mix(in srgb, #7f1d1d 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #fef3c7 0%, color-mix(in srgb, #fef3c7 60%, white) 60%);
+}
+
+[data-preset="age_of_sail"] {
+  --bg-app: #082f49;
+  --bg-panel: color-mix(in srgb, #082f49 96%, white);
+  --bg-card: color-mix(in srgb, #082f49 92%, white);
+  --bg-card-hover: color-mix(in srgb, #082f49 88%, white);
+  --bg-input: color-mix(in srgb, #082f49 90%, black);
+  --text-primary: color-mix(in srgb, #8b4513 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #8b4513 40%, transparent);
+  --border-subtle: color-mix(in srgb, #8b4513 15%, transparent);
+  --border-focus: #8b4513;
+  --brand-primary: #8b4513;
+  --brand-glow: #8b4513;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #082f49 95%, white) 0%, color-mix(in srgb, #082f49 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #8b4513 0%, color-mix(in srgb, #8b4513 60%, white) 60%);
+}
+
+[data-preset="aztec"] {
+  --bg-app: #14b8a6;
+  --bg-panel: color-mix(in srgb, #14b8a6 96%, white);
+  --bg-card: color-mix(in srgb, #14b8a6 92%, white);
+  --bg-card-hover: color-mix(in srgb, #14b8a6 88%, white);
+  --bg-input: color-mix(in srgb, #14b8a6 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #14b8a6 95%, white) 0%, color-mix(in srgb, #14b8a6 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="elven_forest"] {
+  --bg-app: #064e3b;
+  --bg-panel: color-mix(in srgb, #064e3b 96%, white);
+  --bg-card: color-mix(in srgb, #064e3b 92%, white);
+  --bg-card-hover: color-mix(in srgb, #064e3b 88%, white);
+  --bg-input: color-mix(in srgb, #064e3b 90%, black);
+  --text-primary: color-mix(in srgb, #fef08a 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #fef08a 40%, transparent);
+  --border-subtle: color-mix(in srgb, #fef08a 15%, transparent);
+  --border-focus: #fef08a;
+  --brand-primary: #fef08a;
+  --brand-glow: #fef08a;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #064e3b 95%, white) 0%, color-mix(in srgb, #064e3b 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #fef08a 0%, color-mix(in srgb, #fef08a 60%, white) 60%);
+}
+
+[data-preset="deep_sea"] {
+  --bg-app: #020617;
+  --bg-panel: color-mix(in srgb, #020617 96%, white);
+  --bg-card: color-mix(in srgb, #020617 92%, white);
+  --bg-card-hover: color-mix(in srgb, #020617 88%, white);
+  --bg-input: color-mix(in srgb, #020617 90%, black);
+  --text-primary: color-mix(in srgb, #06b6d4 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #06b6d4 40%, transparent);
+  --border-subtle: color-mix(in srgb, #06b6d4 15%, transparent);
+  --border-focus: #06b6d4;
+  --brand-primary: #06b6d4;
+  --brand-glow: #06b6d4;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #020617 95%, white) 0%, color-mix(in srgb, #020617 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #06b6d4 0%, color-mix(in srgb, #06b6d4 60%, white) 60%);
+}
+
+[data-preset="nebula"] {
+  --bg-app: #020617;
+  --bg-panel: color-mix(in srgb, #020617 96%, white);
+  --bg-card: color-mix(in srgb, #020617 92%, white);
+  --bg-card-hover: color-mix(in srgb, #020617 88%, white);
+  --bg-input: color-mix(in srgb, #020617 90%, black);
+  --text-primary: color-mix(in srgb, #7c3aed 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #7c3aed 40%, transparent);
+  --border-subtle: color-mix(in srgb, #7c3aed 15%, transparent);
+  --border-focus: #7c3aed;
+  --brand-primary: #7c3aed;
+  --brand-glow: #7c3aed;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #020617 95%, white) 0%, color-mix(in srgb, #020617 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #7c3aed 0%, color-mix(in srgb, #7c3aed 60%, white) 60%);
+}
+
+[data-preset="black_hole"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #ea580c 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ea580c 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ea580c 15%, transparent);
+  --border-focus: #ea580c;
+  --brand-primary: #ea580c;
+  --brand-glow: #ea580c;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ea580c 0%, color-mix(in srgb, #ea580c 60%, white) 60%);
+}
+
+[data-preset="quantum"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #f8fafc;
+  --bg-panel: color-mix(in srgb, #f8fafc 96%, black);
+  --bg-card: color-mix(in srgb, #f8fafc 92%, black);
+  --bg-card-hover: color-mix(in srgb, #f8fafc 88%, black);
+  --bg-input: color-mix(in srgb, #f8fafc 90%, black);
+  --text-primary: color-mix(in srgb, #0ea5e9 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0ea5e9 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0ea5e9 15%, transparent);
+  --border-focus: #0ea5e9;
+  --brand-primary: #0ea5e9;
+  --brand-glow: #0ea5e9;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #f8fafc 95%, black) 0%, color-mix(in srgb, #f8fafc 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, color-mix(in srgb, #0ea5e9 60%, white) 60%);
+}
+
+[data-preset="mars_colony"] {
+  --bg-app: #7f1d1d;
+  --bg-panel: color-mix(in srgb, #7f1d1d 96%, white);
+  --bg-card: color-mix(in srgb, #7f1d1d 92%, white);
+  --bg-card-hover: color-mix(in srgb, #7f1d1d 88%, white);
+  --bg-input: color-mix(in srgb, #7f1d1d 90%, black);
+  --text-primary: color-mix(in srgb, #ea580c 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ea580c 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ea580c 15%, transparent);
+  --border-focus: #ea580c;
+  --brand-primary: #ea580c;
+  --brand-glow: #ea580c;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #7f1d1d 95%, white) 0%, color-mix(in srgb, #7f1d1d 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ea580c 0%, color-mix(in srgb, #ea580c 60%, white) 60%);
+}
+
+[data-preset="stargate"] {
+  --bg-app: #0f172a;
+  --bg-panel: color-mix(in srgb, #0f172a 96%, white);
+  --bg-card: color-mix(in srgb, #0f172a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #0f172a 88%, white);
+  --bg-input: color-mix(in srgb, #0f172a 90%, black);
+  --text-primary: color-mix(in srgb, #3b82f6 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #3b82f6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #3b82f6 15%, transparent);
+  --border-focus: #3b82f6;
+  --brand-primary: #3b82f6;
+  --brand-glow: #3b82f6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #0f172a 95%, white) 0%, color-mix(in srgb, #0f172a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #3b82f6 0%, color-mix(in srgb, #3b82f6 60%, white) 60%);
+}
+
+[data-preset="deep_space"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #a855f7 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #a855f7 40%, transparent);
+  --border-subtle: color-mix(in srgb, #a855f7 15%, transparent);
+  --border-focus: #a855f7;
+  --brand-primary: #a855f7;
+  --brand-glow: #a855f7;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #a855f7 0%, color-mix(in srgb, #a855f7 60%, white) 60%);
+}
+
+[data-preset="upside_down"] {
+  --bg-app: #020617;
+  --bg-panel: color-mix(in srgb, #020617 96%, white);
+  --bg-card: color-mix(in srgb, #020617 92%, white);
+  --bg-card-hover: color-mix(in srgb, #020617 88%, white);
+  --bg-input: color-mix(in srgb, #020617 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #020617 95%, white) 0%, color-mix(in srgb, #020617 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="replicant"] {
+  --bg-app: #020617;
+  --bg-panel: color-mix(in srgb, #020617 96%, white);
+  --bg-card: color-mix(in srgb, #020617 92%, white);
+  --bg-card-hover: color-mix(in srgb, #020617 88%, white);
+  --bg-input: color-mix(in srgb, #020617 90%, black);
+  --text-primary: color-mix(in srgb, #0ea5e9 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0ea5e9 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0ea5e9 15%, transparent);
+  --border-focus: #0ea5e9;
+  --brand-primary: #0ea5e9;
+  --brand-glow: #0ea5e9;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #020617 95%, white) 0%, color-mix(in srgb, #020617 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, color-mix(in srgb, #0ea5e9 60%, white) 60%);
+}
+
+[data-preset="dino_dna"] {
+  --bg-app: #14532d;
+  --bg-panel: color-mix(in srgb, #14532d 96%, white);
+  --bg-card: color-mix(in srgb, #14532d 92%, white);
+  --bg-card-hover: color-mix(in srgb, #14532d 88%, white);
+  --bg-input: color-mix(in srgb, #14532d 90%, black);
+  --text-primary: color-mix(in srgb, #d97706 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d97706 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d97706 15%, transparent);
+  --border-focus: #d97706;
+  --brand-primary: #d97706;
+  --brand-glow: #d97706;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #14532d 95%, white) 0%, color-mix(in srgb, #14532d 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d97706 0%, color-mix(in srgb, #d97706 60%, white) 60%);
+}
+
+[data-preset="isla_nublar"] {
+  --bg-app: #064e3b;
+  --bg-panel: color-mix(in srgb, #064e3b 96%, white);
+  --bg-card: color-mix(in srgb, #064e3b 92%, white);
+  --bg-card-hover: color-mix(in srgb, #064e3b 88%, white);
+  --bg-input: color-mix(in srgb, #064e3b 90%, black);
+  --text-primary: color-mix(in srgb, #ea580c 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ea580c 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ea580c 15%, transparent);
+  --border-focus: #ea580c;
+  --brand-primary: #ea580c;
+  --brand-glow: #ea580c;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #064e3b 95%, white) 0%, color-mix(in srgb, #064e3b 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ea580c 0%, color-mix(in srgb, #ea580c 60%, white) 60%);
+}
+
+[data-preset="whip_hat"] {
+  --bg-app: #451a03;
+  --bg-panel: color-mix(in srgb, #451a03 96%, white);
+  --bg-card: color-mix(in srgb, #451a03 92%, white);
+  --bg-card-hover: color-mix(in srgb, #451a03 88%, white);
+  --bg-input: color-mix(in srgb, #451a03 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #451a03 95%, white) 0%, color-mix(in srgb, #451a03 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="delorean"] {
+  --bg-app: #94a3b8;
+  --bg-panel: color-mix(in srgb, #94a3b8 96%, white);
+  --bg-card: color-mix(in srgb, #94a3b8 92%, white);
+  --bg-card-hover: color-mix(in srgb, #94a3b8 88%, white);
+  --bg-input: color-mix(in srgb, #94a3b8 90%, black);
+  --text-primary: color-mix(in srgb, #0ea5e9 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0ea5e9 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0ea5e9 15%, transparent);
+  --border-focus: #0ea5e9;
+  --brand-primary: #0ea5e9;
+  --brand-glow: #0ea5e9;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #94a3b8 95%, white) 0%, color-mix(in srgb, #94a3b8 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, color-mix(in srgb, #0ea5e9 60%, white) 60%);
+}
+
+[data-preset="skynet"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="gargantua"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #eab308 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #eab308 40%, transparent);
+  --border-subtle: color-mix(in srgb, #eab308 15%, transparent);
+  --border-focus: #eab308;
+  --brand-primary: #eab308;
+  --brand-glow: #eab308;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #eab308 0%, color-mix(in srgb, #eab308 60%, white) 60%);
+}
+
+[data-preset="unsinkable"] {
+  --bg-app: #082f49;
+  --bg-panel: color-mix(in srgb, #082f49 96%, white);
+  --bg-card: color-mix(in srgb, #082f49 92%, white);
+  --bg-card-hover: color-mix(in srgb, #082f49 88%, white);
+  --bg-input: color-mix(in srgb, #082f49 90%, black);
+  --text-primary: color-mix(in srgb, #f8fafc 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #f8fafc 40%, transparent);
+  --border-subtle: color-mix(in srgb, #f8fafc 15%, transparent);
+  --border-focus: #f8fafc;
+  --brand-primary: #f8fafc;
+  --brand-glow: #f8fafc;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #082f49 95%, white) 0%, color-mix(in srgb, #082f49 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #f8fafc 0%, color-mix(in srgb, #f8fafc 60%, white) 60%);
+}
+
+[data-preset="butterfly_effect"] {
+  --bg-app: #1e293b;
+  --bg-panel: color-mix(in srgb, #1e293b 96%, white);
+  --bg-card: color-mix(in srgb, #1e293b 92%, white);
+  --bg-card-hover: color-mix(in srgb, #1e293b 88%, white);
+  --bg-input: color-mix(in srgb, #1e293b 90%, black);
+  --text-primary: color-mix(in srgb, #f8fafc 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #f8fafc 40%, transparent);
+  --border-subtle: color-mix(in srgb, #f8fafc 15%, transparent);
+  --border-focus: #f8fafc;
+  --brand-primary: #f8fafc;
+  --brand-glow: #f8fafc;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #1e293b 95%, white) 0%, color-mix(in srgb, #1e293b 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #f8fafc 0%, color-mix(in srgb, #f8fafc 60%, white) 60%);
+}
+
+[data-preset="walking_sim"] {
+  --bg-app: #ea580c;
+  --bg-panel: color-mix(in srgb, #ea580c 96%, white);
+  --bg-card: color-mix(in srgb, #ea580c 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ea580c 88%, white);
+  --bg-input: color-mix(in srgb, #ea580c 90%, black);
+  --text-primary: color-mix(in srgb, #064e3b 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #064e3b 40%, transparent);
+  --border-subtle: color-mix(in srgb, #064e3b 15%, transparent);
+  --border-focus: #064e3b;
+  --brand-primary: #064e3b;
+  --brand-glow: #064e3b;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ea580c 95%, white) 0%, color-mix(in srgb, #ea580c 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #064e3b 0%, color-mix(in srgb, #064e3b 60%, white) 60%);
+}
+
+[data-preset="broken_screen"] {
+  --bg-app: #020617;
+  --bg-panel: color-mix(in srgb, #020617 96%, white);
+  --bg-card: color-mix(in srgb, #020617 92%, white);
+  --bg-card-hover: color-mix(in srgb, #020617 88%, white);
+  --bg-input: color-mix(in srgb, #020617 90%, black);
+  --text-primary: color-mix(in srgb, #94a3b8 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #94a3b8 40%, transparent);
+  --border-subtle: color-mix(in srgb, #94a3b8 15%, transparent);
+  --border-focus: #94a3b8;
+  --brand-primary: #94a3b8;
+  --brand-glow: #94a3b8;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #020617 95%, white) 0%, color-mix(in srgb, #020617 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #94a3b8 0%, color-mix(in srgb, #94a3b8 60%, white) 60%);
+}
+
+[data-preset="221b"] {
+  --bg-app: #1e293b;
+  --bg-panel: color-mix(in srgb, #1e293b 96%, white);
+  --bg-card: color-mix(in srgb, #1e293b 92%, white);
+  --bg-card-hover: color-mix(in srgb, #1e293b 88%, white);
+  --bg-input: color-mix(in srgb, #1e293b 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #1e293b 95%, white) 0%, color-mix(in srgb, #1e293b 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="the_truth"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #22c55e 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #22c55e 40%, transparent);
+  --border-subtle: color-mix(in srgb, #22c55e 15%, transparent);
+  --border-focus: #22c55e;
+  --brand-primary: #22c55e;
+  --brand-glow: #22c55e;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #22c55e 0%, color-mix(in srgb, #22c55e 60%, white) 60%);
+}
+
+[data-preset="reactor_4"] {
+  --bg-app: #334155;
+  --bg-panel: color-mix(in srgb, #334155 96%, white);
+  --bg-card: color-mix(in srgb, #334155 92%, white);
+  --bg-card-hover: color-mix(in srgb, #334155 88%, white);
+  --bg-input: color-mix(in srgb, #334155 90%, black);
+  --text-primary: color-mix(in srgb, #84cc16 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #84cc16 40%, transparent);
+  --border-subtle: color-mix(in srgb, #84cc16 15%, transparent);
+  --border-focus: #84cc16;
+  --brand-primary: #84cc16;
+  --brand-glow: #84cc16;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #334155 95%, white) 0%, color-mix(in srgb, #334155 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #84cc16 0%, color-mix(in srgb, #84cc16 60%, white) 60%);
+}
+
+[data-preset="dark_passenger"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #f8fafc;
+  --bg-panel: color-mix(in srgb, #f8fafc 96%, black);
+  --bg-card: color-mix(in srgb, #f8fafc 92%, black);
+  --bg-card-hover: color-mix(in srgb, #f8fafc 88%, black);
+  --bg-input: color-mix(in srgb, #f8fafc 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #f8fafc 95%, black) 0%, color-mix(in srgb, #f8fafc 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="nakatomi"] {
+  --bg-app: #334155;
+  --bg-panel: color-mix(in srgb, #334155 96%, white);
+  --bg-card: color-mix(in srgb, #334155 92%, white);
+  --bg-card-hover: color-mix(in srgb, #334155 88%, white);
+  --bg-input: color-mix(in srgb, #334155 90%, black);
+  --text-primary: color-mix(in srgb, #ea580c 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ea580c 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ea580c 15%, transparent);
+  --border-focus: #ea580c;
+  --brand-primary: #ea580c;
+  --brand-glow: #ea580c;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #334155 95%, white) 0%, color-mix(in srgb, #334155 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ea580c 0%, color-mix(in srgb, #ea580c 60%, white) 60%);
+}
+
+[data-preset="proton_pack"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #84cc16 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #84cc16 40%, transparent);
+  --border-subtle: color-mix(in srgb, #84cc16 15%, transparent);
+  --border-focus: #84cc16;
+  --brand-primary: #84cc16;
+  --brand-glow: #84cc16;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #84cc16 0%, color-mix(in srgb, #84cc16 60%, white) 60%);
+}
+
+[data-preset="mushroom_kingdom"] {
+  --bg-app: #ef4444;
+  --bg-panel: color-mix(in srgb, #ef4444 96%, white);
+  --bg-card: color-mix(in srgb, #ef4444 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ef4444 88%, white);
+  --bg-input: color-mix(in srgb, #ef4444 90%, black);
+  --text-primary: color-mix(in srgb, #3b82f6 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #3b82f6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #3b82f6 15%, transparent);
+  --border-focus: #3b82f6;
+  --brand-primary: #3b82f6;
+  --brand-glow: #3b82f6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ef4444 95%, white) 0%, color-mix(in srgb, #ef4444 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #3b82f6 0%, color-mix(in srgb, #3b82f6 60%, white) 60%);
+}
+
+[data-preset="kanto"] {
+  --bg-app: #ef4444;
+  --bg-panel: color-mix(in srgb, #ef4444 96%, white);
+  --bg-card: color-mix(in srgb, #ef4444 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ef4444 88%, white);
+  --bg-input: color-mix(in srgb, #ef4444 90%, black);
+  --text-primary: color-mix(in srgb, #ffffff 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ffffff 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ffffff 15%, transparent);
+  --border-focus: #ffffff;
+  --brand-primary: #ffffff;
+  --brand-glow: #ffffff;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ef4444 95%, white) 0%, color-mix(in srgb, #ef4444 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ffffff 0%, color-mix(in srgb, #ffffff 60%, white) 60%);
+}
+
+[data-preset="green_hill"] {
+  --bg-app: #3b82f6;
+  --bg-panel: color-mix(in srgb, #3b82f6 96%, white);
+  --bg-card: color-mix(in srgb, #3b82f6 92%, white);
+  --bg-card-hover: color-mix(in srgb, #3b82f6 88%, white);
+  --bg-input: color-mix(in srgb, #3b82f6 90%, black);
+  --text-primary: color-mix(in srgb, #22c55e 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #22c55e 40%, transparent);
+  --border-subtle: color-mix(in srgb, #22c55e 15%, transparent);
+  --border-focus: #22c55e;
+  --brand-primary: #22c55e;
+  --brand-glow: #22c55e;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #3b82f6 95%, white) 0%, color-mix(in srgb, #3b82f6 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #22c55e 0%, color-mix(in srgb, #22c55e 60%, white) 60%);
+}
+
+[data-preset="sic_parvis_magna"] {
+  --bg-app: #451a03;
+  --bg-panel: color-mix(in srgb, #451a03 96%, white);
+  --bg-card: color-mix(in srgb, #451a03 92%, white);
+  --bg-card-hover: color-mix(in srgb, #451a03 88%, white);
+  --bg-input: color-mix(in srgb, #451a03 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #451a03 95%, white) 0%, color-mix(in srgb, #451a03 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="tomb_raider"] {
+  --bg-app: #451a03;
+  --bg-panel: color-mix(in srgb, #451a03 96%, white);
+  --bg-card: color-mix(in srgb, #451a03 92%, white);
+  --bg-card-hover: color-mix(in srgb, #451a03 88%, white);
+  --bg-input: color-mix(in srgb, #451a03 90%, black);
+  --text-primary: color-mix(in srgb, #14b8a6 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #14b8a6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #14b8a6 15%, transparent);
+  --border-focus: #14b8a6;
+  --brand-primary: #14b8a6;
+  --brand-glow: #14b8a6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #451a03 95%, white) 0%, color-mix(in srgb, #451a03 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #14b8a6 0%, color-mix(in srgb, #14b8a6 60%, white) 60%);
+}
+
+[data-preset="los_santos"] {
+  --bg-app: #22c55e;
+  --bg-panel: color-mix(in srgb, #22c55e 96%, white);
+  --bg-card: color-mix(in srgb, #22c55e 92%, white);
+  --bg-card-hover: color-mix(in srgb, #22c55e 88%, white);
+  --bg-input: color-mix(in srgb, #22c55e 90%, black);
+  --text-primary: color-mix(in srgb, #ea580c 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ea580c 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ea580c 15%, transparent);
+  --border-focus: #ea580c;
+  --brand-primary: #ea580c;
+  --brand-glow: #ea580c;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #22c55e 95%, white) 0%, color-mix(in srgb, #22c55e 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ea580c 0%, color-mix(in srgb, #ea580c 60%, white) 60%);
+}
+
+[data-preset="cozy_farm"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #fef3c7;
+  --bg-panel: color-mix(in srgb, #fef3c7 96%, black);
+  --bg-card: color-mix(in srgb, #fef3c7 92%, black);
+  --bg-card-hover: color-mix(in srgb, #fef3c7 88%, black);
+  --bg-input: color-mix(in srgb, #fef3c7 90%, black);
+  --text-primary: color-mix(in srgb, #22c55e 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #22c55e 40%, transparent);
+  --border-subtle: color-mix(in srgb, #22c55e 15%, transparent);
+  --border-focus: #22c55e;
+  --brand-primary: #22c55e;
+  --brand-glow: #22c55e;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #fef3c7 95%, black) 0%, color-mix(in srgb, #fef3c7 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #22c55e 0%, color-mix(in srgb, #22c55e 60%, white) 60%);
+}
+
+[data-preset="tycoon"] {
+  --bg-app: #2563eb;
+  --bg-panel: color-mix(in srgb, #2563eb 96%, white);
+  --bg-card: color-mix(in srgb, #2563eb 92%, white);
+  --bg-card-hover: color-mix(in srgb, #2563eb 88%, white);
+  --bg-input: color-mix(in srgb, #2563eb 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #2563eb 95%, white) 0%, color-mix(in srgb, #2563eb 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="aquarium"] {
+  --bg-app: #082f49;
+  --bg-panel: color-mix(in srgb, #082f49 96%, white);
+  --bg-card: color-mix(in srgb, #082f49 92%, white);
+  --bg-card-hover: color-mix(in srgb, #082f49 88%, white);
+  --bg-input: color-mix(in srgb, #082f49 90%, black);
+  --text-primary: color-mix(in srgb, #06b6d4 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #06b6d4 40%, transparent);
+  --border-subtle: color-mix(in srgb, #06b6d4 15%, transparent);
+  --border-focus: #06b6d4;
+  --brand-primary: #06b6d4;
+  --brand-glow: #06b6d4;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #082f49 95%, white) 0%, color-mix(in srgb, #082f49 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #06b6d4 0%, color-mix(in srgb, #06b6d4 60%, white) 60%);
+}
+
+[data-preset="safari_zoo"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #fef3c7;
+  --bg-panel: color-mix(in srgb, #fef3c7 96%, black);
+  --bg-card: color-mix(in srgb, #fef3c7 92%, black);
+  --bg-card-hover: color-mix(in srgb, #fef3c7 88%, black);
+  --bg-input: color-mix(in srgb, #fef3c7 90%, black);
+  --text-primary: color-mix(in srgb, #451a03 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #451a03 40%, transparent);
+  --border-subtle: color-mix(in srgb, #451a03 15%, transparent);
+  --border-focus: #451a03;
+  --brand-primary: #451a03;
+  --brand-glow: #451a03;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #fef3c7 95%, black) 0%, color-mix(in srgb, #fef3c7 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #451a03 0%, color-mix(in srgb, #451a03 60%, white) 60%);
+}
+
+[data-preset="city_builder"] {
+  --bg-app: #334155;
+  --bg-panel: color-mix(in srgb, #334155 96%, white);
+  --bg-card: color-mix(in srgb, #334155 92%, white);
+  --bg-card-hover: color-mix(in srgb, #334155 88%, white);
+  --bg-input: color-mix(in srgb, #334155 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #334155 95%, white) 0%, color-mix(in srgb, #334155 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="jurassic"] {
+  --bg-app: #14532d;
+  --bg-panel: color-mix(in srgb, #14532d 96%, white);
+  --bg-card: color-mix(in srgb, #14532d 92%, white);
+  --bg-card-hover: color-mix(in srgb, #14532d 88%, white);
+  --bg-input: color-mix(in srgb, #14532d 90%, black);
+  --text-primary: color-mix(in srgb, #d97706 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d97706 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d97706 15%, transparent);
+  --border-focus: #d97706;
+  --brand-primary: #d97706;
+  --brand-glow: #d97706;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #14532d 95%, white) 0%, color-mix(in srgb, #14532d 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d97706 0%, color-mix(in srgb, #d97706 60%, white) 60%);
+}
+
+[data-preset="infinity"] {
+  --bg-app: #450a0a;
+  --bg-panel: color-mix(in srgb, #450a0a 96%, white);
+  --bg-card: color-mix(in srgb, #450a0a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #450a0a 88%, white);
+  --bg-input: color-mix(in srgb, #450a0a 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #450a0a 95%, white) 0%, color-mix(in srgb, #450a0a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="multiverse"] {
+  --bg-app: #1e3a8a;
+  --bg-panel: color-mix(in srgb, #1e3a8a 96%, white);
+  --bg-card: color-mix(in srgb, #1e3a8a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #1e3a8a 88%, white);
+  --bg-input: color-mix(in srgb, #1e3a8a 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #1e3a8a 95%, white) 0%, color-mix(in srgb, #1e3a8a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="galaxy_far_away"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #3b82f6 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #3b82f6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #3b82f6 15%, transparent);
+  --border-focus: #3b82f6;
+  --brand-primary: #3b82f6;
+  --brand-glow: #3b82f6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #3b82f6 0%, color-mix(in srgb, #3b82f6 60%, white) 60%);
+}
+
+[data-preset="hogwarts"] {
+  --bg-app: #7f1d1d;
+  --bg-panel: color-mix(in srgb, #7f1d1d 96%, white);
+  --bg-card: color-mix(in srgb, #7f1d1d 92%, white);
+  --bg-card-hover: color-mix(in srgb, #7f1d1d 88%, white);
+  --bg-input: color-mix(in srgb, #7f1d1d 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #7f1d1d 95%, white) 0%, color-mix(in srgb, #7f1d1d 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="forgotten_realms"] {
+  --bg-app: #7f1d1d;
+  --bg-panel: color-mix(in srgb, #7f1d1d 96%, white);
+  --bg-card: color-mix(in srgb, #7f1d1d 92%, white);
+  --bg-card-hover: color-mix(in srgb, #7f1d1d 88%, white);
+  --bg-input: color-mix(in srgb, #7f1d1d 90%, black);
+  --text-primary: color-mix(in srgb, #fef3c7 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #fef3c7 40%, transparent);
+  --border-subtle: color-mix(in srgb, #fef3c7 15%, transparent);
+  --border-focus: #fef3c7;
+  --brand-primary: #fef3c7;
+  --brand-glow: #fef3c7;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #7f1d1d 95%, white) 0%, color-mix(in srgb, #7f1d1d 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #fef3c7 0%, color-mix(in srgb, #fef3c7 60%, white) 60%);
+}
+
+[data-preset="arrakis"] {
+  --bg-app: #d97706;
+  --bg-panel: color-mix(in srgb, #d97706 96%, white);
+  --bg-card: color-mix(in srgb, #d97706 92%, white);
+  --bg-card-hover: color-mix(in srgb, #d97706 88%, white);
+  --bg-input: color-mix(in srgb, #d97706 90%, black);
+  --text-primary: color-mix(in srgb, #3b82f6 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #3b82f6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #3b82f6 15%, transparent);
+  --border-focus: #3b82f6;
+  --brand-primary: #3b82f6;
+  --brand-glow: #3b82f6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #d97706 95%, white) 0%, color-mix(in srgb, #d97706 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #3b82f6 0%, color-mix(in srgb, #3b82f6 60%, white) 60%);
+}
+
+[data-preset="psychohistory"] {
+  --bg-app: #94a3b8;
+  --bg-panel: color-mix(in srgb, #94a3b8 96%, white);
+  --bg-card: color-mix(in srgb, #94a3b8 92%, white);
+  --bg-card-hover: color-mix(in srgb, #94a3b8 88%, white);
+  --bg-input: color-mix(in srgb, #94a3b8 90%, black);
+  --text-primary: color-mix(in srgb, #3b82f6 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #3b82f6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #3b82f6 15%, transparent);
+  --border-focus: #3b82f6;
+  --brand-primary: #3b82f6;
+  --brand-glow: #3b82f6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #94a3b8 95%, white) 0%, color-mix(in srgb, #94a3b8 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #3b82f6 0%, color-mix(in srgb, #3b82f6 60%, white) 60%);
+}
+
+[data-preset="the_construct"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #22c55e 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #22c55e 40%, transparent);
+  --border-subtle: color-mix(in srgb, #22c55e 15%, transparent);
+  --border-focus: #22c55e;
+  --brand-primary: #22c55e;
+  --brand-glow: #22c55e;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #22c55e 0%, color-mix(in srgb, #22c55e 60%, white) 60%);
+}
+
+[data-preset="cybertron"] {
+  --bg-app: #ef4444;
+  --bg-panel: color-mix(in srgb, #ef4444 96%, white);
+  --bg-card: color-mix(in srgb, #ef4444 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ef4444 88%, white);
+  --bg-input: color-mix(in srgb, #ef4444 90%, black);
+  --text-primary: color-mix(in srgb, #8b5cf6 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #8b5cf6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #8b5cf6 15%, transparent);
+  --border-focus: #8b5cf6;
+  --brand-primary: #8b5cf6;
+  --brand-glow: #8b5cf6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ef4444 95%, white) 0%, color-mix(in srgb, #ef4444 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #8b5cf6 0%, color-mix(in srgb, #8b5cf6 60%, white) 60%);
+}
+
+[data-preset="forks"] {
+  --bg-app: #475569;
+  --bg-panel: color-mix(in srgb, #475569 96%, white);
+  --bg-card: color-mix(in srgb, #475569 92%, white);
+  --bg-card-hover: color-mix(in srgb, #475569 88%, white);
+  --bg-input: color-mix(in srgb, #475569 90%, black);
+  --text-primary: color-mix(in srgb, #14532d 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #14532d 40%, transparent);
+  --border-subtle: color-mix(in srgb, #14532d 15%, transparent);
+  --border-focus: #14532d;
+  --brand-primary: #14532d;
+  --brand-glow: #14532d;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #475569 95%, white) 0%, color-mix(in srgb, #475569 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #14532d 0%, color-mix(in srgb, #14532d 60%, white) 60%);
+}
+
+[data-preset="pandora"] {
+  --bg-app: #020617;
+  --bg-panel: color-mix(in srgb, #020617 96%, white);
+  --bg-card: color-mix(in srgb, #020617 92%, white);
+  --bg-card-hover: color-mix(in srgb, #020617 88%, white);
+  --bg-input: color-mix(in srgb, #020617 90%, black);
+  --text-primary: color-mix(in srgb, #06b6d4 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #06b6d4 40%, transparent);
+  --border-subtle: color-mix(in srgb, #06b6d4 15%, transparent);
+  --border-focus: #06b6d4;
+  --brand-primary: #06b6d4;
+  --brand-glow: #06b6d4;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #020617 95%, white) 0%, color-mix(in srgb, #020617 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #06b6d4 0%, color-mix(in srgb, #06b6d4 60%, white) 60%);
+}
+
+[data-preset="once_upon_a_dream"] {
+  --bg-app: #ec4899;
+  --bg-panel: color-mix(in srgb, #ec4899 96%, white);
+  --bg-card: color-mix(in srgb, #ec4899 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ec4899 88%, white);
+  --bg-input: color-mix(in srgb, #ec4899 90%, black);
+  --text-primary: color-mix(in srgb, #3b82f6 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #3b82f6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #3b82f6 15%, transparent);
+  --border-focus: #3b82f6;
+  --brand-primary: #3b82f6;
+  --brand-glow: #3b82f6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ec4899 95%, white) 0%, color-mix(in srgb, #ec4899 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #3b82f6 0%, color-mix(in srgb, #3b82f6 60%, white) 60%);
+}
+
+[data-preset="luxo"] {
+  --bg-app: #3b82f6;
+  --bg-panel: color-mix(in srgb, #3b82f6 96%, white);
+  --bg-card: color-mix(in srgb, #3b82f6 92%, white);
+  --bg-card-hover: color-mix(in srgb, #3b82f6 88%, white);
+  --bg-input: color-mix(in srgb, #3b82f6 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #3b82f6 95%, white) 0%, color-mix(in srgb, #3b82f6 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="castle_rock"] {
+  --bg-app: #0f172a;
+  --bg-panel: color-mix(in srgb, #0f172a 96%, white);
+  --bg-card: color-mix(in srgb, #0f172a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #0f172a 88%, white);
+  --bg-input: color-mix(in srgb, #0f172a 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #0f172a 95%, white) 0%, color-mix(in srgb, #0f172a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="wardrobe"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #f8fafc;
+  --bg-panel: color-mix(in srgb, #f8fafc 96%, black);
+  --bg-card: color-mix(in srgb, #f8fafc 92%, black);
+  --bg-card-hover: color-mix(in srgb, #f8fafc 88%, black);
+  --bg-input: color-mix(in srgb, #f8fafc 90%, black);
+  --text-primary: color-mix(in srgb, #064e3b 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #064e3b 40%, transparent);
+  --border-subtle: color-mix(in srgb, #064e3b 15%, transparent);
+  --border-focus: #064e3b;
+  --brand-primary: #064e3b;
+  --brand-glow: #064e3b;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #f8fafc 95%, black) 0%, color-mix(in srgb, #f8fafc 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #064e3b 0%, color-mix(in srgb, #064e3b 60%, white) 60%);
+}
+
+[data-preset="panem"] {
+  --bg-app: #451a03;
+  --bg-panel: color-mix(in srgb, #451a03 96%, white);
+  --bg-card: color-mix(in srgb, #451a03 92%, white);
+  --bg-card-hover: color-mix(in srgb, #451a03 88%, white);
+  --bg-input: color-mix(in srgb, #451a03 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #451a03 95%, white) 0%, color-mix(in srgb, #451a03 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="web_slinger"] {
+  --bg-app: #ef4444;
+  --bg-panel: color-mix(in srgb, #ef4444 96%, white);
+  --bg-card: color-mix(in srgb, #ef4444 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ef4444 88%, white);
+  --bg-input: color-mix(in srgb, #ef4444 90%, black);
+  --text-primary: color-mix(in srgb, #3b82f6 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #3b82f6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #3b82f6 15%, transparent);
+  --border-focus: #3b82f6;
+  --brand-primary: #3b82f6;
+  --brand-glow: #3b82f6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ef4444 95%, white) 0%, color-mix(in srgb, #ef4444 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #3b82f6 0%, color-mix(in srgb, #3b82f6 60%, white) 60%);
+}
+
+[data-preset="the_dark_knight"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="stark_tech"] {
+  --bg-app: #b91c1c;
+  --bg-panel: color-mix(in srgb, #b91c1c 96%, white);
+  --bg-card: color-mix(in srgb, #b91c1c 92%, white);
+  --bg-card-hover: color-mix(in srgb, #b91c1c 88%, white);
+  --bg-input: color-mix(in srgb, #b91c1c 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #b91c1c 95%, white) 0%, color-mix(in srgb, #b91c1c 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="man_of_steel"] {
+  --bg-app: #1d4ed8;
+  --bg-panel: color-mix(in srgb, #1d4ed8 96%, white);
+  --bg-card: color-mix(in srgb, #1d4ed8 92%, white);
+  --bg-card-hover: color-mix(in srgb, #1d4ed8 88%, white);
+  --bg-input: color-mix(in srgb, #1d4ed8 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #1d4ed8 95%, white) 0%, color-mix(in srgb, #1d4ed8 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="speed_force"] {
+  --bg-app: #b91c1c;
+  --bg-panel: color-mix(in srgb, #b91c1c 96%, white);
+  --bg-card: color-mix(in srgb, #b91c1c 92%, white);
+  --bg-card-hover: color-mix(in srgb, #b91c1c 88%, white);
+  --bg-input: color-mix(in srgb, #b91c1c 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #b91c1c 95%, white) 0%, color-mix(in srgb, #b91c1c 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="clown_prince"] {
+  --bg-app: #7c3aed;
+  --bg-panel: color-mix(in srgb, #7c3aed 96%, white);
+  --bg-card: color-mix(in srgb, #7c3aed 92%, white);
+  --bg-card-hover: color-mix(in srgb, #7c3aed 88%, white);
+  --bg-input: color-mix(in srgb, #7c3aed 90%, black);
+  --text-primary: color-mix(in srgb, #22c55e 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #22c55e 40%, transparent);
+  --border-subtle: color-mix(in srgb, #22c55e 15%, transparent);
+  --border-focus: #22c55e;
+  --brand-primary: #22c55e;
+  --brand-glow: #22c55e;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #7c3aed 95%, white) 0%, color-mix(in srgb, #7c3aed 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #22c55e 0%, color-mix(in srgb, #22c55e 60%, white) 60%);
+}
+
+[data-preset="first_avenger"] {
+  --bg-app: #1e3a8a;
+  --bg-panel: color-mix(in srgb, #1e3a8a 96%, white);
+  --bg-card: color-mix(in srgb, #1e3a8a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #1e3a8a 88%, white);
+  --bg-input: color-mix(in srgb, #1e3a8a 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #1e3a8a 95%, white) 0%, color-mix(in srgb, #1e3a8a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="god_of_thunder"] {
+  --bg-app: #475569;
+  --bg-panel: color-mix(in srgb, #475569 96%, white);
+  --bg-card: color-mix(in srgb, #475569 92%, white);
+  --bg-card-hover: color-mix(in srgb, #475569 88%, white);
+  --bg-input: color-mix(in srgb, #475569 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #475569 95%, white) 0%, color-mix(in srgb, #475569 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="gamma_smash"] {
+  --bg-app: #14532d;
+  --bg-panel: color-mix(in srgb, #14532d 96%, white);
+  --bg-card: color-mix(in srgb, #14532d 92%, white);
+  --bg-card-hover: color-mix(in srgb, #14532d 88%, white);
+  --bg-input: color-mix(in srgb, #14532d 90%, black);
+  --text-primary: color-mix(in srgb, #7c3aed 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #7c3aed 40%, transparent);
+  --border-subtle: color-mix(in srgb, #7c3aed 15%, transparent);
+  --border-focus: #7c3aed;
+  --brand-primary: #7c3aed;
+  --brand-glow: #7c3aed;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #14532d 95%, white) 0%, color-mix(in srgb, #14532d 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #7c3aed 0%, color-mix(in srgb, #7c3aed 60%, white) 60%);
+}
+
+[data-preset="red_room"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="weapon_x"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #facc15;
+  --bg-panel: color-mix(in srgb, #facc15 96%, black);
+  --bg-card: color-mix(in srgb, #facc15 92%, black);
+  --bg-card-hover: color-mix(in srgb, #facc15 88%, black);
+  --bg-input: color-mix(in srgb, #facc15 90%, black);
+  --text-primary: color-mix(in srgb, #3b82f6 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #3b82f6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #3b82f6 15%, transparent);
+  --border-focus: #3b82f6;
+  --brand-primary: #3b82f6;
+  --brand-glow: #3b82f6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #facc15 95%, black) 0%, color-mix(in srgb, #facc15 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #3b82f6 0%, color-mix(in srgb, #3b82f6 60%, white) 60%);
+}
+
+[data-preset="wakanda_forever"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #8b5cf6 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #8b5cf6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #8b5cf6 15%, transparent);
+  --border-focus: #8b5cf6;
+  --brand-primary: #8b5cf6;
+  --brand-glow: #8b5cf6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #8b5cf6 0%, color-mix(in srgb, #8b5cf6 60%, white) 60%);
+}
+
+[data-preset="sorcerer_supreme"] {
+  --bg-app: #1e3a8a;
+  --bg-panel: color-mix(in srgb, #1e3a8a 96%, white);
+  --bg-card: color-mix(in srgb, #1e3a8a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #1e3a8a 88%, white);
+  --bg-input: color-mix(in srgb, #1e3a8a 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #1e3a8a 95%, white) 0%, color-mix(in srgb, #1e3a8a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="symbiote"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #ffffff 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ffffff 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ffffff 15%, transparent);
+  --border-focus: #ffffff;
+  --brand-primary: #ffffff;
+  --brand-glow: #ffffff;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ffffff 0%, color-mix(in srgb, #ffffff 60%, white) 60%);
+}
+
+[data-preset="andy_s_room"] {
+  --bg-app: #3b82f6;
+  --bg-panel: color-mix(in srgb, #3b82f6 96%, white);
+  --bg-card: color-mix(in srgb, #3b82f6 92%, white);
+  --bg-card-hover: color-mix(in srgb, #3b82f6 88%, white);
+  --bg-input: color-mix(in srgb, #3b82f6 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #3b82f6 95%, white) 0%, color-mix(in srgb, #3b82f6 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="motunui"] {
+  --bg-app: #0ea5e9;
+  --bg-panel: color-mix(in srgb, #0ea5e9 96%, white);
+  --bg-card: color-mix(in srgb, #0ea5e9 92%, white);
+  --bg-card-hover: color-mix(in srgb, #0ea5e9 88%, white);
+  --bg-input: color-mix(in srgb, #0ea5e9 90%, black);
+  --text-primary: color-mix(in srgb, #fef3c7 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #fef3c7 40%, transparent);
+  --border-subtle: color-mix(in srgb, #fef3c7 15%, transparent);
+  --border-focus: #fef3c7;
+  --brand-primary: #fef3c7;
+  --brand-glow: #fef3c7;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #0ea5e9 95%, white) 0%, color-mix(in srgb, #0ea5e9 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #fef3c7 0%, color-mix(in srgb, #fef3c7 60%, white) 60%);
+}
+
+[data-preset="scare_floor"] {
+  --bg-app: #3b82f6;
+  --bg-panel: color-mix(in srgb, #3b82f6 96%, white);
+  --bg-card: color-mix(in srgb, #3b82f6 92%, white);
+  --bg-card-hover: color-mix(in srgb, #3b82f6 88%, white);
+  --bg-input: color-mix(in srgb, #3b82f6 90%, black);
+  --text-primary: color-mix(in srgb, #84cc16 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #84cc16 40%, transparent);
+  --border-subtle: color-mix(in srgb, #84cc16 15%, transparent);
+  --border-focus: #84cc16;
+  --brand-primary: #84cc16;
+  --brand-glow: #84cc16;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #3b82f6 95%, white) 0%, color-mix(in srgb, #3b82f6 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #84cc16 0%, color-mix(in srgb, #84cc16 60%, white) 60%);
+}
+
+[data-preset="route_66"] {
+  --bg-app: #ef4444;
+  --bg-panel: color-mix(in srgb, #ef4444 96%, white);
+  --bg-card: color-mix(in srgb, #ef4444 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ef4444 88%, white);
+  --bg-input: color-mix(in srgb, #ef4444 90%, black);
+  --text-primary: color-mix(in srgb, #000000 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #000000 40%, transparent);
+  --border-subtle: color-mix(in srgb, #000000 15%, transparent);
+  --border-focus: #000000;
+  --brand-primary: #000000;
+  --brand-glow: #000000;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ef4444 95%, white) 0%, color-mix(in srgb, #ef4444 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #000000 0%, color-mix(in srgb, #000000 60%, white) 60%);
+}
+
+[data-preset="arendelle"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #e0f2fe;
+  --bg-panel: color-mix(in srgb, #e0f2fe 96%, black);
+  --bg-card: color-mix(in srgb, #e0f2fe 92%, black);
+  --bg-card-hover: color-mix(in srgb, #e0f2fe 88%, black);
+  --bg-input: color-mix(in srgb, #e0f2fe 90%, black);
+  --text-primary: color-mix(in srgb, #0ea5e9 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0ea5e9 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0ea5e9 15%, transparent);
+  --border-focus: #0ea5e9;
+  --brand-primary: #0ea5e9;
+  --brand-glow: #0ea5e9;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #e0f2fe 95%, black) 0%, color-mix(in srgb, #e0f2fe 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, color-mix(in srgb, #0ea5e9 60%, white) 60%);
+}
+
+[data-preset="eac"] {
+  --bg-app: #082f49;
+  --bg-panel: color-mix(in srgb, #082f49 96%, white);
+  --bg-card: color-mix(in srgb, #082f49 92%, white);
+  --bg-card-hover: color-mix(in srgb, #082f49 88%, white);
+  --bg-input: color-mix(in srgb, #082f49 90%, black);
+  --text-primary: color-mix(in srgb, #ea580c 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ea580c 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ea580c 15%, transparent);
+  --border-focus: #ea580c;
+  --brand-primary: #ea580c;
+  --brand-glow: #ea580c;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #082f49 95%, white) 0%, color-mix(in srgb, #082f49 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ea580c 0%, color-mix(in srgb, #ea580c 60%, white) 60%);
+}
+
+[data-preset="agrabah"] {
+  --bg-app: #4c1d95;
+  --bg-panel: color-mix(in srgb, #4c1d95 96%, white);
+  --bg-card: color-mix(in srgb, #4c1d95 92%, white);
+  --bg-card-hover: color-mix(in srgb, #4c1d95 88%, white);
+  --bg-input: color-mix(in srgb, #4c1d95 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #4c1d95 95%, white) 0%, color-mix(in srgb, #4c1d95 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="pride_rock"] {
+  --bg-app: #ea580c;
+  --bg-panel: color-mix(in srgb, #ea580c 96%, white);
+  --bg-card: color-mix(in srgb, #ea580c 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ea580c 88%, white);
+  --bg-input: color-mix(in srgb, #ea580c 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ea580c 95%, white) 0%, color-mix(in srgb, #ea580c 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="headquarters"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #facc15;
+  --bg-panel: color-mix(in srgb, #facc15 96%, black);
+  --bg-card: color-mix(in srgb, #facc15 92%, black);
+  --bg-card-hover: color-mix(in srgb, #facc15 88%, black);
+  --bg-input: color-mix(in srgb, #facc15 90%, black);
+  --text-primary: color-mix(in srgb, #3b82f6 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #3b82f6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #3b82f6 15%, transparent);
+  --border-focus: #3b82f6;
+  --brand-primary: #3b82f6;
+  --brand-glow: #3b82f6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #facc15 95%, black) 0%, color-mix(in srgb, #facc15 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #3b82f6 0%, color-mix(in srgb, #3b82f6 60%, white) 60%);
+}
+
+[data-preset="enchanted_rose"] {
+  --bg-app: #d4a853;
+  --bg-panel: color-mix(in srgb, #d4a853 96%, white);
+  --bg-card: color-mix(in srgb, #d4a853 92%, white);
+  --bg-card-hover: color-mix(in srgb, #d4a853 88%, white);
+  --bg-input: color-mix(in srgb, #d4a853 90%, black);
+  --text-primary: color-mix(in srgb, #1e3a8a 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #1e3a8a 40%, transparent);
+  --border-subtle: color-mix(in srgb, #1e3a8a 15%, transparent);
+  --border-focus: #1e3a8a;
+  --brand-primary: #1e3a8a;
+  --brand-glow: #1e3a8a;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #d4a853 95%, white) 0%, color-mix(in srgb, #d4a853 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #1e3a8a 0%, color-mix(in srgb, #1e3a8a 60%, white) 60%);
+}
+
+[data-preset="dragon_warrior"] {
+  --bg-app: #991b1b;
+  --bg-panel: color-mix(in srgb, #991b1b 96%, white);
+  --bg-card: color-mix(in srgb, #991b1b 92%, white);
+  --bg-card-hover: color-mix(in srgb, #991b1b 88%, white);
+  --bg-input: color-mix(in srgb, #991b1b 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #991b1b 95%, white) 0%, color-mix(in srgb, #991b1b 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="paradise_falls"] {
+  --bg-app: #3b82f6;
+  --bg-panel: color-mix(in srgb, #3b82f6 96%, white);
+  --bg-card: color-mix(in srgb, #3b82f6 92%, white);
+  --bg-card-hover: color-mix(in srgb, #3b82f6 88%, white);
+  --bg-input: color-mix(in srgb, #3b82f6 90%, black);
+  --text-primary: color-mix(in srgb, #22c55e 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #22c55e 40%, transparent);
+  --border-subtle: color-mix(in srgb, #22c55e 15%, transparent);
+  --border-focus: #22c55e;
+  --brand-primary: #22c55e;
+  --brand-glow: #22c55e;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #3b82f6 95%, white) 0%, color-mix(in srgb, #3b82f6 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #22c55e 0%, color-mix(in srgb, #22c55e 60%, white) 60%);
+}
+
+[data-preset="gusteau_s"] {
+  --bg-app: #b45309;
+  --bg-panel: color-mix(in srgb, #b45309 96%, white);
+  --bg-card: color-mix(in srgb, #b45309 92%, white);
+  --bg-card-hover: color-mix(in srgb, #b45309 88%, white);
+  --bg-input: color-mix(in srgb, #b45309 90%, black);
+  --text-primary: color-mix(in srgb, #ffffff 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ffffff 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ffffff 15%, transparent);
+  --border-focus: #ffffff;
+  --brand-primary: #ffffff;
+  --brand-glow: #ffffff;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #b45309 95%, white) 0%, color-mix(in srgb, #b45309 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ffffff 0%, color-mix(in srgb, #ffffff 60%, white) 60%);
+}
+
+[data-preset="axiom"] {
+  --bg-app: #9a3412;
+  --bg-panel: color-mix(in srgb, #9a3412 96%, white);
+  --bg-card: color-mix(in srgb, #9a3412 92%, white);
+  --bg-card-hover: color-mix(in srgb, #9a3412 88%, white);
+  --bg-input: color-mix(in srgb, #9a3412 90%, black);
+  --text-primary: color-mix(in srgb, #4ade80 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #4ade80 40%, transparent);
+  --border-subtle: color-mix(in srgb, #4ade80 15%, transparent);
+  --border-focus: #4ade80;
+  --brand-primary: #4ade80;
+  --brand-glow: #4ade80;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #9a3412 95%, white) 0%, color-mix(in srgb, #9a3412 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #4ade80 0%, color-mix(in srgb, #4ade80 60%, white) 60%);
+}
+
+[data-preset="olympus"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #fef3c7;
+  --bg-panel: color-mix(in srgb, #fef3c7 96%, black);
+  --bg-card: color-mix(in srgb, #fef3c7 92%, black);
+  --bg-card-hover: color-mix(in srgb, #fef3c7 88%, black);
+  --bg-input: color-mix(in srgb, #fef3c7 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #fef3c7 95%, black) 0%, color-mix(in srgb, #fef3c7 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="neverland"] {
+  --bg-app: #15803d;
+  --bg-panel: color-mix(in srgb, #15803d 96%, white);
+  --bg-card: color-mix(in srgb, #15803d 92%, white);
+  --bg-card-hover: color-mix(in srgb, #15803d 88%, white);
+  --bg-input: color-mix(in srgb, #15803d 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #15803d 95%, white) 0%, color-mix(in srgb, #15803d 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="bella_notte"] {
+  --bg-app: #991b1b;
+  --bg-panel: color-mix(in srgb, #991b1b 96%, white);
+  --bg-card: color-mix(in srgb, #991b1b 92%, white);
+  --bg-card-hover: color-mix(in srgb, #991b1b 88%, white);
+  --bg-input: color-mix(in srgb, #991b1b 90%, black);
+  --text-primary: color-mix(in srgb, #0f172a 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0f172a 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0f172a 15%, transparent);
+  --border-focus: #0f172a;
+  --brand-primary: #0f172a;
+  --brand-glow: #0f172a;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #991b1b 95%, white) 0%, color-mix(in srgb, #991b1b 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0f172a 0%, color-mix(in srgb, #0f172a 60%, white) 60%);
+}
+
+[data-preset="ici_c_est_paris"] {
+  --bg-app: #1e3a8a;
+  --bg-panel: color-mix(in srgb, #1e3a8a 96%, white);
+  --bg-card: color-mix(in srgb, #1e3a8a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #1e3a8a 88%, white);
+  --bg-input: color-mix(in srgb, #1e3a8a 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #1e3a8a 95%, white) 0%, color-mix(in srgb, #1e3a8a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="citizens"] {
+  --bg-app: #38bdf8;
+  --bg-panel: color-mix(in srgb, #38bdf8 96%, white);
+  --bg-card: color-mix(in srgb, #38bdf8 92%, white);
+  --bg-card-hover: color-mix(in srgb, #38bdf8 88%, white);
+  --bg-input: color-mix(in srgb, #38bdf8 90%, black);
+  --text-primary: color-mix(in srgb, #ffffff 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ffffff 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ffffff 15%, transparent);
+  --border-focus: #ffffff;
+  --brand-primary: #ffffff;
+  --brand-glow: #ffffff;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #38bdf8 95%, white) 0%, color-mix(in srgb, #38bdf8 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ffffff 0%, color-mix(in srgb, #ffffff 60%, white) 60%);
+}
+
+[data-preset="red_devils"] {
+  --bg-app: #dc2626;
+  --bg-panel: color-mix(in srgb, #dc2626 96%, white);
+  --bg-card: color-mix(in srgb, #dc2626 92%, white);
+  --bg-card-hover: color-mix(in srgb, #dc2626 88%, white);
+  --bg-input: color-mix(in srgb, #dc2626 90%, black);
+  --text-primary: color-mix(in srgb, #000000 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #000000 40%, transparent);
+  --border-subtle: color-mix(in srgb, #000000 15%, transparent);
+  --border-focus: #000000;
+  --brand-primary: #000000;
+  --brand-glow: #000000;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #dc2626 95%, white) 0%, color-mix(in srgb, #dc2626 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #000000 0%, color-mix(in srgb, #000000 60%, white) 60%);
+}
+
+[data-preset="ynwa"] {
+  --bg-app: #ef4444;
+  --bg-panel: color-mix(in srgb, #ef4444 96%, white);
+  --bg-card: color-mix(in srgb, #ef4444 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ef4444 88%, white);
+  --bg-input: color-mix(in srgb, #ef4444 90%, black);
+  --text-primary: color-mix(in srgb, #ffffff 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ffffff 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ffffff 15%, transparent);
+  --border-focus: #ffffff;
+  --brand-primary: #ffffff;
+  --brand-glow: #ffffff;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ef4444 95%, white) 0%, color-mix(in srgb, #ef4444 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ffffff 0%, color-mix(in srgb, #ffffff 60%, white) 60%);
+}
+
+[data-preset="gunners"] {
+  --bg-app: #dc2626;
+  --bg-panel: color-mix(in srgb, #dc2626 96%, white);
+  --bg-card: color-mix(in srgb, #dc2626 92%, white);
+  --bg-card-hover: color-mix(in srgb, #dc2626 88%, white);
+  --bg-input: color-mix(in srgb, #dc2626 90%, black);
+  --text-primary: color-mix(in srgb, #ffffff 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ffffff 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ffffff 15%, transparent);
+  --border-focus: #ffffff;
+  --brand-primary: #ffffff;
+  --brand-glow: #ffffff;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #dc2626 95%, white) 0%, color-mix(in srgb, #dc2626 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ffffff 0%, color-mix(in srgb, #ffffff 60%, white) 60%);
+}
+
+[data-preset="los_blancos"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #ffffff;
+  --bg-panel: color-mix(in srgb, #ffffff 96%, black);
+  --bg-card: color-mix(in srgb, #ffffff 92%, black);
+  --bg-card-hover: color-mix(in srgb, #ffffff 88%, black);
+  --bg-input: color-mix(in srgb, #ffffff 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ffffff 95%, black) 0%, color-mix(in srgb, #ffffff 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="blaugrana"] {
+  --bg-app: #1d4ed8;
+  --bg-panel: color-mix(in srgb, #1d4ed8 96%, white);
+  --bg-card: color-mix(in srgb, #1d4ed8 92%, white);
+  --bg-card-hover: color-mix(in srgb, #1d4ed8 88%, white);
+  --bg-input: color-mix(in srgb, #1d4ed8 90%, black);
+  --text-primary: color-mix(in srgb, #991b1b 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #991b1b 40%, transparent);
+  --border-subtle: color-mix(in srgb, #991b1b 15%, transparent);
+  --border-focus: #991b1b;
+  --brand-primary: #991b1b;
+  --brand-glow: #991b1b;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #1d4ed8 95%, white) 0%, color-mix(in srgb, #1d4ed8 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #991b1b 0%, color-mix(in srgb, #991b1b 60%, white) 60%);
+}
+
+[data-preset="colchoneros"] {
+  --bg-app: #dc2626;
+  --bg-panel: color-mix(in srgb, #dc2626 96%, white);
+  --bg-card: color-mix(in srgb, #dc2626 92%, white);
+  --bg-card-hover: color-mix(in srgb, #dc2626 88%, white);
+  --bg-input: color-mix(in srgb, #dc2626 90%, black);
+  --text-primary: color-mix(in srgb, #ffffff 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ffffff 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ffffff 15%, transparent);
+  --border-focus: #ffffff;
+  --brand-primary: #ffffff;
+  --brand-glow: #ffffff;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #dc2626 95%, white) 0%, color-mix(in srgb, #dc2626 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ffffff 0%, color-mix(in srgb, #ffffff 60%, white) 60%);
+}
+
+[data-preset="mia_san_mia"] {
+  --bg-app: #dc2626;
+  --bg-panel: color-mix(in srgb, #dc2626 96%, white);
+  --bg-card: color-mix(in srgb, #dc2626 92%, white);
+  --bg-card-hover: color-mix(in srgb, #dc2626 88%, white);
+  --bg-input: color-mix(in srgb, #dc2626 90%, black);
+  --text-primary: color-mix(in srgb, #ffffff 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ffffff 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ffffff 15%, transparent);
+  --border-focus: #ffffff;
+  --brand-primary: #ffffff;
+  --brand-glow: #ffffff;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #dc2626 95%, white) 0%, color-mix(in srgb, #dc2626 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ffffff 0%, color-mix(in srgb, #ffffff 60%, white) 60%);
+}
+
+[data-preset="bianconeri"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #ffffff 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ffffff 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ffffff 15%, transparent);
+  --border-focus: #ffffff;
+  --brand-primary: #ffffff;
+  --brand-glow: #ffffff;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ffffff 0%, color-mix(in srgb, #ffffff 60%, white) 60%);
+}
+
+[data-preset="rossoneri"] {
+  --bg-app: #dc2626;
+  --bg-panel: color-mix(in srgb, #dc2626 96%, white);
+  --bg-card: color-mix(in srgb, #dc2626 92%, white);
+  --bg-card-hover: color-mix(in srgb, #dc2626 88%, white);
+  --bg-input: color-mix(in srgb, #dc2626 90%, black);
+  --text-primary: color-mix(in srgb, #000000 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #000000 40%, transparent);
+  --border-subtle: color-mix(in srgb, #000000 15%, transparent);
+  --border-focus: #000000;
+  --brand-primary: #000000;
+  --brand-glow: #000000;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #dc2626 95%, white) 0%, color-mix(in srgb, #dc2626 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #000000 0%, color-mix(in srgb, #000000 60%, white) 60%);
+}
+
+[data-preset="pony_car"] {
+  --bg-app: #1e3a8a;
+  --bg-panel: color-mix(in srgb, #1e3a8a 96%, white);
+  --bg-card: color-mix(in srgb, #1e3a8a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #1e3a8a 88%, white);
+  --bg-input: color-mix(in srgb, #1e3a8a 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #1e3a8a 95%, white) 0%, color-mix(in srgb, #1e3a8a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="m_power"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #ffffff;
+  --bg-panel: color-mix(in srgb, #ffffff 96%, black);
+  --bg-card: color-mix(in srgb, #ffffff 92%, black);
+  --bg-card-hover: color-mix(in srgb, #ffffff 88%, black);
+  --bg-input: color-mix(in srgb, #ffffff 90%, black);
+  --text-primary: color-mix(in srgb, #3b82f6 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #3b82f6 40%, transparent);
+  --border-subtle: color-mix(in srgb, #3b82f6 15%, transparent);
+  --border-focus: #3b82f6;
+  --brand-primary: #3b82f6;
+  --brand-glow: #3b82f6;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ffffff 95%, black) 0%, color-mix(in srgb, #ffffff 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #3b82f6 0%, color-mix(in srgb, #3b82f6 60%, white) 60%);
+}
+
+[data-preset="quattro"] {
+  --bg-app: #475569;
+  --bg-panel: color-mix(in srgb, #475569 96%, white);
+  --bg-card: color-mix(in srgb, #475569 92%, white);
+  --bg-card-hover: color-mix(in srgb, #475569 88%, white);
+  --bg-input: color-mix(in srgb, #475569 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #475569 95%, white) 0%, color-mix(in srgb, #475569 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="silver_star"] {
+  --bg-app: #94a3b8;
+  --bg-panel: color-mix(in srgb, #94a3b8 96%, white);
+  --bg-card: color-mix(in srgb, #94a3b8 92%, white);
+  --bg-card-hover: color-mix(in srgb, #94a3b8 88%, white);
+  --bg-input: color-mix(in srgb, #94a3b8 90%, black);
+  --text-primary: color-mix(in srgb, #0f172a 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0f172a 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0f172a 15%, transparent);
+  --border-focus: #0f172a;
+  --brand-primary: #0f172a;
+  --brand-glow: #0f172a;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #94a3b8 95%, white) 0%, color-mix(in srgb, #94a3b8 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0f172a 0%, color-mix(in srgb, #0f172a 60%, white) 60%);
+}
+
+[data-preset="stingray"] {
+  --bg-app: #ef4444;
+  --bg-panel: color-mix(in srgb, #ef4444 96%, white);
+  --bg-card: color-mix(in srgb, #ef4444 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ef4444 88%, white);
+  --bg-input: color-mix(in srgb, #ef4444 90%, black);
+  --text-primary: color-mix(in srgb, #000000 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #000000 40%, transparent);
+  --border-subtle: color-mix(in srgb, #000000 15%, transparent);
+  --border-focus: #000000;
+  --brand-primary: #000000;
+  --brand-glow: #000000;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ef4444 95%, white) 0%, color-mix(in srgb, #ef4444 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #000000 0%, color-mix(in srgb, #000000 60%, white) 60%);
+}
+
+[data-preset="carrera"] {
+  --bg-app: #94a3b8;
+  --bg-panel: color-mix(in srgb, #94a3b8 96%, white);
+  --bg-card: color-mix(in srgb, #94a3b8 92%, white);
+  --bg-card-hover: color-mix(in srgb, #94a3b8 88%, white);
+  --bg-input: color-mix(in srgb, #94a3b8 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #94a3b8 95%, white) 0%, color-mix(in srgb, #94a3b8 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="rosso_corsa"] {
+  --bg-app: #dc2626;
+  --bg-panel: color-mix(in srgb, #dc2626 96%, white);
+  --bg-card: color-mix(in srgb, #dc2626 92%, white);
+  --bg-card-hover: color-mix(in srgb, #dc2626 88%, white);
+  --bg-input: color-mix(in srgb, #dc2626 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #dc2626 95%, white) 0%, color-mix(in srgb, #dc2626 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="sant_agata"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #bef264;
+  --bg-panel: color-mix(in srgb, #bef264 96%, black);
+  --bg-card: color-mix(in srgb, #bef264 92%, black);
+  --bg-card-hover: color-mix(in srgb, #bef264 88%, black);
+  --bg-input: color-mix(in srgb, #bef264 90%, black);
+  --text-primary: color-mix(in srgb, #000000 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #000000 40%, transparent);
+  --border-subtle: color-mix(in srgb, #000000 15%, transparent);
+  --border-focus: #000000;
+  --brand-primary: #000000;
+  --brand-glow: #000000;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #bef264 95%, black) 0%, color-mix(in srgb, #bef264 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #000000 0%, color-mix(in srgb, #000000 60%, white) 60%);
+}
+
+[data-preset="db_series"] {
+  --bg-app: #064e3b;
+  --bg-panel: color-mix(in srgb, #064e3b 96%, white);
+  --bg-card: color-mix(in srgb, #064e3b 92%, white);
+  --bg-card-hover: color-mix(in srgb, #064e3b 88%, white);
+  --bg-input: color-mix(in srgb, #064e3b 90%, black);
+  --text-primary: color-mix(in srgb, #94a3b8 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #94a3b8 40%, transparent);
+  --border-subtle: color-mix(in srgb, #94a3b8 15%, transparent);
+  --border-focus: #94a3b8;
+  --brand-primary: #94a3b8;
+  --brand-glow: #94a3b8;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #064e3b 95%, white) 0%, color-mix(in srgb, #064e3b 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #94a3b8 0%, color-mix(in srgb, #94a3b8 60%, white) 60%);
+}
+
+[data-preset="flying_b"] {
+  --bg-app: #14532d;
+  --bg-panel: color-mix(in srgb, #14532d 96%, white);
+  --bg-card: color-mix(in srgb, #14532d 92%, white);
+  --bg-card-hover: color-mix(in srgb, #14532d 88%, white);
+  --bg-input: color-mix(in srgb, #14532d 90%, black);
+  --text-primary: color-mix(in srgb, #fef3c7 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #fef3c7 40%, transparent);
+  --border-subtle: color-mix(in srgb, #fef3c7 15%, transparent);
+  --border-focus: #fef3c7;
+  --brand-primary: #fef3c7;
+  --brand-glow: #fef3c7;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #14532d 95%, white) 0%, color-mix(in srgb, #14532d 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #fef3c7 0%, color-mix(in srgb, #fef3c7 60%, white) 60%);
+}
+
+[data-preset="molsheim"] {
+  --bg-app: #1d4ed8;
+  --bg-panel: color-mix(in srgb, #1d4ed8 96%, white);
+  --bg-card: color-mix(in srgb, #1d4ed8 92%, white);
+  --bg-card-hover: color-mix(in srgb, #1d4ed8 88%, white);
+  --bg-input: color-mix(in srgb, #1d4ed8 90%, black);
+  --text-primary: color-mix(in srgb, #000000 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #000000 40%, transparent);
+  --border-subtle: color-mix(in srgb, #000000 15%, transparent);
+  --border-focus: #000000;
+  --brand-primary: #000000;
+  --brand-glow: #000000;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #1d4ed8 95%, white) 0%, color-mix(in srgb, #1d4ed8 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #000000 0%, color-mix(in srgb, #000000 60%, white) 60%);
+}
+
+[data-preset="spirit_of_ecstasy"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #f8fafc 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #f8fafc 40%, transparent);
+  --border-subtle: color-mix(in srgb, #f8fafc 15%, transparent);
+  --border-focus: #f8fafc;
+  --brand-primary: #f8fafc;
+  --brand-glow: #f8fafc;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #f8fafc 0%, color-mix(in srgb, #f8fafc 60%, white) 60%);
+}
+
+[data-preset="danger_zone"] {
+  --bg-app: #38bdf8;
+  --bg-panel: color-mix(in srgb, #38bdf8 96%, white);
+  --bg-card: color-mix(in srgb, #38bdf8 92%, white);
+  --bg-card-hover: color-mix(in srgb, #38bdf8 88%, white);
+  --bg-input: color-mix(in srgb, #38bdf8 90%, black);
+  --text-primary: color-mix(in srgb, #ea580c 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ea580c 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ea580c 15%, transparent);
+  --border-focus: #ea580c;
+  --brand-primary: #ea580c;
+  --brand-glow: #ea580c;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #38bdf8 95%, white) 0%, color-mix(in srgb, #38bdf8 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ea580c 0%, color-mix(in srgb, #ea580c 60%, white) 60%);
+}
+
+[data-preset="winden"] {
+  --bg-app: #475569;
+  --bg-panel: color-mix(in srgb, #475569 96%, white);
+  --bg-card: color-mix(in srgb, #475569 92%, white);
+  --bg-card-hover: color-mix(in srgb, #475569 88%, white);
+  --bg-input: color-mix(in srgb, #475569 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #475569 95%, white) 0%, color-mix(in srgb, #475569 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="berk"] {
+  --bg-app: #14532d;
+  --bg-panel: color-mix(in srgb, #14532d 96%, white);
+  --bg-card: color-mix(in srgb, #14532d 92%, white);
+  --bg-card-hover: color-mix(in srgb, #14532d 88%, white);
+  --bg-input: color-mix(in srgb, #14532d 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #14532d 95%, white) 0%, color-mix(in srgb, #14532d 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="phone_home"] {
+  --bg-app: #0f172a;
+  --bg-panel: color-mix(in srgb, #0f172a 96%, white);
+  --bg-card: color-mix(in srgb, #0f172a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #0f172a 88%, white);
+  --bg-input: color-mix(in srgb, #0f172a 90%, black);
+  --text-primary: color-mix(in srgb, #ef4444 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ef4444 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ef4444 15%, transparent);
+  --border-focus: #ef4444;
+  --brand-primary: #ef4444;
+  --brand-glow: #ef4444;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #0f172a 95%, white) 0%, color-mix(in srgb, #0f172a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ef4444 0%, color-mix(in srgb, #ef4444 60%, white) 60%);
+}
+
+[data-preset="mystery_machine"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #86efac;
+  --bg-panel: color-mix(in srgb, #86efac 96%, black);
+  --bg-card: color-mix(in srgb, #86efac 92%, black);
+  --bg-card-hover: color-mix(in srgb, #86efac 88%, black);
+  --bg-input: color-mix(in srgb, #86efac 90%, black);
+  --text-primary: color-mix(in srgb, #0ea5e9 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0ea5e9 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0ea5e9 15%, transparent);
+  --border-focus: #0ea5e9;
+  --brand-primary: #0ea5e9;
+  --brand-glow: #0ea5e9;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #86efac 95%, black) 0%, color-mix(in srgb, #86efac 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, color-mix(in srgb, #0ea5e9 60%, white) 60%);
+}
+
+[data-preset="flux"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #e0f2fe;
+  --bg-panel: color-mix(in srgb, #e0f2fe 96%, black);
+  --bg-card: color-mix(in srgb, #e0f2fe 92%, black);
+  --bg-card-hover: color-mix(in srgb, #e0f2fe 88%, black);
+  --bg-input: color-mix(in srgb, #e0f2fe 90%, black);
+  --text-primary: color-mix(in srgb, #000000 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #000000 40%, transparent);
+  --border-subtle: color-mix(in srgb, #000000 15%, transparent);
+  --border-focus: #000000;
+  --brand-primary: #000000;
+  --brand-glow: #000000;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #e0f2fe 95%, black) 0%, color-mix(in srgb, #e0f2fe 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #000000 0%, color-mix(in srgb, #000000 60%, white) 60%);
+}
+
+[data-preset="street_football"] {
+  --bg-app: #94a3b8;
+  --bg-panel: color-mix(in srgb, #94a3b8 96%, white);
+  --bg-card: color-mix(in srgb, #94a3b8 92%, white);
+  --bg-card-hover: color-mix(in srgb, #94a3b8 88%, white);
+  --bg-input: color-mix(in srgb, #94a3b8 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #94a3b8 95%, white) 0%, color-mix(in srgb, #94a3b8 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="lasagna"] {
+  --bg-app: #ea580c;
+  --bg-panel: color-mix(in srgb, #ea580c 96%, white);
+  --bg-card: color-mix(in srgb, #ea580c 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ea580c 88%, white);
+  --bg-input: color-mix(in srgb, #ea580c 90%, black);
+  --text-primary: color-mix(in srgb, #000000 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #000000 40%, transparent);
+  --border-subtle: color-mix(in srgb, #000000 15%, transparent);
+  --border-focus: #000000;
+  --brand-primary: #000000;
+  --brand-glow: #000000;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ea580c 95%, white) 0%, color-mix(in srgb, #ea580c 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #000000 0%, color-mix(in srgb, #000000 60%, white) 60%);
+}
+
+[data-preset="cambrioleur"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="glade"] {
+  --bg-app: #15803d;
+  --bg-panel: color-mix(in srgb, #15803d 96%, white);
+  --bg-card: color-mix(in srgb, #15803d 92%, white);
+  --bg-card-hover: color-mix(in srgb, #15803d 88%, white);
+  --bg-input: color-mix(in srgb, #15803d 90%, black);
+  --text-primary: color-mix(in srgb, #94a3b8 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #94a3b8 40%, transparent);
+  --border-subtle: color-mix(in srgb, #94a3b8 15%, transparent);
+  --border-focus: #94a3b8;
+  --brand-primary: #94a3b8;
+  --brand-glow: #94a3b8;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #15803d 95%, white) 0%, color-mix(in srgb, #15803d 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #94a3b8 0%, color-mix(in srgb, #94a3b8 60%, white) 60%);
+}
+
+[data-preset="007"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="manners"] {
+  --bg-app: #1e3a8a;
+  --bg-panel: color-mix(in srgb, #1e3a8a 96%, white);
+  --bg-card: color-mix(in srgb, #1e3a8a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #1e3a8a 88%, white);
+  --bg-input: color-mix(in srgb, #1e3a8a 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #1e3a8a 95%, white) 0%, color-mix(in srgb, #1e3a8a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="flight_828"] {
+  --bg-app: #0f172a;
+  --bg-panel: color-mix(in srgb, #0f172a 96%, white);
+  --bg-card: color-mix(in srgb, #0f172a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #0f172a 88%, white);
+  --bg-input: color-mix(in srgb, #0f172a 90%, black);
+  --text-primary: color-mix(in srgb, #94a3b8 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #94a3b8 40%, transparent);
+  --border-subtle: color-mix(in srgb, #94a3b8 15%, transparent);
+  --border-focus: #94a3b8;
+  --brand-primary: #94a3b8;
+  --brand-glow: #94a3b8;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #0f172a 95%, white) 0%, color-mix(in srgb, #0f172a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #94a3b8 0%, color-mix(in srgb, #94a3b8 60%, white) 60%);
+}
+
+[data-preset="sarsaparilla"] {
+  --bg-app: #3b82f6;
+  --bg-panel: color-mix(in srgb, #3b82f6 96%, white);
+  --bg-card: color-mix(in srgb, #3b82f6 92%, white);
+  --bg-card-hover: color-mix(in srgb, #3b82f6 88%, white);
+  --bg-input: color-mix(in srgb, #3b82f6 90%, black);
+  --text-primary: color-mix(in srgb, #ffffff 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ffffff 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ffffff 15%, transparent);
+  --border-focus: #ffffff;
+  --brand-primary: #ffffff;
+  --brand-glow: #ffffff;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #3b82f6 95%, white) 0%, color-mix(in srgb, #3b82f6 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ffffff 0%, color-mix(in srgb, #ffffff 60%, white) 60%);
+}
+
+[data-preset="potion_magique"] {
+  --bg-app: #ef4444;
+  --bg-panel: color-mix(in srgb, #ef4444 96%, white);
+  --bg-card: color-mix(in srgb, #ef4444 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ef4444 88%, white);
+  --bg-input: color-mix(in srgb, #ef4444 90%, black);
+  --text-primary: color-mix(in srgb, #15803d 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #15803d 40%, transparent);
+  --border-subtle: color-mix(in srgb, #15803d 15%, transparent);
+  --border-focus: #15803d;
+  --brand-primary: #15803d;
+  --brand-glow: #15803d;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ef4444 95%, white) 0%, color-mix(in srgb, #ef4444 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #15803d 0%, color-mix(in srgb, #15803d 60%, white) 60%);
+}
+
+[data-preset="reporter"] {
+  --bg-app: #3b82f6;
+  --bg-panel: color-mix(in srgb, #3b82f6 96%, white);
+  --bg-card: color-mix(in srgb, #3b82f6 92%, white);
+  --bg-card-hover: color-mix(in srgb, #3b82f6 88%, white);
+  --bg-input: color-mix(in srgb, #3b82f6 90%, black);
+  --text-primary: color-mix(in srgb, #451a03 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #451a03 40%, transparent);
+  --border-subtle: color-mix(in srgb, #451a03 15%, transparent);
+  --border-focus: #451a03;
+  --brand-primary: #451a03;
+  --brand-glow: #451a03;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #3b82f6 95%, white) 0%, color-mix(in srgb, #3b82f6 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #451a03 0%, color-mix(in srgb, #451a03 60%, white) 60%);
+}
+
+[data-preset="imhotep"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #fde047;
+  --bg-panel: color-mix(in srgb, #fde047 96%, black);
+  --bg-card: color-mix(in srgb, #fde047 92%, black);
+  --bg-card-hover: color-mix(in srgb, #fde047 88%, black);
+  --bg-input: color-mix(in srgb, #fde047 90%, black);
+  --text-primary: color-mix(in srgb, #000000 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #000000 40%, transparent);
+  --border-subtle: color-mix(in srgb, #000000 15%, transparent);
+  --border-focus: #000000;
+  --brand-primary: #000000;
+  --brand-glow: #000000;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #fde047 95%, black) 0%, color-mix(in srgb, #fde047 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #000000 0%, color-mix(in srgb, #000000 60%, white) 60%);
+}
+
+[data-preset="ahkmenrah"] {
+  --bg-app: #0f172a;
+  --bg-panel: color-mix(in srgb, #0f172a 96%, white);
+  --bg-card: color-mix(in srgb, #0f172a 92%, white);
+  --bg-card-hover: color-mix(in srgb, #0f172a 88%, white);
+  --bg-input: color-mix(in srgb, #0f172a 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #0f172a 95%, white) 0%, color-mix(in srgb, #0f172a 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="kevin"] {
+  --bg-app: #ef4444;
+  --bg-panel: color-mix(in srgb, #ef4444 96%, white);
+  --bg-card: color-mix(in srgb, #ef4444 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ef4444 88%, white);
+  --bg-input: color-mix(in srgb, #ef4444 90%, black);
+  --text-primary: color-mix(in srgb, #15803d 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #15803d 40%, transparent);
+  --border-subtle: color-mix(in srgb, #15803d 15%, transparent);
+  --border-focus: #15803d;
+  --brand-primary: #15803d;
+  --brand-glow: #15803d;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ef4444 95%, white) 0%, color-mix(in srgb, #ef4444 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #15803d 0%, color-mix(in srgb, #15803d 60%, white) 60%);
+}
+
+[data-preset="slappy"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #84cc16;
+  --bg-panel: color-mix(in srgb, #84cc16 96%, black);
+  --bg-card: color-mix(in srgb, #84cc16 92%, black);
+  --bg-card-hover: color-mix(in srgb, #84cc16 88%, black);
+  --bg-input: color-mix(in srgb, #84cc16 90%, black);
+  --text-primary: color-mix(in srgb, #000000 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #000000 40%, transparent);
+  --border-subtle: color-mix(in srgb, #000000 15%, transparent);
+  --border-focus: #000000;
+  --brand-primary: #000000;
+  --brand-glow: #000000;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #84cc16 95%, black) 0%, color-mix(in srgb, #84cc16 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #000000 0%, color-mix(in srgb, #000000 60%, white) 60%);
+}
+
+[data-preset="lv_426"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #84cc16;
+  --bg-panel: color-mix(in srgb, #84cc16 96%, black);
+  --bg-card: color-mix(in srgb, #84cc16 92%, black);
+  --bg-card-hover: color-mix(in srgb, #84cc16 88%, black);
+  --bg-input: color-mix(in srgb, #84cc16 90%, black);
+  --text-primary: color-mix(in srgb, #000000 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #000000 40%, transparent);
+  --border-subtle: color-mix(in srgb, #000000 15%, transparent);
+  --border-focus: #000000;
+  --brand-primary: #000000;
+  --brand-glow: #000000;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #84cc16 95%, black) 0%, color-mix(in srgb, #84cc16 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #000000 0%, color-mix(in srgb, #000000 60%, white) 60%);
+}
+
+[data-preset="welcome_to_earth"] {
+  --bg-app: #0ea5e9;
+  --bg-panel: color-mix(in srgb, #0ea5e9 96%, white);
+  --bg-card: color-mix(in srgb, #0ea5e9 92%, white);
+  --bg-card-hover: color-mix(in srgb, #0ea5e9 88%, white);
+  --bg-input: color-mix(in srgb, #0ea5e9 90%, black);
+  --text-primary: color-mix(in srgb, #84cc16 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #84cc16 40%, transparent);
+  --border-subtle: color-mix(in srgb, #84cc16 15%, transparent);
+  --border-focus: #84cc16;
+  --brand-primary: #84cc16;
+  --brand-glow: #84cc16;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #0ea5e9 95%, white) 0%, color-mix(in srgb, #0ea5e9 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #84cc16 0%, color-mix(in srgb, #84cc16 60%, white) 60%);
+}
+
+[data-preset="street_racing"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #0ea5e9 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0ea5e9 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0ea5e9 15%, transparent);
+  --border-focus: #0ea5e9;
+  --brand-primary: #0ea5e9;
+  --brand-glow: #0ea5e9;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, color-mix(in srgb, #0ea5e9 60%, white) 60%);
+}
+
+[data-preset="imf"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #84cc16 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #84cc16 40%, transparent);
+  --border-subtle: color-mix(in srgb, #84cc16 15%, transparent);
+  --border-focus: #84cc16;
+  --brand-primary: #84cc16;
+  --brand-glow: #84cc16;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #84cc16 0%, color-mix(in srgb, #84cc16 60%, white) 60%);
+}
+
+[data-preset="jungle_board"] {
+  --bg-app: #15803d;
+  --bg-panel: color-mix(in srgb, #15803d 96%, white);
+  --bg-card: color-mix(in srgb, #15803d 92%, white);
+  --bg-card-hover: color-mix(in srgb, #15803d 88%, white);
+  --bg-input: color-mix(in srgb, #15803d 90%, black);
+  --text-primary: color-mix(in srgb, #d4a853 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #d4a853 40%, transparent);
+  --border-subtle: color-mix(in srgb, #d4a853 15%, transparent);
+  --border-focus: #d4a853;
+  --brand-primary: #d4a853;
+  --brand-glow: #d4a853;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #15803d 95%, white) 0%, color-mix(in srgb, #15803d 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #d4a853 0%, color-mix(in srgb, #d4a853 60%, white) 60%);
+}
+
+[data-preset="neuralyzer"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #ffffff 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ffffff 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ffffff 15%, transparent);
+  --border-focus: #ffffff;
+  --brand-primary: #ffffff;
+  --brand-glow: #ffffff;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ffffff 0%, color-mix(in srgb, #ffffff 60%, white) 60%);
+}
+
+[data-preset="eruption"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #ea580c 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #ea580c 40%, transparent);
+  --border-subtle: color-mix(in srgb, #ea580c 15%, transparent);
+  --border-focus: #ea580c;
+  --brand-primary: #ea580c;
+  --brand-glow: #ea580c;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #ea580c 0%, color-mix(in srgb, #ea580c 60%, white) 60%);
+}
+
+[data-preset="tsunami"] {
+  --bg-app: #082f49;
+  --bg-panel: color-mix(in srgb, #082f49 96%, white);
+  --bg-card: color-mix(in srgb, #082f49 92%, white);
+  --bg-card-hover: color-mix(in srgb, #082f49 88%, white);
+  --bg-input: color-mix(in srgb, #082f49 90%, black);
+  --text-primary: color-mix(in srgb, #0ea5e9 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0ea5e9 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0ea5e9 15%, transparent);
+  --border-focus: #0ea5e9;
+  --brand-primary: #0ea5e9;
+  --brand-glow: #0ea5e9;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #082f49 95%, white) 0%, color-mix(in srgb, #082f49 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, color-mix(in srgb, #0ea5e9 60%, white) 60%);
+}
+
+[data-preset="twister"] {
+  --bg-app: #94a3b8;
+  --bg-panel: color-mix(in srgb, #94a3b8 96%, white);
+  --bg-card: color-mix(in srgb, #94a3b8 92%, white);
+  --bg-card-hover: color-mix(in srgb, #94a3b8 88%, white);
+  --bg-input: color-mix(in srgb, #94a3b8 90%, black);
+  --text-primary: color-mix(in srgb, #000000 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #000000 40%, transparent);
+  --border-subtle: color-mix(in srgb, #000000 15%, transparent);
+  --border-focus: #000000;
+  --brand-primary: #000000;
+  --brand-glow: #000000;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #94a3b8 95%, white) 0%, color-mix(in srgb, #94a3b8 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #000000 0%, color-mix(in srgb, #000000 60%, white) 60%);
+}
+
+[data-preset="whiteout"] {
+  /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+  text-shadow: none !important;
+
+  --bg-app: #f8fafc;
+  --bg-panel: color-mix(in srgb, #f8fafc 96%, black);
+  --bg-card: color-mix(in srgb, #f8fafc 92%, black);
+  --bg-card-hover: color-mix(in srgb, #f8fafc 88%, black);
+  --bg-input: color-mix(in srgb, #f8fafc 90%, black);
+  --text-primary: color-mix(in srgb, #0ea5e9 20%, #111827);
+  --text-secondary: #475569;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #0ea5e9 40%, transparent);
+  --border-subtle: color-mix(in srgb, #0ea5e9 15%, transparent);
+  --border-focus: #0ea5e9;
+  --brand-primary: #0ea5e9;
+  --brand-glow: #0ea5e9;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #f8fafc 95%, black) 0%, color-mix(in srgb, #f8fafc 80%, black) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #0ea5e9 0%, color-mix(in srgb, #0ea5e9 60%, white) 60%);
+}
+
+[data-preset="meteor_strike"] {
+  --bg-app: #ef4444;
+  --bg-panel: color-mix(in srgb, #ef4444 96%, white);
+  --bg-card: color-mix(in srgb, #ef4444 92%, white);
+  --bg-card-hover: color-mix(in srgb, #ef4444 88%, white);
+  --bg-input: color-mix(in srgb, #ef4444 90%, black);
+  --text-primary: color-mix(in srgb, #facc15 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #facc15 40%, transparent);
+  --border-subtle: color-mix(in srgb, #facc15 15%, transparent);
+  --border-focus: #facc15;
+  --brand-primary: #facc15;
+  --brand-glow: #facc15;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #ef4444 95%, white) 0%, color-mix(in srgb, #ef4444 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #facc15 0%, color-mix(in srgb, #facc15 60%, white) 60%);
+}
+
+[data-preset="sinkhole"] {
+  --bg-app: #000000;
+  --bg-panel: color-mix(in srgb, #000000 96%, white);
+  --bg-card: color-mix(in srgb, #000000 92%, white);
+  --bg-card-hover: color-mix(in srgb, #000000 88%, white);
+  --bg-input: color-mix(in srgb, #000000 90%, black);
+  --text-primary: color-mix(in srgb, #451a03 20%, #ffffff);
+  --text-secondary: #cbd5e1;
+  --text-inverse: #000000;
+  --border-main: color-mix(in srgb, #451a03 40%, transparent);
+  --border-subtle: color-mix(in srgb, #451a03 15%, transparent);
+  --border-focus: #451a03;
+  --brand-primary: #451a03;
+  --brand-glow: #451a03;
+  --grad-card-surface: linear-gradient(47deg, color-mix(in srgb, #000000 95%, white) 0%, color-mix(in srgb, #000000 80%, white) 80%);
+  --grad-btn-primary: linear-gradient(47deg, #451a03 0%, color-mix(in srgb, #451a03 60%, white) 60%);
+}
+

@@ -37,3 +37,7 @@ coverage/
 *.old
 
 .vercel
+
+
+docs/
+scripts/

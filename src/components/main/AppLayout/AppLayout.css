@@ -4,7 +4,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  background-color: var(--color-bg);
+  background-color: var(--bg-app);
 }
 
 .return-top {
