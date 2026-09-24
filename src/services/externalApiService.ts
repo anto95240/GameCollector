@@ -23,6 +23,7 @@ export interface ExternalGameDetails {
   platforms: string[]
   tags: string[]
   description?: string
+  screenshots?: string[]
 }
 
 // =========================================================
@@ -137,6 +138,25 @@ export const searchExternalGames = async (query: string): Promise<ExternalGameSe
 const detailsCache = new Map<string, ExternalGameDetails>()
 
 /**
+ * Fonction utilitaire pour traduire via le navigateur du client
+ */
+async function translateDescription(text: string): Promise<string> {
+  if (!text) return text
+  try {
+    const url = `https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=en&tl=fr&q=${encodeURIComponent(text)}`
+    const res = await fetch(url)
+    const data = await res.json()
+    if (data && Array.isArray(data)) {
+      return data.join('')
+    }
+    return text
+  } catch (error) {
+    console.error('[IGDB] Erreur traduction locale:', error)
+    return text
+  }
+}
+
+/**
  * Récupère les détails complets d'un jeu sur IGDB via la Edge Function
  * Remplace l'ancienne implémentation Steam
  * @param igdbId - L'ID numérique IGDB du jeu (provenant de searchExternalGames)
@@ -159,6 +179,12 @@ export const getExternalGameDetails = async (
     }
 
     const details = result as ExternalGameDetails
+
+    // Traduction côté client si on n'a pas de français
+    if (details.description) {
+      details.description = await translateDescription(details.description)
+    }
+
     detailsCache.set(igdbId, details)
     return details
   } catch (error: any) {

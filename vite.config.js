@@ -1,4 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
+import fs from 'node:fs'
+import path from 'node:path'
 
 import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -8,9 +10,56 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 import packageJson from './package.json'
 
+function dsGamesSaverPlugin() {
+  return {
+    name: 'ds-games-saver',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        if (req.url === '/api/save-ds-game' && req.method === 'POST') {
+          let body = ''
+          req.on('data', (chunk) => {
+            body += chunk
+          })
+          req.on('end', () => {
+            try {
+              const newGame = JSON.parse(body)
+              const filePath = path.resolve(
+                fileURLToPath(new URL('.', import.meta.url)),
+                'src/data/ds_games.json'
+              )
+              const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+
+              const newId = `ds-custom-${Date.now()}`
+              const gameObj = {
+                id: newId,
+                title: newGame.title,
+                theme: newGame.theme || 'Autres',
+              }
+
+              data.push(gameObj)
+              data.sort((a, b) => a.title.localeCompare(b.title))
+
+              fs.writeFileSync(filePath, JSON.stringify(data, null, 2))
+
+              res.setHeader('Content-Type', 'application/json')
+              res.end(JSON.stringify({ success: true, game: gameObj }))
+            } catch (err) {
+              res.statusCode = 500
+              res.end(JSON.stringify({ error: err.message }))
+            }
+          })
+        } else {
+          next()
+        }
+      })
+    },
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [
+    dsGamesSaverPlugin(),
     react(),
     VitePWA({
       registerType: 'prompt',

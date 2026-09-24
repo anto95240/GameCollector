@@ -89,7 +89,7 @@ async function searchGames(query: string) {
 async function getGameDetails(igdbId: number) {
   const results = await igdbRequest(
     'games',
-    `fields name, cover.image_id, first_release_date, status, involved_companies.company.name, involved_companies.developer, genres.name, platforms.name, themes.name, summary, storyline; where id = ${igdbId}; limit 1;`
+    `fields name, cover.image_id, screenshots.image_id, first_release_date, status, involved_companies.company.name, involved_companies.developer, genres.name, platforms.name, themes.name, summary, storyline; where id = ${igdbId}; limit 1;`
   )
   if (!results || results.length === 0) return null
   const game: any = results[0]
@@ -108,6 +108,28 @@ async function getGameDetails(igdbId: number) {
     ? new Date(game.first_release_date * 1000).getFullYear()
     : undefined
   const isComingSoon = game.first_release_date ? game.first_release_date > now : false
+  const screenshots = (game.screenshots || [])
+    .map((s: any) => buildCoverUrl(s.image_id, 't_1080p'))
+    .filter(Boolean)
+
+  let description = game.summary || game.storyline || ''
+
+  // Tentative de récupération de la description en français
+  try {
+    const translations = await igdbRequest(
+      'translations',
+      `fields description, language.locale; where game = ${igdbId}; limit 50;`
+    )
+    if (translations && Array.isArray(translations)) {
+      const frTranslation = translations.find((t: any) => t.language?.locale?.startsWith('fr'))
+      if (frTranslation && frTranslation.description) {
+        description = frTranslation.description
+      }
+    }
+  } catch (e) {
+    console.error('Erreur récupération traduction IGDB', e)
+  }
+
   return {
     id: String(game.id),
     name: game.name,
@@ -119,7 +141,8 @@ async function getGameDetails(igdbId: number) {
     genres,
     platforms,
     tags,
-    description: game.summary || game.storyline || '',
+    description,
+    screenshots,
   }
 }
 
