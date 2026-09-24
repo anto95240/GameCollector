@@ -273,12 +273,12 @@ tags: les tags du jeu
 ---
 
 ### 3.2 · Amélioration des thèmes
-- [ ] Améliore les couleurs des thèmes si c'est possible.
+- [x] Améliore les couleurs des thèmes si c'est possible.
 - [x] amélioré les animations des thèmes notamment ceux du thèms "Ete" et "Hiver" si c'est possible.
-- [ ] amélioré les polices pour une meilleures immersion si c'est possible.
-- [ ] me donner et uniquement me donner d'autres idées de nouveaux thèmes que se soit classique, saisonnier ou d'autres type de thème. J'en veux au moins 50 idées de chaque type de thèmes avec les couleurs, polices et animations qui vont avec si c'est possible.
-- [ ] dans le menu de la navbar c'est écrit "pilot" alors que ca doit être le nom de l'utilisateur,  dans le menu de la navbar, quand on clique sur son avatar, on voit "pilot" au lieu de son nom. Dans ce menu ajoute un accès direct à la page wishlist.
-- [ ] je peux changer les mdp mais pas les mail, pour les mail ca va trop vite contrairement au mdp.
+- [x] amélioré les polices pour une meilleures immersion si c'est possible.
+- [x] me donner et uniquement me donner d'autres idées de nouveaux thèmes que se soit classique, saisonnier ou d'autres type de thème. J'en veux au moins 50 idées de chaque type de thèmes avec les couleurs, polices et animations qui vont avec si c'est possible.
+- [x] dans le menu de la navbar c'est écrit "pilot" alors que ca doit être le nom de l'utilisateur,  dans le menu de la navbar, quand on clique sur son avatar, on voit "pilot" au lieu de son nom. Dans ce menu ajoute un accès direct à la page wishlist.
+- [x] je peux changer les mdp mais pas les mail, pour les mail ca va trop vite contrairement au mdp.
 - [x] migration vers igdb (récupération des clé client et secret fait, reste à implementé dans le code, phase 1)
 ---
 
@@ -292,4 +292,8 @@ tags: les tags du jeu
 | 🔔 **Notifications in-app** | Centre de notifications pour les trophées débloqués, sorties de jeux wishlistés, mises à jour |
 | 📅 **Calendrier de sorties** | Intégrer un calendrier des prochaines sorties liées aux jeux de la Wishlist |
 | 🔍 **Recommandations** | Suggérer des jeux à ajouter basés sur les genres et plateformes déjà présents dans la collection |
-| **GamePad** | utilisation de la manette pour naviguer et interagir avec l'application 
+| **Ajout de sons** | Ajout de sons pour les actions de l'utilisateur (ajout de jeu, suppression de jeu, etc.). Ajouter un bouton pour activer/désactiver les sons. Ajout de sons d'ambiance pour chaque thème. |
+| **Raccourci  clavier** | amélioré les raccourcis clavier, une meilleures personnalisation (possibilité de désactiver/activer certains raccourcis clavier), et une documentation meilleure. pour certain les afficher dans les endroits où il y a les raccourcis. Par exemple, dans la page de gestion des jeux, il y a 'Ajouter un jeu' et 'Ajouter des jeux' avec le raccourci clavier. Pour 'Ajouter un jeu', il y a le raccourci clavier 'n'. Mais ca ne m'est jamais indiquer qu'il y a ce raccourci clavier pour 'Ajouter un jeu'. C'est plutot intuitif mais il faudrait l'indiquer, du moins pour les plus complexes. mettre une meilleures visibilité sur les raccourcis clavier et une documentation meilleures. |
+| **Mise à jour automatique** | automatiser l'ajout des jeux de la wishlist à la collection quand ils sont sortis (ca doit fonctionner avec les jeux imports et les jeux ajoutés manuellement) |
+| **Tracker de progression** | Créer une interface pour suivre le déblocage des thèmes via les jeux (ex: une page "Quêtes" ou "Récompenses") |
+| **Theme** | mettre en place les nouveaux thèmes
