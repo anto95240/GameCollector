@@ -28,7 +28,8 @@
    ========================================= */
 
 /* --- THÈME DARK (DÉFAUT / "NIGHT MODE") --- */
-:root, [data-preset="neon_night"] {
+:root,
+[data-preset='neon_night'] {
   /* --- BACKGROUNDS (Fonds) --- */
   --bg-app: #001128; /* Fond principal de l'app */
   --bg-panel: rgba(0, 15, 36, 0.95); /* Fond des panneaux latéraux/filtres */
@@ -91,11 +92,11 @@
 }
 
 /* --- THÈME LIGHT ("LAB MODE") --- */
-[data-preset="arctic_day"] {
+[data-preset='arctic_day'] {
   /* Restaure le lissage natif pour une meilleure netteté sur fond clair */
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
-  
+
   /* --- BACKGROUNDS --- */
   /* Blanc légèrement bleuté "Clinique/Futuriste" */
   --bg-app: #f0f5fa;
@@ -676,7 +677,7 @@ body {
   /* Utilise la couleur d'accentuation (brand-primary) pour que les 4 coins aient la couleur du thème ! */
   background-color: var(--brand-primary, var(--color-bg-btn));
   /* Ajout d'un léger dégradé pour un effet premium dans les coins */
-  background-image: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.4) 100%);
+  background-image: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.4) 100%);
   color: var(--color-text);
   transition:
     background-color var(--duration-standard) ease,
@@ -691,8 +692,8 @@ body {
   height: 100vh;
   overflow: hidden;
   position: relative;
-  transition: 
-    background-color var(--duration-standard) ease, 
+  transition:
+    background-color var(--duration-standard) ease,
     border-color var(--duration-standard) ease;
 }
 
@@ -753,4 +754,27 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* =========================================
+   ADMIN BACK BUTTON
+   ========================================= */
+.admin-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-link);
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.2s ease;
+  width: fit-content;
+}
+
+.admin-back-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--brand-glow);
 }

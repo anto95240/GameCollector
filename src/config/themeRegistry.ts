@@ -1,139 +1,96 @@
 /**
- * themeRegistry.ts — Source unique de vérité (Sous-étape 1a)
+ * themeRegistry.ts — Source unique de vérité
  *
- * Ce fichier est LA source d'autorité pour TOUS les thèmes de l'application.
- * Il remplace la duplication entre themeData.ts (catégories + couleurs)
- * et themeRules.ts (règles de déblocage).
- *
- * Les fichiers themeData.ts et themeRules.ts dérivent désormais leurs exports
- * depuis ce registre, garantissant la cohérence sans breaking change.
- *
- * Points d'attention documentés (à corriger en sous-étapes ultérieures) :
- *   - Les IDs divergents (andy_s_room/andys_room etc.) sont conservés à l'identique
- *     jusqu'à la décision de standardisation (Phase 1b/1c).
- *   - Les doublons de themeRules.ts (lignes 189-274 de l'original) sont consolidés
- *     ici en une seule entrée par thème, avec la définition la plus complète retenue.
- *   - La clé fantôme "nom_du_theme" est absente de ce registre.
+ * Ce fichier est LA source d'autorité pour TOUS les Thèmes de l'application.
  */
 
 import { ExternalGameDetails } from '@/services/externalApiService'
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
-
 export interface ThemeUnlockRule {
-  /** Texte lisible décrivant la condition */
   condition: string
-  /** Valeur maximale pour les paliers de collection (1 pour trophées/événements) */
   max: number
-  /** Évalue la progression à partir de la liste de jeux */
   evaluate: (games: ExternalGameDetails[]) => number
 }
 
 export interface ThemeEntry {
-  /** Identifiant technique unique, correspond au data-preset CSS et à l'id_name Supabase */
   id: string
-  /** Nom affiché */
   name: string
-  /** [couleur de fond, couleur d'accent] pour la prévisualisation */
   colors: [string, string]
-  /** Identifiant de la catégorie parente */
   categoryId: string
-  /** Titre de la catégorie parente */
   categoryTitle: string
-  /** Règle de déblocage */
+  universe?: string
   rule: ThemeUnlockRule
 }
 
 export interface ThemeCategoryEntry {
   id: string
   title: string
-  /** Identifiant de la famille parente (6 familles du plan) */
   familyId: string
-  /** Titre affiché de la famille parente */
   familyTitle: string
   themes: ThemeEntry[]
 }
 
-// ---------------------------------------------------------------------------
-// Helpers internes
-// ---------------------------------------------------------------------------
-
-/** Crée une règle "trophée" (simulée via le système d'achievements) */
 const byTrophy = (trophy: string): ThemeUnlockRule => ({
   condition: `Trophée \`${trophy}\``,
   max: 1,
   evaluate: () => 0,
 })
 
-/** Crée une règle "saisonnier/événementiel" */
-const seasonal = (label: 'Saisonnière' | 'Événementielle'): ThemeUnlockRule => ({
+const seasonal = (label: 'Saisonnière' | 'Événnementielle'): ThemeUnlockRule => ({
   condition: label,
   max: 1,
   evaluate: () => 0,
 })
 
-/** Crée une règle "collection de jeux par genre" */
 const byGenre = (genre: string, count: number): ThemeUnlockRule => ({
   condition: `Ajouter ${count} jeu${count > 1 ? 'x' : ''} "${genre}"`,
   max: count,
   evaluate: (games) =>
     games.filter(
       (g) =>
-        g.name.toLowerCase().includes(genre.toLowerCase()) ||
         g.genres?.some((gen) => gen.toLowerCase().includes(genre.toLowerCase())) ||
         g.tags?.some((t) => t.toLowerCase().includes(genre.toLowerCase()))
     ).length,
 })
 
-/** Crée une règle "jeu spécifique par franchise" */
+const byGenres = (label: string, genres: string[], count: number): ThemeUnlockRule => ({
+  condition: `Ajouter ${count} jeu${count > 1 ? 'x' : ''} "${label}"`,
+  max: count,
+  evaluate: (games) =>
+    games.filter(
+      (g) =>
+        g.genres?.some((gen) =>
+          genres.some((genre) => gen.toLowerCase().includes(genre.toLowerCase()))
+        ) ||
+        g.tags?.some((t) => genres.some((genre) => t.toLowerCase().includes(genre.toLowerCase())))
+    ).length,
+})
+
 const byGame = (franchise: string, count: number): ThemeUnlockRule => ({
   condition: `Ajouter ${count} jeu${count > 1 ? 'x' : ''} : ${franchise}`,
   max: count,
   evaluate: (games) =>
     games.filter(
       (g) =>
-        g.name.toLowerCase().includes(franchise.toLowerCase()) ||
         g.genres?.some((gen) => gen.toLowerCase().includes(franchise.toLowerCase())) ||
         g.tags?.some((t) => t.toLowerCase().includes(franchise.toLowerCase()))
     ).length,
 })
 
-/** Crée une règle "par palier de jeux (simulé)" */
-const byCount = (description: string, count: number): ThemeUnlockRule => ({
-  condition: description,
-  max: count,
-  evaluate: () => 0,
-})
-
-/** Crée une règle "par condition texte libre" (simulé) */
-const byFreeCondition = (description: string): ThemeUnlockRule => ({
-  condition: description,
-  max: 1,
-  evaluate: () => 0,
-})
-
-// ---------------------------------------------------------------------------
-// Registre complet
-// ---------------------------------------------------------------------------
-
 export const THEME_REGISTRY: ThemeCategoryEntry[] = [
-  // -------------------------------------------------------------------------
-  // 1. Thèmes Classiques (18) — Famille : Basiques & Saisons
-  // -------------------------------------------------------------------------
+  // 1. Thèmes Classiques
   {
     id: 'classiques',
-    title: '🖥️ Thèmes Classiques',
+    title: 'Thèmes Classiques',
     familyId: 'basiques_saisons',
-    familyTitle: '🎨 Basiques & Saisons',
+    familyTitle: 'Basiques & Saisons',
     themes: [
       {
         id: 'neon_night',
         name: 'Neon Night',
         colors: ['#001128', '#0068ac'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: { condition: 'Thème par défaut', max: 1, evaluate: () => 0 },
       },
       {
@@ -141,7 +98,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Arctic Day',
         colors: ['#f0f5fa', '#0068ac'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: { condition: 'Thème par défaut', max: 1, evaluate: () => 0 },
       },
       {
@@ -149,7 +106,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Emerald City',
         colors: ['#f8fafc', '#059669'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_amethyst'),
       },
       {
@@ -157,7 +114,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Coral Reef',
         colors: ['#082f49', '#ff6b6b'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_abyss'),
       },
       {
@@ -165,7 +122,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Ember',
         colors: ['#7f1d1d', '#ea580c'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_dune'),
       },
       {
@@ -173,7 +130,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Arctic Neon',
         colors: ['#f8fafc', '#00f0ff'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_cyberpunk'),
       },
       {
@@ -181,7 +138,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Gold Rush',
         colors: ['#f8fafc', '#f59e0b'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_dune'),
       },
       {
@@ -189,7 +146,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Midnight Ocean',
         colors: ['#020617', '#06b6d4'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_abyss'),
       },
       {
@@ -197,7 +154,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Ocean Deep',
         colors: ['#003459', '#00b4d8'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_abyss'),
       },
       {
@@ -205,7 +162,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Lava',
         colors: ['#020617', '#ff4500'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_dracula'),
       },
       {
@@ -213,7 +170,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Forest Dark',
         colors: ['#064e3b', '#065f46'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_dracula'),
       },
       {
@@ -221,7 +178,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Parchment',
         colors: ['#fef3c7', '#b45309'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_amethyst'),
       },
       {
@@ -229,7 +186,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Ice Cave',
         colors: ['#f8fafc', '#a5f3fc'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_arctic'),
       },
       {
@@ -237,7 +194,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Aurora',
         colors: ['#020617', '#10b981'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_neon'),
       },
       {
@@ -245,7 +202,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Desert Night',
         colors: ['#0f172a', '#d97706'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_dune'),
       },
       {
@@ -253,7 +210,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Vapor',
         colors: ['#f8fafc', '#0ea5e9'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_neon'),
       },
       {
@@ -261,7 +218,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Champagne',
         colors: ['#f8fafc', '#eab308'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_amethyst'),
       },
       {
@@ -269,43 +226,40 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Inferno',
         colors: ['#020617', '#ef4444'],
         categoryId: 'classiques',
-        categoryTitle: '🖥️ Thèmes Classiques',
+        categoryTitle: 'Thèmes Classiques',
         rule: byTrophy('theme_dracula'),
       },
     ],
   },
-
-  // -------------------------------------------------------------------------
-  // 2. Thèmes Saisonniers & Événementiels (9) — Famille : Basiques & Saisons
-  // -------------------------------------------------------------------------
+  // 2. Thèmes Saisonniers
   {
     id: 'saisonniers',
-    title: '🌸 Thèmes Saisonniers & Événementiels',
+    title: 'Thèmes Saisonniers & événnementiels',
     familyId: 'basiques_saisons',
-    familyTitle: '🎨 Basiques & Saisons',
+    familyTitle: 'Basiques & Saisons',
     themes: [
       {
         id: 'halloween',
         name: 'Halloween',
         colors: ['#020617', '#f97316'],
         categoryId: 'saisonniers',
-        categoryTitle: '🌸 Thèmes Saisonniers & Événementiels',
-        rule: seasonal('Événementielle'),
+        categoryTitle: 'Thèmes Saisonniers & événnementiels',
+        rule: seasonal('Événnementielle'),
       },
       {
         id: 'christmas',
         name: 'Christmas',
         colors: ['#450a0a', '#22c55e'],
         categoryId: 'saisonniers',
-        categoryTitle: '🌸 Thèmes Saisonniers & Événementiels',
-        rule: seasonal('Événementielle'),
+        categoryTitle: 'Thèmes Saisonniers & événnementiels',
+        rule: seasonal('Événnementielle'),
       },
       {
         id: 'spring',
         name: 'Spring',
         colors: ['#064e3b', '#ec4899'],
         categoryId: 'saisonniers',
-        categoryTitle: '🌸 Thèmes Saisonniers & Événementiels',
+        categoryTitle: 'Thèmes Saisonniers & événnementiels',
         rule: seasonal('Saisonnière'),
       },
       {
@@ -313,15 +267,15 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Easter',
         colors: ['#fef08a', '#8b5cf6'],
         categoryId: 'saisonniers',
-        categoryTitle: '🌸 Thèmes Saisonniers & Événementiels',
-        rule: seasonal('Événementielle'),
+        categoryTitle: 'Thèmes Saisonniers & événnementiels',
+        rule: seasonal('Événnementielle'),
       },
       {
         id: 'summer',
         name: 'Summer',
         colors: ['#082f49', '#eab308'],
         categoryId: 'saisonniers',
-        categoryTitle: '🌸 Thèmes Saisonniers & Événementiels',
+        categoryTitle: 'Thèmes Saisonniers & événnementiels',
         rule: seasonal('Saisonnière'),
       },
       {
@@ -329,7 +283,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Winter',
         colors: ['#020617', '#0ea5e9'],
         categoryId: 'saisonniers',
-        categoryTitle: '🌸 Thèmes Saisonniers & Événementiels',
+        categoryTitle: 'Thèmes Saisonniers & événnementiels',
         rule: seasonal('Saisonnière'),
       },
       {
@@ -337,7 +291,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Autumn',
         colors: ['#450a0a', '#d97706'],
         categoryId: 'saisonniers',
-        categoryTitle: '🌸 Thèmes Saisonniers & Événementiels',
+        categoryTitle: 'Thèmes Saisonniers & événnementiels',
         rule: seasonal('Saisonnière'),
       },
       {
@@ -345,35 +299,32 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Chandeleur',
         colors: ['#fef08a', '#8b4513'],
         categoryId: 'saisonniers',
-        categoryTitle: '🌸 Thèmes Saisonniers & Événementiels',
-        rule: seasonal('Événementielle'),
+        categoryTitle: 'Thèmes Saisonniers & événnementiels',
+        rule: seasonal('Événnementielle'),
       },
       {
         id: 'epiphanie',
-        name: 'Epiphanie',
+        name: 'Épiphanie',
         colors: ['#334155', '#eab308'],
         categoryId: 'saisonniers',
-        categoryTitle: '🌸 Thèmes Saisonniers & Événementiels',
-        rule: seasonal('Événementielle'),
+        categoryTitle: 'Thèmes Saisonniers & événnementiels',
+        rule: seasonal('Événnementielle'),
       },
     ],
   },
-
-  // -------------------------------------------------------------------------
-  // 3. Thèmes Gaming / Rétro (4) — Famille : Gaming & Rétro
-  // -------------------------------------------------------------------------
+  // 3. Gaming & Rétro
   {
     id: 'gaming_retro',
-    title: '🎮 Thèmes Gaming & Rétro',
+    title: 'Thèmes Gaming & Rétro',
     familyId: 'gaming_retro',
-    familyTitle: '🎮 Gaming & Rétro',
+    familyTitle: 'Gaming & Rétro',
     themes: [
       {
         id: 'retro_pixel',
         name: 'Retro Pixel',
         colors: ['#000000', '#00ff00'],
         categoryId: 'gaming_retro',
-        categoryTitle: '🎮 Thèmes Gaming & Rétro',
+        categoryTitle: 'Thèmes Gaming & Rétro',
         rule: byTrophy('retro_gamer'),
       },
       {
@@ -381,7 +332,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'PS2 Era',
         colors: ['#000000', '#00439c'],
         categoryId: 'gaming_retro',
-        categoryTitle: '🎮 Thèmes Gaming & Rétro',
+        categoryTitle: 'Thèmes Gaming & Rétro',
         rule: byTrophy('guerre_consoles'),
       },
       {
@@ -389,7 +340,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Game Boy',
         colors: ['#787b82', '#8bac0f'],
         categoryId: 'gaming_retro',
-        categoryTitle: '🎮 Thèmes Gaming & Rétro',
+        categoryTitle: 'Thèmes Gaming & Rétro',
         rule: byTrophy('nostalgie'),
       },
       {
@@ -397,407 +348,327 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Retro Arcade',
         colors: ['#000000', '#facc15'],
         categoryId: 'gaming_retro',
-        categoryTitle: '🎮 Thèmes Gaming & Rétro',
+        categoryTitle: 'Thèmes Gaming & Rétro',
         rule: byTrophy('shortcut_master'),
       },
-    ],
-  },
-
-  // -------------------------------------------------------------------------
-  // 4. Thèmes Géographiques & Culturels (4) — Famille : Monde Réel
-  // -------------------------------------------------------------------------
-  {
-    id: 'geographiques',
-    title: '🌍 Thèmes Géographiques & Culturels',
-    familyId: 'monde_reel',
-    familyTitle: '🌍 Monde Réel',
-    themes: [
       {
-        id: 'egypte_antique',
-        name: 'Egypte Antique',
-        colors: ['#fef3c7', '#d4a853'],
-        categoryId: 'geographiques',
-        categoryTitle: '🌍 Thèmes Géographiques & Culturels',
-        rule: byGenre('Aventure', 3),
+        id: 'nes_classic',
+        name: '8-Bit Era',
+        colors: ['#cbd5e1', '#ef4444'],
+        categoryId: 'gaming_retro',
+        categoryTitle: 'Thèmes Gaming & Rétro',
+        rule: byGenre('Arcade', 1),
       },
       {
-        id: 'viking_norse',
-        name: 'Viking Norse',
-        colors: ['#334155', '#991b1b'],
-        categoryId: 'geographiques',
-        categoryTitle: '🌍 Thèmes Géographiques & Culturels',
-        rule: byTrophy('shortcut_pro'),
+        id: 'snes_classic',
+        name: '16-Bit Era',
+        colors: ['#94a3b8', '#8b5cf6'],
+        categoryId: 'gaming_retro',
+        categoryTitle: 'Thèmes Gaming & Rétro',
+        rule: byGenre('Arcade', 3),
       },
       {
-        id: 'tundra',
-        name: 'Tundra',
-        colors: ['#f8fafc', '#0ea5e9'],
-        categoryId: 'geographiques',
-        categoryTitle: '🌍 Thèmes Géographiques & Culturels',
-        rule: byGenre('Aventure', 4),
-      },
-      {
-        id: 'andalousie',
-        name: 'Andalousie',
-        colors: ['#fff7ed', '#ea580c'],
-        categoryId: 'geographiques',
-        categoryTitle: '🌍 Thèmes Géographiques & Culturels',
-        rule: byGenre('Aventure', 7),
-      },
-    ],
-  },
-
-  // -------------------------------------------------------------------------
-  // 5. Thèmes Historiques & Fantasy (6) — Famille : Univers & Littérature
-  // -------------------------------------------------------------------------
-  {
-    id: 'historiques_fantasy',
-    title: '🏛️ Thèmes Historiques & Fantasy',
-    familyId: 'univers_litterature',
-    familyTitle: '📚 Univers & Littérature',
-    themes: [
-      {
-        id: 'medieval_kingdom',
-        name: 'Medieval Kingdom',
-        colors: ['#450a0a', '#eab308'],
-        categoryId: 'historiques_fantasy',
-        categoryTitle: '🏛️ Thèmes Historiques & Fantasy',
-        rule: byTrophy('mon_precieux'),
-      },
-      {
-        id: 'roman_empire',
-        name: 'Roman Empire',
-        colors: ['#7f1d1d', '#fef3c7'],
-        categoryId: 'historiques_fantasy',
-        categoryTitle: '🏛️ Thèmes Historiques & Fantasy',
-        rule: byTrophy('coup_de_foudre'),
-      },
-      {
-        id: 'age_of_sail',
-        name: 'Age of Sail',
-        colors: ['#082f49', '#8b4513'],
-        categoryId: 'historiques_fantasy',
-        categoryTitle: '🏛️ Thèmes Historiques & Fantasy',
-        rule: byTrophy('critique_art'),
-      },
-      {
-        id: 'aztec',
-        name: 'Aztec',
-        colors: ['#14b8a6', '#d4a853'],
-        categoryId: 'historiques_fantasy',
-        categoryTitle: '🏛️ Thèmes Historiques & Fantasy',
-        rule: byTrophy('data_analyst'),
-      },
-      {
-        id: 'elven_forest',
-        name: 'Elven Forest',
-        colors: ['#064e3b', '#fef08a'],
-        categoryId: 'historiques_fantasy',
-        categoryTitle: '🏛️ Thèmes Historiques & Fantasy',
-        rule: byGenre('RPG', 3),
-      },
-      {
-        id: 'deep_sea',
-        name: 'Deep Sea',
-        colors: ['#020617', '#06b6d4'],
-        categoryId: 'historiques_fantasy',
-        categoryTitle: '🏛️ Thèmes Historiques & Fantasy',
-        rule: byGenre('RPG', 4),
-      },
-    ],
-  },
-
-  // -------------------------------------------------------------------------
-  // 6. Thèmes Espace & Futurisme (6) — Famille : Monde Réel
-  // -------------------------------------------------------------------------
-  {
-    id: 'espace_futurisme',
-    title: '🌠 Thèmes Espace & Futurisme',
-    familyId: 'monde_reel',
-    familyTitle: '🌍 Monde Réel',
-    themes: [
-      {
-        id: 'nebula',
-        name: 'Nebula',
-        colors: ['#020617', '#7c3aed'],
-        categoryId: 'espace_futurisme',
-        categoryTitle: '🌠 Thèmes Espace & Futurisme',
-        rule: byTrophy('shortcut_novice'),
-      },
-      {
-        id: 'black_hole',
-        name: 'Black Hole',
-        colors: ['#000000', '#ea580c'],
-        categoryId: 'espace_futurisme',
-        categoryTitle: '🌠 Thèmes Espace & Futurisme',
-        rule: byTrophy('insomniaque'),
-      },
-      {
-        id: 'quantum',
-        name: 'Quantum',
-        colors: ['#f8fafc', '#0ea5e9'],
-        categoryId: 'espace_futurisme',
-        categoryTitle: '🌠 Thèmes Espace & Futurisme',
-        rule: byGenre('Science-Fiction', 3),
-      },
-      {
-        id: 'mars_colony',
-        name: 'Mars Colony',
-        colors: ['#7f1d1d', '#ea580c'],
-        categoryId: 'espace_futurisme',
-        categoryTitle: '🌠 Thèmes Espace & Futurisme',
-        rule: byGenre('Science-Fiction', 4),
-      },
-      {
-        id: 'stargate',
-        name: 'Stargate',
-        colors: ['#0f172a', '#3b82f6'],
-        categoryId: 'espace_futurisme',
-        categoryTitle: '🌠 Thèmes Espace & Futurisme',
-        rule: byGenre('Science-Fiction', 7),
-      },
-      {
-        id: 'deep_space',
-        name: 'Deep Space',
-        colors: ['#000000', '#a855f7'],
-        categoryId: 'espace_futurisme',
-        categoryTitle: '🌠 Thèmes Espace & Futurisme',
-        rule: byGenre('Science-Fiction', 10),
-      },
-    ],
-  },
-
-  // -------------------------------------------------------------------------
-  // 7. Thèmes Films & Séries — Déblocables (18) — Famille : Cinéma & Séries
-  // -------------------------------------------------------------------------
-  {
-    id: 'films_series_jeux',
-    title: '🎬 Thèmes Films & Séries — Déblocables',
-    familyId: 'cinema_series',
-    familyTitle: '🎬 Cinéma & Séries',
-    themes: [
-      {
-        id: 'upside_down',
-        name: 'Upside Down',
-        colors: ['#020617', '#ef4444'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGenre('Horreur/Thriller', 1),
-      },
-      {
-        id: 'replicant',
-        name: 'Replicant',
-        colors: ['#020617', '#0ea5e9'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGenre('Cyberpunk', 3),
-      },
-      {
-        id: 'dino_dna',
-        name: 'Dino DNA',
-        colors: ['#14532d', '#d97706'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGame('Jurassic Park', 1),
-      },
-      {
-        id: 'isla_nublar',
-        name: 'Isla Nublar',
-        colors: ['#064e3b', '#ea580c'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGame('Jurassic Park', 3),
-      },
-      {
-        id: 'whip_hat',
-        name: 'Whip & Hat',
-        colors: ['#451a03', '#d4a853'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGame('Indiana Jones', 1),
-      },
-      {
-        id: 'delorean',
-        name: 'Delorean',
-        colors: ['#94a3b8', '#0ea5e9'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byTrophy('voyage_temps'),
-      },
-      {
-        id: 'skynet',
-        name: 'Skynet',
-        colors: ['#000000', '#ef4444'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGame('Terminator', 1),
-      },
-      {
-        id: 'gargantua',
-        name: 'Gargantua',
-        colors: ['#000000', '#eab308'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byFreeCondition("Ajouter 2 jeux dans l'Espace"),
-      },
-      {
-        id: 'unsinkable',
-        name: 'Unsinkable',
-        colors: ['#082f49', '#f8fafc'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGenre('Narratifs', 3),
-      },
-      {
-        id: 'butterfly_effect',
-        name: 'Butterfly Effect',
-        colors: ['#1e293b', '#f8fafc'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGenre('Narratifs', 3),
-      },
-      {
-        id: 'walking_sim',
-        name: 'Walking Sim',
-        colors: ['#ea580c', '#064e3b'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGenre('Narratifs', 1),
-      },
-      {
-        id: 'broken_screen',
-        name: 'Broken Screen',
-        colors: ['#020617', '#94a3b8'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGenre('Cyberpunk', 1),
-      },
-      {
-        id: '221b',
-        name: '221B',
-        colors: ['#1e293b', '#facc15'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGenre('Enquête', 1),
-      },
-      {
-        id: 'the_truth',
-        name: 'The Truth',
+        id: 'crt_scanline',
+        name: 'CRT Scanline',
         colors: ['#000000', '#22c55e'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGenre('Mystère', 1),
-      },
-      {
-        id: 'reactor_4',
-        name: 'Reactor 4',
-        colors: ['#334155', '#84cc16'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGenre('Post-Apo', 1),
-      },
-      {
-        id: 'dark_passenger',
-        name: 'Dark Passenger',
-        colors: ['#f8fafc', '#ef4444'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGenre('Horreur/Sanglant', 1),
-      },
-      {
-        id: 'nakatomi',
-        name: 'Nakatomi',
-        colors: ['#334155', '#ea580c'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGenre('Action', 1),
-      },
-      {
-        id: 'proton_pack',
-        name: 'Proton Pack',
-        colors: ['#000000', '#84cc16'],
-        categoryId: 'films_series_jeux',
-        categoryTitle: '🎬 Thèmes Films & Séries — Déblocables',
-        rule: byGenre('Surnaturel', 1),
+        categoryId: 'gaming_retro',
+        categoryTitle: 'Thèmes Gaming & Rétro',
+        rule: byGenre('Arcade', 5),
       },
     ],
   },
-
-  // -------------------------------------------------------------------------
-  // 8. Thèmes Jeux Vidéo (6) — Famille : Gaming & Rétro
-  // -------------------------------------------------------------------------
+  // 4. Jeux Vidéo
   {
     id: 'jeux_video',
-    title: '🕹️ Thèmes Jeux Vidéo',
+    title: 'Thèmes Jeux Vidéo',
     familyId: 'gaming_retro',
-    familyTitle: '🎮 Gaming & Rétro',
+    familyTitle: 'Gaming & Rétro',
     themes: [
+      {
+        id: 'star_road',
+        name: 'Star Road',
+        colors: ['#facc15', '#ef4444'],
+        universe: 'Mario',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Mario', 1),
+      },
       {
         id: 'mushroom_kingdom',
         name: 'Mushroom Kingdom',
         colors: ['#ef4444', '#3b82f6'],
+        universe: 'Mario',
         categoryId: 'jeux_video',
-        categoryTitle: '🕹️ Thèmes Jeux Vidéo',
+        categoryTitle: 'Thèmes Jeux Vidéo',
         rule: byTrophy('its_a_me'),
+      },
+      {
+        id: 'bowser_castle',
+        name: 'Bowser Castle',
+        colors: ['#dc2626', '#000000'],
+        universe: 'Mario',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Mario', 3),
+      },
+      {
+        id: 'kong_island',
+        name: 'Kong Island',
+        colors: ['#451a03', '#22c55e'],
+        universe: 'Mario',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Mario', 5),
+      },
+      {
+        id: 'luigis_mansion',
+        name: "Luigi's Mansion",
+        colors: ['#14532d', '#7c3aed'],
+        universe: 'Mario',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Mario', 8),
+      },
+      {
+        id: 'yoshis_island',
+        name: "Yoshi's Island",
+        colors: ['#86efac', '#facc15'],
+        universe: 'Mario',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Mario', 12),
       },
       {
         id: 'kanto',
         name: 'Kanto',
         colors: ['#ef4444', '#ffffff'],
+        universe: 'Pokémon',
         categoryId: 'jeux_video',
-        categoryTitle: '🕹️ Thèmes Jeux Vidéo',
+        categoryTitle: 'Thèmes Jeux Vidéo',
         rule: byGame('Pokémon', 1),
       },
       {
-        id: 'green_hill',
-        name: 'Green Hill',
-        colors: ['#3b82f6', '#22c55e'],
+        id: 'elite_four',
+        name: 'Elite Four',
+        colors: ['#7c3aed', '#fef3c7'],
+        universe: 'Pokémon',
         categoryId: 'jeux_video',
-        categoryTitle: '🕹️ Thèmes Jeux Vidéo',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Pokémon', 3),
+      },
+      {
+        id: 'master_ball',
+        name: 'Master Ball',
+        colors: ['#7c3aed', '#f8fafc'],
+        universe: 'Pokémon',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Pokémon', 6),
+      },
+      {
+        id: 'green_hill',
+        name: 'Green Hill Zone',
+        colors: ['#3b82f6', '#22c55e'],
+        universe: 'Sonic',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
         rule: byGame('Sonic', 1),
       },
       {
-        id: 'sic_parvis_magna',
-        name: 'Sic Parvis Magna',
-        colors: ['#451a03', '#d4a853'],
+        id: 'speed_of_sound',
+        name: 'Speed of Sound',
+        colors: ['#1d4ed8', '#ef4444'],
+        universe: 'Sonic',
         categoryId: 'jeux_video',
-        categoryTitle: '🕹️ Thèmes Jeux Vidéo',
-        rule: byGame('Uncharted', 1),
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Sonic', 3),
       },
       {
-        id: 'tomb_raider',
-        name: 'Tomb Raider',
-        colors: ['#451a03', '#14b8a6'],
+        id: 'angel_island',
+        name: 'Angel Island',
+        colors: ['#047857', '#ef4444'],
+        universe: 'Sonic',
         categoryId: 'jeux_video',
-        categoryTitle: '🕹️ Thèmes Jeux Vidéo',
-        rule: byGame('Tomb Raider', 1),
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Sonic', 5),
+      },
+      {
+        id: 'space_colony',
+        name: 'Space Colony ARK',
+        colors: ['#0f172a', '#dc2626'],
+        universe: 'Sonic',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Sonic', 7),
       },
       {
         id: 'los_santos',
         name: 'Los Santos',
         colors: ['#22c55e', '#ea580c'],
+        universe: 'GTA',
         categoryId: 'jeux_video',
-        categoryTitle: '🕹️ Thèmes Jeux Vidéo',
+        categoryTitle: 'Thèmes Jeux Vidéo',
         rule: byGame('GTA', 1),
+      },
+      {
+        id: 'vice_city',
+        name: 'Vice City',
+        colors: ['#ec4899', '#7c3aed'],
+        universe: 'GTA',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('GTA', 3),
+      },
+      {
+        id: 'liberty_city',
+        name: 'Liberty City',
+        colors: ['#0f172a', '#facc15'],
+        universe: 'GTA',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('GTA', 5),
+      },
+      {
+        id: 'wumpa_islands',
+        name: 'Wumpa Islands',
+        colors: ['#ea580c', '#22c55e'],
+        universe: 'Crash Bandicoot',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Crash Bandicoot', 1),
+      },
+      {
+        id: 'dragon_realms',
+        name: 'Dragon Realms',
+        colors: ['#7c3aed', '#facc15'],
+        universe: 'Spyro',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Spyro', 1),
+      },
+      {
+        id: 'glade_of_dreams',
+        name: 'Glade of Dreams',
+        colors: ['#10b981', '#fef08a'],
+        universe: 'Rayman',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Rayman', 1),
+      },
+      {
+        id: 'pac_maze',
+        name: 'Pac-Maze',
+        colors: ['#000000', '#facc15'],
+        universe: 'Pac-Man',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Pac-Man', 1),
+      },
+      {
+        id: 'overworld',
+        name: 'Overworld',
+        colors: ['#16a34a', '#8b5cf6'],
+        universe: 'Minecraft',
+        categoryId: 'jeux_video',
+        categoryTitle: 'Thèmes Jeux Vidéo',
+        rule: byGame('Minecraft', 1),
       },
     ],
   },
-
-  // -------------------------------------------------------------------------
-  // 9. Thèmes Gestion, Nature & Animaux (6) — Famille : Gaming & Rétro
-  // -------------------------------------------------------------------------
+  // 5. Archéologie
+  {
+    id: 'archeologie',
+    title: 'Thèmes Archéologie & Exploration',
+    familyId: 'gaming_retro',
+    familyTitle: 'Gaming & Rétro',
+    themes: [
+      {
+        id: 'whip_hat',
+        name: 'Whip & Hat',
+        colors: ['#451a03', '#d4a853'],
+        universe: 'Indiana Jones',
+        categoryId: 'archeologie',
+        categoryTitle: 'Thèmes Archéologie & Exploration',
+        rule: byGame('Indiana Jones', 1),
+      },
+      {
+        id: 'temple_of_doom',
+        name: 'Temple of Doom',
+        colors: ['#dc2626', '#d4a853'],
+        universe: 'Indiana Jones',
+        categoryId: 'archeologie',
+        categoryTitle: 'Thèmes Archéologie & Exploration',
+        rule: byGame('Indiana Jones', 3),
+      },
+      {
+        id: 'holy_grail',
+        name: 'Holy Grail',
+        colors: ['#d4a853', '#f8fafc'],
+        universe: 'Indiana Jones',
+        categoryId: 'archeologie',
+        categoryTitle: 'Thèmes Archéologie & Exploration',
+        rule: byGame('Indiana Jones', 5),
+      },
+      {
+        id: 'sic_parvis_magna',
+        name: 'Sic Parvis Magna',
+        colors: ['#451a03', '#d4a853'],
+        universe: 'Uncharted',
+        categoryId: 'archeologie',
+        categoryTitle: 'Thèmes Archéologie & Exploration',
+        rule: byGame('Uncharted', 1),
+      },
+      {
+        id: 'drakes_fortune',
+        name: "Drake's Fortune",
+        colors: ['#065f46', '#d4a853'],
+        universe: 'Uncharted',
+        categoryId: 'archeologie',
+        categoryTitle: 'Thèmes Archéologie & Exploration',
+        rule: byGame('Uncharted', 3),
+      },
+      {
+        id: 'tomb_raider',
+        name: 'Tomb Raider',
+        colors: ['#451a03', '#14b8a6'],
+        universe: 'Tomb Raider',
+        categoryId: 'archeologie',
+        categoryTitle: 'Thèmes Archéologie & Exploration',
+        rule: byGame('Tomb Raider', 1),
+      },
+      {
+        id: 'croft_manor',
+        name: 'Croft Manor',
+        colors: ['#475569', '#d4a853'],
+        universe: 'Tomb Raider',
+        categoryId: 'archeologie',
+        categoryTitle: 'Thèmes Archéologie & Exploration',
+        rule: byGame('Tomb Raider', 3),
+      },
+      {
+        id: 'the_survivor',
+        name: 'The Survivor',
+        colors: ['#14532d', '#dc2626'],
+        universe: 'Tomb Raider',
+        categoryId: 'archeologie',
+        categoryTitle: 'Thèmes Archéologie & Exploration',
+        rule: byGame('Tomb Raider', 5),
+      },
+    ],
+  },
+  // 6. Gestion Nature
   {
     id: 'gestion_nature',
-    title: '🐾 Thèmes Gestion, Nature & Animaux',
+    title: 'Thèmes Gestion, Nature & Animaux',
     familyId: 'gaming_retro',
-    familyTitle: '🎮 Gaming & Rétro',
+    familyTitle: 'Gaming & Rétro',
     themes: [
       {
         id: 'cozy_farm',
         name: 'Cozy Farm',
         colors: ['#fef3c7', '#22c55e'],
         categoryId: 'gestion_nature',
-        categoryTitle: '🐾 Thèmes Gestion, Nature & Animaux',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
         rule: byTrophy('cozy_farmer'),
       },
       {
@@ -805,7 +676,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Tycoon',
         colors: ['#2563eb', '#facc15'],
         categoryId: 'gestion_nature',
-        categoryTitle: '🐾 Thèmes Gestion, Nature & Animaux',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
         rule: byTrophy('tycoon_master'),
       },
       {
@@ -813,7 +684,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Aquarium',
         colors: ['#082f49', '#06b6d4'],
         categoryId: 'gestion_nature',
-        categoryTitle: '🐾 Thèmes Gestion, Nature & Animaux',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
         rule: byTrophy('zookeeper'),
       },
       {
@@ -821,7 +692,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Safari Zoo',
         colors: ['#fef3c7', '#451a03'],
         categoryId: 'gestion_nature',
-        categoryTitle: '🐾 Thèmes Gestion, Nature & Animaux',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
         rule: byTrophy('zookeeper'),
       },
       {
@@ -829,7 +700,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'City Builder',
         colors: ['#334155', '#facc15'],
         categoryId: 'gestion_nature',
-        categoryTitle: '🐾 Thèmes Gestion, Nature & Animaux',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
         rule: byTrophy('city_mayor'),
       },
       {
@@ -837,872 +708,840 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Jurassic',
         colors: ['#14532d', '#d97706'],
         categoryId: 'gestion_nature',
-        categoryTitle: '🐾 Thèmes Gestion, Nature & Animaux',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
         rule: byTrophy('dino_dna'),
       },
-    ],
-  },
-
-  // -------------------------------------------------------------------------
-  // 10. Thèmes Univers Entiers (16) — Famille : Univers & Littérature
-  // -------------------------------------------------------------------------
-  {
-    id: 'univers_entiers',
-    title: '🪐 Thèmes Univers Entiers',
-    familyId: 'univers_litterature',
-    familyTitle: '📚 Univers & Littérature',
-    themes: [
       {
-        id: 'infinity',
-        name: 'Infinity',
-        colors: ['#450a0a', '#facc15'],
-        categoryId: 'th_mes_univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byTrophy('infinity_stones'),
+        id: 'dino_dna',
+        name: 'Dino DNA',
+        colors: ['#14532d', '#d97706'],
+        universe: 'Jurassic Park',
+        categoryId: 'gestion_nature',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
+        rule: byGame('Jurassic Park / Jurassic World', 1),
       },
       {
-        id: 'multiverse',
-        name: 'Multiverse',
-        colors: ['#1e3a8a', '#facc15'],
-        categoryId: 'th_mes_univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byTrophy('justice_league'),
+        id: 'isla_nublar',
+        name: 'Isla Nublar',
+        colors: ['#064e3b', '#ea580c'],
+        universe: 'Jurassic Park',
+        categoryId: 'gestion_nature',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
+        rule: byGame('Jurassic Park / Jurassic World', 3),
       },
       {
-        id: 'galaxy_far_away',
-        name: 'Galaxy Far Away',
-        colors: ['#000000', '#3b82f6'],
-        categoryId: 'th_mes_univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byTrophy('may_the_force'),
+        id: 'wildlife_reserve',
+        name: 'Wildlife Reserve',
+        colors: ['#064e3b', '#a3e635'],
+        categoryId: 'gestion_nature',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
+        rule: byGenres(
+          'Gestion / Nature',
+          [
+            'Gestion',
+            'Simulation',
+            'Animaux',
+            'Nature',
+            'Management',
+            'Élevage',
+            'Football Manager',
+          ],
+          1
+        ),
       },
       {
-        id: 'hogwarts',
-        name: 'Hogwarts',
-        colors: ['#7f1d1d', '#d4a853'],
-        categoryId: 'th_mes_univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byGame('Harry Potter', 1),
+        id: 'farm_life',
+        name: 'Farm Life',
+        colors: ['#d97706', '#22c55e'],
+        categoryId: 'gestion_nature',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
+        rule: byGenres(
+          'Gestion / Nature',
+          [
+            'Gestion',
+            'Simulation',
+            'Animaux',
+            'Nature',
+            'Management',
+            'Élevage',
+            'Football Manager',
+          ],
+          3
+        ),
       },
       {
-        id: 'forgotten_realms',
-        name: 'Forgotten Realms',
-        colors: ['#7f1d1d', '#fef3c7'],
-        categoryId: 'th_mes_univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byFreeCondition("Ajouter 1 jeux : D&D / Baldur's Gate"),
+        id: 'pet_shop',
+        name: 'Pet Shop',
+        colors: ['#ec4899', '#fef3c7'],
+        categoryId: 'gestion_nature',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
+        rule: byGenres(
+          'Gestion / Nature',
+          [
+            'Gestion',
+            'Simulation',
+            'Animaux',
+            'Nature',
+            'Management',
+            'Élevage',
+            'Football Manager',
+          ],
+          6
+        ),
       },
       {
-        id: 'arrakis',
-        name: 'Arrakis',
-        colors: ['#d97706', '#3b82f6'],
-        categoryId: 'univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byGame('Dune', 1),
+        id: 'national_park',
+        name: 'National Park',
+        colors: ['#14532d', '#facc15'],
+        categoryId: 'gestion_nature',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
+        rule: byGenres(
+          'Gestion / Nature',
+          [
+            'Gestion',
+            'Simulation',
+            'Animaux',
+            'Nature',
+            'Management',
+            'Élevage',
+            'Football Manager',
+          ],
+          10
+        ),
       },
       {
-        id: 'psychohistory',
-        name: 'Psychohistory',
-        colors: ['#94a3b8', '#3b82f6'],
-        categoryId: 'univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byFreeCondition('Ajouter 1 jeux : Sci-Fi Spatiale'),
+        id: 'veterinary',
+        name: 'Veterinary Clinic',
+        colors: ['#f8fafc', '#ef4444'],
+        categoryId: 'gestion_nature',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
+        rule: byGenres(
+          'Gestion / Nature',
+          [
+            'Gestion',
+            'Simulation',
+            'Animaux',
+            'Nature',
+            'Management',
+            'Élevage',
+            'Football Manager',
+          ],
+          15
+        ),
       },
       {
-        id: 'the_construct',
-        name: 'The Construct',
-        colors: ['#000000', '#22c55e'],
-        categoryId: 'univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byGame('Matrix', 1),
+        id: 'business_empire',
+        name: 'Business Empire',
+        colors: ['#1e293b', '#38bdf8'],
+        categoryId: 'gestion_nature',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
+        rule: byGenres(
+          'Gestion / Nature',
+          [
+            'Gestion',
+            'Simulation',
+            'Animaux',
+            'Nature',
+            'Management',
+            'Élevage',
+            'Football Manager',
+          ],
+          20
+        ),
       },
       {
-        id: 'cybertron',
-        name: 'Cybertron',
-        colors: ['#ef4444', '#8b5cf6'],
-        categoryId: 'univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byGame('Transformers', 1),
+        id: 'sports_manager',
+        name: 'Directeur Sportif',
+        colors: ['#042f2e', '#10b981'],
+        categoryId: 'gestion_nature',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
+        rule: byGenres(
+          'Gestion / Nature',
+          [
+            'Gestion',
+            'Simulation',
+            'Animaux',
+            'Nature',
+            'Management',
+            'Élevage',
+            'Football Manager',
+          ],
+          30
+        ),
       },
       {
-        id: 'forks',
-        name: 'Forks',
-        colors: ['#475569', '#14532d'],
-        categoryId: 'univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byFreeCondition('Ajouter 1 jeux : Vampires/Loups-Garous'),
-      },
-      {
-        id: 'pandora',
-        name: 'Pandora',
-        colors: ['#020617', '#06b6d4'],
-        categoryId: 'univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byGame('Avatar', 1),
-      },
-      {
-        id: 'once_upon_a_dream',
-        name: 'Once Upon a Dream',
-        colors: ['#ec4899', '#3b82f6'],
-        categoryId: 'univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byTrophy('retro_gamer'),
-      },
-      {
-        id: 'luxo',
-        name: 'Luxo',
-        colors: ['#3b82f6', '#facc15'],
-        categoryId: 'univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byFreeCondition('Ajouter 1 jeux : Pixar'),
-      },
-      {
-        id: 'castle_rock',
-        name: 'Castle Rock',
-        colors: ['#0f172a', '#ef4444'],
-        categoryId: 'univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byFreeCondition('Ajouter 1 jeux : Horreur/Surnaturel'),
-      },
-      {
-        id: 'wardrobe',
-        name: 'Wardrobe',
-        colors: ['#f8fafc', '#064e3b'],
-        categoryId: 'univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byFreeCondition('Ajouter 1 jeux : Fantasy/Narnia'),
-      },
-      {
-        id: 'panem',
-        name: 'Panem',
+        id: 'zoo_director',
+        name: 'Zoo Director',
         colors: ['#451a03', '#facc15'],
-        categoryId: 'univers_entiers',
-        categoryTitle: '🪐 Thèmes Univers Entiers',
-        rule: byFreeCondition('Ajouter 1 jeux : Survie/Battle Royale'),
+        categoryId: 'gestion_nature',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
+        rule: byGenres(
+          'Gestion / Nature',
+          [
+            'Gestion',
+            'Simulation',
+            'Animaux',
+            'Nature',
+            'Management',
+            'Élevage',
+            'Football Manager',
+          ],
+          40
+        ),
+      },
+      {
+        id: 'world_builder',
+        name: 'World Builder',
+        colors: ['#082f49', '#38bdf8'],
+        categoryId: 'gestion_nature',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
+        rule: byGenres(
+          'Gestion / Nature',
+          [
+            'Gestion',
+            'Simulation',
+            'Animaux',
+            'Nature',
+            'Management',
+            'Élevage',
+            'Football Manager',
+          ],
+          50
+        ),
+      },
+      {
+        id: 'megacity',
+        name: 'Megacity',
+        colors: ['#020617', '#eab308'],
+        categoryId: 'gestion_nature',
+        categoryTitle: 'Thèmes Gestion, Nature & Animaux',
+        rule: byGenres(
+          'Gestion / Nature',
+          [
+            'Gestion',
+            'Simulation',
+            'Animaux',
+            'Nature',
+            'Management',
+            'Élevage',
+            'Football Manager',
+          ],
+          60
+        ),
       },
     ],
   },
-
-  // -------------------------------------------------------------------------
-  // 11. Thèmes Super-Héros (14) — Famille : Super-Héros & Animation
-  // -------------------------------------------------------------------------
+  // 7. Géographie
   {
-    id: 'super_heros',
-    title: '🦸 Thèmes Super-Héros',
-    familyId: 'super_heros_animation',
-    familyTitle: '🦸 Super-Héros & Animation',
+    id: 'geographiques',
+    title: 'Thèmes Géographiques & Culturels',
+    familyId: 'monde_reel',
+    familyTitle: 'Monde Réel',
     themes: [
       {
-        id: 'web_slinger',
-        name: 'Web-Slinger',
-        colors: ['#ef4444', '#3b82f6'],
-        categoryId: 'th_mes_super_h_ros_marvel_dc',
-        categoryTitle: '🦸 Thèmes Super-Héros (Marvel & DC)',
-        rule: byTrophy('spider_web'),
-      },
-      {
-        id: 'the_dark_knight',
-        name: 'The Dark Knight',
-        colors: ['#000000', '#facc15'],
-        categoryId: 'th_mes_super_h_ros_marvel_dc',
-        categoryTitle: '🦸 Thèmes Super-Héros (Marvel & DC)',
-        rule: byTrophy('nocturne'),
-      },
-      {
-        id: 'stark_tech',
-        name: 'Stark Tech',
-        colors: ['#b91c1c', '#facc15'],
-        categoryId: 'th_mes_super_h_ros_marvel_dc',
-        categoryTitle: '🦸 Thèmes Super-Héros (Marvel & DC)',
-        rule: byTrophy('i_am_iron_man'),
-      },
-      {
-        id: 'man_of_steel',
-        name: 'Man of Steel',
-        colors: ['#1d4ed8', '#ef4444'],
-        categoryId: 'th_mes_super_h_ros_marvel_dc',
-        categoryTitle: '🦸 Thèmes Super-Héros (Marvel & DC)',
-        rule: byCount('1 jeu Super-Héros', 1),
-      },
-      {
-        id: 'speed_force',
-        name: 'Speed Force',
-        colors: ['#b91c1c', '#facc15'],
-        categoryId: 'th_mes_super_h_ros_marvel_dc',
-        categoryTitle: '🦸 Thèmes Super-Héros (Marvel & DC)',
-        rule: byTrophy('speedrunner'),
-      },
-      {
-        id: 'clown_prince',
-        name: 'Clown Prince',
-        colors: ['#7c3aed', '#22c55e'],
-        categoryId: 'th_mes_super_h_ros_marvel_dc',
-        categoryTitle: '🦸 Thèmes Super-Héros (Marvel & DC)',
-        rule: byCount('1 jeu Super-Héros', 1),
-      },
-      {
-        id: 'first_avenger',
-        name: 'First Avenger',
-        colors: ['#1e3a8a', '#ef4444'],
-        categoryId: 'super_heros',
-        categoryTitle: '🦸 Thèmes Super-Héros',
-        rule: byCount('2 jeux Super-Héros', 2),
-      },
-      {
-        id: 'god_of_thunder',
-        name: 'God of Thunder',
-        colors: ['#475569', '#ef4444'],
-        categoryId: 'super_heros',
-        categoryTitle: '🦸 Thèmes Super-Héros',
-        rule: byCount('2 jeux Super-Héros', 2),
-      },
-      {
-        id: 'gamma_smash',
-        name: 'Gamma Smash',
-        colors: ['#14532d', '#7c3aed'],
-        categoryId: 'super_heros',
-        categoryTitle: '🦸 Thèmes Super-Héros',
-        rule: byCount('3 jeux Super-Héros', 3),
-      },
-      {
-        id: 'red_room',
-        name: 'Red Room',
-        colors: ['#000000', '#ef4444'],
-        categoryId: 'super_heros',
-        categoryTitle: '🦸 Thèmes Super-Héros',
-        rule: byCount('3 jeux Super-Héros', 3),
-      },
-      {
-        id: 'weapon_x',
-        name: 'Weapon X',
-        colors: ['#facc15', '#3b82f6'],
-        categoryId: 'super_heros',
-        categoryTitle: '🦸 Thèmes Super-Héros',
-        rule: byCount('4 jeux Super-Héros', 4),
-      },
-      {
-        id: 'wakanda_forever',
-        name: 'Wakanda Forever',
-        colors: ['#000000', '#8b5cf6'],
-        categoryId: 'super_heros',
-        categoryTitle: '🦸 Thèmes Super-Héros',
-        rule: byCount('4 jeux Super-Héros', 4),
-      },
-      {
-        id: 'sorcerer_supreme',
-        name: 'Sorcerer Supreme',
-        colors: ['#1e3a8a', '#ef4444'],
-        categoryId: 'super_heros',
-        categoryTitle: '🦸 Thèmes Super-Héros',
-        rule: byCount('5 jeux Super-Héros', 5),
-      },
-      {
-        id: 'symbiote',
-        name: 'Symbiote',
-        colors: ['#000000', '#ffffff'],
-        categoryId: 'super_heros',
-        categoryTitle: '🦸 Thèmes Super-Héros',
-        rule: byCount('5 jeux Spider-man', 5),
-      },
-    ],
-  },
-
-  // -------------------------------------------------------------------------
-  // 12. Thèmes Disney & Pixar (17) — Famille : Super-Héros & Animation
-  // NOTE: ID canonique 'andy_s_room' retenu (aligné sur themeData.ts + Supabase).
-  //       Variantes 'andys_room', 'gusteaus', 'ici_cest_paris', 'santagata'
-  //       présentes dans themeRules.ts doublon 2 → orphelines documentées.
-  // -------------------------------------------------------------------------
-  {
-    id: 'disney_pixar',
-    title: '🏰 Thèmes Disney & Pixar',
-    familyId: 'super_heros_animation',
-    familyTitle: '🦸 Super-Héros & Animation',
-    themes: [
-      {
-        id: 'andy_s_room',
-        name: "Andy's Room",
-        colors: ['#3b82f6', '#facc15'],
-        categoryId: 'th_mes_disney_pixar_par_film',
-        categoryTitle: '🏰 Thèmes Disney / Pixar (Par Film)',
-        rule: byCount('1 jeu Familial/Cartoon', 1),
-      },
-      {
-        id: 'motunui',
-        name: 'Motunui',
-        colors: ['#0ea5e9', '#fef3c7'],
-        categoryId: 'th_mes_disney_pixar_par_film',
-        categoryTitle: '🏰 Thèmes Disney / Pixar (Par Film)',
-        rule: byCount('1 jeu Familial/Cartoon', 1),
-      },
-      {
-        id: 'scare_floor',
-        name: 'Scare Floor',
-        colors: ['#3b82f6', '#84cc16'],
-        categoryId: 'th_mes_disney_pixar_par_film',
-        categoryTitle: '🏰 Thèmes Disney / Pixar (Par Film)',
-        rule: byCount('2 jeux Familial/Cartoon', 2),
-      },
-      {
-        id: 'route_66',
-        name: 'Route 66',
-        colors: ['#ef4444', '#000000'],
-        categoryId: 'th_mes_disney_pixar_par_film',
-        categoryTitle: '🏰 Thèmes Disney / Pixar (Par Film)',
-        rule: byCount('2 jeux Familial/Cartoon', 2),
-      },
-      {
-        id: 'arendelle',
-        name: 'Arendelle',
-        colors: ['#e0f2fe', '#0ea5e9'],
-        categoryId: 'th_mes_disney_pixar_par_film',
-        categoryTitle: '🏰 Thèmes Disney / Pixar (Par Film)',
-        rule: byCount('3 jeux Familial/Cartoon', 3),
-      },
-      {
-        id: 'eac',
-        name: 'EAC',
-        colors: ['#082f49', '#ea580c'],
-        categoryId: 'th_mes_disney_pixar_par_film',
-        categoryTitle: '🏰 Thèmes Disney / Pixar (Par Film)',
-        rule: byCount('3 jeux Familial/Cartoon', 3),
-      },
-      {
-        id: 'agrabah',
-        name: 'Agrabah',
-        colors: ['#4c1d95', '#d4a853'],
-        categoryId: 'th_mes_disney_pixar_par_film',
-        categoryTitle: '🏰 Thèmes Disney / Pixar (Par Film)',
-        rule: byCount('3 jeux Familial/Cartoon', 3),
-      },
-      {
-        id: 'pride_rock',
-        name: 'Pride Rock',
-        colors: ['#ea580c', '#facc15'],
-        categoryId: 'disney_pixar',
-        categoryTitle: '🏰 Thèmes Disney & Pixar',
-        rule: byCount('4 jeux Familial/Cartoon', 4),
-      },
-      {
-        id: 'headquarters',
-        name: 'Headquarters',
-        colors: ['#facc15', '#3b82f6'],
-        categoryId: 'disney_pixar',
-        categoryTitle: '🏰 Thèmes Disney & Pixar',
-        rule: byTrophy('indecis'),
-      },
-      {
-        id: 'enchanted_rose',
-        name: 'Enchanted Rose',
-        colors: ['#d4a853', '#1e3a8a'],
-        categoryId: 'disney_pixar',
-        categoryTitle: '🏰 Thèmes Disney & Pixar',
-        rule: byCount('4 jeux Familial/Cartoon', 4),
-      },
-      {
-        id: 'dragon_warrior',
-        name: 'Dragon Warrior',
-        colors: ['#991b1b', '#d4a853'],
-        categoryId: 'disney_pixar',
-        categoryTitle: '🏰 Thèmes Disney & Pixar',
-        rule: byCount('4 jeux Familial/Cartoon', 4),
-      },
-      {
-        id: 'paradise_falls',
-        name: 'Paradise Falls',
-        colors: ['#3b82f6', '#22c55e'],
-        categoryId: 'disney_pixar',
-        categoryTitle: '🏰 Thèmes Disney & Pixar',
-        rule: byCount('5 jeux Familial/Cartoon', 5),
-      },
-      {
-        id: 'gusteau_s',
-        name: "Gusteau's",
-        colors: ['#b45309', '#ffffff'],
-        categoryId: 'disney_pixar',
-        categoryTitle: '🏰 Thèmes Disney & Pixar',
-        rule: byCount('5 jeux Familial/Cartoon', 5),
-      },
-      {
-        id: 'axiom',
-        name: 'Axiom',
-        colors: ['#9a3412', '#4ade80'],
-        categoryId: 'disney_pixar',
-        categoryTitle: '🏰 Thèmes Disney & Pixar',
-        rule: byCount('5 jeux Familial/Cartoon', 5),
-      },
-      {
-        id: 'olympus',
-        name: 'Olympus',
+        id: 'egypte_antique',
+        name: 'Égypte Antique',
         colors: ['#fef3c7', '#d4a853'],
-        categoryId: 'disney_pixar',
-        categoryTitle: '🏰 Thèmes Disney & Pixar',
-        rule: byCount('5 jeux Familial/Cartoon', 5),
+        categoryId: 'geographiques',
+        categoryTitle: 'Thèmes Géographiques & Culturels',
+        rule: byGenres('Exploration / Historique', ['Exploration', 'Historique', 'Histoire'], 1),
       },
       {
-        id: 'neverland',
-        name: 'Neverland',
-        colors: ['#15803d', '#d4a853'],
-        categoryId: 'disney_pixar',
-        categoryTitle: '🏰 Thèmes Disney & Pixar',
-        rule: byCount('6 jeux Familial/Cartoon', 6),
+        id: 'viking_norse',
+        name: 'Norse & Vikings',
+        colors: ['#334155', '#991b1b'],
+        categoryId: 'geographiques',
+        categoryTitle: 'Thèmes Géographiques & Culturels',
+        rule: byTrophy('shortcut_pro'),
       },
       {
-        id: 'bella_notte',
-        name: 'Bella Notte',
-        colors: ['#991b1b', '#0f172a'],
-        categoryId: 'disney_pixar',
-        categoryTitle: '🏰 Thèmes Disney & Pixar',
-        rule: byCount('6 jeux Familial/Cartoon', 6),
+        id: 'tundra',
+        name: 'Tundra',
+        colors: ['#f8fafc', '#0ea5e9'],
+        categoryId: 'geographiques',
+        categoryTitle: 'Thèmes Géographiques & Culturels',
+        rule: byGenres('Exploration / Historique', ['Exploration', 'Historique', 'Histoire'], 4),
+      },
+      {
+        id: 'andalousie',
+        name: 'Andalousie',
+        colors: ['#fff7ed', '#ea580c'],
+        categoryId: 'geographiques',
+        categoryTitle: 'Thèmes Géographiques & Culturels',
+        rule: byGenres('Exploration / Historique', ['Exploration', 'Historique', 'Histoire'], 8),
+      },
+      {
+        id: 'silk_road',
+        name: 'Route de la Soie',
+        colors: ['#78350f', '#fcd34d'],
+        categoryId: 'geographiques',
+        categoryTitle: 'Thèmes Géographiques & Culturels',
+        rule: byGenres('Exploration / Historique', ['Exploration', 'Historique', 'Histoire'], 12),
+      },
+      {
+        id: 'hellas',
+        name: 'Grèce Antique',
+        colors: ['#e0f2fe', '#0284c7'],
+        categoryId: 'geographiques',
+        categoryTitle: 'Thèmes Géographiques & Culturels',
+        rule: byGenres('Exploration / Historique', ['Exploration', 'Historique', 'Histoire'], 16),
+      },
+      {
+        id: 'middle_kingdom',
+        name: 'Empire du Milieu',
+        colors: ['#7f1d1d', '#fef08a'],
+        categoryId: 'geographiques',
+        categoryTitle: 'Thèmes Géographiques & Culturels',
+        rule: byGenres('Exploration / Historique', ['Exploration', 'Historique', 'Histoire'], 20),
+      },
+      {
+        id: 'new_world',
+        name: 'Monde Nouveau',
+        colors: ['#064e3b', '#67e8f9'],
+        categoryId: 'geographiques',
+        categoryTitle: 'Thèmes Géographiques & Culturels',
+        rule: byGenres('Exploration / Historique', ['Exploration', 'Historique', 'Histoire'], 25),
+      },
+      {
+        id: 'terra_incognita',
+        name: 'Terra Incognita',
+        colors: ['#0f172a', '#f8fafc'],
+        categoryId: 'geographiques',
+        categoryTitle: 'Thèmes Géographiques & Culturels',
+        rule: byGenres('Exploration / Historique', ['Exploration', 'Historique', 'Histoire'], 30),
       },
     ],
   },
-
-  // -------------------------------------------------------------------------
-  // 13. Thèmes Clubs de Sport (11) — Famille : Monde Réel
-  // NOTE: ID canonique 'ici_c_est_paris' retenu (aligné sur themeData.ts + Supabase).
-  // -------------------------------------------------------------------------
+  // 8. Historique
+  {
+    id: 'historiques_fantasy',
+    title: 'Thèmes Historiques & Fantasy',
+    familyId: 'monde_reel',
+    familyTitle: 'Monde Réel',
+    themes: [
+      {
+        id: 'medieval_kingdom',
+        name: 'Medieval Kingdom',
+        colors: ['#450a0a', '#eab308'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byTrophy('mon_precieux'),
+      },
+      {
+        id: 'roman_empire',
+        name: 'Roman Empire',
+        colors: ['#7f1d1d', '#fef3c7'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byTrophy('coup_de_foudre'),
+      },
+      {
+        id: 'age_of_sail',
+        name: 'Age of Sail',
+        colors: ['#082f49', '#8b4513'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byTrophy('critique_art'),
+      },
+      {
+        id: 'aztec',
+        name: 'Aztec',
+        colors: ['#14b8a6', '#d4a853'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byTrophy('data_analyst'),
+      },
+      {
+        id: 'taverne',
+        name: 'La Taverne',
+        colors: ['#451a03', '#fcd34d'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byGenre('RPG', 1),
+      },
+      {
+        id: 'elven_forest',
+        name: 'Elven Forest',
+        colors: ['#064e3b', '#fef08a'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byGenre('RPG', 3),
+      },
+      {
+        id: 'deep_sea',
+        name: 'Deep Sea',
+        colors: ['#020617', '#06b6d4'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byGenre('RPG', 5),
+      },
+      {
+        id: 'dungeon_crawler',
+        name: 'Dungeon Crawler',
+        colors: ['#1c1917', '#ef4444'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byGenre('RPG', 8),
+      },
+      {
+        id: 'mage_tower',
+        name: 'Mage Tower',
+        colors: ['#1e1b4b', '#8b5cf6'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byGenre('RPG', 12),
+      },
+      {
+        id: 'hero_journey',
+        name: "Hero's Journey",
+        colors: ['#b45309', '#f8fafc'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byGenre('RPG', 16),
+      },
+      {
+        id: 'dragon_lair',
+        name: "Dragon's Lair",
+        colors: ['#7f1d1d', '#facc15'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byGenre('RPG', 20),
+      },
+      {
+        id: 'mythic_realm',
+        name: 'Mythic Realm',
+        colors: ['#065f46', '#a7f3d0'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byGenre('RPG', 25),
+      },
+      {
+        id: 'epic_saga',
+        name: 'Epic Saga',
+        colors: ['#0f172a', '#38bdf8'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byGenre('RPG', 30),
+      },
+      {
+        id: 'divine_realm',
+        name: 'Divine Realm',
+        colors: ['#fef3c7', '#d4a853'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byGenre('RPG', 40),
+      },
+      {
+        id: 'pantheon',
+        name: 'Pantheon',
+        colors: ['#ffffff', '#f59e0b'],
+        categoryId: 'historiques_fantasy',
+        categoryTitle: 'Thèmes Historiques & Fantasy',
+        rule: byGenre('RPG', 50),
+      },
+    ],
+  },
+  // 9. Espace
+  {
+    id: 'espace_futurisme',
+    title: 'Thèmes Espace',
+    familyId: 'monde_reel',
+    familyTitle: 'Monde Réel',
+    themes: [
+      {
+        id: 'nebula',
+        name: 'Nebula',
+        colors: ['#020617', '#7c3aed'],
+        categoryId: 'espace_futurisme',
+        categoryTitle: 'Thèmes Espace',
+        rule: byTrophy('shortcut_novice'),
+      },
+      {
+        id: 'black_hole',
+        name: 'Black Hole',
+        colors: ['#000000', '#ea580c'],
+        categoryId: 'espace_futurisme',
+        categoryTitle: 'Thèmes Espace',
+        rule: byTrophy('insomniaque'),
+      },
+      {
+        id: 'quantum',
+        name: 'Quantum',
+        colors: ['#f8fafc', '#0ea5e9'],
+        categoryId: 'espace_futurisme',
+        categoryTitle: 'Thèmes Espace',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk'],
+          1
+        ),
+      },
+      {
+        id: 'mars_colony',
+        name: 'Mars Colony',
+        colors: ['#7f1d1d', '#ea580c'],
+        categoryId: 'espace_futurisme',
+        categoryTitle: 'Thèmes Espace',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk'],
+          4
+        ),
+      },
+      {
+        id: 'stargate',
+        name: 'Stargate',
+        colors: ['#0f172a', '#3b82f6'],
+        categoryId: 'espace_futurisme',
+        categoryTitle: 'Thèmes Espace',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk'],
+          8
+        ),
+      },
+      {
+        id: 'deep_space',
+        name: 'Deep Space',
+        colors: ['#000000', '#a855f7'],
+        categoryId: 'espace_futurisme',
+        categoryTitle: 'Thèmes Espace',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk'],
+          15
+        ),
+      },
+      {
+        id: 'event_horizon',
+        name: 'Event Horizon',
+        colors: ['#000000', '#dc2626'],
+        categoryId: 'espace_futurisme',
+        categoryTitle: 'Thèmes Espace',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk'],
+          25
+        ),
+      },
+      {
+        id: 'cosmic_void',
+        name: 'Cosmic Void',
+        colors: ['#020617', '#ffffff'],
+        categoryId: 'espace_futurisme',
+        categoryTitle: 'Thèmes Espace',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk'],
+          40
+        ),
+      },
+      {
+        id: 'galactic_core',
+        name: 'Galactic Core',
+        colors: ['#4c1d95', '#facc15'],
+        categoryId: 'espace_futurisme',
+        categoryTitle: 'Thèmes Espace',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk'],
+          60
+        ),
+      },
+      {
+        id: 'dark_matter',
+        name: 'Dark Matter',
+        colors: ['#000000', '#4f46e5'],
+        categoryId: 'espace_futurisme',
+        categoryTitle: 'Thèmes Espace',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk'],
+          80
+        ),
+      },
+      {
+        id: 'great_attractor',
+        name: 'The Great Attractor',
+        colors: ['#1e1b4b', '#eab308'],
+        categoryId: 'espace_futurisme',
+        categoryTitle: 'Thèmes Espace',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk'],
+          100
+        ),
+      },
+    ],
+  },
+  // 10. Sport
   {
     id: 'clubs_sport',
-    title: '⚽ Thèmes Clubs de Sport',
+    title: 'Thèmes Clubs de Sport',
     familyId: 'monde_reel',
-    familyTitle: '🌍 Monde Réel',
+    familyTitle: 'Monde Réel',
     themes: [
       {
         id: 'ici_c_est_paris',
         name: "Ici c'est Paris",
         colors: ['#1e3a8a', '#ef4444'],
-        categoryId: 'th_mes_clubs_de_sport',
-        categoryTitle: '⚽ Thèmes Clubs de Sport',
-        rule: byCount('1 jeu de Football', 1),
+        categoryId: 'clubs_sport',
+        categoryTitle: 'Thèmes Clubs de Sport',
+        rule: byGenres(
+          'Football',
+          ['Football', 'Foot', 'Soccer', 'FIFA', 'PES', 'Football Manager'],
+          1
+        ),
       },
       {
         id: 'citizens',
         name: 'Citizens',
         colors: ['#38bdf8', '#ffffff'],
-        categoryId: 'th_mes_clubs_de_sport',
-        categoryTitle: '⚽ Thèmes Clubs de Sport',
-        rule: byCount('1 jeu de Sport', 1),
+        categoryId: 'clubs_sport',
+        categoryTitle: 'Thèmes Clubs de Sport',
+        rule: byGenres(
+          'Football',
+          ['Football', 'Foot', 'Soccer', 'FIFA', 'PES', 'Football Manager'],
+          2
+        ),
       },
       {
         id: 'red_devils',
         name: 'Red Devils',
         colors: ['#dc2626', '#000000'],
-        categoryId: 'th_mes_clubs_de_sport',
-        categoryTitle: '⚽ Thèmes Clubs de Sport',
-        rule: byCount('2 jeux de Sport', 2),
+        categoryId: 'clubs_sport',
+        categoryTitle: 'Thèmes Clubs de Sport',
+        rule: byGenres(
+          'Football',
+          ['Football', 'Foot', 'Soccer', 'FIFA', 'PES', 'Football Manager'],
+          4
+        ),
       },
       {
         id: 'ynwa',
         name: 'YNWA',
         colors: ['#ef4444', '#ffffff'],
-        categoryId: 'th_mes_clubs_de_sport',
-        categoryTitle: '⚽ Thèmes Clubs de Sport',
-        rule: byCount('2 jeux de Sport', 2),
+        categoryId: 'clubs_sport',
+        categoryTitle: 'Thèmes Clubs de Sport',
+        rule: byGenres(
+          'Football',
+          ['Football', 'Foot', 'Soccer', 'FIFA', 'PES', 'Football Manager'],
+          6
+        ),
       },
       {
         id: 'gunners',
         name: 'Gunners',
         colors: ['#dc2626', '#ffffff'],
-        categoryId: 'th_mes_clubs_de_sport',
-        categoryTitle: '⚽ Thèmes Clubs de Sport',
-        rule: byCount('3 jeux de Sport', 3),
+        categoryId: 'clubs_sport',
+        categoryTitle: 'Thèmes Clubs de Sport',
+        rule: byGenres(
+          'Football',
+          ['Football', 'Foot', 'Soccer', 'FIFA', 'PES', 'Football Manager'],
+          8
+        ),
       },
       {
         id: 'los_blancos',
         name: 'Los Blancos',
         colors: ['#ffffff', '#d4a853'],
-        categoryId: 'th_mes_clubs_de_sport',
-        categoryTitle: '⚽ Thèmes Clubs de Sport',
-        rule: byCount('3 jeux de Sport', 3),
+        categoryId: 'clubs_sport',
+        categoryTitle: 'Thèmes Clubs de Sport',
+        rule: byGenres(
+          'Football',
+          ['Football', 'Foot', 'Soccer', 'FIFA', 'PES', 'Football Manager'],
+          10
+        ),
       },
       {
         id: 'blaugrana',
         name: 'Blaugrana',
         colors: ['#1d4ed8', '#991b1b'],
-        categoryId: 'th_mes_clubs_de_sport',
-        categoryTitle: '⚽ Thèmes Clubs de Sport',
-        rule: byCount('4 jeux de Sport', 4),
+        categoryId: 'clubs_sport',
+        categoryTitle: 'Thèmes Clubs de Sport',
+        rule: byGenres(
+          'Football',
+          ['Football', 'Foot', 'Soccer', 'FIFA', 'PES', 'Football Manager'],
+          13
+        ),
       },
       {
         id: 'colchoneros',
         name: 'Colchoneros',
         colors: ['#dc2626', '#ffffff'],
-        categoryId: 'th_mes_clubs_de_sport',
-        categoryTitle: '⚽ Thèmes Clubs de Sport',
-        rule: byCount('5 jeux de Sport', 5),
+        categoryId: 'clubs_sport',
+        categoryTitle: 'Thèmes Clubs de Sport',
+        rule: byGenres(
+          'Football',
+          ['Football', 'Foot', 'Soccer', 'FIFA', 'PES', 'Football Manager'],
+          16
+        ),
       },
       {
         id: 'mia_san_mia',
         name: 'Mia San Mia',
         colors: ['#dc2626', '#ffffff'],
         categoryId: 'clubs_sport',
-        categoryTitle: '⚽ Thèmes Clubs de Sport',
-        rule: byCount('5 jeux de Sport', 5),
+        categoryTitle: 'Thèmes Clubs de Sport',
+        rule: byGenres(
+          'Football',
+          ['Football', 'Foot', 'Soccer', 'FIFA', 'PES', 'Football Manager'],
+          20
+        ),
       },
       {
         id: 'bianconeri',
         name: 'Bianconeri',
         colors: ['#000000', '#ffffff'],
         categoryId: 'clubs_sport',
-        categoryTitle: '⚽ Thèmes Clubs de Sport',
-        rule: byCount('7 jeux de Sport', 7),
+        categoryTitle: 'Thèmes Clubs de Sport',
+        rule: byGenres(
+          'Football',
+          ['Football', 'Foot', 'Soccer', 'FIFA', 'PES', 'Football Manager'],
+          25
+        ),
       },
       {
         id: 'rossoneri',
         name: 'Rossoneri',
         colors: ['#dc2626', '#000000'],
         categoryId: 'clubs_sport',
-        categoryTitle: '⚽ Thèmes Clubs de Sport',
-        rule: byCount('8 jeux de Sport', 8),
+        categoryTitle: 'Thèmes Clubs de Sport',
+        rule: byGenres(
+          'Football',
+          ['Football', 'Foot', 'Soccer', 'FIFA', 'PES', 'Football Manager'],
+          30
+        ),
       },
     ],
   },
-
-  // -------------------------------------------------------------------------
-  // 14. Thèmes Automobile (12) — Famille : Monde Réel
-  // NOTE: ID canonique 'sant_agata' retenu (aligné sur themeData.ts + Supabase).
-  // -------------------------------------------------------------------------
+  // 11. Automobile
   {
     id: 'automobile',
-    title: '🏎️ Thèmes Automobile',
+    title: 'Thèmes Automobile',
     familyId: 'monde_reel',
-    familyTitle: '🌍 Monde Réel',
+    familyTitle: 'Monde Réel',
     themes: [
       {
         id: 'pony_car',
         name: 'Pony Car',
         colors: ['#1e3a8a', '#ef4444'],
-        categoryId: 'th_mes_automobile_marques_iconiques',
-        categoryTitle: '🏎️ Thèmes Automobile (Marques Iconiques)',
-        rule: byCount('1 jeu de Course', 1),
+        categoryId: 'automobile',
+        categoryTitle: 'Thèmes Automobile',
+        rule: byGenres('Course / Auto', ['Course', 'Automobile', 'Racing', 'Voiture'], 1),
       },
       {
         id: 'm_power',
         name: 'M-Power',
         colors: ['#ffffff', '#3b82f6'],
-        categoryId: 'th_mes_automobile_marques_iconiques',
-        categoryTitle: '🏎️ Thèmes Automobile (Marques Iconiques)',
-        rule: byCount('1 jeu de Course', 1),
+        categoryId: 'automobile',
+        categoryTitle: 'Thèmes Automobile',
+        rule: byGenres('Course / Auto', ['Course', 'Automobile', 'Racing', 'Voiture'], 3),
       },
       {
         id: 'quattro',
         name: 'Quattro',
         colors: ['#475569', '#ef4444'],
-        categoryId: 'th_mes_automobile_marques_iconiques',
-        categoryTitle: '🏎️ Thèmes Automobile (Marques Iconiques)',
-        rule: byCount('2 jeux de Course', 2),
+        categoryId: 'automobile',
+        categoryTitle: 'Thèmes Automobile',
+        rule: byGenres('Course / Auto', ['Course', 'Automobile', 'Racing', 'Voiture'], 5),
       },
       {
         id: 'silver_star',
         name: 'Silver Star',
         colors: ['#94a3b8', '#0f172a'],
-        categoryId: 'th_mes_automobile_marques_iconiques',
-        categoryTitle: '🏎️ Thèmes Automobile (Marques Iconiques)',
-        rule: byCount('2 jeux de Course', 2),
+        categoryId: 'automobile',
+        categoryTitle: 'Thèmes Automobile',
+        rule: byGenres('Course / Auto', ['Course', 'Automobile', 'Racing', 'Voiture'], 7),
       },
       {
         id: 'stingray',
         name: 'Stingray',
         colors: ['#ef4444', '#000000'],
-        categoryId: 'th_mes_automobile_marques_iconiques',
-        categoryTitle: '🏎️ Thèmes Automobile (Marques Iconiques)',
-        rule: byCount('3 jeux de Course', 3),
+        categoryId: 'automobile',
+        categoryTitle: 'Thèmes Automobile',
+        rule: byGenres('Course / Auto', ['Course', 'Automobile', 'Racing', 'Voiture'], 10),
       },
       {
         id: 'carrera',
         name: 'Carrera',
         colors: ['#94a3b8', '#ef4444'],
-        categoryId: 'th_mes_automobile_marques_iconiques',
-        categoryTitle: '🏎️ Thèmes Automobile (Marques Iconiques)',
-        rule: byCount('3 jeux de Course', 3),
+        categoryId: 'automobile',
+        categoryTitle: 'Thèmes Automobile',
+        rule: byGenres('Course / Auto', ['Course', 'Automobile', 'Racing', 'Voiture'], 13),
       },
       {
         id: 'rosso_corsa',
         name: 'Rosso Corsa',
         colors: ['#dc2626', '#facc15'],
-        categoryId: 'th_mes_automobile_marques_iconiques',
-        categoryTitle: '🏎️ Thèmes Automobile (Marques Iconiques)',
-        rule: byCount('4 jeux de Course', 4),
+        categoryId: 'automobile',
+        categoryTitle: 'Thèmes Automobile',
+        rule: byGenres('Course / Auto', ['Course', 'Automobile', 'Racing', 'Voiture'], 16),
       },
       {
         id: 'sant_agata',
         name: "Sant'Agata",
         colors: ['#bef264', '#000000'],
-        categoryId: 'th_mes_automobile_marques_iconiques',
-        categoryTitle: '🏎️ Thèmes Automobile (Marques Iconiques)',
-        rule: byCount('5 jeux de Course', 5),
+        categoryId: 'automobile',
+        categoryTitle: 'Thèmes Automobile',
+        rule: byGenres('Course / Auto', ['Course', 'Automobile', 'Racing', 'Voiture'], 20),
       },
       {
         id: 'db_series',
         name: 'DB Series',
         colors: ['#064e3b', '#94a3b8'],
-        categoryId: 'th_mes_automobile_marques_iconiques',
-        categoryTitle: '🏎️ Thèmes Automobile (Marques Iconiques)',
-        rule: byCount('5 jeux de Course', 5),
+        categoryId: 'automobile',
+        categoryTitle: 'Thèmes Automobile',
+        rule: byGenres('Course / Auto', ['Course', 'Automobile', 'Racing', 'Voiture'], 24),
       },
       {
         id: 'flying_b',
         name: 'Flying B',
         colors: ['#14532d', '#fef3c7'],
         categoryId: 'automobile',
-        categoryTitle: '🏎️ Thèmes Automobile',
-        rule: byCount('7 jeux de Course', 7),
+        categoryTitle: 'Thèmes Automobile',
+        rule: byGenres('Course / Auto', ['Course', 'Automobile', 'Racing', 'Voiture'], 28),
       },
       {
         id: 'molsheim',
         name: 'Molsheim',
         colors: ['#1d4ed8', '#000000'],
         categoryId: 'automobile',
-        categoryTitle: '🏎️ Thèmes Automobile',
-        rule: byCount('8 jeux de Course', 8),
+        categoryTitle: 'Thèmes Automobile',
+        rule: byGenres('Course / Auto', ['Course', 'Automobile', 'Racing', 'Voiture'], 33),
       },
       {
         id: 'spirit_of_ecstasy',
         name: 'Spirit of Ecstasy',
         colors: ['#000000', '#f8fafc'],
         categoryId: 'automobile',
-        categoryTitle: '🏎️ Thèmes Automobile',
-        rule: byCount('10 jeux de Course', 10),
-      },
-    ],
-  },
-
-  // -------------------------------------------------------------------------
-  // 15. Thèmes Films & Séries — Classiques (26) — Famille : Cinéma & Séries
-  // -------------------------------------------------------------------------
-  {
-    id: 'films_series_defaut',
-    title: '🍿 Thèmes Films & Séries — Classiques',
-    familyId: 'cinema_series',
-    familyTitle: '🎬 Cinéma & Séries',
-    themes: [
-      {
-        id: 'danger_zone',
-        name: 'Danger Zone',
-        colors: ['#38bdf8', '#ea580c'],
-        categoryId: 'th_mes_films_s_ries_par_d_faut_ou_actions',
-        categoryTitle: '🍿 Thèmes Films & Séries (Par Défaut ou Actions)',
-        rule: byTrophy('theme_neon'),
-      },
-      {
-        id: 'winden',
-        name: 'Winden',
-        colors: ['#475569', '#facc15'],
-        categoryId: 'th_mes_films_s_ries_par_d_faut_ou_actions',
-        categoryTitle: '🍿 Thèmes Films & Séries (Par Défaut ou Actions)',
-        rule: byTrophy('theme_dracula'),
-      },
-      {
-        id: 'berk',
-        name: 'Berk',
-        colors: ['#14532d', '#ef4444'],
-        categoryId: 'th_mes_films_s_ries_par_d_faut_ou_actions',
-        categoryTitle: '🍿 Thèmes Films & Séries (Par Défaut ou Actions)',
-        rule: byTrophy('theme_amethyst'),
-      },
-      {
-        id: 'phone_home',
-        name: 'Phone Home',
-        colors: ['#0f172a', '#ef4444'],
-        categoryId: 'th_mes_films_s_ries_par_d_faut_ou_actions',
-        categoryTitle: '🍿 Thèmes Films & Séries (Par Défaut ou Actions)',
-        rule: byTrophy('appel_maison'),
-      },
-      {
-        id: 'mystery_machine',
-        name: 'Mystery Machine',
-        colors: ['#86efac', '#0ea5e9'],
-        categoryId: 'th_mes_films_s_ries_par_d_faut_ou_actions',
-        categoryTitle: '🍿 Thèmes Films & Séries (Par Défaut ou Actions)',
-        rule: byTrophy('tag_master'),
-      },
-      {
-        id: 'flux',
-        name: 'Flux',
-        colors: ['#e0f2fe', '#000000'],
-        categoryId: 'th_mes_films_s_ries_par_d_faut_ou_actions',
-        categoryTitle: '🍿 Thèmes Films & Séries (Par Défaut ou Actions)',
-        rule: byTrophy('import_export'),
-      },
-      {
-        id: 'street_football',
-        name: 'Street Football',
-        colors: ['#94a3b8', '#facc15'],
-        categoryId: 'th_mes_films_s_ries_par_d_faut_ou_actions',
-        categoryTitle: '🍿 Thèmes Films & Séries (Par Défaut ou Actions)',
-        rule: byTrophy('multi_device'),
-      },
-      {
-        id: 'lasagna',
-        name: 'Lasagna',
-        colors: ['#ea580c', '#000000'],
-        categoryId: 'th_mes_films_s_ries_par_d_faut_ou_actions',
-        categoryTitle: '🍿 Thèmes Films & Séries (Par Défaut ou Actions)',
-        rule: byTrophy('coup_de_foudre'),
-      },
-      {
-        id: 'cambrioleur',
-        name: 'Cambrioleur',
-        colors: ['#000000', '#d4a853'],
-        categoryId: 'th_mes_films_s_ries_par_d_faut_ou_actions',
-        categoryTitle: '🍿 Thèmes Films & Séries (Par Défaut ou Actions)',
-        rule: byTrophy('theme_amethyst'),
-      },
-      {
-        id: 'glade',
-        name: 'Glade',
-        colors: ['#15803d', '#94a3b8'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byTrophy('theme_dune'),
-      },
-      {
-        id: '007',
-        name: '007',
-        colors: ['#000000', '#d4a853'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byTrophy('agent_secret'),
-      },
-      {
-        id: 'manners',
-        name: 'Manners',
-        colors: ['#1e3a8a', '#d4a853'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byTrophy('critique_art'),
-      },
-      {
-        id: 'flight_828',
-        name: 'Flight 828',
-        colors: ['#0f172a', '#94a3b8'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byTrophy('data_analyst'),
-      },
-      {
-        id: 'sarsaparilla',
-        name: 'Sarsaparilla',
-        colors: ['#3b82f6', '#ffffff'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byTrophy('theme_abyss'),
-      },
-      {
-        id: 'potion_magique',
-        name: 'Potion Magique',
-        colors: ['#ef4444', '#15803d'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byTrophy('theme_dune'),
-      },
-      {
-        id: 'reporter',
-        name: 'Reporter',
-        colors: ['#3b82f6', '#451a03'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byTrophy('mon_precieux'),
-      },
-      {
-        id: 'imhotep',
-        name: 'Imhotep',
-        colors: ['#fde047', '#000000'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byFreeCondition('Ajouter 1 jeux Égypte/Momies'),
-      },
-      {
-        id: 'ahkmenrah',
-        name: 'Ahkmenrah',
-        colors: ['#0f172a', '#d4a853'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byFreeCondition('Ajouter 1 jeux Musée/Histoire'),
-      },
-      {
-        id: 'kevin',
-        name: 'Kevin!',
-        colors: ['#ef4444', '#15803d'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byFreeCondition('Ajouter 1 jeu Défense/Pièges'),
-      },
-      {
-        id: 'slappy',
-        name: 'Slappy',
-        colors: ['#84cc16', '#000000'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byFreeCondition('Ajouter 1 jeux Horreur Familiale'),
-      },
-      {
-        id: 'lv_426',
-        name: 'LV-426',
-        colors: ['#84cc16', '#000000'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byFreeCondition('Ajouter 1 jeux Horreur Spatiale'),
-      },
-      {
-        id: 'welcome_to_earth',
-        name: 'Welcome to Earth',
-        colors: ['#0ea5e9', '#84cc16'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byFreeCondition('Ajouter 1 jeux Invasion'),
+        categoryTitle: 'Thèmes Automobile',
+        rule: byGenres('Course / Auto', ['Course', 'Automobile', 'Racing', 'Voiture'], 38),
       },
       {
         id: 'street_racing',
-        name: 'Street Racing',
+        name: 'Toretto Family',
         colors: ['#000000', '#0ea5e9'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byFreeCondition('Ajouter 1 jeux Course Urbaine'),
-      },
-      {
-        id: 'imf',
-        name: 'IMF',
-        colors: ['#000000', '#84cc16'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byFreeCondition('Ajouter 1 jeux Espionnage'),
-      },
-      {
-        id: 'jungle_board',
-        name: 'Jungle Board',
-        colors: ['#15803d', '#d4a853'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byFreeCondition('Ajouter 1 jeux Aventure Jungle'),
-      },
-      {
-        id: 'neuralyzer',
-        name: 'Neuralyzer',
-        colors: ['#000000', '#ffffff'],
-        categoryId: 'films_series_defaut',
-        categoryTitle: '🍿 Thèmes Films & Séries — Classiques',
-        rule: byFreeCondition('Ajouter 1 jeux Extraterrestres'),
+        universe: 'Fast & Furious',
+        categoryId: 'automobile',
+        categoryTitle: 'Thèmes Automobile',
+        rule: byGenres('Course / Auto', ['Course', 'Automobile', 'Racing', 'Voiture'], 45),
       },
     ],
   },
-
-  // -------------------------------------------------------------------------
-  // 16. Thèmes Catastrophes Naturelles (6) — Famille : Monde Réel
-  // -------------------------------------------------------------------------
+  // 12. Catastrophes
   {
     id: 'catastrophes',
-    title: '🌪️ Thèmes Catastrophes Naturelles',
+    title: 'Thèmes Catastrophes Naturelles',
     familyId: 'monde_reel',
-    familyTitle: '🌍 Monde Réel',
+    familyTitle: 'Monde Réel',
     themes: [
       {
         id: 'eruption',
         name: 'Eruption',
         colors: ['#000000', '#ea580c'],
         categoryId: 'catastrophes',
-        categoryTitle: '🌪️ Thèmes Catastrophes Naturelles',
+        categoryTitle: 'Thèmes Catastrophes Naturelles',
         rule: byTrophy('theme_dracula'),
       },
       {
@@ -1710,7 +1549,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Tsunami',
         colors: ['#082f49', '#0ea5e9'],
         categoryId: 'catastrophes',
-        categoryTitle: '🌪️ Thèmes Catastrophes Naturelles',
+        categoryTitle: 'Thèmes Catastrophes Naturelles',
         rule: byTrophy('theme_dracula'),
       },
       {
@@ -1718,7 +1557,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Twister',
         colors: ['#94a3b8', '#000000'],
         categoryId: 'catastrophes',
-        categoryTitle: '🌪️ Thèmes Catastrophes Naturelles',
+        categoryTitle: 'Thèmes Catastrophes Naturelles',
         rule: byTrophy('speedrunner'),
       },
       {
@@ -1726,7 +1565,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Whiteout',
         colors: ['#f8fafc', '#0ea5e9'],
         categoryId: 'catastrophes',
-        categoryTitle: '🌪️ Thèmes Catastrophes Naturelles',
+        categoryTitle: 'Thèmes Catastrophes Naturelles',
         rule: byTrophy('hibernation'),
       },
       {
@@ -1734,7 +1573,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Meteor Strike',
         colors: ['#ef4444', '#facc15'],
         categoryId: 'catastrophes',
-        categoryTitle: '🌪️ Thèmes Catastrophes Naturelles',
+        categoryTitle: 'Thèmes Catastrophes Naturelles',
         rule: byTrophy('impact_massif'),
       },
       {
@@ -1742,33 +1581,1454 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         name: 'Sinkhole',
         colors: ['#000000', '#451a03'],
         categoryId: 'catastrophes',
-        categoryTitle: '🌪️ Thèmes Catastrophes Naturelles',
+        categoryTitle: 'Thèmes Catastrophes Naturelles',
         rule: byTrophy('long_journey'),
+      },
+    ],
+  },
+  // 13. Marvel
+  {
+    id: 'marvel',
+    title: 'Thèmes Marvel',
+    familyId: 'super_heros_animation',
+    familyTitle: 'Super-Héros & Animation',
+    themes: [
+      {
+        id: 'infinity',
+        name: 'The Infinity Gauntlet',
+        colors: ['#450a0a', '#facc15'],
+        universe: 'Marvel',
+        categoryId: 'marvel',
+        categoryTitle: 'Thèmes Marvel',
+        rule: byTrophy('infinity_stones'),
+      },
+      {
+        id: 'web_slinger',
+        name: 'Web-Slinger',
+        colors: ['#ef4444', '#3b82f6'],
+        universe: 'Marvel',
+        categoryId: 'marvel',
+        categoryTitle: 'Thèmes Marvel',
+        rule: byTrophy('spider_web'),
+      },
+      {
+        id: 'stark_tech',
+        name: 'Stark Tech',
+        colors: ['#b91c1c', '#facc15'],
+        universe: 'Marvel',
+        categoryId: 'marvel',
+        categoryTitle: 'Thèmes Marvel',
+        rule: byTrophy('i_am_iron_man'),
+      },
+      {
+        id: 'first_avenger',
+        name: 'First Avenger',
+        colors: ['#1e3a8a', '#ef4444'],
+        universe: 'Marvel',
+        categoryId: 'marvel',
+        categoryTitle: 'Thèmes Marvel',
+        rule: byGame('Marvel', 1),
+      },
+      {
+        id: 'god_of_thunder',
+        name: 'God of Thunder',
+        colors: ['#475569', '#ef4444'],
+        universe: 'Marvel',
+        categoryId: 'marvel',
+        categoryTitle: 'Thèmes Marvel',
+        rule: byGame('Marvel', 3),
+      },
+      {
+        id: 'gamma_smash',
+        name: 'Gamma Smash',
+        colors: ['#14532d', '#7c3aed'],
+        universe: 'Marvel',
+        categoryId: 'marvel',
+        categoryTitle: 'Thèmes Marvel',
+        rule: byGame('Marvel', 5),
+      },
+      {
+        id: 'red_room',
+        name: 'Red Room',
+        colors: ['#000000', '#ef4444'],
+        universe: 'Marvel',
+        categoryId: 'marvel',
+        categoryTitle: 'Thèmes Marvel',
+        rule: byGame('Marvel', 7),
+      },
+      {
+        id: 'weapon_x',
+        name: 'Weapon X',
+        colors: ['#facc15', '#3b82f6'],
+        universe: 'Marvel',
+        categoryId: 'marvel',
+        categoryTitle: 'Thèmes Marvel',
+        rule: byGame('Marvel', 9),
+      },
+      {
+        id: 'wakanda_forever',
+        name: 'The Multiverse',
+        colors: ['#000000', '#8b5cf6'],
+        universe: 'Marvel',
+        categoryId: 'marvel',
+        categoryTitle: 'Thèmes Marvel',
+        rule: byGame('Marvel', 11),
+      },
+      {
+        id: 'sorcerer_supreme',
+        name: 'The Beyonder',
+        colors: ['#1e3a8a', '#ef4444'],
+        universe: 'Marvel',
+        categoryId: 'marvel',
+        categoryTitle: 'Thèmes Marvel',
+        rule: byGame('Marvel', 13),
+      },
+      {
+        id: 'symbiote',
+        name: 'The One Above All',
+        colors: ['#000000', '#ffffff'],
+        universe: 'Marvel',
+        categoryId: 'marvel',
+        categoryTitle: 'Thèmes Marvel',
+        rule: byGame('Marvel', 15),
+      },
+    ],
+  },
+  // 14. DC
+  {
+    id: 'dc',
+    title: 'Thèmes DC',
+    familyId: 'super_heros_animation',
+    familyTitle: 'Super-Héros & Animation',
+    themes: [
+      {
+        id: 'multiverse',
+        name: 'Multiverse',
+        colors: ['#1e3a8a', '#facc15'],
+        universe: 'DC',
+        categoryId: 'dc',
+        categoryTitle: 'Thèmes DC',
+        rule: byTrophy('justice_league'),
+      },
+      {
+        id: 'the_dark_knight',
+        name: 'The Dark Knight',
+        colors: ['#000000', '#facc15'],
+        universe: 'DC',
+        categoryId: 'dc',
+        categoryTitle: 'Thèmes DC',
+        rule: byTrophy('nocturne'),
+      },
+      {
+        id: 'man_of_steel',
+        name: 'Man of Steel',
+        colors: ['#1d4ed8', '#ef4444'],
+        universe: 'DC',
+        categoryId: 'dc',
+        categoryTitle: 'Thèmes DC',
+        rule: byGame('DC', 1),
+      },
+      {
+        id: 'speed_force',
+        name: 'Speed Force',
+        colors: ['#b91c1c', '#facc15'],
+        universe: 'DC',
+        categoryId: 'dc',
+        categoryTitle: 'Thèmes DC',
+        rule: byTrophy('speedrunner'),
+      },
+      {
+        id: 'clown_prince',
+        name: 'Clown Prince',
+        colors: ['#7c3aed', '#22c55e'],
+        universe: 'DC',
+        categoryId: 'dc',
+        categoryTitle: 'Thèmes DC',
+        rule: byGame('DC', 3),
+      },
+      {
+        id: 'arkham_city',
+        name: 'Arkham City',
+        colors: ['#000000', '#3b82f6'],
+        universe: 'DC',
+        categoryId: 'dc',
+        categoryTitle: 'Thèmes DC',
+        rule: byGame('DC', 5),
+      },
+      {
+        id: 'league_of_assassins',
+        name: 'League of Assassins',
+        colors: ['#14532d', '#000000'],
+        universe: 'DC',
+        categoryId: 'dc',
+        categoryTitle: 'Thèmes DC',
+        rule: byGame('DC', 7),
+      },
+      {
+        id: 'krypton_falls',
+        name: 'Anti-Monitor',
+        colors: ['#0f172a', '#3b82f6'],
+        universe: 'DC',
+        categoryId: 'dc',
+        categoryTitle: 'Thèmes DC',
+        rule: byGame('DC', 9),
+      },
+      {
+        id: 'the_mys_terious_dc',
+        name: 'The Presence',
+        colors: ['#7c3aed', '#facc15'],
+        universe: 'DC',
+        categoryId: 'dc',
+        categoryTitle: 'Thèmes DC',
+        rule: byGame('DC', 11),
+      },
+    ],
+  },
+  // 15. Star Wars
+  {
+    id: 'star_wars',
+    title: 'Thèmes Star Wars',
+    familyId: 'super_heros_animation',
+    familyTitle: 'Super-Héros & Animation',
+    themes: [
+      {
+        id: 'galaxy_far_away',
+        name: 'A Galaxy Far, Far Away',
+        colors: ['#000000', '#3b82f6'],
+        universe: 'Star Wars',
+        categoryId: 'star_wars',
+        categoryTitle: 'Thèmes Star Wars',
+        rule: byTrophy('may_the_force'),
+      },
+      {
+        id: 'jedi_order',
+        name: 'The Jedi Order',
+        colors: ['#0f172a', '#3b82f6'],
+        universe: 'Star Wars',
+        categoryId: 'star_wars',
+        categoryTitle: 'Thèmes Star Wars',
+        rule: byGame('Star Wars', 1),
+      },
+      {
+        id: 'sith_empire',
+        name: 'Sith Empire',
+        colors: ['#0f172a', '#dc2626'],
+        universe: 'Star Wars',
+        categoryId: 'star_wars',
+        categoryTitle: 'Thèmes Star Wars',
+        rule: byGame('Star Wars', 2),
+      },
+      {
+        id: 'hutt_cartel',
+        name: 'Hutt Cartel',
+        colors: ['#000000', '#7f1d1d'],
+        universe: 'Star Wars',
+        categoryId: 'star_wars',
+        categoryTitle: 'Thèmes Star Wars',
+        rule: byGame('Star Wars', 4),
+      },
+      {
+        id: 'droid_rebellion',
+        name: 'Droid Rebellion',
+        colors: ['#7c3aed', '#facc15'],
+        universe: 'Star Wars',
+        categoryId: 'star_wars',
+        categoryTitle: 'Thèmes Star Wars',
+        rule: byGame('Star Wars', 6),
+      },
+      {
+        id: 'galactic_empire',
+        name: 'Force Ghost',
+        colors: ['#0f172a', '#3b82f6'],
+        universe: 'Star Wars',
+        categoryId: 'star_wars',
+        categoryTitle: 'Thèmes Star Wars',
+        rule: byGame('Star Wars', 10),
+      },
+      {
+        id: 'the_mys_terious_sw',
+        name: 'The Whills',
+        colors: ['#7c3aed', '#facc15'],
+        universe: 'Star Wars',
+        categoryId: 'star_wars',
+        categoryTitle: 'Thèmes Star Wars',
+        rule: byGame('Star Wars', 15),
+      },
+    ],
+  },
+  // 16. Harry Potter
+  {
+    id: 'harry_potter',
+    title: 'Thèmes Harry Potter',
+    familyId: 'super_heros_animation',
+    familyTitle: 'Super-Héros & Animation',
+    themes: [
+      {
+        id: 'hogwarts',
+        name: 'Hogwarts',
+        colors: ['#7f1d1d', '#d4a853'],
+        universe: 'Harry Potter',
+        categoryId: 'harry_potter',
+        categoryTitle: 'Thèmes Harry Potter',
+        rule: byGame('Harry Potter', 1),
+      },
+      {
+        id: 'diagon_alley',
+        name: 'Diagon Alley',
+        colors: ['#b45309', '#fef3c7'],
+        universe: 'Harry Potter',
+        categoryId: 'harry_potter',
+        categoryTitle: 'Thèmes Harry Potter',
+        rule: byGame('Harry Potter', 3),
+      },
+      {
+        id: 'deathly_hallows',
+        name: 'Les Reliques de la Mort',
+        colors: ['#000000', '#e2e8f0'],
+        universe: 'Harry Potter',
+        categoryId: 'harry_potter',
+        categoryTitle: 'Thèmes Harry Potter',
+        rule: byGame('Harry Potter', 7),
+      },
+      {
+        id: 'the_mys_terious_hp',
+        name: 'The Mys-terious HP',
+        colors: ['#7c3aed', '#facc15'],
+        universe: 'Harry Potter',
+        categoryId: 'harry_potter',
+        categoryTitle: 'Thèmes Harry Potter',
+        rule: byGame('Harry Potter', 10),
+      },
+    ],
+  },
+  // 17. Disney & Pixar
+  {
+    id: 'disney_pixar',
+    title: 'Thèmes Disney & Pixar',
+    familyId: 'super_heros_animation',
+    familyTitle: 'Super-Héros & Animation',
+    themes: [
+      {
+        id: 'andy_s_room',
+        name: "Andy's Room",
+        colors: ['#3b82f6', '#facc15'],
+        universe: 'Toy Story',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres(
+          'Familial / Cozy / Sim',
+          ['Cozy', 'Détente', 'Simulation', 'Familial', 'Enfant'],
+          1
+        ),
+      },
+      {
+        id: 'motunui',
+        name: 'Motunui',
+        colors: ['#0ea5e9', '#fef3c7'],
+        universe: 'Moana',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres(
+          'Familial / Cozy / Sim',
+          ['Cozy', 'Détente', 'Simulation', 'Familial', 'Enfant'],
+          5
+        ),
+      },
+      {
+        id: 'scare_floor',
+        name: 'Scare Floor',
+        colors: ['#3b82f6', '#84cc16'],
+        universe: 'Monsters Inc.',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres(
+          'Familial / Cozy / Sim',
+          ['Cozy', 'Détente', 'Simulation', 'Familial', 'Enfant'],
+          10
+        ),
+      },
+      {
+        id: 'route_66',
+        name: 'Route 66',
+        colors: ['#ef4444', '#000000'],
+        universe: 'Cars',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres(
+          'Familial / Cozy / Sim',
+          ['Cozy', 'Détente', 'Simulation', 'Familial', 'Enfant'],
+          15
+        ),
+      },
+      {
+        id: 'arendelle',
+        name: 'Arendelle',
+        colors: ['#e0f2fe', '#0ea5e9'],
+        universe: 'Frozen',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres(
+          'Familial / Cozy / Sim',
+          ['Cozy', 'Détente', 'Simulation', 'Familial', 'Enfant'],
+          20
+        ),
+      },
+      {
+        id: 'eac',
+        name: 'East Australian Current',
+        colors: ['#082f49', '#ea580c'],
+        universe: 'Le Monde de Nemo',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres('Disney / Pixar', ['Disney', 'Pixar'], 1),
+      },
+      {
+        id: 'agrabah',
+        name: 'Agrabah',
+        colors: ['#4c1d95', '#d4a853'],
+        universe: 'Aladdin',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres(
+          'Familial / Cozy / Sim',
+          ['Cozy', 'Détente', 'Simulation', 'Familial', 'Enfant'],
+          30
+        ),
+      },
+      {
+        id: 'pride_rock',
+        name: 'Pride Rock',
+        colors: ['#ea580c', '#facc15'],
+        universe: 'Le Roi Lion',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres('Disney / Pixar', ['Disney', 'Pixar'], 3),
+      },
+      {
+        id: 'headquarters',
+        name: 'Quartier Général',
+        colors: ['#facc15', '#3b82f6'],
+        universe: 'Vice-Versa',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres(
+          'Familial / Cozy / Sim',
+          ['Cozy', 'Détente', 'Simulation', 'Familial', 'Enfant'],
+          40
+        ),
+      },
+      {
+        id: 'enchanted_rose',
+        name: 'Enchanted Rose',
+        colors: ['#d4a853', '#1e3a8a'],
+        universe: 'La Belle et la Bête',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres(
+          'Familial / Cozy / Sim',
+          ['Cozy', 'Détente', 'Simulation', 'Familial', 'Enfant'],
+          50
+        ),
+      },
+      {
+        id: 'dragon_warrior',
+        name: 'Dragon Warrior',
+        colors: ['#991b1b', '#d4a853'],
+        universe: 'Mulan',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres(
+          'Familial / Cozy / Sim',
+          ['Cozy', 'Détente', 'Simulation', 'Familial', 'Enfant'],
+          75
+        ),
+      },
+      {
+        id: 'paradise_falls',
+        name: 'Paradise Falls',
+        colors: ['#3b82f6', '#22c55e'],
+        universe: 'Là-Haut',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres(
+          'Familial / Cozy / Sim',
+          ['Cozy', 'Détente', 'Simulation', 'Familial', 'Enfant'],
+          100
+        ),
+      },
+      {
+        id: 'gusteau_s',
+        name: "Gusteau's",
+        colors: ['#b45309', '#ffffff'],
+        universe: 'Ratatouille',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres(
+          'Familial / Cozy / Sim',
+          ['Cozy', 'Détente', 'Simulation', 'Familial', 'Enfant'],
+          125
+        ),
+      },
+      {
+        id: 'axiom',
+        name: 'Axiom',
+        colors: ['#9a3412', '#4ade80'],
+        universe: 'WALL-E',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres('Disney / Pixar', ['Disney', 'Pixar'], 5),
+      },
+      {
+        id: 'olympus',
+        name: 'Mount Olympus',
+        colors: ['#fef3c7', '#d4a853'],
+        universe: 'Hercule',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres(
+          'Familial / Cozy / Sim',
+          ['Cozy', 'Détente', 'Simulation', 'Familial', 'Enfant'],
+          150
+        ),
+      },
+      {
+        id: 'neverland',
+        name: 'Neverland',
+        colors: ['#15803d', '#d4a853'],
+        universe: 'Peter Pan',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres(
+          'Familial / Cozy / Sim',
+          ['Cozy', 'Détente', 'Simulation', 'Familial', 'Enfant'],
+          200
+        ),
+      },
+      {
+        id: 'bella_notte',
+        name: 'Bella Notte',
+        colors: ['#991b1b', '#0f172a'],
+        universe: 'La Belle et le Clochard',
+        categoryId: 'disney_pixar',
+        categoryTitle: 'Thèmes Disney & Pixar',
+        rule: byGenres('Disney / Pixar', ['Disney', 'Pixar'], 8),
+      },
+    ],
+  },
+  // 18. Animation
+  {
+    id: 'animation',
+    title: 'Thèmes Animation & Dessin Animé',
+    familyId: 'super_heros_animation',
+    familyTitle: 'Super-Héros & Animation',
+    themes: [
+      {
+        id: 'berk',
+        name: 'Berk',
+        colors: ['#14532d', '#ef4444'],
+        universe: 'Dragons',
+        categoryId: 'animation',
+        categoryTitle: 'Thèmes Animation & Dessin Animé',
+        rule: byTrophy('theme_amethyst'),
+      },
+      {
+        id: 'mystery_machine',
+        name: 'Mystery Machine',
+        colors: ['#86efac', '#0ea5e9'],
+        universe: 'Scooby-Doo',
+        categoryId: 'animation',
+        categoryTitle: 'Thèmes Animation & Dessin Animé',
+        rule: byTrophy('tag_master'),
+      },
+      {
+        id: 'street_football',
+        name: 'Foot 2 Rue',
+        colors: ['#94a3b8', '#facc15'],
+        universe: 'Foot 2 Rue',
+        categoryId: 'animation',
+        categoryTitle: 'Thèmes Animation & Dessin Animé',
+        rule: byTrophy('multi_device'),
+      },
+      {
+        id: 'lasagna',
+        name: 'Lasagna',
+        colors: ['#ea580c', '#000000'],
+        universe: 'Garfield',
+        categoryId: 'animation',
+        categoryTitle: 'Thèmes Animation & Dessin Animé',
+        rule: byTrophy('coup_de_foudre'),
+      },
+      {
+        id: 'sarsaparilla',
+        name: 'Sarsaparilla',
+        colors: ['#3b82f6', '#ffffff'],
+        universe: 'Les Schtroumpfs',
+        categoryId: 'animation',
+        categoryTitle: 'Thèmes Animation & Dessin Animé',
+        rule: byTrophy('theme_abyss'),
+      },
+      {
+        id: 'potion_magique',
+        name: 'Potion Magique',
+        colors: ['#ef4444', '#15803d'],
+        universe: 'Astérix',
+        categoryId: 'animation',
+        categoryTitle: 'Thèmes Animation & Dessin Animé',
+        rule: byTrophy('theme_dune'),
+      },
+      {
+        id: 'reporter',
+        name: 'Daily Planet',
+        colors: ['#3b82f6', '#451a03'],
+        universe: 'Superman',
+        categoryId: 'animation',
+        categoryTitle: 'Thèmes Animation & Dessin Animé',
+        rule: byTrophy('mon_precieux'),
+      },
+      {
+        id: 'once_upon_a_dream',
+        name: 'Once Upon a Dream',
+        colors: ['#ec4899', '#3b82f6'],
+        universe: 'La Belle au Bois Dormant',
+        categoryId: 'animation',
+        categoryTitle: 'Thèmes Animation & Dessin Animé',
+        rule: byTrophy('retro_gamer'),
+      },
+      {
+        id: 'luxo',
+        name: 'Luxo Jr.',
+        colors: ['#3b82f6', '#facc15'],
+        universe: 'Pixar',
+        categoryId: 'animation',
+        categoryTitle: 'Thèmes Animation & Dessin Animé',
+        rule: byGame('Pixar', 1),
+      },
+      {
+        id: 'flux',
+        name: 'Flux',
+        colors: ['#e0f2fe', '#000000'],
+        universe: 'Galactik Football',
+        categoryId: 'animation',
+        categoryTitle: 'Thèmes Animation & Dessin Animé',
+        rule: byTrophy('import_export'),
+      },
+    ],
+  },
+  // 19. Films & Séries — Culte
+  {
+    id: 'films_series_culte',
+    title: 'Thèmes Films & Séries — Culte',
+    familyId: 'cinema_series',
+    familyTitle: 'Cinéma & Séries',
+    themes: [
+      {
+        id: 'hawkins_lab',
+        name: 'Hawkins Lab',
+        colors: ['#f8fafc', '#3b82f6'],
+        universe: 'Stranger Things',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 1),
+      },
+      {
+        id: 'nypd',
+        name: 'NYPD',
+        colors: ['#1e3a8a', '#ffffff'],
+        universe: 'Die Hard',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 3),
+      },
+      {
+        id: 'maverick',
+        name: 'Maverick',
+        colors: ['#1e3a8a', '#ef4444'],
+        universe: 'Top Gun',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 5),
+      },
+      {
+        id: 'lisan_al_gaib',
+        name: 'Lisan al Gaib',
+        colors: ['#3b82f6', '#facc15'],
+        universe: 'Dune',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 10),
+      },
+
+      {
+        id: 'hellfire_club',
+        name: 'The Hellfire Club',
+        colors: ['#7f1d1d', '#000000'],
+        universe: 'Stranger Things',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 15),
+      },
+      {
+        id: 'yippee_ki_yay',
+        name: 'Yippee-Ki-Yay',
+        colors: ['#ef4444', '#000000'],
+        universe: 'Die Hard',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 20),
+      },
+      {
+        id: 'mach_10',
+        name: 'Mach 10',
+        colors: ['#000000', '#facc15'],
+        universe: 'Top Gun',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 25),
+      },
+      {
+        id: 'shai_hulud',
+        name: 'Shai-Hulud',
+        colors: ['#451a03', '#ea580c'],
+        universe: 'Dune',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 30),
+      },
+
+      {
+        id: 'upside_down',
+        name: 'Upside Down',
+        colors: ['#020617', '#ef4444'],
+        universe: 'Stranger Things',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 40),
+      },
+      {
+        id: 'nakatomi',
+        name: 'Nakatomi Plaza',
+        colors: ['#334155', '#ea580c'],
+        universe: 'Die Hard',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 50),
+      },
+      {
+        id: 'danger_zone',
+        name: 'Danger Zone',
+        colors: ['#38bdf8', '#ea580c'],
+        universe: 'Top Gun',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 75),
+      },
+      {
+        id: 'arrakis',
+        name: 'Arrakis',
+        colors: ['#d97706', '#3b82f6'],
+        universe: 'Dune',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 100),
+      },
+
+      {
+        id: 'delorean',
+        name: 'DeLorean DMC-12',
+        colors: ['#94a3b8', '#0ea5e9'],
+        universe: 'Retour vers le Futur',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byTrophy('voyage_temps'),
+      },
+      {
+        id: 'gargantua',
+        name: 'Gargantua',
+        colors: ['#000000', '#eab308'],
+        universe: 'Interstellar',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 125),
+      },
+      {
+        id: 'unsinkable',
+        name: 'Unsinkable',
+        colors: ['#082f49', '#f8fafc'],
+        universe: 'Titanic',
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byGenres('Action / Aventure', ['Action', 'Aventure', 'Action-Aventure'], 150),
+      },
+      {
+        id: 'phone_home',
+        name: 'E.T. Phone Home',
+        colors: ['#0f172a', '#ef4444'],
+        universe: "E.T. l'Extra-Terrestre",
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: byTrophy('appel_maison'),
+      },
+      {
+        id: 'kevin',
+        name: 'Kevin!',
+        colors: ['#ef4444', '#15803d'],
+        universe: "Maman, j'ai raté l'avion",
+        categoryId: 'films_series_culte',
+        categoryTitle: 'Thèmes Films & Séries — Culte',
+        rule: seasonal('Événnementielle'),
+      },
+    ],
+  },
+  // 20. Films & Séries — Divers
+  {
+    id: 'films_series_divers',
+    title: 'Thèmes Films & Séries — Divers',
+    familyId: 'cinema_series',
+    familyTitle: 'Cinéma & Séries',
+    themes: [
+      {
+        id: 'red_pill',
+        name: 'Red Pill',
+        colors: ['#020617', '#22c55e'],
+        universe: 'Matrix',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byTrophy('bug_hunter'),
+      },
+      {
+        id: 'baker_street',
+        name: 'Baker Street',
+        colors: ['#1e293b', '#d4a853'],
+        universe: 'Sherlock Holmes',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byTrophy('encyclopedie'),
+      },
+      {
+        id: 'central_perk',
+        name: 'Central Perk',
+        colors: ['#0f172a', '#ea580c'],
+        universe: 'Friends',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byGenres('Aventure / Histoire', ['Aventure', 'Histoire', 'Interactif'], 1),
+      },
+      {
+        id: 'winterfell',
+        name: 'Winterfell',
+        colors: ['#f8fafc', '#000000'],
+        universe: 'Game of Thrones',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byGenres('Aventure / Histoire', ['Aventure', 'Histoire', 'Interactif'], 5),
+      },
+      {
+        id: 'tardis',
+        name: 'TARDIS',
+        colors: ['#1e3a8a', '#ffffff'],
+        universe: 'Doctor Who',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byGenres('Aventure / Histoire', ['Aventure', 'Histoire', 'Interactif'], 10),
+      },
+      {
+        id: 'walkers',
+        name: 'Walkers',
+        colors: ['#1c1917', '#dc2626'],
+        universe: 'The Walking Dead',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byGenres('Aventure / Histoire', ['Aventure', 'Histoire', 'Interactif'], 15),
+      },
+      {
+        id: 'breaking_bad',
+        name: 'Heisenberg',
+        colors: ['#14532d', '#facc15'],
+        universe: 'Breaking Bad',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byGenres('Aventure / Histoire', ['Aventure', 'Histoire', 'Interactif'], 20),
+      },
+      {
+        id: 'starfleet',
+        name: 'Starfleet',
+        colors: ['#0f172a', '#facc15'],
+        universe: 'Star Trek',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byGenres('Aventure / Histoire', ['Aventure', 'Histoire', 'Interactif'], 30),
+      },
+      {
+        id: 'peaky',
+        name: 'Peaky Blinders',
+        colors: ['#1e293b', '#94a3b8'],
+        universe: 'Peaky Blinders',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byGenres('Aventure / Histoire', ['Aventure', 'Histoire', 'Interactif'], 50),
+      },
+      {
+        id: 'jungle_board',
+        name: 'Jungle Board',
+        colors: ['#15803d', '#d4a853'],
+        universe: 'Jumanji',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byGenres('Aventure / Jungle', ['Aventure', 'Jungle', 'Exploration'], 75),
+      },
+      {
+        id: 'replicant',
+        name: 'Replicant',
+        colors: ['#020617', '#0ea5e9'],
+        universe: 'Blade Runner',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byGenres(
+          'Science-Fiction',
+          ['Science-Fiction', 'Sci-Fi', 'Dystopie', 'Cyberpunk'],
+          10
+        ),
+      },
+      {
+        id: 'skynet',
+        name: 'Skynet',
+        colors: ['#000000', '#ef4444'],
+        universe: 'Terminator',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byGenres(
+          'Science-Fiction',
+          ['Science-Fiction', 'Sci-Fi', 'Dystopie', 'Cyberpunk'],
+          20
+        ),
+      },
+      {
+        id: 'proton_pack',
+        name: 'Proton Pack',
+        colors: ['#000000', '#84cc16'],
+        universe: 'Ghostbusters',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byGenres(
+          'Science-Fiction',
+          ['Science-Fiction', 'Sci-Fi', 'Dystopie', 'Cyberpunk'],
+          30
+        ),
+      },
+      {
+        id: 'cambrioleur',
+        name: 'Cambrioleur',
+        colors: ['#000000', '#d4a853'],
+        universe: 'Lupin',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byTrophy('theme_amethyst'),
+      },
+      {
+        id: 'winden',
+        name: 'Winden',
+        colors: ['#475569', '#facc15'],
+        universe: 'Dark',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: byTrophy('theme_dracula'),
+      },
+    ],
+  },
+  // 21. Espionnage & Infiltration
+  {
+    id: 'espionnage',
+    title: 'Thèmes Espionnage & Infiltration',
+    familyId: 'cinema_series',
+    familyTitle: 'Cinéma & Séries',
+    themes: [
+      {
+        id: '007_classic',
+        name: '007',
+        colors: ['#000000', '#ffffff'],
+        universe: 'James Bond',
+        categoryId: 'espionnage',
+        categoryTitle: 'Thèmes Espionnage & Infiltration',
+        rule: byTrophy('agent_secret'),
+      },
+      {
+        id: 'shadow_agent',
+        name: 'Shadow Agent',
+        colors: ['#020617', '#dc2626'],
+        categoryId: 'espionnage',
+        categoryTitle: 'Thèmes Espionnage & Infiltration',
+        rule: byGenres(
+          'Infiltration / Espionnage',
+          ['Infiltration', 'Espionnage', 'Stealth', 'Furtivité'],
+          1
+        ),
+      },
+      {
+        id: 'spectre',
+        name: 'Spectre',
+        colors: ['#000000', '#94a3b8'],
+        categoryId: 'espionnage',
+        categoryTitle: 'Thèmes Espionnage & Infiltration',
+        rule: byTrophy('shortcut_expert'),
+      },
+      {
+        id: 'imf',
+        name: 'IMF Protocol',
+        colors: ['#1e293b', '#3b82f6'],
+        categoryId: 'espionnage',
+        categoryTitle: 'Thèmes Espionnage & Infiltration',
+        rule: byGenres(
+          'Infiltration / Espionnage',
+          ['Infiltration', 'Espionnage', 'Stealth', 'Furtivité'],
+          3
+        ),
+      },
+      {
+        id: 'kingsman',
+        name: 'Kingsman',
+        colors: ['#451a03', '#d4a853'],
+        categoryId: 'espionnage',
+        categoryTitle: 'Thèmes Espionnage & Infiltration',
+        rule: byGenres(
+          'Infiltration / Espionnage',
+          ['Infiltration', 'Espionnage', 'Stealth', 'Furtivité'],
+          5
+        ),
+      },
+      {
+        id: 'splinter',
+        name: 'Splinter',
+        colors: ['#000000', '#22c55e'],
+        categoryId: 'espionnage',
+        categoryTitle: 'Thèmes Espionnage & Infiltration',
+        rule: byGenres(
+          'Infiltration / Espionnage',
+          ['Infiltration', 'Espionnage', 'Stealth', 'Furtivité'],
+          10
+        ),
+      },
+      {
+        id: 'syndicate',
+        name: 'The Syndicate',
+        colors: ['#1c1917', '#ef4444'],
+        categoryId: 'espionnage',
+        categoryTitle: 'Thèmes Espionnage & Infiltration',
+        rule: byGenres(
+          'Infiltration / Espionnage',
+          ['Infiltration', 'Espionnage', 'Stealth', 'Furtivité'],
+          15
+        ),
+      },
+      {
+        id: 'echelon',
+        name: 'Echelon',
+        colors: ['#082f49', '#0ea5e9'],
+        categoryId: 'espionnage',
+        categoryTitle: 'Thèmes Espionnage & Infiltration',
+        rule: byGenres(
+          'Infiltration / Espionnage',
+          ['Infiltration', 'Espionnage', 'Stealth', 'Furtivité'],
+          20
+        ),
+      },
+      {
+        id: 'ghost_protocol',
+        name: 'Ghost Protocol',
+        colors: ['#0f172a', '#facc15'],
+        categoryId: 'espionnage',
+        categoryTitle: 'Thèmes Espionnage & Infiltration',
+        rule: byGenres(
+          'Infiltration / Espionnage',
+          ['Infiltration', 'Espionnage', 'Stealth', 'Furtivité'],
+          30
+        ),
+      },
+      {
+        id: 'black_ops',
+        name: 'Black Ops',
+        colors: ['#000000', '#ffffff'],
+        categoryId: 'espionnage',
+        categoryTitle: 'Thèmes Espionnage & Infiltration',
+        rule: byGenres(
+          'Infiltration / Espionnage',
+          ['Infiltration', 'Espionnage', 'Stealth', 'Furtivité'],
+          50
+        ),
+      },
+    ],
+  },
+  // 22. Extraterrestres
+  {
+    id: 'extraterrestres',
+    title: 'Thèmes Extraterrestres',
+    familyId: 'cinema_series',
+    familyTitle: 'Cinéma & Séries',
+    themes: [
+      {
+        id: 'i_want_to_believe',
+        name: 'I Want to Believe',
+        colors: ['#020617', '#22c55e'],
+        universe: 'X-Files',
+        categoryId: 'extraterrestres',
+        categoryTitle: 'Thèmes Extraterrestres',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk', 'Alien'],
+          1
+        ),
+      },
+      {
+        id: 'xenomorph',
+        name: 'Xenomorph',
+        colors: ['#000000', '#22c55e'],
+        universe: 'Alien',
+        categoryId: 'extraterrestres',
+        categoryTitle: 'Thèmes Extraterrestres',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk', 'Alien'],
+          5
+        ),
+      },
+      {
+        id: 'mothership',
+        name: 'Mothership',
+        colors: ['#1e293b', '#3b82f6'],
+        universe: 'Independence Day',
+        categoryId: 'extraterrestres',
+        categoryTitle: 'Thèmes Extraterrestres',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk', 'Alien'],
+          10
+        ),
+      },
+      {
+        id: 'roswell',
+        name: 'Roswell',
+        colors: ['#1c1917', '#4ade80'],
+        categoryId: 'extraterrestres',
+        categoryTitle: 'Thèmes Extraterrestres',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk', 'Alien'],
+          15
+        ),
+      },
+      {
+        id: 'area_51',
+        name: 'Area 51',
+        colors: ['#0f172a', '#eab308'],
+        categoryId: 'extraterrestres',
+        categoryTitle: 'Thèmes Extraterrestres',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk', 'Alien'],
+          20
+        ),
+      },
+      {
+        id: 'third_kind',
+        name: 'Third Kind',
+        colors: ['#082f49', '#f8fafc'],
+        categoryId: 'extraterrestres',
+        categoryTitle: 'Thèmes Extraterrestres',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk', 'Alien'],
+          30
+        ),
+      },
+      {
+        id: 'the_invasion',
+        name: 'The Invasion',
+        colors: ['#000000', '#ef4444'],
+        categoryId: 'extraterrestres',
+        categoryTitle: 'Thèmes Extraterrestres',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk', 'Alien'],
+          40
+        ),
+      },
+      {
+        id: 'men_in_black',
+        name: 'Men in Black',
+        colors: ['#000000', '#ffffff'],
+        universe: 'Men in Black',
+        categoryId: 'extraterrestres',
+        categoryTitle: 'Thèmes Extraterrestres',
+        rule: byGenres(
+          'Science-Fiction / Espace',
+          ['Science-Fiction', 'Espace', 'Sci-Fi', 'Futuriste', 'Cyberpunk', 'Alien'],
+          50
+        ),
+      },
+    ],
+  },
+  // 23. Univers & Littérature
+  {
+    id: 'univers_litterature',
+    title: 'Thèmes Univers & Littérature',
+    familyId: 'cinema_series',
+    familyTitle: 'Cinéma & Séries',
+    themes: [
+      {
+        id: 'middle_earth',
+        name: 'Middle-Earth',
+        colors: ['#14532d', '#d4a853'],
+        universe: 'Le Seigneur des Anneaux',
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Fantasy / Magie',
+          ['Fantasy', 'Magie', 'Magic', 'Fantastique', 'Mythe', 'Mythologie'],
+          1
+        ),
+      },
+      {
+        id: 'narnia',
+        name: 'Narnia',
+        colors: ['#f8fafc', '#0ea5e9'],
+        universe: 'Le Monde de Narnia',
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Fantasy / Magie',
+          ['Fantasy', 'Magie', 'Magic', 'Fantastique', 'Mythe', 'Mythologie'],
+          5
+        ),
+      },
+      {
+        id: 'westeros',
+        name: 'Westeros',
+        colors: ['#450a0a', '#94a3b8'],
+        universe: 'Game of Thrones',
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Fantasy / Magie',
+          ['Fantasy', 'Magie', 'Magic', 'Fantastique', 'Mythe', 'Mythologie'],
+          10
+        ),
+      },
+      {
+        id: 'discworld',
+        name: 'Discworld',
+        colors: ['#3b82f6', '#facc15'],
+        universe: 'Les Annales du Disque-Monde',
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Fantasy / Magie',
+          ['Fantasy', 'Magie', 'Magic', 'Fantastique', 'Mythe', 'Mythologie'],
+          15
+        ),
+      },
+      {
+        id: 'wonderland',
+        name: 'Wonderland',
+        colors: ['#ec4899', '#f8fafc'],
+        universe: 'Alice au Pays des Merveilles',
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Fantasy / Magie',
+          ['Fantasy', 'Magie', 'Magic', 'Fantastique', 'Mythe', 'Mythologie'],
+          20
+        ),
+      },
+      {
+        id: 'camelot',
+        name: 'Camelot',
+        colors: ['#1e293b', '#d4a853'],
+        universe: 'Légende Arthurienne',
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Fantasy / Magie',
+          ['Fantasy', 'Magie', 'Magic', 'Fantastique', 'Mythe', 'Mythologie'],
+          30
+        ),
+      },
+      {
+        id: 'valhalla',
+        name: 'Valhalla',
+        colors: ['#0f172a', '#e2e8f0'],
+        universe: 'Mythologie Nordique',
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Fantasy / Magie',
+          ['Fantasy', 'Magie', 'Magic', 'Fantastique', 'Mythe', 'Mythologie'],
+          50
+        ),
+      },
+      {
+        id: 'dune',
+        name: 'Spice Melange',
+        colors: ['#b45309', '#3b82f6'],
+        universe: 'Dune',
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Science-Fiction',
+          ['Science-Fiction', 'Sci-Fi', 'Dystopie', 'Cyberpunk'],
+          1
+        ),
+      },
+      {
+        id: 'cyber_sprawl',
+        name: 'Cyber Sprawl',
+        colors: ['#020617', '#00f0ff'],
+        universe: 'Neuromancien',
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Science-Fiction',
+          ['Science-Fiction', 'Sci-Fi', 'Dystopie', 'Cyberpunk'],
+          5
+        ),
+      },
+      {
+        id: 'cthulhu_mythos',
+        name: 'Cthulhu Mythos',
+        colors: ['#064e3b', '#000000'],
+        universe: "L'Appel de Cthulhu",
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Science-Fiction',
+          ['Science-Fiction', 'Sci-Fi', 'Dystopie', 'Cyberpunk'],
+          10
+        ),
+      },
+      {
+        id: 'foundation',
+        name: 'Foundation',
+        colors: ['#1e293b', '#e2e8f0'],
+        universe: 'Fondation',
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Science-Fiction',
+          ['Science-Fiction', 'Sci-Fi', 'Dystopie', 'Cyberpunk'],
+          15
+        ),
+      },
+      {
+        id: 'fahrenheit',
+        name: 'Fahrenheit',
+        colors: ['#7f1d1d', '#ea580c'],
+        universe: 'Fahrenheit 451',
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Science-Fiction',
+          ['Science-Fiction', 'Sci-Fi', 'Dystopie', 'Cyberpunk'],
+          20
+        ),
+      },
+      {
+        id: 'brave_new_world',
+        name: 'Brave New World',
+        colors: ['#f8fafc', '#3b82f6'],
+        universe: 'Le Meilleur des Mondes',
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Science-Fiction',
+          ['Science-Fiction', 'Sci-Fi', 'Dystopie', 'Cyberpunk'],
+          30
+        ),
+      },
+      {
+        id: 'solaris',
+        name: 'Solaris',
+        colors: ['#000000', '#06b6d4'],
+        universe: 'Solaris',
+        categoryId: 'univers_litterature',
+        categoryTitle: 'Thèmes Univers & Littérature',
+        rule: byGenres(
+          'Science-Fiction',
+          ['Science-Fiction', 'Sci-Fi', 'Dystopie', 'Cyberpunk'],
+          50
+        ),
+      },
+    ],
+  },
+  // 24. Transformers
+  {
+    id: 'transformers',
+    title: 'Thèmes Transformers',
+    familyId: 'super_heros_animation',
+    familyTitle: 'Super-Héros & Animation',
+    themes: [
+      {
+        id: 'autobots',
+        name: 'Autobots',
+        colors: ['#dc2626', '#3b82f6'],
+        universe: 'Transformers',
+        categoryId: 'transformers',
+        categoryTitle: 'Thèmes Transformers',
+        rule: byGame('Transformers', 1),
+      },
+      {
+        id: 'decepticons',
+        name: 'Decepticons',
+        colors: ['#4c1d95', '#a855f7'],
+        universe: 'Transformers',
+        categoryId: 'transformers',
+        categoryTitle: 'Thèmes Transformers',
+        rule: byGame('Transformers', 2),
+      },
+      {
+        id: 'cybertron',
+        name: 'Cybertron',
+        colors: ['#94a3b8', '#38bdf8'],
+        universe: 'Transformers',
+        categoryId: 'transformers',
+        categoryTitle: 'Thèmes Transformers',
+        rule: byGame('Transformers', 3),
+      },
+      {
+        id: 'the_mys_terious_tf',
+        name: 'The Mys-terious TF',
+        colors: ['#facc15', '#ef4444'],
+        universe: 'Transformers',
+        categoryId: 'transformers',
+        categoryTitle: 'Thèmes Transformers',
+        rule: byGame('Transformers', 5),
+      },
+    ],
+  },
+  // 25. Dystopie
+  {
+    id: 'dystopie',
+    title: 'Thèmes Dystopie',
+    familyId: 'cinema_series',
+    familyTitle: 'Cinéma & Séries',
+    themes: [
+      {
+        id: 'glade',
+        name: 'Glade',
+        colors: ['#4d7c0f', '#78716c'],
+        universe: 'Le Labyrinthe',
+        categoryId: 'dystopie',
+        categoryTitle: 'Thèmes Survie & Dystopie',
+        rule: byTrophy('theme_dune'),
+      },
+      {
+        id: 'panem',
+        name: 'Panem',
+        colors: ['#ca8a04', '#52525b'],
+        universe: 'Hunger Games',
+        categoryId: 'dystopie',
+        categoryTitle: 'Thèmes Survie & Dystopie',
+        rule: byGenres('Survie / Battle Royale', ['Survie', 'Battle Royale', 'Survival'], 1),
       },
     ],
   },
 ]
 
-// ---------------------------------------------------------------------------
-// Helpers publics
-// ---------------------------------------------------------------------------
-
-/** Retourne la liste plate de tous les thèmes */
-export function getAllThemes(): ThemeEntry[] {
-  return THEME_REGISTRY.flatMap((cat) => cat.themes)
-}
-
-/** Retourne un thème par son ID (undefined si introuvable) */
-export function getThemeById(id: string): ThemeEntry | undefined {
-  return getAllThemes().find((t) => t.id === id)
-}
-
-/** Retourne la règle de déblocage d'un thème par son ID (undefined si introuvable) */
-export function getThemeRule(id: string): ThemeUnlockRule | undefined {
-  return getThemeById(id)?.rule
-}
-
-/** Retourne la liste des catégories (structure complète pour admin et site public) */
-export function getThemeCategories(): ThemeCategoryEntry[] {
-  return THEME_REGISTRY
-}
+export const getAllThemes = (): ThemeEntry[] => THEME_REGISTRY.flatMap((c) => c.themes)

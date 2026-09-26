@@ -1,4 +1,11 @@
-export const handleSaveProfileAsync = async (form: any, user: any, updateProfile: any, showError: any, showUpdated: any) => {
+export const handleSaveProfileAsync = async (
+  form: any,
+  user: any,
+  updateProfile: any,
+  showError: any,
+  showUpdated: any,
+  showInfo: any
+) => {
   try {
     const formData = new FormData()
 
@@ -14,9 +21,9 @@ export const handleSaveProfileAsync = async (form: any, user: any, updateProfile
       formData.append('image', form.imageFile)
     }
     const updatedUser = await updateProfile(user?.id, formData)
-    
+
     if (form.email && form.email !== user?.email) {
-      showUpdated('Un lien de confirmation a été envoyé à votre nouvelle adresse email.', 'Info')
+      showInfo('Un lien de confirmation a été envoyé à votre nouvelle adresse email.')
     } else {
       showUpdated('Votre profil')
     }
@@ -24,13 +31,16 @@ export const handleSaveProfileAsync = async (form: any, user: any, updateProfile
     return updatedUser
   } catch (err: any) {
     console.error('Erreur lors de la mise à jour du profil :', err)
-    
-    if (err?.message?.includes('New password should be different from the old password') || err?.message?.includes('different from the old password')) {
+
+    if (
+      err?.message?.includes('New password should be different from the old password') ||
+      err?.message?.includes('different from the old password')
+    ) {
       showError("Le nouveau mot de passe doit être différent de l'ancien.")
     } else {
       showError('Une erreur est survenue lors de la mise à jour.')
     }
-    
+
     throw err
   }
 }
@@ -93,7 +103,7 @@ export const getInitialProfileForm = (user: any) => {
   return {
     firstname: user?.firstname || '',
     lastname: user?.lastname || '',
-    username: (user?.username && user.username !== user.email) ? user.username : '',
+    username: user?.username && user.username !== user.email ? user.username : '',
     email: user?.email || '',
     password: '',
     confirmPassword: '',

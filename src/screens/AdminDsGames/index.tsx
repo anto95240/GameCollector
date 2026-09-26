@@ -1,47 +1,49 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import './AdminDsGames.css'
+
 import {
-  DndContext,
-  DragOverlay,
   closestCorners,
+  DndContext,
+  DragEndEvent,
+  DragOverlay,
+  DragStartEvent,
   KeyboardSensor,
   PointerSensor,
+  useDraggable,
+  useDroppable,
   useSensor,
   useSensors,
-  DragStartEvent,
-  DragEndEvent,
-  useDroppable,
-  useDraggable,
 } from '@dnd-kit/core'
 import {
-  sortableKeyboardCoordinates,
   SortableContext,
-  verticalListSortingStrategy,
+  sortableKeyboardCoordinates,
   useSortable,
+  verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  faGamepad,
-  faSearch,
-  faTimes,
-  faSpinner,
+  faComment as faCommentRegular,
+  faStar as faStarRegular,
+} from '@fortawesome/free-regular-svg-icons'
+import {
   faChevronDown,
   faChevronUp,
-  faPlus,
-  faStar as faStarSolid,
-  faEdit,
-  faGripLines,
-  faTrash,
   faComment as faCommentSolid,
+  faEdit,
   faFileExport,
+  faGripLines,
+  faPlus,
+  faSearch,
+  faSpinner,
+  faStar as faStarSolid,
+  faTimes,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons'
-import {
-  faStar as faStarRegular,
-  faComment as faCommentRegular,
-} from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Link } from 'react-router'
+
 import dsGamesData from '@/data/ds_games.json'
-import { searchExternalGames, getExternalGameDetails } from '@/services/externalApiService'
 import type { ExternalGameDetails } from '@/services/externalApiService'
-import './AdminDsGames.css'
+import { getExternalGameDetails, searchExternalGames } from '@/services/externalApiService'
 
 const DEFAULT_GENRES = [
   'Action',
@@ -70,7 +72,7 @@ const DEFAULT_GENRES = [
   'FPS / TPS',
 ].sort()
 
-export const mapIgdbGenreToLocal = (igdbG: string): string => {
+const mapIgdbGenreToLocal = (igdbG: string): string => {
   const g = igdbG.toLowerCase()
   if (g.includes('role-playing') || g.includes('rpg')) return 'RPG'
   if (g.includes('adventure')) return 'Aventure'
@@ -156,7 +158,7 @@ const DraggableGameItem = ({
     : undefined
 
   // Remove tabIndex to prevent browser from auto-scrolling to the element when focus is restored after drop
-  const { tabIndex, ...restAttributes } = (attributes || {}) as any
+  const { tabIndex: _tabIndex, ...restAttributes } = (attributes || {}) as any
 
   return (
     <div
@@ -479,7 +481,7 @@ const AdminDsGames: React.FC = () => {
   // Keep localDsGames in sync with dsGamesData if it reloads via HMR
   useEffect(() => {
     setLocalDsGames(dsGamesData as GameItem[])
-  }, [dsGamesData])
+  }, [])
 
   const [activeGame, setActiveGame] = useState<GameItem | null>(null)
   const [selectedGame, setSelectedGame] = useState<GameItem | null>(null)
@@ -491,13 +493,6 @@ const AdminDsGames: React.FC = () => {
     () => Array.from(new Set(dsGames.map((g) => g.theme))).sort(),
     [dsGames]
   )
-
-  const playedCommentedGamesCount = useMemo(() => {
-    return dsGames.filter(
-      (g) =>
-        gamesStatus[g.id] === 'played' && gameComments[g.id] && gameComments[g.id].trim() !== ''
-    ).length
-  }, [dsGames, gamesStatus, gameComments])
 
   const uniquePreviousComments = useMemo(() => {
     const commentsSet = new Set<string>()
@@ -833,12 +828,8 @@ const AdminDsGames: React.FC = () => {
     document.body.removeChild(link)
   }
 
-  const allThemesList = useMemo(() => {
-    if (filter === 'played') {
-      return Array.from(new Set([...allThemes, ...createdThemes])).sort()
-    }
-    return allThemes
-  }, [allThemes, createdThemes, filter])
+  const allThemesList =
+    filter === 'played' ? Array.from(new Set([...allThemes, ...createdThemes])).sort() : allThemes
 
   const groupedGames = useMemo(() => {
     const groups: Record<string, { unplayed: GameItem[]; played: GameItem[]; a_voir: GameItem[] }> =
@@ -1013,7 +1004,12 @@ const AdminDsGames: React.FC = () => {
   return (
     <div className="admin-ds-games">
       <div className="header-actions">
-        <h1>Gestionnaire Nintendo DS</h1>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <Link to="/admin" className="admin-back-link">
+            ← Retour à l'administration
+          </Link>
+          <h1>Gestionnaire Nintendo DS</h1>
+        </div>
         <div className="filters-container">
           <div className="status-filters">
             <button

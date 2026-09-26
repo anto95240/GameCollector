@@ -1,6 +1,6 @@
 import './AdminThemeWelcome.css'
 
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 
 import { THEME_CATEGORIES_DATA } from '@/config/themeData'
@@ -105,8 +105,8 @@ export default function AdminThemeWelcome() {
   return (
     <div className="admin-theme-welcome">
       <header className="admin-header">
-        <Link to="/admin" className="back-button">
-          ← Retour
+        <Link to="/admin" className="admin-back-link">
+          ← Retour à l'administration
         </Link>
         <h1>🎬 Sandbox Animations de Bienvenue</h1>
         <p>Testez les écrans immersifs au moment de l'équipement d'un thème.</p>

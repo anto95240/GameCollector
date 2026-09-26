@@ -5,10 +5,10 @@ import { useToast } from '@/context'
 import { useAuth } from '@/context/AuthContext'
 import { useApiAuth } from '@/hooks/api/useApiAuth'
 import {
-    getInitialProfileForm,
-    handleDeleteAccountAsync,
-    handleDownloadUserData,
-    handleSaveProfileAsync,
+  getInitialProfileForm,
+  handleDeleteAccountAsync,
+  handleDownloadUserData,
+  handleSaveProfileAsync,
 } from '@/hooks/domains/auth/utils/profileHandlers'
 import { triggerAchievementCheck } from '@/services/achievementService'
 import { incrementStoredUserMetric } from '@/utils/userStorage'
@@ -20,7 +20,7 @@ export const useProfile = () => {
   const { user, profile, refreshProfile } = useAuth()
   const mergedUser = user && profile ? { ...profile, ...user } : user
   const { updateProfile, deleteAccount, logout } = useApiAuth()
-  const { showSuccess, showError, showUpdated, showDeleted } = useToast()
+  const { showSuccess, showError, showUpdated, showDeleted, showInfo } = useToast()
 
   const [form, setForm] = useState(() => getInitialProfileForm(mergedUser))
 
@@ -43,18 +43,24 @@ export const useProfile = () => {
     setForm(getInitialProfileForm(mergedUser))
   }
 
-  const handleSaveProfile = async (type: 'all' | 'email' | 'password' | 'firstname' | 'lastname' | 'username' | 'avatar' = 'all') => {
+  const handleSaveProfile = async (
+    type: 'all' | 'email' | 'password' | 'firstname' | 'lastname' | 'username' | 'avatar' = 'all'
+  ) => {
     setIsSaving(true)
     try {
       const validationErrors = validateProfile(form)
-      
-      let relevantErrors = validationErrors;
-      if (type === 'email') relevantErrors = { email: validationErrors.email };
-      else if (type === 'password') relevantErrors = { password: validationErrors.password, confirmPassword: validationErrors.confirmPassword };
-      else if (type === 'firstname') relevantErrors = { firstname: validationErrors.firstname };
-      else if (type === 'lastname') relevantErrors = { lastname: validationErrors.lastname };
-      else if (type === 'username') relevantErrors = { username: validationErrors.username };
-      else if (type === 'avatar') relevantErrors = {}; // No string validation for avatar
+
+      let relevantErrors = validationErrors
+      if (type === 'email') relevantErrors = { email: validationErrors.email }
+      else if (type === 'password')
+        relevantErrors = {
+          password: validationErrors.password,
+          confirmPassword: validationErrors.confirmPassword,
+        }
+      else if (type === 'firstname') relevantErrors = { firstname: validationErrors.firstname }
+      else if (type === 'lastname') relevantErrors = { lastname: validationErrors.lastname }
+      else if (type === 'username') relevantErrors = { username: validationErrors.username }
+      else if (type === 'avatar') relevantErrors = {} // No string validation for avatar
 
       const firstError = getFirstValidationError(relevantErrors)
       if (firstError) {
@@ -62,20 +68,21 @@ export const useProfile = () => {
         return
       }
 
-      let payload: any = { ...form };
-      if (type === 'email') payload = { email: form.email };
-      else if (type === 'password') payload = { password: form.password };
-      else if (type === 'firstname') payload = { firstname: form.firstname };
-      else if (type === 'lastname') payload = { lastname: form.lastname };
-      else if (type === 'username') payload = { username: form.username };
-      else if (type === 'avatar') payload = { imageFile: form.imageFile };
+      let payload: any = { ...form }
+      if (type === 'email') payload = { email: form.email }
+      else if (type === 'password') payload = { password: form.password }
+      else if (type === 'firstname') payload = { firstname: form.firstname }
+      else if (type === 'lastname') payload = { lastname: form.lastname }
+      else if (type === 'username') payload = { username: form.username }
+      else if (type === 'avatar') payload = { imageFile: form.imageFile }
 
       await handleSaveProfileAsync(
         payload,
         mergedUser,
         updateProfile,
         showError,
-        showUpdated
+        showUpdated,
+        showInfo
       )
 
       if (refreshProfile) refreshProfile()
@@ -83,19 +90,26 @@ export const useProfile = () => {
       triggerAchievementCheck()
 
       setForm((prev: any) => ({ ...prev, password: '', confirmPassword: '' }))
-      
+
       if (type === 'email') setUiState((prev: any) => ({ ...prev, showEmailForm: false }))
-      else if (type === 'password') setUiState((prev: any) => ({ ...prev, showPasswordForm: false }))
-      else if (type === 'firstname') setUiState((prev: any) => ({ ...prev, showFirstnameForm: false }))
-      else if (type === 'lastname') setUiState((prev: any) => ({ ...prev, showLastnameForm: false }))
-      else if (type === 'username') setUiState((prev: any) => ({ ...prev, showUsernameForm: false }))
+      else if (type === 'password')
+        setUiState((prev: any) => ({ ...prev, showPasswordForm: false }))
+      else if (type === 'firstname')
+        setUiState((prev: any) => ({ ...prev, showFirstnameForm: false }))
+      else if (type === 'lastname')
+        setUiState((prev: any) => ({ ...prev, showLastnameForm: false }))
+      else if (type === 'username')
+        setUiState((prev: any) => ({ ...prev, showUsernameForm: false }))
       else {
         setUiState((prev: any) => ({
-          ...prev, showEmailForm: false, showPasswordForm: false,
-          showFirstnameForm: false, showLastnameForm: false, showUsernameForm: false
+          ...prev,
+          showEmailForm: false,
+          showPasswordForm: false,
+          showFirstnameForm: false,
+          showLastnameForm: false,
+          showUsernameForm: false,
         }))
       }
-      
     } catch (err: any) {
       console.error(err)
     } finally {

@@ -43,6 +43,17 @@ export default function AdminIndex() {
           </p>
         </Link>
 
+        <Link to="/admin/data-editor" className="admin-card">
+          <div className="admin-card-icon">
+            <span>📊</span>
+          </div>
+          <h2>Éditeur de Données</h2>
+          <p>
+            Importez un fichier CSV (comme votre historique de jeux), visualisez, modifiez et
+            ré-exportez facilement.
+          </p>
+        </Link>
+
         <Link to="/admin/ds-games" className="admin-card">
           <div className="admin-card-icon">
             <span>🎮</span>

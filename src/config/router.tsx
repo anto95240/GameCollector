@@ -26,6 +26,7 @@ const TropheesPage = lazy(() => import('../screens/Trophees'))
 const WelcomePage = lazy(() => import('../screens/Welcome'))
 const SettingsPage = lazy(() => import('../screens/Settings'))
 const SandboxThemesPage = lazy(() => import('../screens/SandboxThemes'))
+const AdminDataEditorPage = lazy(() => import('../screens/AdminDataEditor'))
 const AdminIndexPage = lazy(() => import('../screens/AdminIndex'))
 const ThemePreviewPage = lazy(() => import('../screens/ThemePreview'))
 const ThemesGalleryPage = lazy(() => import('../screens/ThemesGallery'))
@@ -199,6 +200,14 @@ const router = createBrowserRouter([
             ),
           },
           {
+            path: '/admin/data-editor',
+            element: (
+              <SuspenseWrapper>
+                <AdminDataEditorPage />
+              </SuspenseWrapper>
+            ),
+          },
+          {
             path: '/admin/theme-preview',
             element: (
               <SuspenseWrapper>
@@ -230,7 +239,6 @@ const router = createBrowserRouter([
               </SuspenseWrapper>
             ),
           },
-
         ],
       },
     ],

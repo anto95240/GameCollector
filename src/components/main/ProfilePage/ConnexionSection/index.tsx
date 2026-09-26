@@ -65,10 +65,8 @@ const ConnexionSection = ({
               style={{ color: 'var(--text-link)', marginTop: '2px', flexShrink: 0 }}
             />
             <span>
-              Deux emails de confirmation seront envoyés : un à votre{' '}
-              <strong>ancienne adresse</strong> pour valider le changement, et un à votre{' '}
-              <strong>nouvelle adresse</strong> pour confirmer. Le changement ne sera effectif
-              qu'après confirmation des deux.
+              Un email de confirmation sera envoyé à votre <strong>nouvelle adresse</strong>. Le
+              changement ne sera effectif qu'après avoir cliqué sur le lien de confirmation.
             </span>
           </div>
 

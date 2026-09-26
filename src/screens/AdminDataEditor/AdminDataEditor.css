@@ -1,0 +1,153 @@
+.admin-editor-container {
+  padding: 2rem;
+  color: #f8fafc;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.admin-editor-header {
+  margin-bottom: 2rem;
+}
+
+.admin-editor-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.admin-editor-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.admin-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.admin-btn.primary {
+  background: #3b82f6;
+  color: white;
+}
+.admin-btn.primary:hover {
+  background: #2563eb;
+}
+
+.admin-btn.success {
+  background: #22c55e;
+  color: white;
+}
+.admin-btn.success:hover {
+  background: #16a34a;
+}
+
+.admin-btn.danger {
+  background: #ef4444;
+  color: white;
+}
+.admin-btn.danger:hover {
+  background: #dc2626;
+}
+
+.admin-btn.small {
+  padding: 0.5rem;
+}
+
+.admin-editor-table-wrapper {
+  background: rgba(30, 41, 59, 0.7);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+.admin-editor-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.admin-editor-table th {
+  text-align: left;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.8);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.admin-editor-table td {
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.admin-editor-input {
+  width: 100%;
+  min-width: 120px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+}
+
+.admin-editor-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.admin-editor-actions-cell {
+  width: 50px;
+  text-align: center;
+}
+
+.add-row {
+  background: transparent;
+  color: #3b82f6;
+  border: 1px dashed #3b82f6;
+  width: 100%;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.add-row:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.admin-editor-empty {
+  text-align: center;
+  padding: 4rem;
+  background: rgba(30, 41, 59, 0.4);
+  border-radius: 1rem;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  color: #94a3b8;
+}
+
+.admin-editor-table th.sticky-col,
+.admin-editor-table td.sticky-col {
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background: #1e293b; /* Fallback opaque color */
+  border-right: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-editor-table th.sticky-col {
+  z-index: 11;
+  background: #0f172a;
+}
