@@ -84,7 +84,7 @@
   transition: all 0.2s ease;
 }
 
-.theme-preview-btn:hover:not(:disabled) {
+.theme-preview-btn:not(.apply):hover:not(:disabled) {
   background: var(--bg-input);
 }
 
@@ -95,12 +95,14 @@
 
 .theme-preview-btn.apply {
   background: var(--brand-primary);
-  color: var(--text-inverse);
+  /* color is set via inline style in the component for correct contrast per theme */
   border: none;
 }
 
 .theme-preview-btn.apply:hover {
-  filter: brightness(1.1);
+  /* Slightly darken using opacity overlay to preserve the correct inline text color */
+  opacity: 0.88;
+  transform: translateY(-1px);
 }
 
 .theme-preview-card.active .theme-preview-btn.apply {

@@ -156,7 +156,7 @@
 }
 
 /* --- PRESETS (Surcharges) --- */
-[data-preset='cyberpunk'] {
+[data-preset='arctic_neon'] {
   --text-inverse: #000000;
   --font-family-title: 'Orbitron', sans-serif;
   --font-size-title-boost: 1.1em; /* Légère augmentation des titres */
@@ -184,7 +184,7 @@
   );
 }
 
-[data-preset='dracula'] {
+[data-preset='lava'] {
   --text-inverse: #ffffff;
   --font-family-title: 'Cinzel Decorative', serif;
   --bg-app: #120007; /* Bordeaux très sombre, plus dramatique */
@@ -211,7 +211,7 @@
   );
 }
 
-[data-preset='abyss'] {
+[data-preset='midnight_ocean'] {
   --text-inverse: #000000;
   --font-family-title: 'Exo 2', sans-serif;
   --bg-app: #000d18; /* Noir abyssal, profond des mers */
@@ -238,7 +238,7 @@
   );
 }
 
-[data-preset='dune'] {
+[data-preset='ember'] {
   --font-family-title: 'Josefin Slab', serif;
   --bg-app: #f5e8c8; /* Sable chaud, plus désertique */
   --bg-panel: rgba(245, 232, 200, 0.97);
@@ -266,7 +266,7 @@
   );
 }
 
-[data-preset='amethyst'] {
+[data-preset='emerald_city'] {
   --text-inverse: #ffffff;
   --font-family-title: 'Philosopher', serif;
   --bg-app: #0a0218; /* Violet noir minéral */

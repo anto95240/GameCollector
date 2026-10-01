@@ -3,7 +3,7 @@ import './AdminDataEditor.css'
 import { faFileExport, faFileImport, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Papa from 'papaparse'
-import React, { useRef,useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router'
 
 export default function AdminDataEditor() {
@@ -11,6 +11,41 @@ export default function AdminDataEditor() {
   const [headers, setHeaders] = useState<string[]>([])
   const [fileName, setFileName] = useState('data.csv')
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const STORAGE_KEY = 'admin_data_editor_save'
+
+  // Load from local storage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved)
+        if (parsed.data && parsed.headers && parsed.fileName) {
+          setData(parsed.data)
+          setHeaders(parsed.headers)
+          setFileName(parsed.fileName)
+        }
+      } catch (err) {
+        console.error('Failed to parse saved editor data', err)
+      }
+    }
+  }, [])
+
+  // Save to local storage whenever data changes
+  useEffect(() => {
+    if (data.length > 0 || headers.length > 0) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ data, headers, fileName }))
+    }
+  }, [data, headers, fileName])
+
+  const handleClearData = () => {
+    if (window.confirm('Voulez-vous vraiment effacer toutes les données ?')) {
+      setData([])
+      setHeaders([])
+      setFileName('data.csv')
+      localStorage.removeItem(STORAGE_KEY)
+    }
+  }
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -82,9 +117,14 @@ export default function AdminDataEditor() {
           </button>
 
           {data.length > 0 && (
-            <button className="admin-btn success" onClick={handleExport}>
-              <FontAwesomeIcon icon={faFileExport} /> Exporter CSV
-            </button>
+            <>
+              <button className="admin-btn success" onClick={handleExport}>
+                <FontAwesomeIcon icon={faFileExport} /> Exporter CSV
+              </button>
+              <button className="admin-btn danger" onClick={handleClearData}>
+                <FontAwesomeIcon icon={faTrash} /> Vider
+              </button>
+            </>
           )}
         </div>
       </header>

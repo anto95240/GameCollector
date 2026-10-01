@@ -288,12 +288,14 @@ tags: les tags du jeu
 
 | Idée | Description courte |
 |---|---|
-| 📤 **Export de collection** | Exporter sa collection en CSV, JSON ou PDF stylisé (carte de visite du collectionneur) |
+| 📤 **Export/import de collection** | Exporter/importé sa collection en CSV, JSON ou PDF stylisé (carte de visite du collectionneur) |
 | 🔔 **Notifications in-app** | Centre de notifications pour les trophées débloqués, sorties de jeux wishlistés, mises à jour |
 | 📅 **Calendrier de sorties** | Intégrer un calendrier des prochaines sorties liées aux jeux de la Wishlist |
 | 🔍 **Recommandations** | Suggérer des jeux à ajouter basés sur les genres et plateformes déjà présents dans la collection |
 | **Ajout de sons** | Ajout de sons pour les actions de l'utilisateur (ajout de jeu, suppression de jeu, etc.). Ajouter un bouton pour activer/désactiver les sons. Ajout de sons d'ambiance pour chaque thème. |
-| **Raccourci  clavier** | amélioré les raccourcis clavier, une meilleures personnalisation (possibilité de désactiver/activer certains raccourcis clavier), et une documentation meilleure. pour certain les afficher dans les endroits où il y a les raccourcis. Par exemple, dans la page de gestion des jeux, il y a 'Ajouter un jeu' et 'Ajouter des jeux' avec le raccourci clavier. Pour 'Ajouter un jeu', il y a le raccourci clavier 'n'. Mais ca ne m'est jamais indiquer qu'il y a ce raccourci clavier pour 'Ajouter un jeu'. C'est plutot intuitif mais il faudrait l'indiquer, du moins pour les plus complexes. mettre une meilleures visibilité sur les raccourcis clavier et une documentation meilleures. |
-| **Mise à jour automatique** | automatiser l'ajout des jeux de la wishlist à la collection quand ils sont sortis (ca doit fonctionner avec les jeux imports et les jeux ajoutés manuellement) |
-| **Tracker de progression** | Créer une interface pour suivre le déblocage des thèmes via les jeux (ex: une page "Quêtes" ou "Récompenses") |
-| **Theme** | mettre en place les nouveaux thèmes
+| **Raccourci  clavier** | amélioré les raccourcis clavier, une meilleures personnalisation (possibilité de désactiver/activer certains raccourcis clavier), et une documentation meilleure. pour certain les afficher dans les endroits où il y a les raccourcis. Par exemple, dans la page de gestion des jeux, il y a 'Ajouter un jeu' et 'Ajouter des jeux' avec le raccourci clavier. Pour 'Ajouter un jeu', il y a le raccourci clavier 'n'. Mais ca ne m'est jamais indiquer qu'il y a ce raccourci clavier pour 'Ajouter un jeu'. C'est plutot intuitif mais il faudrait l'indiquer, du moins pour les plus complexes. mettre une meilleures visibilité sur les raccourcis clavier et une documentation meilleures. En mettre si necessaire afin que ceux existant nativement puisse être utilisé sans problème lié aux raccourci du site. |
+| **Mise à jour automatique** | automatiser l'ajout des jeux de la wishlist à la collection quand ils sont sortis (ca doit fonctionner avec les jeux imports et les jeux ajoutés manuellement) mais aussi gardé la main si jamais il sort a une date mais qu'on commence a jouer plus tard ou qu'on la comme cadeau. |
+✅| **Tracker de progression** | Créer une interface pour suivre le déblocage des thèmes via les jeux (ex: une page "Quêtes" ou "Récompenses") |
+✅| **Theme** | mettre en place de nouveaux thèmes
+| **jout du champ "universe"** | affichage du champ universe dans le front
+| **Annonce in app** | l'ajout d'annonce dans l'app notamment lors de grosse maj ou autre, c'est interessant ?

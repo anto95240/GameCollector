@@ -26,6 +26,20 @@ const mapShortcutToRow = (shortcut: any, userId: string) => ({
   updated_at: new Date().toISOString(),
 })
 
+const LOCAL_STORAGE_KEY = 'offline_shortcuts'
+
+const getLocalShortcuts = () => {
+  try {
+    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]')
+  } catch {
+    return []
+  }
+}
+
+const saveLocalShortcuts = (shortcuts: any[]) => {
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(shortcuts))
+}
+
 export const useApiShortcuts = () => {
   const [shortcuts, setShortcuts] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
@@ -35,6 +49,16 @@ export const useApiShortcuts = () => {
     setLoading(true)
     setError(null)
     try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+
+      if (!user) {
+        const local = getLocalShortcuts()
+        setShortcuts(local)
+        return local
+      }
+
       const { data, error } = await supabase.from('shortcuts').select('*')
 
       if (error) throw error
@@ -58,7 +82,27 @@ export const useApiShortcuts = () => {
         const {
           data: { user },
         } = await supabase.auth.getUser()
-        if (!user) throw new Error('Non connecté')
+
+        if (!user) {
+          const local = getLocalShortcuts()
+          const existingIndex = local.findIndex((s: any) => s.action === actionId)
+          const newBindingWithEnabled = {
+            action: actionId,
+            ...newBinding,
+            isEnabled: newBinding.isEnabled !== false,
+          }
+
+          if (existingIndex >= 0) {
+            local[existingIndex] = newBindingWithEnabled
+          } else {
+            local.push(newBindingWithEnabled)
+          }
+
+          saveLocalShortcuts(local)
+          const updatedShortcuts = await getShortcuts()
+          keyboardShortcutsService.loadCustomBindings(updatedShortcuts)
+          return updatedShortcuts
+        }
 
         const row = mapShortcutToRow(
           { action: actionId, ...newBinding, isEnabled: newBinding.isEnabled !== false },
@@ -93,7 +137,30 @@ export const useApiShortcuts = () => {
         const {
           data: { user },
         } = await supabase.auth.getUser()
-        if (!user) throw new Error('Non connecté')
+
+        if (!user) {
+          const local = getLocalShortcuts()
+          const existing = local.find((s: any) => s.action === actionId)
+
+          if (existing) {
+            existing.isEnabled = !existing.isEnabled
+          } else {
+            const defaultShortcut = getHardcodedDefaults().find((d: any) => d.action === actionId)
+            local.push({
+              action: actionId,
+              key: defaultShortcut?.key || '',
+              ctrlKey: defaultShortcut?.ctrlKey || false,
+              altKey: defaultShortcut?.altKey || false,
+              shiftKey: defaultShortcut?.shiftKey || false,
+              isEnabled: false,
+            })
+          }
+
+          saveLocalShortcuts(local)
+          const updatedShortcuts = await getShortcuts()
+          keyboardShortcutsService.loadCustomBindings(updatedShortcuts)
+          return updatedShortcuts
+        }
 
         // Chercher si le raccourci existe déjà en BDD
         const existing = shortcuts.find((s: any) => s.action === actionId)
@@ -149,7 +216,15 @@ export const useApiShortcuts = () => {
         const {
           data: { user },
         } = await supabase.auth.getUser()
-        if (!user) throw new Error('Non connecté')
+
+        if (!user) {
+          const local = getLocalShortcuts()
+          const filtered = local.filter((s: any) => s.action !== actionId)
+          saveLocalShortcuts(filtered)
+          const updatedShortcuts = await getShortcuts()
+          keyboardShortcutsService.loadCustomBindings(updatedShortcuts)
+          return updatedShortcuts
+        }
 
         const { error } = await supabase
           .from('shortcuts')
@@ -180,7 +255,13 @@ export const useApiShortcuts = () => {
       const {
         data: { user },
       } = await supabase.auth.getUser()
-      if (!user) throw new Error('Non connecté')
+
+      if (!user) {
+        saveLocalShortcuts([])
+        setShortcuts([])
+        keyboardShortcutsService.loadCustomBindings([])
+        return []
+      }
 
       const { error } = await supabase.from('shortcuts').delete().eq('user_id', user.id)
 
