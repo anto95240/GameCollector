@@ -11,6 +11,7 @@ export interface ThemeDB {
   id: string
   id_name: string
   display_name: string
+  universe: string | null
   unlock_type: 'default' | 'achievement' | 'collection' | 'date'
   required_achievement_id_name: string | null
   required_item_count: number | null
@@ -51,6 +52,7 @@ export const useThemeUnlocks = () => {
             id: 'neon_night',
             id_name: 'neon_night',
             display_name: 'Neon Night',
+            universe: null,
             unlock_type: 'default',
             required_achievement_id_name: null,
             required_item_count: null,
@@ -64,6 +66,7 @@ export const useThemeUnlocks = () => {
             id: 'arctic_day',
             id_name: 'arctic_day',
             display_name: 'Arctic Day',
+            universe: null,
             unlock_type: 'default',
             required_achievement_id_name: null,
             required_item_count: null,

@@ -16,6 +16,7 @@ export interface ThemeInfo {
   id: string
   name: string
   colors: string[]
+  universe?: string
 }
 
 export interface ThemeCategory {
@@ -41,5 +42,6 @@ export const THEME_CATEGORIES_DATA: ThemeCategory[] = THEME_REGISTRY.map((cat) =
     id: t.id,
     name: t.name,
     colors: t.colors,
+    universe: t.universe,
   })),
 }))
