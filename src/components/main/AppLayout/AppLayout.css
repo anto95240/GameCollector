@@ -4,7 +4,8 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  background-color: var(--bg-app);
+  /* Transparent : le fond vient de body (bg-app), les animations sont visibles */
+  background-color: transparent;
 }
 
 .return-top {

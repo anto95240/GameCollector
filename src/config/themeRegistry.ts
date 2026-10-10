@@ -199,7 +199,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         colors: ['#020617', '#10b981'],
         categoryId: 'classiques',
         categoryTitle: 'Thèmes Classiques',
-        rule: byTrophy('theme_neon'),
+        rule: byTrophy('dashboard_architect'),
       },
       {
         id: 'desert_night',
@@ -2538,9 +2538,18 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         categoryTitle: 'Thèmes Films & Séries — Divers',
         rule: byTrophy('theme_dracula'),
       },
+      {
+        id: 'slappy',
+        name: 'Slappy',
+        colors: ['#0d0d0d', '#22c55e'],
+        universe: 'chair-de-poule',
+        categoryId: 'films_series_divers',
+        categoryTitle: 'Thèmes Films & Séries — Divers',
+        rule: seasonal('Événnementielle'),
+      },
     ],
   },
-  // 21. Espionnage & Infiltration
+
   {
     id: 'espionnage',
     title: 'Thèmes Espionnage & Infiltration',

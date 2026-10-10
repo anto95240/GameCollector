@@ -15,6 +15,7 @@ import { useAuth } from '@/context/AuthContext'
 import { useApiShortcuts } from '@/hooks/api/useApiShortcuts'
 import { useAchievementTracker } from '@/hooks/domains/achievements/useAchievementTracker'
 import keyboardShortcutsService from '@/services/keyboardShortcutsService'
+import { ThemeAnimationLayer } from '@/theme-animations'
 
 function App() {
   useAchievementTracker()
@@ -34,6 +35,7 @@ function App() {
   return (
     <ErrorBoundary>
       <div id="app-container" className="app-container">
+        <ThemeAnimationLayer />
         <RouterProvider router={router} />
         <KeyboardShortcutsProvider />
         <AchievementToast />

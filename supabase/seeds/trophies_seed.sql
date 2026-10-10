@@ -1,39 +1,70 @@
--- Seed pour les Trophées (achievements) de GameCollector
+﻿-- Seed pour les Trophées (achievements) de GameCollector
+-- Fichier généré automatiquement pour synchroniser avec themeRegistry.ts
 
-INSERT INTO achievements (id_name, title, description, icon, category, rarity, is_implemented, is_theme_unlocker)
+TRUNCATE TABLE achievements CASCADE;
+
+INSERT INTO achievements (id_name, title, description, rarity, category, is_implemented, is_theme_unlocker, is_hidden)
 VALUES
-  -- 1. Action Trophies (Déjà implémentés ou basiques)
-  ('spider_web', 'Spider-Sense', 'Faire 10 clics très rapides n''importe où.', '🕸️', 'action', 'bronze', true, true),
-  ('appel_maison', 'Appel Maison', 'Cliquer sur le logo de l''application depuis le Dashboard.', '👽', 'action', 'bronze', true, true),
-  ('agent_secret', 'Agent Secret', 'Se connecter à l''application depuis un mobile.', '🕶️', 'action', 'or', true, true),
-  ('rage_quit', 'Rage Quit', 'Supprimer un jeu de sa collection.', '💥', 'action', 'bronze', true, true),
-  
-  -- 2. Collection Trophies (Liés au contenu)
-  ('cozy_farmer', 'Cozy Farmer', 'Ajouter 5 jeux de simulation de ferme/cozy.', '🧑‍🌾', 'collection', 'argent', false, true),
-  ('tycoon_master', 'Tycoon Master', 'Ajouter 5 jeux de gestion/tycoon.', '💼', 'collection', 'argent', false, true),
-  ('zookeeper', 'Zookeeper', 'Ajouter 5 jeux avec des animaux/zoos.', '🦁', 'collection', 'bronze', false, true),
-  ('city_mayor', 'Maire de la Ville', 'Ajouter 5 jeux de city-builder.', '🏙️', 'collection', 'argent', false, true),
-  ('mon_precieux', 'Mon Précieux', 'Ajouter un jeu valant plus de 100€ (ou édition collector).', '💍', 'collection', 'or', false, true),
-  ('coup_de_foudre', 'Coup de Foudre', 'Mettre la note de 20/20 à 5 jeux différents.', '⚡', 'collection', 'argent', true, true),
-  ('critique_art', 'Critique d''Art', 'Écrire 10 critiques détaillées (commentaires).', '🎨', 'collection', 'argent', true, true),
-  ('data_analyst', 'Data Analyst', 'Créer 3 filtres sauvegardés différents.', '📊', 'collection', 'argent', true, true),
-  ('impact_massif', 'Impact Massif', 'Ajouter 10 jeux en une seule journée.', '☄️', 'collection', 'argent', false, true),
-  ('long_journey', 'Long Voyage', 'Accumuler plus de 1000 heures de jeu au total.', '🗺️', 'collection', 'or', false, true),
-  ('tag_master', 'Maître des Tags', 'Créer et assigner 10 tags personnalisés.', '🏷️', 'collection', 'bronze', false, true),
-  ('import_export', 'Import/Export', 'Importer une liste de jeux depuis un CSV.', '📦', 'action', 'argent', false, true),
-  ('multi_device', 'Multi-Device', 'Se connecter depuis 3 appareils différents.', '📱', 'action', 'or', false, true),
-  
-  -- 3. Event Trophies (Saisonniers, etc.)
-  ('season_spring', 'Bourgeon', 'Ouvrir l''application au Printemps.', '🌱', 'event', 'bronze', true, true),
-  ('season_summer', 'Canicule', 'Ouvrir l''application en Été.', '☀️', 'event', 'bronze', true, true),
-  ('season_autumn', 'Chute des feuilles', 'Ouvrir l''application en Automne.', '🍂', 'event', 'bronze', true, true),
-  ('season_winter', 'Flocon givré', 'Ouvrir l''application en Hiver.', '❄️', 'event', 'bronze', true, true),
-  ('event_halloween', 'Des bonbons ou un sort', 'Se connecter en Octobre/Novembre.', '🎃', 'event', 'argent', true, true),
-  ('event_christmas', 'Père Noël', 'Se connecter en Décembre/Janvier.', '🎄', 'event', 'argent', true, true),
-  ('event_easter', 'Chasse aux oeufs', 'Se connecter à Pâques.', '🐰', 'event', 'argent', true, true),
-  ('event_epiphanie', 'La Fève', 'Se connecter à l''Epiphanie.', '👑', 'event', 'argent', true, true),
-  ('event_chandeleur', 'Maître Crêpier', 'Se connecter à la Chandeleur.', '🥞', 'event', 'argent', true, true)
+  ('theme_amethyst', 'theme amethyst', 'Débloquer le trophée theme_amethyst.', 'bronze', 'collection', false, true, false),
+  ('theme_abyss', 'theme abyss', 'Débloquer le trophée theme_abyss.', 'bronze', 'collection', false, true, false),
+  ('theme_dune', 'theme dune', 'Débloquer le trophée theme_dune.', 'bronze', 'collection', false, true, false),
+  ('theme_cyberpunk', 'theme cyberpunk', 'Débloquer le trophée theme_cyberpunk.', 'bronze', 'collection', false, true, false),
+  ('theme_dracula', 'theme dracula', 'Débloquer le trophée theme_dracula.', 'bronze', 'collection', false, true, false),
+  ('theme_arctic', 'theme arctic', 'Débloquer le trophée theme_arctic.', 'bronze', 'collection', false, true, false),
+  ('dashboard_architect', 'dashboard architect', 'Débloquer le trophée dashboard_architect.', 'bronze', 'collection', false, true, false),
+  ('theme_neon', 'theme neon', 'Débloquer le trophée theme_neon.', 'bronze', 'collection', false, true, false),
+  ('retro_gamer', 'retro gamer', 'Débloquer le trophée retro_gamer.', 'bronze', 'collection', false, true, false),
+  ('guerre_consoles', 'guerre consoles', 'Débloquer le trophée guerre_consoles.', 'bronze', 'collection', false, true, false),
+  ('nostalgie', 'nostalgie', 'Débloquer le trophée nostalgie.', 'bronze', 'collection', false, true, false),
+  ('shortcut_master', 'shortcut master', 'Débloquer le trophée shortcut_master.', 'bronze', 'action', false, true, false),
+  ('its_a_me', 'its a me', 'Débloquer le trophée its_a_me.', 'bronze', 'collection', false, true, false),
+  ('cozy_farmer', 'Cozy Farmer', 'Ajouter 5 jeux de simulation de ferme/cozy.', 'argent', 'collection', false, true, false),
+  ('tycoon_master', 'Tycoon Master', 'Ajouter 5 jeux de gestion/tycoon.', 'argent', 'collection', false, true, false),
+  ('zookeeper', 'Zookeeper', 'Ajouter 5 jeux avec des animaux/zoos.', 'bronze', 'collection', false, true, false),
+  ('city_mayor', 'Maire de la Ville', 'Ajouter 5 jeux de city-builder.', 'argent', 'collection', false, true, false),
+  ('dino_dna', 'Dino DNA', 'Ajouter un jeu de la franchise Jurassic Park.', 'bronze', 'collection', false, true, false),
+  ('shortcut_pro', 'shortcut pro', 'Débloquer le trophée shortcut_pro.', 'bronze', 'action', false, true, false),
+  ('mon_precieux', 'Mon Précieux', 'Ajouter un jeu valant plus de 100€ (ou édition collector).', 'or', 'collection', false, true, false),
+  ('coup_de_foudre', 'Coup de Foudre', 'Mettre la note de 20/20 à 5 jeux différents.', 'argent', 'collection', true, true, false),
+  ('critique_art', 'critique art', 'Débloquer le trophée critique_art.', 'bronze', 'collection', false, true, false),
+  ('data_analyst', 'Data Analyst', 'Créer 3 filtres sauvegardés différents.', 'argent', 'collection', true, true, false),
+  ('shortcut_novice', 'shortcut novice', 'Débloquer le trophée shortcut_novice.', 'bronze', 'action', false, true, false),
+  ('insomniaque', 'insomniaque', 'Débloquer le trophée insomniaque.', 'bronze', 'collection', false, true, false),
+  ('speedrunner', 'speedrunner', 'Débloquer le trophée speedrunner.', 'bronze', 'collection', false, true, false),
+  ('hibernation', 'hibernation', 'Débloquer le trophée hibernation.', 'bronze', 'collection', false, true, false),
+  ('impact_massif', 'Impact Massif', 'Ajouter 10 jeux en une seule journée.', 'argent', 'collection', false, true, false),
+  ('long_journey', 'Long Voyage', 'Accumuler plus de 1000 heures de jeu au total.', 'or', 'collection', false, true, false),
+  ('infinity_stones', 'infinity stones', 'Débloquer le trophée infinity_stones.', 'bronze', 'collection', false, true, false),
+  ('spider_web', 'Spider-Sense', 'Faire 10 clics très rapides n''importe où.', 'bronze', 'action', true, true, true),
+  ('i_am_iron_man', 'i am iron man', 'Débloquer le trophée i_am_iron_man.', 'bronze', 'collection', false, true, false),
+  ('justice_league', 'justice league', 'Débloquer le trophée justice_league.', 'bronze', 'collection', false, true, false),
+  ('nocturne', 'Oiseau de Nuit', 'Se connecter entre minuit et 4h du matin.', 'argent', 'action', false, true, false),
+  ('may_the_force', 'may the force', 'Débloquer le trophée may_the_force.', 'bronze', 'collection', false, true, false),
+  ('tag_master', 'Maître des Tags', 'Créer et assigner 10 tags personnalisés.', 'bronze', 'collection', false, true, false),
+  ('multi_device', 'Multi-Device', 'Se connecter depuis 3 appareils différents.', 'or', 'action', false, true, false),
+  ('import_export', 'Import/Export', 'Importer une liste de jeux depuis un CSV.', 'argent', 'action', false, true, false),
+  ('voyage_temps', 'voyage temps', 'Débloquer le trophée voyage_temps.', 'bronze', 'collection', false, true, false),
+  ('appel_maison', 'Appel Maison', 'Cliquer sur le logo de l''application depuis le Dashboard.', 'bronze', 'action', true, true, true),
+  ('bug_hunter', 'Chasseur de Bugs', 'Trouver un easter egg caché lié au code.', 'argent', 'secret', false, true, true),
+  ('encyclopedie', 'Encyclopédie', 'Remplir 100% des détails optionnels sur 5 jeux.', 'or', 'collection', false, true, false),
+  ('agent_secret', 'Agent Secret', 'Se connecter à l''application depuis un mobile.', 'or', 'action', true, true, false),
+  ('shortcut_expert', 'Expert Raccourcis', 'Utiliser les raccourcis clavier 75 fois.', 'argent', 'action', false, true, false),
+  ('season_spring', 'Bourgeon', 'Ouvrir l''''application au Printemps.', 'bronze', 'event', true, false, false),
+  ('season_summer', 'Canicule', 'Ouvrir l''''application en Été.', 'bronze', 'event', true, false, false),
+  ('season_autumn', 'Chute des feuilles', 'Ouvrir l''''application en Automne.', 'bronze', 'event', true, false, false),
+  ('season_winter', 'Flocon givré', 'Ouvrir l''''application en Hiver.', 'bronze', 'event', true, false, false),
+  ('event_halloween', 'Des bonbons ou un sort', 'Se connecter en Octobre/Novembre.', 'argent', 'event', true, false, false),
+  ('event_christmas', 'Père Noël', 'Se connecter en Décembre/Janvier.', 'argent', 'event', true, false, false),
+  ('event_easter', 'Chasse aux oeufs', 'Se connecter à Pâques.', 'argent', 'event', true, false, false),
+  ('event_epiphanie', 'La Fève', 'Se connecter à l''''Epiphanie.', 'argent', 'event', true, false, false),
+  ('event_chandeleur', 'Maître Crêpier', 'Se connecter à la Chandeleur.', 'argent', 'event', true, false, false),
+  ('rage_quit', 'Rage Quit', 'Supprimer un jeu de sa collection.', 'bronze', 'action', true, false, false)
 ON CONFLICT (id_name) DO UPDATE SET 
+  title = EXCLUDED.title,
+  description = EXCLUDED.description,
+  rarity = EXCLUDED.rarity,
   category = EXCLUDED.category,
   is_implemented = EXCLUDED.is_implemented,
-  is_theme_unlocker = EXCLUDED.is_theme_unlocker;
+  is_theme_unlocker = EXCLUDED.is_theme_unlocker,
+  is_hidden = EXCLUDED.is_hidden;
+

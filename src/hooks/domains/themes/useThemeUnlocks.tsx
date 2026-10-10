@@ -97,6 +97,7 @@ export const useThemeUnlocks = () => {
       setAllAchievements([])
       setIsLoading(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   const isFirstLoadRef = useRef(true)
@@ -141,7 +142,11 @@ export const useThemeUnlocks = () => {
 
       const rule = THEME_RULES.find((r) => r.id === (theme.id_name || theme.id))
       if (rule) {
-        if (rule.condition.match(/Trophée\s+`?([^`\s]+)`?/i)) {
+        // Ne pas écraser un type 'default' venant de la DB : si la règle locale
+        // dit "Thème par défaut", on conserve le type 'default'.
+        if (rule.condition === 'Thème par défaut' || type === 'default') {
+          type = 'default'
+        } else if (rule.condition.match(/Trophée\s+`?([^`\s]+)`?/i)) {
           type = 'achievement'
           requiredAchId = rule.condition.match(/Trophée\s+`?([^`\s]+)`?/i)?.[1] || requiredAchId
         } else if (

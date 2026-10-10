@@ -156,6 +156,42 @@
 }
 
 /* --- PRESETS (Surcharges) --- */
+
+/* AURORA — nuit arctique avec aurores boréales
+   Fonds plus opaques pour que le texte reste lisible
+   malgré l'animation lumineuse en arrière-plan. */
+[data-preset='aurora'] {
+  --bg-app: #010d0a; /* Noir très légèrement verdâtre */
+  --bg-panel: rgba(1, 18, 12, 0.97); /* Panneau quasi-opaque */
+  --bg-card: rgba(0, 30, 18, 0.75); /* Carte : fond sombre vert-noir assez opaque */
+  --bg-card-hover: rgba(0, 45, 28, 0.88);
+  --bg-input: #000e08;
+  --bg-modal-overlay: rgba(0, 0, 0, 0.7);
+
+  --text-primary: #6effc2; /* Vert émeraude lumineux */
+  --text-secondary: #4aaa80;
+  --text-inverse: #001a10;
+  --text-link: #34d399;
+
+  --border-main: #059669;
+  --border-subtle: rgba(52, 211, 153, 0.2);
+  --border-focus: #6effc2;
+
+  --brand-primary: #059669;
+  --brand-glow: #6effc2;
+
+  --grad-card-surface: linear-gradient(47deg, #001a10 0%, #010d0a 80%);
+  --grad-input-surface: linear-gradient(47deg, #001208 0%, #000e08 80%);
+  --grad-btn-primary: linear-gradient(47deg, #059669 0%, #034732 60%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #059669 90deg,
+    #6effc2 180deg,
+    #059669 270deg,
+    transparent 360deg
+  );
+}
+
 [data-preset='arctic_neon'] {
   --text-inverse: #000000;
   --font-family-title: 'Orbitron', sans-serif;
@@ -233,7 +269,33 @@
     transparent 0deg,
     #005f7a 90deg,
     #00e5ff 180deg,
-    #005f7a 270deg,
+    #005f7a 270deg
+  );
+}
+
+[data-preset='slappy'] {
+  --text-inverse: #000000;
+  --font-family-title: 'Creepster', cursive;
+  --bg-app: #0d0d0d; /* Noir absolu ou presque */
+  --bg-panel: rgba(13, 13, 13, 0.97);
+  --bg-card: rgba(20, 30, 20, 0.55); /* Très légèrement teinté vert */
+  --bg-card-hover: rgba(30, 45, 30, 0.7);
+  --bg-input: #050505;
+  --text-primary: #22c55e; /* Vert gluant */
+  --text-secondary: #a855f7; /* Violet */
+  --brand-primary: #16a34a;
+  --brand-glow: #22c55e;
+  --border-main: #8b5cf6; /* Bordure violette */
+  --border-subtle: rgba(139, 92, 246, 0.3);
+  --border-focus: #22c55e;
+  --grad-card-surface: linear-gradient(47deg, #121812 0%, #0d0d0d 80%);
+  --grad-input-surface: linear-gradient(47deg, #0a0c0a 0%, #050505 80%);
+  --grad-btn-primary: linear-gradient(47deg, #22c55e 0%, #7e22ce 100%);
+  --grad-glow-border: conic-gradient(
+    transparent 0deg,
+    #7e22ce 90deg,
+    #22c55e 180deg,
+    #7e22ce 270deg,
     transparent 360deg
   );
 }
@@ -674,10 +736,8 @@ body {
 body {
   font-family: var(--font-family-text);
   margin: 0;
-  /* Utilise la couleur d'accentuation (brand-primary) pour que les 4 coins aient la couleur du thème ! */
-  background-color: var(--brand-primary, var(--color-bg-btn));
-  /* Ajout d'un léger dégradé pour un effet premium dans les coins */
-  background-image: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.4) 100%);
+  /* Fond uni du thème — pas de vignette, les animations sont visibles */
+  background-color: var(--bg-app, #001128);
   color: var(--color-text);
   transition:
     background-color var(--duration-standard) ease,
@@ -687,14 +747,13 @@ body {
 #app-container {
   border-radius: 40px;
   border: 1px solid var(--color-border);
-  background-color: var(--color-bg-btn);
+  /* Transparent : les animations du portal (dans body) sont visibles a travers */
+  background-color: transparent;
   width: 100%;
   height: 100vh;
   overflow: hidden;
   position: relative;
-  transition:
-    background-color var(--duration-standard) ease,
-    border-color var(--duration-standard) ease;
+  transition: border-color var(--duration-standard) ease;
 }
 
 .app-container {

@@ -8,6 +8,7 @@ import { Link } from 'react-router'
 import { getAllThemes } from '@/config/themeRegistry'
 import { THEME_RULES } from '@/config/themeRules'
 import { useTheme } from '@/context/ThemeContext'
+import { ThemeAnimationLayer } from '@/theme-animations'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -71,6 +72,8 @@ export default function ThemePreview() {
 
   return (
     <div className="theme-preview-container">
+      {/* Animation d'ambiance suivant le theme previsualise */}
+      <ThemeAnimationLayer overridePreset={localPreset} />
       <header className="theme-preview-header">
         <Link to="/admin" className="admin-back-link">
           ← Retour à l'administration

@@ -15,6 +15,7 @@ interface ThemeContextType {
   activePreset: string
   setPreset: (preset: string) => Promise<void>
   isLoadingSync: boolean
+  isPreviewMode: boolean
   setIsPreviewMode: (val: boolean) => void
 }
 
@@ -99,6 +100,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     return () => {
       authListener.subscription.unsubscribe()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function applyThemeLocal(themeId: string) {
@@ -172,6 +174,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         }
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [userId]
   )
 
@@ -181,6 +184,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         activePreset,
         setPreset,
         isLoadingSync,
+        isPreviewMode,
         setIsPreviewMode,
       }}
     >
