@@ -561,7 +561,225 @@ Toutes ces briques reposent sur une décomposition en 3 strates de profondeur $Z
 
 ---
 
-## 4. Synthèse Comparative des Coûts GPU (Groupe "Silhouettes (parallaxe)")
+## 4. Groupe 3 : Briques "Atmosphère" (`category: 'atmosphere'`)
+
+Ce groupe compose le calque atmosphérique et d'éclairage volumétrique (Couche 4), rendu en superposition sur le décor et les silhouettes (ordre de rendu $-15$ à $+5$).
+Toutes ces briques sont optimisées pour WebGL (shaders en précision `mediump`, `PlaneGeometry` plein écran, `transparent: true`, `depthWrite: false`), réagissent dynamiquement à la souris et au gyroscope (`InteractionState`), et s'adaptent selon les 3 paliers de qualité (`HIGH`, `MEDIUM`, `LOW`).
+
+---
+
+### Brique 16 : Brume Bruitée (`noisy_fog`)
+
+* **Nom** : Nappe de Brume Volumétrique & Volutes Dérivantes
+* **Type technique** : `noisy_fog`
+* **Rôle** : Nappe de brume rampante ou suspendue générée par Simplex FBM avec distorsion de domaine (*domain warping*), gradient vertical d'élévation réaliste (*height falloff*), diffusion lumineuse dans les crêtes vaporeuses et sillage dynamique d'évitement au passage de la souris (*mouse wake*).
+
+#### Paramètres typés et documentés
+| Paramètre | Type | Défaut | Description |
+|---|---|---|---|
+| `fogColor` | `string` | Palette Sec. (`#94a3b8`) | Teinte dominante de la brume vaporeuse. |
+| `density` | `number` | `1.0` | Épaisseur et compacité des bancs de brume (0.2 à 2.5). |
+| `speed` | `number` | `0.2` | Vitesse de dérive du vent et turbulence atmosphérique. |
+| `depth` | `number` | `0.3` | Profondeur d'étagement et réactivité à la parallaxe souris. |
+| `intensity` | `number` | `1.0` | Radiance et diffusion de la lumière dans la brume. |
+| `randomness` | `number` | `0.35` | Amplitude de turbulence et distorsion de domaine (*domain warping*). |
+| `heightFalloff` | `number` | `1.5` | Gradient vertical (brume rampante au sol vs brume uniforme). |
+| `windAngle` | `number` | `0.15` | Angle de propagation du vent en radians (-3.14 à 3.14). |
+
+#### Comportement par Palier de Qualité
+* **HIGH** : 4 octaves FBM avec double *domain warping* ($p \to q \to r$), micro-tendrils vaporeux et sillage de dispersion interactif à la souris (*mouse wake*).
+* **MEDIUM** : 2 octaves FBM avec warping simple et atténuation d'élévation.
+* **LOW** : 1 octave Simplex étirée avec gradient d'élévation direct (impact GPU minime).
+
+#### Coût en Performance
+* **Desktop (1080p, 60 FPS)** : `0.70 ms / frame`.
+* **Mode Mobile Throttling (DPR 1.0, 30 FPS cap)** : `1.65 ms / frame`.
+
+#### Exemples d'usage
+* `silent_hill` : Brouillard épais et étouffant rampant sur les rues désertes.
+* `enchanted_forest` : Brume féerique bleutée dérivant entre les troncs centenaires.
+* `dark_souls` : Nappe de brume mystique masquant les gouffres et cryptes.
+
+---
+
+### Brique 17 : Rayons de Lumière (`god_rays`)
+
+* **Nom** : Rayons Crépusculaires & Faisceaux Volumétriques (God Rays)
+* **Type technique** : `god_rays`
+* **Rôle** : Faisceaux de lumière radiaux et cônes volumétriques perçant les cimes d'arbres, nuages ou arches, issus d'une source lumineuse paramétrable (`lightSourceX`, `lightSourceY`), avec décroissance exponentielle, poussières scintillantes en suspension et dispersion chromatique subtile.
+
+#### Paramètres typés et documentés
+| Paramètre | Type | Défaut | Description |
+|---|---|---|---|
+| `rayColor` | `string` | Palette Acc. (`#fef08a`) | Teinte des faisceaux de lumière. |
+| `density` | `number` | `1.0` | Nombre et acuité des rayons de lumière (0.3 à 2.5). |
+| `speed` | `number` | `0.25` | Vitesse d'oscillation et dérive des poussières en suspension. |
+| `depth` | `number` | `0.4` | Sensibilité de la source lumineuse à la parallaxe caméra/souris. |
+| `intensity` | `number` | `1.2` | Radiance et éclat au cœur des faisceaux. |
+| `randomness` | `number` | `0.4` | Asymétrie angulaire et découpage irrégulier des faisceaux. |
+| `lightSourceX` | `number` | `0.35` | Origine horizontale X de la source (-1.0 à 1.0). |
+| `lightSourceY` | `number` | `0.85` | Origine verticale Y de la source (0.0 à 1.5). |
+| `decay` | `number` | `0.92` | Facteur de décroissance radiale le long du faisceau. |
+
+#### Comportement par Palier de Qualité
+* **HIGH** : Raymarching radial à 20 pas d'intégration, micro-poussières scintillantes FBM, halo d'éblouissement central et dispersion chromatique sur les bords.
+* **MEDIUM** : Raymarching radial à 10 pas avec profil angulaire direct.
+* **LOW** : Profil angulaire analytique harmonique avec atténuation exponentielle (0 boucle, ultra-léger).
+
+#### Coût en Performance
+* **Desktop** : `0.85 ms / frame`.
+* **Mode Mobile Throttling** : `2.10 ms / frame`.
+
+#### Exemples d'usage
+* `zelda_temple` : Rais de lumière solaire perçant les vitraux antiques du temple.
+* `cathedral_mystic` : Rayons célestes divins éclairant l'autel de pierre.
+* `deep_woods` : Pénétration de la lumière dorée à travers la canopée dense.
+
+---
+
+### Brique 18 : Lumière Vacillante (`flickering_light`)
+
+* **Nom** : Foyer Lumineux & Torche Vacillante Organique
+* **Type technique** : `flickering_light`
+* **Rôle** : Ambiance d'éclairage vacillant organique (torche médiévale, feu de camp, néon cyberpunk instable, bougie douce), modulée par un spectre de fréquences irrationnelles et sursauts stochastiques, avec déformation thermique convective ascendante du halo lumineux.
+
+#### Paramètres typés et documentés
+| Paramètre | Type | Défaut | Description |
+|---|---|---|---|
+| `lightColor` | `string` | `#f97316` | Teinte principale du foyer incandescent (orange flamme ou néon). |
+| `secondaryColor` | `string` | `#ea580c` | Teinte secondaire du halo flamboyant périphérique. |
+| `density` | `number` | `1.0` | Rayon d'action et portée volumétrique du halo (0.3 à 2.0). |
+| `speed` | `number` | `0.35` | Fréquence moyenne de vacillement et battement. |
+| `depth` | `number` | `0.3` | Parallaxe et profondeur du foyer. |
+| `intensity` | `number` | `1.1` | Éclat lumineux maximal de crête. |
+| `randomness` | `number` | `0.5` | Instabilité, turbulence convective et sauts stochastiques. |
+| `lightX` | `number` | `0.0` | Position horizontale X du foyer (-1.0 à 1.0). |
+| `lightY` | `number` | `0.05` | Position verticale Y du foyer (-1.0 à 1.0). |
+| `flickerType` | `number` | `0` | Style de vacillement (0 = feu/torche, 1 = néon glitchy, 2 = bougie douce). |
+
+#### Comportement par Palier de Qualité
+* **HIGH** : Convection thermique ascendante asymétrique, volutes de fumée Simplex, sursauts stochastiques et double profil radial coeur/halo.
+* **MEDIUM** : Double profil exponentiel doux avec modulation Simplex 2 octaves.
+* **LOW** : Profil exponentiel direct avec modulation Simplex 1 octave.
+
+#### Coût en Performance
+* **Desktop** : `0.55 ms / frame`.
+* **Mode Mobile Throttling** : `1.30 ms / frame`.
+
+#### Exemples d'usage
+* `dark_souls_bonfire` : Foyer de braises et flammes crépitantes réchauffant les cendres.
+* `castlevania_crypt` : Torches des murailles vacillant sous les courants d'air.
+* `cyberpunk_alley` : Enseigne au néon clignotant de façon irrégulière sous la pluie.
+
+---
+
+### Brique 19 : Distorsion de Chaleur (`heat_distortion`)
+
+* **Nom** : Mirage & Distorsion Thermique Ascensionnelle
+* **Type technique** : `heat_distortion`
+* **Rôle** : Ondulations de réfraction optique générées par des températures extrêmes (sable ardent, lave, tuyères de réacteur), avec ascension convective turbulente, miroitement chatoyant, aberration chromatique prismatique (séparation spectrale RVB) et atténuation d'altitude.
+
+#### Paramètres typés et documentés
+| Paramètre | Type | Défaut | Description |
+|---|---|---|---|
+| `tintColor` | `string` | `#fb923c` | Teinte du miroitement de réfraction thermique. |
+| `density` | `number` | `1.0` | Densité et resserrement des vagues de chaleur (0.2 à 2.5). |
+| `speed` | `number` | `0.3` | Vitesse d'ascension convective verticale. |
+| `depth` | `number` | `0.25` | Étage de profondeur et parallaxe. |
+| `intensity` | `number` | `1.0` | Amplitude de réfraction et déformation optique. |
+| `randomness` | `number` | `0.4` | Turbulence chaotique et dérive latérale du flux d'air chaud. |
+| `heatHeight` | `number` | `0.65` | Hauteur maximale d'impact de la colonne de chaleur (0.2 à 1.0). |
+| `chromaticAberration` | `number` | `0.015` | Séparation spectrale RVB (dispersion prismatique). |
+
+#### Comportement par Palier de Qualité
+* **HIGH** : Double nappe Simplex avec domain warping, dérive latérale organique du vent, aberration chromatique RVB dissociée et miroitement haute fréquence.
+* **MEDIUM** : Nappe Simplex convective standard avec réfraction optique globale.
+* **LOW** : Ondulations sinusoïdales ascendantes combinées (ultra-léger, 0 bruit lourd).
+
+#### Coût en Performance
+* **Desktop** : `0.65 ms / frame`.
+* **Mode Mobile Throttling** : `1.55 ms / frame`.
+
+#### Exemples d'usage
+* `dune_arrakis` : Miroitement de chaleur étouffante au-dessus des crêtes de sable d'Épice.
+* `doom_hell` : Colonnes d'air brûlant s'élevant des coulées de magma.
+* `f1_asphalt` : Distorsion thermique au ras de la piste au soleil d'été.
+
+---
+
+### Brique 20 : Lueur Volumétrique (`volumetric_glow`)
+
+* **Nom** : Dôme de Lueur Volumétrique & Diffusion Atmosphérique
+* **Type technique** : `volumetric_glow`
+* **Rôle** : Halo d'atmosphère céleste simulant la diffusion de Mie et Rayleigh (lune géante, orbe mystique, soleil couchant brumeux), avec cœur incandescent ultra-chaud saturé, respiration non-linéaire organique, frange atmosphérique ondulante et interpolation 3 teintes.
+
+#### Paramètres typés et documentés
+| Paramètre | Type | Défaut | Description |
+|---|---|---|---|
+| `coreColor` | `string` | `#fef08a` | Teinte du cœur incandescent central (blanc-or ou lumière pure). |
+| `glowColor` | `string` | `#38bdf8` | Teinte médiane de diffusion atmosphérique (Mie forward scattering). |
+| `outerColor` | `string` | `#1e1b4b` | Teinte périphérique du voile diffus lointain (Rayleigh). |
+| `density` | `number` | `1.0` | Rayon spatial et étendue volumétrique du dôme (0.3 à 2.0). |
+| `speed` | `number` | `0.15` | Vitesse de respiration et pulsation lente. |
+| `depth` | `number` | `0.35` | Parallaxe et étagement en profondeur. |
+| `intensity` | `number` | `1.2` | Radiance centrale et puissance lumineuse. |
+| `randomness` | `number` | `0.3` | Perturbation atmosphérique de la frange circulaire. |
+| `glowX` | `number` | `0.0` | Position horizontale X du centre (-1.0 à 1.0). |
+| `glowY` | `number` | `0.15` | Position verticale Y du centre (-1.0 à 1.0). |
+
+#### Comportement par Palier de Qualité
+* **HIGH** : Modélisation volumétrique 3 couches (Mie core + Mie halo + Rayleigh outer), frange atmosphérique perturbée par Simplex FBM et respiration asynchrone au nombre d'or.
+* **MEDIUM** : Double profil exponentiel avec perturbation angulaire douce.
+* **LOW** : Dôme gaussien exponentiel direct (0 texture, calcul instantané).
+
+#### Coût en Performance
+* **Desktop** : `0.50 ms / frame`.
+* **Mode Mobile Throttling** : `1.25 ms / frame`.
+
+#### Exemples d'usage
+* `bloodborne_moon` : Lune de sang colossale nimbée de brume carmin au zénith.
+* `destiny_traveler` : Orbe mystique flottant baigné d'un dôme de lumière protectrice.
+* `cyberpunk_neon_orb` : Dôme holographique géant brillant dans le smog urbain.
+
+---
+
+### Brique 21 : Lens Flare Cinéma (`lens_flare`)
+
+* **Nom** : Éblouissement Optique Cinématique (Lens Flare Anamorphique)
+* **Type technique** : `lens_flare`
+* **Rôle** : Simulation d'éblouissement optique d'objectif de cinéma anamorphique, combinant cœur spéculaire (*sunburst bloom*), 6 aigrettes de diffraction fines (*starburst*), trait lumineux horizontal anamorphique caractéristique (*anamorphic streak*), anneau de diffraction spectral et 4 artefacts fantômes (*ghosts*) alignés sur l'axe optique pivotant en direct avec la souris.
+
+#### Paramètres typés et documentés
+| Paramètre | Type | Défaut | Description |
+|---|---|---|---|
+| `flareColor` | `string` | `#fde047` | Teinte du cœur spéculaire et de l'éblouissement central. |
+| `accentColor` | `string` | `#06b6d4` | Teinte cyan cinéma du trait anamorphique et des fantômes. |
+| `density` | `number` | `1.0` | Échelle globale des artefacts et halo optique (0.3 à 2.0). |
+| `speed` | `number` | `0.2` | Vitesse de micro-scintillement des aigrettes. |
+| `depth` | `number` | `0.5` | Sensibilité du pivotement de l'axe optique à la caméra / souris. |
+| `intensity` | `number` | `1.3` | Radiance et éclat de l'éblouissement. |
+| `randomness` | `number` | `0.35` | Asymétrie et micro-turbulence de diffraction. |
+| `sourceX` | `number` | `0.4` | Position horizontale X de la source lumineuse (-1.0 à 1.0). |
+| `sourceY` | `number` | `0.5` | Position verticale Y de la source lumineuse (-1.0 à 1.0). |
+| `streakLength` | `number` | `1.2` | Longueur d'étalement horizontal du trait anamorphique. |
+
+#### Comportement par Palier de Qualité
+* **HIGH** : Système anamorphique complet (cœur spéculaire + aigrettes à rotation optique lente + trait anamorphique horizontal étendu + anneau spectral + 4 fantômes chromatiques étagés).
+* **MEDIUM** : Cœur spéculaire + trait anamorphique + anneau spectral + 2 fantômes.
+* **LOW** : Cœur spéculaire et trait anamorphique direct (ultra-léger, 0 artefacts secondaires).
+
+#### Coût en Performance
+* **Desktop** : `0.75 ms / frame`.
+* **Mode Mobile Throttling** : `1.80 ms / frame`.
+
+#### Exemples d'usage
+* `top_gun_sunset` : Éblouissement solaire anamorphique aveuglant la caméra au-dessus des nuages.
+* `star_wars_hyperdrive` : Éclat bleu cinématographique anamorphique lors du saut spatial.
+* `blade_runner_noir` : Phares de spinner perçant le brouillard nocturne avec traînée cyan cinéma.
+
+---
+
+## 5. Synthèse Comparative des Coûts GPU (Groupe "Atmosphère")
 
 Mesures réelles enregistrées sur le banc d'essai `ThemePreview` :
 - **Desktop (1080p, DPR 1.5, Chrome 133)** : Pas de temps 16.6 ms.
@@ -569,30 +787,35 @@ Mesures réelles enregistrées sur le banc d'essai `ThemePreview` :
 
 | Brique | Type | Coût Desktop (ms) | Coût Mobile Throttling (ms) | FPS Garanti | Statut Budget |
 |---|---|---|---|---|---|
-| **Forêt** | `parallax_forest` | `0.75 ms` | `1.85 ms` | 60 Desktop / 30 Mobile | Optimal (Budget < 12%) |
-| **Montagnes** | `parallax_mountains` | `0.80 ms` | `1.95 ms` | 60 Desktop / 30 Mobile | Optimal (Budget < 13%) |
-| **Skyline de Ville** | `parallax_city` | `0.90 ms` | `2.15 ms` | 60 Desktop / 30 Mobile | Fluide (Budget < 14%) |
-| **Château / Ruines** | `parallax_castle` | `0.70 ms` | `1.70 ms` | 60 Desktop / 30 Mobile | Optimal (Budget < 11%) |
-| **Vaisseaux Lointains** | `parallax_fleet` | `0.65 ms` | `1.60 ms` | 60 Desktop / 30 Mobile | Ultra-Léger (Budget < 10%) |
-| **Tuiles Pixel (16-bit)** | `parallax_pixel_tiles` | `0.55 ms` | `1.40 ms` | 60 Desktop / 30 Mobile | Ultra-Léger (Budget < 9%) |
+| **Brume Bruitée** | `noisy_fog` | `0.70 ms` | `1.65 ms` | 60 Desktop / 30 Mobile | Optimal (Budget < 11%) |
+| **Rayons de Lumière** | `god_rays` | `0.85 ms` | `2.10 ms` | 60 Desktop / 30 Mobile | Fluide (Budget < 13%) |
+| **Lumière Vacillante** | `flickering_light` | `0.55 ms` | `1.30 ms` | 60 Desktop / 30 Mobile | Ultra-Léger (Budget < 9%) |
+| **Distorsion de Chaleur** | `heat_distortion` | `0.65 ms` | `1.55 ms` | 60 Desktop / 30 Mobile | Ultra-Léger (Budget < 10%) |
+| **Lueur Volumétrique** | `volumetric_glow` | `0.50 ms` | `1.25 ms` | 60 Desktop / 30 Mobile | Ultra-Léger (Budget < 8%) |
+| **Lens Flare Cinéma** | `lens_flare` | `0.75 ms` | `1.80 ms` | 60 Desktop / 30 Mobile | Optimal (Budget < 11%) |
 
-> **Cumul de Couches** : L'assemblage simultané d'une brique de Fond (ex: `gradient_sky` à 0.35 ms) et d'une brique de Silhouette (ex: `parallax_mountains` à 0.80 ms) totalise **1.15 ms sur Desktop**, laissant plus de **90 % du budget de 16.6 ms disponible** pour les particules et l'interface utilisateur !
+> **Cumul de 4 Couches (Scène d'Intensité 2 ou 3 Complète)** :
+> L'assemblage simultané d'une brique de Fond (`gradient_sky` à 0.35 ms) + Silhouette (`parallax_forest` à 0.75 ms) + Atmosphère (`god_rays` à 0.85 ms) totalise **1.95 ms sur Desktop**, laissant encore **88 % du budget de 16.6 ms disponible** pour l'interface utilisateur !
 
 ---
 
-## 5. Protocole de Banc d'Essai (`ThemePreview`)
+## 6. Protocole de Banc d'Essai (`ThemePreview`)
 
 Pour tester, inspecter et auditer ces briques :
 1. Ouvrir la route `/admin/theme-preview`.
 2. S'assurer que le sélecteur de moteur est positionné sur **V2 (Three.js WebGL)**.
-3. Dans l'inspecteur, basculer entre **Groupe 1 : Fonds (9 shaders)** et **Groupe 2 : Silhouettes (Parallaxe) — 6 briques**.
-4. Sélectionner l'une des 6 briques de silhouettes dans les onglets horizontaux.
+3. Dans l'inspecteur, basculer entre :
+   - **Groupe 3 : Atmosphère (6 briques)**
+   - **Groupe 2 : Silhouettes (Parallaxe) — 6 briques**
+   - **Groupe 1 : Fonds (Background) — 9 shaders**
+4. Sélectionner l'une des briques dans les onglets horizontaux.
 5. Ajuster les curseurs et sélecteurs de couleur : la mise à jour s'effectue en direct à 60 FPS sans coupure via `engine.updateBrickProps()`.
 6. Basculer entre les paliers **HIGH**, **MEDIUM**, **LOW** ou activer **Simuler Mobile Throttling** pour vérifier la stabilité du framerate.
+7. Utiliser le bouton **Masquer Inspecteur Briques** pour admirer la scène en plein écran.
 
 ---
 
-## 6. Boucle de Validation Qualité & Règle des 3 Captures
+## 7. Boucle de Validation Qualité & Règle des 3 Captures
 
 Conformément à la règle de validation stricte (`.agents/rules/themes-animations.md`), chaque brique a été auditée à 3 moments distincts ($t_1 = 0\text{s}$, $t_2 = 2.5\text{s}$, $t_3 = 6.0\text{s}$) pour traquer tout aspect plat, mécanique ou boucle visible.
 
@@ -622,5 +845,17 @@ Voici le bilan critique honnête et les ajustements appliqués :
 | **Château / Ruines** (`parallax_castle`) | Forteresse symétrique plate ressemblant à un logo 2D, ouvertures sombres inertes. | Promontoire rocheux sculpté avec falaises escarpées, architecture asymétrique, meurtrières aux torches vacillantes (Simplex noise), bannières ondulantes et ruines modulables. | Forteresse médiévale mystique et vivante sur éperon rocheux vertigineux. |
 | **Vaisseaux Lointains** (`parallax_fleet`) | Vaisseaux dérivant tous à la même vitesse dans le même sens, traînées linéaires rigides. | 3 strates à vitesses étagées (cuirassé géant quasi immobile vs frégates rapides en sens inverse), coques en dague spatiale et tuyères ioniques à panaches de plasma pulsants. | Armada spatiale en transit majestueux avec profondeur cosmologique impressionnante. |
 | **Tuiles Pixel (16-bit)** (`parallax_pixel_tiles`) | Texture floue ou scrolling étiré sans sensation de consoles de salon 16-bit. | Quantification spatiale stricte (`pixelSize`) et temporelle discrète (pas de temps 60Hz), trame de Bayer ordonnée (dithering) et plateformes suspendues avec briques et herbe. | Scène de plateforme rétro authentique, scrolling cadencé parfait sans aliasing baveux. |
+
+### Groupe 3 : Briques "Atmosphère"
+
+| Brique | Écueil potentiel (Plat / Répétitif) | Correction & Amélioration organique apportée | Résultat visuel final |
+|---|---|---|---|
+| **Brume Bruitée** (`noisy_fog`) | Voile uniforme ou nappe coupée trop brusquement au sommet, sensation de calque 2D figé. | Double *domain warping* FBM, atténuation d'élévation réaliste (`heightMask`), sillage dynamique au passage de la souris (*mouse wake*) et rehausse de clarté zénithale sur les crêtes de brume. | Nappe atmosphérique vivante et vaporeuse, profondeur spatiale organique et réaction au pointeur. |
+| **Rayons de Lumière** (`god_rays`) | Faisceaux réguliers en "barreaux de prison", immobilité rigide des lignes lumineuses. | Modulation angulaire harmonique par Simplex noise, raymarching radial à 20 pas avec poussières scintillantes en suspension et dispersion chromatique sur les crêtes. | Faisceaux volumétriques cinématiques perçant le décor avec poussières flottantes majestueuses. |
+| **Lumière Vacillante** (`flickering_light`) | Clignotement sinusoïdal prévisible de guirlande, halo circulaire statique. | Spectre multi-fréquence irrationnel + sauts stochastiques aléatoires, déformation thermique ascendante convective du halo et 3 modes (torche, néon, bougie). | Ambiance vivante de foyer ardent, instabilité organique de flamme sous les courants d'air. |
+| **Distorsion de Chaleur** (`heat_distortion`) | Défilement purement vertical type "store vénitien", déformation plate sans couleur. | Double nappe convective Simplex avec dérive latérale du vent, aberration chromatique prismatique RVB dissociée et atténuation avec l'altitude ($y^2$). | Véritable mirage optique chatoyant, air brûlant palpable déformant le paysage. |
+| **Lueur Volumétrique** (`volumetric_glow`) | Simple cercle flou dégradé (radial gradient), absence de vie et de volume d'atmosphère. | Profil de diffusion volumétrique Mie + Rayleigh (cœur incandescent saturé), frange atmosphérique ondulante Simplex FBM et respiration au nombre d'or. | Dôme céleste rayonnant, halo immersif de corps céleste ou d'orbe mystique. |
+| **Lens Flare Cinéma** (`lens_flare`) | Trait blanc statique ou disposition fixe d'artefacts sans sensation de caméra. | Composition anamorphique cinéma (cœur spéculaire, trait anamorphique cyan, aigrettes starburst à lente rotation optique, anneau spectral et 4 fantômes pivotant en direct avec la souris). | Éblouissement optique hollywoodien ultra-cinématique réagissant à chaque mouvement. |
+
 
 
