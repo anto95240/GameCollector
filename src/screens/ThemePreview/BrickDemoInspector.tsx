@@ -14,6 +14,7 @@
 
 import {
   faCloud,
+  faFire,
   faLayerGroup,
   faMobileScreenButton,
   faMountain,
@@ -31,7 +32,7 @@ export interface BrickDescriptor {
   type: string
   name: string
   role: string
-  category: 'background' | 'intermediate' | 'atmosphere'
+  category: 'background' | 'intermediate' | 'atmosphere' | 'particles'
   defaultProps: Record<string, any>
   fields: {
     key: string
@@ -1262,32 +1263,670 @@ export const ATMOSPHERE_BRICKS_CATALOG: BrickDescriptor[] = [
   },
 ]
 
+export const PARTICLES_BRICKS_CATALOG: BrickDescriptor[] = [
+  {
+    type: 'embers',
+    name: 'Braises Incandescentes',
+    role: 'Braises chaudes ascendantes avec convection thermique Simplex, refroidissement progressif et scintillement',
+    category: 'particles',
+    defaultProps: {
+      emberColor: '#f97316',
+      hotColor: '#fef08a',
+      density: 1.0,
+      speed: 0.6,
+      depth: 0.4,
+      intensity: 1.2,
+      randomness: 0.5,
+      coolingRate: 1.0,
+    },
+    fields: [
+      { key: 'emberColor', label: 'Couleur Braise', type: 'color' },
+      { key: 'hotColor', label: 'Cœur Incandescent', type: 'color' },
+      { key: 'density', label: 'Densité / Nombre', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Ascension', type: 'slider', min: 0.1, max: 2.0, step: 0.05 },
+      { key: 'depth', label: 'Parallaxe / Z', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Radiance / Taille',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.1,
+      },
+      {
+        key: 'randomness',
+        label: 'Turbulence Convective',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'coolingRate',
+        label: 'Refroidissement',
+        type: 'slider',
+        min: 0.5,
+        max: 2.0,
+        step: 0.05,
+      },
+    ],
+  },
+  {
+    type: 'ash',
+    name: 'Cendres & Suie',
+    role: 'Flocons calcinés en flottaison lente avec portance des courants d’air et rotation 3D asymétrique',
+    category: 'particles',
+    defaultProps: {
+      ashColor: '#64748b',
+      darkColor: '#1e293b',
+      density: 1.0,
+      speed: 0.35,
+      depth: 0.5,
+      intensity: 0.85,
+      randomness: 0.6,
+      drift: 0.25,
+    },
+    fields: [
+      { key: 'ashColor', label: 'Teinte Cendre', type: 'color' },
+      { key: 'darkColor', label: 'Teinte Suie Foncée', type: 'color' },
+      { key: 'density', label: 'Densité Flocons', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Chute', type: 'slider', min: 0.1, max: 2.0, step: 0.05 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Opacité / Contraste',
+        type: 'slider',
+        min: 0.2,
+        max: 2.0,
+        step: 0.05,
+      },
+      {
+        key: 'randomness',
+        label: 'Turbulence & Vrille',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      { key: 'drift', label: 'Dérive Latérale', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+    ],
+  },
+  {
+    type: 'snow',
+    name: 'Neige & Flocons',
+    role: 'Flocons cotonneux et cristallins avec oscillations pendulaires déphasées, masse variable et dérive',
+    category: 'particles',
+    defaultProps: {
+      snowColor: '#f8fafc',
+      density: 1.0,
+      speed: 0.45,
+      depth: 0.6,
+      intensity: 1.0,
+      randomness: 0.45,
+      windStrength: 0.25,
+      swayFrequency: 1.5,
+    },
+    fields: [
+      { key: 'snowColor', label: 'Teinte Neige', type: 'color' },
+      { key: 'density', label: 'Densité Flocons', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Chute', type: 'slider', min: 0.1, max: 2.0, step: 0.05 },
+      {
+        key: 'depth',
+        label: 'Profondeur Z / Bokeh',
+        type: 'slider',
+        min: 0.1,
+        max: 1.0,
+        step: 0.05,
+      },
+      { key: 'intensity', label: 'Taille & Éclat', type: 'slider', min: 0.2, max: 2.0, step: 0.05 },
+      {
+        key: 'randomness',
+        label: 'Dispersion de Masse',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'windStrength',
+        label: 'Poussée du Vent',
+        type: 'slider',
+        min: 0.0,
+        max: 1.5,
+        step: 0.05,
+      },
+      {
+        key: 'swayFrequency',
+        label: 'Fréquence Balancement',
+        type: 'slider',
+        min: 0.5,
+        max: 3.0,
+        step: 0.1,
+      },
+    ],
+  },
+  {
+    type: 'rain',
+    name: 'Pluie Battante',
+    role: 'Traits obliques étirés par la vitesse avec inclinaison sous le vent et étagement en profondeur',
+    category: 'particles',
+    defaultProps: {
+      rainColor: '#93c5fd',
+      density: 1.0,
+      speed: 1.6,
+      depth: 0.5,
+      intensity: 0.9,
+      randomness: 0.35,
+      windAngle: 0.18,
+      streakLength: 1.2,
+    },
+    fields: [
+      { key: 'rainColor', label: 'Teinte Gouttes', type: 'color' },
+      { key: 'density', label: 'Densité Pluie', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Averse', type: 'slider', min: 0.2, max: 3.0, step: 0.1 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Opacité Traits', type: 'slider', min: 0.2, max: 2.0, step: 0.05 },
+      {
+        key: 'randomness',
+        label: 'Dispersion Longueur',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      { key: 'windAngle', label: 'Angle du Vent', type: 'slider', min: -0.8, max: 0.8, step: 0.02 },
+      {
+        key: 'streakLength',
+        label: 'Longueur des Traits',
+        type: 'slider',
+        min: 0.4,
+        max: 2.5,
+        step: 0.05,
+      },
+    ],
+  },
+  {
+    type: 'dust',
+    name: 'Poussière en Suspension',
+    role: 'Motes dorées en quasi-apesanteur dérivant dans les rais de lumière par mouvement brownien doux',
+    category: 'particles',
+    defaultProps: {
+      dustColor: '#fef08a',
+      density: 1.0,
+      speed: 0.2,
+      depth: 0.5,
+      intensity: 1.1,
+      randomness: 0.4,
+      twinkleSpeed: 1.2,
+    },
+    fields: [
+      { key: 'dustColor', label: 'Teinte Grains Dorés', type: 'color' },
+      { key: 'density', label: 'Densité Grains', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Dérive Brownienne', type: 'slider', min: 0.05, max: 1.5, step: 0.05 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Radiance / Éclat',
+        type: 'slider',
+        min: 0.2,
+        max: 2.0,
+        step: 0.05,
+      },
+      {
+        key: 'randomness',
+        label: 'Dispersion Spatiale',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'twinkleSpeed',
+        label: 'Scintillement Organique',
+        type: 'slider',
+        min: 0.5,
+        max: 3.0,
+        step: 0.1,
+      },
+    ],
+  },
+  {
+    type: 'fireflies',
+    name: 'Lucioles Nocturnes',
+    role: 'Insectes bioluminescents aux trajectoires 3D erratiques et pulsation respirante asynchrone',
+    category: 'particles',
+    defaultProps: {
+      glowColor: '#a3e635',
+      coreColor: '#fef08a',
+      density: 1.0,
+      speed: 0.35,
+      depth: 0.45,
+      intensity: 1.3,
+      randomness: 0.55,
+      pulseFrequency: 1.4,
+    },
+    fields: [
+      { key: 'glowColor', label: 'Couronne Bioluminescente', type: 'color' },
+      { key: 'coreColor', label: 'Cœur Chaud', type: 'color' },
+      {
+        key: 'density',
+        label: 'Nombre de Lucioles',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.05,
+      },
+      { key: 'speed', label: 'Vivacité en Vol', type: 'slider', min: 0.1, max: 2.0, step: 0.05 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Éclat Maximal', type: 'slider', min: 0.2, max: 2.0, step: 0.05 },
+      {
+        key: 'randomness',
+        label: 'Imprévisibilité Virages',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'pulseFrequency',
+        label: 'Rythme Respirant',
+        type: 'slider',
+        min: 0.5,
+        max: 3.0,
+        step: 0.1,
+      },
+    ],
+  },
+  {
+    type: 'bubbles',
+    name: 'Bulles Aquatiques',
+    role: 'Sphères translucides irisées avec reflet spéculaire, ascension en zig-zag et dilatation hydrostatique',
+    category: 'particles',
+    defaultProps: {
+      bubbleColor: '#38bdf8',
+      density: 1.0,
+      speed: 0.5,
+      depth: 0.5,
+      intensity: 1.0,
+      randomness: 0.4,
+      wobbleAmount: 0.4,
+      expansionRate: 1.25,
+    },
+    fields: [
+      { key: 'bubbleColor', label: 'Teinte de la Bulle', type: 'color' },
+      { key: 'density', label: 'Densité Bulles', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Ascension', type: 'slider', min: 0.1, max: 2.0, step: 0.05 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Éclat Reflet Spéculaire',
+        type: 'slider',
+        min: 0.2,
+        max: 2.0,
+        step: 0.05,
+      },
+      {
+        key: 'randomness',
+        label: 'Asymétrie / Tailles',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'wobbleAmount',
+        label: 'Balancement Zig-Zag',
+        type: 'slider',
+        min: 0.1,
+        max: 1.5,
+        step: 0.05,
+      },
+      {
+        key: 'expansionRate',
+        label: 'Dilatation Hydrostatique',
+        type: 'slider',
+        min: 0.5,
+        max: 2.0,
+        step: 0.05,
+      },
+    ],
+  },
+  {
+    type: 'leaves',
+    name: 'Feuilles Mortes',
+    role: 'Feuilles automnales rousses et dorées avec aérodynamique de glissade, portance et tumbling 3D',
+    category: 'particles',
+    defaultProps: {
+      leafColor: '#ea580c',
+      altColor: '#ca8a04',
+      density: 1.0,
+      speed: 0.4,
+      depth: 0.5,
+      intensity: 1.0,
+      randomness: 0.55,
+      flutterRate: 1.6,
+      windDrift: 0.5,
+    },
+    fields: [
+      { key: 'leafColor', label: 'Feuilles Rousses', type: 'color' },
+      { key: 'altColor', label: 'Feuilles Dorées', type: 'color' },
+      {
+        key: 'density',
+        label: 'Nombre de Feuilles',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.05,
+      },
+      { key: 'speed', label: 'Vitesse Descente', type: 'slider', min: 0.1, max: 2.0, step: 0.05 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Saturation Couleurs',
+        type: 'slider',
+        min: 0.2,
+        max: 2.0,
+        step: 0.05,
+      },
+      {
+        key: 'randomness',
+        label: 'Turbulence Rafales',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'flutterRate',
+        label: 'Battement / Plané',
+        type: 'slider',
+        min: 0.5,
+        max: 3.0,
+        step: 0.1,
+      },
+      {
+        key: 'windDrift',
+        label: 'Dérive sous le Vent',
+        type: 'slider',
+        min: 0.0,
+        max: 1.5,
+        step: 0.05,
+      },
+    ],
+  },
+  {
+    type: 'sparks',
+    name: 'Étincelles Balistiques',
+    role: 'Projections ultra-vives avec forte vélocité initiale, gravité parabolique et étirement directionnel',
+    category: 'particles',
+    defaultProps: {
+      sparkColor: '#fef08a',
+      coreColor: '#ffffff',
+      density: 1.0,
+      speed: 1.2,
+      depth: 0.4,
+      intensity: 1.4,
+      randomness: 0.5,
+      gravity: 1.2,
+      burstInterval: 1.5,
+    },
+    fields: [
+      { key: 'sparkColor', label: 'Teinte Étincelles', type: 'color' },
+      { key: 'coreColor', label: 'Cœur Blanc-Chaud', type: 'color' },
+      {
+        key: 'density',
+        label: 'Densité Étincelles',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.05,
+      },
+      { key: 'speed', label: 'Vélocité Éjection', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Radiance Électrique',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.1,
+      },
+      {
+        key: 'randomness',
+        label: 'Dispersion Angulaire',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      { key: 'gravity', label: 'Courbure Gravité', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      {
+        key: 'burstInterval',
+        label: 'Cadence des Salves',
+        type: 'slider',
+        min: 0.5,
+        max: 3.0,
+        step: 0.1,
+      },
+    ],
+  },
+  {
+    type: 'petals',
+    name: 'Pétales de Cerisier',
+    role: 'Pétales de sakura en voletement soyeux avec spirale 3D délicate et brise printanière',
+    category: 'particles',
+    defaultProps: {
+      petalColor: '#fbcfe8',
+      accentColor: '#f472b6',
+      density: 1.0,
+      speed: 0.35,
+      depth: 0.5,
+      intensity: 1.0,
+      randomness: 0.45,
+      curlAmount: 1.0,
+      windSpeed: 0.4,
+    },
+    fields: [
+      { key: 'petalColor', label: 'Rose Poudré', type: 'color' },
+      { key: 'accentColor', label: 'Accent Sakura', type: 'color' },
+      {
+        key: 'density',
+        label: 'Nombre de Pétales',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.05,
+      },
+      { key: 'speed', label: 'Vitesse Descente', type: 'slider', min: 0.1, max: 2.0, step: 0.05 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Douceur / Éclat',
+        type: 'slider',
+        min: 0.2,
+        max: 2.0,
+        step: 0.05,
+      },
+      {
+        key: 'randomness',
+        label: 'Turbulence Brise',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'curlAmount',
+        label: 'Spirale & Vrille 3D',
+        type: 'slider',
+        min: 0.2,
+        max: 2.0,
+        step: 0.05,
+      },
+      {
+        key: 'windSpeed',
+        label: 'Brise Printanière',
+        type: 'slider',
+        min: 0.0,
+        max: 1.5,
+        step: 0.05,
+      },
+    ],
+  },
+  {
+    type: 'confetti',
+    name: 'Confettis Festifs',
+    role: 'Rubans multicolores tournoyant vivement sur deux axes (spin & tumble) avec portance aérienne',
+    category: 'particles',
+    defaultProps: {
+      colorMode: 'multi',
+      density: 1.0,
+      speed: 0.6,
+      depth: 0.5,
+      intensity: 1.2,
+      randomness: 0.5,
+      spinSpeed: 1.8,
+      flutterStrength: 1.0,
+    },
+    fields: [
+      {
+        key: 'density',
+        label: 'Densité Confettis',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.05,
+      },
+      { key: 'speed', label: 'Vitesse Chute', type: 'slider', min: 0.1, max: 2.0, step: 0.05 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Saturation & Éclat',
+        type: 'slider',
+        min: 0.2,
+        max: 2.0,
+        step: 0.05,
+      },
+      {
+        key: 'randomness',
+        label: 'Asymétrie Vrilles',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'spinSpeed',
+        label: 'Vitesse Rotation 3D',
+        type: 'slider',
+        min: 0.5,
+        max: 3.0,
+        step: 0.1,
+      },
+      {
+        key: 'flutterStrength',
+        label: 'Portance Aérienne',
+        type: 'slider',
+        min: 0.2,
+        max: 2.0,
+        step: 0.05,
+      },
+    ],
+  },
+  {
+    type: 'smoke',
+    name: 'Volutes de Fumée',
+    role: 'Nuages vaporeux ascendants naissant compacts puis gonflant en s’élevant avec dissipation progressive',
+    category: 'particles',
+    defaultProps: {
+      smokeColor: '#64748b',
+      tintColor: '#334155',
+      density: 1.0,
+      speed: 0.35,
+      depth: 0.45,
+      intensity: 0.7,
+      randomness: 0.5,
+      expansionRate: 1.4,
+      dissipationSpeed: 1.0,
+    },
+    fields: [
+      { key: 'smokeColor', label: 'Teinte Volute', type: 'color' },
+      { key: 'tintColor', label: 'Ombrage Interne', type: 'color' },
+      {
+        key: 'density',
+        label: 'Nombre de Volutes',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.05,
+      },
+      { key: 'speed', label: 'Vitesse Ascension', type: 'slider', min: 0.1, max: 2.0, step: 0.05 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Opacité Vaporeuse',
+        type: 'slider',
+        min: 0.2,
+        max: 2.0,
+        step: 0.05,
+      },
+      {
+        key: 'randomness',
+        label: 'Turbulence Vortex',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'expansionRate',
+        label: 'Expansion des Volutes',
+        type: 'slider',
+        min: 0.5,
+        max: 2.5,
+        step: 0.05,
+      },
+      {
+        key: 'dissipationSpeed',
+        label: 'Cadence Dissipation',
+        type: 'slider',
+        min: 0.5,
+        max: 2.0,
+        step: 0.05,
+      },
+    ],
+  },
+]
+
 export const ALL_BRICKS_CATALOG = [
   ...BACKGROUND_BRICKS_CATALOG,
   ...PARALLAX_BRICKS_CATALOG,
   ...ATMOSPHERE_BRICKS_CATALOG,
+  ...PARTICLES_BRICKS_CATALOG,
 ]
 
 export const BrickDemoInspector: React.FC<{
   engine: ThemeEngine | null
 }> = ({ engine }) => {
-  const [selectedGroup, setSelectedGroup] = useState<'background' | 'parallax' | 'atmosphere'>(
-    'atmosphere'
-  )
-  const [selectedType, setSelectedType] = useState<string>('noisy_fog')
+  const [selectedGroup, setSelectedGroup] = useState<
+    'background' | 'parallax' | 'atmosphere' | 'particles'
+  >('particles')
+  const [selectedType, setSelectedType] = useState<string>('embers')
   const [currentProps, setCurrentProps] = useState<Record<string, any>>(() => {
-    return { ...ATMOSPHERE_BRICKS_CATALOG[0].defaultProps }
+    return { ...PARTICLES_BRICKS_CATALOG[0].defaultProps }
   })
   const [currentTier, setCurrentTier] = useState<QualityTier>('HIGH')
   const [isMobileThrottled, setIsMobileThrottled] = useState(false)
   const [stats, setStats] = useState<PerformanceStats | null>(null)
 
   const activeCatalog =
-    selectedGroup === 'atmosphere'
-      ? ATMOSPHERE_BRICKS_CATALOG
-      : selectedGroup === 'parallax'
-        ? PARALLAX_BRICKS_CATALOG
-        : BACKGROUND_BRICKS_CATALOG
+    selectedGroup === 'particles'
+      ? PARTICLES_BRICKS_CATALOG
+      : selectedGroup === 'atmosphere'
+        ? ATMOSPHERE_BRICKS_CATALOG
+        : selectedGroup === 'parallax'
+          ? PARALLAX_BRICKS_CATALOG
+          : BACKGROUND_BRICKS_CATALOG
   const activeDescriptor = activeCatalog.find((b) => b.type === selectedType) ?? activeCatalog[0]
 
   // Écoute de la télémétrie FPS
@@ -1303,13 +1942,149 @@ export const BrickDemoInspector: React.FC<{
   const loadBrickInEngine = (type: string, propsToUse: Record<string, any>) => {
     if (!engine) return
 
+    const isParticles = PARTICLES_BRICKS_CATALOG.some((b) => b.type === type)
     const isAtmosphere = ATMOSPHERE_BRICKS_CATALOG.some((b) => b.type === type)
     const isParallax = PARALLAX_BRICKS_CATALOG.some((b) => b.type === type)
 
     // Configuration des couches selon le groupe
     const layersConfig: ThemeEngineConfig['layers'] = []
 
-    if (isAtmosphere) {
+    if (isParticles) {
+      // Pour les particules, intégrer un arrière-plan immersif mettant en valeur le rendu
+      let bgType = 'gradient_sky'
+      let bgProps: Record<string, any> = {
+        topColor: '#0a1526',
+        bottomColor: '#020610',
+        horizonColor: '#38bdf8',
+        density: 1.0,
+        speed: 0.1,
+        depth: 0.1,
+      }
+      let interType = 'parallax_mountains'
+      let interProps: Record<string, any> = {
+        rockColor: '#070f1e',
+        sunColor: '#334155',
+        mistColor: '#0f172a',
+        density: 0.9,
+        depth: 0.3,
+      }
+
+      if (type === 'embers') {
+        bgProps = { topColor: '#1a0904', bottomColor: '#050201', horizonColor: '#f97316' }
+        interType = 'parallax_castle'
+        interProps = {
+          castleColor: '#0c0502',
+          torchColor: '#ea580c',
+          rockColor: '#080302',
+          density: 1.0,
+          depth: 0.3,
+        }
+      } else if (type === 'ash') {
+        bgProps = { topColor: '#141416', bottomColor: '#070709', horizonColor: '#64748b' }
+        interType = 'parallax_mountains'
+        interProps = {
+          rockColor: '#0a0a0c',
+          sunColor: '#334155',
+          mistColor: '#1e293b',
+          density: 1.0,
+          depth: 0.3,
+        }
+      } else if (type === 'snow') {
+        bgProps = { topColor: '#0c1527', bottomColor: '#030712', horizonColor: '#93c5fd' }
+        interType = 'parallax_mountains'
+        interProps = {
+          rockColor: '#080f1d',
+          sunColor: '#64748b',
+          mistColor: '#1e293b',
+          density: 1.0,
+          depth: 0.3,
+          snowLevel: 0.5,
+        }
+      } else if (type === 'rain') {
+        bgProps = { topColor: '#0b0f19', bottomColor: '#020408', horizonColor: '#38bdf8' }
+        interType = 'parallax_city'
+        interProps = {
+          buildingColor: '#050912',
+          windowColor: '#38bdf8',
+          beaconColor: '#ef4444',
+          density: 1.0,
+          depth: 0.3,
+        }
+      } else if (type === 'dust') {
+        bgProps = { topColor: '#17130d', bottomColor: '#070503', horizonColor: '#fef08a' }
+        interType = 'parallax_forest'
+        interProps = { forestColor: '#100d08', fogColor: '#2d2415', density: 0.9, depth: 0.3 }
+      } else if (type === 'fireflies') {
+        bgProps = { topColor: '#041510', bottomColor: '#010705', horizonColor: '#10b981' }
+        interType = 'parallax_forest'
+        interProps = { forestColor: '#061711', fogColor: '#0f382a', density: 1.0, depth: 0.3 }
+      } else if (type === 'bubbles') {
+        bgType = 'water_caustics'
+        bgProps = { waterColor: '#02182b', causticColor: '#38bdf8', density: 1.0, depth: 0.2 }
+        interType = ''
+      } else if (type === 'leaves') {
+        bgProps = { topColor: '#230f04', bottomColor: '#080301', horizonColor: '#f97316' }
+        interType = 'parallax_forest'
+        interProps = { forestColor: '#1c0c03', fogColor: '#381807', density: 1.0, depth: 0.3 }
+      } else if (type === 'sparks') {
+        bgProps = { topColor: '#0e0f18', bottomColor: '#030307', horizonColor: '#f59e0b' }
+        interType = 'parallax_city'
+        interProps = {
+          buildingColor: '#080812',
+          windowColor: '#f59e0b',
+          beaconColor: '#ef4444',
+          density: 0.9,
+          depth: 0.3,
+        }
+      } else if (type === 'petals') {
+        bgProps = { topColor: '#1c1328', bottomColor: '#07040d', horizonColor: '#f472b6' }
+        interType = 'parallax_mountains'
+        interProps = {
+          rockColor: '#120b1c',
+          sunColor: '#4c1d95',
+          mistColor: '#2e1065',
+          density: 0.9,
+          depth: 0.3,
+        }
+      } else if (type === 'confetti') {
+        bgProps = { topColor: '#190b30', bottomColor: '#070210', horizonColor: '#ec4899' }
+        interType = 'parallax_city'
+        interProps = {
+          buildingColor: '#0e051d',
+          windowColor: '#a855f7',
+          beaconColor: '#f43f5e',
+          density: 1.0,
+          depth: 0.3,
+        }
+      } else if (type === 'smoke') {
+        bgProps = { topColor: '#10131a', bottomColor: '#040609', horizonColor: '#94a3b8' }
+        interType = 'parallax_castle'
+        interProps = {
+          castleColor: '#080a0f',
+          torchColor: '#64748b',
+          rockColor: '#0c0f16',
+          density: 1.0,
+          depth: 0.3,
+        }
+      }
+
+      layersConfig.push({
+        category: 'background',
+        bricks: [{ id: 'bg_companion_brick', brickType: bgType, props: bgProps }],
+      })
+
+      if (interType) {
+        layersConfig.push({
+          category: 'intermediate',
+          bricks: [{ id: 'inter_companion_brick', brickType: interType, props: interProps }],
+        })
+      }
+
+      layersConfig.push({
+        category: 'particles',
+        bricks: [{ id: 'demo_brick', brickType: type, props: { ...propsToUse } }],
+      })
+    } else if (isAtmosphere) {
       // Pour les effets atmosphériques, intégrer un arrière-plan thématique révélateur
       let bgType = 'gradient_sky'
       let bgProps: Record<string, any> = {
@@ -1486,15 +2261,17 @@ export const BrickDemoInspector: React.FC<{
     engine.loadTheme(config)
   }
 
-  // Changement de groupe (Atmosphère vs Fonds vs Silhouettes)
-  const handleSelectGroup = (group: 'background' | 'parallax' | 'atmosphere') => {
+  // Changement de groupe (Particules vs Atmosphère vs Silhouettes vs Fonds)
+  const handleSelectGroup = (group: 'background' | 'parallax' | 'atmosphere' | 'particles') => {
     setSelectedGroup(group)
     const newCatalog =
-      group === 'atmosphere'
-        ? ATMOSPHERE_BRICKS_CATALOG
-        : group === 'parallax'
-          ? PARALLAX_BRICKS_CATALOG
-          : BACKGROUND_BRICKS_CATALOG
+      group === 'particles'
+        ? PARTICLES_BRICKS_CATALOG
+        : group === 'atmosphere'
+          ? ATMOSPHERE_BRICKS_CATALOG
+          : group === 'parallax'
+            ? PARALLAX_BRICKS_CATALOG
+            : BACKGROUND_BRICKS_CATALOG
     const firstBrick = newCatalog[0]
     setSelectedType(firstBrick.type)
     const freshProps = { ...firstBrick.defaultProps }
@@ -1597,8 +2374,14 @@ export const BrickDemoInspector: React.FC<{
         </div>
       </div>
 
-      {/* Sélecteur de Groupe de Briques (Atmosphère vs Silhouettes vs Fonds) */}
+      {/* Sélecteur de Groupe de Briques (Particules vs Atmosphère vs Silhouettes vs Fonds) */}
       <div className="brick-group-switcher">
+        <button
+          className={`brick-group-pill ${selectedGroup === 'particles' ? 'active' : ''}`}
+          onClick={() => handleSelectGroup('particles')}
+        >
+          <FontAwesomeIcon icon={faFire} /> Groupe 4 : Particules (12 briques)
+        </button>
         <button
           className={`brick-group-pill ${selectedGroup === 'atmosphere' ? 'active' : ''}`}
           onClick={() => handleSelectGroup('atmosphere')}
