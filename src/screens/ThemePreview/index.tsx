@@ -1,6 +1,6 @@
 import './ThemePreview.css'
 
-import { faEye, faUndo } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faLayerGroup, faUndo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { Link } from 'react-router'
@@ -9,6 +9,10 @@ import { getAllThemes } from '@/config/themeRegistry'
 import { THEME_RULES } from '@/config/themeRules'
 import { useTheme } from '@/context/ThemeContext'
 import { ThemeAnimationLayer } from '@/theme-animations'
+import { ThemeEngineHost, useActiveThemeEngine, useThemeEngineVersion } from '@/theme-engine'
+
+import { BrickDemoInspector } from './BrickDemoInspector'
+import { ThemeEngineToolbar } from './ThemeEngineToolbar'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -43,6 +47,9 @@ for (const t of allThemeEntries) {
 
 export default function ThemePreview() {
   const { activePreset, setIsPreviewMode } = useTheme()
+  const [engineVersion] = useThemeEngineVersion()
+  const activeEngine = useActiveThemeEngine()
+  const [showInspector, setShowInspector] = useState(true)
   const [localPreset, setLocalPreset] = useState<string | null>(() => {
     return localStorage.getItem('gc_preview_theme') || activePreset
   })
@@ -72,19 +79,37 @@ export default function ThemePreview() {
 
   return (
     <div className="theme-preview-container">
-      {/* Animation d'ambiance suivant le theme previsualise */}
-      <ThemeAnimationLayer overridePreset={localPreset} />
+      {/* Animation d'ambiance selon le moteur sélectionné (V1 Ancien vs V2 Nouveau WebGL) */}
+      {engineVersion === 'v2' ? (
+        <ThemeEngineHost overridePreset={localPreset} />
+      ) : (
+        <ThemeAnimationLayer overridePreset={localPreset} />
+      )}
+
       <header className="theme-preview-header">
         <Link to="/admin" className="admin-back-link">
           ← Retour à l'administration
         </Link>
         <h1>🎨 Preview des Thèmes</h1>
         <p>
-          Cette page permet de prévisualiser l'impact visuel (CSS) de chaque thème sur
+          Cette page permet de prévisualiser l'impact visuel (CSS) et cinématique (WebGL V2) de chaque thème sur
           l'application.
         </p>
 
-        <div className="theme-preview-actions">
+        {/* Barre d'outils et banc d'essai V2 (Télémétrie, Qualité, Temps, Captures) */}
+        <ThemeEngineToolbar onSelectTestTheme={() => applyTheme('test_ambient')} />
+
+        <div className="theme-preview-actions" style={{ gap: '0.75rem', flexWrap: 'wrap' }}>
+          {engineVersion === 'v2' && (
+            <button
+              className={`theme-preview-btn ${showInspector ? 'apply' : ''}`}
+              onClick={() => setShowInspector((prev) => !prev)}
+            >
+              <FontAwesomeIcon icon={faLayerGroup} />
+              {showInspector ? 'Masquer Inspecteur Briques' : 'Inspecteur de Briques (Fonds)'}
+            </button>
+          )}
+
           <button
             className="theme-preview-btn reset"
             onClick={() => applyTheme(null)}
@@ -93,6 +118,11 @@ export default function ThemePreview() {
             <FontAwesomeIcon icon={faUndo} /> Réinitialiser le thème par défaut
           </button>
         </div>
+
+        {/* Inspecteur interactif des 9 briques de fond WebGL */}
+        {engineVersion === 'v2' && showInspector && (
+          <BrickDemoInspector engine={activeEngine} />
+        )}
       </header>
 
       <div className="theme-preview-grid">
