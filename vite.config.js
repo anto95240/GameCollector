@@ -203,6 +203,10 @@ export default defineConfig(({ mode }) => ({
             if (id.includes('/fuse.js/')) {
               return 'vendor-utils'
             }
+            // Three.js
+            if (id.includes('/three/') || id.includes('/@react-three/')) {
+              return 'vendor-three'
+            }
             // Virtualisation listes
             if (id.includes('/react-window/')) {
               return 'vendor-virtual'

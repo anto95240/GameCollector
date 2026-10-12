@@ -16,11 +16,13 @@ import { useApiShortcuts } from '@/hooks/api/useApiShortcuts'
 import { useAchievementTracker } from '@/hooks/domains/achievements/useAchievementTracker'
 import keyboardShortcutsService from '@/services/keyboardShortcutsService'
 import { ThemeAnimationLayer } from '@/theme-animations'
+import { ThemeEngineHost, useThemeEngineVersion } from '@/theme-engine'
 
 function App() {
   useAchievementTracker()
   const { user } = useAuth()
   const { getShortcuts } = useApiShortcuts()
+  const [engineVersion] = useThemeEngineVersion()
 
   useEffect(() => {
     if (user) {
@@ -35,7 +37,7 @@ function App() {
   return (
     <ErrorBoundary>
       <div id="app-container" className="app-container">
-        <ThemeAnimationLayer />
+        {engineVersion === 'v2' ? <ThemeEngineHost /> : <ThemeAnimationLayer />}
         <RouterProvider router={router} />
         <KeyboardShortcutsProvider />
         <AchievementToast />
