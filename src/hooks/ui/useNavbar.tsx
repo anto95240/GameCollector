@@ -5,7 +5,7 @@ import { useLanguage, useTheme } from '@/context'
 
 export const useNavbar = () => {
   const { t } = useTranslation()
-  const { isDark, toggleTheme } = useTheme()
+  const { isDark, toggleTheme } = useTheme() as any
   const { language, changeLanguage: changeGlobalLanguage } = useLanguage()
 
   const [actionsOpen, setActionsOpen] = useState(false)

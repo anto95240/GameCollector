@@ -41,3 +41,5 @@ coverage/
 
 docs/
 scripts/
+
+.agents/

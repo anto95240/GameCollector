@@ -747,13 +747,13 @@ body {
 #app-container {
   border-radius: 40px;
   border: 1px solid var(--color-border);
-  /* Transparent : les animations du portal (dans body) sont visibles a travers */
   background-color: transparent;
   width: 100%;
   height: 100vh;
   overflow: hidden;
   position: relative;
   transition: border-color var(--duration-standard) ease;
+  z-index: 2;
 }
 
 .app-container {

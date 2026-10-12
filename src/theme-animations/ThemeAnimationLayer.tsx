@@ -118,38 +118,46 @@ export function ThemeAnimationLayer({ overridePreset }: ThemeAnimationLayerProps
   // z-index: 0 pour rester derriere #app-container
   // Le portal monte dans body donc pas affecte par overflow:hidden de #app-container
   const layerContent = (
-    <div
-      aria-hidden="true"
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 0,
-        pointerEvents: 'none',
-      }}
-    >
-      {/* Calques Canvas */}
-      {canvasConfigs.length > 0 && <CanvasLayer configs={canvasConfigs} paused={isPaused} />}
-      {/* Calques CSS */}
-      {(fogConfigs.length > 0 || glowConfigs.length > 0 || scanlineConfigs.length > 0) && (
-        <CssLayer
-          fogConfigs={fogConfigs}
-          glowConfigs={glowConfigs}
-          scanlineConfigs={scanlineConfigs}
-          paused={isPaused}
-        />
-      )}
-      {/* Voile de protection lisibilite WCAG */}
+    <>
+      {/* Calques d'animation V1 : z-index 0, pointer-events: none */}
+      <div
+        className="theme-animation-v1-layer"
+        aria-hidden="true"
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: 'none',
+        }}
+      >
+        {/* Calques Canvas */}
+        {canvasConfigs.length > 0 && <CanvasLayer configs={canvasConfigs} paused={isPaused} />}
+        {/* Calques CSS */}
+        {(fogConfigs.length > 0 || glowConfigs.length > 0 || scanlineConfigs.length > 0) && (
+          <CssLayer
+            fogConfigs={fogConfigs}
+            glowConfigs={glowConfigs}
+            scanlineConfigs={scanlineConfigs}
+            paused={isPaused}
+          />
+        )}
+      </div>
+
+      {/* Voile de protection lisibilité WCAG : z-index 1, entre animation et UI */}
       {shield?.enabled && (
         <div
+          className="theme-content-shield-v1"
+          aria-hidden="true"
           style={{
-            position: 'absolute',
+            position: 'fixed',
             inset: 0,
+            zIndex: 1,
             background: shield.color,
             pointerEvents: 'none',
           }}
         />
       )}
-    </div>
+    </>
   )
 
   return createPortal(layerContent, document.body)
