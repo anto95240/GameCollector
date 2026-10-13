@@ -13,13 +13,16 @@
  */
 
 import {
+  faBolt,
   faCloud,
   faFire,
   faLayerGroup,
   faMobileScreenButton,
   faMountain,
+  faPalette,
   faRotateRight,
   faSliders,
+  faWandMagicSparkles,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
@@ -32,7 +35,7 @@ export interface BrickDescriptor {
   type: string
   name: string
   role: string
-  category: 'background' | 'intermediate' | 'atmosphere' | 'particles'
+  category: 'background' | 'intermediate' | 'atmosphere' | 'particles' | 'events' | 'overlay' | 'special'
   defaultProps: Record<string, any>
   fields: {
     key: string
@@ -1898,35 +1901,505 @@ export const PARTICLES_BRICKS_CATALOG: BrickDescriptor[] = [
   },
 ]
 
+export const EVENTS_BRICKS_CATALOG: BrickDescriptor[] = [
+  {
+    type: 'lightning',
+    name: 'Éclair & Foudre',
+    role: 'Décharge plasma fractale avec ramifications (forked lightning), canal ultra-brillant, halo volumétrique et flash stochastique à retours multiples',
+    category: 'events',
+    defaultProps: {
+      lightningColor: '#c4b5fd',
+      flashColor: '#ffffff',
+      density: 1.0,
+      speed: 1.2,
+      depth: 0.3,
+      intensity: 1.3,
+      randomness: 0.55,
+      strikeInterval: 3.5,
+      forkSpread: 0.6,
+    },
+    fields: [
+      { key: 'lightningColor', label: 'Couleur Plasma', type: 'color' },
+      { key: 'flashColor', label: 'Couleur Flash Ciel', type: 'color' },
+      { key: 'density', label: 'Ramifications Fractales', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Décharge', type: 'slider', min: 0.2, max: 3.0, step: 0.05 },
+      { key: 'depth', label: 'Parallaxe Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Radiance / Flash', type: 'slider', min: 0.2, max: 3.0, step: 0.1 },
+      { key: 'randomness', label: 'Sinuosité Fractale', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'strikeInterval', label: 'Intervalle Frappes (s)', type: 'slider', min: 1.0, max: 10.0, step: 0.5 },
+      { key: 'forkSpread', label: 'Écartement Branches', type: 'slider', min: 0.2, max: 1.5, step: 0.05 },
+    ],
+  },
+  {
+    type: 'shooting_star',
+    name: 'Étoile Filante',
+    role: 'Bolide hypersonique fendant la voûte céleste avec tête incandescente ablative, traînée de plasma ionisé persistant et micro-fragmentation',
+    category: 'events',
+    defaultProps: {
+      starColor: '#ffffff',
+      trailColor: '#38bdf8',
+      density: 1.0,
+      speed: 1.4,
+      depth: 0.4,
+      intensity: 1.25,
+      randomness: 0.45,
+      angle: -0.65,
+      trailLength: 1.2,
+      starInterval: 3.0,
+    },
+    fields: [
+      { key: 'starColor', label: 'Couleur Bolide', type: 'color' },
+      { key: 'trailColor', label: 'Couleur Traînée Plasma', type: 'color' },
+      { key: 'density', label: 'Densité / Fréquence', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vélocité Traversée', type: 'slider', min: 0.2, max: 3.0, step: 0.05 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Radiance & Éclat', type: 'slider', min: 0.2, max: 3.0, step: 0.1 },
+      { key: 'randomness', label: 'Dispersion Angles', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'angle', label: 'Angle Descente (rad)', type: 'slider', min: -2.0, max: 2.0, step: 0.05 },
+      { key: 'trailLength', label: 'Longueur Traînée', type: 'slider', min: 0.3, max: 2.5, step: 0.05 },
+      { key: 'starInterval', label: 'Intervalle (s)', type: 'slider', min: 1.0, max: 10.0, step: 0.5 },
+    ],
+  },
+  {
+    type: 'wind_gust',
+    name: 'Rafale de Vent',
+    role: 'Bourrasque d’air traversant l’écran avec lignes de courant (streamlines) sinueuses, tourbillons de Kelvin-Helmholtz et micro-condensation',
+    category: 'events',
+    defaultProps: {
+      windColor: '#e2e8f0',
+      density: 1.0,
+      speed: 1.3,
+      depth: 0.35,
+      intensity: 1.1,
+      randomness: 0.45,
+      gustAngle: 0.15,
+      gustInterval: 4.0,
+      swirlScale: 1.0,
+    },
+    fields: [
+      { key: 'windColor', label: 'Couleur Flux d’Air', type: 'color' },
+      { key: 'density', label: 'Lignes de Courant', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vélocité Rafale', type: 'slider', min: 0.2, max: 3.0, step: 0.05 },
+      { key: 'depth', label: 'Parallaxe Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Contraste Volutes', type: 'slider', min: 0.2, max: 2.5, step: 0.1 },
+      { key: 'randomness', label: 'Turbulence Vortex', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'gustAngle', label: 'Direction Vent (rad)', type: 'slider', min: -3.14, max: 3.14, step: 0.05 },
+      { key: 'gustInterval', label: 'Intervalle Rafales (s)', type: 'slider', min: 1.0, max: 10.0, step: 0.5 },
+      { key: 'swirlScale', label: 'Échelle Tourbillons', type: 'slider', min: 0.3, max: 2.0, step: 0.05 },
+    ],
+  },
+  {
+    type: 'shockwave',
+    name: 'Onde de Choc',
+    role: 'Détonation annulaire en expansion radiale avec compression optique, anneaux secondaires concentriques et aberration chromatique RVB',
+    category: 'events',
+    defaultProps: {
+      ringColor: '#38bdf8',
+      density: 1.0,
+      speed: 1.2,
+      depth: 0.3,
+      intensity: 1.2,
+      randomness: 0.35,
+      epicenterX: 0.0,
+      epicenterY: 0.0,
+      waveInterval: 3.5,
+      chromaticAberration: 0.02,
+    },
+    fields: [
+      { key: 'ringColor', label: 'Couleur Anneau Onde', type: 'color' },
+      { key: 'density', label: 'Anneaux Secondaires', type: 'slider', min: 0.3, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Expansion', type: 'slider', min: 0.2, max: 3.0, step: 0.05 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Radiance / Distorsion', type: 'slider', min: 0.2, max: 2.5, step: 0.1 },
+      { key: 'randomness', label: 'Asymétrie Épicentre', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'epicenterX', label: 'Épicentre X', type: 'slider', min: -1.0, max: 1.0, step: 0.05 },
+      { key: 'epicenterY', label: 'Épicentre Y', type: 'slider', min: -1.0, max: 1.0, step: 0.05 },
+      { key: 'waveInterval', label: 'Intervalle Ondes (s)', type: 'slider', min: 1.0, max: 10.0, step: 0.5 },
+      { key: 'chromaticAberration', label: 'Dispersion RVB', type: 'slider', min: 0.0, max: 0.05, step: 0.005 },
+    ],
+  },
+  {
+    type: 'glitch',
+    name: 'Glitch Numérique',
+    role: 'Défaillance d’affichage cybernétique avec découpage par blocs horizontaux (slicing), aberration chromatique (RGB split) et balayage corrompu',
+    category: 'events',
+    defaultProps: {
+      glitchColor: '#00f0ff',
+      density: 1.0,
+      speed: 1.5,
+      depth: 0.25,
+      intensity: 1.2,
+      randomness: 0.6,
+      sliceHeight: 0.08,
+      glitchInterval: 3.0,
+      chromaticShift: 0.04,
+    },
+    fields: [
+      { key: 'glitchColor', label: 'Couleur Franges', type: 'color' },
+      { key: 'density', label: 'Nombre de Blocs', type: 'slider', min: 0.3, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vivacité Salves', type: 'slider', min: 0.2, max: 3.0, step: 0.05 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Amplitude Décalage', type: 'slider', min: 0.2, max: 2.5, step: 0.1 },
+      { key: 'randomness', label: 'Imprévisibilité Gigue', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'sliceHeight', label: 'Hauteur Tranches', type: 'slider', min: 0.01, max: 0.25, step: 0.01 },
+      { key: 'glitchInterval', label: 'Intervalle Salves (s)', type: 'slider', min: 1.0, max: 10.0, step: 0.5 },
+      { key: 'chromaticShift', label: 'Séparation RVB', type: 'slider', min: 0.01, max: 0.15, step: 0.01 },
+    ],
+  },
+  {
+    type: 'screen_shake',
+    name: 'Tremblement Léger',
+    role: 'Secousse tellurique ou cinématique amortie agissant sur la caméra (X, Y, Z, roulis) avec voile de vibration optique et répliques (aftershocks)',
+    category: 'events',
+    defaultProps: {
+      shakeColor: '#94a3b8',
+      density: 1.0,
+      speed: 1.2,
+      depth: 0.3,
+      intensity: 1.0,
+      randomness: 0.5,
+      shakeInterval: 4.5,
+      decayRate: 3.5,
+    },
+    fields: [
+      { key: 'shakeColor', label: 'Voile Tellurique', type: 'color' },
+      { key: 'density', label: 'Fréquence Harmoniques', type: 'slider', min: 0.3, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vivacité Secousse', type: 'slider', min: 0.2, max: 3.0, step: 0.05 },
+      { key: 'depth', label: 'Amplitude Recul Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Force de Déplacement', type: 'slider', min: 0.1, max: 2.5, step: 0.1 },
+      { key: 'randomness', label: 'Asymétrie Axes', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'shakeInterval', label: 'Intervalle Secousses (s)', type: 'slider', min: 1.0, max: 10.0, step: 0.5 },
+      { key: 'decayRate', label: 'Taux Amortissement', type: 'slider', min: 1.0, max: 8.0, step: 0.2 },
+    ],
+  },
+]
+
+export const OVERLAYS_BRICKS_CATALOG: BrickDescriptor[] = [
+  {
+    type: 'grain',
+    name: 'Grain Argentique',
+    role: 'Simulation photochimique de grain cinéma 35mm avec micro-agrégats (clumpiness), jitter 24fps et dispersion chromatique',
+    category: 'overlay',
+    defaultProps: {
+      grainColor: '#ffffff',
+      density: 1.2,
+      speed: 0.8,
+      depth: 0.2,
+      intensity: 0.12,
+      randomness: 0.5,
+      clumpSize: 1.0,
+    },
+    fields: [
+      { key: 'grainColor', label: 'Teinte Cristaux', type: 'color' },
+      { key: 'density', label: 'Finesse Cristaux', type: 'slider', min: 0.4, max: 3.0, step: 0.1 },
+      { key: 'speed', label: 'Cadence (24fps)', type: 'slider', min: 0.1, max: 2.5, step: 0.05 },
+      { key: 'depth', label: 'Parallaxe Focale', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Contraste Grain', type: 'slider', min: 0.02, max: 0.45, step: 0.01 },
+      { key: 'randomness', label: 'Agrégats Émulsion', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'clumpSize', label: 'Taille des Amas', type: 'slider', min: 0.4, max: 2.5, step: 0.1 },
+    ],
+  },
+  {
+    type: 'vignette',
+    name: 'Vignettage Optique',
+    role: 'Assombrissement radial physique selon la loi cos^4(theta) avec respiration organique du diaphragme et décentrement',
+    category: 'overlay',
+    defaultProps: {
+      vignetteColor: '#000000',
+      density: 1.0,
+      speed: 0.15,
+      depth: 0.35,
+      intensity: 0.6,
+      randomness: 0.2,
+      roundness: 0.65,
+      smoothness: 0.85,
+    },
+    fields: [
+      { key: 'vignetteColor', label: 'Teinte Pénombre', type: 'color' },
+      { key: 'density', label: 'Rayon Intérieur', type: 'slider', min: 0.3, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Respiration Diaphragme', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'depth', label: 'Décentrement Souris', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Opacité Bordures', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      { key: 'randomness', label: 'Asymétrie Lentille', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'roundness', label: 'Forme (0=Écran, 1=Rond)', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'smoothness', label: 'Douceur Dégradé', type: 'slider', min: 0.2, max: 1.5, step: 0.05 },
+    ],
+  },
+  {
+    type: 'crt_scanlines',
+    name: 'Scanlines CRT & Rétro',
+    role: 'Émulation de moniteur cathodique vintage avec balayage horizontal, phosphor roll, courbure barillet 3D et masque sub-pixel',
+    category: 'overlay',
+    defaultProps: {
+      scanlineColor: '#000000',
+      density: 1.0,
+      speed: 0.3,
+      depth: 0.25,
+      intensity: 0.45,
+      randomness: 0.25,
+      curvature: 0.12,
+      rollIntensity: 0.15,
+    },
+    fields: [
+      { key: 'scanlineColor', label: 'Couleur Lignes', type: 'color' },
+      { key: 'density', label: 'Densité des Lignes', type: 'slider', min: 0.3, max: 3.0, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Phosphor Roll', type: 'slider', min: 0.0, max: 2.0, step: 0.05 },
+      { key: 'depth', label: 'Parallaxe 3D', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Contraste Trame', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      { key: 'randomness', label: 'Micro-flicker 60Hz', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'curvature', label: 'Courbure Tube Bombé', type: 'slider', min: 0.0, max: 0.35, step: 0.02 },
+      { key: 'rollIntensity', label: 'Éclat Barre Balayage', type: 'slider', min: 0.0, max: 0.4, step: 0.02 },
+    ],
+  },
+  {
+    type: 'halftone',
+    name: 'Trame Comics (Halftone)',
+    role: 'Impression offset pop art et Ben-Day dots inclinés à 45° avec modulation de diamètre, bavure d’encre et onde cinétique',
+    category: 'overlay',
+    defaultProps: {
+      dotColor: '#000000',
+      density: 1.2,
+      speed: 0.2,
+      depth: 0.3,
+      intensity: 0.5,
+      randomness: 0.3,
+      patternAngle: 0.79,
+      dotRadius: 0.45,
+    },
+    fields: [
+      { key: 'dotColor', label: 'Couleur Encre', type: 'color' },
+      { key: 'density', label: 'Densité Grille', type: 'slider', min: 0.4, max: 3.0, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Ondulation', type: 'slider', min: 0.0, max: 1.5, step: 0.05 },
+      { key: 'depth', label: 'Parallaxe / Répulsion', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Opacité Encre', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      { key: 'randomness', label: 'Bavure Papier Simplex', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'patternAngle', label: 'Angle Trame (rad)', type: 'slider', min: 0.0, max: 3.14, step: 0.05 },
+      { key: 'dotRadius', label: 'Calibre des Points', type: 'slider', min: 0.1, max: 0.85, step: 0.02 },
+    ],
+  },
+  {
+    type: 'pixelation',
+    name: 'Pixellisation Rétro',
+    role: 'Mosaïque rétro 8/16-bit quantifiée avec tramage ordonné de Bayer 4x4, joints de dalles et loupe de focus interactive sous la souris',
+    category: 'overlay',
+    defaultProps: {
+      tintColor: '#000000',
+      density: 1.0,
+      speed: 0.25,
+      depth: 0.4,
+      intensity: 0.65,
+      randomness: 0.2,
+      pixelSize: 8.0,
+      ditherStrength: 0.35,
+    },
+    fields: [
+      { key: 'tintColor', label: 'Teinte Mosaïque', type: 'color' },
+      { key: 'density', label: 'Finesse Grille', type: 'slider', min: 0.3, max: 3.0, step: 0.05 },
+      { key: 'speed', label: 'Pulsation Temporelle', type: 'slider', min: 0.0, max: 2.0, step: 0.05 },
+      { key: 'depth', label: 'Rayon Loupe de Focus', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Force Mosaïque', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      { key: 'randomness', label: 'Instabilité Rétro', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'pixelSize', label: 'Taille Pixel (px)', type: 'slider', min: 2.0, max: 32.0, step: 1.0 },
+      { key: 'ditherStrength', label: 'Tramage Bayer 4x4', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+    ],
+  },
+  {
+    type: 'chromatic_aberration',
+    name: 'Aberration Chromatique',
+    role: 'Dispersion spectrale prismatique RVB avec étalement radial r^2 vers les bords et préservation totale du centre pour la lisibilité',
+    category: 'overlay',
+    defaultProps: {
+      aberrationColor: '#00f0ff',
+      density: 1.0,
+      speed: 0.3,
+      depth: 0.4,
+      intensity: 0.6,
+      randomness: 0.3,
+      spread: 0.025,
+      radialFalloff: 1.6,
+    },
+    fields: [
+      { key: 'aberrationColor', label: 'Couleur Frange', type: 'color' },
+      { key: 'density', label: 'Fréquence Ondes', type: 'slider', min: 0.3, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Prisme', type: 'slider', min: 0.0, max: 2.0, step: 0.05 },
+      { key: 'depth', label: 'Déflexion Souris', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Force Séparation RVB', type: 'slider', min: 0.1, max: 1.5, step: 0.05 },
+      { key: 'randomness', label: 'Asymétrie Simplex', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'spread', label: 'Écartement Franges', type: 'slider', min: 0.005, max: 0.08, step: 0.002 },
+      { key: 'radialFalloff', label: 'Falloff Central (Texte Net)', type: 'slider', min: 0.5, max: 3.0, step: 0.1 },
+    ],
+  },
+]
+
+export const SPECIAL_BRICKS_CATALOG: BrickDescriptor[] = [
+  {
+    type: 'neon_grid',
+    name: 'Grille Néon',
+    role: 'Grille 3D perspective rétro-futuriste synthwave avec tracé néon fwidth, impulsions d’énergie et ondulation de terrain Simplex 2D',
+    category: 'special',
+    defaultProps: {
+      gridColor: '#00f0ff',
+      horizonColor: '#ff007f',
+      pulseColor: '#ffffff',
+      density: 1.0,
+      speed: 0.3,
+      depth: 0.35,
+      intensity: 1.0,
+      randomness: 0.3,
+      horizonHeight: 0.45,
+      lineWidth: 0.04,
+      waveHeight: 0.25,
+    },
+    fields: [
+      { key: 'gridColor', label: 'Couleur Grille Néon', type: 'color' },
+      { key: 'horizonColor', label: 'Lueur Horizon Céleste', type: 'color' },
+      { key: 'pulseColor', label: 'Impulsions Énergie', type: 'color' },
+      { key: 'density', label: 'Densité / Échelle', type: 'slider', min: 0.4, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Défilement', type: 'slider', min: 0.0, max: 1.5, step: 0.05 },
+      { key: 'depth', label: 'Parallaxe / Profondeur', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Radiance Néon', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'randomness', label: 'Relief / Simplex', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'horizonHeight', label: 'Hauteur Horizon', type: 'slider', min: 0.2, max: 0.75, step: 0.02 },
+      { key: 'lineWidth', label: 'Épaisseur Traits', type: 'slider', min: 0.01, max: 0.1, step: 0.005 },
+      { key: 'waveHeight', label: 'Hauteur Ondes Terrain', type: 'slider', min: 0.0, max: 0.8, step: 0.05 },
+    ],
+  },
+  {
+    type: 'code_rain',
+    name: 'Pluie de Code (Matrix)',
+    role: 'Cascade cybernétique de caractères mutants sur 3 couches de profondeur avec têtes incandescentes et perturbation magnétique souris',
+    category: 'special',
+    defaultProps: {
+      primaryColor: '#00ff66',
+      headColor: '#ffffff',
+      glowColor: '#003b15',
+      density: 1.0,
+      speed: 0.45,
+      depth: 0.35,
+      intensity: 1.0,
+      randomness: 0.35,
+      charSize: 1.0,
+      tailLength: 0.7,
+      mouseGlow: 0.5,
+    },
+    fields: [
+      { key: 'primaryColor', label: 'Couleur Caractères', type: 'color' },
+      { key: 'headColor', label: 'Couleur Tête Incandescente', type: 'color' },
+      { key: 'glowColor', label: 'Halo Ambiant Sombre', type: 'color' },
+      { key: 'density', label: 'Nombre Colonnes', type: 'slider', min: 0.4, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Chute', type: 'slider', min: 0.1, max: 1.8, step: 0.05 },
+      { key: 'depth', label: 'Parallaxe 3D', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Radiance Glyphes', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'randomness', label: 'Mutation Caractères', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'charSize', label: 'Taille Glyphes', type: 'slider', min: 0.5, max: 2.0, step: 0.05 },
+      { key: 'tailLength', label: 'Longueur Traînée', type: 'slider', min: 0.2, max: 1.5, step: 0.05 },
+      { key: 'mouseGlow', label: 'Perturbation Souris', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+    ],
+  },
+  {
+    type: 'hex_grid',
+    name: 'Grille Hexagonale',
+    role: 'Réseau d’alvéoles nanotechnologiques / bouclier d’énergie avec pulsation biologique par cellule, doubles arêtes et ondes de choc souris',
+    category: 'special',
+    defaultProps: {
+      borderColor: '#00f0ff',
+      fillColor: '#001224',
+      pulseColor: '#ff007f',
+      density: 1.0,
+      speed: 0.3,
+      depth: 0.35,
+      intensity: 1.0,
+      randomness: 0.35,
+      borderWidth: 0.06,
+      innerGlow: 0.45,
+      waveSpread: 1.2,
+    },
+    fields: [
+      { key: 'borderColor', label: 'Couleur Arêtes', type: 'color' },
+      { key: 'fillColor', label: 'Fond Alvéoles', type: 'color' },
+      { key: 'pulseColor', label: 'Ondes Énergie', type: 'color' },
+      { key: 'density', label: 'Échelle Hexagones', type: 'slider', min: 0.4, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Pulsation', type: 'slider', min: 0.1, max: 1.8, step: 0.05 },
+      { key: 'depth', label: 'Parallaxe / Relief', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Contraste / Éclat', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'randomness', label: 'Asynchronisme', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'borderWidth', label: 'Épaisseur Bordures', type: 'slider', min: 0.02, max: 0.15, step: 0.005 },
+      { key: 'innerGlow', label: 'Halo Interne Cellule', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'waveSpread', label: 'Rayon Ondes Souris', type: 'slider', min: 0.4, max: 2.5, step: 0.05 },
+    ],
+  },
+  {
+    type: 'line_constellation',
+    name: 'Constellation de Lignes',
+    role: 'Graphe 3D synaptique et stellaire avec dérive brownienne Simplex 3D, liaisons de proximité dynamiques et impulsions synaptiques',
+    category: 'special',
+    defaultProps: {
+      nodeColor: '#00f0ff',
+      lineColor: '#38bdf8',
+      pulseColor: '#ffffff',
+      density: 1.0,
+      speed: 0.25,
+      depth: 0.4,
+      intensity: 1.0,
+      randomness: 0.35,
+      connectDistance: 2.8,
+      nodeSize: 1.0,
+      pulseSpeed: 1.5,
+    },
+    fields: [
+      { key: 'nodeColor', label: 'Couleur Nœuds', type: 'color' },
+      { key: 'lineColor', label: 'Couleur Lignes', type: 'color' },
+      { key: 'pulseColor', label: 'Impulsions Synaptiques', type: 'color' },
+      { key: 'density', label: 'Nombre Nœuds', type: 'slider', min: 0.4, max: 2.5, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Dérive', type: 'slider', min: 0.05, max: 1.2, step: 0.05 },
+      { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Radiance Réseau', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      { key: 'randomness', label: 'Turbulence Brownienne', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'connectDistance', label: 'Distance Connexion', type: 'slider', min: 1.5, max: 5.0, step: 0.1 },
+      { key: 'nodeSize', label: 'Taille Nœuds', type: 'slider', min: 0.4, max: 2.5, step: 0.05 },
+      { key: 'pulseSpeed', label: 'Vitesse Influx', type: 'slider', min: 0.5, max: 3.5, step: 0.1 },
+    ],
+  },
+]
+
 export const ALL_BRICKS_CATALOG = [
+  ...SPECIAL_BRICKS_CATALOG,
   ...BACKGROUND_BRICKS_CATALOG,
   ...PARALLAX_BRICKS_CATALOG,
   ...ATMOSPHERE_BRICKS_CATALOG,
   ...PARTICLES_BRICKS_CATALOG,
+  ...EVENTS_BRICKS_CATALOG,
+  ...OVERLAYS_BRICKS_CATALOG,
 ]
 
 export const BrickDemoInspector: React.FC<{
   engine: ThemeEngine | null
 }> = ({ engine }) => {
   const [selectedGroup, setSelectedGroup] = useState<
-    'background' | 'parallax' | 'atmosphere' | 'particles'
-  >('particles')
-  const [selectedType, setSelectedType] = useState<string>('embers')
+    'background' | 'parallax' | 'atmosphere' | 'particles' | 'events' | 'overlay' | 'special'
+  >('special')
+  const [selectedType, setSelectedType] = useState<string>('neon_grid')
   const [currentProps, setCurrentProps] = useState<Record<string, any>>(() => {
-    return { ...PARTICLES_BRICKS_CATALOG[0].defaultProps }
+    return { ...SPECIAL_BRICKS_CATALOG[0].defaultProps }
   })
   const [currentTier, setCurrentTier] = useState<QualityTier>('HIGH')
   const [isMobileThrottled, setIsMobileThrottled] = useState(false)
   const [stats, setStats] = useState<PerformanceStats | null>(null)
 
   const activeCatalog =
-    selectedGroup === 'particles'
-      ? PARTICLES_BRICKS_CATALOG
-      : selectedGroup === 'atmosphere'
-        ? ATMOSPHERE_BRICKS_CATALOG
-        : selectedGroup === 'parallax'
-          ? PARALLAX_BRICKS_CATALOG
-          : BACKGROUND_BRICKS_CATALOG
+    selectedGroup === 'special'
+      ? SPECIAL_BRICKS_CATALOG
+      : selectedGroup === 'overlay'
+        ? OVERLAYS_BRICKS_CATALOG
+        : selectedGroup === 'events'
+          ? EVENTS_BRICKS_CATALOG
+          : selectedGroup === 'particles'
+            ? PARTICLES_BRICKS_CATALOG
+            : selectedGroup === 'atmosphere'
+              ? ATMOSPHERE_BRICKS_CATALOG
+              : selectedGroup === 'parallax'
+                ? PARALLAX_BRICKS_CATALOG
+                : BACKGROUND_BRICKS_CATALOG
   const activeDescriptor = activeCatalog.find((b) => b.type === selectedType) ?? activeCatalog[0]
 
   // Écoute de la télémétrie FPS
@@ -1935,13 +2408,24 @@ export const BrickDemoInspector: React.FC<{
     const unsub = engine.quality.subscribe((_tier, newStats) => {
       setStats(newStats)
     })
-    return () => unsub()
+    const interval = setInterval(() => {
+      if (engine) {
+        setStats(engine.quality.getStats())
+      }
+    }, 250)
+    return () => {
+      unsub()
+      clearInterval(interval)
+    }
   }, [engine])
 
   // Charge la brique sélectionnée dans le moteur Three.js
   const loadBrickInEngine = (type: string, propsToUse: Record<string, any>) => {
     if (!engine) return
 
+    const isSpecial = SPECIAL_BRICKS_CATALOG.some((b) => b.type === type)
+    const isOverlay = OVERLAYS_BRICKS_CATALOG.some((b) => b.type === type)
+    const isEvents = EVENTS_BRICKS_CATALOG.some((b) => b.type === type)
     const isParticles = PARTICLES_BRICKS_CATALOG.some((b) => b.type === type)
     const isAtmosphere = ATMOSPHERE_BRICKS_CATALOG.some((b) => b.type === type)
     const isParallax = PARALLAX_BRICKS_CATALOG.some((b) => b.type === type)
@@ -1949,7 +2433,255 @@ export const BrickDemoInspector: React.FC<{
     // Configuration des couches selon le groupe
     const layersConfig: ThemeEngineConfig['layers'] = []
 
-    if (isParticles) {
+    if (isSpecial) {
+      // Pour les effets spéciaux, décor cyberpunk / spatial adapté mettant en valeur chaque géométrie
+      let bgType = 'gradient_sky'
+      let bgProps: Record<string, any> = {
+        topColor: '#080112',
+        bottomColor: '#020005',
+        horizonColor: '#ff007f',
+        density: 1.0,
+        speed: 0.1,
+      }
+      let interType = ''
+      let interProps: Record<string, any> = {}
+
+      if (type === 'neon_grid') {
+        bgProps = {
+          topColor: '#080112',
+          bottomColor: '#020005',
+          horizonColor: propsToUse.horizonColor || '#ff007f',
+          density: 1.2,
+          speed: 0.1,
+        }
+      } else if (type === 'code_rain') {
+        bgProps = {
+          topColor: '#000803',
+          bottomColor: '#000201',
+          horizonColor: propsToUse.primaryColor || '#00ff66',
+          density: 1.0,
+          speed: 0.05,
+        }
+      } else if (type === 'hex_grid') {
+        bgProps = {
+          topColor: '#030a17',
+          bottomColor: '#010307',
+          horizonColor: propsToUse.borderColor || '#00f0ff',
+          density: 1.0,
+          speed: 0.1,
+        }
+        interType = 'parallax_fleet'
+        interProps = {
+          fleetColor: '#040d1a',
+          engineColor: propsToUse.pulseColor || '#ff007f',
+          density: 0.8,
+          depth: 0.35,
+        }
+      } else if (type === 'line_constellation') {
+        bgProps = {
+          topColor: '#060d24',
+          bottomColor: '#01030a',
+          horizonColor: propsToUse.nodeColor || '#00f0ff',
+          density: 1.0,
+          speed: 0.1,
+        }
+        interType = ''
+        interProps = {}
+      }
+
+      layersConfig.push({
+        category: 'background',
+        bricks: [{ id: 'bg_companion_brick', brickType: bgType, props: bgProps }],
+      })
+
+      if (interType) {
+        layersConfig.push({
+          category: 'intermediate',
+          bricks: [{ id: 'inter_companion_brick', brickType: interType, props: interProps }],
+        })
+      }
+
+      layersConfig.push({
+        category: 'special',
+        bricks: [{ id: 'demo_brick', brickType: type, props: { ...propsToUse } }],
+      })
+    } else if (isOverlay) {
+      // Pour les overlays et styles, décor cinématique complet mettant en valeur chaque effet
+      let bgType = 'gradient_sky'
+      let bgProps: Record<string, any> = {
+        topColor: '#0f172a',
+        bottomColor: '#020617',
+        horizonColor: '#38bdf8',
+        density: 1.0,
+        speed: 0.15,
+        depth: 0.1,
+      }
+      let interType = 'parallax_mountains'
+      let interProps: Record<string, any> = {
+        rockColor: '#090d16',
+        sunColor: '#1e293b',
+        mistColor: '#0f172a',
+        density: 1.0,
+        depth: 0.35,
+      }
+
+      if (type === 'grain') {
+        bgProps = { topColor: '#1e1b4b', bottomColor: '#09090b', horizonColor: '#f43f5e', density: 1.0, speed: 0.1 }
+        interType = 'parallax_mountains'
+        interProps = { rockColor: '#080812', sunColor: '#3b0764', mistColor: '#1e1b4b', density: 1.0, depth: 0.3 }
+      } else if (type === 'vignette') {
+        bgProps = { topColor: '#312e81', bottomColor: '#0a0a0a', horizonColor: '#fbbf24', density: 1.1, speed: 0.1 }
+        interType = 'parallax_castle'
+        interProps = { castleColor: '#07070e', torchColor: '#f59e0b', rockColor: '#111827', density: 1.0, depth: 0.35 }
+      } else if (type === 'crt_scanlines') {
+        bgProps = { topColor: '#111827', bottomColor: '#030712', horizonColor: '#00f0ff', density: 1.0, speed: 0.1 }
+        interType = 'parallax_city'
+        interProps = { buildingColor: '#05070e', windowColor: '#00f0ff', beaconColor: '#ef4444', density: 1.0, depth: 0.3 }
+      } else if (type === 'halftone') {
+        bgProps = { topColor: '#581c87', bottomColor: '#0f172a', horizonColor: '#f59e0b', density: 1.2, speed: 0.15 }
+        interType = 'parallax_city'
+        interProps = { buildingColor: '#09090b', windowColor: '#f59e0b', beaconColor: '#ec4899', density: 1.0, depth: 0.3 }
+      } else if (type === 'pixelation') {
+        bgProps = { topColor: '#1e293b', bottomColor: '#020617', horizonColor: '#10b981', density: 1.0, speed: 0.15 }
+        interType = 'parallax_pixel_tiles'
+        interProps = { tileColor: '#0f172a', topFringeColor: '#10b981', ditherColor: '#020617', density: 1.0, depth: 0.35 }
+      } else if (type === 'chromatic_aberration') {
+        bgProps = { topColor: '#1e1b4b', bottomColor: '#05050a', horizonColor: '#ec4899', density: 1.0, speed: 0.15 }
+        interType = 'parallax_city'
+        interProps = { buildingColor: '#06060f', windowColor: '#00f0ff', beaconColor: '#ec4899', density: 1.0, depth: 0.35 }
+      }
+
+      layersConfig.push({
+        category: 'background',
+        bricks: [{ id: 'bg_companion_brick', brickType: bgType, props: bgProps }],
+      })
+
+      if (interType) {
+        layersConfig.push({
+          category: 'intermediate',
+          bricks: [{ id: 'inter_companion_brick', brickType: interType, props: interProps }],
+        })
+      }
+
+      layersConfig.push({
+        category: 'overlay',
+        bricks: [{ id: 'demo_brick', brickType: type, props: { ...propsToUse } }],
+      })
+    } else if (isEvents) {
+      // Pour les événements, décor immersif spécifique mettant en valeur chaque effet
+      let bgType = 'gradient_sky'
+      let bgProps: Record<string, any> = {
+        topColor: '#070b14',
+        bottomColor: '#020307',
+        horizonColor: '#38bdf8',
+        density: 1.0,
+        speed: 0.1,
+        depth: 0.1,
+      }
+      let interType = 'parallax_mountains'
+      let interProps: Record<string, any> = {
+        rockColor: '#080d1a',
+        sunColor: '#334155',
+        mistColor: '#0f172a',
+        density: 1.0,
+        depth: 0.3,
+      }
+
+      if (type === 'lightning') {
+        bgType = 'fbm_clouds'
+        bgProps = {
+          cloudColor: '#1e293b',
+          skyColor: '#05070d',
+          density: 0.75,
+          speed: 0.1,
+          depth: 0.2,
+          intensity: 1.1,
+          randomness: 0.5,
+        }
+        interType = 'parallax_mountains'
+        interProps = {
+          rockColor: '#04060b',
+          sunColor: '#1e293b',
+          mistColor: '#0c1220',
+          density: 1.0,
+          depth: 0.35,
+        }
+      } else if (type === 'shooting_star') {
+        bgType = 'multilayer_starfield'
+        bgProps = {
+          starColor: '#ffffff',
+          density: 1.2,
+          speed: 0.05,
+          depth: 1.0,
+          intensity: 1.0,
+        }
+        interType = 'parallax_mountains'
+        interProps = {
+          rockColor: '#060a14',
+          sunColor: '#1e293b',
+          mistColor: '#0a0f1d',
+          density: 0.8,
+          depth: 0.3,
+        }
+      } else if (type === 'wind_gust') {
+        bgProps = { topColor: '#0f172a', bottomColor: '#020617', horizonColor: '#94a3b8' }
+        interType = 'parallax_forest'
+        interProps = {
+          forestColor: '#06120e',
+          fogColor: '#132e24',
+          density: 1.0,
+          depth: 0.35,
+          windStrength: 0.8,
+        }
+      } else if (type === 'shockwave') {
+        bgProps = { topColor: '#0f121d', bottomColor: '#020408', horizonColor: '#38bdf8' }
+        interType = 'parallax_city'
+        interProps = {
+          buildingColor: '#060912',
+          windowColor: '#38bdf8',
+          beaconColor: '#ef4444',
+          density: 1.0,
+          depth: 0.35,
+        }
+      } else if (type === 'glitch') {
+        bgProps = { topColor: '#15061e', bottomColor: '#040108', horizonColor: '#00f0ff' }
+        interType = 'parallax_city'
+        interProps = {
+          buildingColor: '#0b0414',
+          windowColor: '#00f0ff',
+          beaconColor: '#ff0055',
+          density: 1.0,
+          depth: 0.3,
+        }
+      } else if (type === 'screen_shake') {
+        bgProps = { topColor: '#18110b', bottomColor: '#060402', horizonColor: '#f59e0b' }
+        interType = 'parallax_castle'
+        interProps = {
+          castleColor: '#0c0805',
+          torchColor: '#f97316',
+          rockColor: '#100b07',
+          density: 1.0,
+          depth: 0.35,
+        }
+      }
+
+      layersConfig.push({
+        category: 'background',
+        bricks: [{ id: 'bg_companion_brick', brickType: bgType, props: bgProps }],
+      })
+
+      if (interType) {
+        layersConfig.push({
+          category: 'intermediate',
+          bricks: [{ id: 'inter_companion_brick', brickType: interType, props: interProps }],
+        })
+      }
+
+      layersConfig.push({
+        category: 'events',
+        bricks: [{ id: 'demo_brick', brickType: type, props: { ...propsToUse } }],
+      })
+    } else if (isParticles) {
       // Pour les particules, intégrer un arrière-plan immersif mettant en valeur le rendu
       let bgType = 'gradient_sky'
       let bgProps: Record<string, any> = {
@@ -2220,6 +2952,10 @@ export const BrickDemoInspector: React.FC<{
           propsToUse.lightColor ||
           propsToUse.coreColor ||
           propsToUse.flareColor ||
+          propsToUse.gridColor ||
+          propsToUse.primaryColor ||
+          propsToUse.borderColor ||
+          propsToUse.nodeColor ||
           '#00f0ff',
         secondary:
           propsToUse.topColor ||
@@ -2261,17 +2997,25 @@ export const BrickDemoInspector: React.FC<{
     engine.loadTheme(config)
   }
 
-  // Changement de groupe (Particules vs Atmosphère vs Silhouettes vs Fonds)
-  const handleSelectGroup = (group: 'background' | 'parallax' | 'atmosphere' | 'particles') => {
+  // Changement de groupe (Spéciaux vs Overlays vs Événements vs Particules vs Atmosphère vs Silhouettes vs Fonds)
+  const handleSelectGroup = (
+    group: 'background' | 'parallax' | 'atmosphere' | 'particles' | 'events' | 'overlay' | 'special'
+  ) => {
     setSelectedGroup(group)
     const newCatalog =
-      group === 'particles'
-        ? PARTICLES_BRICKS_CATALOG
-        : group === 'atmosphere'
-          ? ATMOSPHERE_BRICKS_CATALOG
-          : group === 'parallax'
-            ? PARALLAX_BRICKS_CATALOG
-            : BACKGROUND_BRICKS_CATALOG
+      group === 'special'
+        ? SPECIAL_BRICKS_CATALOG
+        : group === 'overlay'
+          ? OVERLAYS_BRICKS_CATALOG
+          : group === 'events'
+            ? EVENTS_BRICKS_CATALOG
+            : group === 'particles'
+              ? PARTICLES_BRICKS_CATALOG
+              : group === 'atmosphere'
+                ? ATMOSPHERE_BRICKS_CATALOG
+                : group === 'parallax'
+                  ? PARALLAX_BRICKS_CATALOG
+                  : BACKGROUND_BRICKS_CATALOG
     const firstBrick = newCatalog[0]
     setSelectedType(firstBrick.type)
     const freshProps = { ...firstBrick.defaultProps }
@@ -2374,8 +3118,26 @@ export const BrickDemoInspector: React.FC<{
         </div>
       </div>
 
-      {/* Sélecteur de Groupe de Briques (Particules vs Atmosphère vs Silhouettes vs Fonds) */}
+      {/* Sélecteur de Groupe de Briques (Spéciaux vs Overlays vs Événements vs Particules vs Atmosphère vs Silhouettes vs Fonds) */}
       <div className="brick-group-switcher">
+        <button
+          className={`brick-group-pill ${selectedGroup === 'special' ? 'active' : ''}`}
+          onClick={() => handleSelectGroup('special')}
+        >
+          <FontAwesomeIcon icon={faWandMagicSparkles} /> Groupe 7 : Spéciaux (4 briques)
+        </button>
+        <button
+          className={`brick-group-pill ${selectedGroup === 'overlay' ? 'active' : ''}`}
+          onClick={() => handleSelectGroup('overlay')}
+        >
+          <FontAwesomeIcon icon={faPalette} /> Groupe 6 : Overlays & Styles (7 briques)
+        </button>
+        <button
+          className={`brick-group-pill ${selectedGroup === 'events' ? 'active' : ''}`}
+          onClick={() => handleSelectGroup('events')}
+        >
+          <FontAwesomeIcon icon={faBolt} /> Groupe 5 : Événements (6 briques)
+        </button>
         <button
           className={`brick-group-pill ${selectedGroup === 'particles' ? 'active' : ''}`}
           onClick={() => handleSelectGroup('particles')}
