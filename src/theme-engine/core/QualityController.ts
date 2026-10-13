@@ -126,11 +126,13 @@ export class QualityController {
    * Doit être appelé à chaque frame dans la boucle de rendu.
    */
   public onFrame(currentTime: number): void {
-    const deltaMs = currentTime - this.lastTime
+    let deltaMs = currentTime - this.lastTime
     this.lastTime = currentTime
-    this.lastFrameDuration = deltaMs
 
-    if (deltaMs <= 0) return
+    if (deltaMs <= 0 || deltaMs > 250) {
+      deltaMs = 16.6
+    }
+    this.lastFrameDuration = deltaMs
 
     const instantFps = 1000 / deltaMs
     // Filtre moyenne exponentielle (EMA) pour un FPS lisse
