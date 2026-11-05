@@ -22,7 +22,11 @@ export class ResourcePool {
     }
 
     // Nettoyer géométries et matériaux des meshes
-    if (obj instanceof THREE.Mesh || obj instanceof THREE.InstancedMesh || obj instanceof THREE.Points) {
+    if (
+      obj instanceof THREE.Mesh ||
+      obj instanceof THREE.InstancedMesh ||
+      obj instanceof THREE.Points
+    ) {
       if (obj.geometry) {
         obj.geometry.dispose()
       }
@@ -57,6 +61,13 @@ export class ResourcePool {
    * Vide complètement une scène Three.js.
    */
   public static clearScene(scene: THREE.Scene): void {
+    if (import.meta.env.DEV && scene.children.length > 0) {
+      console.warn(
+        `[ResourcePool] clearScene a trouvé ${scene.children.length} objet(s) restant(s) dans la scène après dispose():`,
+        scene.children
+      )
+    }
+
     while (scene.children.length > 0) {
       const obj = scene.children[0]
       scene.remove(obj)

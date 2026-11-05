@@ -10,6 +10,7 @@
 import * as THREE from 'three'
 
 import { BrickRegistry } from '../bricks'
+import { clearParticleTexturesCache } from '../bricks/particles/particleTextures'
 import { InteractionManager } from '../core/InteractionManager'
 import { QualityController } from '../core/QualityController'
 import { RareEventManager } from '../rare-events/RareEventManager'
@@ -437,6 +438,7 @@ export class ThemeEngine {
     this.activeBricks = []
 
     ResourcePool.clearScene(this.scene)
+    clearParticleTexturesCache()
     this.interaction.dispose()
     this.rareEvents.dispose()
     this.renderer.dispose()

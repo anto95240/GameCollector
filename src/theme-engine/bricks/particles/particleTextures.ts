@@ -339,3 +339,14 @@ export function getSmokeTexture(): THREE.CanvasTexture {
     }
   })
 }
+
+/**
+ * Libère toutes les CanvasTexture mises en cache et vide la table.
+ * À appeler lors de la libération du moteur (ThemeEngine.dispose).
+ */
+export function clearParticleTexturesCache(): void {
+  for (const texture of textureCache.values()) {
+    texture.dispose()
+  }
+  textureCache.clear()
+}
