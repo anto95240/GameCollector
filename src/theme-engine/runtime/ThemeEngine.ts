@@ -27,6 +27,7 @@ export interface ThemeEngineOptions {
   onContextLost?: () => void
   onContextRestored?: () => void
   onQualityChange?: (tier: QualityTier) => void
+  preserveDrawingBuffer?: boolean
 }
 
 export class ThemeEngine {
@@ -83,7 +84,7 @@ export class ThemeEngine {
       powerPreference: 'high-performance',
       stencil: false,
       depth: true,
-      preserveDrawingBuffer: true, // Requis pour captureFrame()
+      preserveDrawingBuffer: options.preserveDrawingBuffer ?? false,
     })
 
     // 2. Scène et Caméra perspective
