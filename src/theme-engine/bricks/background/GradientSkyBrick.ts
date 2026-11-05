@@ -87,7 +87,9 @@ export class GradientSkyInstance implements IBrickInstance {
         uIntensity: { value: intensity },
         uRandomness: { value: randomness },
         uNoiseScale: { value: noiseScale },
-        uQualityLevel: { value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0 },
+        uQualityLevel: {
+          value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
+        },
       },
       vertexShader: /* glsl */ `
         varying vec2 vUv;
@@ -157,6 +159,10 @@ export class GradientSkyInstance implements IBrickInstance {
           // Modulation subtile d'intensité globale
           col *= uIntensity;
 
+          // Dithering minimal anti-banding (~1/255.0) actif sur tous les paliers y compris LOW
+          float dither = (fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) / 255.0;
+          col += dither;
+
           gl_FragColor = vec4(col, 1.0);
         }
       `,
@@ -196,9 +202,12 @@ export class GradientSkyInstance implements IBrickInstance {
     if (newProps.speed !== undefined) this.material.uniforms.uSpeed.value = newProps.speed
     if (newProps.density !== undefined) this.material.uniforms.uDensity.value = newProps.density
     if (newProps.depth !== undefined) this.material.uniforms.uDepth.value = newProps.depth
-    if (newProps.intensity !== undefined) this.material.uniforms.uIntensity.value = newProps.intensity
-    if (newProps.randomness !== undefined) this.material.uniforms.uRandomness.value = newProps.randomness
-    if (newProps.noiseScale !== undefined) this.material.uniforms.uNoiseScale.value = newProps.noiseScale
+    if (newProps.intensity !== undefined)
+      this.material.uniforms.uIntensity.value = newProps.intensity
+    if (newProps.randomness !== undefined)
+      this.material.uniforms.uRandomness.value = newProps.randomness
+    if (newProps.noiseScale !== undefined)
+      this.material.uniforms.uNoiseScale.value = newProps.noiseScale
   }
 
   public onQualityChange(quality: QualityTier): void {
