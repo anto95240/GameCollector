@@ -46,6 +46,7 @@ export class ThemeEngine {
   private isRunning = false
   private isPaused = false
   private prefersReducedMotion = false
+  private reducedMotionMediaQuery: MediaQueryList | null = null
   private timeScale = 1.0 // Contrôle temporel (curseur de temps)
   private clock = new THREE.Clock(false)
   private totalAccumulatedTime = 0
@@ -66,6 +67,7 @@ export class ThemeEngine {
   private boundResizeHandler = this.onWindowResize.bind(this)
   private boundContextLostHandler = this.onContextLost.bind(this)
   private boundContextRestoredHandler = this.onContextRestored.bind(this)
+  private boundReducedMotionHandler = this.onReducedMotionChange.bind(this)
 
   constructor(options: ThemeEngineOptions) {
     this.canvas = options.canvas
@@ -107,8 +109,9 @@ export class ThemeEngine {
     }
 
     // 4. Détection prefers-reduced-motion
-    if (typeof window !== 'undefined') {
-      this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (typeof window !== 'undefined' && typeof window.matchMedia === 'function') {
+      this.reducedMotionMediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+      this.prefersReducedMotion = this.reducedMotionMediaQuery.matches
     }
 
     // 5. Configurer la taille et le DPR
@@ -138,6 +141,9 @@ export class ThemeEngine {
     document.addEventListener('visibilitychange', this.boundVisibilityHandler)
     this.canvas.addEventListener('webglcontextlost', this.boundContextLostHandler)
     this.canvas.addEventListener('webglcontextrestored', this.boundContextRestoredHandler)
+    if (this.reducedMotionMediaQuery) {
+      this.reducedMotionMediaQuery.addEventListener('change', this.boundReducedMotionHandler)
+    }
   }
 
   private teardownListeners(): void {
@@ -146,6 +152,9 @@ export class ThemeEngine {
     document.removeEventListener('visibilitychange', this.boundVisibilityHandler)
     this.canvas.removeEventListener('webglcontextlost', this.boundContextLostHandler)
     this.canvas.removeEventListener('webglcontextrestored', this.boundContextRestoredHandler)
+    if (this.reducedMotionMediaQuery) {
+      this.reducedMotionMediaQuery.removeEventListener('change', this.boundReducedMotionHandler)
+    }
   }
 
   private onWindowResize(): void {
@@ -174,7 +183,17 @@ export class ThemeEngine {
   private onVisibilityChange(): void {
     if (document.hidden) {
       this.stopLoop()
-    } else if (!this.isPaused) {
+    } else if (!this.isPaused && !this.prefersReducedMotion) {
+      this.startLoop()
+    }
+  }
+
+  private onReducedMotionChange(e: MediaQueryListEvent): void {
+    this.prefersReducedMotion = e.matches
+    if (this.prefersReducedMotion) {
+      this.stopLoop()
+      this.renderFrame(0)
+    } else if (!this.isPaused && !document.hidden) {
       this.startLoop()
     }
   }
@@ -252,9 +271,7 @@ export class ThemeEngine {
     this.renderFrame(0)
 
     // Si prefers-reduced-motion, ne pas boucler indéfiniment
-    if (this.prefersReducedMotion) {
-      this.renderFrame(0)
-    } else {
+    if (!this.prefersReducedMotion) {
       this.startLoop()
     }
   }
