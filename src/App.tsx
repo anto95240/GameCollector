@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { RouterProvider } from 'react-router'
 
 import AchievementToast from '@/components/common/AchievementToast'
@@ -16,7 +16,9 @@ import { useApiShortcuts } from '@/hooks/api/useApiShortcuts'
 import { useAchievementTracker } from '@/hooks/domains/achievements/useAchievementTracker'
 import keyboardShortcutsService from '@/services/keyboardShortcutsService'
 import { ThemeAnimationLayer } from '@/theme-animations'
-import { ThemeEngineHost, useThemeEngineVersion } from '@/theme-engine'
+import { FallbackStatic, useThemeEngineVersion } from '@/theme-engine'
+
+const ThemeEngineHost = lazy(() => import('@/theme-engine/ThemeEngineHost'))
 
 function App() {
   useAchievementTracker()
@@ -37,7 +39,13 @@ function App() {
   return (
     <ErrorBoundary>
       <div id="app-container" className="app-container">
-        {engineVersion === 'v2' ? <ThemeEngineHost /> : <ThemeAnimationLayer />}
+        {engineVersion === 'v2' ? (
+          <Suspense fallback={<FallbackStatic />}>
+            <ThemeEngineHost />
+          </Suspense>
+        ) : (
+          <ThemeAnimationLayer />
+        )}
         <RouterProvider router={router} />
         <KeyboardShortcutsProvider />
         <AchievementToast />

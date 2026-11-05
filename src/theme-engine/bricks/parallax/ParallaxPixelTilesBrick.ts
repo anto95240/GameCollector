@@ -14,7 +14,7 @@
 
 import * as THREE from 'three'
 
-import { GLSL_HASH, GLSL_NOISE_2D } from '../../shaders/noise.glsl'
+import { GLSL_HASH } from '../../shaders/noise.glsl'
 import type { BrickContext, IBrickDefinition, IBrickInstance, QualityTier } from '../../types'
 import { BrickRegistry } from '../registry'
 
@@ -295,9 +295,12 @@ export class ParallaxPixelTilesInstance implements IBrickInstance {
     if (newProps.density !== undefined) this.material.uniforms.uDensity.value = newProps.density
     if (newProps.speed !== undefined) this.material.uniforms.uSpeed.value = newProps.speed
     if (newProps.depth !== undefined) this.material.uniforms.uDepth.value = newProps.depth
-    if (newProps.intensity !== undefined) this.material.uniforms.uIntensity.value = newProps.intensity
-    if (newProps.randomness !== undefined) this.material.uniforms.uRandomness.value = newProps.randomness
-    if (newProps.pixelSize !== undefined) this.material.uniforms.uPixelSize.value = newProps.pixelSize
+    if (newProps.intensity !== undefined)
+      this.material.uniforms.uIntensity.value = newProps.intensity
+    if (newProps.randomness !== undefined)
+      this.material.uniforms.uRandomness.value = newProps.randomness
+    if (newProps.pixelSize !== undefined)
+      this.material.uniforms.uPixelSize.value = newProps.pixelSize
   }
 
   public onQualityChange(quality: QualityTier): void {

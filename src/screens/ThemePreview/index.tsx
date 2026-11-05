@@ -9,7 +9,13 @@ import { getAllThemes } from '@/config/themeRegistry'
 import { THEME_RULES } from '@/config/themeRules'
 import { useTheme } from '@/context/ThemeContext'
 import { ThemeAnimationLayer } from '@/theme-animations'
-import { ThemeEngineHost, useActiveThemeEngine, useThemeEngineVersion } from '@/theme-engine'
+import {
+  FallbackStatic,
+  loadAllBrickGroups,
+  ThemeEngineHost,
+  useActiveThemeEngine,
+  useThemeEngineVersion,
+} from '@/theme-engine'
 
 import { BrickDemoInspector } from './BrickDemoInspector'
 import { ThemeEngineToolbar } from './ThemeEngineToolbar'
@@ -66,6 +72,16 @@ export default function ThemePreview() {
     }
   }, [setIsPreviewMode, activePreset, localPreset])
 
+  // Mode préchargé de ThemePreview : précharge l'ensemble des briques du catalogue
+  // pour garantir l'immédiateté du banc d'essai et de l'inspecteur
+  React.useEffect(() => {
+    if (engineVersion === 'v2') {
+      loadAllBrickGroups().catch((err) => {
+        console.warn('[ThemePreview] Erreur lors du préchargement des briques:', err)
+      })
+    }
+  }, [engineVersion])
+
   const applyTheme = (themeId: string | null) => {
     const newTheme = themeId || 'neon-night'
     setLocalPreset(themeId)
@@ -81,7 +97,9 @@ export default function ThemePreview() {
     <div className="theme-preview-container">
       {/* Animation d'ambiance selon le moteur sélectionné (V1 Ancien vs V2 Nouveau WebGL) */}
       {engineVersion === 'v2' ? (
-        <ThemeEngineHost overridePreset={localPreset} />
+        <React.Suspense fallback={<FallbackStatic />}>
+          <ThemeEngineHost overridePreset={localPreset} />
+        </React.Suspense>
       ) : (
         <ThemeAnimationLayer overridePreset={localPreset} />
       )}
@@ -92,8 +110,8 @@ export default function ThemePreview() {
         </Link>
         <h1>🎨 Preview des Thèmes</h1>
         <p>
-          Cette page permet de prévisualiser l'impact visuel (CSS) et cinématique (WebGL V2) de chaque thème sur
-          l'application.
+          Cette page permet de prévisualiser l'impact visuel (CSS) et cinématique (WebGL V2) de
+          chaque thème sur l'application.
         </p>
 
         {/* Barre d'outils et banc d'essai V2 (Télémétrie, Qualité, Temps, Captures) */}
@@ -120,9 +138,7 @@ export default function ThemePreview() {
         </div>
 
         {/* Inspecteur interactif des 9 briques de fond WebGL */}
-        {engineVersion === 'v2' && showInspector && (
-          <BrickDemoInspector engine={activeEngine} />
-        )}
+        {engineVersion === 'v2' && showInspector && <BrickDemoInspector engine={activeEngine} />}
       </header>
 
       <div className="theme-preview-grid">

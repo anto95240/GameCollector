@@ -9,7 +9,7 @@
  * - Constellation de Lignes (line_constellation)
  */
 
-export * from './NeonGridBrick'
 export * from './CodeRainBrick'
 export * from './HexGridBrick'
 export * from './LineConstellationBrick'
+export * from './NeonGridBrick'

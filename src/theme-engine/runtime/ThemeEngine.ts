@@ -9,7 +9,7 @@
 
 import * as THREE from 'three'
 
-import { BrickRegistry } from '../bricks'
+import { BrickRegistry, ensureBricksForTheme } from '../bricks'
 import { clearParticleTexturesCache } from '../bricks/particles/particleTextures'
 import { InteractionManager } from '../core/InteractionManager'
 import { QualityController } from '../core/QualityController'
@@ -277,7 +277,20 @@ export class ThemeEngine {
     // 5. Configurer les événements rares
     this.rareEvents.setEvents(config.rareEvents || [])
 
-    // 6. Instancier les briques déclarées
+    // 6. Charger dynamiquement les groupes de briques demandés par le thème
+    const requestedTypes = new Set<string>()
+    const layerCategories = new Set<string>()
+    for (const layer of config.layers) {
+      layerCategories.add(layer.category)
+      for (const brickCfg of layer.bricks) {
+        if (brickCfg.enabled !== false) {
+          requestedTypes.add(brickCfg.brickType)
+        }
+      }
+    }
+    await ensureBricksForTheme(requestedTypes, layerCategories)
+
+    // 7. Instancier les briques déclarées
     const context: BrickContext = {
       id: '',
       scene: this.scene,

@@ -129,3 +129,5 @@ export const ThemeEngineHost: React.FC<ThemeEngineHostProps> = ({ overridePreset
   if (typeof document === 'undefined') return null
   return createPortal(content, document.body)
 }
+
+export default ThemeEngineHost

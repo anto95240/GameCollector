@@ -35,7 +35,14 @@ export interface BrickDescriptor {
   type: string
   name: string
   role: string
-  category: 'background' | 'intermediate' | 'atmosphere' | 'particles' | 'events' | 'overlay' | 'special'
+  category:
+    | 'background'
+    | 'intermediate'
+    | 'atmosphere'
+    | 'particles'
+    | 'events'
+    | 'overlay'
+    | 'special'
   defaultProps: Record<string, any>
   fields: {
     key: string
@@ -1921,13 +1928,48 @@ export const EVENTS_BRICKS_CATALOG: BrickDescriptor[] = [
     fields: [
       { key: 'lightningColor', label: 'Couleur Plasma', type: 'color' },
       { key: 'flashColor', label: 'Couleur Flash Ciel', type: 'color' },
-      { key: 'density', label: 'Ramifications Fractales', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      {
+        key: 'density',
+        label: 'Ramifications Fractales',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.05,
+      },
       { key: 'speed', label: 'Vitesse Décharge', type: 'slider', min: 0.2, max: 3.0, step: 0.05 },
       { key: 'depth', label: 'Parallaxe Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'intensity', label: 'Radiance / Flash', type: 'slider', min: 0.2, max: 3.0, step: 0.1 },
-      { key: 'randomness', label: 'Sinuosité Fractale', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'strikeInterval', label: 'Intervalle Frappes (s)', type: 'slider', min: 1.0, max: 10.0, step: 0.5 },
-      { key: 'forkSpread', label: 'Écartement Branches', type: 'slider', min: 0.2, max: 1.5, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Radiance / Flash',
+        type: 'slider',
+        min: 0.2,
+        max: 3.0,
+        step: 0.1,
+      },
+      {
+        key: 'randomness',
+        label: 'Sinuosité Fractale',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'strikeInterval',
+        label: 'Intervalle Frappes (s)',
+        type: 'slider',
+        min: 1.0,
+        max: 10.0,
+        step: 0.5,
+      },
+      {
+        key: 'forkSpread',
+        label: 'Écartement Branches',
+        type: 'slider',
+        min: 0.2,
+        max: 1.5,
+        step: 0.05,
+      },
     ],
   },
   {
@@ -1950,14 +1992,56 @@ export const EVENTS_BRICKS_CATALOG: BrickDescriptor[] = [
     fields: [
       { key: 'starColor', label: 'Couleur Bolide', type: 'color' },
       { key: 'trailColor', label: 'Couleur Traînée Plasma', type: 'color' },
-      { key: 'density', label: 'Densité / Fréquence', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      {
+        key: 'density',
+        label: 'Densité / Fréquence',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.05,
+      },
       { key: 'speed', label: 'Vélocité Traversée', type: 'slider', min: 0.2, max: 3.0, step: 0.05 },
       { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'intensity', label: 'Radiance & Éclat', type: 'slider', min: 0.2, max: 3.0, step: 0.1 },
-      { key: 'randomness', label: 'Dispersion Angles', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'angle', label: 'Angle Descente (rad)', type: 'slider', min: -2.0, max: 2.0, step: 0.05 },
-      { key: 'trailLength', label: 'Longueur Traînée', type: 'slider', min: 0.3, max: 2.5, step: 0.05 },
-      { key: 'starInterval', label: 'Intervalle (s)', type: 'slider', min: 1.0, max: 10.0, step: 0.5 },
+      {
+        key: 'intensity',
+        label: 'Radiance & Éclat',
+        type: 'slider',
+        min: 0.2,
+        max: 3.0,
+        step: 0.1,
+      },
+      {
+        key: 'randomness',
+        label: 'Dispersion Angles',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'angle',
+        label: 'Angle Descente (rad)',
+        type: 'slider',
+        min: -2.0,
+        max: 2.0,
+        step: 0.05,
+      },
+      {
+        key: 'trailLength',
+        label: 'Longueur Traînée',
+        type: 'slider',
+        min: 0.3,
+        max: 2.5,
+        step: 0.05,
+      },
+      {
+        key: 'starInterval',
+        label: 'Intervalle (s)',
+        type: 'slider',
+        min: 1.0,
+        max: 10.0,
+        step: 0.5,
+      },
     ],
   },
   {
@@ -1978,14 +2062,56 @@ export const EVENTS_BRICKS_CATALOG: BrickDescriptor[] = [
     },
     fields: [
       { key: 'windColor', label: 'Couleur Flux d’Air', type: 'color' },
-      { key: 'density', label: 'Lignes de Courant', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      {
+        key: 'density',
+        label: 'Lignes de Courant',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.05,
+      },
       { key: 'speed', label: 'Vélocité Rafale', type: 'slider', min: 0.2, max: 3.0, step: 0.05 },
       { key: 'depth', label: 'Parallaxe Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'intensity', label: 'Contraste Volutes', type: 'slider', min: 0.2, max: 2.5, step: 0.1 },
-      { key: 'randomness', label: 'Turbulence Vortex', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'gustAngle', label: 'Direction Vent (rad)', type: 'slider', min: -3.14, max: 3.14, step: 0.05 },
-      { key: 'gustInterval', label: 'Intervalle Rafales (s)', type: 'slider', min: 1.0, max: 10.0, step: 0.5 },
-      { key: 'swirlScale', label: 'Échelle Tourbillons', type: 'slider', min: 0.3, max: 2.0, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Contraste Volutes',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.1,
+      },
+      {
+        key: 'randomness',
+        label: 'Turbulence Vortex',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'gustAngle',
+        label: 'Direction Vent (rad)',
+        type: 'slider',
+        min: -3.14,
+        max: 3.14,
+        step: 0.05,
+      },
+      {
+        key: 'gustInterval',
+        label: 'Intervalle Rafales (s)',
+        type: 'slider',
+        min: 1.0,
+        max: 10.0,
+        step: 0.5,
+      },
+      {
+        key: 'swirlScale',
+        label: 'Échelle Tourbillons',
+        type: 'slider',
+        min: 0.3,
+        max: 2.0,
+        step: 0.05,
+      },
     ],
   },
   {
@@ -2007,15 +2133,50 @@ export const EVENTS_BRICKS_CATALOG: BrickDescriptor[] = [
     },
     fields: [
       { key: 'ringColor', label: 'Couleur Anneau Onde', type: 'color' },
-      { key: 'density', label: 'Anneaux Secondaires', type: 'slider', min: 0.3, max: 2.5, step: 0.05 },
+      {
+        key: 'density',
+        label: 'Anneaux Secondaires',
+        type: 'slider',
+        min: 0.3,
+        max: 2.5,
+        step: 0.05,
+      },
       { key: 'speed', label: 'Vitesse Expansion', type: 'slider', min: 0.2, max: 3.0, step: 0.05 },
       { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'intensity', label: 'Radiance / Distorsion', type: 'slider', min: 0.2, max: 2.5, step: 0.1 },
-      { key: 'randomness', label: 'Asymétrie Épicentre', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Radiance / Distorsion',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.1,
+      },
+      {
+        key: 'randomness',
+        label: 'Asymétrie Épicentre',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
       { key: 'epicenterX', label: 'Épicentre X', type: 'slider', min: -1.0, max: 1.0, step: 0.05 },
       { key: 'epicenterY', label: 'Épicentre Y', type: 'slider', min: -1.0, max: 1.0, step: 0.05 },
-      { key: 'waveInterval', label: 'Intervalle Ondes (s)', type: 'slider', min: 1.0, max: 10.0, step: 0.5 },
-      { key: 'chromaticAberration', label: 'Dispersion RVB', type: 'slider', min: 0.0, max: 0.05, step: 0.005 },
+      {
+        key: 'waveInterval',
+        label: 'Intervalle Ondes (s)',
+        type: 'slider',
+        min: 1.0,
+        max: 10.0,
+        step: 0.5,
+      },
+      {
+        key: 'chromaticAberration',
+        label: 'Dispersion RVB',
+        type: 'slider',
+        min: 0.0,
+        max: 0.05,
+        step: 0.005,
+      },
     ],
   },
   {
@@ -2039,11 +2200,46 @@ export const EVENTS_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'density', label: 'Nombre de Blocs', type: 'slider', min: 0.3, max: 2.5, step: 0.05 },
       { key: 'speed', label: 'Vivacité Salves', type: 'slider', min: 0.2, max: 3.0, step: 0.05 },
       { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'intensity', label: 'Amplitude Décalage', type: 'slider', min: 0.2, max: 2.5, step: 0.1 },
-      { key: 'randomness', label: 'Imprévisibilité Gigue', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'sliceHeight', label: 'Hauteur Tranches', type: 'slider', min: 0.01, max: 0.25, step: 0.01 },
-      { key: 'glitchInterval', label: 'Intervalle Salves (s)', type: 'slider', min: 1.0, max: 10.0, step: 0.5 },
-      { key: 'chromaticShift', label: 'Séparation RVB', type: 'slider', min: 0.01, max: 0.15, step: 0.01 },
+      {
+        key: 'intensity',
+        label: 'Amplitude Décalage',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.1,
+      },
+      {
+        key: 'randomness',
+        label: 'Imprévisibilité Gigue',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'sliceHeight',
+        label: 'Hauteur Tranches',
+        type: 'slider',
+        min: 0.01,
+        max: 0.25,
+        step: 0.01,
+      },
+      {
+        key: 'glitchInterval',
+        label: 'Intervalle Salves (s)',
+        type: 'slider',
+        min: 1.0,
+        max: 10.0,
+        step: 0.5,
+      },
+      {
+        key: 'chromaticShift',
+        label: 'Séparation RVB',
+        type: 'slider',
+        min: 0.01,
+        max: 0.15,
+        step: 0.01,
+      },
     ],
   },
   {
@@ -2063,13 +2259,48 @@ export const EVENTS_BRICKS_CATALOG: BrickDescriptor[] = [
     },
     fields: [
       { key: 'shakeColor', label: 'Voile Tellurique', type: 'color' },
-      { key: 'density', label: 'Fréquence Harmoniques', type: 'slider', min: 0.3, max: 2.5, step: 0.05 },
+      {
+        key: 'density',
+        label: 'Fréquence Harmoniques',
+        type: 'slider',
+        min: 0.3,
+        max: 2.5,
+        step: 0.05,
+      },
       { key: 'speed', label: 'Vivacité Secousse', type: 'slider', min: 0.2, max: 3.0, step: 0.05 },
       { key: 'depth', label: 'Amplitude Recul Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'intensity', label: 'Force de Déplacement', type: 'slider', min: 0.1, max: 2.5, step: 0.1 },
-      { key: 'randomness', label: 'Asymétrie Axes', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'shakeInterval', label: 'Intervalle Secousses (s)', type: 'slider', min: 1.0, max: 10.0, step: 0.5 },
-      { key: 'decayRate', label: 'Taux Amortissement', type: 'slider', min: 1.0, max: 8.0, step: 0.2 },
+      {
+        key: 'intensity',
+        label: 'Force de Déplacement',
+        type: 'slider',
+        min: 0.1,
+        max: 2.5,
+        step: 0.1,
+      },
+      {
+        key: 'randomness',
+        label: 'Asymétrie Axes',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'shakeInterval',
+        label: 'Intervalle Secousses (s)',
+        type: 'slider',
+        min: 1.0,
+        max: 10.0,
+        step: 0.5,
+      },
+      {
+        key: 'decayRate',
+        label: 'Taux Amortissement',
+        type: 'slider',
+        min: 1.0,
+        max: 8.0,
+        step: 0.2,
+      },
     ],
   },
 ]
@@ -2094,8 +2325,22 @@ export const OVERLAYS_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'density', label: 'Finesse Cristaux', type: 'slider', min: 0.4, max: 3.0, step: 0.1 },
       { key: 'speed', label: 'Cadence (24fps)', type: 'slider', min: 0.1, max: 2.5, step: 0.05 },
       { key: 'depth', label: 'Parallaxe Focale', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'intensity', label: 'Contraste Grain', type: 'slider', min: 0.02, max: 0.45, step: 0.01 },
-      { key: 'randomness', label: 'Agrégats Émulsion', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Contraste Grain',
+        type: 'slider',
+        min: 0.02,
+        max: 0.45,
+        step: 0.01,
+      },
+      {
+        key: 'randomness',
+        label: 'Agrégats Émulsion',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
       { key: 'clumpSize', label: 'Taille des Amas', type: 'slider', min: 0.4, max: 2.5, step: 0.1 },
     ],
   },
@@ -2117,12 +2362,54 @@ export const OVERLAYS_BRICKS_CATALOG: BrickDescriptor[] = [
     fields: [
       { key: 'vignetteColor', label: 'Teinte Pénombre', type: 'color' },
       { key: 'density', label: 'Rayon Intérieur', type: 'slider', min: 0.3, max: 2.5, step: 0.05 },
-      { key: 'speed', label: 'Respiration Diaphragme', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'depth', label: 'Décentrement Souris', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'intensity', label: 'Opacité Bordures', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
-      { key: 'randomness', label: 'Asymétrie Lentille', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'roundness', label: 'Forme (0=Écran, 1=Rond)', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'smoothness', label: 'Douceur Dégradé', type: 'slider', min: 0.2, max: 1.5, step: 0.05 },
+      {
+        key: 'speed',
+        label: 'Respiration Diaphragme',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'depth',
+        label: 'Décentrement Souris',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'intensity',
+        label: 'Opacité Bordures',
+        type: 'slider',
+        min: 0.1,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'randomness',
+        label: 'Asymétrie Lentille',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'roundness',
+        label: 'Forme (0=Écran, 1=Rond)',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'smoothness',
+        label: 'Douceur Dégradé',
+        type: 'slider',
+        min: 0.2,
+        max: 1.5,
+        step: 0.05,
+      },
     ],
   },
   {
@@ -2142,13 +2429,55 @@ export const OVERLAYS_BRICKS_CATALOG: BrickDescriptor[] = [
     },
     fields: [
       { key: 'scanlineColor', label: 'Couleur Lignes', type: 'color' },
-      { key: 'density', label: 'Densité des Lignes', type: 'slider', min: 0.3, max: 3.0, step: 0.05 },
-      { key: 'speed', label: 'Vitesse Phosphor Roll', type: 'slider', min: 0.0, max: 2.0, step: 0.05 },
+      {
+        key: 'density',
+        label: 'Densité des Lignes',
+        type: 'slider',
+        min: 0.3,
+        max: 3.0,
+        step: 0.05,
+      },
+      {
+        key: 'speed',
+        label: 'Vitesse Phosphor Roll',
+        type: 'slider',
+        min: 0.0,
+        max: 2.0,
+        step: 0.05,
+      },
       { key: 'depth', label: 'Parallaxe 3D', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'intensity', label: 'Contraste Trame', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
-      { key: 'randomness', label: 'Micro-flicker 60Hz', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'curvature', label: 'Courbure Tube Bombé', type: 'slider', min: 0.0, max: 0.35, step: 0.02 },
-      { key: 'rollIntensity', label: 'Éclat Barre Balayage', type: 'slider', min: 0.0, max: 0.4, step: 0.02 },
+      {
+        key: 'intensity',
+        label: 'Contraste Trame',
+        type: 'slider',
+        min: 0.1,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'randomness',
+        label: 'Micro-flicker 60Hz',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'curvature',
+        label: 'Courbure Tube Bombé',
+        type: 'slider',
+        min: 0.0,
+        max: 0.35,
+        step: 0.02,
+      },
+      {
+        key: 'rollIntensity',
+        label: 'Éclat Barre Balayage',
+        type: 'slider',
+        min: 0.0,
+        max: 0.4,
+        step: 0.02,
+      },
     ],
   },
   {
@@ -2170,11 +2499,39 @@ export const OVERLAYS_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'dotColor', label: 'Couleur Encre', type: 'color' },
       { key: 'density', label: 'Densité Grille', type: 'slider', min: 0.4, max: 3.0, step: 0.05 },
       { key: 'speed', label: 'Vitesse Ondulation', type: 'slider', min: 0.0, max: 1.5, step: 0.05 },
-      { key: 'depth', label: 'Parallaxe / Répulsion', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      {
+        key: 'depth',
+        label: 'Parallaxe / Répulsion',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
       { key: 'intensity', label: 'Opacité Encre', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
-      { key: 'randomness', label: 'Bavure Papier Simplex', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'patternAngle', label: 'Angle Trame (rad)', type: 'slider', min: 0.0, max: 3.14, step: 0.05 },
-      { key: 'dotRadius', label: 'Calibre des Points', type: 'slider', min: 0.1, max: 0.85, step: 0.02 },
+      {
+        key: 'randomness',
+        label: 'Bavure Papier Simplex',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'patternAngle',
+        label: 'Angle Trame (rad)',
+        type: 'slider',
+        min: 0.0,
+        max: 3.14,
+        step: 0.05,
+      },
+      {
+        key: 'dotRadius',
+        label: 'Calibre des Points',
+        type: 'slider',
+        min: 0.1,
+        max: 0.85,
+        step: 0.02,
+      },
     ],
   },
   {
@@ -2195,12 +2552,47 @@ export const OVERLAYS_BRICKS_CATALOG: BrickDescriptor[] = [
     fields: [
       { key: 'tintColor', label: 'Teinte Mosaïque', type: 'color' },
       { key: 'density', label: 'Finesse Grille', type: 'slider', min: 0.3, max: 3.0, step: 0.05 },
-      { key: 'speed', label: 'Pulsation Temporelle', type: 'slider', min: 0.0, max: 2.0, step: 0.05 },
-      { key: 'depth', label: 'Rayon Loupe de Focus', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
+      {
+        key: 'speed',
+        label: 'Pulsation Temporelle',
+        type: 'slider',
+        min: 0.0,
+        max: 2.0,
+        step: 0.05,
+      },
+      {
+        key: 'depth',
+        label: 'Rayon Loupe de Focus',
+        type: 'slider',
+        min: 0.1,
+        max: 1.0,
+        step: 0.05,
+      },
       { key: 'intensity', label: 'Force Mosaïque', type: 'slider', min: 0.1, max: 1.0, step: 0.05 },
-      { key: 'randomness', label: 'Instabilité Rétro', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'pixelSize', label: 'Taille Pixel (px)', type: 'slider', min: 2.0, max: 32.0, step: 1.0 },
-      { key: 'ditherStrength', label: 'Tramage Bayer 4x4', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      {
+        key: 'randomness',
+        label: 'Instabilité Rétro',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'pixelSize',
+        label: 'Taille Pixel (px)',
+        type: 'slider',
+        min: 2.0,
+        max: 32.0,
+        step: 1.0,
+      },
+      {
+        key: 'ditherStrength',
+        label: 'Tramage Bayer 4x4',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
     ],
   },
   {
@@ -2223,10 +2615,38 @@ export const OVERLAYS_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'density', label: 'Fréquence Ondes', type: 'slider', min: 0.3, max: 2.5, step: 0.05 },
       { key: 'speed', label: 'Vitesse Prisme', type: 'slider', min: 0.0, max: 2.0, step: 0.05 },
       { key: 'depth', label: 'Déflexion Souris', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'intensity', label: 'Force Séparation RVB', type: 'slider', min: 0.1, max: 1.5, step: 0.05 },
-      { key: 'randomness', label: 'Asymétrie Simplex', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'spread', label: 'Écartement Franges', type: 'slider', min: 0.005, max: 0.08, step: 0.002 },
-      { key: 'radialFalloff', label: 'Falloff Central (Texte Net)', type: 'slider', min: 0.5, max: 3.0, step: 0.1 },
+      {
+        key: 'intensity',
+        label: 'Force Séparation RVB',
+        type: 'slider',
+        min: 0.1,
+        max: 1.5,
+        step: 0.05,
+      },
+      {
+        key: 'randomness',
+        label: 'Asymétrie Simplex',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'spread',
+        label: 'Écartement Franges',
+        type: 'slider',
+        min: 0.005,
+        max: 0.08,
+        step: 0.002,
+      },
+      {
+        key: 'radialFalloff',
+        label: 'Falloff Central (Texte Net)',
+        type: 'slider',
+        min: 0.5,
+        max: 3.0,
+        step: 0.1,
+      },
     ],
   },
 ]
@@ -2254,14 +2674,56 @@ export const SPECIAL_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'gridColor', label: 'Couleur Grille Néon', type: 'color' },
       { key: 'horizonColor', label: 'Lueur Horizon Céleste', type: 'color' },
       { key: 'pulseColor', label: 'Impulsions Énergie', type: 'color' },
-      { key: 'density', label: 'Densité / Échelle', type: 'slider', min: 0.4, max: 2.5, step: 0.05 },
+      {
+        key: 'density',
+        label: 'Densité / Échelle',
+        type: 'slider',
+        min: 0.4,
+        max: 2.5,
+        step: 0.05,
+      },
       { key: 'speed', label: 'Vitesse Défilement', type: 'slider', min: 0.0, max: 1.5, step: 0.05 },
-      { key: 'depth', label: 'Parallaxe / Profondeur', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      {
+        key: 'depth',
+        label: 'Parallaxe / Profondeur',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
       { key: 'intensity', label: 'Radiance Néon', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
-      { key: 'randomness', label: 'Relief / Simplex', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'horizonHeight', label: 'Hauteur Horizon', type: 'slider', min: 0.2, max: 0.75, step: 0.02 },
-      { key: 'lineWidth', label: 'Épaisseur Traits', type: 'slider', min: 0.01, max: 0.1, step: 0.005 },
-      { key: 'waveHeight', label: 'Hauteur Ondes Terrain', type: 'slider', min: 0.0, max: 0.8, step: 0.05 },
+      {
+        key: 'randomness',
+        label: 'Relief / Simplex',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'horizonHeight',
+        label: 'Hauteur Horizon',
+        type: 'slider',
+        min: 0.2,
+        max: 0.75,
+        step: 0.02,
+      },
+      {
+        key: 'lineWidth',
+        label: 'Épaisseur Traits',
+        type: 'slider',
+        min: 0.01,
+        max: 0.1,
+        step: 0.005,
+      },
+      {
+        key: 'waveHeight',
+        label: 'Hauteur Ondes Terrain',
+        type: 'slider',
+        min: 0.0,
+        max: 0.8,
+        step: 0.05,
+      },
     ],
   },
   {
@@ -2289,11 +2751,39 @@ export const SPECIAL_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'density', label: 'Nombre Colonnes', type: 'slider', min: 0.4, max: 2.5, step: 0.05 },
       { key: 'speed', label: 'Vitesse Chute', type: 'slider', min: 0.1, max: 1.8, step: 0.05 },
       { key: 'depth', label: 'Parallaxe 3D', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'intensity', label: 'Radiance Glyphes', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
-      { key: 'randomness', label: 'Mutation Caractères', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Radiance Glyphes',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.05,
+      },
+      {
+        key: 'randomness',
+        label: 'Mutation Caractères',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
       { key: 'charSize', label: 'Taille Glyphes', type: 'slider', min: 0.5, max: 2.0, step: 0.05 },
-      { key: 'tailLength', label: 'Longueur Traînée', type: 'slider', min: 0.2, max: 1.5, step: 0.05 },
-      { key: 'mouseGlow', label: 'Perturbation Souris', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      {
+        key: 'tailLength',
+        label: 'Longueur Traînée',
+        type: 'slider',
+        min: 0.2,
+        max: 1.5,
+        step: 0.05,
+      },
+      {
+        key: 'mouseGlow',
+        label: 'Perturbation Souris',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
     ],
   },
   {
@@ -2318,14 +2808,49 @@ export const SPECIAL_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'borderColor', label: 'Couleur Arêtes', type: 'color' },
       { key: 'fillColor', label: 'Fond Alvéoles', type: 'color' },
       { key: 'pulseColor', label: 'Ondes Énergie', type: 'color' },
-      { key: 'density', label: 'Échelle Hexagones', type: 'slider', min: 0.4, max: 2.5, step: 0.05 },
+      {
+        key: 'density',
+        label: 'Échelle Hexagones',
+        type: 'slider',
+        min: 0.4,
+        max: 2.5,
+        step: 0.05,
+      },
       { key: 'speed', label: 'Vitesse Pulsation', type: 'slider', min: 0.1, max: 1.8, step: 0.05 },
       { key: 'depth', label: 'Parallaxe / Relief', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'intensity', label: 'Contraste / Éclat', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Contraste / Éclat',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.05,
+      },
       { key: 'randomness', label: 'Asynchronisme', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'borderWidth', label: 'Épaisseur Bordures', type: 'slider', min: 0.02, max: 0.15, step: 0.005 },
-      { key: 'innerGlow', label: 'Halo Interne Cellule', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'waveSpread', label: 'Rayon Ondes Souris', type: 'slider', min: 0.4, max: 2.5, step: 0.05 },
+      {
+        key: 'borderWidth',
+        label: 'Épaisseur Bordures',
+        type: 'slider',
+        min: 0.02,
+        max: 0.15,
+        step: 0.005,
+      },
+      {
+        key: 'innerGlow',
+        label: 'Halo Interne Cellule',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'waveSpread',
+        label: 'Rayon Ondes Souris',
+        type: 'slider',
+        min: 0.4,
+        max: 2.5,
+        step: 0.05,
+      },
     ],
   },
   {
@@ -2353,9 +2878,30 @@ export const SPECIAL_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'density', label: 'Nombre Nœuds', type: 'slider', min: 0.4, max: 2.5, step: 0.05 },
       { key: 'speed', label: 'Vitesse Dérive', type: 'slider', min: 0.05, max: 1.2, step: 0.05 },
       { key: 'depth', label: 'Profondeur Z', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'intensity', label: 'Radiance Réseau', type: 'slider', min: 0.2, max: 2.5, step: 0.05 },
-      { key: 'randomness', label: 'Turbulence Brownienne', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
-      { key: 'connectDistance', label: 'Distance Connexion', type: 'slider', min: 1.5, max: 5.0, step: 0.1 },
+      {
+        key: 'intensity',
+        label: 'Radiance Réseau',
+        type: 'slider',
+        min: 0.2,
+        max: 2.5,
+        step: 0.05,
+      },
+      {
+        key: 'randomness',
+        label: 'Turbulence Brownienne',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'connectDistance',
+        label: 'Distance Connexion',
+        type: 'slider',
+        min: 1.5,
+        max: 5.0,
+        step: 0.1,
+      },
       { key: 'nodeSize', label: 'Taille Nœuds', type: 'slider', min: 0.4, max: 2.5, step: 0.05 },
       { key: 'pulseSpeed', label: 'Vitesse Influx', type: 'slider', min: 0.5, max: 3.5, step: 0.1 },
     ],
@@ -2435,7 +2981,7 @@ export const BrickDemoInspector: React.FC<{
 
     if (isSpecial) {
       // Pour les effets spéciaux, décor cyberpunk / spatial adapté mettant en valeur chaque géométrie
-      let bgType = 'gradient_sky'
+      const bgType = 'gradient_sky'
       let bgProps: Record<string, any> = {
         topColor: '#080112',
         bottomColor: '#020005',
@@ -2507,7 +3053,7 @@ export const BrickDemoInspector: React.FC<{
       })
     } else if (isOverlay) {
       // Pour les overlays et styles, décor cinématique complet mettant en valeur chaque effet
-      let bgType = 'gradient_sky'
+      const bgType = 'gradient_sky'
       let bgProps: Record<string, any> = {
         topColor: '#0f172a',
         bottomColor: '#020617',
@@ -2526,29 +3072,101 @@ export const BrickDemoInspector: React.FC<{
       }
 
       if (type === 'grain') {
-        bgProps = { topColor: '#1e1b4b', bottomColor: '#09090b', horizonColor: '#f43f5e', density: 1.0, speed: 0.1 }
+        bgProps = {
+          topColor: '#1e1b4b',
+          bottomColor: '#09090b',
+          horizonColor: '#f43f5e',
+          density: 1.0,
+          speed: 0.1,
+        }
         interType = 'parallax_mountains'
-        interProps = { rockColor: '#080812', sunColor: '#3b0764', mistColor: '#1e1b4b', density: 1.0, depth: 0.3 }
+        interProps = {
+          rockColor: '#080812',
+          sunColor: '#3b0764',
+          mistColor: '#1e1b4b',
+          density: 1.0,
+          depth: 0.3,
+        }
       } else if (type === 'vignette') {
-        bgProps = { topColor: '#312e81', bottomColor: '#0a0a0a', horizonColor: '#fbbf24', density: 1.1, speed: 0.1 }
+        bgProps = {
+          topColor: '#312e81',
+          bottomColor: '#0a0a0a',
+          horizonColor: '#fbbf24',
+          density: 1.1,
+          speed: 0.1,
+        }
         interType = 'parallax_castle'
-        interProps = { castleColor: '#07070e', torchColor: '#f59e0b', rockColor: '#111827', density: 1.0, depth: 0.35 }
+        interProps = {
+          castleColor: '#07070e',
+          torchColor: '#f59e0b',
+          rockColor: '#111827',
+          density: 1.0,
+          depth: 0.35,
+        }
       } else if (type === 'crt_scanlines') {
-        bgProps = { topColor: '#111827', bottomColor: '#030712', horizonColor: '#00f0ff', density: 1.0, speed: 0.1 }
+        bgProps = {
+          topColor: '#111827',
+          bottomColor: '#030712',
+          horizonColor: '#00f0ff',
+          density: 1.0,
+          speed: 0.1,
+        }
         interType = 'parallax_city'
-        interProps = { buildingColor: '#05070e', windowColor: '#00f0ff', beaconColor: '#ef4444', density: 1.0, depth: 0.3 }
+        interProps = {
+          buildingColor: '#05070e',
+          windowColor: '#00f0ff',
+          beaconColor: '#ef4444',
+          density: 1.0,
+          depth: 0.3,
+        }
       } else if (type === 'halftone') {
-        bgProps = { topColor: '#581c87', bottomColor: '#0f172a', horizonColor: '#f59e0b', density: 1.2, speed: 0.15 }
+        bgProps = {
+          topColor: '#581c87',
+          bottomColor: '#0f172a',
+          horizonColor: '#f59e0b',
+          density: 1.2,
+          speed: 0.15,
+        }
         interType = 'parallax_city'
-        interProps = { buildingColor: '#09090b', windowColor: '#f59e0b', beaconColor: '#ec4899', density: 1.0, depth: 0.3 }
+        interProps = {
+          buildingColor: '#09090b',
+          windowColor: '#f59e0b',
+          beaconColor: '#ec4899',
+          density: 1.0,
+          depth: 0.3,
+        }
       } else if (type === 'pixelation') {
-        bgProps = { topColor: '#1e293b', bottomColor: '#020617', horizonColor: '#10b981', density: 1.0, speed: 0.15 }
+        bgProps = {
+          topColor: '#1e293b',
+          bottomColor: '#020617',
+          horizonColor: '#10b981',
+          density: 1.0,
+          speed: 0.15,
+        }
         interType = 'parallax_pixel_tiles'
-        interProps = { tileColor: '#0f172a', topFringeColor: '#10b981', ditherColor: '#020617', density: 1.0, depth: 0.35 }
+        interProps = {
+          tileColor: '#0f172a',
+          topFringeColor: '#10b981',
+          ditherColor: '#020617',
+          density: 1.0,
+          depth: 0.35,
+        }
       } else if (type === 'chromatic_aberration') {
-        bgProps = { topColor: '#1e1b4b', bottomColor: '#05050a', horizonColor: '#ec4899', density: 1.0, speed: 0.15 }
+        bgProps = {
+          topColor: '#1e1b4b',
+          bottomColor: '#05050a',
+          horizonColor: '#ec4899',
+          density: 1.0,
+          speed: 0.15,
+        }
         interType = 'parallax_city'
-        interProps = { buildingColor: '#06060f', windowColor: '#00f0ff', beaconColor: '#ec4899', density: 1.0, depth: 0.35 }
+        interProps = {
+          buildingColor: '#06060f',
+          windowColor: '#00f0ff',
+          beaconColor: '#ec4899',
+          density: 1.0,
+          depth: 0.35,
+        }
       }
 
       layersConfig.push({
