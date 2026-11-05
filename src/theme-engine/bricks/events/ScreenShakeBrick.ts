@@ -49,8 +49,10 @@ export class ScreenShakeInstance implements IBrickInstance {
   private props: ScreenShakeProps
   private shakeColorVec: THREE.Color
 
-  private lastShakeTime = 0
-  private manualTriggerTime = 0
+  private isShaking = false
+  private shakeStartTime = 0
+  private pendingTrigger = false
+  private activeDuration: number | null = null
   private currentProgress = 1.0
 
   // Sauvegarde des décalages précédents pour nettoyer proprement la caméra
@@ -164,26 +166,28 @@ export class ScreenShakeInstance implements IBrickInstance {
   public init(): void {}
 
   public update(_delta: number, time: number): void {
-    const interval = this.props.shakeInterval ?? 4.5
     const speed = this.props.speed ?? 1.2
     const intensity = this.props.intensity ?? 1.0
     const randomness = this.props.randomness ?? 0.5
     const decayRate = this.props.decayRate ?? 3.5
-    const duration = 1.3 / Math.max(0.3, speed)
+    const duration = this.activeDuration ?? 1.3 / Math.max(0.3, speed)
 
-    // Calcul de la progression de la secousse
-    const timeSinceManual = time - this.manualTriggerTime
+    if (this.pendingTrigger) {
+      this.pendingTrigger = false
+      this.shakeStartTime = time
+      this.isShaking = true
+    }
+
     let progress = 1.0
 
-    if (this.manualTriggerTime > 0 && timeSinceManual < duration) {
-      progress = timeSinceManual / duration
-    } else {
-      const cycleTime = time % (interval * 1.35)
-      if (cycleTime < duration) {
-        progress = cycleTime / duration
-        if (Math.abs(time - this.lastShakeTime) > interval * 0.5) {
-          this.lastShakeTime = time
-        }
+    if (this.isShaking) {
+      const elapsed = time - this.shakeStartTime
+      if (elapsed >= 0 && elapsed < duration) {
+        progress = elapsed / duration
+      } else {
+        this.isShaking = false
+        this.activeDuration = null
+        progress = 1.0
       }
     }
 
@@ -248,14 +252,18 @@ export class ScreenShakeInstance implements IBrickInstance {
     }
   }
 
-  public triggerEvent(event: RareEventTrigger): void {
+  public triggerEvent(event?: RareEventTrigger): void {
     if (
+      !event ||
+      event.type === 'screen_shake' ||
       event.type === 'shockwave' ||
       event.type === 'lightning' ||
       (event.params && event.params.type === 'shake')
     ) {
-      const now = performance.now() / 1000
-      this.manualTriggerTime = now
+      this.pendingTrigger = true
+      if (event?.durationSeconds) {
+        this.activeDuration = event.durationSeconds
+      }
     }
   }
 
