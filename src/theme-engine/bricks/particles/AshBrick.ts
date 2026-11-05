@@ -213,7 +213,10 @@ export class AshInstance implements IBrickInstance {
       this.rotations[idx3 + 2] += this.rotVelocities[idx3 + 2] * delta
 
       const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.45, 1.2)
-      const alphaScale = Math.sin(progress * Math.PI)
+      let alphaScale = Math.sin(progress * Math.PI)
+      if (progress > 0.85) {
+        alphaScale = (1.0 - progress) / 0.15
+      }
       const scale = this.baseScales[i] * alphaScale * depthFactor * this.surgeMultiplier
 
       this.dummy.position.set(

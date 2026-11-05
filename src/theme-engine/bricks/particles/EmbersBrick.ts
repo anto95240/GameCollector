@@ -209,8 +209,11 @@ export class EmbersInstance implements IBrickInstance {
 
       // Échelle : rétrécissement en fin de vie avec atténuation de profondeur
       const depthFactor = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.4, 1.25)
-      const scale =
-        this.baseScales[i] * Math.sin(progress * Math.PI) * depthFactor * this.surgeMultiplier
+      let lifeFade = Math.sin(progress * Math.PI)
+      if (progress > 0.85) {
+        lifeFade = (1.0 - progress) / 0.15
+      }
+      const scale = this.baseScales[i] * lifeFade * depthFactor * this.surgeMultiplier
 
       this.dummy.position.set(
         this.positions[idx3],

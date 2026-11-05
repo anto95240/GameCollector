@@ -198,7 +198,10 @@ export class SnowInstance implements IBrickInstance {
 
       const depthFactor = THREE.MathUtils.mapLinear(pz, -14 * this.depthFactor, 2, 0.4, 1.3)
       const lifeProgress = this.life[i] / this.maxLife[i]
-      const alphaScale = Math.sin(lifeProgress * Math.PI)
+      let alphaScale = Math.sin(lifeProgress * Math.PI)
+      if (lifeProgress > 0.85) {
+        alphaScale = (1.0 - lifeProgress) / 0.15
+      }
       const scale = this.baseScales[i] * alphaScale * depthFactor * this.surgeMultiplier
 
       this.dummy.position.set(

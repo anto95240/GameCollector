@@ -207,8 +207,11 @@ export class SmokeInstance implements IBrickInstance {
 
       // Expansion avec l'âge (x1 au départ -> x2.5 en fin de vie)
       const expansion = 1.0 + progress * (this.expansionRate * 1.5)
-      // Évanouissement doux : montée rapide, puis dissipation progressive
-      const alphaFalloff = Math.sin(Math.pow(progress, 0.6) * Math.PI)
+      // Évanouissement doux : montée rapide, puis dissipation progressive et extinction sur les derniers 15 %
+      let alphaFalloff = Math.sin(Math.pow(progress, 0.6) * Math.PI)
+      if (progress > 0.85) {
+        alphaFalloff = Math.min(alphaFalloff, (1.0 - progress) / 0.15)
+      }
 
       const depthFactor = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.5, 1.25)
       const scale =

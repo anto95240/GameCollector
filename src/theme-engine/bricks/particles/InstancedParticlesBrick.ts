@@ -27,15 +27,15 @@ import { simplex3D } from '../../utils/noise'
 import { BrickRegistry } from '../registry'
 
 export interface InstancedParticlesProps {
-  count?: number                 // Nombre nominal de particules
-  speedY?: number                // Vitesse verticale (négatif = monte, positif = descend)
-  speedX?: number                // Vitesse horizontale de dérive
-  turbulenceStrength?: number    // Intensité de la turbulence par bruit (ex: 0.5)
-  turbulenceScale?: number       // Échelle spatiale du bruit
-  depthRange?: [number, number]  // [minZ, maxZ] (ex: [-15, 2])
-  sizeRange?: [number, number]   // [minSize, maxSize]
-  mouseRepulsion?: number        // Force de répulsion du pointeur
-  shape?: 'circle' | 'diamond'   // Forme géométrique
+  count?: number // Nombre nominal de particules
+  speedY?: number // Vitesse verticale (négatif = monte, positif = descend)
+  speedX?: number // Vitesse horizontale de dérive
+  turbulenceStrength?: number // Intensité de la turbulence par bruit (ex: 0.5)
+  turbulenceScale?: number // Échelle spatiale du bruit
+  depthRange?: [number, number] // [minZ, maxZ] (ex: [-15, 2])
+  sizeRange?: [number, number] // [minSize, maxSize]
+  mouseRepulsion?: number // Force de répulsion du pointeur
+  shape?: 'circle' | 'diamond' // Forme géométrique
   colorMode?: 'primary' | 'secondary' | 'accent' | 'mixed'
 }
 
@@ -54,6 +54,7 @@ class InstancedParticlesInstance implements IBrickInstance {
   private life: Float32Array
   private maxLife: Float32Array
   private baseScales: Float32Array
+  private baseColors: Float32Array
 
   // Propriétés de simulation
   private speedY: number
@@ -101,6 +102,7 @@ class InstancedParticlesInstance implements IBrickInstance {
     this.life = new Float32Array(this.totalCount)
     this.maxLife = new Float32Array(this.totalCount)
     this.baseScales = new Float32Array(this.totalCount)
+    this.baseColors = new Float32Array(this.totalCount * 3)
 
     // Géométrie d'une particule
     const geometry =
@@ -137,11 +139,18 @@ class InstancedParticlesInstance implements IBrickInstance {
       // Couleur de la particule
       if (this.colorMode === 'accent' || (this.colorMode === 'mixed' && Math.random() < 0.25)) {
         this.tempColor.copy(accCol)
-      } else if (this.colorMode === 'secondary' || (this.colorMode === 'mixed' && Math.random() < 0.5)) {
+      } else if (
+        this.colorMode === 'secondary' ||
+        (this.colorMode === 'mixed' && Math.random() < 0.5)
+      ) {
         this.tempColor.copy(secCol)
       } else {
         this.tempColor.copy(primCol)
       }
+
+      this.baseColors[i * 3] = this.tempColor.r
+      this.baseColors[i * 3 + 1] = this.tempColor.g
+      this.baseColors[i * 3 + 2] = this.tempColor.b
 
       this.mesh.setColorAt(i, this.tempColor)
     }
@@ -198,8 +207,14 @@ class InstancedParticlesInstance implements IBrickInstance {
 
       // Progression du cycle de vie [0, 1]
       const lifeProgress = this.life[i] / this.maxLife[i]
-      // Courbe d'apparition et disparition douce (sinus)
-      const alphaScale = Math.sin(lifeProgress * Math.PI)
+      // Fondu d'extinction sur les derniers 15 % de la durée de vie avant le reset
+      // et apparition progressive sur les premiers 15 %
+      let lifeFade = 1.0
+      if (lifeProgress > 0.85) {
+        lifeFade = (1.0 - lifeProgress) / 0.15
+      } else if (lifeProgress < 0.15) {
+        lifeFade = lifeProgress / 0.15
+      }
 
       // Calcul de turbulence Simplex Noise 3D
       const px = this.positions[idx3]
@@ -224,8 +239,10 @@ class InstancedParticlesInstance implements IBrickInstance {
       }
 
       // Mise à jour de la position
-      const vx = (this.velocities[idx3] + noiseX * this.turbStrength + repulseX) * this.surgeMultiplier
-      const vy = (this.velocities[idx3 + 1] + noiseY * this.turbStrength + repulseY) * this.surgeMultiplier
+      const vx =
+        (this.velocities[idx3] + noiseX * this.turbStrength + repulseX) * this.surgeMultiplier
+      const vy =
+        (this.velocities[idx3 + 1] + noiseY * this.turbStrength + repulseY) * this.surgeMultiplier
       const vz = this.velocities[idx3 + 2]
 
       this.positions[idx3] += vx * delta * 2.0
@@ -239,15 +256,47 @@ class InstancedParticlesInstance implements IBrickInstance {
       if (this.positions[idx3] < -12.0) this.positions[idx3] = 12.0
 
       // Calcul de la taille avec atténuation par la profondeur (Z)
-      const depthFactor = THREE.MathUtils.mapLinear(this.positions[idx3 + 2], this.minZ, this.maxZ, 0.4, 1.3)
-      const currentScale = this.baseScales[i] * alphaScale * depthFactor * this.surgeMultiplier
+      const depthFactor = THREE.MathUtils.mapLinear(
+        this.positions[idx3 + 2],
+        this.minZ,
+        this.maxZ,
+        0.4,
+        1.3
+      )
+      const currentScale = this.baseScales[i] * lifeFade * depthFactor * this.surgeMultiplier
+
+      // Opacité réduite pour les particules lointaines
+      const depthOpacity = THREE.MathUtils.mapLinear(
+        this.positions[idx3 + 2],
+        this.minZ,
+        this.maxZ,
+        0.3,
+        1.0
+      )
+      const finalAlpha = Math.max(0, Math.min(1, lifeFade * depthOpacity))
+
+      const cIdx = i * 3
+      this.tempColor.setRGB(
+        this.baseColors[cIdx] * finalAlpha,
+        this.baseColors[cIdx + 1] * finalAlpha,
+        this.baseColors[cIdx + 2] * finalAlpha
+      )
+      this.mesh.setColorAt(i, this.tempColor)
 
       // Mise à jour de la matrice d'instance
-      this.dummy.position.set(this.positions[idx3], this.positions[idx3 + 1], this.positions[idx3 + 2])
+      this.dummy.position.set(
+        this.positions[idx3],
+        this.positions[idx3 + 1],
+        this.positions[idx3 + 2]
+      )
       this.dummy.scale.set(currentScale, currentScale, currentScale)
       this.dummy.updateMatrix()
 
       this.mesh.setMatrixAt(i, this.dummy.matrix)
+    }
+
+    if (this.mesh.instanceColor) {
+      this.mesh.instanceColor.needsUpdate = true
     }
 
     // Masquer les particules inactives (au-delà du palier actif)
