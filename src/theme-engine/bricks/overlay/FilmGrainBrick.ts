@@ -26,7 +26,7 @@ export interface FilmGrainProps {
   speed?: number
   /** Profondeur focale et sensibilité à la parallaxe souris (0.0 à 1.0, défaut 0.2). */
   depth?: number
-  /** Intensité et contraste du grain argentique (0.02 à 0.45, défaut 0.12). */
+  /** Intensité et contraste du grain argentique (0.02 à 0.45, défaut 0.08). */
   intensity?: number
   /** Facteur d'agrégation d'émulsion et gigue stochastique (0.0 à 1.0, défaut 0.5). */
   randomness?: number
@@ -56,7 +56,7 @@ export class FilmGrainInstance implements IBrickInstance {
     const density = props.density ?? 1.2
     const speed = props.speed ?? 0.8
     const depth = props.depth ?? 0.2
-    const intensity = props.intensity ?? 0.12
+    const intensity = props.intensity ?? 0.08
     const randomness = props.randomness ?? 0.5
     const monochrome = props.monochrome !== false
     const clumpSize = props.clumpSize ?? 1.0
@@ -155,11 +155,11 @@ export class FilmGrainInstance implements IBrickInstance {
             grainVal = (fract(sin(dot(grainCoord, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 1.25;
           }
 
-          // Seuil de découpe pour micro-cristaux
+          // Seuil de découpe pour micro-cristaux avec intensité calibrée (grain discret)
           float absGrain = abs(grainVal);
-          float alpha = clamp(absGrain * (uIntensity * 2.8), 0.0, 0.72);
+          float alpha = clamp(absGrain * (uIntensity * 0.32), 0.0, 0.14);
 
-          if (alpha <= 0.003) {
+          if (alpha <= 0.002) {
             discard;
           }
 
