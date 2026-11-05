@@ -7,8 +7,11 @@
 
 export const GLSL_NOISE_2D = /* glsl */ `
 // Simplex 2D noise de Stefan Gustavson & Ian McEwan
-vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
-vec4 permute(vec4 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
 vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
 
 float snoise(vec2 v) {
@@ -20,7 +23,7 @@ float snoise(vec2 v) {
   i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
   vec4 x12 = x0.xyxy + C.xxzz;
   x12.xy -= i1;
-  i = mod(i, 289.0);
+  i = mod289(i);
   vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
         + i.x + vec3(0.0, i1.x, 1.0 ));
   vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
@@ -41,11 +44,11 @@ float snoise(vec2 v) {
 float fbm2D(vec2 p, int octaves) {
   float value = 0.0;
   float amplitude = 0.5;
-  float frequency = 1.0;
+  mat2 rot = mat2(0.80, 0.60, -0.60, 0.80);
   for (int i = 0; i < 5; i++) {
     if (i >= octaves) break;
-    value += amplitude * snoise(p * frequency);
-    frequency *= 2.0;
+    value += amplitude * snoise(p);
+    p = rot * p * 2.02 + vec2(100.0);
     amplitude *= 0.5;
   }
   return value;
@@ -154,4 +157,3 @@ vec2 voronoi2D(vec2 x, float timeOffset) {
   return vec2(sqrt(m1), sqrt(m2));
 }
 `
-
