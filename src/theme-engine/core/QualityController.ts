@@ -28,8 +28,10 @@ export class QualityController {
   // Métriques temporelles
   private frameCount = 0
   private lastTime = performance.now()
-  private fpsBuffer: number[] = []
-  private fpsBufferMax = 60
+  private readonly ringCapacity = 60
+  private fpsRingBuffer = new Float32Array(60)
+  private ringHead = 0
+  private ringCount = 0
   private emaFps = 60
   private minFps = 60
   private lastFrameDuration = 16.6
@@ -138,14 +140,21 @@ export class QualityController {
     // Filtre moyenne exponentielle (EMA) pour un FPS lisse
     this.emaFps = this.emaFps * 0.92 + instantFps * 0.08
 
-    this.fpsBuffer.push(instantFps)
-    if (this.fpsBuffer.length > this.fpsBufferMax) {
-      this.fpsBuffer.shift()
+    this.fpsRingBuffer[this.ringHead] = instantFps
+    this.ringHead = (this.ringHead + 1) % this.ringCapacity
+    if (this.ringCount < this.ringCapacity) {
+      this.ringCount++
     }
 
     this.frameCount++
-    if (this.frameCount % 30 === 0) {
-      this.minFps = Math.min(...this.fpsBuffer)
+    if (this.frameCount % 30 === 0 && this.ringCount > 0) {
+      let minVal = this.fpsRingBuffer[0]
+      for (let i = 1; i < this.ringCount; i++) {
+        if (this.fpsRingBuffer[i] < minVal) {
+          minVal = this.fpsRingBuffer[i]
+        }
+      }
+      this.minFps = minVal
     }
 
     // Asservissement automatique si mode = 'AUTO'
@@ -199,9 +208,12 @@ export class QualityController {
 
   public getStats(): PerformanceStats {
     let avg = 0
-    if (this.fpsBuffer.length > 0) {
-      const sum = this.fpsBuffer.reduce((a, b) => a + b, 0)
-      avg = sum / this.fpsBuffer.length
+    if (this.ringCount > 0) {
+      let sum = 0
+      for (let i = 0; i < this.ringCount; i++) {
+        sum += this.fpsRingBuffer[i]
+      }
+      avg = sum / this.ringCount
     }
     return {
       fps: Math.round(this.emaFps * 10) / 10,
