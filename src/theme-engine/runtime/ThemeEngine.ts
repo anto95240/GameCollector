@@ -68,6 +68,8 @@ export class ThemeEngine {
   private boundContextLostHandler = this.onContextLost.bind(this)
   private boundContextRestoredHandler = this.onContextRestored.bind(this)
   private boundReducedMotionHandler = this.onReducedMotionChange.bind(this)
+  private boundDprChangeHandler = this.onDprChange.bind(this)
+  private dprMediaQuery: MediaQueryList | null = null
 
   constructor(options: ThemeEngineOptions) {
     this.canvas = options.canvas
@@ -144,6 +146,7 @@ export class ThemeEngine {
     if (this.reducedMotionMediaQuery) {
       this.reducedMotionMediaQuery.addEventListener('change', this.boundReducedMotionHandler)
     }
+    this.setupDprListener()
   }
 
   private teardownListeners(): void {
@@ -155,9 +158,37 @@ export class ThemeEngine {
     if (this.reducedMotionMediaQuery) {
       this.reducedMotionMediaQuery.removeEventListener('change', this.boundReducedMotionHandler)
     }
+    this.teardownDprListener()
+  }
+
+  private setupDprListener(): void {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return
+    if (this.dprMediaQuery) {
+      this.dprMediaQuery.removeEventListener('change', this.boundDprChangeHandler)
+      this.dprMediaQuery = null
+    }
+    const dpr = window.devicePixelRatio || 1
+    this.dprMediaQuery = window.matchMedia(`(resolution: ${dpr}dppx)`)
+    this.dprMediaQuery.addEventListener('change', this.boundDprChangeHandler)
+  }
+
+  private teardownDprListener(): void {
+    if (this.dprMediaQuery) {
+      this.dprMediaQuery.removeEventListener('change', this.boundDprChangeHandler)
+      this.dprMediaQuery = null
+    }
+  }
+
+  private onDprChange(): void {
+    this.setupDprListener()
+    this.handleViewportOrDprChange()
   }
 
   private onWindowResize(): void {
+    this.handleViewportOrDprChange()
+  }
+
+  private handleViewportOrDprChange(): void {
     this.updateDimensions()
     const w = window.innerWidth
     const h = window.innerHeight
@@ -166,6 +197,9 @@ export class ThemeEngine {
       if (brick.onResize) {
         brick.onResize(w, h, dpr)
       }
+    }
+    if (!this.isRunning) {
+      this.renderFrame(0)
     }
   }
 
