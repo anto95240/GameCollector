@@ -72,7 +72,8 @@ export class BubblesInstance implements IBrickInstance {
     this.id = id
     this.scene = context.scene
 
-    this.bubbleColor = new THREE.Color(props.bubbleColor ?? '#38bdf8')
+    const rawColor = props.bubbleColor ?? '#38bdf8'
+    this.bubbleColor = new THREE.Color(rawColor)
     this.density = props.density ?? 1.0
     this.speed = props.speed ?? 0.5
     this.depthFactor = props.depth ?? 0.5
@@ -94,11 +95,10 @@ export class BubblesInstance implements IBrickInstance {
 
     const geometry = new THREE.PlaneGeometry(1, 1)
     const material = new THREE.MeshBasicMaterial({
-      map: getBubbleTexture(),
-      color: this.bubbleColor,
+      map: getBubbleTexture(rawColor),
       transparent: true,
       depthWrite: false,
-      opacity: 0.9,
+      opacity: Math.min(1.0, 0.92 * this.intensity),
       side: THREE.DoubleSide,
     })
 
@@ -120,14 +120,19 @@ export class BubblesInstance implements IBrickInstance {
     this.positions[idx3 + 1] = randomY ? (Math.random() - 0.5) * 14 : -7.5 + Math.random() * 2.0
     this.positions[idx3 + 2] = -12 * this.depthFactor + Math.random() * (4 * this.depthFactor)
 
-    const sizeMult = 0.8 + Math.random() * 0.5
+    // Tailles variées : distribution naturelle avec bulles fines, moyennes et quelques grandes
+    const sizeCurve = Math.pow(Math.random(), 1.5)
+    const minScale = 0.38
+    const maxScale = 0.95 + this.randomness * 0.7
+    const size = THREE.MathUtils.lerp(minScale, maxScale, sizeCurve)
+
     this.velocities[idx3] = 0
-    this.velocities[idx3 + 1] = (0.6 + Math.random() * 0.5) * this.speed
+    this.velocities[idx3 + 1] = (0.55 + Math.random() * 0.5) * this.speed
     this.velocities[idx3 + 2] = 0
 
     this.wobbleFrequencies[i] = (1.5 + Math.random() * 1.5) * (1.0 + this.randomness)
     this.wobblePhases[i] = Math.random() * Math.PI * 2
-    this.baseScales[i] = (0.16 + Math.random() * 0.22) * sizeMult * this.intensity
+    this.baseScales[i] = size * this.intensity
   }
 
   public init(): void {}
@@ -182,7 +187,7 @@ export class BubblesInstance implements IBrickInstance {
       const expansion = 1.0 + heightNorm * (this.expansionRate - 1.0)
 
       const pz = this.positions[idx3 + 2]
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.45, 1.25)
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.55, 1.25)
       const scale = this.baseScales[i] * expansion * depthFactor * this.surgeMultiplier
 
       this.dummy.position.set(
@@ -212,12 +217,22 @@ export class BubblesInstance implements IBrickInstance {
     if (newProps.bubbleColor !== undefined) {
       this.bubbleColor.set(newProps.bubbleColor)
       if (this.mesh && this.mesh.material && !Array.isArray(this.mesh.material)) {
-        ;(this.mesh.material as THREE.MeshBasicMaterial).color.copy(this.bubbleColor)
+        const mat = this.mesh.material as THREE.MeshBasicMaterial
+        mat.map = getBubbleTexture(newProps.bubbleColor)
+        mat.needsUpdate = true
       }
     }
     if (newProps.speed !== undefined) this.speed = newProps.speed
     if (newProps.depth !== undefined) this.depthFactor = newProps.depth
-    if (newProps.intensity !== undefined) this.intensity = newProps.intensity
+    if (newProps.intensity !== undefined) {
+      this.intensity = newProps.intensity
+      if (this.mesh && this.mesh.material && !Array.isArray(this.mesh.material)) {
+        ;(this.mesh.material as THREE.MeshBasicMaterial).opacity = Math.min(
+          1.0,
+          0.92 * this.intensity
+        )
+      }
+    }
     if (newProps.randomness !== undefined) this.randomness = newProps.randomness
     if (newProps.wobbleAmount !== undefined) this.wobbleAmount = newProps.wobbleAmount
     if (newProps.expansionRate !== undefined) this.expansionRate = newProps.expansionRate

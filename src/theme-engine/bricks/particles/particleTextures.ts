@@ -153,40 +153,68 @@ export function getFireflyTexture(): THREE.CanvasTexture {
 }
 
 /** 6. Texture de bulle irisée avec reflet spéculaire (Bulles) */
-export function getBubbleTexture(): THREE.CanvasTexture {
-  return createTexture('bubble', 64, 64, (ctx, w, h) => {
+export function getBubbleTexture(bubbleColorHex: string = '#38bdf8'): THREE.CanvasTexture {
+  const key = `bubble_${bubbleColorHex}`
+  return createTexture(key, 128, 128, (ctx, w, h) => {
     const cx = w / 2
     const cy = h / 2
-    const r = w * 0.42
+    const r = w * 0.44
 
-    // Fond interne légèrement vaporeux
-    const bodyGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r)
-    bodyGrad.addColorStop(0, 'rgba(255, 255, 255, 0.03)')
-    bodyGrad.addColorStop(0.7, 'rgba(200, 240, 255, 0.08)')
-    bodyGrad.addColorStop(0.95, 'rgba(255, 255, 255, 0.65)')
-    bodyGrad.addColorStop(1, 'rgba(255, 255, 255, 0.0)')
+    // Parsing couleur du corps de la bulle
+    const color = new THREE.Color(bubbleColorHex)
+    const rCol = Math.round(color.r * 255)
+    const gCol = Math.round(color.g * 255)
+    const bCol = Math.round(color.b * 255)
+
+    // 1. Corps intérieur de la bulle : translucide avec léger voile sphérique
+    const bodyGrad = ctx.createRadialGradient(cx - r * 0.15, cy - r * 0.15, 0, cx, cy, r)
+    bodyGrad.addColorStop(0, `rgba(${rCol}, ${gCol}, ${bCol}, 0.03)`)
+    bodyGrad.addColorStop(0.65, `rgba(${rCol}, ${gCol}, ${bCol}, 0.10)`)
+    bodyGrad.addColorStop(0.88, `rgba(${rCol}, ${gCol}, ${bCol}, 0.32)`)
+    bodyGrad.addColorStop(1, `rgba(${rCol}, ${gCol}, ${bCol}, 0.0)`)
     ctx.fillStyle = bodyGrad
     ctx.beginPath()
     ctx.arc(cx, cy, r, 0, Math.PI * 2)
     ctx.fill()
 
-    // Bordure fine
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)'
-    ctx.lineWidth = 1.8
+    // 2. Anneau de bordure lumineux (Fresnel rim)
+    ctx.strokeStyle = 'rgba(235, 248, 255, 0.88)'
+    ctx.lineWidth = 2.4
     ctx.beginPath()
-    ctx.arc(cx, cy, r - 1.0, 0, Math.PI * 2)
+    ctx.arc(cx, cy, r - 1.2, 0, Math.PI * 2)
     ctx.stroke()
 
-    // Reflet spéculaire principal (arc supérieur gauche)
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.95)'
+    // Deuxième contour subtil teinté intérieur
+    ctx.strokeStyle = `rgba(${rCol}, ${gCol}, ${bCol}, 0.65)`
+    ctx.lineWidth = 1.6
     ctx.beginPath()
-    ctx.arc(cx - r * 0.35, cy - r * 0.35, r * 0.22, 0, Math.PI * 2)
-    ctx.fill()
+    ctx.arc(cx, cy, r - 2.8, 0, Math.PI * 2)
+    ctx.stroke()
 
-    // Micro-reflet secondaire opposé
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'
+    // 3. Reflet spéculaire principal (arc courbe éclatant blanc pur en haut à gauche)
+    ctx.save()
+    ctx.translate(cx, cy)
+    ctx.rotate(-Math.PI * 0.22)
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.98)'
+    ctx.lineWidth = 3.6
+    ctx.lineCap = 'round'
     ctx.beginPath()
-    ctx.arc(cx + r * 0.35, cy + r * 0.35, r * 0.1, 0, Math.PI * 2)
+    ctx.arc(0, 0, r * 0.72, -Math.PI * 0.32, Math.PI * 0.05)
+    ctx.stroke()
+
+    // Point focal spéculaire plus intense au centre de l'arc
+    ctx.fillStyle = 'rgba(255, 255, 255, 1.0)'
+    ctx.beginPath()
+    const dotX = Math.cos(-Math.PI * 0.14) * (r * 0.72)
+    const dotY = Math.sin(-Math.PI * 0.14) * (r * 0.72)
+    ctx.arc(dotX, dotY, 2.8, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.restore()
+
+    // 4. Micro-reflet secondaire opposé (bas à droite)
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.45)'
+    ctx.beginPath()
+    ctx.arc(cx + r * 0.42, cy + r * 0.42, r * 0.12, 0, Math.PI * 2)
     ctx.fill()
   })
 }

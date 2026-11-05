@@ -82,7 +82,9 @@ export class WaterCausticsInstance implements IBrickInstance {
         uIntensity: { value: intensity },
         uRandomness: { value: randomness },
         uCausticScale: { value: causticScale },
-        uQualityLevel: { value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0 },
+        uQualityLevel: {
+          value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
+        },
       },
       vertexShader: /* glsl */ `
         varying vec2 vUv;
@@ -117,21 +119,29 @@ export class WaterCausticsInstance implements IBrickInstance {
           // Turbulence de vagues de surface
           vec2 flow = vec2(snoise(p * 0.8 + t * 0.1), snoise(p * 0.8 - t * 0.12)) * (uRandomness * 0.6);
           vec2 p1 = p * uDensity + flow;
-          vec2 p2 = p * (uDensity * 1.3) - flow + vec2(1.5, 3.2);
 
+          // Voronoi 1
           vec2 v1 = voronoi2D(p1, t * 1.2);
-          float c1 = pow(abs(v1.y - v1.x), 0.7);
+          float edge1 = abs(v1.y - v1.x);
+          // Profil caustique net et fin : 0 en dehors des lignes, crête lumineuse au centre
+          float c1 = 1.0 - smoothstep(0.01, 0.16, edge1);
+          c1 = pow(clamp(c1, 0.0, 1.0), 1.8);
 
           if (quality == 0) {
-            return (1.0 - c1) * 1.4;
+            // LOW : Voronoi simple direct optimisé (garantit 60 FPS mobile)
+            return c1 * 0.85;
           }
 
-          vec2 v2 = voronoi2D(p2, t * 0.9);
-          float c2 = pow(abs(v2.y - v2.x), 0.7);
+          vec2 p2 = p * (uDensity * 1.35) - flow + vec2(1.5, 3.2);
+          vec2 v2 = voronoi2D(p2, t * 0.95);
+          float edge2 = abs(v2.y - v2.x);
+          float c2 = 1.0 - smoothstep(0.01, 0.16, edge2);
+          c2 = pow(clamp(c2, 0.0, 1.0), 1.8);
 
-          // Interférence constructive des deux motifs caustiques
-          float combined = min(c1, c2);
-          return pow(1.0 - combined, 2.2) * 1.8;
+          // Interférence constructive douce des deux nappes :
+          // superposition des lignes et points de convergence brillants aux croisements
+          float combined = (c1 + c2) * 0.45 + (c1 * c2) * 0.55;
+          return clamp(combined, 0.0, 1.0);
         }
 
         void main() {
@@ -148,31 +158,43 @@ export class WaterCausticsInstance implements IBrickInstance {
           vec3 water = uUseCustomColors ? uWaterColor : uPaletteSecondary;
           vec3 caust = uUseCustomColors ? uCausticColor : uPalettePrimary;
 
-          // Dégradé vertical d'absorption de la lumière par l'eau
-          float depthGradient = smoothstep(0.0, 1.0, uv.y * 1.15);
-          vec3 baseWater = mix(water * 0.5, water * 1.2, depthGradient);
+          // Dégradé vertical d'absorption de la lumière :
+          // uv.y = 0.0 (bas de l'écran) -> abysse sombre et profond
+          // uv.y = 1.0 (haut de l'écran) -> surface illuminée par la lumière zénithale
+          float depthFactor = clamp(uv.y, 0.0, 1.0);
+          float lightDecay = pow(depthFactor, 1.35);
+
+          // Eau profonde : bleu nuit abyssal en bas -> bleu translucide en haut
+          vec3 deepWater = water * 0.45;
+          vec3 shallowWater = mix(water * 1.1, caust, 0.25);
+          vec3 baseWater = mix(deepWater, shallowWater, depthFactor);
 
           // Échantillonnage avec ou sans dispersion chromatique
           vec3 causticRgb = vec3(0.0);
 
           if (uQualityLevel >= 2) {
-            // HIGH : Légère dispersion chromatique (aberration optique de l'eau)
-            float rVal = sampleCaustics(p - vec2(0.015, 0.0), t, uQualityLevel);
+            // HIGH : Légère dispersion chromatique (séparation prismatique optique de l'eau)
+            float rVal = sampleCaustics(p - vec2(0.012, 0.0), t, uQualityLevel);
             float gVal = sampleCaustics(p, t, uQualityLevel);
-            float bVal = sampleCaustics(p + vec2(0.015, 0.0), t, uQualityLevel);
+            float bVal = sampleCaustics(p + vec2(0.012, 0.0), t, uQualityLevel);
             causticRgb = vec3(rVal, gVal, bVal) * caust;
           } else {
             float val = sampleCaustics(p, t, uQualityLevel);
             causticRgb = caust * val;
           }
 
-          // Modulation par l'intensité et la profondeur
-          causticRgb *= (uIntensity * (0.6 + 0.4 * depthGradient));
+          // Modulation par la profondeur et l'intensité :
+          // Caustiques très atténuées et douces en bas (12%), éclatantes et nettes en haut (95%)
+          float causticIntensityByDepth = mix(0.12, 0.95, lightDecay);
+          causticRgb *= (uIntensity * causticIntensityByDepth);
 
-          // Composition finale
-          vec3 finalColor = baseWater + causticRgb;
+          // Reflet zénithal doux sur les caustiques de surface
+          vec3 causticHighlight = vec3(0.95, 0.98, 1.0) * (causticRgb * 0.35 * lightDecay);
 
-          gl_FragColor = vec4(finalColor, 1.0);
+          // Composition finale équilibrée sans surexposition
+          vec3 finalColor = baseWater + causticRgb + causticHighlight;
+
+          gl_FragColor = vec4(clamp(finalColor, 0.0, 1.0), 1.0);
         }
       `,
       depthWrite: false,
@@ -206,9 +228,12 @@ export class WaterCausticsInstance implements IBrickInstance {
     if (newProps.speed !== undefined) this.material.uniforms.uSpeed.value = newProps.speed
     if (newProps.density !== undefined) this.material.uniforms.uDensity.value = newProps.density
     if (newProps.depth !== undefined) this.material.uniforms.uDepth.value = newProps.depth
-    if (newProps.intensity !== undefined) this.material.uniforms.uIntensity.value = newProps.intensity
-    if (newProps.randomness !== undefined) this.material.uniforms.uRandomness.value = newProps.randomness
-    if (newProps.causticScale !== undefined) this.material.uniforms.uCausticScale.value = newProps.causticScale
+    if (newProps.intensity !== undefined)
+      this.material.uniforms.uIntensity.value = newProps.intensity
+    if (newProps.randomness !== undefined)
+      this.material.uniforms.uRandomness.value = newProps.randomness
+    if (newProps.causticScale !== undefined)
+      this.material.uniforms.uCausticScale.value = newProps.causticScale
   }
 
   public onQualityChange(quality: QualityTier): void {
