@@ -17,6 +17,7 @@ import type {
   QualityTier,
   RareEventTrigger,
 } from '../../types'
+import { simplex2D } from '../../utils/noise'
 import { BrickRegistry } from '../registry'
 import { getBubbleTexture } from './particleTextures'
 
@@ -144,9 +145,13 @@ export class BubblesInstance implements IBrickInstance {
     for (let i = 0; i < this.activeCount; i++) {
       const idx3 = i * 3
 
-      // Balancement sinusoïdal latéral
+      // Balancement sinusoïdal latéral avec bruit Simplex pour casser la périodicité
+      const py = this.positions[idx3 + 1]
+      const wobbleNoise = simplex2D(py * 0.35 + this.wobblePhases[i], time * 0.4)
       const wobble =
-        Math.sin(time * this.wobbleFrequencies[i] + this.wobblePhases[i]) * this.wobbleAmount
+        Math.sin(time * this.wobbleFrequencies[i] + this.wobblePhases[i] + wobbleNoise * 1.5) *
+          this.wobbleAmount +
+        wobbleNoise * 0.25 * this.randomness
 
       // Répulsion interactive au passage de la souris
       const dx = this.positions[idx3] - mouseWorldX

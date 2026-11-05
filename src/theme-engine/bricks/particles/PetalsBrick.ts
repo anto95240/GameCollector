@@ -159,11 +159,18 @@ export class PetalsInstance implements IBrickInstance {
     for (let i = 0; i < this.activeCount; i++) {
       const idx3 = i * 3
 
-      // Mouvement hélicoïdal gracieux
-      const spiral = Math.sin(time * 1.8 + this.curlPhases[i]) * 0.4
       const seed = this.seeds[i]
+      // Modulation non-linéaire de la fréquence hélicoïdale via bruit Simplex
+      const helicalNoise = simplex3D(
+        this.positions[idx3] * 0.18,
+        this.positions[idx3 + 1] * 0.18,
+        time * 0.25 + seed
+      )
+      const spiral =
+        Math.sin(time * 1.8 + this.curlPhases[i] + helicalNoise * 1.8) *
+        (0.35 + helicalNoise * 0.12 * this.randomness)
       const breeze =
-        simplex3D(this.positions[idx3] * 0.15, time * 0.2, seed) * 0.3 * this.randomness
+        simplex3D(this.positions[idx3] * 0.15, time * 0.2, seed + 10.0) * 0.3 * this.randomness
 
       // Répulsion interactive au passage du curseur
       const dx = this.positions[idx3] - mouseWorldX
