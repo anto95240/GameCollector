@@ -4,8 +4,8 @@
  * Brique de Particules : Braises Incandescentes (Couche 3 : Particles).
  * Particules de braises ascendantes s'élevant d'un foyer ardent avec convection
  * thermique turbulente (bruit Simplex 3D), micro-scintillement non-linéaire,
- * refroidissement progressif (du jaune/blanc au rouge sombre), dérive sous le vent,
- * et réaction interactive à la souris (répulsion thermique).
+ * refroidissement progressif continu (du blanc/jaune incandescent à l'orange puis rouge braise sombre),
+ * extinction en fondu doux et 3 tiers de tailles bien visibles.
  */
 
 import * as THREE from 'three'
@@ -61,12 +61,15 @@ export class EmbersInstance implements IBrickInstance {
   // Propriétés de simulation
   private emberColor: THREE.Color
   private hotColor: THREE.Color
+  private coolColor: THREE.Color = new THREE.Color('#dc2626') // Rouge vif incandescent
+  private darkColor: THREE.Color = new THREE.Color('#991b1b') // Rouge braise profond
   private density: number
   private speed: number
   private depthFactor: number
   private intensity: number
   private randomness: number
   private coolingRate: number
+  private currentQuality: QualityTier
 
   // Objets temporaires réutilisés
   private dummy = new THREE.Object3D()
@@ -85,10 +88,10 @@ export class EmbersInstance implements IBrickInstance {
     this.intensity = props.intensity ?? 1.2
     this.randomness = props.randomness ?? 0.5
     this.coolingRate = props.coolingRate ?? 1.0
+    this.currentQuality = context.quality ?? 'HIGH'
 
-    this.totalCount = Math.floor(180 * this.density)
-    const isMobile = window.innerWidth < 768
-    this.activeCount = isMobile ? Math.floor(this.totalCount * 0.35) : this.totalCount
+    this.totalCount = Math.floor(220 * this.density)
+    this.activeCount = this.totalCount
 
     this.positions = new Float32Array(this.totalCount * 3)
     this.velocities = new Float32Array(this.totalCount * 3)
@@ -100,6 +103,7 @@ export class EmbersInstance implements IBrickInstance {
     const geometry = new THREE.PlaneGeometry(1, 1)
     const material = new THREE.MeshBasicMaterial({
       map: getEmberTexture(),
+      color: 0xffffff,
       transparent: true,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
@@ -114,6 +118,7 @@ export class EmbersInstance implements IBrickInstance {
       this.resetParticle(i, true)
     }
 
+    this.applyQuality(this.currentQuality)
     this.scene.add(this.mesh)
   }
 
@@ -126,13 +131,27 @@ export class EmbersInstance implements IBrickInstance {
 
     // Vélocité : ascension Y rapide, dérive X douce
     this.velocities[idx3] = (Math.random() - 0.5) * 0.2 * this.randomness
-    this.velocities[idx3 + 1] = (0.8 + Math.random() * 0.8) * this.speed
-    this.velocities[idx3 + 2] = (Math.random() - 0.5) * 0.1
+    this.velocities[idx3 + 1] = (0.7 + Math.random() * 0.7) * this.speed
+    this.velocities[idx3 + 2] = (Math.random() - 0.5) * 0.08
 
-    const maxLifeSec = (3.5 + Math.random() * 3.5) / this.coolingRate
+    const maxLifeSec = (5.0 + Math.random() * 4.0) / this.coolingRate
     this.maxLife[i] = maxLifeSec
     this.life[i] = randomAge ? Math.random() * maxLifeSec : 0
-    this.baseScales[i] = (0.12 + Math.random() * 0.22) * this.intensity
+
+    // 3 paliers de taille bien calibrés pour un foyer ardent vivant :
+    // ~50% petites braises ardentes (étincelles convectives)
+    // ~35% moyennes braises incandescentes (corps du foyer)
+    // ~15% gros tisons ardents de premier plan
+    const tierRand = Math.random()
+    let size = 0
+    if (tierRand < 0.5) {
+      size = 0.26 + Math.random() * 0.1
+    } else if (tierRand < 0.85) {
+      size = 0.42 + Math.random() * 0.16
+    } else {
+      size = 0.65 + Math.random() * 0.25
+    }
+    this.baseScales[i] = size * this.intensity
   }
 
   public init(): void {}
@@ -193,27 +212,51 @@ export class EmbersInstance implements IBrickInstance {
       this.positions[idx3 + 1] += vy * delta * 2.0
       this.positions[idx3 + 2] += vz * delta * 2.0
 
-      if (this.positions[idx3 + 1] > 8.0) {
+      if (this.positions[idx3 + 1] > 8.5) {
         this.resetParticle(i, false)
         continue
       }
 
-      // Refroidissement thermique : blanc-jaune -> orange incandescent -> rouge sombre
-      const heat = Math.max(0, 1.0 - progress * this.coolingRate)
-      this.tempColor.copy(this.emberColor).lerp(this.hotColor, heat * heat)
+      // Refroidissement thermique continu et réaliste :
+      // blanc-jaune (chaud) -> orange incandescent -> rouge vif -> rouge sombre
+      const heat = Math.max(0.0, 1.0 - progress * this.coolingRate)
 
-      // Scintillement organique
-      const flicker = 0.85 + 0.15 * Math.sin(time * 12.0 + seed)
-      this.tempColor.multiplyScalar(heat * flicker)
-      this.mesh.setColorAt(i, this.tempColor)
+      if (heat > 0.65) {
+        // Phase 1 : Cœur super-chaud blanc-jaune vers orange incandescent
+        const t = (heat - 0.65) / 0.35
+        this.tempColor.copy(this.emberColor).lerp(this.hotColor, t * t)
+      } else if (heat > 0.25) {
+        // Phase 2 : Refroidissement vers le rouge vif
+        const t = (heat - 0.25) / 0.4
+        this.tempColor.copy(this.coolColor).lerp(this.emberColor, t)
+      } else {
+        // Phase 3 : Rouge sombre et tison mourant
+        const t = heat / 0.25
+        this.tempColor.copy(this.darkColor).lerp(this.coolColor, t)
+      }
 
-      // Échelle : rétrécissement en fin de vie avec atténuation de profondeur
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.4, 1.25)
-      let lifeFade = Math.sin(progress * Math.PI)
-      if (progress > 0.85) {
+      // Scintillement organique haute fréquence
+      const flicker = 0.85 + 0.15 * Math.sin(time * 14.0 + seed)
+
+      // Fondu doux d'extinction sur les derniers 15 %
+      let lifeFade = 1.0
+      if (progress < 0.08) {
+        lifeFade = progress / 0.08
+      } else if (progress > 0.85) {
         lifeFade = (1.0 - progress) / 0.15
       }
-      const scale = this.baseScales[i] * lifeFade * depthFactor * this.surgeMultiplier
+
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.5, 1.25)
+      const depthOpacity = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.45, 1.0)
+
+      // Éclat maintenu pour que les braises restent distinctes tout au long de leur trajet
+      const brightness = (0.4 + 0.6 * heat) * flicker * lifeFade * depthOpacity * this.intensity
+      this.tempColor.multiplyScalar(brightness)
+      this.mesh.setColorAt(i, this.tempColor)
+
+      // Échelle stable avec légère rétractation uniquement en fin de vie
+      const scale =
+        this.baseScales[i] * depthFactor * Math.min(1.0, lifeFade + 0.35) * this.surgeMultiplier
 
       this.dummy.position.set(
         this.positions[idx3],
@@ -253,23 +296,26 @@ export class EmbersInstance implements IBrickInstance {
 
     if (newProps.density !== undefined) {
       this.density = newProps.density
-      const isMobile = window.innerWidth < 768
-      const mobileFactor = isMobile ? 0.35 : 1.0
-      this.activeCount = Math.min(this.totalCount, Math.floor(180 * this.density * mobileFactor))
+      this.applyQuality(this.currentQuality)
     }
   }
 
-  public onQualityChange(quality: QualityTier): void {
+  private applyQuality(quality: QualityTier): void {
     const isMobile = window.innerWidth < 768
     const mobileRatio = isMobile ? 0.35 : 1.0
 
     if (quality === 'HIGH') {
-      this.activeCount = Math.floor(this.totalCount * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(200 * this.density * mobileRatio))
     } else if (quality === 'MEDIUM') {
-      this.activeCount = Math.floor(this.totalCount * 0.55 * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(110 * this.density * mobileRatio))
     } else {
-      this.activeCount = Math.floor(this.totalCount * 0.25 * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(50 * this.density * mobileRatio))
     }
+  }
+
+  public onQualityChange(quality: QualityTier): void {
+    this.currentQuality = quality
+    this.applyQuality(quality)
   }
 
   public triggerEvent(_event: RareEventTrigger): void {

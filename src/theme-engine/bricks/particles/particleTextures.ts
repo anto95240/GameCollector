@@ -36,30 +36,51 @@ function createTexture(
   return texture
 }
 
-/** 1. Texture de disque doux avec atténuation gaussienne et halo (Poussière) */
+/** 1. Texture de disque doux avec atténuation gaussienne et halo doré (Poussière) */
 export function getSoftCircleTexture(): THREE.CanvasTexture {
   return createTexture('soft_circle', 128, 128, (ctx, w, h) => {
     const cx = w / 2
     const cy = h / 2
 
-    // Halo externe doux
+    // 1. Halo atmosphérique chaud externe
     const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.48)
-    halo.addColorStop(0, 'rgba(255, 255, 255, 0.35)')
-    halo.addColorStop(0.5, 'rgba(255, 255, 255, 0.12)')
-    halo.addColorStop(1, 'rgba(255, 255, 255, 0.0)')
+    halo.addColorStop(0, 'rgba(254, 240, 138, 0.45)')
+    halo.addColorStop(0.3, 'rgba(253, 224, 71, 0.20)')
+    halo.addColorStop(0.7, 'rgba(234, 179, 8, 0.05)')
+    halo.addColorStop(1, 'rgba(202, 138, 4, 0.0)')
     ctx.fillStyle = halo
     ctx.fillRect(0, 0, w, h)
 
-    // Cœur doux
-    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.36)
+    // 2. Disque lumineux intermédiaire
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.3)
     grad.addColorStop(0, 'rgba(255, 255, 255, 1.0)')
-    grad.addColorStop(0.4, 'rgba(255, 255, 255, 0.88)')
-    grad.addColorStop(0.8, 'rgba(255, 255, 255, 0.35)')
-    grad.addColorStop(1, 'rgba(255, 255, 255, 0.0)')
+    grad.addColorStop(0.35, 'rgba(254, 240, 138, 0.95)')
+    grad.addColorStop(0.72, 'rgba(250, 204, 21, 0.55)')
+    grad.addColorStop(1, 'rgba(234, 179, 8, 0.0)')
     ctx.fillStyle = grad
     ctx.beginPath()
-    ctx.arc(cx, cy, w * 0.36, 0, Math.PI * 2)
+    ctx.arc(cx, cy, w * 0.3, 0, Math.PI * 2)
     ctx.fill()
+
+    // 3. Cœur radiant pur et ponctuel
+    const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.12)
+    core.addColorStop(0, 'rgba(255, 255, 255, 1.0)')
+    core.addColorStop(0.65, 'rgba(255, 255, 255, 0.92)')
+    core.addColorStop(1, 'rgba(255, 255, 255, 0.0)')
+    ctx.fillStyle = core
+    ctx.beginPath()
+    ctx.arc(cx, cy, w * 0.12, 0, Math.PI * 2)
+    ctx.fill()
+
+    // 4. Aigrette / éclat en croix subtil pour motes captant un rai de lumière
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.55)'
+    ctx.lineWidth = 1.2
+    ctx.beginPath()
+    ctx.moveTo(cx - 20, cy)
+    ctx.lineTo(cx + 20, cy)
+    ctx.moveTo(cx, cy - 20)
+    ctx.lineTo(cx, cy + 20)
+    ctx.stroke()
   })
 }
 
@@ -103,17 +124,40 @@ export function getSnowTexture(): THREE.CanvasTexture {
 
 /** 2. Texture de braise incandescente avec cœur chaud et halo thermique (Braises) */
 export function getEmberTexture(): THREE.CanvasTexture {
-  return createTexture('ember', 64, 64, (ctx, w, h) => {
+  return createTexture('ember', 128, 128, (ctx, w, h) => {
     const cx = w / 2
     const cy = h / 2
-    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.48)
-    grad.addColorStop(0, 'rgba(255, 255, 255, 1.0)')
-    grad.addColorStop(0.2, 'rgba(255, 235, 160, 0.95)')
-    grad.addColorStop(0.5, 'rgba(255, 140, 40, 0.65)')
-    grad.addColorStop(0.8, 'rgba(230, 50, 10, 0.25)')
-    grad.addColorStop(1, 'rgba(180, 20, 0, 0.0)')
-    ctx.fillStyle = grad
+
+    // 1. Halo thermique diffus rougeoyant
+    const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.48)
+    halo.addColorStop(0, 'rgba(239, 68, 68, 0.45)')
+    halo.addColorStop(0.35, 'rgba(220, 38, 38, 0.22)')
+    halo.addColorStop(0.75, 'rgba(185, 28, 28, 0.06)')
+    halo.addColorStop(1, 'rgba(153, 27, 27, 0.0)')
+    ctx.fillStyle = halo
     ctx.fillRect(0, 0, w, h)
+
+    // 2. Manteau incandescent orange et rouge
+    const grad = ctx.createRadialGradient(cx - 2, cy - 2, 2, cx, cy, w * 0.34)
+    grad.addColorStop(0, 'rgba(255, 255, 255, 1.0)') // Cœur blanc-chaud
+    grad.addColorStop(0.22, 'rgba(254, 240, 138, 0.98)') // Jaune étincelant
+    grad.addColorStop(0.55, 'rgba(249, 115, 22, 0.92)') // Orange vif
+    grad.addColorStop(0.85, 'rgba(220, 38, 38, 0.65)') // Rouge braise
+    grad.addColorStop(1, 'rgba(185, 28, 28, 0.0)')
+    ctx.fillStyle = grad
+    ctx.beginPath()
+    ctx.arc(cx, cy, w * 0.34, 0, Math.PI * 2)
+    ctx.fill()
+
+    // 3. Cœur incandescent ponctuel super-brillant
+    const core = ctx.createRadialGradient(cx - 1, cy - 1, 0, cx, cy, w * 0.14)
+    core.addColorStop(0, 'rgba(255, 255, 255, 1.0)')
+    core.addColorStop(0.7, 'rgba(255, 250, 200, 0.95)')
+    core.addColorStop(1, 'rgba(254, 240, 138, 0.0)')
+    ctx.fillStyle = core
+    ctx.beginPath()
+    ctx.arc(cx, cy, w * 0.14, 0, Math.PI * 2)
+    ctx.fill()
   })
 }
 
@@ -373,28 +417,54 @@ export function getSparkTexture(): THREE.CanvasTexture {
   })
 }
 
-/** 9. Texture de pétale soyeux (Sakura / Pétales) */
+/** 9. Texture de pétale soyeux galbé avec échancrure sakura et liseré nacré (Sakura / Pétales) */
 export function getPetalTexture(): THREE.CanvasTexture {
-  return createTexture('petal', 64, 64, (ctx, w, h) => {
+  return createTexture('petal', 128, 128, (ctx, w, h) => {
     const cx = w / 2
     const cy = h / 2
+
+    // 1. Halo lumineux doux atmosphérique rosé
+    const halo = ctx.createRadialGradient(cx, cy, 10, cx, cy, w * 0.48)
+    halo.addColorStop(0, 'rgba(255, 240, 248, 0.42)')
+    halo.addColorStop(0.5, 'rgba(244, 114, 182, 0.16)')
+    halo.addColorStop(1, 'rgba(236, 72, 153, 0.0)')
+    ctx.fillStyle = halo
+    ctx.fillRect(0, 0, w, h)
+
     ctx.save()
     ctx.translate(cx, cy)
 
-    // Forme de pétale ovale galbé avec petite encoche douce au sommet
+    // 2. Silhouette distinctive de pétale sakura avec échancrure / encoche en V au sommet
     ctx.beginPath()
-    ctx.moveTo(0, 22)
-    ctx.bezierCurveTo(16, 15, 20, -8, 8, -22)
-    ctx.quadraticCurveTo(0, -18, -8, -22)
-    ctx.bezierCurveTo(-20, -8, -16, 15, 0, 22)
+    ctx.moveTo(0, 46) // Base / attache tige
+    ctx.bezierCurveTo(-32, 28, -46, -4, -20, -46) // Flanc gauche vers lobe supérieur gauche
+    ctx.quadraticCurveTo(-10, -44, 0, -32) // Encoche sakura descendant au centre
+    ctx.quadraticCurveTo(10, -44, 20, -46) // Remontée vers lobe supérieur droit
+    ctx.bezierCurveTo(46, -4, 32, 28, 0, 46) // Flanc droit descendant vers la base
     ctx.closePath()
 
-    const grad = ctx.createLinearGradient(0, 22, 0, -22)
-    grad.addColorStop(0, 'rgba(255, 255, 255, 0.95)')
-    grad.addColorStop(0.5, 'rgba(255, 240, 245, 0.9)')
-    grad.addColorStop(1, 'rgba(255, 215, 230, 0.75)')
+    // 3. Dégradé soyeux nacré : rose vif à la base vers rose pastel et liseré clair
+    const grad = ctx.createLinearGradient(0, 46, 0, -46)
+    grad.addColorStop(0, 'rgba(244, 114, 182, 0.96)') // Base rose profond
+    grad.addColorStop(0.35, 'rgba(251, 207, 232, 0.94)') // Corps satiné rose doux
+    grad.addColorStop(0.8, 'rgba(255, 240, 248, 0.96)') // Haut du pétale clair
+    grad.addColorStop(1, 'rgba(255, 255, 255, 0.98)') // Pointe nacrée
     ctx.fillStyle = grad
     ctx.fill()
+
+    // 4. Liseré délicat nacré sur tout le pourtour pour une excellente lisibilité
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)'
+    ctx.lineWidth = 2.2
+    ctx.stroke()
+
+    // 5. Nervure / pliure centrale délicate pour donner du volume 3D
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.55)'
+    ctx.lineWidth = 1.6
+    ctx.beginPath()
+    ctx.moveTo(0, 44)
+    ctx.quadraticCurveTo(2, 6, 0, -28)
+    ctx.stroke()
+
     ctx.restore()
   })
 }
@@ -447,30 +517,46 @@ export function getConfettiTexture(): THREE.CanvasTexture {
   })
 }
 
-/** 11. Texture de volute de fumée vaporeuse multi-lobes (Fumée) */
+/** 11. Texture de volute de fumée vaporeuse multi-lobes avec volutes et filaments (Fumée) */
 export function getSmokeTexture(): THREE.CanvasTexture {
   return createTexture('smoke_puff', 128, 128, (ctx, w, h) => {
     const cx = w / 2
     const cy = h / 2
 
-    // 3 lobes de bruit vaporeux superposés pour casser la symétrie circulaire
+    // 1. Lobes asymétriques superposés pour créer un panache vaporeux organique
     const lobes = [
-      { x: cx, y: cy, r: 48, a: 0.5 },
-      { x: cx - 12, y: cy + 10, r: 40, a: 0.35 },
-      { x: cx + 14, y: cy - 10, r: 36, a: 0.35 },
+      { x: cx, y: cy, r: 52, a: 0.62 },
+      { x: cx - 18, y: cy + 12, r: 44, a: 0.45 },
+      { x: cx + 20, y: cy - 10, r: 42, a: 0.45 },
+      { x: cx - 14, y: cy - 20, r: 38, a: 0.38 },
+      { x: cx + 18, y: cy + 18, r: 36, a: 0.38 },
+      { x: cx, y: cy - 14, r: 46, a: 0.5 },
     ]
 
     for (const lobe of lobes) {
       const grad = ctx.createRadialGradient(lobe.x, lobe.y, 0, lobe.x, lobe.y, lobe.r)
       grad.addColorStop(0, `rgba(255, 255, 255, ${lobe.a})`)
-      grad.addColorStop(0.4, `rgba(255, 255, 255, ${lobe.a * 0.7})`)
-      grad.addColorStop(0.75, `rgba(255, 255, 255, ${lobe.a * 0.25})`)
-      grad.addColorStop(1, 'rgba(255, 255, 255, 0.0)')
+      grad.addColorStop(0.35, `rgba(245, 248, 255, ${lobe.a * 0.75})`)
+      grad.addColorStop(0.7, `rgba(225, 235, 250, ${lobe.a * 0.28})`)
+      grad.addColorStop(1, 'rgba(210, 225, 245, 0.0)')
       ctx.fillStyle = grad
       ctx.beginPath()
       ctx.arc(lobe.x, lobe.y, lobe.r, 0, Math.PI * 2)
       ctx.fill()
     }
+
+    // 2. Micro-tourbillons / filaments vaporeux internes
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)'
+    ctx.lineWidth = 3.0
+    ctx.beginPath()
+    ctx.arc(cx - 6, cy + 4, 22, 0.2, Math.PI * 1.3)
+    ctx.stroke()
+
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.18)'
+    ctx.lineWidth = 2.4
+    ctx.beginPath()
+    ctx.arc(cx + 8, cy - 6, 18, Math.PI * 0.6, Math.PI * 1.8)
+    ctx.stroke()
   })
 }
 

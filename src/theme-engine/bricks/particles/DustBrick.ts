@@ -2,9 +2,9 @@
  * src/theme-engine/bricks/particles/DustBrick.ts
  *
  * Brique de Particules : Poussière en Suspension & Motes Dorées (Couche 3 : Particles).
- * Particules microscopiques dérivant en quasi-apesanteur dans les rais de lumière,
+ * Particules atmosphériques dérivant en quasi-apesanteur dans les rais de lumière,
  * animées par un mouvement brownien à très basse fréquence (Simplex 3D),
- * avec scintillement doux non-périodique et répulsion feutrée au passage de la souris.
+ * avec scintillement doux non-périodique, 3 tiers de tailles bien visibles et étagement de profondeur.
  */
 
 import * as THREE from 'three'
@@ -51,6 +51,7 @@ export class DustInstance implements IBrickInstance {
   private baseScales: Float32Array
   private phases: Float32Array
   private seeds: Float32Array
+  private baseColors: Float32Array
 
   private dustColor: THREE.Color
   private density: number
@@ -59,8 +60,10 @@ export class DustInstance implements IBrickInstance {
   private intensity: number
   private randomness: number
   private twinkleSpeed: number
+  private currentQuality: QualityTier
 
   private dummy = new THREE.Object3D()
+  private tempColor = new THREE.Color()
   private surgeMultiplier = 1.0
 
   constructor(id: string, props: DustProps = {}, context: BrickContext) {
@@ -74,20 +77,21 @@ export class DustInstance implements IBrickInstance {
     this.intensity = props.intensity ?? 1.1
     this.randomness = props.randomness ?? 0.4
     this.twinkleSpeed = props.twinkleSpeed ?? 1.2
+    this.currentQuality = context.quality ?? 'HIGH'
 
-    this.totalCount = Math.floor(180 * this.density)
-    const isMobile = window.innerWidth < 768
-    this.activeCount = isMobile ? Math.floor(this.totalCount * 0.35) : this.totalCount
+    this.totalCount = Math.floor(220 * this.density)
+    this.activeCount = this.totalCount
 
     this.positions = new Float32Array(this.totalCount * 3)
     this.baseScales = new Float32Array(this.totalCount)
     this.phases = new Float32Array(this.totalCount)
     this.seeds = new Float32Array(this.totalCount)
+    this.baseColors = new Float32Array(this.totalCount * 3)
 
     const geometry = new THREE.PlaneGeometry(1, 1)
     const material = new THREE.MeshBasicMaterial({
       map: getSoftCircleTexture(),
-      color: this.dustColor,
+      color: 0xffffff,
       transparent: true,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
@@ -97,17 +101,54 @@ export class DustInstance implements IBrickInstance {
     this.mesh = new THREE.InstancedMesh(geometry, material, this.totalCount)
     this.mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage)
 
+    this.updateBaseColors()
+
     for (let i = 0; i < this.totalCount; i++) {
       const idx3 = i * 3
       this.positions[idx3] = (Math.random() - 0.5) * 18
       this.positions[idx3 + 1] = (Math.random() - 0.5) * 14
       this.positions[idx3 + 2] = -12 * this.depthFactor + Math.random() * (5 * this.depthFactor)
-      this.baseScales[i] = (0.04 + Math.random() * 0.08) * this.intensity
+
+      // 3 paliers de taille bien calibrés pour que les grains soient nettement visibles :
+      // ~55% fines motes dorées d'ambiance
+      // ~33% grains lumineux de mi-plan
+      // ~12% grosses motes scintillantes traversant les rais de lumière
+      const tierRand = Math.random()
+      let size = 0
+      if (tierRand < 0.55) {
+        size = 0.16 + Math.random() * 0.08
+      } else if (tierRand < 0.88) {
+        size = 0.28 + Math.random() * 0.12
+      } else {
+        size = 0.46 + Math.random() * 0.2
+      }
+      this.baseScales[i] = size * this.intensity
+
       this.phases[i] = Math.random() * Math.PI * 2
       this.seeds[i] = Math.random() * 1000
     }
 
+    this.applyQuality(this.currentQuality)
     this.scene.add(this.mesh)
+  }
+
+  private updateBaseColors(): void {
+    const warmWhite = new THREE.Color('#fffbeb')
+    const deepGold = new THREE.Color('#f59e0b')
+    for (let i = 0; i < this.totalCount; i++) {
+      const r = Math.random()
+      if (r < 0.4) {
+        this.tempColor.copy(this.dustColor).lerp(warmWhite, 0.4)
+      } else if (r < 0.75) {
+        this.tempColor.copy(this.dustColor)
+      } else {
+        this.tempColor.copy(this.dustColor).lerp(deepGold, 0.35)
+      }
+      const cIdx = i * 3
+      this.baseColors[cIdx] = this.tempColor.r
+      this.baseColors[cIdx + 1] = this.tempColor.g
+      this.baseColors[cIdx + 2] = this.tempColor.b
+    }
   }
 
   public init(): void {}
@@ -164,11 +205,24 @@ export class DustInstance implements IBrickInstance {
       if (this.positions[idx3] > 11.0) this.positions[idx3] = -11.0
       if (this.positions[idx3] < -11.0) this.positions[idx3] = 11.0
 
-      // Scintillement organique
+      // Scintillement lumineux organique (modulant la radiance de couleur plutôt que d'annihiler la taille)
       const twinkle = 0.5 + 0.5 * Math.sin(time * this.twinkleSpeed * 1.5 + this.phases[i])
       const pz = this.positions[idx3 + 2]
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.4, 1.2)
-      const scale = this.baseScales[i] * twinkle * depthFactor * this.surgeMultiplier
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.5, 1.25)
+      const depthOpacity = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.45, 1.0)
+
+      const finalAlpha = Math.max(0.12, Math.min(1.0, twinkle * depthOpacity * this.intensity))
+      const cIdx = i * 3
+      this.tempColor.setRGB(
+        this.baseColors[cIdx] * finalAlpha,
+        this.baseColors[cIdx + 1] * finalAlpha,
+        this.baseColors[cIdx + 2] * finalAlpha
+      )
+      this.mesh.setColorAt(i, this.tempColor)
+
+      // Échelle stable et visible avec pulsation douce
+      const scale =
+        this.baseScales[i] * depthFactor * (0.85 + 0.15 * twinkle) * this.surgeMultiplier
 
       this.dummy.position.set(
         this.positions[idx3],
@@ -189,14 +243,15 @@ export class DustInstance implements IBrickInstance {
     }
 
     this.mesh.instanceMatrix.needsUpdate = true
+    if (this.mesh.instanceColor) {
+      this.mesh.instanceColor.needsUpdate = true
+    }
   }
 
   public updateProps(newProps: Partial<DustProps>): void {
     if (newProps.dustColor !== undefined) {
       this.dustColor.set(newProps.dustColor)
-      if (this.mesh && this.mesh.material && !Array.isArray(this.mesh.material)) {
-        ;(this.mesh.material as THREE.MeshBasicMaterial).color.copy(this.dustColor)
-      }
+      this.updateBaseColors()
     }
     if (newProps.speed !== undefined) this.speed = newProps.speed
     if (newProps.depth !== undefined) this.depthFactor = newProps.depth
@@ -206,23 +261,26 @@ export class DustInstance implements IBrickInstance {
 
     if (newProps.density !== undefined) {
       this.density = newProps.density
-      const isMobile = window.innerWidth < 768
-      const mobileFactor = isMobile ? 0.35 : 1.0
-      this.activeCount = Math.min(this.totalCount, Math.floor(180 * this.density * mobileFactor))
+      this.applyQuality(this.currentQuality)
     }
   }
 
-  public onQualityChange(quality: QualityTier): void {
+  private applyQuality(quality: QualityTier): void {
     const isMobile = window.innerWidth < 768
     const mobileRatio = isMobile ? 0.35 : 1.0
 
     if (quality === 'HIGH') {
-      this.activeCount = Math.floor(this.totalCount * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(200 * this.density * mobileRatio))
     } else if (quality === 'MEDIUM') {
-      this.activeCount = Math.floor(this.totalCount * 0.55 * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(110 * this.density * mobileRatio))
     } else {
-      this.activeCount = Math.floor(this.totalCount * 0.25 * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(50 * this.density * mobileRatio))
     }
+  }
+
+  public onQualityChange(quality: QualityTier): void {
+    this.currentQuality = quality
+    this.applyQuality(quality)
   }
 
   public triggerEvent(_event: RareEventTrigger): void {
