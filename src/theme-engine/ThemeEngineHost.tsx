@@ -41,26 +41,28 @@ export const ThemeEngineHost: React.FC<ThemeEngineHostProps> = ({ overridePreset
     const canvas = canvasRef.current
     if (!canvas) return
 
-    // Vérifier le support de WebGL avant initialisation
-    const gl = canvas.getContext('webgl2') || canvas.getContext('webgl')
-    if (!gl) {
-      console.warn('[ThemeEngineHost] WebGL indisponible, bascule vers FallbackStatic.')
+    let engine: ThemeEngine | null = null
+    try {
+      engine = new ThemeEngine({
+        canvas,
+        onContextLost: () => setIsContextLost(true),
+        onContextRestored: () => setIsContextLost(false),
+      })
+
+      engineRef.current = engine
+      setGlobalThemeEngine(engine)
+    } catch (error) {
+      console.warn(
+        "[ThemeEngineHost] WebGL indisponible ou erreur d'initialisation, bascule vers FallbackStatic.",
+        error
+      )
       setIsContextLost(true)
       return
     }
 
-    const engine = new ThemeEngine({
-      canvas,
-      onContextLost: () => setIsContextLost(true),
-      onContextRestored: () => setIsContextLost(false),
-    })
-
-    engineRef.current = engine
-    setGlobalThemeEngine(engine)
-
     return () => {
       setGlobalThemeEngine(null)
-      engine.dispose()
+      engine?.dispose()
       engineRef.current = null
     }
   }, [])
