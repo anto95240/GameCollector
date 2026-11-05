@@ -82,7 +82,9 @@ export class FbmCloudsInstance implements IBrickInstance {
         uIntensity: { value: intensity },
         uRandomness: { value: randomness },
         uWindDir: { value: new THREE.Vector2(Math.cos(windAngle), Math.sin(windAngle)) },
-        uQualityLevel: { value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0 },
+        uQualityLevel: {
+          value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
+        },
       },
       vertexShader: /* glsl */ `
         varying vec2 vUv;
@@ -112,77 +114,104 @@ export class FbmCloudsInstance implements IBrickInstance {
 
         ${GLSL_NOISE_2D}
 
-        // FBM adaptatif selon le palier de qualité
-        float cloudFbm(vec2 p, int quality) {
+        // FBM atmosphérique à persistance décroissante (privilégie les basses fréquences)
+        float cloudFbm(vec2 p, int octaves) {
           float v = 0.0;
-          float a = 0.5;
-          vec2 shift = vec2(100.0);
-          // Rotation fixe pour briser l'alignement des axes
-          mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.50));
-
-          int maxOct = 2;
-          if (quality == 1) maxOct = 3;
-          if (quality == 2) maxOct = 5;
+          float a = 0.55;
+          float total = 0.0;
+          mat2 rot = mat2(0.80, 0.60, -0.60, 0.80);
 
           for (int i = 0; i < 5; ++i) {
-            if (i >= maxOct) break;
+            if (i >= octaves) break;
             v += a * snoise(p);
-            p = rot * p * 2.0 + shift;
-            a *= 0.5;
+            total += a;
+            p = rot * p * 2.05 + vec2(17.2, 43.7);
+            a *= 0.45; // Décroissance rapide pour étouffer les micro-fréquences
           }
-          return v;
+          return v / max(total, 0.001);
         }
 
         void main() {
           vec2 uv = vUv;
-          // Correction du ratio d'aspect pour éviter l'étirement des nuages
+          // Ratio d'aspect pour conserver des nuages d'aspect circulaire/vaporeux
           float aspect = uResolution.x / max(1.0, uResolution.y);
-          vec2 p = vec2(uv.x * aspect, uv.y) * 2.2;
+          vec2 p = vec2(uv.x * aspect, uv.y) * 1.6;
 
-          // Parallaxe amortie liée à la profondeur et la souris
-          p += uMouse * (uDepth * 0.25);
+          // Parallaxe douce avec la souris
+          p += uMouse * (uDepth * 0.15);
 
-          // Translation temporelle selon la direction du vent
-          float t = uTime * uSpeed;
+          // Déplacement temporel lent et majestueux
+          float t = uTime * (uSpeed * 0.15);
           p += uWindDir * t;
 
-          // Distorsion organique (Domain Warping) pour casser toute rigidité
+          // Distorsion organique (Domain Warping) douce et basse fréquence
           vec2 q = vec2(0.0);
           vec2 r = vec2(0.0);
 
           if (uQualityLevel >= 1) {
-            q.x = cloudFbm(p + vec2(0.0, 0.0), uQualityLevel);
-            q.y = cloudFbm(p + vec2(5.2, 1.3), uQualityLevel);
+            // Warping restreint à 2 octaves pour éviter les froissures haute fréquence
+            q.x = cloudFbm(p + vec2(0.0, 0.0) + t * 0.05, 2);
+            q.y = cloudFbm(p + vec2(5.2, 1.3) - t * 0.04, 2);
 
             if (uQualityLevel >= 2) {
-              r.x = cloudFbm(p + 4.0 * q + vec2(1.7, 9.2) + 0.15 * t, uQualityLevel);
-              r.y = cloudFbm(p + 4.0 * q + vec2(8.3, 2.8) + 0.126 * t, uQualityLevel);
+              r.x = cloudFbm(p + 1.2 * q + vec2(1.7, 9.2) + t * 0.03, 2);
+              r.y = cloudFbm(p + 1.2 * q + vec2(8.3, 2.8) - t * 0.03, 2);
             }
           }
 
-          // Échantillonnage final FBM avec distorsion
-          vec2 warpedP = p + (uRandomness * 1.5) * (uQualityLevel >= 2 ? r : q);
-          float f = cloudFbm(warpedP, uQualityLevel);
+          // Échantillonnage FBM final avec amplitude de warping modérée
+          float warpFactor = uRandomness * 0.40;
+          vec2 warpedP = p + warpFactor * (uQualityLevel >= 2 ? r : q);
+
+          int octaves = 2;
+          if (uQualityLevel == 1) octaves = 3;
+          if (uQualityLevel >= 2) octaves = 5;
+
+          float f = cloudFbm(warpedP, octaves);
 
           // Normalisation [0, 1]
-          f = clamp(f * 0.5 + 0.5, 0.0, 1.0);
+          float n = clamp(f * 0.5 + 0.5, 0.0, 1.0);
 
-          // Courbe de seuil selon la densité
-          float cloudMask = smoothstep(1.0 - uDensity, 1.1 - uDensity * 0.4, f);
+          // Seuil progressif adouci selon la couverture nuageuse
+          float threshold = 1.0 - uDensity * 0.90;
+          float cloudMask = smoothstep(threshold - 0.22, threshold + 0.22, n);
+          cloudMask = smoothstep(0.0, 1.0, cloudMask); // Lissage en S des bords
 
-          // Ombrage interne volumétrique doux
-          float shadow = 1.0;
+          // Éclairage directionnel depuis le dessus (+y / zénith)
+          vec2 lightDir = normalize(vec2(0.15, 0.90));
+          vec2 lightOffset = lightDir * 0.08;
+
+          float sunLight = 1.0;
+          float rimLight = 0.0;
+
           if (uQualityLevel >= 1) {
-            float fShade = cloudFbm(warpedP + vec2(0.08, 0.08), uQualityLevel);
-            fShade = clamp(fShade * 0.5 + 0.5, 0.0, 1.0);
-            shadow = mix(0.55, 1.0, smoothstep(0.0, 0.8, fShade));
+            // Échantillonnage léger (2 octaves) vers le haut pour détecter les crêtes exposées
+            float fAbove = cloudFbm(warpedP + lightOffset, 2);
+            float nAbove = clamp(fAbove * 0.5 + 0.5, 0.0, 1.0);
+
+            // Crête supérieure éclairée si la masse nuageuse s'arrête au-dessus
+            rimLight = clamp((n - nAbove) * 2.2, 0.0, 1.0);
+            // Ombrage interne volumétrique sous la masse
+            sunLight = clamp(1.0 - nAbove * 0.70 + rimLight * 0.50, 0.25, 1.35);
+          } else {
+            // Palier LOW : formule analytique sans échantillonnage supplémentaire
+            sunLight = clamp(0.70 + 0.30 * (uv.y - 0.5) + 0.30 * smoothstep(threshold, 1.0, n), 0.35, 1.25);
+            rimLight = clamp(smoothstep(threshold + 0.10, 1.0, n) * uv.y, 0.0, 0.80);
           }
 
           vec3 baseSky = uUseCustomColors ? uSkyColor : uPaletteSecondary;
-          vec3 baseCloud = uUseCustomColors ? uCloudColor : mix(uPaletteAccent, vec3(0.95), 0.75);
+          vec3 baseCloud = uUseCustomColors ? uCloudColor : mix(uPaletteAccent, vec3(0.96), 0.80);
 
-          // Moduler la couleur du nuage selon la lumière et l'intensité
-          vec3 shadedCloud = baseCloud * (shadow * uIntensity);
+          // Teintes harmonieuses : sous-ventre ombré doux et crêtes ensoleillées
+          vec3 shadowColor = mix(baseSky * 0.65, baseCloud * 0.60, 0.55);
+          vec3 sunHighlight = mix(baseCloud, vec3(1.0), 0.40);
+          vec3 sunTint = mix(sunHighlight, uPaletteAccent, 0.15);
+
+          // Modulation de la lumière sur le nuage
+          float lightFactor = mix(1.0, sunLight, clamp(uIntensity, 0.0, 1.5));
+          vec3 shadedCloud = mix(shadowColor, baseCloud, clamp(lightFactor, 0.0, 1.0));
+          // Rehausse lumineuse sur le dessus
+          shadedCloud = mix(shadedCloud, sunTint, rimLight * 0.45 * uIntensity);
 
           // Composition finale ciel / nuages
           vec3 col = mix(baseSky, shadedCloud, cloudMask * min(1.0, uIntensity));
@@ -221,10 +250,15 @@ export class FbmCloudsInstance implements IBrickInstance {
     if (newProps.speed !== undefined) this.material.uniforms.uSpeed.value = newProps.speed
     if (newProps.density !== undefined) this.material.uniforms.uDensity.value = newProps.density
     if (newProps.depth !== undefined) this.material.uniforms.uDepth.value = newProps.depth
-    if (newProps.intensity !== undefined) this.material.uniforms.uIntensity.value = newProps.intensity
-    if (newProps.randomness !== undefined) this.material.uniforms.uRandomness.value = newProps.randomness
+    if (newProps.intensity !== undefined)
+      this.material.uniforms.uIntensity.value = newProps.intensity
+    if (newProps.randomness !== undefined)
+      this.material.uniforms.uRandomness.value = newProps.randomness
     if (newProps.windAngle !== undefined) {
-      this.material.uniforms.uWindDir.value.set(Math.cos(newProps.windAngle), Math.sin(newProps.windAngle))
+      this.material.uniforms.uWindDir.value.set(
+        Math.cos(newProps.windAngle),
+        Math.sin(newProps.windAngle)
+      )
     }
   }
 
