@@ -3,8 +3,9 @@
  *
  * Brique de Particules : Flocons de Neige & Tempête Hivernale (Couche 3 : Particles).
  * Chute de flocons doux et cristallins avec oscillations pendulaires déphasées (sway),
- * masse hétérogène (gros flocons plus rapides ou flottants), dérive sous le vent,
- * étagement de profondeur réaliste (bokeh) et évitement doux de la souris.
+ * 3 tailles bien visibles avec halo lumineux, masse hétérogène (gros flocons plus rapides),
+ * étagement de profondeur réaliste (bokeh, particules lointaines plus petites et moins opaques)
+ * et réaction interactive au passage du curseur.
  */
 
 import * as THREE from 'three'
@@ -19,7 +20,7 @@ import type {
 } from '../../types'
 import { simplex3D } from '../../utils/noise'
 import { BrickRegistry } from '../registry'
-import { getSoftCircleTexture } from './particleTextures'
+import { getSnowTexture } from './particleTextures'
 
 export interface SnowProps {
   /** Teinte dominante des flocons de neige (défaut: '#f8fafc'). */
@@ -57,6 +58,7 @@ export class SnowInstance implements IBrickInstance {
   private life: Float32Array
   private maxLife: Float32Array
   private baseScales: Float32Array
+  private baseColors: Float32Array
 
   private snowColor: THREE.Color
   private density: number
@@ -66,8 +68,10 @@ export class SnowInstance implements IBrickInstance {
   private randomness: number
   private windStrength: number
   private swayFrequency: number
+  private currentQuality: QualityTier
 
   private dummy = new THREE.Object3D()
+  private tempColor = new THREE.Color()
   private surgeMultiplier = 1.0
 
   constructor(id: string, props: SnowProps = {}, context: BrickContext) {
@@ -82,10 +86,10 @@ export class SnowInstance implements IBrickInstance {
     this.randomness = props.randomness ?? 0.45
     this.windStrength = props.windStrength ?? 0.25
     this.swayFrequency = props.swayFrequency ?? 1.5
+    this.currentQuality = context.quality ?? 'HIGH'
 
     this.totalCount = Math.floor(220 * this.density)
-    const isMobile = window.innerWidth < 768
-    this.activeCount = isMobile ? Math.floor(this.totalCount * 0.35) : this.totalCount
+    this.activeCount = this.totalCount
 
     this.positions = new Float32Array(this.totalCount * 3)
     this.initialX = new Float32Array(this.totalCount)
@@ -95,14 +99,15 @@ export class SnowInstance implements IBrickInstance {
     this.life = new Float32Array(this.totalCount)
     this.maxLife = new Float32Array(this.totalCount)
     this.baseScales = new Float32Array(this.totalCount)
+    this.baseColors = new Float32Array(this.totalCount * 3)
 
     const geometry = new THREE.PlaneGeometry(1, 1)
     const material = new THREE.MeshBasicMaterial({
-      map: getSoftCircleTexture(),
-      color: this.snowColor,
+      map: getSnowTexture(),
+      color: 0xffffff,
       transparent: true,
       depthWrite: false,
-      opacity: 0.9,
+      opacity: Math.min(1.0, 0.95 * this.intensity),
       side: THREE.DoubleSide,
     })
 
@@ -113,6 +118,7 @@ export class SnowInstance implements IBrickInstance {
       this.resetParticle(i, true)
     }
 
+    this.applyQuality(this.currentQuality)
     this.scene.add(this.mesh)
   }
 
@@ -121,22 +127,43 @@ export class SnowInstance implements IBrickInstance {
     const startX = (Math.random() - 0.5) * 20
     this.initialX[i] = startX
     this.positions[idx3] = startX
-    this.positions[idx3 + 1] = randomAge ? (Math.random() - 0.5) * 16 : 8.5 + Math.random() * 2.0
+    this.positions[idx3 + 1] = randomAge ? (Math.random() - 0.5) * 12 : 5.8 + Math.random() * 1.8
     this.positions[idx3 + 2] = -14 * this.depthFactor + Math.random() * (5 * this.depthFactor)
 
-    // Masse du flocon (les gros tombent un peu plus vite)
-    const mass = 0.6 + Math.random() * 0.8
+    // 3 paliers de taille bien calibrés :
+    // ~50% petites (fines, profondeur Z)
+    // ~35% moyennes (corps principal de la chute)
+    // ~15% grandes (premier plan majestueux / bokeh floconneux)
+    const tierRand = Math.random()
+    let size = 0
+    let mass = 1.0
+    if (tierRand < 0.5) {
+      size = 0.28 + Math.random() * 0.1
+      mass = 0.7 + Math.random() * 0.25
+    } else if (tierRand < 0.85) {
+      size = 0.5 + Math.random() * 0.18
+      mass = 1.0 + Math.random() * 0.3
+    } else {
+      size = 0.85 + Math.random() * 0.32
+      mass = 1.35 + Math.random() * 0.35
+    }
+    this.baseScales[i] = size * this.intensity
+
     this.velocities[idx3] = this.windStrength * 0.4
-    this.velocities[idx3 + 1] = -(0.35 + mass * 0.35) * this.speed
+    this.velocities[idx3 + 1] = -(0.45 + mass * 0.35) * this.speed
     this.velocities[idx3 + 2] = 0
 
     this.swayAmplitudes[i] = (0.2 + Math.random() * 0.5) * this.randomness
     this.swayPhases[i] = Math.random() * Math.PI * 2
 
-    const maxLifeSec = 7.0 + Math.random() * 5.0
+    const maxLifeSec = 14.0 + Math.random() * 8.0
     this.maxLife[i] = maxLifeSec
     this.life[i] = randomAge ? Math.random() * maxLifeSec : 0
-    this.baseScales[i] = (0.08 + Math.random() * 0.18) * mass * this.intensity
+
+    const cIdx = i * 3
+    this.baseColors[cIdx] = this.snowColor.r
+    this.baseColors[cIdx + 1] = this.snowColor.g
+    this.baseColors[cIdx + 2] = this.snowColor.b
   }
 
   public init(): void {}
@@ -187,7 +214,7 @@ export class SnowInstance implements IBrickInstance {
       this.positions[idx3 + 1] +=
         (this.velocities[idx3 + 1] + repulseY) * delta * 2.0 * this.surgeMultiplier
 
-      if (this.positions[idx3 + 1] < -8.5) {
+      if (this.positions[idx3 + 1] < -6.8) {
         this.resetParticle(i, false)
         continue
       }
@@ -196,13 +223,29 @@ export class SnowInstance implements IBrickInstance {
       if (this.positions[idx3] > 12.0) this.positions[idx3] = -12.0
       if (this.positions[idx3] < -12.0) this.positions[idx3] = 12.0
 
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -14 * this.depthFactor, 2, 0.4, 1.3)
+      // Atténuation réaliste par la profondeur (Z) : taille et opacité/contraste
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -14 * this.depthFactor, 2, 0.5, 1.25)
+      const depthOpacity = THREE.MathUtils.mapLinear(pz, -14 * this.depthFactor, 2, 0.4, 1.0)
+
       const lifeProgress = this.life[i] / this.maxLife[i]
-      let alphaScale = Math.sin(lifeProgress * Math.PI)
-      if (lifeProgress > 0.85) {
-        alphaScale = (1.0 - lifeProgress) / 0.15
+      let lifeFade = 1.0
+      if (lifeProgress < 0.12) {
+        lifeFade = lifeProgress / 0.12
+      } else if (lifeProgress > 0.85) {
+        lifeFade = (1.0 - lifeProgress) / 0.15
       }
-      const scale = this.baseScales[i] * alphaScale * depthFactor * this.surgeMultiplier
+
+      const finalAlpha = Math.max(0.1, Math.min(1.0, lifeFade * depthOpacity))
+      const cIdx = i * 3
+      this.tempColor.setRGB(
+        this.baseColors[cIdx] * finalAlpha,
+        this.baseColors[cIdx + 1] * finalAlpha,
+        this.baseColors[cIdx + 2] * finalAlpha
+      )
+      this.mesh.setColorAt(i, this.tempColor)
+
+      const scale =
+        this.baseScales[i] * Math.min(1.0, lifeFade + 0.3) * depthFactor * this.surgeMultiplier
 
       this.dummy.position.set(
         this.positions[idx3],
@@ -223,41 +266,58 @@ export class SnowInstance implements IBrickInstance {
     }
 
     this.mesh.instanceMatrix.needsUpdate = true
+    if (this.mesh.instanceColor) {
+      this.mesh.instanceColor.needsUpdate = true
+    }
   }
 
   public updateProps(newProps: Partial<SnowProps>): void {
     if (newProps.snowColor !== undefined) {
       this.snowColor.set(newProps.snowColor)
-      if (this.mesh && this.mesh.material && !Array.isArray(this.mesh.material)) {
-        ;(this.mesh.material as THREE.MeshBasicMaterial).color.copy(this.snowColor)
+      for (let i = 0; i < this.totalCount; i++) {
+        const cIdx = i * 3
+        this.baseColors[cIdx] = this.snowColor.r
+        this.baseColors[cIdx + 1] = this.snowColor.g
+        this.baseColors[cIdx + 2] = this.snowColor.b
       }
     }
     if (newProps.speed !== undefined) this.speed = newProps.speed
     if (newProps.depth !== undefined) this.depthFactor = newProps.depth
-    if (newProps.intensity !== undefined) this.intensity = newProps.intensity
+    if (newProps.intensity !== undefined) {
+      this.intensity = newProps.intensity
+      if (this.mesh && this.mesh.material && !Array.isArray(this.mesh.material)) {
+        ;(this.mesh.material as THREE.MeshBasicMaterial).opacity = Math.min(
+          1.0,
+          0.95 * this.intensity
+        )
+      }
+    }
     if (newProps.randomness !== undefined) this.randomness = newProps.randomness
     if (newProps.windStrength !== undefined) this.windStrength = newProps.windStrength
     if (newProps.swayFrequency !== undefined) this.swayFrequency = newProps.swayFrequency
 
     if (newProps.density !== undefined) {
       this.density = newProps.density
-      const isMobile = window.innerWidth < 768
-      const mobileFactor = isMobile ? 0.35 : 1.0
-      this.activeCount = Math.min(this.totalCount, Math.floor(220 * this.density * mobileFactor))
+      this.applyQuality(this.currentQuality)
     }
   }
 
-  public onQualityChange(quality: QualityTier): void {
+  private applyQuality(quality: QualityTier): void {
     const isMobile = window.innerWidth < 768
     const mobileRatio = isMobile ? 0.35 : 1.0
 
     if (quality === 'HIGH') {
-      this.activeCount = Math.floor(this.totalCount * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(220 * this.density * mobileRatio))
     } else if (quality === 'MEDIUM') {
-      this.activeCount = Math.floor(this.totalCount * 0.55 * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(120 * this.density * mobileRatio))
     } else {
-      this.activeCount = Math.floor(this.totalCount * 0.25 * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(55 * this.density * mobileRatio))
     }
+  }
+
+  public onQualityChange(quality: QualityTier): void {
+    this.currentQuality = quality
+    this.applyQuality(quality)
   }
 
   public triggerEvent(_event: RareEventTrigger): void {

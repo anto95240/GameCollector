@@ -2,9 +2,10 @@
  * src/theme-engine/bricks/particles/ConfettiBrick.ts
  *
  * Brique de Particules : Pluie de Confettis Festive & Célébration (Couche 3 : Particles).
- * Confettis multicolores rectangulaires tournoyant vivement sur les deux axes
- * (spin & tumble rapide), dérive festive avec portance aérodynamique oscillante
- * et palette vibrante instantanément joyeuse.
+ * Confettis multicolores rectangulaires tournoyant vivement sur deux axes
+ * (spin & tumble rapide), 3 tailles bien visibles avec halo et biseau spéculaire,
+ * dérive festive avec portance aérodynamique oscillante, palette vibrante instantanément
+ * joyeuse et étagement de profondeur réaliste (particules lointaines plus petites et moins contrastées).
  */
 
 import * as THREE from 'three'
@@ -64,6 +65,7 @@ export class ConfettiInstance implements IBrickInstance {
   private rotVelocities: Float32Array
   private flutterPhases: Float32Array
   private baseScales: Float32Array
+  private baseColors: Float32Array
 
   private colorMode: string
   private density: number
@@ -73,6 +75,7 @@ export class ConfettiInstance implements IBrickInstance {
   private randomness: number
   private spinSpeed: number
   private flutterStrength: number
+  private currentQuality: QualityTier
 
   private dummy = new THREE.Object3D()
   private tempColor = new THREE.Color()
@@ -90,10 +93,10 @@ export class ConfettiInstance implements IBrickInstance {
     this.randomness = props.randomness ?? 0.5
     this.spinSpeed = props.spinSpeed ?? 1.8
     this.flutterStrength = props.flutterStrength ?? 1.0
+    this.currentQuality = context.quality ?? 'HIGH'
 
     this.totalCount = Math.floor(160 * this.density)
-    const isMobile = window.innerWidth < 768
-    this.activeCount = isMobile ? Math.floor(this.totalCount * 0.35) : this.totalCount
+    this.activeCount = this.totalCount
 
     this.positions = new Float32Array(this.totalCount * 3)
     this.velocities = new Float32Array(this.totalCount * 3)
@@ -101,12 +104,15 @@ export class ConfettiInstance implements IBrickInstance {
     this.rotVelocities = new Float32Array(this.totalCount * 3)
     this.flutterPhases = new Float32Array(this.totalCount)
     this.baseScales = new Float32Array(this.totalCount)
+    this.baseColors = new Float32Array(this.totalCount * 3)
 
     const geometry = new THREE.PlaneGeometry(1, 1)
     const material = new THREE.MeshBasicMaterial({
       map: getConfettiTexture(),
+      color: 0xffffff,
       transparent: true,
       depthWrite: false,
+      opacity: Math.min(1.0, 0.95 * this.intensity),
       side: THREE.DoubleSide,
     })
 
@@ -115,16 +121,9 @@ export class ConfettiInstance implements IBrickInstance {
 
     for (let i = 0; i < this.totalCount; i++) {
       this.resetParticle(i, true)
-
-      if (this.colorMode === 'multi') {
-        const colHex = FESTIVE_PALETTE[i % FESTIVE_PALETTE.length]
-        this.tempColor.set(colHex)
-      } else {
-        this.tempColor.set(this.colorMode)
-      }
-      this.mesh.setColorAt(i, this.tempColor)
     }
 
+    this.applyQuality(this.currentQuality)
     this.scene.add(this.mesh)
   }
 
@@ -142,15 +141,42 @@ export class ConfettiInstance implements IBrickInstance {
     this.rotations[idx3 + 1] = Math.random() * Math.PI * 2
     this.rotations[idx3 + 2] = Math.random() * Math.PI * 2
 
-    // Rotation très vive sur 2 axes
+    // Rotation 3D vive mais équilibrée pour préserver la face réfléchissante
     this.rotVelocities[idx3] =
-      (3.0 + Math.random() * 4.0) * this.spinSpeed * (Math.random() < 0.5 ? 1 : -1)
+      (1.8 + Math.random() * 2.2) * this.spinSpeed * (Math.random() < 0.5 ? 1 : -1)
     this.rotVelocities[idx3 + 1] =
-      (2.5 + Math.random() * 4.0) * this.spinSpeed * (Math.random() < 0.5 ? 1 : -1)
-    this.rotVelocities[idx3 + 2] = (Math.random() - 0.5) * 2.0 * this.randomness
+      (1.5 + Math.random() * 2.2) * this.spinSpeed * (Math.random() < 0.5 ? 1 : -1)
+    this.rotVelocities[idx3 + 2] = (Math.random() - 0.5) * 1.5 * this.randomness
 
     this.flutterPhases[i] = Math.random() * Math.PI * 2
-    this.baseScales[i] = (0.16 + Math.random() * 0.14) * this.intensity
+
+    // 3 paliers de taille bien calibrés :
+    // ~50% petits confettis festifs
+    // ~35% confettis moyens
+    // ~15% grands rubans festifs (mise en valeur des reflets métalliques)
+    const tierRand = Math.random()
+    let size = 0
+    if (tierRand < 0.5) {
+      size = 0.32 + Math.random() * 0.1
+    } else if (tierRand < 0.85) {
+      size = 0.55 + Math.random() * 0.16
+    } else {
+      size = 0.85 + Math.random() * 0.3
+    }
+    this.baseScales[i] = size * this.intensity
+
+    // Couleur festive
+    if (this.colorMode === 'multi') {
+      const colHex = FESTIVE_PALETTE[i % FESTIVE_PALETTE.length]
+      this.tempColor.set(colHex)
+    } else {
+      this.tempColor.set(this.colorMode)
+    }
+
+    const cIdx = i * 3
+    this.baseColors[cIdx] = this.tempColor.r
+    this.baseColors[cIdx + 1] = this.tempColor.g
+    this.baseColors[cIdx + 2] = this.tempColor.b
   }
 
   public init(): void {}
@@ -204,7 +230,19 @@ export class ConfettiInstance implements IBrickInstance {
       this.rotations[idx3 + 2] += this.rotVelocities[idx3 + 2] * delta
 
       const pz = this.positions[idx3 + 2]
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.45, 1.25)
+
+      // Atténuation réaliste par la profondeur (Z) : taille et opacité/contraste
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.5, 1.25)
+      const depthOpacity = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.45, 1.0)
+
+      const cIdx = i * 3
+      this.tempColor.setRGB(
+        this.baseColors[cIdx] * depthOpacity,
+        this.baseColors[cIdx + 1] * depthOpacity,
+        this.baseColors[cIdx + 2] * depthOpacity
+      )
+      this.mesh.setColorAt(i, this.tempColor)
+
       const scale = this.baseScales[i] * depthFactor * this.surgeMultiplier
 
       this.dummy.position.set(
@@ -231,49 +269,63 @@ export class ConfettiInstance implements IBrickInstance {
     }
 
     this.mesh.instanceMatrix.needsUpdate = true
+    if (this.mesh.instanceColor) {
+      this.mesh.instanceColor.needsUpdate = true
+    }
   }
 
   public updateProps(newProps: Partial<ConfettiProps>): void {
     if (newProps.colorMode !== undefined) {
       this.colorMode = newProps.colorMode
-      if (this.mesh) {
-        for (let i = 0; i < this.totalCount; i++) {
-          if (this.colorMode === 'multi') {
-            this.tempColor.set(FESTIVE_PALETTE[i % FESTIVE_PALETTE.length])
-          } else {
-            this.tempColor.set(this.colorMode)
-          }
-          this.mesh.setColorAt(i, this.tempColor)
+      for (let i = 0; i < this.totalCount; i++) {
+        if (this.colorMode === 'multi') {
+          this.tempColor.set(FESTIVE_PALETTE[i % FESTIVE_PALETTE.length])
+        } else {
+          this.tempColor.set(this.colorMode)
         }
-        if (this.mesh.instanceColor) this.mesh.instanceColor.needsUpdate = true
+        const cIdx = i * 3
+        this.baseColors[cIdx] = this.tempColor.r
+        this.baseColors[cIdx + 1] = this.tempColor.g
+        this.baseColors[cIdx + 2] = this.tempColor.b
       }
     }
     if (newProps.speed !== undefined) this.speed = newProps.speed
     if (newProps.depth !== undefined) this.depthFactor = newProps.depth
-    if (newProps.intensity !== undefined) this.intensity = newProps.intensity
+    if (newProps.intensity !== undefined) {
+      this.intensity = newProps.intensity
+      if (this.mesh && this.mesh.material && !Array.isArray(this.mesh.material)) {
+        ;(this.mesh.material as THREE.MeshBasicMaterial).opacity = Math.min(
+          1.0,
+          0.95 * this.intensity
+        )
+      }
+    }
     if (newProps.randomness !== undefined) this.randomness = newProps.randomness
     if (newProps.spinSpeed !== undefined) this.spinSpeed = newProps.spinSpeed
     if (newProps.flutterStrength !== undefined) this.flutterStrength = newProps.flutterStrength
 
     if (newProps.density !== undefined) {
       this.density = newProps.density
-      const isMobile = window.innerWidth < 768
-      const mobileFactor = isMobile ? 0.35 : 1.0
-      this.activeCount = Math.min(this.totalCount, Math.floor(160 * this.density * mobileFactor))
+      this.applyQuality(this.currentQuality)
     }
   }
 
-  public onQualityChange(quality: QualityTier): void {
+  private applyQuality(quality: QualityTier): void {
     const isMobile = window.innerWidth < 768
     const mobileRatio = isMobile ? 0.35 : 1.0
 
     if (quality === 'HIGH') {
-      this.activeCount = Math.floor(this.totalCount * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(160 * this.density * mobileRatio))
     } else if (quality === 'MEDIUM') {
-      this.activeCount = Math.floor(this.totalCount * 0.55 * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(90 * this.density * mobileRatio))
     } else {
-      this.activeCount = Math.floor(this.totalCount * 0.25 * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(40 * this.density * mobileRatio))
     }
+  }
+
+  public onQualityChange(quality: QualityTier): void {
+    this.currentQuality = quality
+    this.applyQuality(quality)
   }
 
   public triggerEvent(_event: RareEventTrigger): void {

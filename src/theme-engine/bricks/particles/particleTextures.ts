@@ -36,18 +36,68 @@ function createTexture(
   return texture
 }
 
-/** 1. Texture de disque doux avec atténuation gaussienne (Neige, Poussière) */
+/** 1. Texture de disque doux avec atténuation gaussienne et halo (Poussière) */
 export function getSoftCircleTexture(): THREE.CanvasTexture {
-  return createTexture('soft_circle', 64, 64, (ctx, w, h) => {
+  return createTexture('soft_circle', 128, 128, (ctx, w, h) => {
     const cx = w / 2
     const cy = h / 2
-    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.48)
+
+    // Halo externe doux
+    const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.48)
+    halo.addColorStop(0, 'rgba(255, 255, 255, 0.35)')
+    halo.addColorStop(0.5, 'rgba(255, 255, 255, 0.12)')
+    halo.addColorStop(1, 'rgba(255, 255, 255, 0.0)')
+    ctx.fillStyle = halo
+    ctx.fillRect(0, 0, w, h)
+
+    // Cœur doux
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.36)
     grad.addColorStop(0, 'rgba(255, 255, 255, 1.0)')
-    grad.addColorStop(0.35, 'rgba(255, 255, 255, 0.85)')
-    grad.addColorStop(0.7, 'rgba(255, 255, 255, 0.25)')
+    grad.addColorStop(0.4, 'rgba(255, 255, 255, 0.88)')
+    grad.addColorStop(0.8, 'rgba(255, 255, 255, 0.35)')
     grad.addColorStop(1, 'rgba(255, 255, 255, 0.0)')
     ctx.fillStyle = grad
+    ctx.beginPath()
+    ctx.arc(cx, cy, w * 0.36, 0, Math.PI * 2)
+    ctx.fill()
+  })
+}
+
+/** 1b. Texture de flocon de neige cotonneux et cristallin avec halo doux (Neige) */
+export function getSnowTexture(): THREE.CanvasTexture {
+  return createTexture('snow_flake', 128, 128, (ctx, w, h) => {
+    const cx = w / 2
+    const cy = h / 2
+
+    // 1. Halo lumineux atmosphérique externe
+    const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.48)
+    halo.addColorStop(0, 'rgba(255, 255, 255, 0.42)')
+    halo.addColorStop(0.4, 'rgba(240, 248, 255, 0.22)')
+    halo.addColorStop(0.75, 'rgba(220, 240, 255, 0.06)')
+    halo.addColorStop(1, 'rgba(200, 230, 255, 0.0)')
+    ctx.fillStyle = halo
     ctx.fillRect(0, 0, w, h)
+
+    // 2. Disque cotonneux intermédiaire
+    const body = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.34)
+    body.addColorStop(0, 'rgba(255, 255, 255, 1.0)')
+    body.addColorStop(0.5, 'rgba(255, 255, 255, 0.92)')
+    body.addColorStop(0.82, 'rgba(245, 250, 255, 0.55)')
+    body.addColorStop(1, 'rgba(235, 245, 255, 0.0)')
+    ctx.fillStyle = body
+    ctx.beginPath()
+    ctx.arc(cx, cy, w * 0.34, 0, Math.PI * 2)
+    ctx.fill()
+
+    // 3. Cœur radiant pur cristallin
+    const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.16)
+    core.addColorStop(0, 'rgba(255, 255, 255, 1.0)')
+    core.addColorStop(0.7, 'rgba(255, 255, 255, 0.95)')
+    core.addColorStop(1, 'rgba(255, 255, 255, 0.0)')
+    ctx.fillStyle = core
+    ctx.beginPath()
+    ctx.arc(cx, cy, w * 0.16, 0, Math.PI * 2)
+    ctx.fill()
   })
 }
 
@@ -67,24 +117,35 @@ export function getEmberTexture(): THREE.CanvasTexture {
   })
 }
 
-/** 3. Texture de flocon de cendre asymétrique et calciné (Cendres) */
+/** 3. Texture de flocon de cendre asymétrique et calciné avec halo de rétro-éclairage (Cendres) */
 export function getAshTexture(): THREE.CanvasTexture {
-  return createTexture('ash_flake', 64, 64, (ctx, w, h) => {
+  return createTexture('ash_flake', 128, 128, (ctx, w, h) => {
     const cx = w / 2
     const cy = h / 2
+
+    // 1. Halo doux de rétro-éclairage pour détacher les particules sombres des arrière-plans nocturnes
+    const halo = ctx.createRadialGradient(cx, cy, 8, cx, cy, w * 0.46)
+    halo.addColorStop(0, 'rgba(235, 245, 255, 0.40)')
+    halo.addColorStop(0.4, 'rgba(205, 225, 250, 0.18)')
+    halo.addColorStop(0.75, 'rgba(180, 205, 235, 0.05)')
+    halo.addColorStop(1, 'rgba(160, 185, 220, 0.0)')
+    ctx.fillStyle = halo
+    ctx.fillRect(0, 0, w, h)
+
     ctx.save()
     ctx.translate(cx, cy)
     ctx.beginPath()
-    // Contour asymétrique de fragment de cendre
+
+    // Contour asymétrique et ciselé de flocon calciné
     const points = [
-      [0, -22],
-      [14, -16],
-      [22, -2],
-      [18, 16],
-      [2, 22],
-      [-14, 18],
-      [-22, 2],
-      [-16, -14],
+      [0, -46],
+      [28, -34],
+      [46, -6],
+      [38, 32],
+      [6, 46],
+      [-28, 36],
+      [-46, 6],
+      [-34, -30],
     ]
     ctx.moveTo(points[0][0], points[0][1])
     for (let i = 1; i < points.length; i++) {
@@ -92,12 +153,30 @@ export function getAshTexture(): THREE.CanvasTexture {
     }
     ctx.closePath()
 
-    const grad = ctx.createRadialGradient(0, 0, 2, 0, 0, 24)
-    grad.addColorStop(0, 'rgba(255, 255, 255, 0.95)')
-    grad.addColorStop(0.6, 'rgba(200, 210, 225, 0.75)')
-    grad.addColorStop(1, 'rgba(140, 150, 170, 0.0)')
+    // 2. Remplissage interne texturé : dégradé clair avec cœur cendreux
+    const grad = ctx.createRadialGradient(-6, -8, 2, 0, 0, 48)
+    grad.addColorStop(0, 'rgba(255, 255, 255, 0.98)')
+    grad.addColorStop(0.4, 'rgba(230, 240, 250, 0.92)')
+    grad.addColorStop(0.75, 'rgba(190, 205, 225, 0.85)')
+    grad.addColorStop(1, 'rgba(150, 170, 190, 0.75)')
     ctx.fillStyle = grad
     ctx.fill()
+
+    // 3. Liseré lumineux / rim light pour faire ressortir les silhouettes de suie
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.88)'
+    ctx.lineWidth = 2.2
+    ctx.stroke()
+
+    // 4. Micro-détails internes calcinés
+    ctx.strokeStyle = 'rgba(140, 160, 180, 0.50)'
+    ctx.lineWidth = 1.4
+    ctx.beginPath()
+    ctx.moveTo(-16, -10)
+    ctx.lineTo(12, 14)
+    ctx.moveTo(8, -20)
+    ctx.lineTo(-6, 22)
+    ctx.stroke()
+
     ctx.restore()
   })
 }
@@ -320,23 +399,50 @@ export function getPetalTexture(): THREE.CanvasTexture {
   })
 }
 
-/** 10. Texture de confetti rectangulaire avec biseau net (Confettis) */
+/** 10. Texture de confetti rectangulaire festif avec halo et biseau spéculaire (Confettis) */
 export function getConfettiTexture(): THREE.CanvasTexture {
-  return createTexture('confetti_rect', 64, 64, (ctx, w, h) => {
+  return createTexture('confetti_rect', 128, 128, (ctx, w, h) => {
     const cx = w / 2
     const cy = h / 2
-    const rw = 22
-    const rh = 40
+    const rw = 46
+    const rh = 78
+
+    // 1. Halo lumineux doux diffus tout autour du confetti
+    const halo = ctx.createRadialGradient(cx, cy, 14, cx, cy, w * 0.46)
+    halo.addColorStop(0, 'rgba(255, 255, 255, 0.42)')
+    halo.addColorStop(0.5, 'rgba(255, 255, 255, 0.16)')
+    halo.addColorStop(0.85, 'rgba(255, 255, 255, 0.04)')
+    halo.addColorStop(1, 'rgba(255, 255, 255, 0.0)')
+    ctx.fillStyle = halo
+    ctx.fillRect(0, 0, w, h)
 
     ctx.save()
     ctx.translate(cx, cy)
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.95)'
+
+    // 2. Corps principal du rectangle de confetti avec dégradé métallique spéculaire diagonal
+    const sheen = ctx.createLinearGradient(-rw / 2, -rh / 2, rw / 2, rh / 2)
+    sheen.addColorStop(0, 'rgba(255, 255, 255, 0.98)')
+    sheen.addColorStop(0.35, 'rgba(242, 242, 242, 0.88)')
+    sheen.addColorStop(0.5, 'rgba(255, 255, 255, 1.0)') // Reflet spéculaire vif
+    sheen.addColorStop(0.65, 'rgba(238, 238, 238, 0.88)')
+    sheen.addColorStop(1, 'rgba(255, 255, 255, 0.96)')
+
+    ctx.fillStyle = sheen
     ctx.fillRect(-rw / 2, -rh / 2, rw, rh)
 
-    // Bordure subtile de réflexion
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)'
-    ctx.lineWidth = 1
-    ctx.strokeRect(-rw / 2, -rh / 2, rw, rh)
+    // 3. Biseau métallique lumineux sur les arêtes pour préserver la lisibilité lors du spin
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.95)'
+    ctx.lineWidth = 2.4
+    ctx.strokeRect(-rw / 2 + 1, -rh / 2 + 1, rw - 2, rh - 2)
+
+    // 4. Ligne d'éclat spéculaire traversante
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.70)'
+    ctx.lineWidth = 1.6
+    ctx.beginPath()
+    ctx.moveTo(-rw / 2 + 5, rh / 2 - 10)
+    ctx.lineTo(rw / 2 - 5, -rh / 2 + 10)
+    ctx.stroke()
+
     ctx.restore()
   })
 }

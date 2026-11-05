@@ -4,7 +4,9 @@
  * Brique de Particules : Cendres Volcaniques & Suie (Couche 3 : Particles).
  * Résidus calcinés en flottaison lente, tournoiements et chutes erratiques
  * portées par des micro-courants d'air ascendants, avec rotation 3D asymétrique,
- * contraste feutré et profondeur atmosphérique.
+ * 3 tailles bien visibles avec halo de rétro-éclairage, panachage cendre grise/suie,
+ * étagement de profondeur réaliste (particules lointaines plus petites et moins opaques)
+ * et réaction au vent du curseur.
  */
 
 import * as THREE from 'three'
@@ -57,6 +59,7 @@ export class AshInstance implements IBrickInstance {
   private maxLife: Float32Array
   private baseScales: Float32Array
   private baseSeeds: Float32Array
+  private baseColors: Float32Array
 
   private ashColor: THREE.Color
   private darkColor: THREE.Color
@@ -66,6 +69,7 @@ export class AshInstance implements IBrickInstance {
   private intensity: number
   private randomness: number
   private drift: number
+  private currentQuality: QualityTier
 
   private dummy = new THREE.Object3D()
   private tempColor = new THREE.Color()
@@ -83,10 +87,10 @@ export class AshInstance implements IBrickInstance {
     this.intensity = props.intensity ?? 0.85
     this.randomness = props.randomness ?? 0.6
     this.drift = props.drift ?? 0.25
+    this.currentQuality = context.quality ?? 'HIGH'
 
     this.totalCount = Math.floor(160 * this.density)
-    const isMobile = window.innerWidth < 768
-    this.activeCount = isMobile ? Math.floor(this.totalCount * 0.35) : this.totalCount
+    this.activeCount = this.totalCount
 
     this.positions = new Float32Array(this.totalCount * 3)
     this.velocities = new Float32Array(this.totalCount * 3)
@@ -96,13 +100,15 @@ export class AshInstance implements IBrickInstance {
     this.maxLife = new Float32Array(this.totalCount)
     this.baseScales = new Float32Array(this.totalCount)
     this.baseSeeds = new Float32Array(this.totalCount)
+    this.baseColors = new Float32Array(this.totalCount * 3)
 
     const geometry = new THREE.PlaneGeometry(1, 1)
     const material = new THREE.MeshBasicMaterial({
       map: getAshTexture(),
+      color: 0xffffff,
       transparent: true,
       depthWrite: false,
-      opacity: this.intensity,
+      opacity: Math.min(1.0, 0.95 * this.intensity),
       side: THREE.DoubleSide,
     })
 
@@ -114,17 +120,18 @@ export class AshInstance implements IBrickInstance {
       this.resetParticle(i, true)
     }
 
+    this.applyQuality(this.currentQuality)
     this.scene.add(this.mesh)
   }
 
   private resetParticle(i: number, randomAge = false): void {
     const idx3 = i * 3
     this.positions[idx3] = (Math.random() - 0.5) * 18
-    this.positions[idx3 + 1] = randomAge ? (Math.random() - 0.5) * 14 : 7.5 + Math.random() * 2.0
+    this.positions[idx3 + 1] = randomAge ? (Math.random() - 0.5) * 12 : 5.8 + Math.random() * 1.8
     this.positions[idx3 + 2] = -12 * this.depthFactor + Math.random() * (4 * this.depthFactor)
 
     this.velocities[idx3] = this.drift * 0.3 + (Math.random() - 0.5) * 0.15
-    this.velocities[idx3 + 1] = -(0.3 + Math.random() * 0.4) * this.speed
+    this.velocities[idx3 + 1] = -(0.5 + Math.random() * 0.35) * this.speed
     this.velocities[idx3 + 2] = (Math.random() - 0.5) * 0.05
 
     this.rotations[idx3] = Math.random() * Math.PI * 2
@@ -135,17 +142,36 @@ export class AshInstance implements IBrickInstance {
     this.rotVelocities[idx3 + 1] = (Math.random() - 0.5) * 1.8 * this.randomness
     this.rotVelocities[idx3 + 2] = (Math.random() - 0.5) * 1.2 * this.randomness
 
-    const maxLifeSec = 6.0 + Math.random() * 5.0
+    const maxLifeSec = 14.0 + Math.random() * 8.0
     this.maxLife[i] = maxLifeSec
     this.life[i] = randomAge ? Math.random() * maxLifeSec : 0
-    this.baseScales[i] = (0.1 + Math.random() * 0.22) * this.intensity
 
-    // Couleur panachée (suie foncée ou cendre claire)
-    const ratio = Math.random()
-    this.tempColor.copy(this.ashColor).lerp(this.darkColor, ratio)
-    if (this.mesh) {
-      this.mesh.setColorAt(i, this.tempColor)
+    // 3 paliers de taille bien calibrés :
+    // ~50% petites (fines particules de suie en suspension)
+    // ~35% moyennes (corps principal de flocons de cendre)
+    // ~15% grandes (lambeaux calcinés de premier plan avec rotation 3D)
+    const tierRand = Math.random()
+    let size = 0
+    if (tierRand < 0.5) {
+      size = 0.26 + Math.random() * 0.1
+    } else if (tierRand < 0.85) {
+      size = 0.48 + Math.random() * 0.16
+    } else {
+      size = 0.75 + Math.random() * 0.28
     }
+    this.baseScales[i] = size * this.intensity
+
+    // Cendres grises bien lisibles : panachage entre gris cendre clair/moyen et suie
+    const ratio = Math.random()
+    // Utilisation d'une base grise équilibrée pour éviter que les particules ne deviennent invisibles
+    const lightAsh = new THREE.Color('#cbd5e1').lerp(this.ashColor, 0.5)
+    const darkSoot = new THREE.Color('#475569').lerp(this.darkColor, 0.4)
+    this.tempColor.copy(lightAsh).lerp(darkSoot, ratio)
+
+    const cIdx = i * 3
+    this.baseColors[cIdx] = this.tempColor.r
+    this.baseColors[cIdx + 1] = this.tempColor.g
+    this.baseColors[cIdx + 2] = this.tempColor.b
   }
 
   public init(): void {}
@@ -174,10 +200,10 @@ export class AshInstance implements IBrickInstance {
       const py = this.positions[idx3 + 1]
       const pz = this.positions[idx3 + 2]
 
-      // Turbulence et courants d'air ascendants
+      // Turbulence et micro-courants d'air ascendants
       const seed = this.baseSeeds[i]
       const turb = simplex3D(px * 0.2, py * 0.2 + seed, time * 0.25)
-      const updraft = Math.max(0, simplex3D(px * 0.15, time * 0.2, pz * 0.15)) * 0.35
+      const updraft = Math.max(0, simplex3D(px * 0.15, time * 0.2, pz * 0.15)) * 0.18
 
       // Répulsion du vent de souris
       const dx = px - mouseWorldX
@@ -202,7 +228,7 @@ export class AshInstance implements IBrickInstance {
       this.positions[idx3 + 1] += vy * delta * 2.0
       this.positions[idx3 + 2] += vz * delta * 2.0
 
-      if (this.positions[idx3 + 1] < -8.0) {
+      if (this.positions[idx3 + 1] < -6.8) {
         this.resetParticle(i, false)
         continue
       }
@@ -212,12 +238,28 @@ export class AshInstance implements IBrickInstance {
       this.rotations[idx3 + 1] += this.rotVelocities[idx3 + 1] * delta
       this.rotations[idx3 + 2] += this.rotVelocities[idx3 + 2] * delta
 
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.45, 1.2)
-      let alphaScale = Math.sin(progress * Math.PI)
-      if (progress > 0.85) {
-        alphaScale = (1.0 - progress) / 0.15
+      // Atténuation réaliste par la profondeur (Z) : taille et opacité/contraste
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.5, 1.25)
+      const depthOpacity = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.42, 1.0)
+
+      let lifeFade = 1.0
+      if (progress < 0.12) {
+        lifeFade = progress / 0.12
+      } else if (progress > 0.85) {
+        lifeFade = (1.0 - progress) / 0.15
       }
-      const scale = this.baseScales[i] * alphaScale * depthFactor * this.surgeMultiplier
+
+      const finalAlpha = Math.max(0.1, Math.min(1.0, lifeFade * depthOpacity))
+      const cIdx = i * 3
+      this.tempColor.setRGB(
+        this.baseColors[cIdx] * finalAlpha,
+        this.baseColors[cIdx + 1] * finalAlpha,
+        this.baseColors[cIdx + 2] * finalAlpha
+      )
+      this.mesh.setColorAt(i, this.tempColor)
+
+      const scale =
+        this.baseScales[i] * Math.min(1.0, lifeFade + 0.3) * depthFactor * this.surgeMultiplier
 
       this.dummy.position.set(
         this.positions[idx3],
@@ -251,12 +293,29 @@ export class AshInstance implements IBrickInstance {
   public updateProps(newProps: Partial<AshProps>): void {
     if (newProps.ashColor !== undefined) this.ashColor.set(newProps.ashColor)
     if (newProps.darkColor !== undefined) this.darkColor.set(newProps.darkColor)
+
+    if (newProps.ashColor !== undefined || newProps.darkColor !== undefined) {
+      const lightAsh = new THREE.Color('#cbd5e1').lerp(this.ashColor, 0.5)
+      const darkSoot = new THREE.Color('#475569').lerp(this.darkColor, 0.4)
+      for (let i = 0; i < this.totalCount; i++) {
+        const ratio = Math.random()
+        this.tempColor.copy(lightAsh).lerp(darkSoot, ratio)
+        const cIdx = i * 3
+        this.baseColors[cIdx] = this.tempColor.r
+        this.baseColors[cIdx + 1] = this.tempColor.g
+        this.baseColors[cIdx + 2] = this.tempColor.b
+      }
+    }
+
     if (newProps.speed !== undefined) this.speed = newProps.speed
     if (newProps.depth !== undefined) this.depthFactor = newProps.depth
     if (newProps.intensity !== undefined) {
       this.intensity = newProps.intensity
       if (this.mesh && this.mesh.material && !Array.isArray(this.mesh.material)) {
-        ;(this.mesh.material as THREE.MeshBasicMaterial).opacity = this.intensity
+        ;(this.mesh.material as THREE.MeshBasicMaterial).opacity = Math.min(
+          1.0,
+          0.95 * this.intensity
+        )
       }
     }
     if (newProps.randomness !== undefined) this.randomness = newProps.randomness
@@ -264,23 +323,26 @@ export class AshInstance implements IBrickInstance {
 
     if (newProps.density !== undefined) {
       this.density = newProps.density
-      const isMobile = window.innerWidth < 768
-      const mobileFactor = isMobile ? 0.35 : 1.0
-      this.activeCount = Math.min(this.totalCount, Math.floor(160 * this.density * mobileFactor))
+      this.applyQuality(this.currentQuality)
     }
   }
 
-  public onQualityChange(quality: QualityTier): void {
+  private applyQuality(quality: QualityTier): void {
     const isMobile = window.innerWidth < 768
     const mobileRatio = isMobile ? 0.35 : 1.0
 
     if (quality === 'HIGH') {
-      this.activeCount = Math.floor(this.totalCount * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(160 * this.density * mobileRatio))
     } else if (quality === 'MEDIUM') {
-      this.activeCount = Math.floor(this.totalCount * 0.55 * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(90 * this.density * mobileRatio))
     } else {
-      this.activeCount = Math.floor(this.totalCount * 0.25 * mobileRatio)
+      this.activeCount = Math.min(this.totalCount, Math.floor(40 * this.density * mobileRatio))
     }
+  }
+
+  public onQualityChange(quality: QualityTier): void {
+    this.currentQuality = quality
+    this.applyQuality(quality)
   }
 
   public triggerEvent(_event: RareEventTrigger): void {
