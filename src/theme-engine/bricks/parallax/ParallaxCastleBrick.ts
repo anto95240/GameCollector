@@ -258,30 +258,59 @@ export class ParallaxCastleInstance implements IBrickInstance {
           float stoneTexture = snoise(vec2(p.x * 25.0, p.y * 35.0)) * 0.12;
           pixelColor = mix(pixelColor * 0.9, pixelColor * 1.15, stoneTexture + 0.5);
 
-          // 3. Meurtrières éclairées par des torches vacillantes
+          // 3. Arrow-slit windows lit by flickering torches
           if (uQualityLevel >= 1 && inCastle > 0.5) {
-            // Fentes de meurtrières verticales sur le donjon et les tours
-            bool isMeurtriere = false;
-            vec2 slitCoord = vec2(0.0);
+            // Discrete window grid: small rectangles with per-window random state
+            // Windows are placed on a quantised grid, not repeating mod bands
+            float winSpacingX = 0.018;   // horizontal spacing between windows
+            float winSpacingY = 0.032;   // vertical spacing between rows
+            float winHalfW = 0.0035;     // half-width of each window rectangle
+            float winHalfH = 0.008;      // half-height (tall narrow arrow slit)
 
-            // Donjon meurtrières
-            if (abs(p.x - 0.50) < 0.04 && p.y > (rockY + 0.08) && p.y < (rockY + 0.26)) {
-              float my = mod((p.y - rockY) * 25.0, 1.0);
-              float mx = abs(p.x - 0.50) / 0.04;
-              if (my > 0.3 && my < 0.7 && mx < 0.25) isMeurtriere = true;
-            }
+            // Only render windows on the castle structure (not rock)
+            float wallMinY = rockY + 0.06;
+            float wallMaxY = rockY + 0.30;
 
-            // Tour gauche meurtrière
-            if (abs(p.x - 0.38) < 0.025 && p.y > (rockY + 0.07) && p.y < (rockY + 0.18)) {
-              float my = mod((p.y - rockY) * 22.0, 1.0);
-              if (my > 0.3 && my < 0.7) isMeurtriere = true;
-            }
+            if (p.y > wallMinY && p.y < wallMaxY) {
+              // Quantise position to window grid
+              vec2 winGrid = vec2(
+                floor(p.x / winSpacingX),
+                floor((p.y - wallMinY) / winSpacingY)
+              );
+              vec2 winCenter = vec2(
+                (winGrid.x + 0.5) * winSpacingX,
+                wallMinY + (winGrid.y + 0.5) * winSpacingY
+              );
 
-            if (isMeurtriere) {
-              // Vacillement de flamme non-linéaire Simplex
-              float flameFlicker = snoise(vec2(t * uSpeed * 4.5, p.x * 10.0)) * 0.35 + 0.65;
-              vec3 torchGlowCol = mix(baseTorch, vec3(1.0, 0.9, 0.4), flameFlicker * 0.5);
-              pixelColor = mix(pixelColor, torchGlowCol * 1.6, flameFlicker * uTorchGlow * uIntensity);
+              // Per-window random: existence, lit state, flicker phase
+              float winRand = hash12(winGrid + 33.7);
+
+              // Only ~35% of grid positions have a window (irregular placement)
+              bool hasWindow = winRand > 0.65;
+
+              if (hasWindow) {
+                float dx = abs(p.x - winCenter.x);
+                float dy = abs(p.y - winCenter.y);
+
+                // Small sharp rectangle
+                if (dx < winHalfW && dy < winHalfH) {
+                  // Individual torch flicker per window (no shared wavy pattern)
+                  float phase = winRand * 31.4;
+                  float flicker = snoise(vec2(t * uSpeed * 3.5 + phase, winRand * 7.0));
+                  flicker = flicker * 0.3 + 0.7;  // range ~0.4 to 1.0
+
+                  // Rare extinction events: some windows go dark briefly
+                  float extinction = step(-0.9, sin(t * 0.4 + winRand * 50.0));
+                  flicker *= extinction;
+
+                  if (flicker > 0.1) {
+                    vec3 torchGlowCol = mix(baseTorch, vec3(1.0, 0.9, 0.4), flicker * 0.4);
+                    float edgeSoft = smoothstep(winHalfW, winHalfW * 0.5, dx) *
+                                     smoothstep(winHalfH, winHalfH * 0.5, dy);
+                    pixelColor = mix(pixelColor, torchGlowCol * 1.4, edgeSoft * flicker * uTorchGlow * uIntensity);
+                  }
+                }
+              }
             }
           }
 
@@ -333,10 +362,14 @@ export class ParallaxCastleInstance implements IBrickInstance {
     if (newProps.density !== undefined) this.material.uniforms.uDensity.value = newProps.density
     if (newProps.speed !== undefined) this.material.uniforms.uSpeed.value = newProps.speed
     if (newProps.depth !== undefined) this.material.uniforms.uDepth.value = newProps.depth
-    if (newProps.intensity !== undefined) this.material.uniforms.uIntensity.value = newProps.intensity
-    if (newProps.randomness !== undefined) this.material.uniforms.uRandomness.value = newProps.randomness
-    if (newProps.ruinDecay !== undefined) this.material.uniforms.uRuinDecay.value = newProps.ruinDecay
-    if (newProps.torchGlow !== undefined) this.material.uniforms.uTorchGlow.value = newProps.torchGlow
+    if (newProps.intensity !== undefined)
+      this.material.uniforms.uIntensity.value = newProps.intensity
+    if (newProps.randomness !== undefined)
+      this.material.uniforms.uRandomness.value = newProps.randomness
+    if (newProps.ruinDecay !== undefined)
+      this.material.uniforms.uRuinDecay.value = newProps.ruinDecay
+    if (newProps.torchGlow !== undefined)
+      this.material.uniforms.uTorchGlow.value = newProps.torchGlow
   }
 
   public onQualityChange(quality: QualityTier): void {

@@ -26,12 +26,12 @@ const getUserAchievements = async () => {
   try {
     const { data, error } = await supabase
       .from('user_achievements')
-      .select('*, achievement:achievements(id_name, title, description, icon, rarity)')
+      .select('*, achievement:achievements(*)')
       .order('unlocked_at', { ascending: false })
     if (error) throw error
 
     // Aplatir pour garder la même structure qu'avant
-    const mapped = (data ?? []).map((ua) => ({
+    const mapped = (data ?? []).map((ua: any) => ({
       id_name: ua.achievement?.id_name,
       title: ua.achievement?.title,
       description: ua.achievement?.description,

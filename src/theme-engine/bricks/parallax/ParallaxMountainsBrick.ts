@@ -133,15 +133,28 @@ export class ParallaxMountainsInstance implements IBrickInstance {
         ${GLSL_NOISE_2D}
         ${GLSL_HASH}
 
-        // Fonction de crête multifractale (Ridged Multifractal)
+        // Multi-octave continuous ridge profile using FBM with smooth abs folding.
+        // Produces a continuous, irregular crestline without the V-cusp artefact.
         float mountainRidge(float x, float freq, float seed) {
-          float n1 = 1.0 - abs(snoise(vec2(x * freq + seed, 1.2)));
-          float n2 = 1.0 - abs(snoise(vec2(x * freq * 2.2 + seed * 2.1, 3.4))) * 0.5;
-          float n3 = 1.0 - abs(snoise(vec2(x * freq * 4.4 + seed * 3.7, 7.8))) * 0.25;
-          return pow(n1 * 0.6 + n2 * 0.3 + n3 * 0.1, 1.3);
+          float value = 0.0;
+          float amplitude = 0.55;
+          float f = freq;
+          float weight = 1.0;
+          for (int i = 0; i < 4; i++) {
+            // Folded noise with smooth abs to avoid sharp V cusps
+            float n = snoise(vec2(x * f + seed + float(i) * 7.3, float(i) * 2.7 + 1.2));
+            n = 1.0 - sqrt(n * n + 0.01);   // smooth abs → continuous ridgeline
+            n *= n;                           // sharpen peaks gently
+            n *= weight;                      // cascade: higher octaves only where previous was high
+            value += n * amplitude;
+            weight = clamp(n * 2.0, 0.0, 1.0);
+            f *= 2.1;
+            amplitude *= 0.48;
+          }
+          return value;
         }
 
-        // Calcule le profil et l'ombrage d'une chaîne de montagnes
+        // Evaluate a single mountain range (ridgeline + vertical fill + lighting + snow)
         vec4 evaluateMountainRidge(
           vec2 uv,
           float baseAltitude,
@@ -149,56 +162,63 @@ export class ParallaxMountainsInstance implements IBrickInstance {
           float freq,
           float seed,
           float parallaxRatio,
+          float hazeAmount,        // 0 = near, 1 = fully faded into mist
           vec3 rockCol,
           vec3 litCol,
           vec3 mistCol,
           float time,
           vec2 mouse
         ) {
-          // Décalage de parallaxe
+          // Parallax offset
           float shiftX = mouse.x * uDepth * parallaxRatio * 1.6;
           float shiftY = mouse.y * uDepth * parallaxRatio * 0.35 + uScroll * parallaxRatio * 0.18;
           float px = uv.x + shiftX;
           float py = uv.y + shiftY;
 
-          // Altitude de la crête à ce point x
+          // Ridgeline altitude at this horizontal position
           float ridgeShape = mountainRidge(px, freq * uDensity, seed);
           float ridgeY = baseAltitude + ridgeShape * ridgeHeight;
 
-          // Si on est au-dessus du sommet
+          // Above the ridge → transparent
           if (py > ridgeY) {
             return vec4(0.0);
           }
 
-          // Pente relative sous la crête
-          float depthBelowRidge = ridgeY - py;
+          // Normalised depth below the ridge (0 = at crest, 1 = far below)
+          float depthRatio = clamp((ridgeY - py) / max(0.01, ridgeHeight), 0.0, 1.0);
 
-          // Dérivée horizontale approchée pour calculer la normale et l'exposition au soleil
-          float eps = 0.005;
-          float ridgeLeft = baseAltitude + mountainRidge(px - eps, freq * uDensity, seed) * ridgeHeight;
+          // Approximate horizontal derivative for slope / sun exposure
+          float eps = 0.004;
+          float ridgeLeft  = baseAltitude + mountainRidge(px - eps, freq * uDensity, seed) * ridgeHeight;
           float ridgeRight = baseAltitude + mountainRidge(px + eps, freq * uDensity, seed) * ridgeHeight;
           float slopeX = (ridgeRight - ridgeLeft) / (2.0 * eps);
 
-          // Éclairage rasant directionnel
+          // Directional grazing light
           float lightFactor = clamp(slopeX * cos(uSunAngle) + sin(uSunAngle) * 0.65, 0.0, 1.0);
           vec3 surfaceCol = mix(rockCol, litCol, lightFactor);
 
-          // Névés / Glaciers au-dessus du seuil de neige sur les pentes douces
+          // Smooth vertical gradient: darken toward base for depth
+          surfaceCol *= mix(1.0, 0.55, depthRatio * depthRatio);
+
+          // Snow / glaciers on gentle slopes above threshold (MEDIUM + HIGH)
           if (uQualityLevel >= 1 && uSnowLevel > 0.05) {
             float snowThreshold = baseAltitude + ridgeHeight * (1.15 - uSnowLevel * 0.6);
             if (py > snowThreshold) {
               float snowPatch = smoothstep(snowThreshold, snowThreshold + 0.06, py);
-              snowPatch *= (1.0 - smoothstep(1.5, 3.5, abs(slopeX))); // La neige tient sur les pentes douces
+              snowPatch *= (1.0 - smoothstep(1.5, 3.5, abs(slopeX)));
               vec3 snowCol = mix(litCol * 1.4, vec3(0.95, 0.98, 1.0), lightFactor);
               surfaceCol = mix(surfaceCol, snowCol, snowPatch * 0.85);
             }
           }
 
-          // Brume de vallée à la base
-          float valleyMist = smoothstep(0.0, ridgeHeight * 0.9, depthBelowRidge);
+          // Valley mist at the base (subtle noise-driven)
+          float valleyMist = smoothstep(0.0, 0.8, depthRatio);
           float mistNoise = snoise(vec2(px * 3.0 - time * uSpeed * 0.3, py * 4.0)) * 0.15;
           valleyMist = clamp(valleyMist + mistNoise, 0.0, 1.0);
-          surfaceCol = mix(surfaceCol, mistCol, valleyMist * 0.45);
+          surfaceCol = mix(surfaceCol, mistCol, valleyMist * 0.35);
+
+          // Atmospheric haze: distant ranges fade toward mist colour
+          surfaceCol = mix(surfaceCol, mistCol, hazeAmount);
 
           return vec4(surfaceCol, uIntensity);
         }
@@ -208,35 +228,39 @@ export class ParallaxMountainsInstance implements IBrickInstance {
           float t = uTime;
 
           vec3 baseRock = uUseCustomColors ? uRockColor : (uPaletteSecondary * 0.35);
-          vec3 baseLit = uUseCustomColors ? uSunColor : (uPalettePrimary * 0.55);
+          vec3 baseLit  = uUseCustomColors ? uSunColor  : (uPalettePrimary * 0.55);
           vec3 baseMist = uUseCustomColors ? uMistColor : (uPaletteSecondary * 0.6);
 
           vec4 result = vec4(0.0);
 
-          // Chaîne 3 : Lointaine (Très brumeuse, sommets très hauts à l'horizon)
+          // Range 3: Far (heavy atmospheric haze, slow parallax, highest peaks)
           if (uQualityLevel >= 1) {
-            vec3 farRock = mix(baseRock, baseMist, 0.6);
-            vec3 farLit = mix(baseLit, baseMist, 0.5);
-            vec4 r3 = evaluateMountainRidge(uv, 0.32, 0.28, 1.2, 12.4, 0.12, farRock, farLit, baseMist, t, uMouse);
+            vec3 farRock = mix(baseRock, baseMist, 0.45);
+            vec3 farLit  = mix(baseLit,  baseMist, 0.35);
+            vec4 r3 = evaluateMountainRidge(uv, 0.32, 0.28, 1.2, 12.4, 0.12, 0.55,
+                                            farRock, farLit, baseMist, t, uMouse);
             if (r3.a > 0.0) {
               result = r3;
             }
           }
 
-          // Chaîne 2 : Intermédiaire (Crêtes nettes avec contrastes et névés)
-          vec3 midRock = mix(baseRock, baseMist, 0.25);
-          vec4 r2 = evaluateMountainRidge(uv, 0.16, 0.34, 1.9, 45.7, 0.28, midRock, baseLit, baseMist, t, uMouse);
+          // Range 2: Middle (moderate haze, sharper crests, snow)
+          vec3 midRock = mix(baseRock, baseMist, 0.15);
+          vec4 r2 = evaluateMountainRidge(uv, 0.16, 0.34, 1.9, 45.7, 0.28, 0.22,
+                                          midRock, baseLit, baseMist, t, uMouse);
           if (r2.a > 0.0) {
-            result = mix(result, r2, r2.a);
+            // Paint over (nearer layer replaces farther)
+            result = r2;
           }
 
-          // Chaîne 1 : Premier plan (Rochers sombres, découpés, falaise alpine)
-          vec4 r1 = evaluateMountainRidge(uv, -0.02, 0.36, 2.8, 89.1, 0.52, baseRock, baseLit * 0.9, baseMist * 0.8, t, uMouse);
+          // Range 1: Foreground (dark, sharp, strong parallax, no haze)
+          vec4 r1 = evaluateMountainRidge(uv, -0.02, 0.36, 2.8, 89.1, 0.52, 0.0,
+                                          baseRock, baseLit * 0.9, baseMist * 0.8, t, uMouse);
           if (r1.a > 0.0) {
-            result = mix(result, r1, r1.a);
+            result = r1;
           }
 
-          // Nappe de brume basse en avant-plan (High quality)
+          // Low-lying mist blanket at the very bottom (HIGH quality)
           if (uQualityLevel >= 2) {
             float lowMist = smoothstep(0.12, -0.05, uv.y);
             float mistTurb = snoise(vec2(uv.x * 2.5 + t * uSpeed * 0.2, uv.y * 3.0)) * 0.5 + 0.5;
@@ -288,9 +312,12 @@ export class ParallaxMountainsInstance implements IBrickInstance {
     if (newProps.density !== undefined) this.material.uniforms.uDensity.value = newProps.density
     if (newProps.speed !== undefined) this.material.uniforms.uSpeed.value = newProps.speed
     if (newProps.depth !== undefined) this.material.uniforms.uDepth.value = newProps.depth
-    if (newProps.intensity !== undefined) this.material.uniforms.uIntensity.value = newProps.intensity
-    if (newProps.randomness !== undefined) this.material.uniforms.uRandomness.value = newProps.randomness
-    if (newProps.snowLevel !== undefined) this.material.uniforms.uSnowLevel.value = newProps.snowLevel
+    if (newProps.intensity !== undefined)
+      this.material.uniforms.uIntensity.value = newProps.intensity
+    if (newProps.randomness !== undefined)
+      this.material.uniforms.uRandomness.value = newProps.randomness
+    if (newProps.snowLevel !== undefined)
+      this.material.uniforms.uSnowLevel.value = newProps.snowLevel
     if (newProps.sunAngle !== undefined) this.material.uniforms.uSunAngle.value = newProps.sunAngle
   }
 

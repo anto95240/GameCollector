@@ -19,6 +19,18 @@ const PwaUpdater = () => {
   })
 
   useEffect(() => {
+    // En développement, désinscrire les anciens Service Workers résiduels sur localhost
+    if (import.meta.env.DEV) {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
+          for (const registration of registrations) {
+            registration.unregister()
+          }
+        })
+      }
+      return
+    }
+
     if (needRefresh) {
       const toastId = showToast(
         '✨ Level Up ! Une nouvelle mise à jour est disponible.',

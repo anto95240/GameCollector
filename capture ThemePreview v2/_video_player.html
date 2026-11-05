@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><body style="margin:0;background:#000">
+<video id="v" muted style="max-width:100%;max-height:100vh"></video>
+<canvas id="c" style="display:none"></canvas>
+<script>
+const v = document.getElementById('v');
+const c = document.getElementById('c');
+v.src = 'file:///c:\ANTOINE\GITHUB\GameCollector\docs\parallaxe.mp4';
+v.load();
+
+window.seekAndCapture = async function(t) {
+  return new Promise((resolve) => {
+    v.currentTime = t;
+    v.onseeked = () => {
+      c.width = v.videoWidth;
+      c.height = v.videoHeight;
+      c.getContext('2d').drawImage(v, 0, 0);
+      resolve(c.toDataURL('image/png'));
+    };
+  });
+};
+
+window.getDuration = function() { return v.duration; };
+window.getReady = function() { return v.readyState >= 2; };
+</script>
+</body></html>

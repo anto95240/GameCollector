@@ -122,20 +122,37 @@ export class ParallaxForestInstance implements IBrickInstance {
         ${GLSL_NOISE_2D}
         ${GLSL_HASH}
 
-        // Calcule la silhouette d'un arbre conifère / sapin avec branches triangulaires étagées
-        float treeSilhouette(vec2 p, float treeH, float treeW, float windSway) {
+        // Tree canopy: smooth envelope that broadens at the base and tapers to a point.
+        // Uses noise to create irregular leaf edges on the silhouette boundary.
+        float treeSilhouette(vec2 p, float treeH, float treeW, float windSway, float randSeed) {
           if (p.y > treeH || p.y < 0.0) return 0.0;
-          // Flexion quadratique du sommet sous le vent
+
+          // Quadratic wind flexion of the crown
           float sway = windSway * pow(max(0.0, p.y / max(0.01, treeH)), 2.0);
           float px = p.x - sway;
 
-          // 3 étages de branchages triangulaires se rétrécissant vers la cime
+          // Relative height within the tree (0 = base, 1 = tip)
           float yRel = p.y / treeH;
-          float tier1 = max(0.0, 1.0 - abs(px) / (treeW * (1.0 - yRel * 0.8)));
+
+          // Base canopy envelope: widest at ~20% height, tapering to a point at top
+          float envelopeRadius = treeW * (1.0 - pow(yRel, 1.4)) * smoothstep(0.0, 0.15, yRel);
+
+          // Add trunk below the canopy start
+          float trunkRadius = treeW * 0.12;
+          float trunkZone = smoothstep(0.18, 0.05, yRel);
+          envelopeRadius = max(envelopeRadius, trunkRadius * trunkZone);
+
+          // Distance from center axis
+          float dist = abs(px);
           
-          // Dents de branches crénelées
-          float branchNoise = snoise(vec2(px * 18.0, p.y * 12.0)) * 0.15;
-          return step(0.1, tier1 + branchNoise);
+          // Irregular leaf edges: noise on the boundary to break the smooth outline
+          float edgeNoise = snoise(vec2(px * 22.0 + randSeed * 5.0, p.y * 18.0 + randSeed * 3.0)) * 0.25 * treeW;
+          edgeNoise += snoise(vec2(px * 45.0 + randSeed * 9.0, p.y * 35.0)) * 0.1 * treeW;
+
+          float boundary = envelopeRadius + edgeNoise;
+
+          // Smooth edge for anti-aliased silhouette
+          return smoothstep(boundary, boundary - 0.003, dist);
         }
 
         // Évalue une strate complète d'arbres avec parallaxe et décalage
@@ -155,30 +172,58 @@ export class ParallaxForestInstance implements IBrickInstance {
           float shiftY = mouse.y * uDepth * parallaxRatio * 0.4 + uScroll * parallaxRatio * 0.2;
           vec2 p = vec2(uv.x + shiftX, uv.y + shiftY);
 
-          // Ligne de crête vallonnée du sol
-          float groundNoise = snoise(vec2(p.x * 2.2 * uDensity, layerScale * 5.0)) * 0.06;
+          // Undulating ground line (multi-frequency noise for natural hills)
+          float groundNoise = snoise(vec2(p.x * 1.8 * uDensity, layerScale * 5.0)) * 0.08;
+          groundNoise += snoise(vec2(p.x * 4.5 * uDensity, layerScale * 12.0)) * 0.03;
           float groundY = baseLineY + groundNoise;
 
           // Échantillonnage de troncs d'arbres espacés
           float cellWidth = 0.045 / (layerScale * uDensity);
           float cellIndex = floor(p.x / cellWidth);
-          float cellX = p.x - (cellIndex + 0.5) * cellWidth;
+          float cellCenter = (cellIndex + 0.5) * cellWidth;
 
-          // Variabilité par arbre via hash
+          // Slight horizontal jitter per tree so they don't sit on an exact grid
+          float jitterX = (hash12(vec2(cellIndex, layerScale * 17.3)) - 0.5) * cellWidth * 0.35;
+          float cellX = p.x - cellCenter - jitterX;
+
+          // Per-tree randomisation via hash
           float randSeed = hash12(vec2(cellIndex, layerScale * 17.3));
-          float treeExists = step(0.15, randSeed); // 85% de chance d'arbre présent
-          float treeHeight = (0.16 + randSeed * 0.12 * uRandomness) * layerScale;
-          float treeWidth = (0.022 + randSeed * 0.01 * uRandomness) * layerScale;
+          float treeExists = step(0.15, randSeed);
+          float treeHeight = (0.16 + randSeed * 0.14 * uRandomness) * layerScale;
+          float treeWidth = (0.028 + randSeed * 0.015 * uRandomness) * layerScale;
 
-          // Rafale de vent locale non-linéaire
+          // Non-linear local wind gust
           float wind = sin(time * uSpeed * 2.5 + cellIndex * 0.8) * 0.018 * uWindStrength;
           wind += snoise(vec2(p.x * 3.0, time * uSpeed * 1.2)) * 0.012 * uWindStrength;
 
           float localY = p.y - groundY;
           vec2 treeCoord = vec2(cellX, localY);
-          float inTree = treeSilhouette(treeCoord, treeHeight, treeWidth, wind) * treeExists;
+          float inTree = treeSilhouette(treeCoord, treeHeight, treeWidth, wind, randSeed) * treeExists;
 
-          // Sol sous la ligne de crête
+          // Also check the two neighbouring cells to avoid gaps at cell boundaries
+          float leftIdx = cellIndex - 1.0;
+          float leftCenter = (leftIdx + 0.5) * cellWidth;
+          float leftJitter = (hash12(vec2(leftIdx, layerScale * 17.3)) - 0.5) * cellWidth * 0.35;
+          float leftRand = hash12(vec2(leftIdx, layerScale * 17.3));
+          float leftH = (0.16 + leftRand * 0.14 * uRandomness) * layerScale;
+          float leftW = (0.028 + leftRand * 0.015 * uRandomness) * layerScale;
+          float leftWind = sin(time * uSpeed * 2.5 + leftIdx * 0.8) * 0.018 * uWindStrength;
+          leftWind += snoise(vec2((leftCenter + leftJitter) * 3.0, time * uSpeed * 1.2)) * 0.012 * uWindStrength;
+          float leftTree = treeSilhouette(vec2(p.x - leftCenter - leftJitter, localY), leftH, leftW, leftWind, leftRand) * step(0.15, leftRand);
+
+          float rightIdx = cellIndex + 1.0;
+          float rightCenter = (rightIdx + 0.5) * cellWidth;
+          float rightJitter = (hash12(vec2(rightIdx, layerScale * 17.3)) - 0.5) * cellWidth * 0.35;
+          float rightRand = hash12(vec2(rightIdx, layerScale * 17.3));
+          float rightH = (0.16 + rightRand * 0.14 * uRandomness) * layerScale;
+          float rightW = (0.028 + rightRand * 0.015 * uRandomness) * layerScale;
+          float rightWind = sin(time * uSpeed * 2.5 + rightIdx * 0.8) * 0.018 * uWindStrength;
+          rightWind += snoise(vec2((rightCenter + rightJitter) * 3.0, time * uSpeed * 1.2)) * 0.012 * uWindStrength;
+          float rightTree = treeSilhouette(vec2(p.x - rightCenter - rightJitter, localY), rightH, rightW, rightWind, rightRand) * step(0.15, rightRand);
+
+          inTree = max(inTree, max(leftTree, rightTree));
+
+          // Ground below the hill line
           float inGround = step(p.y, groundY);
 
           float totalCoverage = max(inTree, inGround);
@@ -228,17 +273,21 @@ export class ParallaxForestInstance implements IBrickInstance {
             result = mix(result, l1, l1.a);
           }
 
-          // Effet High Quality : Micro-lucioles dans les branchages
+          // HIGH quality: micro-fireflies in the canopy — warm golden, irregularly placed
           if (uQualityLevel >= 2 && result.a > 0.2) {
-            vec2 fireflyCoord = uv * vec2(25.0, 35.0);
-            vec2 fireflyCell = floor(fireflyCoord);
-            float fRand = hash12(fireflyCell + 42.1);
-            if (fRand > 0.88) {
-              float pulse = sin(t * 3.0 + fRand * 6.28) * 0.5 + 0.5;
-              float dist = length(fract(fireflyCoord) - 0.5);
-              float glow = smoothstep(0.3, 0.0, dist) * pulse;
-              vec3 fireflyCol = uUseCustomColors ? uPaletteAccent : vec3(0.95, 0.85, 0.3);
-              result.rgb += fireflyCol * glow * 0.75 * uIntensity;
+            // Use a coarser grid and jitter each firefly's position via hash
+            vec2 ffGrid = uv * vec2(18.0, 24.0);
+            vec2 ffCell = floor(ffGrid);
+            float fRand = hash12(ffCell + 42.1);
+            if (fRand > 0.9) {
+              // Jitter within the cell for irregular placement
+              vec2 jitter = hash22(ffCell + 77.3) * 0.7 + 0.15;
+              float pulse = pow(sin(t * (2.2 + fRand * 2.0) + fRand * 6.28) * 0.5 + 0.5, 2.5);
+              float dist = length(fract(ffGrid) - jitter);
+              float glow = smoothstep(0.15, 0.0, dist) * pulse;
+              // Always warm golden, never use palette accent which may be pink
+              vec3 fireflyCol = vec3(0.95, 0.85, 0.3);
+              result.rgb += fireflyCol * glow * 0.55 * uIntensity;
             }
           }
 
@@ -281,9 +330,12 @@ export class ParallaxForestInstance implements IBrickInstance {
     if (newProps.density !== undefined) this.material.uniforms.uDensity.value = newProps.density
     if (newProps.speed !== undefined) this.material.uniforms.uSpeed.value = newProps.speed
     if (newProps.depth !== undefined) this.material.uniforms.uDepth.value = newProps.depth
-    if (newProps.intensity !== undefined) this.material.uniforms.uIntensity.value = newProps.intensity
-    if (newProps.randomness !== undefined) this.material.uniforms.uRandomness.value = newProps.randomness
-    if (newProps.windStrength !== undefined) this.material.uniforms.uWindStrength.value = newProps.windStrength
+    if (newProps.intensity !== undefined)
+      this.material.uniforms.uIntensity.value = newProps.intensity
+    if (newProps.randomness !== undefined)
+      this.material.uniforms.uRandomness.value = newProps.randomness
+    if (newProps.windStrength !== undefined)
+      this.material.uniforms.uWindStrength.value = newProps.windStrength
   }
 
   public onQualityChange(quality: QualityTier): void {
