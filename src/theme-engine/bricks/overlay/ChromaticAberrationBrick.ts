@@ -117,75 +117,71 @@ export class ChromaticAberrationInstance implements IBrickInstance {
           // Centre optique influencé par la souris
           vec2 center = vec2(0.5) + uMouse * (uDepth * 0.12);
           vec2 dir = uv - center;
-          vec2 aspectDir = dir * vec2(aspect, 1.0);
+          vec2 aspectDir = dir * vec2(min(aspect, 1.4), 1.0);
           float dist = length(aspectDir);
 
-          // Atténuation centrale stricte (zéro effet au centre de l'écran pour 100% de lisibilité du texte)
-          float edgeFactor = pow(clamp(dist * 1.5, 0.0, 1.5), uRadialFalloff);
+          // Atténuation centrale : zéro effet au centre pour 100% de lisibilité du texte UI
+          // Montée très progressive vers les bords extrêmes du cadre
+          float edgeFactor = pow(smoothstep(0.45, 1.05, dist), uRadialFalloff);
 
-          if (edgeFactor <= 0.005) {
+          if (edgeFactor <= 0.002) {
             discard;
           }
 
-          vec2 normDir = normalize(dir);
           float angle = atan(dir.y, dir.x);
 
           vec3 finalColor = vec3(0.0);
           float alpha = 0.0;
 
           if (uQualityLevel >= 2) {
-            // === PALIER HIGH : Dispersion spectrale 3 bandes + Ondulation Simplex + Réactivité dynamique ===
-            vec2 noiseCoord = uv * (5.0 * uDensity) + vec2(sin(uTime * uSpeed * 0.8), cos(uTime * uSpeed * 0.6));
-            float prismNoise = snoise(noiseCoord) * (uRandomness * 0.15);
+            // === PALIER HIGH : Dispersion spectrale 3 bandes + micro-ondulation Simplex fine ===
+            vec2 noiseCoord = uv * (4.0 * uDensity) + vec2(sin(uTime * uSpeed * 0.6), cos(uTime * uSpeed * 0.5));
+            float prismNoise = snoise(noiseCoord) * (uRandomness * 0.035);
 
             float effDist = dist + prismNoise;
+            float shift = uSpread * 1.5;
 
-            // Décalage spectral proportionnel à l'étirement radial
-            float shift = uSpread * edgeFactor;
+            // Franges spectrales RVB progressives
+            float redBand = smoothstep(0.55, 1.05, effDist + shift);
+            float greenBand = smoothstep(0.60, 1.10, effDist);
+            float blueBand = smoothstep(0.65, 1.15, effDist - shift);
 
-            // Franges spectrale rouge/cyan et violette/jaune
-            float redBand = smoothstep(0.40, 0.75, effDist + shift);
-            float greenBand = smoothstep(0.45, 0.80, effDist);
-            float blueBand = smoothstep(0.50, 0.85, effDist - shift);
+            vec3 spectralRGB = vec3(redBand * 0.9, greenBand * 0.5 + blueBand * 0.2, blueBand * 1.1);
 
-            // Composition spectrale continue
-            vec3 spectralRGB = vec3(redBand * 1.1, greenBand * 0.7, blueBand * 1.2);
+            vec3 customTone = uUseCustomColor ? uAberrationColor : vec3(0.0, 0.9, 1.0);
+            vec3 complementaryTone = vec3(1.0, 0.2, 0.5);
+            float angleMod = sin(angle * 2.0 + uTime * uSpeed) * 0.5 + 0.5;
 
-            // Modulation chromatique rotative le long du contour de lentille
-            vec3 customTone = uUseCustomColor ? uAberrationColor : vec3(0.0, 0.94, 1.0);
-            vec3 complementaryTone = vec3(1.0, 0.15, 0.4);
-            float angleMod = sin(angle * 2.0 + uTime * uSpeed * 1.5) * 0.5 + 0.5;
-
-            finalColor = mix(spectralRGB, mix(customTone, complementaryTone, angleMod), 0.5);
-            alpha = clamp(edgeFactor * uIntensity * (redBand + blueBand) * 0.6, 0.0, 0.85);
+            finalColor = mix(spectralRGB, mix(customTone, complementaryTone, angleMod), 0.3);
+            alpha = edgeFactor * uIntensity * 0.45;
 
           } else if (uQualityLevel >= 1) {
             // === PALIER MEDIUM : Franges bicolores cyan/magenta radiale directes ===
-            float shift = uSpread * edgeFactor;
-            float rBand = smoothstep(0.45, 0.8, dist + shift);
-            float bBand = smoothstep(0.50, 0.85, dist - shift);
+            float shift = uSpread * 1.2;
+            float rBand = smoothstep(0.60, 1.10, dist + shift);
+            float bBand = smoothstep(0.65, 1.15, dist - shift);
 
-            vec3 fringeColor = vec3(rBand, 0.1, bBand);
+            vec3 fringeColor = vec3(rBand * 0.8, 0.1, bBand * 0.9);
             finalColor = fringeColor;
-            alpha = clamp(edgeFactor * uIntensity * 0.5, 0.0, 0.8);
+            alpha = edgeFactor * uIntensity * 0.35;
 
           } else {
-            // === PALIER LOW : Frange horizontale simple sans trigonométrie ===
+            // === PALIER LOW : Frange périphérique simple sans trigonométrie ===
             float hDist = abs(uv.x - 0.5) * 2.0;
-            float lowEdge = pow(hDist, uRadialFalloff);
-            finalColor = vec3(0.0, 0.8, 1.0) * lowEdge;
-            alpha = clamp(lowEdge * uIntensity * 0.4, 0.0, 0.75);
+            float lowEdge = pow(smoothstep(0.5, 1.0, hDist), uRadialFalloff);
+            finalColor = (uUseCustomColor ? uAberrationColor : vec3(0.0, 0.8, 1.0)) * lowEdge;
+            alpha = lowEdge * uIntensity * 0.3;
           }
 
-          if (alpha <= 0.004) discard;
+          if (alpha <= 0.002) discard;
 
-          gl_FragColor = vec4(finalColor, alpha);
+          gl_FragColor = vec4(finalColor * alpha, 1.0);
         }
       `,
       transparent: true,
       depthWrite: false,
       depthTest: false,
-      blending: THREE.NormalBlending,
+      blending: THREE.AdditiveBlending,
     })
 
     this.mesh = new THREE.Mesh(geometry, this.material)

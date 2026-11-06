@@ -43,3 +43,6 @@ docs/
 scripts/
 
 .agents/
+
+# === Captures de validation visuelle ===
+capture ThemePreview*/

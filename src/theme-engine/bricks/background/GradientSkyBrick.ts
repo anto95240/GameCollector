@@ -148,13 +148,17 @@ export class GradientSkyInstance implements IBrickInstance {
           vec3 colBottom = uUseCustomColors ? uBottomColor : uPalettePrimary;
           vec3 colHorizon = uUseCustomColors ? uHorizonColor : uPaletteAccent;
 
-          // Dégradé principal
+          // Dégradé principal entre sol et zénith
           vec3 col = mix(colBottom, colTop, smoothstep(0.0, 1.0, gradY));
 
-          // Lueur d'horizon organique
-          float horizonDist = abs(uv.y - 0.28 + organicNoise * 0.5);
-          float horizonGlow = exp(-horizonDist * 5.0) * (0.35 * uIntensity);
-          col += colHorizon * horizonGlow;
+          // Lueur d'horizon atmosphérique dynamique avec double diffusion
+          float horizonDist = abs(uv.y - 0.33 + organicNoise * 0.35);
+          float glowCore = exp(-horizonDist * 5.5) * 0.95;
+          float glowAtmosphere = exp(-horizonDist * 1.8) * 0.45;
+          float horizonGlow = (glowCore + glowAtmosphere) * uIntensity;
+
+          // Teinte lumineuse et contrastée de l'horizon
+          col = mix(col, colHorizon, clamp(glowCore * 0.7, 0.0, 1.0)) + colHorizon * (glowAtmosphere * uIntensity);
 
           // Modulation subtile d'intensité globale
           col *= uIntensity;

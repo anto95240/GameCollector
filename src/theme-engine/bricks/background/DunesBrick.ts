@@ -88,7 +88,9 @@ export class DunesInstance implements IBrickInstance {
         uIntensity: { value: intensity },
         uRandomness: { value: randomness },
         uSunAngle: { value: sunAngle },
-        uQualityLevel: { value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0 },
+        uQualityLevel: {
+          value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
+        },
       },
       vertexShader: /* glsl */ `
         varying vec2 vUv;
@@ -138,10 +140,13 @@ export class DunesInstance implements IBrickInstance {
           float normalX = cos(x * freq + speedShift) * 0.5 + ridgeNoise * 0.3;
           float lightFactor = clamp(normalX * cos(uSunAngle) + sin(uSunAngle) * 0.7, 0.0, 1.0);
 
-          // Micro-rides de sable (sand ripples) haute fréquence
+          // Micro-rides de sable (sand ripples) organiques sculptées par le vent (sans rayures périodiques)
           float ripple = 0.0;
           if (uQualityLevel >= 2) {
-            ripple = sin(uv.x * 90.0 + uv.y * 30.0 + time * 0.2) * 0.08;
+            float windWarp = snoise(vec2(x * 5.0 + speedShift, uv.y * 6.0 + time * 0.08)) * (uRandomness * 0.7);
+            float rippleAngle = (x * 35.0 + uv.y * 12.0) + windWarp * 3.5;
+            float slopeFade = smoothstep(0.02, 0.25, slope) * smoothstep(1.8, 0.5, slope);
+            ripple = sin(rippleAngle) * (0.035 * uIntensity) * slopeFade;
           }
 
           return vec4(lightFactor + ripple, 1.0, ridgeY, slope);
@@ -230,8 +235,10 @@ export class DunesInstance implements IBrickInstance {
     if (newProps.speed !== undefined) this.material.uniforms.uSpeed.value = newProps.speed
     if (newProps.density !== undefined) this.material.uniforms.uDensity.value = newProps.density
     if (newProps.depth !== undefined) this.material.uniforms.uDepth.value = newProps.depth
-    if (newProps.intensity !== undefined) this.material.uniforms.uIntensity.value = newProps.intensity
-    if (newProps.randomness !== undefined) this.material.uniforms.uRandomness.value = newProps.randomness
+    if (newProps.intensity !== undefined)
+      this.material.uniforms.uIntensity.value = newProps.intensity
+    if (newProps.randomness !== undefined)
+      this.material.uniforms.uRandomness.value = newProps.randomness
     if (newProps.sunAngle !== undefined) this.material.uniforms.uSunAngle.value = newProps.sunAngle
   }
 

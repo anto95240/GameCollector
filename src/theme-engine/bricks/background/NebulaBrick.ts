@@ -87,7 +87,9 @@ export class NebulaInstance implements IBrickInstance {
         uIntensity: { value: intensity },
         uRandomness: { value: randomness },
         uCoreScale: { value: coreScale },
-        uQualityLevel: { value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0 },
+        uQualityLevel: {
+          value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
+        },
       },
       vertexShader: /* glsl */ `
         varying vec2 vUv;
@@ -152,12 +154,15 @@ export class NebulaInstance implements IBrickInstance {
           float swirl = sin(dist * 2.0 - t * 0.5) * (0.8 * uRandomness);
           vec2 pRot = vec2(cos(angle + swirl), sin(angle + swirl)) * dist;
 
-          // Voiles de gaz 1 et 2
+          // Voiles de gaz 1 et 2 avec domain warping isotrope
           float n1 = nebulaFbm(pRot * 1.8 + vec2(t * 0.03, -t * 0.02), uQualityLevel);
-          float n2 = nebulaFbm(pRot * 2.5 - vec2(t * 0.04, t * 0.03) + n1 * (uRandomness * 1.2), uQualityLevel);
+          vec2 warpOffset = vec2(n1, snoise(pRot * 2.2 + vec2(3.1, 1.7))) * (uRandomness * 0.8);
+          float n2 = nebulaFbm(pRot * 2.5 - vec2(t * 0.04, t * 0.03) + warpOffset, uQualityLevel);
 
-          // Normalisation et seuillage de densité
+          // Normalisation et seuillage de densité avec illumination du coeur
           float gas = clamp((n1 * 0.6 + n2 * 0.4) * 0.5 + 0.5, 0.0, 1.0);
+          float coreGasBoost = pow(max(0.0, 1.0 - dist * 1.1), 1.8) * 0.35;
+          gas = clamp(gas + coreGasBoost, 0.0, 1.0);
           gas = pow(gas, 2.5 - uDensity * 1.5);
 
           // Sélection des couleurs
@@ -168,10 +173,11 @@ export class NebulaInstance implements IBrickInstance {
           // Dégradé profond des volutes
           vec3 col = mix(colSec, colPrim, smoothstep(0.1, 0.7, gas));
 
-          // Éclat d'ionisation au coeur
+          // Éclat d'ionisation au coeur (coeur stellaire rayonnant sans zone d'ombre artificielle)
           float coreGlow = pow(gas, 3.2) * (1.6 * uIntensity);
+          float coreRadial = pow(max(0.0, 1.0 - dist * 0.9), 2.2) * (0.85 * uIntensity);
           col = mix(col, colAcc, clamp(coreGlow, 0.0, 0.95));
-          col += colAcc * pow(max(0.0, 1.0 - dist * 1.2), 3.0) * (0.25 * uIntensity);
+          col += colAcc * coreRadial;
 
           // Micro-étoiles incorporées si qualité HIGH
           if (uQualityLevel >= 2) {
@@ -225,9 +231,12 @@ export class NebulaInstance implements IBrickInstance {
     if (newProps.speed !== undefined) this.material.uniforms.uSpeed.value = newProps.speed
     if (newProps.density !== undefined) this.material.uniforms.uDensity.value = newProps.density
     if (newProps.depth !== undefined) this.material.uniforms.uDepth.value = newProps.depth
-    if (newProps.intensity !== undefined) this.material.uniforms.uIntensity.value = newProps.intensity
-    if (newProps.randomness !== undefined) this.material.uniforms.uRandomness.value = newProps.randomness
-    if (newProps.coreScale !== undefined) this.material.uniforms.uCoreScale.value = newProps.coreScale
+    if (newProps.intensity !== undefined)
+      this.material.uniforms.uIntensity.value = newProps.intensity
+    if (newProps.randomness !== undefined)
+      this.material.uniforms.uRandomness.value = newProps.randomness
+    if (newProps.coreScale !== undefined)
+      this.material.uniforms.uCoreScale.value = newProps.coreScale
   }
 
   public onQualityChange(quality: QualityTier): void {
