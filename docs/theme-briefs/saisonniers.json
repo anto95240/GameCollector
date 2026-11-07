@@ -1,0 +1,1271 @@
+[
+  {
+    "id": "halloween",
+    "name": "Halloween",
+    "family": "Horreur & mystère",
+    "intensity": 3,
+    "universe": "halloween",
+    "evocation": "La nuit celtique de Samhain et le folklore gothique d'Halloween : un cimetière brumeux aux portes d'un manoir victorien abandonné, une lune d'octobre géante voilée par des nuages effilochés, des lanternes citrouilles aux regards ardents vacillant dans l'obscurité, et une nuée de chauves-souris fendant l'air sous des rafales glaciales.",
+    "signature": "Une lanterne Jack-o'-lantern sculptée aux orbites incandescentes qui diffuse une lumière vacillante ambrée à travers une nappe de brume rampante, tandis que des silhouettes de chauves-souris tournoient en nuée sous une lune sanguine.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel nocturne violet sombre tourmenté par des bancs de nuages vaporeux déchiquetés et le halo volumétrique diffus d'une pleine lune sanguine au zénith."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette monumentale et asymétrique d'un manoir gothique juché sur un promontoire rocheux escarpé, avec meurtrières faiblement allumées et vol de corbeaux."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian atmosphérique",
+        "description": "Nappe de brume volumétrique spectrale rampante et tourbillonnante au ras du sol, teintée de violet spectral et d'orange citrouille."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan focal",
+        "description": "Foyer ardent de lanterne Jack-o'-lantern projetant une lueur thermique vacillante et une colonne convective de flammèches et de braises incandescentes ascendantes."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat & overlay",
+        "description": "Vignettage ténébreux asymétrique concentrant le regard, grain argentique 35mm d'ambiance cinéma d'horreur et frôlement furtif d'ailes de chauves-souris."
+      }
+    ],
+    "particles": {
+      "type": "Braises incandescentes et flammèches thermiques ascendantes (embers)",
+      "size": "1.0 à 2.8 px",
+      "speed": "0.55 (convection ascendante turbulente sous Simplex 3D)",
+      "density": "130 braises actives en 1 draw call instancié",
+      "behavior": "Ascension thermique convective turbulente, refroidissement stochastique continu du blanc-jaune ardent vers l'orange vif puis le pourpre sombre avant extinction, avec répulsion vive et tourbillons au passage du curseur."
+    },
+    "atmosphere": {
+      "mist": "Brume rampante dense et vaporeuse générée par Simplex FBM avec domain warping, teintée de violet spectral (#7c3aed) et d'ambre brûlé.",
+      "light": "Vacillante, dramatique et inquiétante, oscillant entre pénombre noire charbonneuse et fulgurances ambrées.",
+      "airColor": "Noir charbonneux (#0c0603) en profondeur, virant au violet spectre (#3b0764) et orange citrouille (#ea580c).",
+      "mainLightSource": "Foyer ardent au bas de l'écran combiné au dôme de clarté lunaire spectrale au zénith."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclair spectral nocturne",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 18 secondes",
+        "description": "Une décharge électrique ramifiée violette illumine violemment le ciel et découpe la silhouette du manoir gothique en contre-jour avant une décroissance stochastique."
+      },
+      {
+        "name": "Bourrasque glaciale d'octobre",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 24 secondes",
+        "description": "Une rafale d'air turbulente balaye la scène, inclinant brutalement la brume rampante et attisant l'envolée des braises incandescentes."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe multi-plans décale la silhouette du manoir et de la lune ; le curseur émet une aura spectrale qui repousse vivement la brume et agite les flammèches de la lanterne au survol.",
+      "scroll": "Soulève la nappe de brume du cimetière vers le centre de l'écran et densifie le vignettage périphérique tout en préservant le contraste des cartes UI."
+    },
+    "palette": [
+      "#0c0603",
+      "#f97316",
+      "#c060ff",
+      "#7c3aed",
+      "#ea580c",
+      "#2e1065"
+    ],
+    "references": [
+      "Shadertoy spooky pumpkin lantern glow",
+      "CodePen haunted halloween parallax castle",
+      "Three.js volumetric fog bats flock"
+    ],
+    "risks": {
+      "pitfall": "Rendu 'fête foraine' ou clipart criard orange et noir saturé avec des fantômes enfantins ou des chauves-souris en simples GIFs répétitifs.",
+      "solution": "Esthétique gothique victorienne feutrée, simulation physique convective des braises, vacillement organique multi-fréquence Simplex et palette sombre élégante préservant la lisibilité WCAG AA."
+    },
+    "bricks": [
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "cloudColor": "#1e1035",
+          "skyColor": "#0c0603",
+          "density": 0.75,
+          "speed": 0.12,
+          "intensity": 1.1,
+          "randomness": 0.45
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fed7aa",
+          "glowColor": "#ea580c",
+          "outerColor": "#3b0764",
+          "glowX": 0.35,
+          "glowY": 0.75,
+          "density": 1.1,
+          "intensity": 1.25
+        }
+      },
+      {
+        "brick": "parallax_castle",
+        "params": {
+          "castleColor": "#050308",
+          "torchColor": "#f97316",
+          "rockColor": "#0c0603",
+          "density": 0.85,
+          "ruinDecay": 0.45,
+          "torchGlow": 1.1
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#3b0764",
+          "density": 1.2,
+          "speed": 0.18,
+          "heightFalloff": 2.0,
+          "intensity": 1.15
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#f97316",
+          "secondaryColor": "#c026d3",
+          "flickerType": 0,
+          "intensity": 1.25,
+          "lightX": 0.0,
+          "lightY": -0.4,
+          "speed": 0.35
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#ea580c",
+          "hotColor": "#fed7aa",
+          "density": 1.0,
+          "speed": 0.55,
+          "coolingRate": 1.1,
+          "intensity": 1.3
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "lightningColor": "#c084fc",
+          "flashColor": "#3b0764",
+          "strikeInterval": 18.0,
+          "speed": 1.4,
+          "intensity": 1.2
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#a855f7",
+          "gustInterval": 24.0,
+          "speed": 1.3,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#050204",
+          "intensity": 0.75,
+          "smoothness": 0.9,
+          "roundness": 0.65
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.07,
+          "speed": 0.7,
+          "density": 1.2,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "bat_swarm",
+        "category": "special",
+        "reason": "La signature iconique d'Halloween requiert une volée instanciée 3D de chauves-souris en boids erratiques tournoyant dans la brume et se dispersant au passage du curseur."
+      }
+    ]
+  },
+  {
+    "id": "christmas",
+    "name": "Christmas",
+    "family": "Magie & fantasy",
+    "intensity": 3,
+    "universe": "christmas",
+    "evocation": "La nuit enchantée de Noël au cœur d'une forêt de conifères enneigés : un firmament étoilé étincelant strié d'une aurore boréale discrète, des silhouettes de sapins majestueux chargés de neige fraîche, des guirlandes de lucioles dorées s'allumant en cascade entre les branches, et une valse silencieuse de flocons cotonneux sous une brise feutrée.",
+    "signature": "Une forêt de sapins alpins lourdement poudrés de neige sous une nuit étoilée où des guirlandes de lucioles dorées s'allument en cascade au milieu d'un blizzard doux de flocons cristallins.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Voûte étoilée nocturne bleu nuit boréal constellée d'étoiles scintillantes et draperie éthérée d'aurore polaire émeraude et dorée."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Pics alpins étagés aux crêtes rocheuses enneigées et glaciers bleutés illuminés par un éclat lunaire argenté."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Silhouette dense de forêt de grands sapins ploie sous la neige, ponctuée de micro-lucioles et guirlandes dorées palpitantes."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique & cinétique",
+        "description": "Averse feutrée de gros flocons de neige cotonneux oscillant au vent avec dispersion de masse et flou bokeh de profondeur Z."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat & overlay",
+        "description": "Lueur ambrée et chaleureuse de cheminée filtrant depuis le bas de l'écran, bordée d'un vignettage vert nuit feutré."
+      }
+    ],
+    "particles": {
+      "type": "Flocons de neige cristallins et cotonneux (snow)",
+      "size": "1.2 à 4.5 px avec flou bokeh optique",
+      "speed": "0.42 (chute douce oscillante)",
+      "density": "220 flocons actifs étagés en 3 strates Z",
+      "behavior": "Oscillation pendulaire déphasée individuel simulant la portance de l'air, dérive sous le vent latéral et formation de tourbillons aériens réactifs sous le pointeur."
+    },
+    "atmosphere": {
+      "mist": "Voile de brume cristalline givrée flottant entre les cimes des conifères.",
+      "light": "Féerique, contrastée entre la fraîcheur polaire du ciel boréal et la chaleur dorée réconfortante des lumières de fête.",
+      "airColor": "Vert sapin profond (#011408), bleu nuit boréal (#0f172a), rehaussé d'or étincelant (#ffd700) et de rouge fête (#cc1818).",
+      "mainLightSource": "Étoile zénithale scintillante combinée à la lueur dorée du chalet au bas de l'écran."
+    },
+    "rareEvents": [
+      {
+        "name": "Étoile filante de Noël féerique",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 16 secondes",
+        "description": "Un météore hypersonique traverse furtivement la voûte avec une longue traînée de plasma doré et d'étincelles féeriques persistantes."
+      },
+      {
+        "name": "Bourrasque de poudreuse",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 26 secondes",
+        "description": "Un coup de vent soudain soulève un tourbillon de neige fine des branches de sapin, créant une onde soyeuse qui ondule à travers l'écran."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace les chaînes de montagnes et la profondeur de la forêt ; le curseur crée un souffle thermique qui fait valser les flocons de neige et avive la pulsation des lucioles dorées.",
+      "scroll": "Élève la perspective des sapins vers le ciel nocturne et accentue légèrement la densité des flocons en premier plan."
+    },
+    "palette": [
+      "#011408",
+      "#0f301c",
+      "#cc1818",
+      "#ffd700",
+      "#f8fafc",
+      "#1e3a8a"
+    ],
+    "references": [
+      "Shadertoy christmas snowfall pines",
+      "CodePen magical winter night starfield",
+      "Three.js bokeh snow holiday glow"
+    ],
+    "risks": {
+      "pitfall": "Effet 'boule à neige' kitsch et étouffant avec un rideau vertical mécanique de points blancs opaques et des guirlandes clignotantes agressives.",
+      "solution": "Distribution de masse réaliste des flocons, flou de bokeh, oscillation pendulaire stochastique Simplex et palette feutrée vert sapin/or préservant le confort de lecture."
+    },
+    "bricks": [
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#fef08a",
+          "density": 1.1,
+          "speed": 0.06,
+          "twinkleSpeed": 1.4,
+          "depth": 1.0
+        }
+      },
+      {
+        "brick": "aurora",
+        "params": {
+          "topColor": "#15803d",
+          "bottomColor": "#fef08a",
+          "density": 0.45,
+          "speed": 0.15,
+          "intensity": 0.8,
+          "waveFrequency": 2.2
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#010e06",
+          "sunColor": "#1e3a8a",
+          "mistColor": "#011408",
+          "density": 0.8,
+          "snowLevel": 0.5,
+          "depth": 0.35
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#011408",
+          "fogColor": "#064e3b",
+          "density": 1.2,
+          "windStrength": 0.25,
+          "speed": 0.15
+        }
+      },
+      {
+        "brick": "snow",
+        "params": {
+          "snowColor": "#f8fafc",
+          "density": 1.25,
+          "speed": 0.42,
+          "swayFrequency": 1.4,
+          "windStrength": 0.2,
+          "intensity": 1.1
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#ffd700",
+          "secondaryColor": "#cc1818",
+          "flickerType": 2,
+          "intensity": 1.1,
+          "lightX": 0.2,
+          "lightY": -0.5,
+          "speed": 0.25
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#ffffff",
+          "trailColor": "#ffd700",
+          "starInterval": 16.0,
+          "speed": 1.2,
+          "intensity": 1.3
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#e2e8f0",
+          "gustInterval": 26.0,
+          "speed": 1.1,
+          "intensity": 0.65
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000803",
+          "intensity": 0.6,
+          "smoothness": 0.9,
+          "roundness": 0.7
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.04,
+          "speed": 0.5,
+          "density": 1.0,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "instanced_holiday_lights",
+        "category": "special",
+        "reason": "La signature visuelle de Noël repose sur un maillage de micro-ampoules instanciées 3D drapées entre les conifères avec pulsation thermique déphasée rouge/vert/or et halo festif."
+      }
+    ]
+  },
+  {
+    "id": "spring",
+    "name": "Spring",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "spring",
+    "evocation": "L'équinoxe de printemps et le réveil pastoral de la nature : une matinée limpide et ensoleillée au-dessus d'un verger en fleurs, un ciel pastel azur vers vert d'eau, une brise tiède portant de rares pétales de cerisier rose poudré et de légères poussières de pollen doré flottant en apesanteur.",
+    "signature": "Une brise printanière ultra-douce faisant flotter quelques pétales de cerisier rose poudré et motes de pollen dorées au-dessus d'une silhouette de verger naissant.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste",
+        "description": "Dégradé atmosphérique pastel très clair reliant un zénith azur délicat à une lueur d'horizon vert tendre."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette évanescente de jeunes feuillus et collines pastorales ondulant très lentement sous le vent doux."
+      },
+      {
+        "plan": 3,
+        "type": "Premier plan cinétique",
+        "description": "Dérive vaporeuse de quelques pétales de cerisier rose nacré et grains de pollen dorés flottant au ralenti."
+      }
+    ],
+    "particles": {
+      "type": "Pétales de cerisier délicats (petals) et motes de pollen doré (dust)",
+      "size": "1.5 à 3.5 px pour les pétales, 0.8 px pour le pollen",
+      "speed": "0.22 (descente vaporeuse ralentie)",
+      "density": "35 pétales et 25 motes de poussière",
+      "behavior": "Vrille hélicoïdale 3D très lente sans tourbillon brusque, flottaison aérienne en apesanteur et répulsion délicate au survol de la souris."
+    },
+    "atmosphere": {
+      "mist": "Fine buée matinale limpide et transparente au ras de l'horizon verdoyant.",
+      "light": "Claire, diaphane, naturelle et réconfortante, sans éblouissement agressif.",
+      "airColor": "Vert herbe fraîche (#dcfce7) et rose floral poudré (#fbcfe8).",
+      "mainLightSource": "Soleil printanier matinal hors cadre diffusant une lumière diffuse et tiède."
+    },
+    "rareEvents": [
+      {
+        "name": "Souffle de brise printanière",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 35 secondes",
+        "description": "Une douce risée d'air tiède traverse horizontalement l'écran, inclinant momentanément la trajectoire des quelques pétales en suspension."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe très discrète sur le verger lointain ; le curseur incline très subtilement l'angle de dérive des pétales proches.",
+      "scroll": "Atténuation imperceptible de la teinte du dégradé céleste pour maximiser le confort de lecture des listes de jeux."
+    },
+    "palette": [
+      "#dcfce7",
+      "#10b981",
+      "#be185d",
+      "#fbcfe8",
+      "#fef08a",
+      "#065f46"
+    ],
+    "references": [
+      "Shadertoy gentle sakura petal breeze",
+      "CodePen pastel spring meadow gradient",
+      "CSS spring leaves subtle float"
+    ],
+    "risks": {
+      "pitfall": "Tempête de pétales saturés obstruant la vue ou dégradé vert trop acide fatiguant les yeux.",
+      "solution": "Nombre très réduit de particules (35 max), vitesse extrêmement ralentie, opacité modérée et contraste WCAG AA préservé sur toute l'interface."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#bae6fd",
+          "bottomColor": "#dcfce7",
+          "horizonColor": "#fef08a",
+          "density": 1.0,
+          "speed": 0.08,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#86efac",
+          "fogColor": "#dcfce7",
+          "density": 0.6,
+          "windStrength": 0.15,
+          "speed": 0.1
+        }
+      },
+      {
+        "brick": "petals",
+        "params": {
+          "petalColor": "#fbcfe8",
+          "accentColor": "#f472b6",
+          "density": 0.35,
+          "speed": 0.22,
+          "curlAmount": 0.8,
+          "windSpeed": 0.2,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#ffffff",
+          "gustInterval": 35.0,
+          "speed": 0.7,
+          "intensity": 0.4
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#064e3b",
+          "intensity": 0.15,
+          "smoothness": 1.2,
+          "roundness": 0.8
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "easter",
+    "name": "Easter",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "easter",
+    "evocation": "La fête printanière et bucolique de Pâques dans une prairie baignée de soleil : clairières fleuries parsemées de jonquilles, air tiède d'avril et brume dorée de rosée, petites motes chatoyantes et reflets veloutés évoquant la cueillette gourmande et les saveurs chocolatées.",
+    "signature": "Une brume de prairie dorée pastel où scintillent de micro-motes lumineuses ambrées et des reflets soyeux évoquant la surprise sucrée d'un matin de Pâques.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste",
+        "description": "Ciel pastel jaune poussin lumineux se fondant dans une douce clarté vanillée à l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette bocagère de collines herbeuses et bosquets arrondis en contre-jour ocre doré très doux."
+      },
+      {
+        "plan": 3,
+        "type": "Premier plan cinétique",
+        "description": "Motes dorées en suspension et micro-bulles de rosée matinale scintillant paisiblement sous les rayons tièdes."
+      }
+    ],
+    "particles": {
+      "type": "Motes dorées de lumière et micro-gouttes de rosée (dust)",
+      "size": "0.9 à 2.0 px",
+      "speed": "0.16 (flottement calme en quasi-apesanteur)",
+      "density": "40 motes dorées instanciées",
+      "behavior": "Mouvement brownien lent régulé par Simplex 3D, scintillement asynchrone non-périodique et répulsion feutrée au passage du curseur."
+    },
+    "atmosphere": {
+      "mist": "Nappe atmosphérique tiède, diaphane et lumineuse au ras des herbes de prairie.",
+      "light": "Chaude, veloutée, réconfortante et printanière, évoquant la douceur du chocolat.",
+      "airColor": "Jaune poussin lumineux (#fef08a), crème vanille (#fffbeb) et touches chocolat chaud (#451a03).",
+      "mainLightSource": "Soleil d'avril matinal diffusant un halo zénithal clair et chaleureux."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclat doré de rosée matinale",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 30 secondes",
+        "description": "Un micro-scintillement linéaire doré traverse discrètement un rayon de lumière comme un reflet soyeux sur une friandise cachée."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe très feutrée sur les collines herbeuses ; le passage de la souris fait scintiller plus intensément les motes dorées au premier plan.",
+      "scroll": "Décalage vertical très doux de la ligne d'horizon préservant la clarté des tableaux."
+    },
+    "palette": [
+      "#fef08a",
+      "#fffbeb",
+      "#451a03",
+      "#713f12",
+      "#8b5cf6",
+      "#eab308"
+    ],
+    "references": [
+      "Shadertoy sunny meadow bokeh",
+      "CodePen pastel morning dust motes",
+      "Easter morning soft golden light"
+    ],
+    "risks": {
+      "pitfall": "Thème criard ressemblant à un emballage de confiserie bon marché ou stickers 2D infantiles (lapins, œufs kitsch).",
+      "solution": "Approche impressionniste épurée de la lumière d'avril, palette crème/chocolat/miel noble et élégante, zéro clipart distrayant."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#fef9c3",
+          "bottomColor": "#fef08a",
+          "horizonColor": "#fde047",
+          "density": 0.9,
+          "speed": 0.08,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#ca8a04",
+          "fogColor": "#fef08a",
+          "density": 0.5,
+          "windStrength": 0.1,
+          "speed": 0.08
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#ca8a04",
+          "density": 0.4,
+          "speed": 0.16,
+          "intensity": 0.9,
+          "twinkleSpeed": 0.8
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#ffffff",
+          "trailColor": "#ca8a04",
+          "starInterval": 30.0,
+          "speed": 0.8,
+          "intensity": 0.5
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#451a03",
+          "intensity": 0.12,
+          "smoothness": 1.3,
+          "roundness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "summer",
+    "name": "Summer",
+    "family": "Éléments & catastrophes",
+    "intensity": 1,
+    "universe": "summer",
+    "evocation": "Le solstice d'été et la fin d'après-midi sur une côte méditerranéenne : un ciel bleu azur tiède se nuançant d'or à l'horizon, une houle marine calme aux reflets spéculaires dorés, des micro-embruns salins flottant dans la brise et une atmosphère de villégiature paisible.",
+    "signature": "Une houle marine paisible ondulant sous un ciel bleu ciel méditerranéen, avec des caustiques lumineuses et un reflet solaire doré rasant l'horizon.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste",
+        "description": "Ciel azur méditerranéen lumineux se dégradant vers une douce lueur dorée au zénith de l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Plan intermédiaire océanique",
+        "description": "Horizon maritime infini avec trains de vagues calmes et douces aux crêtes d'écume discrètes."
+      },
+      {
+        "plan": 3,
+        "type": "Premier plan cinétique",
+        "description": "Poussières d'embruns salins et motes dorées dérivant au gré de la brise marine estivale."
+      }
+    ],
+    "particles": {
+      "type": "Poussières d'embruns marins et motes solaires (dust)",
+      "size": "0.8 à 2.0 px",
+      "speed": "0.18 (dérive paisible au vent de mer)",
+      "density": "45 particules lumineuses",
+      "behavior": "Flottaison fluide et lente en suspension atmosphérique, étincelles douces au soleil couchant et sillage feutré sous la souris."
+    },
+    "atmosphere": {
+      "mist": "Fine évaporation marine tiède adoucissant la jonction entre l'océan et le ciel.",
+      "light": "Éclatante, dorée, ensoleillée et apaisante.",
+      "airColor": "Bleu ciel méditerranéen (#a8d8f0), sable doré (#fff8e8) et orange soleil couchant (#c94a00).",
+      "mainLightSource": "Soleil d'été déclinant à l'ouest projetant une nappe dorée rasante sur l'eau."
+    },
+    "rareEvents": [
+      {
+        "name": "Risée de brise marine",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 28 secondes",
+        "description": "Un souffle d'air marin tiède balaie la surface de l'eau, accentuant temporairement les rides de la houle."
+      }
+    ],
+    "interaction": {
+      "mouse": "Légère inclinaison de la perspective de l'eau et décalage de la traînée dorée ; les embruns sont doucement chassés par le curseur.",
+      "scroll": "Modifie imperceptiblement la hauteur d'horizon pour aérer les panneaux de données."
+    },
+    "palette": [
+      "#a8d8f0",
+      "#0284c7",
+      "#fff8e8",
+      "#c94a00",
+      "#eab308",
+      "#082f49"
+    ],
+    "references": [
+      "Shadertoy gentle ocean waves sunset",
+      "CodePen calm sea swell horizon",
+      "Mediterranean summer warm breeze"
+    ],
+    "risks": {
+      "pitfall": "Vagues agitées distrayant le regard ou dégradé criard type carte postale saturée.",
+      "solution": "Houle très ralentie (speed: 0.15), crêtes écumeuses très estompées, absence de saturation violente et contraste UI parfaitement préservé."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#38bdf8",
+          "bottomColor": "#a8d8f0",
+          "horizonColor": "#fef08a",
+          "density": 1.0,
+          "speed": 0.08,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "waves",
+        "params": {
+          "deepColor": "#0369a1",
+          "crestColor": "#bae6fd",
+          "density": 0.7,
+          "speed": 0.15,
+          "waveSteepness": 0.35,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef08a",
+          "density": 0.45,
+          "speed": 0.18,
+          "intensity": 0.85,
+          "twinkleSpeed": 1.0
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#f0f9ff",
+          "gustInterval": 28.0,
+          "speed": 0.9,
+          "intensity": 0.4
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0c4a6e",
+          "intensity": 0.18,
+          "smoothness": 1.2,
+          "roundness": 0.75
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "winter",
+    "name": "Winter",
+    "family": "Éléments & catastrophes",
+    "intensity": 1,
+    "universe": "winter",
+    "evocation": "Le solstice d'hiver et le grand silence polaire : le calme minéral d'une nuit boréale d'encre bleue, des cimes rocheuses sculptées dans le roc et la glace éternelle, et une tombée silencieuse et éparse de cristaux de neige scintillants sous la clarté lunaire.",
+    "signature": "Une chute feutrée et très lente de cristaux de neige étincelants devant la silhouette immobile de pics montagneux glaciaires nimbés d'un dégradé bleu polaire.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste",
+        "description": "Voûte nocturne bleu arctique profond constellée d'étoiles glacées fines et d'un halo boréal discret."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette majestueuse de massifs montagneux alpins acérés couverts de névés et de glaciers bleutés."
+      },
+      {
+        "plan": 3,
+        "type": "Premier plan cinétique",
+        "description": "Flocons cristallins purs tombant au ralenti dans l'air immobile avec un léger flou bokeh de profondeur Z."
+      }
+    ],
+    "particles": {
+      "type": "Cristaux de neige purs et flocons légers (snow)",
+      "size": "1.0 à 3.0 px",
+      "speed": "0.25 (chute très lente et feutrée)",
+      "density": "60 flocons étagés",
+      "behavior": "Oscillation pendulaire douce presque imperceptible, dérive verticale calme évoquant le froid absolu et dispersion fluide au curseur."
+    },
+    "atmosphere": {
+      "mist": "Fine brume glacée cristalline reposant au fond des vallées entre les crêtes.",
+      "light": "Froide, lunaire, bleutée, cristalline et apaisante.",
+      "airColor": "Minuit arctique (#04223a), bleu glacier (#60c8f0) et blanc givré (#cceeff).",
+      "mainLightSource": "Lune polaire hors cadre zénithal illuminant les glaciers d'une douce lueur argentée."
+    },
+    "rareEvents": [
+      {
+        "name": "Étoile filante boréale",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 32 secondes",
+        "description": "Un météore blanc-glacier traverse silencieusement la voûte nocturne avec une traînée pure et limpide."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe subtile sur les massifs rocheux enneigés ; le pointeur écarte délicatement les quelques flocons à proximité.",
+      "scroll": "Densifie très légèrement la brume de vallée pour une sensation d'altitude contemplative."
+    },
+    "palette": [
+      "#04223a",
+      "#021a2e",
+      "#0e7490",
+      "#60c8f0",
+      "#cceeff",
+      "#f8fafc"
+    ],
+    "references": [
+      "Shadertoy calm winter snow mountains",
+      "CodePen arctic night mountains parallax",
+      "Nordic silent winter landscape"
+    ],
+    "risks": {
+      "pitfall": "Confusion avec le thème 'Christmas' en ajoutant des sapins décorés ou des couleurs festives.",
+      "solution": "Traitement 100% minéral, montagneux, boréal et contemplatif, palette glacier/nuit arctique et rythme très lent."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#021a2e",
+          "bottomColor": "#04223a",
+          "horizonColor": "#0e7490",
+          "density": 1.1,
+          "speed": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#021324",
+          "sunColor": "#38bdf8",
+          "mistColor": "#04223a",
+          "density": 0.8,
+          "snowLevel": 0.4,
+          "depth": 0.35
+        }
+      },
+      {
+        "brick": "snow",
+        "params": {
+          "snowColor": "#e0f2fe",
+          "density": 0.6,
+          "speed": 0.25,
+          "swayFrequency": 1.0,
+          "windStrength": 0.08,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#ffffff",
+          "trailColor": "#60c8f0",
+          "starInterval": 32.0,
+          "speed": 1.3,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#010e1a",
+          "intensity": 0.4,
+          "smoothness": 1.0,
+          "roundness": 0.75
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "autumn",
+    "name": "Autumn",
+    "family": "Éléments & catastrophes",
+    "intensity": 1,
+    "universe": "autumn",
+    "evocation": "L'équinoxe d'automne et la splendeur mélancolique des sous-bois en octobre : lumière rasante cuivrée perçant entre les fûts de chênes centenaires, brume feutrée au ras de la terre meuble et tourbillon chaleureux de feuilles mortes d'érable et de hêtre parées d'or et de rouille.",
+    "signature": "Une descente chaloupée de feuilles d'érable rougeoyantes et dorées qui virevoltent délicatement au ras de troncs forestiers sous une brume cuivrée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste",
+        "description": "Ciel crépusculaire d'octobre cuivré et ambré tamisé par la haute ramure des arbres."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette étagée d'une forêt de chênes et d'érables aux troncs sombres noueux et branchages dénudés."
+      },
+      {
+        "plan": 3,
+        "type": "Premier plan cinétique",
+        "description": "Tourbillon aérien de feuilles mortes d'érable panachées d'ambre, de roux flamboyant et d'or patiné."
+      }
+    ],
+    "particles": {
+      "type": "Feuilles mortes d'automne aux teintes panachées (leaves)",
+      "size": "1.8 à 4.2 px",
+      "speed": "0.32 (chute chaloupée aérodynamique)",
+      "density": "45 feuilles actives instanciées",
+      "behavior": "Simulation de volée 3D tumbling (glissade, portance et basculement roll/pitch), dérive au vent et tourbillons au sillage du curseur."
+    },
+    "atmosphere": {
+      "mist": "Nappe de brume de sous-bois cuivrée et feutrée rampant à la base des arbres.",
+      "light": "Dorée, ambrée, chaleureuse et feutrée, inspirée des couchers de soleil d'octobre.",
+      "airColor": "Châtaigne chaud (#3b1200), rouge érable (#781d05) et or feuillage (#ffcc00).",
+      "mainLightSource": "Soleil rasant d'automne bas sur l'horizon filtrant entre les troncs."
+    },
+    "rareEvents": [
+      {
+        "name": "Bourrasque d'automne",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 28 secondes",
+        "description": "Un coup de vent soudain soulève un tourbillon de feuilles mortes en spirale avant que la scène ne retrouve son calme."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe naturelle sur les différentes rangées de troncs ; le déplacement de la souris crée une traînée d'air qui fait tourbillonner les feuilles proches.",
+      "scroll": "Ajuste doucement la hauteur de canopée visible pour libérer l'espace des fiches."
+    },
+    "palette": [
+      "#3b1200",
+      "#6e2d05",
+      "#e07020",
+      "#ffcc00",
+      "#781d05",
+      "#1c0b00"
+    ],
+    "references": [
+      "Shadertoy falling autumn leaves wind",
+      "CodePen golden autumn forest parallax",
+      "Warm autumn forest leaves drift"
+    ],
+    "risks": {
+      "pitfall": "Trop de feuilles mortes créant un fouillis visuel permanent qui gêne la lecture.",
+      "solution": "Nombre strictement borné (45 feuilles), simulation physique fluide sans à-coups et palette sombre contrastée respectant les normes d'accessibilité."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#1c0b00",
+          "bottomColor": "#3b1200",
+          "horizonColor": "#b45309",
+          "density": 1.0,
+          "speed": 0.08,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#230e03",
+          "fogColor": "#6e2d05",
+          "density": 0.85,
+          "windStrength": 0.25,
+          "speed": 0.12
+        }
+      },
+      {
+        "brick": "leaves",
+        "params": {
+          "leafColor": "#e07020",
+          "altColor": "#ffcc00",
+          "density": 0.55,
+          "speed": 0.32,
+          "flutterRate": 1.3,
+          "windDrift": 0.35,
+          "intensity": 0.95
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#d97706",
+          "gustInterval": 28.0,
+          "speed": 1.0,
+          "intensity": 0.5
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#140600",
+          "intensity": 0.5,
+          "smoothness": 0.95,
+          "roundness": 0.7
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "chandeleur",
+    "name": "Chandeleur",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "chandeleur",
+    "evocation": "La fête traditionnelle de la Chandeleur et le réconfort gourmand d'hiver : l'ambiance feutrée d'une cuisine de campagne au coin d'un poêle qui crépite, les effluves dorées de crêpes faites au beurre chaud, la lueur douce d'une bougie de cire d'abeille et des grains de sucre flottant dans la lumière ambrée.",
+    "signature": "Une volute vaporeuse et ascendante d'effluves dorées s'élevant doucement dans la lueur vacillante d'une bougie de cire chaude sur un fond miel et pâte dorée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lumineux",
+        "description": "Fond doux et chaleureux dégradé reliant crème vanillée, miel tiède et pâte à crêpe dorée."
+      },
+      {
+        "plan": 2,
+        "type": "Plan intermédiaire d'ambiance",
+        "description": "Halo d'un foyer de bougie de cire vacillant délicatement sur le bord de l'écran avec convection thermique feutrée."
+      },
+      {
+        "plan": 3,
+        "type": "Premier plan cinétique",
+        "description": "Micro-volutes de vapeur tiède et motes de poussières de sucre dorées dansant paisiblement en apesanteur."
+      }
+    ],
+    "particles": {
+      "type": "Motes dorées de sucre en suspension (dust) et volutes de vapeur vaporeuse (smoke)",
+      "size": "0.8 à 2.2 px pour le sucre, larges volutes translucides pour la vapeur",
+      "speed": "0.15 (ascension lente et dérive brownienne)",
+      "density": "35 motes dorées et 12 micro-volutes vaporeuses",
+      "behavior": "Ascension convective douce, respiration thermique organique et dissolution progressive vers le haut sans masquer l'interface."
+    },
+    "atmosphere": {
+      "mist": "Fine buée tiède et lumineuse couleur crème et beurre fondu.",
+      "light": "Chaude, intime, bienveillante et vacillante au rythme d'une flamme de bougie.",
+      "airColor": "Pâte à crêpe lumineuse (#fef08a), miel doux (#fde047) et brun noisette profond (#451a03).",
+      "mainLightSource": "Bougie traditionnelle de cire posée à gauche projetant un halo ambré réconfortant."
+    },
+    "rareEvents": [
+      {
+        "name": "Vacillement d'air chaud de bougie",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 25 secondes",
+        "description": "Un doux courant d'air fait vaciller la lueur de la flamme, étirant momentanément les volutes de vapeur tiède."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déplace subtilement le centre du halo d'éclairage ambré ; le curseur disperse délicatement les volutes de vapeur au survol.",
+      "scroll": "Estompe le halo chaud pour maintenir une clarté irréprochable sur les listes de jeux."
+    },
+    "palette": [
+      "#fef08a",
+      "#fffbeb",
+      "#f59e0b",
+      "#451a03",
+      "#713f12",
+      "#d97706"
+    ],
+    "references": [
+      "Shadertoy cozy candle flame kitchen glow",
+      "CodePen warm steam rising morning light",
+      "Cozy winter kitchen amber warmth"
+    ],
+    "risks": {
+      "pitfall": "Rendu enfantin ou ridicule avec des crêpes dessinées en stickers 2D plats.",
+      "solution": "Sens noble de la fête des chandelles : lumière renaissante, intimité du foyer, vapeur fine et palette gourmande miel/noisette d'une grande élégance."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#fffbeb",
+          "bottomColor": "#fef08a",
+          "horizonColor": "#fde047",
+          "density": 0.9,
+          "speed": 0.06,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#f59e0b",
+          "secondaryColor": "#d97706",
+          "flickerType": 2,
+          "intensity": 0.95,
+          "lightX": -0.4,
+          "lightY": -0.3,
+          "speed": 0.2
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#ca8a04",
+          "density": 0.35,
+          "speed": 0.15,
+          "intensity": 0.8,
+          "twinkleSpeed": 0.9
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#fffbeb",
+          "tintColor": "#fef08a",
+          "density": 0.2,
+          "speed": 0.18,
+          "expansionRate": 1.2,
+          "intensity": 0.3
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#451a03",
+          "intensity": 0.12,
+          "smoothness": 1.3,
+          "roundness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "epiphanie",
+    "name": "Épiphanie",
+    "family": "Magie & fantasy",
+    "intensity": 1,
+    "universe": "epiphanie",
+    "evocation": "La nuit solennelle de l'Épiphanie sous un ciel d'Orient bleu roi et ardoise impériale : une voûte étoilée limpide dominée par une étoile directrice étincelante guidant les rois mages, la silhouette lointaine d'une cour médiévale sous la clarté céleste, et une pluie feutrée de micro-poussières d'or royal en suspension.",
+    "signature": "Une étoile directrice étincelante au zénith projetant un rai céleste discret sur une fine pluie de poussières d'or royal en suspension devant une silhouette de cour médiévale.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Voûte céleste nocturne bleu roi impérial dégradé vers ardoise profonde avec étoiles scintillantes calmes."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette noble de donjons et remparts médiévaux découpés en contre-jour sous la clarté astrale."
+      },
+      {
+        "plan": 3,
+        "type": "Premier plan cinétique",
+        "description": "Étoile guide à aigrettes au zénith diffusant un doux faisceau descendant et fine pluie de poussières d'or royal."
+      }
+    ],
+    "particles": {
+      "type": "Poussières d'or impériales et paillettes scintillantes (dust)",
+      "size": "1.0 à 2.4 px",
+      "speed": "0.18 (lente descente solennelle)",
+      "density": "45 motes d'or actives",
+      "behavior": "Scintillement asynchrone régulier au nombre d'or, flottaison majestueuse sans précipitation et répulsion élégante au passage du curseur."
+    },
+    "atmosphere": {
+      "mist": "Voile d'air nocturne très limpide bleu ardoise préservant la pureté céleste.",
+      "light": "Solennelle, mystique, argentée et dorée, ponctuée par la clarté zénithale.",
+      "airColor": "Bleu royal sombre (#0f172a), gris ardoise (#1e293b) et or couronne éclatant (#eab308).",
+      "mainLightSource": "Étoile directrice étincelante au zénith diffusant un cône de lumière descendante."
+    },
+    "rareEvents": [
+      {
+        "name": "Étoile filante royale",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 30 secondes",
+        "description": "Un météore d'or pur et d'argent traverse silencieusement la voûte avec une traînée de plasma scintillante."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe subtile sur la forteresse médiévale et la voûte céleste ; le passage du curseur fait étinceler les poussières d'or environnantes.",
+      "scroll": "Modifie légèrement la perspective sous le rayon zénithal pour une sensation d'élévation royale."
+    },
+    "palette": [
+      "#0f172a",
+      "#1e293b",
+      "#334155",
+      "#eab308",
+      "#fde047",
+      "#fef08a"
+    ],
+    "references": [
+      "Shadertoy royal starfield golden dust",
+      "CodePen majestic night castle parallax",
+      "Epiphany guiding star royal night"
+    ],
+    "risks": {
+      "pitfall": "Représentation kitsch avec une galette des rois dessinée ou une couronne en carton jaune criarde.",
+      "solution": "Traitement majestueux, astronomique et mystique de la Nuit des Rois : voûte étoilée bleu nuit/ardoise impériale, poussière d'or noble et architecture historique sobre."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#1e293b",
+          "density": 1.0,
+          "speed": 0.05,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#fef08a",
+          "density": 0.8,
+          "speed": 0.04,
+          "twinkleSpeed": 1.2
+        }
+      },
+      {
+        "brick": "parallax_castle",
+        "params": {
+          "castleColor": "#070b14",
+          "torchColor": "#eab308",
+          "rockColor": "#0f172a",
+          "density": 0.6,
+          "ruinDecay": 0.0,
+          "torchGlow": 0.8
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#fef08a",
+          "lightSourceX": 0.0,
+          "lightSourceY": 1.1,
+          "density": 0.6,
+          "speed": 0.1,
+          "intensity": 0.8,
+          "decay": 0.94
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fde047",
+          "density": 0.45,
+          "speed": 0.18,
+          "intensity": 1.1,
+          "twinkleSpeed": 1.3
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#ffffff",
+          "trailColor": "#eab308",
+          "starInterval": 30.0,
+          "speed": 1.2,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "intensity": 0.5,
+          "smoothness": 1.0,
+          "roundness": 0.7
+        }
+      }
+    ],
+    "missingBricks": []
+  }
+]
+

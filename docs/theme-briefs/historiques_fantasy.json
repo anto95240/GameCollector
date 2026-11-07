@@ -1,0 +1,2217 @@
+[
+  {
+    "id": "medieval_kingdom",
+    "name": "Medieval Kingdom",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": "moyen-age-feodal",
+    "evocation": "L'Europe féodale médiévale des grandes forteresses de pierre de taille et des ordres de chevalerie (Age of Empires II, Crusader Kings, The Witcher 3, Kingdom Come: Deliverance). Une courtine de remparts crénelés sur un éperon rocheux baigné par la lumière d'un ciel crépusculaire ambré et pourpre royal, où une bannière héraldique brodée d'or flotte avec lenteur et solennité au vent d'automne tandis que de fines fumées de cheminée montent du donjon.",
+    "signature": "Une bannière héraldique pourpre et or flottant avec lenteur et noblesse au sommet d'un donjon crénelé en contre-jour sous un ciel crépusculaire ambré.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel crépusculaire au dégradé majestueux rouge royal pourpre profond vers une clarté ambre doré à l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Bancs de nuages de fin de journée étirés par le vent glissant lentement au-dessus des collines lointaines."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Silhouette monumentale d'une forteresse médiévale avec donjon central, tourelles crénelées, meurtrières faiblement éclairées et bannière royale flottant au vent."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan & Atmosphère",
+        "description": "Fines volutes de fumée de cheminée montant dans l'air frais et motes de poussière de pierre médiévale, encadrées d'un vignettage noble."
+      }
+    ],
+    "particles": {
+      "type": "Poussières de pierre de taille et micro-particules de fumée (dust)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.12 (dérive aérienne lente)",
+      "density": "20 motes instanciées",
+      "behavior": "Flottaison douce en apesanteur avec dérive horizontale calme portée par la brise d'automne."
+    },
+    "atmosphere": {
+      "mist": "Brume d'automne légère enveloppant les douves et la base des remparts de pierre.",
+      "light": "Clarté vespérale dorée et chaude d'un soleil couchant déclinant derrière la forteresse.",
+      "airColor": "Pourpre royal (#450a0a), or héraldique (#eab308) et ardoise de pierre (#334155).",
+      "mainLightSource": "Soleil couchant bas sur l'horizon gauche (lightSourceX: -0.5, lightSourceY: 0.3) projetant un halo ambré réconfortant."
+    },
+    "rareEvents": [
+      {
+        "name": "Souffle d'Arsène",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 45.0 secondes",
+        "description": "Une brise automnale fait claquer doucement la bannière royale et infléchit l'ascension des volutes de fumée."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe subtile des remparts et des tours, avec ondulation légèrement accrue de la bannière lors des mouvements latéraux.",
+      "scroll": "Modifie délicatement la lueur d'horizon sans perturber le contraste des cartes et de la typographie."
+    },
+    "palette": [
+      "#450a0a",
+      "#7f1d1d",
+      "#eab308",
+      "#d97706",
+      "#334155",
+      "#0f172a"
+    ],
+    "references": [
+      "Medieval fortress sunset Three.js",
+      "Castle battlements flag wind animation",
+      "Feudal kingdom matte painting twilight"
+    ],
+    "risks": {
+      "pitfall": "Château en aplat noir générique ressemblant à un clip-art statique.",
+      "solution": "Animer la bannière avec flexion quadratique réaliste, maintenir les torches des meurtrières avec vacillement doux et un dégradé de ciel chaleureux."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#450a0a",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#eab308",
+          "density": 1.0,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "parallax_castle",
+        "params": {
+          "castleColor": "#0f172a",
+          "torchColor": "#d97706",
+          "rockColor": "#1e293b",
+          "density": 0.85,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.95,
+          "ruinDecay": 0.05,
+          "torchGlow": 0.6
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#eab308",
+          "density": 0.25,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0f172a",
+          "intensity": 0.35,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "roman_empire",
+    "name": "Roman Empire",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": "rome-antique",
+    "evocation": "La splendeur architecturale et la puissance de la Rome impériale sous l'ère des Antonins (Gladiator, Rome: Total War, Forum Romanum, voie Appienne). Une colonnade corinthienne monumentale en marbre blanc de Carrare baignée par la clarté dorée d'un soleil méditerranéen couchant, traversée par des rais de lumière oblique où des feuilles de laurier et des grains de poussière de marbre dérivent avec noblesse dans une brise tiède sous des voiles de pourpre sénatoriale.",
+    "signature": "Des rais de lumière solaire méditerranéenne baignant une colonnade de marbre antique tandis que de rares feuilles de laurier dérivent avec noblesse dans une brise tiède d'été.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel méditerranéen au dégradé chaleureux pourpre impériale vers l'ambre et l'or d'une fin d'après-midi ensoleillée."
+      },
+      {
+        "plan": 2,
+        "type": "Plan intermédiaire architectural",
+        "description": "Silhouette majestueuse de colonnes de marbre corinthiennes et entablement antique se découpant avec netteté."
+      },
+      {
+        "plan": 3,
+        "type": "Atmosphère & Faisceaux",
+        "description": "Faisceaux de lumière radiaux dorés (god rays) perçant obliquement entre les fûts cannelés des colonnes."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan & Particules",
+        "description": "Feuilles de laurier et motes de poussière de marbre étincelantes en suspension calme, encadrées d'un vignettage ambré feutré."
+      }
+    ],
+    "particles": {
+      "type": "Poussières de marbre étincelantes (dust) et rares feuilles de laurier (leaves)",
+      "size": "1.0 à 2.5 px",
+      "speed": "0.14 (dérive lente et chute oscillante)",
+      "density": "20 particules",
+      "behavior": "Lévitation calme dans les puits de lumière avec oscillations douces des feuilles au gré de l'air tiède."
+    },
+    "atmosphere": {
+      "mist": "Légère brume de chaleur estivale sur le pavage du forum romain.",
+      "light": "Rais de soleil dorés impériaux et éclatants traversant les fûts de marbre.",
+      "airColor": "Pourpre impériale (#7f1d1d), albâtre marbre (#fef3c7) et or solaire (#d4a853).",
+      "mainLightSource": "Soleil rasant d'après-midi sur la gauche (lightSourceX: -0.4, lightSourceY: 0.8) projetant des cônes volumétriques chauds."
+    },
+    "rareEvents": [
+      {
+        "name": "Brise du Tibre",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 50.0 secondes",
+        "description": "Une brise méditerranéenne soulève doucement quelques feuilles de laurier et fait onduler les faisceaux lumineux."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe noble des colonnes et légère inclinaison des rais de lumière en fonction de la position du curseur.",
+      "scroll": "Intensifie très subtilement la radiance dorée à l'horizon sans perturber la lisibilité."
+    },
+    "palette": [
+      "#7f1d1d",
+      "#991b1b",
+      "#fef3c7",
+      "#d4a853",
+      "#451a03",
+      "#1e1b4b"
+    ],
+    "references": [
+      "Roman colonnade sunlight god rays",
+      "Ancient Rome marble architecture WebGL",
+      "Forum Romanum golden hour lighting"
+    ],
+    "risks": {
+      "pitfall": "Rendu trop blanc ou froid ressemblant à un musée aseptisé plutôt qu'à l'Empire romain vivant.",
+      "solution": "Réchauffer l'ensemble avec des rais dorés ambrés et la pourpre sénatoriale, maintenir des contrastes doux sur les chapiteaux."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#7f1d1d",
+          "bottomColor": "#1e1b4b",
+          "horizonColor": "#fef3c7",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#fef3c7",
+          "density": 0.65,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "lightSourceX": -0.4,
+          "lightSourceY": 0.8,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#d4a853",
+          "density": 0.25,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "leaves",
+        "params": {
+          "leafColor": "#78350f",
+          "density": 0.15,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#451a03",
+          "intensity": 0.35,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      "parallax_colonnade"
+    ]
+  },
+  {
+    "id": "age_of_sail",
+    "name": "Age of Sail",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": "marine-a-voile-pirates",
+    "evocation": "L'âge d'or de la marine à voile du XVIIIe siècle, corsaires, trois-mâts et frégates bravant les océans du monde (Master and Commander, Black Sails, Pirates des Caraïbes, Sea of Thieves). Une traversée nocturne en haute mer sous une voûte céleste étincelante, où le pont en chêne d'un galion oscille au rythme d'une houle océanique majestueuse, tandis qu'une lanterne de poupe cuivrée vacille doucement en projetant des reflets chauds sur l'écume des vagues.",
+    "signature": "La silhouette d'un bastingage et d'un gréement de trois-mâts oscillant avec le roulis doux d'une houle océanique nocturne illuminée par le balancement feutré d'une lanterne de poupe cuivrée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste",
+        "description": "Voûte céleste nocturne bleu marine insondable parsemée d'étoiles scintillantes sur plusieurs strates."
+      },
+      {
+        "plan": 2,
+        "type": "Plan médian océanique",
+        "description": "Trains de houle océanique nocturne avec crêtes d'écume blanche se déplaçant au clair de lune."
+      },
+      {
+        "plan": 3,
+        "type": "Foyer de pont",
+        "description": "Halo vacillant chaud d'une lanterne de quart cuivrée suspendue au bastingage."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan & Embruns",
+        "description": "Micro-embruns marins et poussières d'eau dérivant dans la brise iodée, encadrés d'un vignettage océanique profond."
+      }
+    ],
+    "particles": {
+      "type": "Micro-gouttelettes d'embruns marins en suspension (bubbles/dust)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.18 (dérive éolienne marine)",
+      "density": "20 particules",
+      "behavior": "Translation horizontale douce portée par la brise du large avec retombée imperceptible."
+    },
+    "atmosphere": {
+      "mist": "Brume marine d'horizon estompant la ligne de flottaison sous la lune.",
+      "light": "Contraste subtil entre la lumière argentée de la lune et le halo ambré réconfortant de la lanterne de pont.",
+      "airColor": "Bleu marine nuit (#082f49), cuivre brûlé (#8b4513) et écume nacrée (#f8fafc).",
+      "mainLightSource": "Lanterne de pont oscillante (lightX: 0.45, lightY: -0.1) et clarté stellaire indirecte."
+    },
+    "rareEvents": [
+      {
+        "name": "Étoile du Navigateur",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 40.0 secondes",
+        "description": "Une étoile filante trace un arc argenté discret au-dessus de la mer pour orienter le navire."
+      }
+    ],
+    "interaction": {
+      "mouse": "Léger roulis de la caméra et balancement pendulaire doux de la lanterne en accord avec le mouvement.",
+      "scroll": "Modifie délicatement l'amplitude apparente de la houle sans secousses inconfortables."
+    },
+    "palette": [
+      "#082f49",
+      "#0c4a6e",
+      "#8b4513",
+      "#d97706",
+      "#f8fafc",
+      "#020617"
+    ],
+    "references": [
+      "Ocean waves night sailing ship WebGL",
+      "Master and commander night ocean atmosphere",
+      "Three.js ocean waves lantern glow"
+    ],
+    "risks": {
+      "pitfall": "Vagues trop rapides créant le mal de mer ou dégradant la lisibilité des listes de jeux.",
+      "solution": "Calibrer la houle à vitesse très apaisée (speed: 0.15), concentrer l'écume en arrière-plan et maintenir le fond d'interface parfaitement stable."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#082f49",
+          "horizonColor": "#0c4a6e",
+          "density": 1.0,
+          "speed": 0.05,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#f8fafc",
+          "density": 0.6,
+          "speed": 0.05,
+          "depth": 1.0,
+          "intensity": 0.7,
+          "twinkleSpeed": 1.2
+        }
+      },
+      {
+        "brick": "waves",
+        "params": {
+          "deepColor": "#082f49",
+          "crestColor": "#f8fafc",
+          "density": 0.8,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.85,
+          "waveSteepness": 0.4
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#d97706",
+          "secondaryColor": "#8b4513",
+          "density": 0.8,
+          "speed": 0.2,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "lightX": 0.45,
+          "lightY": -0.1,
+          "flickerType": 2
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "intensity": 0.4,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      "parallax_sailing_ship"
+    ]
+  },
+  {
+    "id": "aztec",
+    "name": "Aztec",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "civilisation-azteque-mexique",
+    "evocation": "La grandeur mystique de la civilisation aztèque et mésoaméricaine au cœur de la jungle tropicale (Tenochtitlan, Templo Mayor, masques de mosaïque de turquoise, disque solaire de pierre et autels de jade). Une pyramide à degrés émergeant d'une brume matinale dense, transpercée par les rais d'un soleil d'or zénithal, tandis que des volutes d'encens copal montent des sanctuaires et que des lucioles de jade scintillent sous les frondaisons équatoriales.",
+    "signature": "La silhouette monumentale d'une pyramide à degrés émergeant d'une canopée tropicale brumeuse sous les reflets vertigineux d'un disque solaire doré et des volutes d'encens sacré.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan zénithal",
+        "description": "Ciel matinal tropical turquoise jade profond se fondant vers un or solaire éclatant."
+      },
+      {
+        "plan": 2,
+        "type": "Vapeurs de canopée",
+        "description": "Bancs de brume et d'humidité tropicale FBM montant de la forêt dense sous la chaleur naissante."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Silhouette colossale d'une pyramide à degrés en pierre de taille sculptée émergeant d'une forêt tropicale luxuriante."
+      },
+      {
+        "plan": 4,
+        "type": "Rayons solaires & Encens",
+        "description": "Faisceaux de soleil obliques traversant les cimes et volutes d'encens copal s'élevant des autels rituels."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan interactif",
+        "description": "Lucioles de jade bioluminescentes et poussières d'or en suspension dans l'air moite, encadrées d'un vignettage jungle profond."
+      }
+    ],
+    "particles": {
+      "type": "Lucioles de jade bioluminescentes (fireflies) et poussières d'or (dust)",
+      "size": "1.5 à 3.0 px",
+      "speed": "0.22 (vol erratique et flottaison)",
+      "density": "35 particules",
+      "behavior": "Trajectoires hélicoïdales douces au cœur des rais de lumière avec pulsations rythmées."
+    },
+    "atmosphere": {
+      "mist": "Brume tropicale humide et épaisse stagnant au pied des temples de pierre.",
+      "light": "Soleil d'or zénithal éclatant perçant la canopée, accentué d'une lueur turquoise évanescente.",
+      "airColor": "Turquoise jade (#14b8a6), or rituel (#d4a853) et vert canopée sombre (#0f766e).",
+      "mainLightSource": "Soleil zénithal en haut à droite (lightSourceX: 0.45, lightSourceY: 0.8) projetant des cônes volumétriques puissants."
+    },
+    "rareEvents": [
+      {
+        "name": "Souffle de Quetzalcoatl",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 35.0 secondes",
+        "description": "Une bourrasque tropicale fait frémir la canopée et étire en volutes rapides la fumée d'encens."
+      },
+      {
+        "name": "Éclair sur la Sierra",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 60.0 secondes",
+        "description": "Un flash d'orage tropical lointain illumine un instant les arêtes de la pyramide dans la brume."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe marquée entre les feuillages de jungle et les degrés du temple, dispersion feutrée des lucioles de jade au survol.",
+      "scroll": "Modifie la densité de la brume au pied de la pyramide pour accentuer la profondeur sans masquer l'UI."
+    },
+    "palette": [
+      "#14b8a6",
+      "#0f766e",
+      "#d4a853",
+      "#b45309",
+      "#78350f",
+      "#022c22"
+    ],
+    "references": [
+      "Aztec temple jungle god rays Three.js",
+      "Mesoamerican golden hour pyramid WebGL",
+      "Maya jungle ruins mist sunlight"
+    ],
+    "risks": {
+      "pitfall": "Teintes turquoise criardes qui fatiguent la vue ou nuisent à la lisibilité du texte blanc.",
+      "solution": "Calibrer le turquoise en accent délicat sur les lucioles et l'horizon, tout en ancrant l'interface sur des fonds d'ambre sombre et de vert émeraude patiné."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#022c22",
+          "bottomColor": "#0f766e",
+          "horizonColor": "#14b8a6",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.05,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#022c22",
+          "fogColor": "#0f766e",
+          "density": 1.1,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 1.0,
+          "windStrength": 0.4
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#d4a853",
+          "density": 0.8,
+          "speed": 0.2,
+          "depth": 0.4,
+          "intensity": 0.9,
+          "lightSourceX": 0.45,
+          "lightSourceY": 0.8,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#d4a853",
+          "density": 0.35,
+          "speed": 0.18,
+          "depth": 0.3,
+          "intensity": 0.6
+        }
+      },
+      {
+        "brick": "fireflies",
+        "params": {
+          "glowColor": "#14b8a6",
+          "density": 0.4,
+          "speed": 0.25,
+          "depth": 0.35,
+          "intensity": 1.1
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#022c22",
+          "intensity": 0.45,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      "mesoamerican_pyramid"
+    ]
+  },
+  {
+    "id": "taverne",
+    "name": "La Taverne",
+    "family": "Cosy & gestion",
+    "intensity": 2,
+    "universe": "auberge-medievale-fantasy",
+    "evocation": "Le refuge chaleureux et réconfortant de tout grand aventurier de RPG (The Witcher 3, Baldur's Gate, Hearthstone, Dungeons & Dragons). Une auberge aux poutres massives de chêne enfumé après une longue quête : le grand âtre d'une cheminée de granit où crépitent des braises ardentes, projetant des ombres dansantes sur les tables rustiques, des choppes de bière moussantes, de la poussière dorée flottant dans l'air tiède et des étincelles de chêne montant vers la hotte.",
+    "signature": "La lueur chaleureuse d'un grand foyer de cheminée faisant vaciller des ombres ambrées sur des poutres de chêne tandis qu'un essaim de braises incandescentes tourbillonne dans l'air tiède.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan boisé",
+        "description": "Murs en moellons de granit et colombages de chêne patiné dans une douce pénombre ambrée."
+      },
+      {
+        "plan": 2,
+        "type": "Foyer & Convection",
+        "description": "Grand feu de cheminée crépitant à pulsation stochastique surmonté d'une distorsion d'air chaud convective ascendante."
+      },
+      {
+        "plan": 3,
+        "type": "Braises & Flammèches",
+        "description": "Essaim de braises incandescentes s'élevant en tourbillons irréguliers depuis les bûches de chêne."
+      },
+      {
+        "plan": 4,
+        "type": "Suspension ambiante",
+        "description": "Motes de poussière dorée illuminées par les bougies de cire flottant dans l'atmosphère réconfortante de l'auberge."
+      },
+      {
+        "plan": 5,
+        "type": "Finition cosy",
+        "description": "Léger grain de peinture flamande et vignettage chaleureux resserrant l'espace intime."
+      }
+    ],
+    "particles": {
+      "type": "Braises incandescentes (embers) et poussières dorées en suspension (dust)",
+      "size": "1.2 à 2.8 px",
+      "speed": "0.28 (ascension convective et dérive)",
+      "density": "40 particules",
+      "behavior": "Ascension convective turbulente avec refroidissement thermique progressif du jaune d'or au rougeoyant sombre."
+    },
+    "atmosphere": {
+      "mist": "Fumée fine et vaporeuse de bois de chêne parfumée flottant sous les solives.",
+      "light": "Éclairage tamisé très chaud dominé par l'orange ardent du foyer et l'ambre des chandelles.",
+      "airColor": "Ambre chaud (#fcd34d), orange flamme (#f97316) et brun chêne ancien (#451a03).",
+      "mainLightSource": "Foyer de cheminée bas au centre (lightX: 0.0, lightY: -0.2) diffusant un halo vacillant vivant."
+    },
+    "rareEvents": [
+      {
+        "name": "Flambée de Bûche",
+        "type": "sparks",
+        "frequency": "Intervalle moyen de 25.0 secondes",
+        "description": "Une étincelle éclate brusquement dans la cheminée, projetant une gerbe vive qui s'estompe rapidement dans l'air chaud."
+      }
+    ],
+    "interaction": {
+      "mouse": "Attise doucement la radiance des braises au passage du curseur et déplace légèrement le halo de lumière.",
+      "scroll": "Adoucit ou réchauffe subtilement la pénombre périphérique sans affecter la clarté du texte."
+    },
+    "palette": [
+      "#451a03",
+      "#78350f",
+      "#fcd34d",
+      "#f97316",
+      "#ef4444",
+      "#1c1917"
+    ],
+    "references": [
+      "Medieval fantasy tavern fireplace WebGL",
+      "Hearthstone tavern cozy ambience",
+      "Cozy inn candle flames embers Three.js"
+    ],
+    "risks": {
+      "pitfall": "Rendu de simple feu de camp en plein air sans le sentiment d'intimité d'une auberge fermée.",
+      "solution": "Saturer les bruns profonds et ambrés de boiserie, injecter un grain photochimique chaleureux et limiter l'étendue de la lumière aux zones basses."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#1c1917",
+          "bottomColor": "#451a03",
+          "horizonColor": "#78350f",
+          "density": 1.0,
+          "speed": 0.05,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#fcd34d",
+          "secondaryColor": "#f97316",
+          "density": 1.0,
+          "speed": 0.35,
+          "depth": 0.3,
+          "intensity": 1.15,
+          "lightX": 0.0,
+          "lightY": -0.2,
+          "flickerType": 0
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#f97316",
+          "density": 0.6,
+          "speed": 0.25,
+          "depth": 0.25,
+          "intensity": 0.45,
+          "heatHeight": 0.5
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#f97316",
+          "density": 0.55,
+          "speed": 0.28,
+          "depth": 0.35,
+          "intensity": 1.2
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fcd34d",
+          "density": 0.3,
+          "speed": 0.12,
+          "depth": 0.4,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.06,
+          "speed": 0.6,
+          "clumpSize": 1.0
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1c1917",
+          "intensity": 0.5,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "elven_forest",
+    "name": "Elven Forest",
+    "family": "Magie & fantasy",
+    "intensity": 2,
+    "universe": "foret-elfique-fantasy",
+    "evocation": "Le sanctuaire sylvestre immémorial des elfes (Lothlórien de J.R.R. Tolkien, Quel'Thalas et Teldrassil de Warcraft, Forêt Noire féerique). De gigantesques troncs d'arbres millénaires aux frondaisons argentées formant des cathédrales végétales, des nappes de brume opaline ondulant entre les racines moussues, des rais de clair de lune doré perçant la canopée et une danse gracieuse de lucioles enchantées baignant les sous-bois de magie pure.",
+    "signature": "Une nuée de lucioles dorées pulsant en essaim autour d'arches végétales d'arbres ancestraux traversées par des rayons de clarté lunaire émeraude.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste",
+        "description": "Voûte nocturne féerique au dégradé vert émeraude profond vers une clarté stellaire mystique."
+      },
+      {
+        "plan": 2,
+        "type": "Silhouette sylvestre étagée",
+        "description": "Troncs et cimes d'arbres ancestraux sculptés par le vent magique étagés sur 3 strates de profondeur."
+      },
+      {
+        "plan": 3,
+        "type": "Nappe de brume mystique",
+        "description": "Brume vaporeuse émeraude et argentée caressant les sous-bois en lents mouvements de fluide."
+      },
+      {
+        "plan": 4,
+        "type": "Rayons lunaires",
+        "description": "Faisceaux de lumière lunaire dorée filtrant à travers les feuillages et illuminant la rosée nocturne."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan féerique",
+        "description": "Essaim de lucioles dorées bioluminescentes en trajectoires harmoniques, encadrées d'un vignettage végétal profond."
+      }
+    ],
+    "particles": {
+      "type": "Lucioles féeriques bioluminescentes (fireflies)",
+      "size": "2.0 à 4.0 px",
+      "speed": "0.22 (vol sinueux en cloche)",
+      "density": "45 lucioles",
+      "behavior": "Trajectoires spiralées douces avec pulsations asynchrones au nombre d'or et légères embardées curieuses."
+    },
+    "atmosphere": {
+      "mist": "Brume émeraude et argentée vaporeuse enveloppant la base des troncs centenaires.",
+      "light": "Clarté lunaire féerique or pâle et menthe, instaurant une atmosphère sacrée et contemplative.",
+      "airColor": "Émeraude sylvestre (#064e3b), or lunaire (#fef08a) et menthe nacrée (#a7f3d0).",
+      "mainLightSource": "Lune elfique zénithale filtrant à travers la canopée (lightSourceX: -0.2, lightSourceY: 0.9)."
+    },
+    "rareEvents": [
+      {
+        "name": "Étoile d'Eärendil",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 40.0 secondes",
+        "description": "Une étoile filante d'argent pur traverse une brèche de la canopée en laissant une fine traînée lumineuse."
+      },
+      {
+        "name": "Brise Sylvestre",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 30.0 secondes",
+        "description": "Un souffle de vent frais fait frémir les cimes d'arbres et accélère la danse des lucioles dorées."
+      }
+    ],
+    "interaction": {
+      "mouse": "Attirance douce des lucioles vers le curseur avec évitement gracieux à courte portée, parallaxe des troncs.",
+      "scroll": "Intensifie la brume au ras du sol sans jamais compromettre la lisibilité des cartes de jeux."
+    },
+    "palette": [
+      "#064e3b",
+      "#047857",
+      "#fef08a",
+      "#a7f3d0",
+      "#022c22",
+      "#0f172a"
+    ],
+    "references": [
+      "Elven forest bioluminescent fireflies Three.js",
+      "Lothlorien moonlight forest WebGL",
+      "Fantasy enchanted woods god rays"
+    ],
+    "risks": {
+      "pitfall": "Forêt ordinaire sombre et angoissante plutôt que féerique et enchanteresse.",
+      "solution": "Insuffler une radiance lunaire or pâle (#fef08a) constante, équilibrer les touches menthe nacrée et assurer une pulsation biologique des lucioles."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#022c22",
+          "bottomColor": "#064e3b",
+          "horizonColor": "#a7f3d0",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#022c22",
+          "fogColor": "#064e3b",
+          "density": 1.0,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 1.0,
+          "windStrength": 0.35
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#a7f3d0",
+          "density": 0.75,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "heightFalloff": 1.8
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#fef08a",
+          "density": 0.75,
+          "speed": 0.18,
+          "depth": 0.4,
+          "intensity": 0.85,
+          "lightSourceX": -0.2,
+          "lightSourceY": 0.9,
+          "decay": 0.93
+        }
+      },
+      {
+        "brick": "fireflies",
+        "params": {
+          "glowColor": "#fef08a",
+          "density": 0.55,
+          "speed": 0.22,
+          "depth": 0.35,
+          "intensity": 1.25
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#022c22",
+          "intensity": 0.42,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "deep_sea",
+    "name": "Deep Sea",
+    "family": "Éléments & catastrophes",
+    "intensity": 2,
+    "universe": "abysses-oceaniques-fantastiques",
+    "evocation": "Les fosses océaniques insondables et mystères engloutis des grands fonds (Subnautica, BioShock Rapture, abysses de créatures bioluminescentes). Un silence majestueux sous des milliers de mètres de colonne d'eau, où un maillage de caustiques lumineuses cyan se réfracte dans l'obscurité, tandis que des chapelets de bulles irisées et une neige marine de sédiments organiques s'élèvent lentement dans un halo bioluminescent.",
+    "signature": "Des chapelets de bulles irisées et de sédiments marins s'élevant du néant abyssal sous le balayage hypnotique de caustiques cyan spectrales.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan abyssal",
+        "description": "Immensité liquide insondable au dégradé bleu pétrole profond vers le noir absolu."
+      },
+      {
+        "plan": 2,
+        "type": "Réfraction de surface",
+        "description": "Réseau de caustiques sous-marines cyan en interférence d'ondes Voronoi avec dispersion optique subtile."
+      },
+      {
+        "plan": 3,
+        "type": "Halo bioluminescent",
+        "description": "Dôme de lueur vaporeuse pulsante simulant une source bioluminescente abyssale cachée dans les profondeurs."
+      },
+      {
+        "plan": 4,
+        "type": "Bulles ascendantes",
+        "description": "Chapelets de bulles d'eau irisées s'élevant en zig-zag sinueux avec dilatation continue due à la baisse de pression."
+      },
+      {
+        "plan": 5,
+        "type": "Neige marine & Réfraction",
+        "description": "Micro-sédiments de neige marine en suspension, légère aberration chromatique sur les bords et vignettage abyssal."
+      }
+    ],
+    "particles": {
+      "type": "Bulles aquatiques irisées (bubbles) et neige marine de plancton (dust)",
+      "size": "1.5 à 4.0 px",
+      "speed": "0.22 (ascension sinueuse et flottement)",
+      "density": "40 particules",
+      "behavior": "Ascension continue en zig-zag doux avec dilatation progressive et éclatement feutré."
+    },
+    "atmosphere": {
+      "mist": "Brume liquide opalescente diffusant les rayons froids sous la pression marine.",
+      "light": "Lueur cyan bioluminescente électrique contrastant avec le vide noir environnant.",
+      "airColor": "Cyan électrique (#06b6d4), bleu pétrole (#082f49) et noir insondable (#020617).",
+      "mainLightSource": "Réseau de caustiques zénithal supérieur et halo bioluminescent central."
+    },
+    "rareEvents": [
+      {
+        "name": "Pulsion Hydrostatique",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 40.0 secondes",
+        "description": "Une onde de pression sourde dilate un instant les caustiques lumineuses et dévie le sillage des bulles."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déplacement fluide du foyer caustique et répulsion dynamique des bulles au passage du curseur.",
+      "scroll": "Modifie délicatement la sensation de profondeur d'immersion sans à-coups."
+    },
+    "palette": [
+      "#020617",
+      "#082f49",
+      "#06b6d4",
+      "#38bdf8",
+      "#0284c7",
+      "#0f172a"
+    ],
+    "references": [
+      "Underwater caustics bubbles WebGL",
+      "Deep sea bioluminescence Three.js shader",
+      "Abyssal ocean refraction shader"
+    ],
+    "risks": {
+      "pitfall": "Caustiques trop rapides ou tranchantes qui parasitent la lisibilité des textes.",
+      "solution": "Calibrer la vitesse à un rythme apaisé (speed: 0.16), maintenir le fond très sombre (#020617) pour garantir un contraste WCAG AAA sur le texte."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#082f49",
+          "horizonColor": "#06b6d4",
+          "density": 1.0,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "water_caustics",
+        "params": {
+          "waterColor": "#020617",
+          "causticColor": "#06b6d4",
+          "density": 1.0,
+          "speed": 0.16,
+          "depth": 0.2,
+          "intensity": 0.85,
+          "causticScale": 3.2
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#06b6d4",
+          "glowColor": "#0284c7",
+          "outerColor": "#020617",
+          "density": 0.7,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "bubbles",
+        "params": {
+          "bubbleColor": "#38bdf8",
+          "density": 0.45,
+          "speed": 0.22,
+          "depth": 0.35,
+          "intensity": 1.1
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#06b6d4",
+          "density": 0.3,
+          "speed": 0.1,
+          "depth": 0.4,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "intensity": 0.08,
+          "radius": 0.75
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "intensity": 0.55,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "dungeon_crawler",
+    "name": "Dungeon Crawler",
+    "family": "Magie & fantasy",
+    "intensity": 2,
+    "universe": "donjon-crypte-medieval-dark-fantasy",
+    "evocation": "Les catacombes, cryptes et donjons labyrinthiques de l'âge d'or du jeu de rôle (Diablo II, Dark Souls, Legend of Grimrock, Eye of the Beholder). Des voûtes gothiques suintantes de salpêtre, des dalles de pierre taillées par des mains séculaires, des torches murales au vacillement rouge sang projetant des ombres gigantesques, des braises crépitantes et une nappe de brume spectrale rampant au ras du sol.",
+    "signature": "Une herse de fer forgé et des piliers de crypte médiévale illuminés par des torches murales au vacillement rouge sang projetant une brume spectrale au ras du pavage.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan ténébreux",
+        "description": "Ténèbres étouffantes des couloirs sans fin d'un donjon souterrain séculaire."
+      },
+      {
+        "plan": 2,
+        "type": "Piliers & Voûtes de pierre",
+        "description": "Silhouette de voûtes gothiques et arches de maçonnerie en ruines étagées dans la pénombre."
+      },
+      {
+        "plan": 3,
+        "type": "Torches murales & Flammes",
+        "description": "Torches murales rouge sang vacillant à pulsation stochastique Simplex et halo convulsif."
+      },
+      {
+        "plan": 4,
+        "type": "Brume de sol spectrale",
+        "description": "Nappe de brume basse rampant sur les dalles de pierre humides masquant le pied des colonnes."
+      },
+      {
+        "plan": 5,
+        "type": "Particules de suie & Finition",
+        "description": "Flammèches incandescentes et suie de donjon en flottaison, encadrées d'un vignettage oppressant et d'un grain minéral."
+      }
+    ],
+    "particles": {
+      "type": "Flammèches incandescentes (embers) et suie calcinée (ash)",
+      "size": "1.2 à 2.8 px",
+      "speed": "0.25 (ascension erratique et chute lente)",
+      "density": "35 particules",
+      "behavior": "Ascension convective saccadée pour les braises et flottaison lourde en tumbling 3D pour la suie."
+    },
+    "atmosphere": {
+      "mist": "Brume spectrale rampante au ras du sol masquant d'éventuels pièges de pierre.",
+      "light": "Éclairage rouge sang et orange braise saccadé, générant un clair-obscur dramatique.",
+      "airColor": "Rouge sang (#ef4444), pierre suie (#1c1917) et orange braise (#f97316).",
+      "mainLightSource": "Torches murales latérales jumelées diffusant des ombres projetées."
+    },
+    "rareEvents": [
+      {
+        "name": "Secousse Tellurique",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 45.0 secondes",
+        "description": "Un grondement sourd d'effondrement lointain fait trembler la voûte et décroche des particules de suie."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe des piliers de pierre et intensification du vacillement des torches au passage du curseur.",
+      "scroll": "Resserre la pénombre des coins pour accroître le sentiment de claustration sans gêner les textes."
+    },
+    "palette": [
+      "#1c1917",
+      "#292524",
+      "#ef4444",
+      "#b91c1c",
+      "#f97316",
+      "#0c0a09"
+    ],
+    "references": [
+      "Dark fantasy dungeon torch flickering Three.js",
+      "Crypt stone vault fog shader WebGL",
+      "Diablo dungeon gothic atmosphere"
+    ],
+    "risks": {
+      "pitfall": "Scène trop sombre rendant la lecture pénible ou agressive avec un rouge criard.",
+      "solution": "Conserver le centre de l'écran clair et dégagé, placer les piliers et torches sur les bords latéraux et adoucir la pulsation des flammes."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0c0a09",
+          "bottomColor": "#1c1917",
+          "horizonColor": "#292524",
+          "density": 1.0,
+          "speed": 0.05,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "parallax_castle",
+        "params": {
+          "castleColor": "#0c0a09",
+          "torchColor": "#ef4444",
+          "rockColor": "#1c1917",
+          "density": 1.0,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 1.0,
+          "ruinDecay": 0.75,
+          "torchGlow": 1.2
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#ef4444",
+          "secondaryColor": "#f97316",
+          "density": 1.0,
+          "speed": 0.45,
+          "depth": 0.3,
+          "intensity": 1.2,
+          "flickerType": 0
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#292524",
+          "density": 0.85,
+          "speed": 0.12,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "heightFalloff": 2.2
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#ef4444",
+          "density": 0.35,
+          "speed": 0.25,
+          "depth": 0.35,
+          "intensity": 1.1
+        }
+      },
+      {
+        "brick": "ash",
+        "params": {
+          "ashColor": "#292524",
+          "density": 0.25,
+          "speed": 0.14,
+          "depth": 0.4,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.08,
+          "speed": 0.7,
+          "clumpSize": 1.1
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0c0a09",
+          "intensity": 0.65,
+          "smoothness": 0.8
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "mage_tower",
+    "name": "Mage Tower",
+    "family": "Magie & fantasy",
+    "intensity": 2,
+    "universe": "haute-sorcellerie-astronomie-arcanique",
+    "evocation": "La flèche vertigineuse d'une tour d'archimage dominant les nuages et côtoyant les astres (Dalaran de World of Warcraft, Tour de Haute Sorcellerie de Dragonlance, Académie de Raya Lucaria dans Elden Ring). Un observatoire céleste au sommet du monde, entouré d'orbes de mana améthyste en lévitation, d'anneaux de runes arcaniques en lente giration, d'étincelles magiques crépitantes et d'une pluie de poussière d'étoiles.",
+    "signature": "Un vortex d'énergie magique violette et d'étincelles arcaniques en rotation lente au sommet d'une flèche de pierre suspendue sous un ciel nocturne étoilé.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan cosmologique",
+        "description": "Voûte céleste indigo cosmique constellée d'étoiles scintillantes et nébuleuse arcanique diffuse."
+      },
+      {
+        "plan": 2,
+        "type": "Silhouette gothique",
+        "description": "Flèche élancée de la tour d'archimage avec arcs-boutants, pinacles et dôme d'observation astronomique."
+      },
+      {
+        "plan": 3,
+        "type": "Foyer de mana focal",
+        "description": "Orbe magique de mana pur violet améthyste pulsant au cœur de l'observatoire avec halo d'énergie."
+      },
+      {
+        "plan": 4,
+        "type": "Particules & Étincelles",
+        "description": "Étincelles de sortilège crépitantes et motes de poussière astrale tourbillonnant en orbite."
+      },
+      {
+        "plan": 5,
+        "type": "Optique prismatique",
+        "description": "Légère aberration chromatique violet/cyan sur les contours de l'écran et vignettage indigo profond."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles de mana arcanique (sparks) et poussières d'étoile (dust)",
+      "size": "1.5 à 3.2 px",
+      "speed": "0.32 (rotation orbitale et jaillissements)",
+      "density": "40 particules",
+      "behavior": "Trajectoires de giration orbitale autour du foyer magique avec étincelles balistiques sporadiques."
+    },
+    "atmosphere": {
+      "mist": "Brume d'altitude éthérée teintée d'indigo et de violette phosphorescente.",
+      "light": "Radiance arcanique améthyste irradiant depuis le cœur du dôme avec pulsations au nombre d'or.",
+      "airColor": "Violet améthyste (#8b5cf6), indigo cosmique (#1e1b4b) et lilas étincelant (#c084fc).",
+      "mainLightSource": "Orbe de mana central en lévitation au zénith de la tour."
+    },
+    "rareEvents": [
+      {
+        "name": "Pulsion de Sortilège",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 35.0 secondes",
+        "description": "Une décharge d'énergie arcanique violette se propage en onde concentrique depuis le sommet de la flèche."
+      },
+      {
+        "name": "Étoile Filante Mystique",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 45.0 secondes",
+        "description": "Un météore arcanique trace un sillage lilas dans le ciel étoilé au-dessus de la tour."
+      }
+    ],
+    "interaction": {
+      "mouse": "Attraction gravitationnelle douce des étincelles vers le curseur et inclinaison parallaxe de la flèche de pierre.",
+      "scroll": "Modifie la vitesse de rotation orbitale des énergies arcaniques sans perturber le texte."
+    },
+    "palette": [
+      "#1e1b4b",
+      "#312e81",
+      "#8b5cf6",
+      "#c084fc",
+      "#38bdf8",
+      "#0f0d24"
+    ],
+    "references": [
+      "Arcane magic tower WebGL Three.js",
+      "Purple mana orb particles shader",
+      "Dalaran spire magical starry night"
+    ],
+    "risks": {
+      "pitfall": "Effet 'néon violet' agressif qui fatiguerait les yeux.",
+      "solution": "Ancrer la scène sur un indigo nuit très sombre (#1e1b4b), confiner la saturation maximale à l'orbe central et utiliser des étincelles fines."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f0d24",
+          "bottomColor": "#1e1b4b",
+          "horizonColor": "#312e81",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#c084fc",
+          "density": 0.8,
+          "speed": 0.08,
+          "depth": 1.0,
+          "intensity": 0.85,
+          "twinkleSpeed": 1.6
+        }
+      },
+      {
+        "brick": "parallax_castle",
+        "params": {
+          "castleColor": "#0f0d24",
+          "torchColor": "#8b5cf6",
+          "rockColor": "#1e1b4b",
+          "density": 0.7,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 1.0,
+          "ruinDecay": 0.0,
+          "torchGlow": 1.0
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#c084fc",
+          "glowColor": "#8b5cf6",
+          "outerColor": "#1e1b4b",
+          "density": 0.85,
+          "speed": 0.18,
+          "depth": 0.3,
+          "intensity": 1.15
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#c084fc",
+          "density": 0.45,
+          "speed": 0.32,
+          "depth": 0.35,
+          "intensity": 1.2
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#8b5cf6",
+          "density": 0.3,
+          "speed": 0.12,
+          "depth": 0.4,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "intensity": 0.07,
+          "radius": 0.75
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0f0d24",
+          "intensity": 0.45,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      "arcane_circle"
+    ]
+  },
+  {
+    "id": "hero_journey",
+    "name": "Hero's Journey",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "voyage-du-heros-quete-initiatique",
+    "evocation": "Le monomythe de la quête initiatique universelle immortalisé par Joseph Campbell, le départ vers l'inconnu et la bravoure (The Legend of Zelda: Breath of the Wild, Le Seigneur des Anneaux, Dragon Quest). Un promontoire rocheux balayé par les vents dominant un vaste monde sauvage au lever du jour, les premiers rayons d'un soleil triomphant illuminant les crêtes de montagnes lointaines, tandis que des nuages d'altitude s'étirent et que des feuilles sauvages tourbillonnent dans l'air pur.",
+    "signature": "Une crête rocheuse surplombant un horizon infini balayée par des rafales de vent emportant des feuilles dorées dans la clarté éclatante d'une aurore héroïque.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste",
+        "description": "Ciel glorieux de début du monde passant de l'ambre chaud à l'éclat solaire immaculé de l'aube."
+      },
+      {
+        "plan": 2,
+        "type": "Nuages de haute course",
+        "description": "Bancs de nuages vaporeux FBM étirés par les vents d'altitude glissant vers l'est."
+      },
+      {
+        "plan": 3,
+        "type": "Reliefs montagneux étagés",
+        "description": "3 crêtes de montagnes successives en contre-jour sous un éclairage rasant révélant les vallées."
+      },
+      {
+        "plan": 4,
+        "type": "Faisceaux de gloire",
+        "description": "Rayons de soleil triomphants perçant les cols de montagne et inondant la scène d'énergie."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan dynamique",
+        "description": "Feuilles sauvages et motes de poussière d'or emportées par les courants d'air, encadrées d'un vignettage chaleureux."
+      }
+    ],
+    "particles": {
+      "type": "Feuilles sauvages de la lande (leaves) et poussières dorées matinales (dust)",
+      "size": "1.5 à 3.5 px",
+      "speed": "0.35 (translation éolienne et tumbling)",
+      "density": "35 particules",
+      "behavior": "Vol dynamique avec tumbling 3D sous les rafales de vent et portance oscillante."
+    },
+    "atmosphere": {
+      "mist": "Brume matinale argentée flottant au creux des vallées entre les crêtes rocheuses.",
+      "light": "Éclat solaire ambré et blanc pur éclatant, énergique et porteur d'espoir.",
+      "airColor": "Or levant (#d97706), blanc héroïque (#f8fafc) et terre ambrée (#b45309).",
+      "mainLightSource": "Soleil naissant à l'horizon droit (lightSourceX: 0.6, lightSourceY: 0.4) projetant des rais obliques."
+    },
+    "rareEvents": [
+      {
+        "name": "Souffle de la Quête",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 25.0 secondes",
+        "description": "Une puissante rafale de vent balaye la scène d'ouest en est, faisant tourbillonner vigoureusement les feuilles sauvages."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe marquée des chaînes de montagnes et déflexion dynamique de la trajectoire des feuilles au passage du curseur.",
+      "scroll": "Élargit la perspective sur les vallées lointaines sans altérer la clarté des contrastes de lecture."
+    },
+    "palette": [
+      "#b45309",
+      "#d97706",
+      "#f8fafc",
+      "#78350f",
+      "#1e293b",
+      "#0f172a"
+    ],
+    "references": [
+      "Breath of the wild mountain sunrise WebGL",
+      "Heroic journey morning sun rays Three.js",
+      "Mountain peak wind leaves blowing animation"
+    ],
+    "risks": {
+      "pitfall": "Décor de montagne quelconque sans souffle épique ni héroïsme.",
+      "solution": "Accentuer la dynamique du vent avec wind_gust et leaves, utiliser des rais de lumière perçants et un contraste puissant entre la roche et l'aube dorée."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#78350f",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#f8fafc",
+          "density": 1.0,
+          "speed": 0.1,
+          "depth": 0.05,
+          "intensity": 0.95
+        }
+      },
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "cloudColor": "#f8fafc",
+          "skyColor": "#b45309",
+          "density": 0.45,
+          "speed": 0.18,
+          "depth": 0.25,
+          "intensity": 0.85,
+          "windAngle": 0.1
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#1e293b",
+          "sunColor": "#d97706",
+          "mistColor": "#78350f",
+          "density": 1.0,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 1.0,
+          "snowLevel": 0.7,
+          "sunAngle": 0.7
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#f8fafc",
+          "density": 0.85,
+          "speed": 0.22,
+          "depth": 0.4,
+          "intensity": 0.95,
+          "lightSourceX": 0.6,
+          "lightSourceY": 0.4,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "leaves",
+        "params": {
+          "leafColor": "#d97706",
+          "density": 0.45,
+          "speed": 0.35,
+          "depth": 0.35,
+          "intensity": 1.1
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f8fafc",
+          "density": 0.25,
+          "speed": 0.15,
+          "depth": 0.4,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1e293b",
+          "intensity": 0.38,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      "heroic_blade"
+    ]
+  },
+  {
+    "id": "dragon_lair",
+    "name": "Dragon's Lair",
+    "family": "Magie & fantasy",
+    "intensity": 2,
+    "universe": "antre-du-dragon-volcan-magma",
+    "evocation": "L'antre d'un dragon millénaire reposant sur des montagnes d'or au cœur d'une caverne volcanique (Smaug sous le Mont Solitaire dans Le Hobbit, Dragon's Lair, Midir dans Dark Souls III). Des voûtes de basalte noir et d'obsidienne fumante, des failles de magma incandescent coulant sous un lit de richesses scintillantes, la respiration thermique colossale d'un titan endormi et des colonnes de chaleur soulevant des tourbillons de braises ardentes.",
+    "signature": "Une mer de pièces d'or enfouie sous des voûtes de basalte noir illuminée par le battement respiratoire d'un magma souterrain et un essaim ascensionnel de braises incandescentes.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan volcanique",
+        "description": "Voûte colossale de caverne de roche noire baignée d'un rougeoiement magmatique sombre."
+      },
+      {
+        "plan": 2,
+        "type": "Sol en fusion magmatique",
+        "description": "Coulée de lave visqueuse avec croûte d'obsidienne fracturée et failles incandescentes dorées à gradient thermique."
+      },
+      {
+        "plan": 3,
+        "type": "Respiration thermique & Foyer",
+        "description": "Halo vacillant à pulsation respiratoire lente simulant le sommeil du dragon et colonne d'air chaud convective ascendante."
+      },
+      {
+        "plan": 4,
+        "type": "Essaim de braises",
+        "description": "Nuée dense de braises incandescentes d'or et de rouge ardent s'élevant en spirale vers les hauteurs."
+      },
+      {
+        "plan": 5,
+        "type": "Finition rocheuse",
+        "description": "Fines volutes de fumée soufrée, vignettage thermique sombre et grain minéral de basalte."
+      }
+    ],
+    "particles": {
+      "type": "Braises volcaniques incandescentes (embers) et volutes de fumée (smoke)",
+      "size": "1.5 à 3.2 px",
+      "speed": "0.35 (ascension rapide convective)",
+      "density": "50 particules",
+      "behavior": "Ascension rapide en spirale sous la convection thermique avec étincelles sporadiques et refroidissement progressif."
+    },
+    "atmosphere": {
+      "mist": "Vapeurs sulfuriques et fumée noire de braise flottant sous les parois rocheuses.",
+      "light": "Lueur rougeoyante volcanique ardente rythmée par une pulsation thermique organique de chaleur.",
+      "airColor": "Or incandescent (#facc15), orange lave (#ea580c) et rouge magma (#7f1d1d).",
+      "mainLightSource": "Faille magmatique centrale au sol (lightX: 0.0, lightY: -0.3)."
+    },
+    "rareEvents": [
+      {
+        "name": "Expiration du Dragon",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 30.0 secondes",
+        "description": "Un grondement sourd fait trembler les parois de basalte et jaillir une vague dense de braises dorées."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déviation latérale de la colonne convective de chaleur et parallaxe du relief de basalte.",
+      "scroll": "Amplifie la radiance et l'éclat des fissures de magma au fond de l'antre."
+    },
+    "palette": [
+      "#7f1d1d",
+      "#b91c1c",
+      "#facc15",
+      "#ea580c",
+      "#18181b",
+      "#09090b"
+    ],
+    "references": [
+      "Volcanic dragon lair magma lava shader Three.js",
+      "Smaug treasure gold coins glowing embers WebGL",
+      "Lava flow heat distortion dark fantasy"
+    ],
+    "risks": {
+      "pitfall": "Rendu de volcan générique sans évoquer la présence mythique du dragon ou les trésors d'or.",
+      "solution": "Injecter des reflets dorés éclatants (#facc15) au milieu de l'obsidienne noire (#18181b) et synchroniser la lueur avec une respiration colossale lente."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#09090b",
+          "bottomColor": "#7f1d1d",
+          "horizonColor": "#ea580c",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.95
+        }
+      },
+      {
+        "brick": "lava_flow",
+        "params": {
+          "crustColor": "#18181b",
+          "magmaColor": "#ea580c",
+          "coreColor": "#facc15",
+          "density": 1.1,
+          "speed": 0.16,
+          "depth": 0.25,
+          "intensity": 1.3,
+          "heatPulseSpeed": 1.0
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#ea580c",
+          "density": 0.75,
+          "speed": 0.35,
+          "depth": 0.25,
+          "intensity": 0.55,
+          "heatHeight": 0.65
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#facc15",
+          "secondaryColor": "#ea580c",
+          "density": 1.0,
+          "speed": 0.25,
+          "depth": 0.3,
+          "intensity": 1.25,
+          "lightX": 0.0,
+          "lightY": -0.3,
+          "flickerType": 0
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#facc15",
+          "density": 0.65,
+          "speed": 0.35,
+          "depth": 0.35,
+          "intensity": 1.3
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#18181b",
+          "density": 0.4,
+          "speed": 0.2,
+          "depth": 0.3,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#09090b",
+          "intensity": 0.55,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "mythic_realm",
+    "name": "Mythic Realm",
+    "family": "Magie & fantasy",
+    "intensity": 1,
+    "universe": "royaume-mythique-avalon-legendes",
+    "evocation": "Les terres mythiques primordiales et îles enchantées de la mémoire des bardes (Avalon des légendes arthuriennes, Tir na nÓg celtique, Îles Fortunées, Hyperborée). Un paysage onirique intemporel où des collines verdoyantes s'estompent dans une brume opalescente émeraude, des eaux calmes miroitant sous une clarté d'argent nacré, et de délicates poussières d'immortalité flottant en apesanteur dans un silence sacré.",
+    "signature": "Une nappe de brume émeraude évanescente ondulant au-dessus de reliefs oniriques estompés sous des rais de lumière nacrée et de délicates motes scintillantes.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan onirique",
+        "description": "Ciel éthéré émeraude profonde vers lueur menthe nacrée d'une aurore éternelle."
+      },
+      {
+        "plan": 2,
+        "type": "Atmosphère brumeuse",
+        "description": "Nappes de brume vaporeuse d'Avalon FBM ondulant avec lenteur et majesté."
+      },
+      {
+        "plan": 3,
+        "type": "Lumière mystique",
+        "description": "Halo volumétrique de clarté sacrée nacrée apaisante irradiant sans ombre brutale."
+      },
+      {
+        "plan": 4,
+        "type": "Particules d'immortalité",
+        "description": "Motes de poussière d'immortalité scintillantes flottant en apesanteur, encadrées d'un vignettage émeraude doux."
+      }
+    ],
+    "particles": {
+      "type": "Motes de poussière d'immortalité scintillantes (dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.10 (dérive en quasi-stase)",
+      "density": "20 particules",
+      "behavior": "Dérive brownienne douce en apesanteur avec scintillement subtil non périodique."
+    },
+    "atmosphere": {
+      "mist": "Brume éthérée opalescente continue enveloppant le paysage onirique.",
+      "light": "Radiance douce et sereine, diffuse et sans ombre brutale.",
+      "airColor": "Émeraude mythique (#065f46), menthe nacrée (#a7f3d0) et blanc nacre (#f0fdf4).",
+      "mainLightSource": "Dôme de lueur zénithal central feutré."
+    },
+    "rareEvents": [
+      {
+        "name": "Souffle d'Avalon",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 55.0 secondes",
+        "description": "Une onde d'air douce fait onduler la nappe de brume émeraude comme un voile de soie céleste."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déplacement feutré du voile de brume et dispersion lente des motes d'immortalité au survol.",
+      "scroll": "Modifie très légèrement la clarté nacrée de l'horizon sans perturber le confort de lecture."
+    },
+    "palette": [
+      "#065f46",
+      "#047857",
+      "#a7f3d0",
+      "#6ee7b7",
+      "#022c22",
+      "#f0fdf4"
+    ],
+    "references": [
+      "Avalon mist landscape Three.js",
+      "Tir na nog emerald atmosphere WebGL",
+      "Mythical realm dreamlike fog particles"
+    ],
+    "risks": {
+      "pitfall": "Rendu vert fade et monochrome sans profondeur visuelle.",
+      "solution": "Nuancer le vert avec des touches menthe nacrée (#a7f3d0) et blanc pur, employer le double domain warping de noisy_fog pour un rendu fluide vivant."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#022c22",
+          "bottomColor": "#065f46",
+          "horizonColor": "#a7f3d0",
+          "density": 1.0,
+          "speed": 0.05,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#a7f3d0",
+          "density": 0.7,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "heightFalloff": 1.4
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#f0fdf4",
+          "glowColor": "#6ee7b7",
+          "outerColor": "#065f46",
+          "density": 0.7,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#a7f3d0",
+          "density": 0.25,
+          "speed": 0.1,
+          "depth": 0.35,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#022c22",
+          "intensity": 0.35,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "epic_saga",
+    "name": "Epic Saga",
+    "family": "Magie & fantasy",
+    "intensity": 1,
+    "universe": "saga-epique-nordique-legendes",
+    "evocation": "Les grandes sagas héroïques nordiques et chroniques des anciens âges (Beowulf, les chants de l'Edda poétique, Skyrim, The Banner Saga). Une chaîne de montagnes majestueuses sous un ciel nocturne bleu ardoise, où les draperies lumineuses d'une aurore boréale discrète ondulent au zénith en mémoire des exploits des rois et guerriers oubliés, tandis que de rares flocons de neige voltigent dans l'air vif.",
+    "signature": "Des sommets montagneux acérés nimbés d'une brume d'azur glacial sous un ciel nocturne balayé par les draperies spectrales d'une aurore boréale feutrée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan arctique céleste",
+        "description": "Nuit arctique profonde zébrée par les rideaux ondulants d'une aurore boréale azur et saphir."
+      },
+      {
+        "plan": 2,
+        "type": "Reliefs nordiques",
+        "description": "Silhouette de pics alpins aux arêtes vives et névés d'argent étagés sur les contreforts."
+      },
+      {
+        "plan": 3,
+        "type": "Particules de givre",
+        "description": "Flocons de neige délicats dérivant avec lenteur et noblesse dans l'atmosphère cristalline."
+      },
+      {
+        "plan": 4,
+        "type": "Finition nordique",
+        "description": "Grain photochimique sobre et vignettage ardoise focalisant le regard sur les cimes."
+      }
+    ],
+    "particles": {
+      "type": "Flocons de neige délicats (snow)",
+      "size": "1.2 à 2.4 px",
+      "speed": "0.14 (chute oscillatoire lente)",
+      "density": "20 particules",
+      "behavior": "Chute feutrée avec balancement pendulaire doux déphasé et dispersion naturelle."
+    },
+    "atmosphere": {
+      "mist": "Brume d'azur glaciale stagnante dans les vallées entre les crêtes rocheuses.",
+      "light": "Lueur spectrale douce de l'aurore boréale illuminant les névés d'altitude.",
+      "airColor": "Bleu ardoise (#0f172a), azur lumineux (#38bdf8) et blanc neige (#f8fafc).",
+      "mainLightSource": "Aurore boréale zénithale ondulante."
+    },
+    "rareEvents": [
+      {
+        "name": "Comète des Rois",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 45.0 secondes",
+        "description": "Un météore argenté trace une ligne pure au travers de l'aurore boréale."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe différentielle lente entre les crêtes de montagnes et décalage des draperies d'aurore.",
+      "scroll": "Modifie avec subtilité l'altitude apparente du point de vue."
+    },
+    "palette": [
+      "#0f172a",
+      "#1e293b",
+      "#38bdf8",
+      "#7dd3fc",
+      "#0284c7",
+      "#f8fafc"
+    ],
+    "references": [
+      "Nordic aurora borealis mountains WebGL",
+      "Skyrim night sky mountains shader Three.js",
+      "Epic saga snowy peaks atmosphere"
+    ],
+    "risks": {
+      "pitfall": "Aurore trop agitée ou saturée qui distrait de l'interface.",
+      "solution": "Modérer la vitesse (speed: 0.12), maintenir des teintes azur et bleu profond sobres, assurer un contraste élevé pour le texte UI blanc."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#0284c7",
+          "density": 1.0,
+          "speed": 0.05,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "aurora",
+        "params": {
+          "topColor": "#38bdf8",
+          "bottomColor": "#0284c7",
+          "density": 0.5,
+          "speed": 0.12,
+          "depth": 0.25,
+          "intensity": 0.8,
+          "waveFrequency": 2.0
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#0f172a",
+          "sunColor": "#38bdf8",
+          "mistColor": "#1e293b",
+          "density": 0.9,
+          "speed": 0.1,
+          "depth": 0.35,
+          "intensity": 0.9,
+          "snowLevel": 0.65
+        }
+      },
+      {
+        "brick": "snow",
+        "params": {
+          "snowColor": "#f8fafc",
+          "density": 0.25,
+          "speed": 0.14,
+          "depth": 0.35,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.05,
+          "speed": 0.5,
+          "clumpSize": 1.0
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "intensity": 0.4,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "divine_realm",
+    "name": "Divine Realm",
+    "family": "Magie & fantasy",
+    "intensity": 1,
+    "universe": "hauts-cieux-royaume-divin-olympe",
+    "evocation": "Les hauts cieux et sphères divines au-dessus du monde des mortels (Mont Olympe, Asgard de la mythologie scandinave, Hauts Cieux de Diablo, Élysée). Une mer infinie de nuées immaculées baignée d'une gloire solaire zénithale éblouissante, des colonnes de lumière divine descendant à travers l'éther, et des poussières d'or céleste flottant dans une harmonie parfaite et paisible.",
+    "signature": "Des nuées dorées et vaporeuses en lévitation sous des rayons de gloire solaire descendants, enveloppées d'une lueur volumétrique ambrée d'une pureté majestueuse.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan d'éther sacré",
+        "description": "Éther divin au dégradé d'albâtre doré vers or ambré resplendissant."
+      },
+      {
+        "plan": 2,
+        "type": "Mer de nuages célestes",
+        "description": "Bancs de nuées immaculées et dorées ondulant lentement en contrebas."
+      },
+      {
+        "plan": 3,
+        "type": "Colonnes de gloire",
+        "description": "Faisceaux de lumière zénithale divine perçant l'atmosphère céleste en cônes majestueux."
+      },
+      {
+        "plan": 4,
+        "type": "Particules de gloire",
+        "description": "Poussières d'or en apesanteur harmonique et halo de pureté divine, avec vignettage solaire doux."
+      }
+    ],
+    "particles": {
+      "type": "Motes de poussière d'or céleste (dust)",
+      "size": "1.2 à 2.5 px",
+      "speed": "0.10 (lévitation harmonique)",
+      "density": "20 particules",
+      "behavior": "Lévitation stable avec micro-oscillations harmoniques dans les colonnes de lumière."
+    },
+    "atmosphere": {
+      "mist": "Vapeurs dorées éthérées caressant les nuages célestes.",
+      "light": "Éclairage zénithal sacré resplendissant évoquant la présence divine et la transcendance.",
+      "airColor": "Albâtre divin (#fef3c7), or éclatant (#d4a853) et or pâle (#fef08a).",
+      "mainLightSource": "Zénith céleste absolu descendant en colonnes majestueuses (lightSourceX: 0.0, lightSourceY: 1.2)."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclair de Grâce",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 50.0 secondes",
+        "description": "Une étincelle de lumière blanche pure descend verticalement comme une bénédiction céleste."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déviation majestueuse des faisceaux de gloire et scintillement des poussières d'or au mouvement.",
+      "scroll": "Modifie l'intensité de la radiance zénithale avec élégance."
+    },
+    "palette": [
+      "#fef3c7",
+      "#fef08a",
+      "#d4a853",
+      "#b45309",
+      "#ffffff",
+      "#451a03"
+    ],
+    "references": [
+      "Heavenly clouds golden god rays WebGL",
+      "Mount Olympus divine light Three.js",
+      "High heavens clouds golden hour shader"
+    ],
+    "risks": {
+      "pitfall": "Écran trop blanc ou éblouissant rendant le texte de l'interface illisible.",
+      "solution": "Ancrer le bas de l'écran avec un ambre chaud (#b45309 et #d4a853) et veiller à préserver le contraste des cartes UI."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#fef3c7",
+          "bottomColor": "#d4a853",
+          "horizonColor": "#b45309",
+          "density": 1.0,
+          "speed": 0.05,
+          "depth": 0.05,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "cloudColor": "#ffffff",
+          "skyColor": "#fef08a",
+          "density": 0.5,
+          "speed": 0.1,
+          "depth": 0.25,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#ffffff",
+          "density": 0.7,
+          "speed": 0.15,
+          "depth": 0.4,
+          "intensity": 0.85,
+          "lightSourceX": 0.0,
+          "lightSourceY": 1.2,
+          "decay": 0.94
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#fef08a",
+          "outerColor": "#d4a853",
+          "density": 0.75,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#d4a853",
+          "density": 0.25,
+          "speed": 0.08,
+          "depth": 0.35,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#451a03",
+          "intensity": 0.3,
+          "smoothness": 0.95
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "pantheon",
+    "name": "Pantheon",
+    "family": "Magie & fantasy",
+    "intensity": 1,
+    "universe": "pantheon-dome-des-dieux-oculus",
+    "evocation": "Le sanctuaire suprême de toutes les divinités réunies, inspiré du Panthéon antique et de l'assemblée éternelle des dieux (apogée ultime de la collection RPG avec 50 jeux débloqués). Une coupole colossale aux caissons de pierre immaculée percée d'un oculus central circulaire, par lequel plonge un puissant faisceau de lumière solaire zénithale pure, révélant un réseau de constellations divines reliant les étoiles dans une harmonie cosmique intemporelle.",
+    "signature": "Un faisceau de lumière zénithale pure descendant d'un oculus architectural céleste pour baigner des étoiles en constellation d'or dans une atmosphère de marbre blanc immaculé.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Voûte céleste & Constellations",
+        "description": "Voûte céleste d'or et d'albâtre avec constellations d'étoiles divines reliées par de fins filaments géométriques."
+      },
+      {
+        "plan": 2,
+        "type": "Puits de lumière de l'oculus",
+        "description": "Grand cône volumétrique de lumière zénithale pure descendant de l'oculus central de la coupole."
+      },
+      {
+        "plan": 3,
+        "type": "Halo de gloire souverain",
+        "description": "Radiance volumétrique sacrée enveloppant l'axe du temple d'une clarté dorée solennelle."
+      },
+      {
+        "plan": 4,
+        "type": "Motes de marbre & Finition",
+        "description": "Poussières de marbre étincelantes dansant en quasi-stase au cœur du faisceau, encadrées d'un vignettage architectural doux."
+      }
+    ],
+    "particles": {
+      "type": "Motes de poussière de marbre et de lumière solaire (dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.10 (lévitation sereine)",
+      "density": "20 particules",
+      "behavior": "Lévitation sereine dans le puits de lumière avec micro-scintillements discrets."
+    },
+    "atmosphere": {
+      "mist": "Air pur et limpide de sanctuaire avec légère diffusion lumineuse dans l'axe de l'oculus.",
+      "light": "Faisceau zénithal spectaculaire créant une frontière nette entre le puits de lumière pure et la pénombre de la coupole.",
+      "airColor": "Blanc immaculé (#ffffff), or solaire (#f59e0b) et crème d'ivoire (#fef3c7).",
+      "mainLightSource": "Oculus sommital zénithal (lightSourceX: 0.0, lightSourceY: 1.3)."
+    },
+    "rareEvents": [
+      {
+        "name": "Alignement Solaire",
+        "type": "lens_flare",
+        "frequency": "Intervalle moyen de 45.0 secondes",
+        "description": "Un éclat optique discret traverse le centre de l'oculus, produisant un chatoiement nacré éphémère."
+      }
+    ],
+    "interaction": {
+      "mouse": "Décentrement doux de la perspective de la coupole et interaction gravitationnelle discrète avec les nœuds de constellations.",
+      "scroll": "Resserre délicatement la focalisation sur le puits de lumière sans altérer la lisibilité."
+    },
+    "palette": [
+      "#ffffff",
+      "#fef3c7",
+      "#f59e0b",
+      "#d97706",
+      "#1e293b",
+      "#0f172a"
+    ],
+    "references": [
+      "Rome Pantheon oculus sunbeam WebGL",
+      "Dome architecture god rays Three.js",
+      "Pantheon temple light beam dust particles"
+    ],
+    "risks": {
+      "pitfall": "Rendu trop éblouissant sans relief architectural qui nuirait à la lisibilité de l'interface.",
+      "solution": "Conserver un contraste suffisant avec les ombres douces de la coupole (#1e293b), focaliser le faisceau de l'oculus sur l'axe central et préserver un fond stable pour l'UI."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#ffffff",
+          "bottomColor": "#f59e0b",
+          "horizonColor": "#d97706",
+          "density": 1.0,
+          "speed": 0.05,
+          "depth": 0.05,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "line_constellation",
+        "params": {
+          "nodeColor": "#f59e0b",
+          "lineColor": "#fef3c7",
+          "pulseColor": "#ffffff",
+          "density": 0.6,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#ffffff",
+          "density": 0.8,
+          "speed": 0.14,
+          "depth": 0.4,
+          "intensity": 0.9,
+          "lightSourceX": 0.0,
+          "lightSourceY": 1.3,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#fef3c7",
+          "outerColor": "#f59e0b",
+          "density": 0.7,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f59e0b",
+          "density": 0.25,
+          "speed": 0.1,
+          "depth": 0.35,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1e293b",
+          "intensity": 0.38,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      "pantheon_oculus"
+    ]
+  }
+]
+

@@ -1,0 +1,3281 @@
+[
+  {
+    "id": "red_pill",
+    "name": "Red Pill",
+    "family": "Néon & cyber",
+    "intensity": 2,
+    "universe": "matrix",
+    "evocation": "The Matrix (Les Wachowski, 1999) : Le réveil dans le monde réel et la prise de conscience du code sous-jacent qui simule la réalité. L'écran noir d'un terminal informatique archaïque de hacker sur lequel déferle la légendaire cascade de glyphes vert phosphore (symboles katakanas numériques et chiffres inversés). Dans l'obscurité d'un data center clandestin ou de la passerelle du Nebuchadnezzar, la lumière verte fluorescente baigne les coursives métalliques humides. Les flux de données tombent à des vitesses asynchrones, perturbés par de micro-glitches temporels et le balayage cathodique d'un écran CRT.",
+    "signature": "Un rideau volumétrique continu de cascades de code numérique vert phosphore qui s'écoule du zénith vers l'abîme, zébré de micro-glitches électromagnétiques et perturbé magnétiquement par le curseur.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Vide numérique noir abyssal (#020617) parcouru d'un dégradé imperceptible de phosphore vert sombre à l'horizon lointain."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Strate d'arrière-plan de colonnes de code binaire Matrix denses, minuscules et estompées dans une brume verte spectrale."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Rideau principal de cascades de caractères fluorescents vert émeraude aux têtes incandescentes blanc-vert tombant à vitesses différentielles."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Quelques flux de code larges et ultra-rapides au premier plan immédiat, réagissant magnétiquement au pointeur de souris."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Balayage de scanlines cathodiques CRT avec phosphore roll vertical et vignettage terminal oppressant."
+      }
+    ],
+    "particles": {
+      "type": "Glyphes numériques mutants et micro-poussières de phosphore vert (code_rain & dust)",
+      "size": "0.8 à 1.4 em pour les glyphes de code, 1.0 à 2.0 px pour les poussières résiduelles",
+      "speed": "0.45 pour la descente des flux de code, 0.15 pour la lévitation des poussières",
+      "density": "45 colonnes de code réparties sur 3 strates Z + 80 micro-motes de phosphore vert",
+      "behavior": "Chute verticale continue avec têtes incandescentes, mutation stochastique des caractères en temps réel et déviation fluide sous la proximité de la souris."
+    },
+    "atmosphere": {
+      "mist": "Halo vaporeux vert phosphore (#14532d) stagnant en bas d'écran où les flux de code semblent s'évaporer à l'impact.",
+      "light": "Éclairage vert monochrome émis directement par les glyphes fluorescents, sans source lumineuse externe.",
+      "airColor": "Vert émeraude néon (#22c55e) se dissolvant dans le noir d'encre cybernétique (#020617).",
+      "mainLightSource": "La radiance intrinsèque des têtes de colonnes de code descendantes."
+    },
+    "rareEvents": [
+      {
+        "name": "Glitch de la Matrice (Déjà-vu)",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Une brève déchirure horizontale décale brutalement plusieurs tranches de l'écran avec aberration chromatique verte et magenta, simulant une altération du code de la Matrice."
+      },
+      {
+        "name": "Onde de choc de décodage",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Une impulsion circulaire d'énergie verte se propage depuis le curseur, repoussant momentanément les flux de données comme une onde de distorsion bullet-time."
+      }
+    ],
+    "interaction": {
+      "mouse": "La souris agit comme une anomalie électromagnétique dans le code : les colonnes à proximité s'écartent avec une traînée de halo plus intense.",
+      "scroll": "Accélère subtilement la vitesse de défilement des colonnes au premier plan tout en densifiant le vignettage périphérique pour préserver la lisibilité."
+    },
+    "palette": [
+      "#020617",
+      "#22c55e",
+      "#15803d",
+      "#14532d",
+      "#4ade80",
+      "#00ff66"
+    ],
+    "references": [
+      "The Matrix digital rain terminal sequence",
+      "Shadertoy procedural matrix digital rain GLSL",
+      "CodePen green phosphor falling characters CRT"
+    ],
+    "risks": {
+      "pitfall": "Un simple rideau de lettres plates vertes descendantes à vitesse uniforme ressemblant à un économiseur d'écran Windows 98 des années 2000.",
+      "solution": "3 couches de profondeur Z indépendantes avec flou de bokeh, têtes de caractères blanches incandescentes, déviation interactive à la souris et micro-glitches sporadiques."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#052e16",
+          "horizonColor": "#14532d",
+          "density": 1.2,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.8,
+          "randomness": 0.2,
+          "noiseScale": 1.5
+        }
+      },
+      {
+        "brick": "code_rain",
+        "params": {
+          "primaryColor": "#22c55e",
+          "headColor": "#ffffff",
+          "glowColor": "#003b15",
+          "density": 1.2,
+          "speed": 0.45,
+          "depth": 0.35,
+          "intensity": 1.15,
+          "randomness": 0.35,
+          "charSize": 1,
+          "tailLength": 0.75,
+          "mouseGlow": 0.55
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#052e16",
+          "density": 0.65,
+          "speed": 0.12,
+          "depth": 0.25,
+          "intensity": 0.6,
+          "randomness": 0.3,
+          "heightFalloff": 2.2,
+          "windAngle": 0.05
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#4ade80",
+          "density": 0.7,
+          "speed": 0.15,
+          "depth": 0.4,
+          "intensity": 0.85,
+          "randomness": 0.4,
+          "twinkleSpeed": 1.5
+        }
+      },
+      {
+        "brick": "glitch",
+        "params": {
+          "sliceColor": "#22c55e",
+          "density": 0.6,
+          "speed": 1.8,
+          "depth": 0.2,
+          "intensity": 0.65,
+          "randomness": 0.45,
+          "glitchInterval": 18,
+          "sliceShift": 0.08
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "waveColor": "#4ade80",
+          "density": 0.5,
+          "speed": 1.2,
+          "depth": 0.3,
+          "intensity": 0.6,
+          "randomness": 0.3,
+          "waveInterval": 28,
+          "maxRadius": 1.8
+        }
+      },
+      {
+        "brick": "crt_scanlines",
+        "params": {
+          "scanlineColor": "#000000",
+          "density": 1.1,
+          "speed": 0.2,
+          "depth": 0.15,
+          "intensity": 0.35,
+          "randomness": 0.15,
+          "curvature": 0.08,
+          "rollIntensity": 0.12
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.75,
+          "randomness": 0.15,
+          "roundness": 0.7,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "baker_street",
+    "name": "Baker Street",
+    "family": "Horreur & mystère",
+    "intensity": 2,
+    "universe": "sherlock-holmes",
+    "evocation": "Sherlock Holmes (Sir Arthur Conan Doyle) : Le Londres victorien de la fin du XIXe siècle, englouti sous le « pea-souper », ce brouillard de charbon toxique et poisseux aux reflets ambrés et jaunâtres. Au cœur de Baker Street, les réverbères à gaz vacillent sous la bruine nocturne, projetant des cônes de lumière diffuse sur les pavés détrempés où résonnent les fers des chevaux. Des fenêtres des étages filtrent des silhouettes mystérieuses derrière des rideaux d'ombre. De la pipe de bruyère du détective s'élèvent de paresseuses volutes de fumée grise, entremêlées aux vapeurs de cheminées victoriennes.",
+    "signature": "Des réverbères à gaz d'époque victorienne qui vacillent dans un halo de brume ocre ambrée, projetant de longues ombres obliques sur des pavés humides balayés par des volutes de fumée de tabac.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel de nuit victorienne lourd et obscur (#0f172a) voilé par des nappes de suie et de brouillard de charbon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes de toits et cheminées londoniennes pointues (style géorgien) étagées dans la brume avec fenêtres faiblement éclairées."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Lanterne de bec de gaz victorien en fer forgé émettant une flamme vacillante chaude et un cône de lumière diffuse vers le sol."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Volutes de fumée de pipe sinueuses et nappe de brume dense dérivant paresseusement d'un bord à l'autre."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Gouttes de crachin londonien oblique perçant les halos lumineux, avec vignettage feutré et grain photochimique 35mm."
+      }
+    ],
+    "particles": {
+      "type": "Gouttelettes de crachin fin et volutes de fumée de tabac (rain & smoke)",
+      "size": "0.8 à 1.5 px pour le crachin, nuages vaporeux de 30 à 60 px pour la fumée",
+      "speed": "1.3 pour la bruine oblique, 0.22 pour l'ascension lente de la fumée",
+      "density": "160 traits de crachin + 25 volutes de fumée en expansion lente",
+      "behavior": "Chute inclinée sous le vent froid de la Tamise pour la pluie, et dissipation progressive par tourbillons de vortex pour la fumée de pipe."
+    },
+    "atmosphere": {
+      "mist": "Brouillard épais de charbon londonien (« pea-souper ») teinté de jaune ambre (#d4a853) au niveau des lanternes.",
+      "light": "Éclairage chaleureux mais feutré, issu d'une flamme de gaz vacillante créant un contraste dramatique avec l'obscurité froide de la rue.",
+      "airColor": "Jaune ambre chaud (#d4a853) se mêlant au bleu ardoise poisseux (#1e293b) de la nuit.",
+      "mainLightSource": "La lanterne à gaz victorienne située sur le flanc gauche de la scène."
+    },
+    "rareEvents": [
+      {
+        "name": "Baisse de pression du bec de gaz",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "La flamme de la lanterne vacille brusquement avec un grésillement sourd, plongeant un instant la ruelle dans une quasi-obscurité avant de reprendre avec éclat."
+      },
+      {
+        "name": "Bourrasque glaciale de la Tamise",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 35.0 secondes",
+        "description": "Une rafale de vent courbe brutalement l'angle du crachin et étire les volutes de fumée en filaments vaporeux fuyants."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace la lanterne et révèle les façades d'immeubles lointaines dans le brouillard ; le curseur dissipe doucement la fumée de pipe.",
+      "scroll": "Abaisse l'angle de vue vers les pavés de Baker Street tout en intensifiant l'ambre chaud au sol pour conserver un parfait confort de lecture."
+    },
+    "palette": [
+      "#1e293b",
+      "#d4a853",
+      "#0f172a",
+      "#78350f",
+      "#fef08a",
+      "#475569"
+    ],
+    "references": [
+      "Victorian London gaslamp street fog Sherlock Holmes",
+      "Shadertoy gas lamp volumetric light night street",
+      "CodePen procedural victorian street cobblestone fog"
+    ],
+    "risks": {
+      "pitfall": "Une scène marron-gris morne et statique où l'on ne perçoit qu'une tache jaune floue sans texture victorienne.",
+      "solution": "Contrastes dynamiques grâce au vacillement organique non-périodique de la torche à gaz, découpe des silhouettes de toits et crachin fin étiré par la brise."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#78350f",
+          "density": 1.1,
+          "speed": 0.12,
+          "depth": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.25,
+          "noiseScale": 1.3
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#0a1120",
+          "windowColor": "#d4a853",
+          "beaconColor": "#78350f",
+          "density": 0.8,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.7,
+          "randomness": 0.5,
+          "smogIntensity": 0.8
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#475569",
+          "density": 0.9,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "randomness": 0.4,
+          "heightFalloff": 1.4,
+          "windAngle": 0.12
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#d4a853",
+          "secondaryColor": "#ea580c",
+          "density": 1.1,
+          "speed": 0.35,
+          "depth": 0.3,
+          "intensity": 1.15,
+          "randomness": 0.45,
+          "lightX": -0.4,
+          "lightY": 0.1,
+          "flickerType": 0
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#94a3b8",
+          "tintColor": "#334155",
+          "density": 0.65,
+          "speed": 0.22,
+          "depth": 0.4,
+          "intensity": 0.65,
+          "randomness": 0.45,
+          "expansionRate": 1.6,
+          "dissipationSpeed": 0.9
+        }
+      },
+      {
+        "brick": "rain",
+        "params": {
+          "rainColor": "#cbd5e1",
+          "density": 0.65,
+          "speed": 1.3,
+          "depth": 0.45,
+          "intensity": 0.7,
+          "randomness": 0.35,
+          "windAngle": 0.22,
+          "streakLength": 1
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#090d16",
+          "density": 1.05,
+          "speed": 0.1,
+          "depth": 0.25,
+          "intensity": 0.7,
+          "randomness": 0.2,
+          "roundness": 0.65,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.1,
+          "speed": 0.7,
+          "depth": 0.15,
+          "intensity": 0.07,
+          "randomness": 0.45,
+          "monochrome": true,
+          "clumpSize": 1.1
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "gaslamp_cobblestone",
+        "category": "background",
+        "reason": "Sol de pavés d'époque victorienne humides avec reflets spéculaires diffus de la lanterne à gaz et géométrie en perspective fuyante."
+      }
+    ]
+  },
+  {
+    "id": "the_couch",
+    "name": "The Couch",
+    "family": "Cosy & gestion",
+    "intensity": 2,
+    "universe": "friends",
+    "evocation": "Friends (David Crane & Marta Kauffman, 1994-2004) : La chaleur réconfortante et intemporelle du Central Perk et du célèbre canapé en velours orange. Fin d'après-midi new-yorkaise d'automne, lumière rasante et dorée filtrant à travers la grande verrière du coffee shop, illuminant des grains de poussière dorée en apesanteur. Au centre d'une table basse en bois patiné, une grande tasse en céramique diffuse de fines volutes de vapeur de café chaud. Derrière, les briques rouges typiques de Greenwich Village et les boiseries sombres créent un cocon douillet à l'abri de l'agitation urbaine.",
+    "signature": "Un salon new-yorkais feutré aux briques chaudes où de fines volutes de vapeur s'élèvent d'une tasse de café fumante, baignées dans la lueur dorée d'un lampadaire vintage et entourées de grains de poussière dorée en apesanteur.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Mur de briques new-yorkaises chaleureuses (#7c2d12) estompé dans une pénombre douce et rassurante."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Cadre de verrière d'atelier d'époque avec reflets diffus d'un crépuscule d'automne à Greenwich Village."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Foyer lumineux chaud d'une lampe rétro projetant un faisceau doré sur la texture velours orange brûlé (#ea580c)."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Volutes légères de vapeur de café s'élevant en torsades douces et motes de poussière dorée flottant dans le contre-jour."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Vignettage ambré feutré et grain subtil évoquant la pellicule 35mm chaleureuse d'une sitcom des années 90."
+      }
+    ],
+    "particles": {
+      "type": "Vapeur de café chaude et motes de poussière dorée (smoke & dust)",
+      "size": "1.0 à 2.4 px pour les poussières dorées, 20 à 45 px pour les panaches de vapeur",
+      "speed": "0.14 pour la dérive brownienne des poussières, 0.28 pour l'ascension douce de la vapeur",
+      "density": "110 motes dorées étincelantes + 18 volutes vaporeuses de café",
+      "behavior": "Flottaison en apesanteur calme et apaisante avec étirement fluide de la vapeur sous la convection thermique ascendante."
+    },
+    "atmosphere": {
+      "mist": "Brume de vapeur parfumée très douce et localisée autour de la source de café chaud.",
+      "light": "Chaleureuse, ambrée et dorée, simulant une fin d'après-midi automnale à travers une baie vitrée.",
+      "airColor": "Orange velours chaleureux (#ea580c) et brun boisé (#7c2d12) adoucis par une lumière or (#fef08a).",
+      "mainLightSource": "La verrière et le lampadaire vintage situé à droite de la pièce."
+    },
+    "rareEvents": [
+      {
+        "name": "Bruine sur les carreaux",
+        "type": "rain",
+        "frequency": "Intervalle moyen de 25.0 secondes",
+        "description": "Une brève averse fine vient picoter l'extérieur de la verrière, intensifiant le sentiment de confort intérieur et de chaleur du foyer."
+      },
+      {
+        "name": "Étirement doré d'un rayon de soleil",
+        "type": "god_rays",
+        "frequency": "Intervalle moyen de 32.0 secondes",
+        "description": "Le soleil couchant perce entre les nuages new-yorkais, projetant un faisceau de lumière d'or pur qui embrase les poussières en suspension."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le pointeur caresse doucement les volutes de vapeur de café qui ondulent et s'écartent avec fluidité ; la parallaxe incline la perspective du salon.",
+      "scroll": "Adoucit subtilement la luminosité zénithale pour donner l'impression de s'enfoncer confortablement dans le canapé en velours."
+    },
+    "palette": [
+      "#0f172a",
+      "#ea580c",
+      "#7c2d12",
+      "#fb923c",
+      "#fef08a",
+      "#1e293b"
+    ],
+    "references": [
+      "Cozy Central Perk warm coffee shop lighting 90s",
+      "Shadertoy coffee steam volumetric dust warm light",
+      "CodePen autumn cozy room dust particles steam"
+    ],
+    "risks": {
+      "pitfall": "Un fond orange criard et plat qui agresse l'œil ou nuit à la lisibilité des textes et cartes de l'application.",
+      "solution": "Palette feutrée d'ambre, de cuir et de brique sombre avec vignettage soyeux et volutes de vapeur translucides préservant un contraste WCAG AA impeccable."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#7c2d12",
+          "density": 1,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.2,
+          "noiseScale": 1.2
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#fef08a",
+          "density": 0.8,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "randomness": 0.3,
+          "lightSourceX": 0.5,
+          "lightSourceY": 0.8,
+          "decay": 0.93
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#fb923c",
+          "secondaryColor": "#ea580c",
+          "density": 1,
+          "speed": 0.2,
+          "depth": 0.3,
+          "intensity": 0.95,
+          "randomness": 0.3,
+          "lightX": 0.35,
+          "lightY": 0.05,
+          "flickerType": 2
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef08a",
+          "density": 0.9,
+          "speed": 0.14,
+          "depth": 0.45,
+          "intensity": 0.95,
+          "randomness": 0.4,
+          "twinkleSpeed": 1
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#fed7aa",
+          "tintColor": "#9a3412",
+          "density": 0.5,
+          "speed": 0.28,
+          "depth": 0.4,
+          "intensity": 0.6,
+          "randomness": 0.4,
+          "expansionRate": 1.4,
+          "dissipationSpeed": 1.1
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0f172a",
+          "density": 1,
+          "speed": 0.1,
+          "depth": 0.25,
+          "intensity": 0.65,
+          "randomness": 0.15,
+          "roundness": 0.7,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 0.9,
+          "speed": 0.6,
+          "depth": 0.15,
+          "intensity": 0.05,
+          "randomness": 0.35,
+          "monochrome": true,
+          "clumpSize": 1
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "cozy_window_rain",
+        "category": "overlay",
+        "reason": "Condensation vaporeuse et ruissellement de gouttes de pluie sur une vitre de baie vitrée rétro avec réfraction optique douce."
+      }
+    ]
+  },
+  {
+    "id": "winter_is_coming",
+    "name": "Winter Is Coming",
+    "family": "Magie & fantasy",
+    "intensity": 2,
+    "universe": "game-of-thrones",
+    "evocation": "Game of Thrones / Le Trône de Fer (George R.R. Martin) : Le Mur titanesque de glace millénaire qui garde le royaume des Sept Couronnes contre les ténèbres de l'Hiver. Une nuit polaire austère et écrasante où le vent hurle à travers les gouffres glacés. La paroi verticale de deux cents mètres de haut luit d'un reflet bleu acier et noir obsidienne sous un ciel de tempête. Des tourbillons de neige poudreuse et de givre sont arrachés aux crêtes rocheuses par des rafales violentes, tandis que l'ombre de la Longue Nuit s'étend sur les forêts pétrifiées du Nord.",
+    "signature": "Un colosse de glace verticale balayé par des rafales de blizzard hurlantes qui arrachent des gerbes de poudreuse étincelante et font vibrer l'air d'un froid surnaturel.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel polaire crépusculaire presque noir (#000000) voilé par des masses nuageuses de blizzard lourd en furie."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Crêtes acérées de montagnes nordiques et sommets pétrifiés par le gel se découpant contre l'horizon boréal."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "La masse monumentale et vertigineuse de la muraille de glace avec ses failles bleutées et ses contreforts de givre."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Rideaux de neige dense cinglant obliquement sous la force d'un vent arctique glacial et nappes de brume polaire rampante."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Gros flocons cristallins en flou de profondeur bokeh et vignettage noir intense encadrant la scène de froidure."
+      }
+    ],
+    "particles": {
+      "type": "Flocons de blizzard et cristaux de givre polaire (snow & dust)",
+      "size": "1.2 à 4.0 px avec flou bokeh pour les flocons proches, 0.8 à 1.5 px pour le givre",
+      "speed": "0.85 avec accélérations brutales lors des rafales de vent",
+      "density": "220 flocons de neige étagés sur 3 couches Z + 60 cristaux de givre étincelants",
+      "behavior": "Chute balayée latéralement par un vent violent avec tourbillons chaotiques et dérive pendulaire asymétrique."
+    },
+    "atmosphere": {
+      "mist": "Nappe de brouillard givrant et de brume arctique (#94a3b8) ondulant le long de la base de la muraille.",
+      "light": "Froide, crépusculaire et dramatique, avec des reflets bleu glacier (#38bdf8) sur les crêtes de glace étincelantes.",
+      "airColor": "Blanc givre éclatant (#f8fafc) contrastant violemment avec le noir d'encre obsidienne (#000000).",
+      "mainLightSource": "La lueur diffuse et spectrale d'une aurore lointaine cachée derrière la tempête."
+    },
+    "rareEvents": [
+      {
+        "name": "Rafale de blizzard arctique",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Une bourrasque de vent hurlante balaye l'écran de gauche à droite, inclinant brutalement la trajectoire des flocons et soulevant un nuage de poudreuse opaque."
+      },
+      {
+        "name": "Craquement tellurique du Mur de glace",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 30.0 secondes",
+        "description": "Une micro-secousse sourde ébranle l'écran comme si la structure séculaire de glace venait de travailler sous le gel extrême."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le déplacement de la souris modifie l'angle de pénétration du vent dans la tempête et repousse les flocons proches ; la parallaxe accentue la verticalité abyssale du Mur.",
+      "scroll": "Fait plonger la vue vers la base ténébreuse du Mur, assombrissant le fond tout en rehaussant le blanc net des flocons pour conserver une lisibilité impeccable."
+    },
+    "palette": [
+      "#f8fafc",
+      "#000000",
+      "#0f172a",
+      "#38bdf8",
+      "#94a3b8",
+      "#1e293b"
+    ],
+    "references": [
+      "The Wall Game of Thrones blizzard winter night",
+      "Shadertoy procedural arctic blizzard glacier",
+      "CodePen procedural snow storm ice mountain parallax"
+    ],
+    "risks": {
+      "pitfall": "Un rideau de neige uniforme qui gêne la lecture du texte de l'application ou ressemble à un banal filtre de Noël.",
+      "solution": "Neige directionnelle violente en 3 plans de profondeur avec bokeh doux, éclairage bleu acier rasant et contraste garanti par un voile sombre protecteur."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#1e293b",
+          "density": 1.2,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.9,
+          "randomness": 0.2,
+          "noiseScale": 1.4
+        }
+      },
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "cloudColor": "#1e293b",
+          "skyColor": "#000000",
+          "density": 0.75,
+          "speed": 0.25,
+          "depth": 0.25,
+          "intensity": 0.9,
+          "randomness": 0.45,
+          "windAngle": 0.25
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#020617",
+          "sunColor": "#38bdf8",
+          "mistColor": "#0f172a",
+          "density": 0.9,
+          "speed": 0.1,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "randomness": 0.45,
+          "snowLevel": 0.3,
+          "sunAngle": 0.4
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#64748b",
+          "density": 0.8,
+          "speed": 0.2,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "randomness": 0.4,
+          "heightFalloff": 1.6,
+          "windAngle": 0.25
+        }
+      },
+      {
+        "brick": "snow",
+        "params": {
+          "snowColor": "#f8fafc",
+          "density": 1.35,
+          "speed": 0.85,
+          "depth": 0.6,
+          "intensity": 1.1,
+          "randomness": 0.5,
+          "windStrength": 0.65,
+          "swayFrequency": 1.8
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#e2e8f0",
+          "density": 0.9,
+          "speed": 1.5,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "randomness": 0.4,
+          "gustInterval": 18,
+          "gustAngle": 0.25,
+          "swirlScale": 1.2
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeColor": "#0f172a",
+          "density": 0.6,
+          "speed": 1.2,
+          "depth": 0.2,
+          "intensity": 0.5,
+          "randomness": 0.4,
+          "shakeInterval": 30,
+          "decayRate": 5
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.15,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.8,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "frost_glacier_wall",
+        "category": "intermediate",
+        "reason": "Paroi colossale de glace millénaire verticale étagée avec fissures bleu cyan luminescentes et givrage dynamique des bordures d'écran."
+      }
+    ]
+  },
+  {
+    "id": "tardis",
+    "name": "TARDIS",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "doctor-who",
+    "evocation": "Doctor Who (BBC, depuis 1963) : Le voyage à travers le Vortex Temporel (« Time Vortex »), ce tunnel hyperspatial kaléidoscopique où le temps et l'espace s'enroulent en spirales d'énergie bleue cobalt, violette et or. La légendaire boîte de police bleue tournoie majestueusement dans l'infinité chronologique, faisant pulser son gyrophare zénithal dans un halo d'or et de blanc chaud. Des anneaux de flux chronologique s'expandent en ondes de distorsion, tandis que des traînées d'étoiles et de particules d'arcanes temporels s'étirent le long des lignes de force temporelles.",
+    "signature": "Un vortex spatio-temporel en spirale tourbillonnante aux anneaux d'énergie bleu profond et cobalt, ponctué par la pulsation dorée d'un phare zénithal et des distorsions d'ondes chronologiques.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Cœur du vortex cosmique infini oscillant entre bleu nuit galactique (#091e42) et pourpre temporel mystique."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Nébuleuse d'énergie chronologique en rotation non-linéaire avec filaments de plasma bleu cobalt (#1e3a8a)."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Pulsation rythmique d'un phare zénithal or et blanc éclatant symbolisant la présence de la cabine temporelle en rotation."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Nuée d'étoiles étirées et micro-étincelles chronologiques en fuite radiale continue le long des parois du vortex."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Ondes de distorsion de réfraction temporelle avec légère aberration chromatique radiale et vignettage spatial."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles temporelles et micro-étoiles en fuite radiale (sparks & multilayer_starfield)",
+      "size": "1.0 à 3.0 px avec aigrettes de diffraction lumineuse pour les particules proches",
+      "speed": "0.3 pour la rotation générale du champ stellaire, 1.4 pour les éjections d'étincelles",
+      "density": "140 étoiles étagées sur 3 couches Z + 45 étincelles temporelles dorées",
+      "behavior": "Trajectoires spiralées et radiales convergeant ou divergeant du cœur temporel selon la distorsion chronologique."
+    },
+    "atmosphere": {
+      "mist": "Voiles de gaz ionisé et plasma bleu éthéré (#38bdf8) tourbillonnant en spirale au centre de l'espace.",
+      "light": "Énergétique, cosmique et pulsante, dominée par l'alternance rythmée de la lanterne zénithale blanche et or.",
+      "airColor": "Bleu police TARDIS profond (#1e3a8a) et blanc incandescent (#ffffff) piqué d'or temporel (#facc15).",
+      "mainLightSource": "Le phare zénithal pulsant de la cabine temporelle au centre du vortex."
+    },
+    "rareEvents": [
+      {
+        "name": "Dématérialisation temporelle",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 22.0 secondes",
+        "description": "Une onde de choc circulaire bleutée déferle depuis le centre du vortex avec un flash lumineux, simulant le son emblématique de matérialisation/dématérialisation du TARDIS."
+      },
+      {
+        "name": "Sursaut de faille temporelle",
+        "type": "chromatic_aberration",
+        "frequency": "Intervalle moyen de 34.0 secondes",
+        "description": "Une brève dislocation optique sépare momentanément les composantes RVB du vortex, traduisant une turbulence temporelle brutale."
+      }
+    ],
+    "interaction": {
+      "mouse": "La souris incline l'angle de vision à l'intérieur du tunnel temporel, courbant les lignes de force du vortex ; un champ gravitationnel doux attire les étincelles.",
+      "scroll": "Accélère la sensation de voyage en avant dans le temps, accentuant la profondeur Z et dilatant les anneaux énergétiques."
+    },
+    "palette": [
+      "#1e3a8a",
+      "#ffffff",
+      "#091e42",
+      "#38bdf8",
+      "#60a5fa",
+      "#facc15"
+    ],
+    "references": [
+      "Doctor Who time vortex opening sequence TARDIS",
+      "Shadertoy hyperspace wormhole time vortex GLSL",
+      "CodePen rotating cosmic tunnel starfield blue"
+    ],
+    "risks": {
+      "pitfall": "Un tourbillon bleu agressif et étourdissant qui provoque le mal de mer ou noie le texte dans des contrastes saturés.",
+      "solution": "Mouvement de vortex fluide et feutré à base d'octaves FBM lentes, centre sombre et calme, avec préservation stricte de la zone centrale pour l'interface."
+    },
+    "bricks": [
+      {
+        "brick": "nebula",
+        "params": {
+          "primaryColor": "#1e3a8a",
+          "secondaryColor": "#091e42",
+          "accentColor": "#38bdf8",
+          "density": 0.8,
+          "speed": 0.16,
+          "depth": 0.25,
+          "intensity": 1.05,
+          "randomness": 0.35,
+          "coreScale": 1.5
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#ffffff",
+          "density": 1.1,
+          "speed": 0.2,
+          "depth": 1,
+          "intensity": 1,
+          "randomness": 0.5,
+          "twinkleSpeed": 1.8
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#60a5fa",
+          "outerColor": "#1e3a8a",
+          "density": 0.9,
+          "speed": 0.25,
+          "depth": 0.3,
+          "intensity": 1.1,
+          "randomness": 0.3,
+          "glowRadius": 1.2
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#ffffff",
+          "secondaryColor": "#facc15",
+          "density": 0.9,
+          "speed": 0.45,
+          "depth": 0.3,
+          "intensity": 1.2,
+          "randomness": 0.35,
+          "lightX": 0,
+          "lightY": 0.1,
+          "flickerType": 1
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#facc15",
+          "coreColor": "#ffffff",
+          "density": 0.65,
+          "speed": 0.9,
+          "depth": 0.4,
+          "intensity": 1.1,
+          "randomness": 0.5,
+          "gravity": 0.3,
+          "burstInterval": 2.2
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "waveColor": "#38bdf8",
+          "density": 0.6,
+          "speed": 1.4,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "randomness": 0.3,
+          "waveInterval": 22,
+          "maxRadius": 2.2
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "offsetColor": "#38bdf8",
+          "density": 0.5,
+          "speed": 0.8,
+          "depth": 0.2,
+          "intensity": 0.5,
+          "randomness": 0.3,
+          "shiftDistance": 0.015,
+          "radialWeight": 1.2
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#091e42",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.7,
+          "randomness": 0.15,
+          "roundness": 0.7,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "time_vortex_tunnel",
+        "category": "background",
+        "reason": "Tunnel volumétrique hyperspatial en spirale avec anneaux concentriques d'ondes temporelles et distorsion d'espace continue."
+      }
+    ]
+  },
+  {
+    "id": "walkers",
+    "name": "Walkers",
+    "family": "Horreur & mystère",
+    "intensity": 2,
+    "universe": "the-walking-dead",
+    "evocation": "The Walking Dead (Robert Kirkman & AMC) : L'apocalypse zombie dans une Amérique rurale dévastée et silencieuse. Une longue départementale abandonnée en Géorgie, bordée de sous-bois calcinés et de carcasses de voitures rouillées. Une brume matinale poisseuse et froide rampe sur le bitume lézardé. Au loin, à travers les arbres dépouillés, des silhouettes titubantes et désarticulées de « rôdeurs » avancent d'un pas lent et implacable sous un ciel de plomb. Des débris de cendres froides et de feuilles mortes flottent au vent, tandis que la désolation humaine est soulignée par des taches de sang séché sur les glissières de sécurité.",
+    "signature": "Des silhouettes sombres et désarticulées qui émergent d'un épais brouillard matinal rampant sur une route déserte jonchée de débris, sous un ciel de plomb balayé de cendres froides.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel de plomb gris fer (#44403c) lourd et menaçant, sans soleil visible, écrasant l'horizon forestier."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette sombre d'une forêt de conifères et de chênes décharnés enveloppée d'un brouillard impénétrable."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Bitume fissuré d'une route déserte avec épaves rouillées et silhouettes indistinctes avançant lentement dans la brume."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Nappe de brouillard rampant au ras du sol avec retombées lentes de flocons de cendres et débris calcinés."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Gouttes de pluie acide sporadiques, vignettage noir terreux étouffant et grain argentique rugueux 16mm."
+      }
+    ],
+    "particles": {
+      "type": "Cendres de feux de camp éteints et bruine froide acide (ash & rain)",
+      "size": "1.0 à 3.2 px pour les flocons de cendre avec tumbling, 0.8 à 1.4 px pour le crachin",
+      "speed": "0.22 pour la flottaison des cendres, 1.4 pour la descente de la bruine",
+      "density": "130 particules de suie et cendres + 90 traits de bruine froide",
+      "behavior": "Chute paresseuse et erratique des cendres perturbée par les micro-courants d'air du sol avec dérive latérale."
+    },
+    "atmosphere": {
+      "mist": "Brouillard matinal poisseux et stagnant (#78716c) masquant les détails au-delà de 20 mètres.",
+      "light": "Blême, diffuse et sans ombre portée nette, évoquant un matin froid et sans espoir.",
+      "airColor": "Terre cuite calcinée (#1c1917) et gris poussière (#78716c) avec accents de rouge sang séché (#dc2626).",
+      "mainLightSource": "La clarté laiteuse uniforme filtrant à travers le plafond nuageux de plomb."
+    },
+    "rareEvents": [
+      {
+        "name": "Secousse sourde d'un impact lointain",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 26.0 secondes",
+        "description": "Une brève vibration tellurique basse fréquence ébranle l'écran, suggérant l'effondrement d'un barrage ou l'explosion d'un réservoir au loin."
+      },
+      {
+        "name": "Rafale de vent d'automne désolé",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 36.0 secondes",
+        "description": "Une bourrasque glaciale fait tourbillonner vivement les cendres et ondule la nappe de brume au ras du bitume."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe révèle les profondeurs de la forêt entre les troncs morts ; le passage de la souris disperse la nappe de brume au sol.",
+      "scroll": "Donne l'impression de descendre vers le niveau du bitume fissuré, resserrant le brouillard pour une immersion oppressante."
+    },
+    "palette": [
+      "#1c1917",
+      "#dc2626",
+      "#44403c",
+      "#7f1d1d",
+      "#78716c",
+      "#0c0a09"
+    ],
+    "references": [
+      "The Walking Dead empty highway abandoned cars fog",
+      "Shadertoy foggy forest road post apocalyptic ash",
+      "CodePen procedural horror fog and falling ashes"
+    ],
+    "risks": {
+      "pitfall": "Un visuel marronnasse terne et statique qui ressemble à une page web mal chargée ou sale.",
+      "solution": "Travail minutieux sur la texture du brouillard volumétrique Simplex, mouvement organique des cendres en suspension et touches de rouge sang séché contrastées."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0c0a09",
+          "bottomColor": "#1c1917",
+          "horizonColor": "#44403c",
+          "density": 1.15,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.8,
+          "randomness": 0.25,
+          "noiseScale": 1.3
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#0c0a09",
+          "fogColor": "#44403c",
+          "density": 0.85,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "randomness": 0.45,
+          "windStrength": 0.3
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#78716c",
+          "density": 0.95,
+          "speed": 0.14,
+          "depth": 0.3,
+          "intensity": 0.85,
+          "randomness": 0.4,
+          "heightFalloff": 1.8,
+          "windAngle": 0.1
+        }
+      },
+      {
+        "brick": "ash",
+        "params": {
+          "ashColor": "#78716c",
+          "darkColor": "#1c1917",
+          "density": 0.85,
+          "speed": 0.22,
+          "depth": 0.5,
+          "intensity": 0.8,
+          "randomness": 0.5,
+          "drift": 0.2
+        }
+      },
+      {
+        "brick": "rain",
+        "params": {
+          "rainColor": "#a8a29e",
+          "density": 0.45,
+          "speed": 1.4,
+          "depth": 0.4,
+          "intensity": 0.55,
+          "randomness": 0.35,
+          "windAngle": 0.15,
+          "streakLength": 0.9
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeColor": "#1c1917",
+          "density": 0.55,
+          "speed": 1,
+          "depth": 0.2,
+          "intensity": 0.45,
+          "randomness": 0.4,
+          "shakeInterval": 26,
+          "decayRate": 4.5
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0c0a09",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.75,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.15,
+          "speed": 0.75,
+          "depth": 0.15,
+          "intensity": 0.08,
+          "randomness": 0.5,
+          "monochrome": true,
+          "clumpSize": 1.2
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "zombie_horde_silhouettes",
+        "category": "intermediate",
+        "reason": "Silhouettes humaines décharnées et désarticulées en marche lente étagées sur 3 plans de profondeur dans la brume matinale."
+      }
+    ]
+  },
+  {
+    "id": "heisenberg",
+    "name": "Heisenberg",
+    "family": "Urbain & action",
+    "intensity": 2,
+    "universe": "breaking-bad",
+    "evocation": "Breaking Bad (Vince Gilligan, 2008-2013) : La dualité explosive entre l'immensité aride du désert d'Albuquerque sous un soleil écrasant, et la précision chirurgicale d'un laboratoire de chimie clandestine pur à 99,1 %. La chaleur extrême du Nouveau-Mexique fait miroiter les crêtes ocre à l'horizon par distorsion optique. Au centre, des vapeurs chimiques d'un bleu cyan pur et toxique s'élèvent de fioles en ébullition, tranchant violemment avec le jaune vif des combinaisons Hazmat et le vert sombre de l'appât du gain. Grains de sable soulevés par le vent sec et cristaux translucides étincelants.",
+    "signature": "Des vapeurs chimiques d'un bleu cyan pur et vert toxique qui bouillonnent et s'échappent de béchers de laboratoire, contrastant avec la poussière ocre et la chaleur écrasante du désert d'Albuquerque.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel d'été brûlant du Nouveau-Mexique (#78350f) chauffé à blanc au zénith au-dessus de mesas rocheuses."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Dunes de terre ocre et canyons arides étagés sous un éclairage solaire rasant et impitoyable."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Miroitement de mirage thermique thermique ascendant et volutes de vapeur chimique bleu cyan (#06b6d4) bouillonnantes."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Poussière fine de sable et micro-cristaux bleutés en lévitation tourbillonnant sous les courants d'air chaud."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Vignettage chaud teinté d'ocre brûlé et grain argentique rugueux évoquant un format 35mm argentique tourné sous le soleil."
+      }
+    ],
+    "particles": {
+      "type": "Poussière ocre de désert et micro-éclats de cristaux bleus (dust & sparks)",
+      "size": "0.9 à 2.2 px pour le sable, 1.5 à 3.0 px étincelants pour les cristaux de méthamphétamine",
+      "speed": "0.18 pour la dérive brownienne des poussières, 0.4 pour les tourbillons thermiques",
+      "density": "120 grains de sable en suspension + 35 étincelles cristallines cyan",
+      "behavior": "Ascension convective ondulante portée par la colonne d'air chaud avec reflets étincelants sous les rais de lumière."
+    },
+    "atmosphere": {
+      "mist": "Mirage thermique ascendant et brume de chaleur ondulante floutant les crêtes de l'horizon.",
+      "light": "Éblouissante, cuivrée et implacable, dominée par le soleil zénithal du désert américain.",
+      "airColor": "Jaune combinaison Hazmat (#facc15) et ocre brûlé (#78350f) tranchés par l'azur chimique (#06b6d4).",
+      "mainLightSource": "Le soleil zénithal éclatant au centre-haut de l'écran."
+    },
+    "rareEvents": [
+      {
+        "name": "Bouillonnement et dégagement gazeux",
+        "type": "smoke",
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "Un panache dense de vapeur cyan et vert toxique jaillit avec intensité d'une réaction chimique avant de se dissoudre dans l'air sec."
+      },
+      {
+        "name": "Tourbillon de poussière du désert (Dust Devil)",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 32.0 secondes",
+        "description": "Une mini-tornade de sable balaye l'arrière-plan, faisant tourbillonner vivement les particules de poussière dans un souffle chaud."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le pointeur génère une ondulation thermique convective qui déforme la vue et dissipe les vapeurs chimiques bleues.",
+      "scroll": "Modifie l'angle solaire, accentuant le contraste des dunes ombragées tout en préservant le confort de lecture des cartes."
+    },
+    "palette": [
+      "#14532d",
+      "#facc15",
+      "#052e16",
+      "#06b6d4",
+      "#eab308",
+      "#78350f"
+    ],
+    "references": [
+      "Breaking Bad Albuquerque desert chemical lab steam",
+      "Shadertoy heat distortion desert mirage procedural",
+      "CodePen procedural chemical vapors blue smoke"
+    ],
+    "risks": {
+      "pitfall": "Un jaune-vert criard façon panneau de chantier qui fatigue la vue et détruit l'ergonomie visuelle de l'application.",
+      "solution": "Harmonie chromatique subtile basée sur le vert empire profond, l'ocre désertique et des accents mesurés de jaune safran et cyan translucide."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#052e16",
+          "bottomColor": "#14532d",
+          "horizonColor": "#78350f",
+          "density": 1.1,
+          "speed": 0.12,
+          "depth": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.25,
+          "noiseScale": 1.2
+        }
+      },
+      {
+        "brick": "dunes",
+        "params": {
+          "sandColor": "#eab308",
+          "shadowColor": "#78350f",
+          "skyColor": "#052e16",
+          "density": 0.9,
+          "speed": 0.12,
+          "depth": 0.3,
+          "intensity": 0.9,
+          "randomness": 0.4,
+          "sunAngle": 0.75
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#06b6d4",
+          "density": 1,
+          "speed": 0.35,
+          "depth": 0.25,
+          "intensity": 0.75,
+          "randomness": 0.45,
+          "heatHeight": 0.65,
+          "chromaticAberration": 0.012
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#06b6d4",
+          "tintColor": "#14532d",
+          "density": 0.65,
+          "speed": 0.32,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "randomness": 0.45,
+          "expansionRate": 1.5,
+          "dissipationSpeed": 1
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#facc15",
+          "density": 0.85,
+          "speed": 0.18,
+          "depth": 0.45,
+          "intensity": 0.9,
+          "randomness": 0.45,
+          "twinkleSpeed": 1.1
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#facc15",
+          "density": 0.7,
+          "speed": 0.14,
+          "depth": 0.3,
+          "intensity": 0.7,
+          "randomness": 0.35,
+          "lightSourceX": 0.35,
+          "lightSourceY": 0.85,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#052e16",
+          "density": 1.05,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.65,
+          "randomness": 0.15,
+          "roundness": 0.7,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.05,
+          "speed": 0.65,
+          "depth": 0.15,
+          "intensity": 0.06,
+          "randomness": 0.4,
+          "monochrome": true,
+          "clumpSize": 1.1
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "chemical_crystallization",
+        "category": "overlay",
+        "reason": "Croissance fractale procédurale de cristaux translucides bleu cyan le long des arêtes inférieures de l'écran."
+      }
+    ]
+  },
+  {
+    "id": "starfleet",
+    "name": "Starfleet",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "star-trek",
+    "evocation": "Star Trek (Gene Roddenberry, depuis 1966) : La passerelle de commandement d'un croiseur d'exploration de la Fédération unie des planètes, faisant face à l'immensité de l'espace profond à travers l'écran panoramique principal (Viewscreen). L'ultime frontière défile à vitesse de croisière : nébuleuses majestueuses aux nuances bleu cobalt et pourpre, stations spatiales en orbite lointaine et constellations d'étoiles scintillantes. Les consoles LCARS projettent de doux reflets or et ambre, tandis qu'au passage en distorsion Warp, les étoiles s'étirent en faisceaux de lumière étincelants et que le téléporteur irradie ses paillettes d'énergie dorée.",
+    "signature": "Le passage fulgurant en vitesse supraluminique (Warp Drive), où les étoiles s'étirent en faisceaux de lumière étincelants convergeant vers le point de fuite au milieu d'une nébuleuse bleue et or.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Espace profond bleu nuit obscur (#0f172a) constellé de micro-étoiles de fond et d'une nébuleuse d'hydrogène ionisé."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Voiles de gaz interstellaire bleu azur (#0284c7) et or en rotation fluide lente autour d'un amas stellaire."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Flotte de vaisseaux d'exploration en formation silencieuse avec traînées de propulsion plasmique bleu ciel."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Gerbes d'étincelles dorées et particules énergétiques évoquant le faisceau de téléportation de matière/antimatière."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Fines lignes de balayage holographique et vignettage spatial futuriste préservant la netteté de la console."
+      }
+    ],
+    "particles": {
+      "type": "Étoiles multi-strates et particules d'énergie de téléporteur (multilayer_starfield & sparks)",
+      "size": "0.8 à 2.5 px pour les étoiles avec aigrettes, 1.2 à 2.8 px pour les particules dorées",
+      "speed": "0.15 en croisière avec accélérations Warp sporadiques, 1.0 pour les étincelles de téléportation",
+      "density": "160 étoiles instanciées sur 3 strates Z + 50 paillettes d'énergie or",
+      "behavior": "Translation orbitale lente glissant vers les bords en croisière, convergeant en traînées radiales d'élongation lors du saut Warp."
+    },
+    "atmosphere": {
+      "mist": "Lueur diffuse de nébuleuse interstellaire et halo bleuté d'écrans de protection déflecteurs.",
+      "light": "Pure, stellaire et optimiste, ponctuée par la radiance or de l'insigne de commandement Starfleet.",
+      "airColor": "Bleu nuit profond (#0f172a) réchauffé par l'or de commandement (#facc15) et l'azur spatial (#38bdf8).",
+      "mainLightSource": "L'éclat d'une étoile blanche lointaine et le halo du bouclier déflecteur."
+    },
+    "rareEvents": [
+      {
+        "name": "Saut en distorsion (Warp Burst)",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 24.0 secondes",
+        "description": "Une onde de choc bleutée fulgurante traverse l'écran tandis que les étoiles s'étirent brièvement en lignes de fuite relativistes avant de revenir en vitesse sub-luminique."
+      },
+      {
+        "name": "Rayonnement de téléportation",
+        "type": "sparks",
+        "frequency": "Intervalle moyen de 36.0 secondes",
+        "description": "Une colonne scintillante de particules dorées chatoyantes se matérialise verticalement au premier plan avec une douce lueur ambrée."
+      }
+    ],
+    "interaction": {
+      "mouse": "La souris commande la rotation du cap du vaisseau spatial, créant une parallaxe 3D différenciée entre les nébuleuses et les étoiles proches.",
+      "scroll": "Modifie la vitesse de croisière relative, étirant doucement les particules d'avant-plan tout en conservant une lisibilité optimale de l'interface."
+    },
+    "palette": [
+      "#0f172a",
+      "#facc15",
+      "#0284c7",
+      "#38bdf8",
+      "#dc2626",
+      "#ffffff"
+    ],
+    "references": [
+      "Star Trek enterprise warp speed effect viewscreen",
+      "Shadertoy star trek warp drive streaks starfield",
+      "CodePen procedural sci-fi starfleet nebula travel"
+    ],
+    "risks": {
+      "pitfall": "Un simple champ d'étoiles générique sans âme ressemblant à un thème d'astronomie lambda sans l'identité Starfleet.",
+      "solution": "Nébuleuse stylisée aux teintes fédérales bleu/or, présence de silhouettes de croiseurs lointains et sauts d'onde de choc Warp périodiques."
+    },
+    "bricks": [
+      {
+        "brick": "nebula",
+        "params": {
+          "primaryColor": "#0284c7",
+          "secondaryColor": "#0f172a",
+          "accentColor": "#facc15",
+          "density": 0.7,
+          "speed": 0.14,
+          "depth": 0.2,
+          "intensity": 1,
+          "randomness": 0.35,
+          "coreScale": 1.4
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#ffffff",
+          "density": 1.2,
+          "speed": 0.18,
+          "depth": 1,
+          "intensity": 1.1,
+          "randomness": 0.5,
+          "twinkleSpeed": 1.6
+        }
+      },
+      {
+        "brick": "parallax_fleet",
+        "params": {
+          "hullColor": "#0b1329",
+          "engineColor": "#38bdf8",
+          "density": 0.8,
+          "speed": 0.18,
+          "depth": 0.4,
+          "intensity": 1.15,
+          "randomness": 0.4,
+          "trailLength": 0.85
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#facc15",
+          "coreColor": "#ffffff",
+          "density": 0.7,
+          "speed": 0.8,
+          "depth": 0.35,
+          "intensity": 1.1,
+          "randomness": 0.45,
+          "gravity": 0.2,
+          "burstInterval": 2
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "waveColor": "#38bdf8",
+          "density": 0.6,
+          "speed": 1.5,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "randomness": 0.3,
+          "waveInterval": 24,
+          "maxRadius": 2.2
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#38bdf8",
+          "outerColor": "#0f172a",
+          "density": 0.85,
+          "speed": 0.2,
+          "depth": 0.25,
+          "intensity": 1,
+          "randomness": 0.3,
+          "glowRadius": 1.3
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#070c18",
+          "density": 1.05,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.65,
+          "randomness": 0.15,
+          "roundness": 0.7,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "warp_speed_streaks",
+        "category": "special",
+        "reason": "Étirement relativiste radial des étoiles en longs faisceaux de lumière étincelants convergeant vers le centre lors du saut Warp."
+      }
+    ]
+  },
+  {
+    "id": "by_order_of",
+    "name": "By Order Of",
+    "family": "Urbain & action",
+    "intensity": 2,
+    "universe": "peaky-blinders",
+    "evocation": "Peaky Blinders (Steven Knight, 2013-2022) : Le Birmingham industriel et impitoyable des années 1920 (Small Heath). Des canaux d'eau croupie bordés d'usines en briques sombres, des cheminées colossales crachant du charbon dans un ciel d'ardoise et de pluie glaciale. Dans la nuit ouvrière, les hauts-fourneaux et forges à métaux rugissent, projetant des geysers d'étincelles incandescentes et de braises qui retombent sur les pavés noirs et les flaques d'huile. Des volutes de fumée de cigarette et de whisky flottent dans l'air, au ralenti cinématographique d'une marche de gangsters au son des bottes ferrées.",
+    "signature": "Des forges industrielles de Birmingham crachant des gerbes d'étincelles de métal en fusion et des panaches de suie noire au-dessus de pavés trempés par une pluie glaciale.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel industriel crépusculaire lourd (#0f172a) saturé de suie noire et de lueurs orangées lointaines de hauts-fourneaux."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes de cheminées d'usines et d'ateliers de métallurgie victorienne en briques sombres crachant de la fumée."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Foyer incandescent d'une forge industrielle ouverte projetant une lueur orange vif (#ea580c) et des gerbes d'étincelles balistiques."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Pluie froide battante zébrant la lumière des forges et braises calcinées descendant en flottaison lente."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Volutes de fumée de tabac en suspension, vignettage noir de charbon et grain 35mm cinématographique granuleux."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles de forge balistiques, braises ascendantes et pluie industrielle (sparks, embers & rain)",
+      "size": "1.0 à 2.8 px pour les étincelles tranchantes, 1.5 à 3.5 px pour les braises, 0.8 à 1.4 px pour la pluie",
+      "speed": "1.4 pour l'éjection initiale des étincelles, 0.45 pour la convection des braises, 1.8 pour la pluie battante",
+      "density": "110 étincelles de forge + 75 braises incandescentes + 140 traits de pluie",
+      "behavior": "Gerbes paraboliques avec gravité réaliste pour les étincelles, ascension thermique lente pour les braises et trajectoire oblique pour l'averse."
+    },
+    "atmosphere": {
+      "mist": "Fumée grasse de charbon et vapeurs industrielles (#94a3b8) condensées par l'air glacial anglais.",
+      "light": "Contrastée et dramatique, opposant le noir de suie à la lumière flamboyante orange et or des forges.",
+      "airColor": "Gris ardoise métallique (#1e293b) et noir de charbon embrasés par l'orange fonderie (#ea580c).",
+      "mainLightSource": "Le foyer incandescent de la forge industrielle au plan médian bas-gauche."
+    },
+    "rareEvents": [
+      {
+        "name": "Frappe de marteau-pilon et gerbe d'étincelles",
+        "type": "sparks",
+        "frequency": "Intervalle moyen de 16.0 secondes",
+        "description": "Une explosion d'étincelles ultra-brillantes jaune-blanc jaillit du foyer en paraboles fulgurantes, simulant la frappe puissante d'un marteau de forge."
+      },
+      {
+        "name": "Secousse mécanique d'usine",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Une secousse tellurique sourde fait trembler les pavés et l'écran, synchronisée avec l'activité lourde des machineries industrielles."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace les cheminées industrielles et le foyer de la forge ; la souris attise les braises ascendantes qui s'écartent vivement.",
+      "scroll": "Donne l'impression de plonger dans les ruelles humides de Small Heath, augmentant l'intensité des reflets sur les pavés."
+    },
+    "palette": [
+      "#1e293b",
+      "#94a3b8",
+      "#0f172a",
+      "#f97316",
+      "#ea580c",
+      "#475569"
+    ],
+    "references": [
+      "Peaky Blinders industrial Birmingham factory sparks rain",
+      "Shadertoy industrial forge sparks night rain procedural",
+      "CodePen cinematic metal sparks and smoke 1920s"
+    ],
+    "risks": {
+      "pitfall": "Un visuel sombre et boueux illisible où les étincelles agressent les yeux ou où tout paraît monochrome gris.",
+      "solution": "Contraste chaud/froid saisissant entre le bleu ardoise de la pluie et la radiance orange des étincelles, avec un étagement rigoureux des calques."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#475569",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.25,
+          "noiseScale": 1.3
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#080d1a",
+          "windowColor": "#ea580c",
+          "beaconColor": "#f97316",
+          "density": 0.85,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "randomness": 0.5,
+          "smogIntensity": 0.75
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#f97316",
+          "secondaryColor": "#ea580c",
+          "density": 1.05,
+          "speed": 0.35,
+          "depth": 0.3,
+          "intensity": 1.15,
+          "randomness": 0.45,
+          "lightX": -0.3,
+          "lightY": -0.2,
+          "flickerType": 0
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#fef08a",
+          "coreColor": "#ffffff",
+          "density": 1.1,
+          "speed": 1.3,
+          "depth": 0.4,
+          "intensity": 1.3,
+          "randomness": 0.55,
+          "gravity": 1.3,
+          "burstInterval": 1.8
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#ea580c",
+          "hotColor": "#fef08a",
+          "density": 0.8,
+          "speed": 0.45,
+          "depth": 0.45,
+          "intensity": 1,
+          "randomness": 0.45,
+          "coolingRate": 1.1
+        }
+      },
+      {
+        "brick": "rain",
+        "params": {
+          "rainColor": "#cbd5e1",
+          "density": 0.75,
+          "speed": 1.7,
+          "depth": 0.5,
+          "intensity": 0.75,
+          "randomness": 0.35,
+          "windAngle": 0.2,
+          "streakLength": 1.15
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#64748b",
+          "tintColor": "#1e293b",
+          "density": 0.65,
+          "speed": 0.25,
+          "depth": 0.35,
+          "intensity": 0.65,
+          "randomness": 0.45,
+          "expansionRate": 1.5,
+          "dissipationSpeed": 1
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeColor": "#0f172a",
+          "density": 0.6,
+          "speed": 1.1,
+          "depth": 0.2,
+          "intensity": 0.5,
+          "randomness": 0.4,
+          "shakeInterval": 28,
+          "decayRate": 4.5
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#080d1a",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.75,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.1,
+          "speed": 0.7,
+          "depth": 0.15,
+          "intensity": 0.07,
+          "randomness": 0.45,
+          "monochrome": true,
+          "clumpSize": 1.1
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "in_the_jungle",
+    "name": "In The Jungle",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "jumanji",
+    "evocation": "Jumanji (Joe Johnston, 1995 / Chris Van Allsburg) : Le jeu de société maudit en bois d'acajou sculpté qui libère les périls de la jungle équatoriale dans le monde réel. Au cœur d'une végétation tropicale luxuriante et étouffante, des lianes titanesques s'enroulent autour des parois rocheuses et des troncs centenaires. Le sol détrempé de mousson résonne du battement sourd et oppressant des tambours tribaux (« tum... tum... tum-tum »). Au centre de la canopée, le dôme de verre ambré du plateau s'illumine d'un éclat d'or mystique, révélant des énigmes luminescentes tandis que des feuilles géantes tombent au rythme des secousses telluriques.",
+    "signature": "Un plateau en bois gravé d'amulettes tribales dont le dôme central de verre luit d'un éclat d'ambre magique, vibrant au rythme de tambours sourds qui font trembler la canopée tropicale et tomber des feuilles géantes.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel d'orage tropical dense et étouffant (#052e16) percé de rares rayons de soleil à travers la canopée."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Forêt vierge équatoriale étagée en profondeur avec cimes d'arbres géants et lianes suspendues sous la brume moite."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Lueur ambrée et dorée (#d4a853) d'un orbe central mystique pulsant au rythme des battements de tambours."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Feuilles tropicales denses et fougères tourbillonnant sous les averses de mousson et les bourrasques chaudes."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Lianes retombantes, lucioles dorées dérivant lentement et vignettage végétal sombre cadrant la jungle."
+      }
+    ],
+    "particles": {
+      "type": "Grandes feuilles tropicales en chute et lucioles de jungle (leaves & fireflies)",
+      "size": "3.0 à 7.0 px avec rotation 3D pour les feuilles, 1.2 à 2.5 px pour les lucioles",
+      "speed": "0.35 pour la descente tournoyante des feuilles, 0.18 pour le vol des lucioles",
+      "density": "65 feuilles tropicales à portance aérodynamique + 45 lucioles bioluminescentes",
+      "behavior": "Chute en spirale et décrochage aérodynamique (tumbling 3D) amplifiés lors des grondements de tambours."
+    },
+    "atmosphere": {
+      "mist": "Brume de mousson chaude et moite (#166534) s'élevant de l'humus forestier sous les averses.",
+      "light": "Mystérieuse, tamisée par la canopée dense, avec un cœur de lumière ambré (#d4a853) chaud et vibrant.",
+      "airColor": "Vert émeraude profond (#15803d) et or précieux (#d4a853) teintés d'ombre boisée (#78350f).",
+      "mainLightSource": "L'œil d'ambre du plateau de jeu au centre et les rais de lumière perçant la canopée."
+    },
+    "rareEvents": [
+      {
+        "name": "Roulement de tambours de Jumanji",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Une pulsation sismique rythmique à basse fréquence fait trembler l'écran comme le passage d'une horde sauvage ou la menace des tambours tribaux."
+      },
+      {
+        "name": "Onde de choc de révélation d'énigme",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 30.0 secondes",
+        "description": "Une impulsion circulaire d'ambre liquide se propage depuis le centre, éclairant vivement les feuillages et faisant frémir les gouttes d'eau."
+      }
+    ],
+    "interaction": {
+      "mouse": "La souris déplace la parallaxe de la canopée, écartant les branches et lianes ; un souffle doux fait tourbillonner les feuilles tropicales.",
+      "scroll": "Donne l'impression de s'enfoncer plus profondément sous la canopée vierge, accentuant la densité de brume et la profondeur végétale."
+    },
+    "palette": [
+      "#15803d",
+      "#d4a853",
+      "#052e16",
+      "#166534",
+      "#ca8a04",
+      "#78350f"
+    ],
+    "references": [
+      "Jumanji jungle game board golden glow drums",
+      "Shadertoy tropical rainforest parallax leaves fog",
+      "CodePen deep jungle ambient lighting falling foliage"
+    ],
+    "risks": {
+      "pitfall": "Un fouillis végétal vert criard et uniforme où l'œil se perd et où le texte perd tout contraste.",
+      "solution": "Contraste rigoureux grâce aux ombres boisées d'acajou, brume volumétrique douce régulée et orbe central ambré focalisant le regard."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#052e16",
+          "bottomColor": "#15803d",
+          "horizonColor": "#78350f",
+          "density": 1.15,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.2,
+          "noiseScale": 1.3
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#052e16",
+          "fogColor": "#166534",
+          "density": 1.1,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 0.9,
+          "randomness": 0.45,
+          "windStrength": 0.4
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#166534",
+          "density": 0.8,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "randomness": 0.4,
+          "heightFalloff": 1.5,
+          "windAngle": 0.12
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fef08a",
+          "glowColor": "#d4a853",
+          "outerColor": "#052e16",
+          "density": 0.9,
+          "speed": 0.22,
+          "depth": 0.25,
+          "intensity": 1.1,
+          "randomness": 0.3,
+          "glowRadius": 1.2
+        }
+      },
+      {
+        "brick": "leaves",
+        "params": {
+          "leafColor": "#15803d",
+          "altColor": "#ca8a04",
+          "density": 0.75,
+          "speed": 0.35,
+          "depth": 0.45,
+          "intensity": 0.9,
+          "randomness": 0.55,
+          "flutterRate": 1.8,
+          "windDrift": 0.4
+        }
+      },
+      {
+        "brick": "fireflies",
+        "params": {
+          "glowColor": "#d4a853",
+          "coreColor": "#ffffff",
+          "density": 0.65,
+          "speed": 0.18,
+          "depth": 0.4,
+          "intensity": 0.95,
+          "randomness": 0.5,
+          "pulseRate": 1.4
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeColor": "#052e16",
+          "density": 0.6,
+          "speed": 1.1,
+          "depth": 0.2,
+          "intensity": 0.5,
+          "randomness": 0.4,
+          "shakeInterval": 18,
+          "decayRate": 4.5
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "waveColor": "#d4a853",
+          "density": 0.55,
+          "speed": 1.2,
+          "depth": 0.3,
+          "intensity": 0.7,
+          "randomness": 0.3,
+          "waveInterval": 30,
+          "maxRadius": 1.9
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#052e16",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.75,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "jumanji_board_engraving",
+        "category": "intermediate",
+        "reason": "Cadre de bois sculpté en acajou avec reliefs d'animaux tribaux et dôme de verre central réfractant des énigmes luminescentes."
+      }
+    ]
+  },
+  {
+    "id": "replicant",
+    "name": "Replicant",
+    "family": "Néon & cyber",
+    "intensity": 2,
+    "universe": "blade-runner",
+    "evocation": "Blade Runner (Ridley Scott, 1982 / Denis Villeneuve, 2017) : Los Angeles 2019/2049, mégalopole dystopique verticale noyée sous un déluge perpétuel de pluie acide et de brume toxique. Des gratte-ciels colossaux de plusieurs centaines d'étages hérissés d'antennes et d'écrans publicitaires géants diffusant des geishas holographiques vaporeuses. Les faisceaux des phares de véhicules volants (« Spinners ») balayent les façades ruisselantes dans un halo bleuté froid et cyan, tandis que les néons magenta et ambre se reflètent dans les flaques d'hydrocarbures. L'atmosphère d'un futur mélancolique (« All those moments will be lost in time, like tears in rain »).",
+    "signature": "Un rideau de pluie battante cinglant les façades titanesques de gratte-ciels noirs, illuminées par des faisceaux de phares de véhicules volants et les reflets bleus glacés d'hologrammes géants.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Nuit cyberpunk abyssale (#020617) zébrée de lueurs de smog urbain cyan et magenta au ras de l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Mégalopole de tours monolithiques monumentales avec balises aéronautiques rouges et néons géants estompés dans le smog."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faisceau lumineux oblique d'un projecteur de patrouille policière perçant l'averse avec cône volumétrique bleu azur (#0ea5e9)."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Déluge de pluie torrentielle continue striant l'écran à grande vitesse et vapeur montant des bouches d'égout."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Aberration chromatique optique anamorphique, vignettage cyberpunk sombre et grain argentique texturé."
+      }
+    ],
+    "particles": {
+      "type": "Pluie battante torrentielle et vapeur de smog urbain (rain & smoke)",
+      "size": "0.9 à 1.6 px pour les traits de pluie étirés en flèche, 25 à 50 px pour les panaches de vapeur",
+      "speed": "2.2 pour la pluie battante ultra-rapide, 0.25 pour la fumée d'égout",
+      "density": "280 traits de pluie denses sur 3 strates Z + 20 volutes vaporeuses de smog",
+      "behavior": "Chute cinglante oblique sous le vent des couloirs aériens avec variations de vitesse et rebonds de micro-splashes."
+    },
+    "atmosphere": {
+      "mist": "Smog urbain dense, gras et toxique teinté de cyan froid (#0ea5e9) et de pourpre holographique (#d946ef).",
+      "light": "Cinématographique, froide et contrastée, dominée par les néons mouillés et les projecteurs mobiles.",
+      "airColor": "Bleu nuit glacé (#020617) et bleu néon électrique (#0ea5e9) mêlés à des reflets magenta.",
+      "mainLightSource": "Le projecteur du Spinner survolant la scène depuis le haut droit."
+    },
+    "rareEvents": [
+      {
+        "name": "Passage d'un véhicule volant (Spinner)",
+        "type": "god_rays",
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "Un puissant cône de lumière blanche et cyan balaye diagonalement l'écran à travers la pluie battante, simulant la ronde d'un Spinner de police."
+      },
+      {
+        "name": "Interférence holographique",
+        "type": "chromatic_aberration",
+        "frequency": "Intervalle moyen de 32.0 secondes",
+        "description": "Une brève distorsion anamorphique avec décalage rouge/cyan déstabilise l'image comme le grésillement d'un écran géant publicitaire."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le mouvement de la souris oriente l'angle d'incidence du vent et de la pluie battante ; la parallaxe fait glisser les méga-tours d'arrière-plan.",
+      "scroll": "Donne l'impression de descendre vers les bas-fonds inondés de Los Angeles, intensifiant les reflets de néons au sol."
+    },
+    "palette": [
+      "#020617",
+      "#0ea5e9",
+      "#0369a1",
+      "#d946ef",
+      "#f59e0b",
+      "#0f172a"
+    ],
+    "references": [
+      "Blade Runner 2049 rainy city spinner lights neon",
+      "Shadertoy cyberpunk rainy city neon god rays",
+      "CodePen procedural heavy rain dystopian city"
+    ],
+    "risks": {
+      "pitfall": "Une pluie trop dense qui rend illisibles les textes ou un fouillis de néons saturés qui fatigue le regard.",
+      "solution": "Pluie étagée sur plusieurs plans avec traits fins et transparents, voile sombre de protection UI et faisceaux lumineux directionnels doux."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#0369a1",
+          "density": 1.2,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.2,
+          "noiseScale": 1.3
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#030712",
+          "windowColor": "#0ea5e9",
+          "beaconColor": "#d946ef",
+          "density": 1.1,
+          "speed": 0.18,
+          "depth": 0.4,
+          "intensity": 0.9,
+          "randomness": 0.5,
+          "smogIntensity": 0.85
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#0369a1",
+          "density": 0.85,
+          "speed": 0.18,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "randomness": 0.4,
+          "heightFalloff": 1.6,
+          "windAngle": 0.2
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#0ea5e9",
+          "density": 0.8,
+          "speed": 0.2,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "randomness": 0.35,
+          "lightSourceX": 0.45,
+          "lightSourceY": 0.85,
+          "decay": 0.91
+        }
+      },
+      {
+        "brick": "rain",
+        "params": {
+          "rainColor": "#7dd3fc",
+          "density": 1.35,
+          "speed": 2.2,
+          "depth": 0.5,
+          "intensity": 0.95,
+          "randomness": 0.35,
+          "windAngle": 0.22,
+          "streakLength": 1.5
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#334155",
+          "tintColor": "#020617",
+          "density": 0.55,
+          "speed": 0.25,
+          "depth": 0.35,
+          "intensity": 0.6,
+          "randomness": 0.45,
+          "expansionRate": 1.5,
+          "dissipationSpeed": 1
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "offsetColor": "#0ea5e9",
+          "density": 0.55,
+          "speed": 0.7,
+          "depth": 0.2,
+          "intensity": 0.45,
+          "randomness": 0.3,
+          "shiftDistance": 0.012,
+          "radialWeight": 1.1
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "density": 1.15,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.75,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.1,
+          "speed": 0.75,
+          "depth": 0.15,
+          "intensity": 0.06,
+          "randomness": 0.45,
+          "monochrome": true,
+          "clumpSize": 1.1
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "flying_spinners",
+        "category": "intermediate",
+        "reason": "Silhouettes aérodynamiques de véhicules volants (Spinners) traversant les canyons urbains avec phares directionnels volumétriques perçant la pluie."
+      }
+    ]
+  },
+  {
+    "id": "judgment_day",
+    "name": "Judgment Day",
+    "family": "Urbain & action",
+    "intensity": 2,
+    "universe": "terminator",
+    "evocation": "Terminator 2: Judgment Day (James Cameron, 1991) : L'holocauste nucléaire et la guerre d'extermination de 2029 contre Skynet. Un champ de ruines urbaines d'acier fondu et de béton pulvérisé jonché d'ossements humains broyés sous les chenilles de chars autonomes. Dans la nuit atomique, des faisceaux laser de visée rouge sang quadrillent les décombres à la recherche de survivants. Les yeux cybernétiques rubis des endosquelettes en titane brillent dans l'obscurité, tandis que des feux résiduels crépitent et que des chasseurs aériens Hunter-Killer fendent les nuages de poussière radioactive.",
+    "signature": "Des faisceaux laser de ciblage rouge sang qui balayent un champ de décombres métalliques calcinés, révélant la lueur rubis d'un œil cybernétique et des gerbes d'étincelles de court-circuit.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel nocturne post-apocalyptique noir d'encre (#000000) rougi par les incendies résiduels de l'hiver nucléaire."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes déchiquetées de gratte-ciels calcinés et carcasses d'usines Skynet hérissées d'antennes de télémétrie."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Balayage d'un faisceau laser rouge sang (#ef4444) et étincelles de court-circuit jaillissant de débris robotiques."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Panaches de fumée noire de carburant calciné et nuée de braises rouges s'élevant lentement des gravats."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Grille de visée HUD et scanlines CRT militaires rouges avec vignettage titane sombre et grain rugueux."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles de court-circuit électrique et braises d'incendie (sparks & embers)",
+      "size": "1.0 à 2.6 px pour les étincelles tranchantes, 1.4 à 3.2 px pour les braises incandescentes",
+      "speed": "1.3 pour l'éjection vive des étincelles, 0.4 pour la flottaison des braises",
+      "density": "95 étincelles électriques bleutées et rouges + 70 braises ardentes",
+      "behavior": "Gerbes paraboliques explosives lors des courts-circuits et dérive convective lente des braises dans la chaleur."
+    },
+    "atmosphere": {
+      "mist": "Fumée âcre et poussière radioactive calcinée (#334155) flottant au-dessus des ruines métalliques.",
+      "light": "Sinistre, agressive et dramatique, dominée par le balayage des faisceaux laser écarlates de Skynet.",
+      "airColor": "Noir titane (#000000) et rouge laser sanglant (#ef4444) adoucis par des reflets gris acier (#94a3b8).",
+      "mainLightSource": "Le balayage laser rouge de ciblage et les foyers de flammes résiduels."
+    },
+    "rareEvents": [
+      {
+        "name": "Scan laser de ciblage Skynet",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Un faisceau laser rouge sang horizontal balaie vivement l'écran de gauche à droite avec un signal sonore de télémétrie imaginaire, focalisant un point précis."
+      },
+      {
+        "name": "Explosion de plasma lointaine",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Un éclair de plasma bleu-blanc illumine le ciel nocturne suivi d'une onde de choc sourde ébranlant les ruines de béton."
+      }
+    ],
+    "interaction": {
+      "mouse": "La souris attire le viseur laser rouge qui semble suivre le curseur comme une menace de ciblage ; la parallaxe étire les ruines calcinées.",
+      "scroll": "Abaisse la vue vers le tapis de débris métalliques et ossements broyés, renforçant la tension dramatique."
+    },
+    "palette": [
+      "#000000",
+      "#ef4444",
+      "#7f1d1d",
+      "#334155",
+      "#94a3b8",
+      "#dc2626"
+    ],
+    "references": [
+      "Terminator 2 Judgment Day future war 2029 laser skull",
+      "Shadertoy futuristic war ruins red laser scan",
+      "CodePen procedural post apocalyptic rubble embers"
+    ],
+    "risks": {
+      "pitfall": "Un rouge sang agressif qui fatigue immédiatement les yeux ou dénature le contenu informatif de la collection.",
+      "solution": "Fond noir d'acier très sombre (#000000), faisceaux laser très fins et bien localisés, et braises douces préservant les zones de lecture."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#1c1917",
+          "horizonColor": "#7f1d1d",
+          "density": 1.2,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.9,
+          "randomness": 0.25,
+          "noiseScale": 1.4
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#050505",
+          "windowColor": "#7f1d1d",
+          "beaconColor": "#ef4444",
+          "density": 0.9,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "randomness": 0.5,
+          "smogIntensity": 0.8
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#ef4444",
+          "secondaryColor": "#7f1d1d",
+          "density": 1,
+          "speed": 0.4,
+          "depth": 0.3,
+          "intensity": 1.2,
+          "randomness": 0.4,
+          "lightX": 0.2,
+          "lightY": 0.05,
+          "flickerType": 1
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#ef4444",
+          "coreColor": "#ffffff",
+          "density": 0.85,
+          "speed": 1.2,
+          "depth": 0.4,
+          "intensity": 1.25,
+          "randomness": 0.5,
+          "gravity": 1.2,
+          "burstInterval": 1.9
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#dc2626",
+          "hotColor": "#fef08a",
+          "density": 0.75,
+          "speed": 0.4,
+          "depth": 0.45,
+          "intensity": 1.05,
+          "randomness": 0.45,
+          "coolingRate": 1.1
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#334155",
+          "tintColor": "#000000",
+          "density": 0.7,
+          "speed": 0.28,
+          "depth": 0.35,
+          "intensity": 0.7,
+          "randomness": 0.45,
+          "expansionRate": 1.5,
+          "dissipationSpeed": 0.95
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "waveColor": "#ef4444",
+          "density": 0.55,
+          "speed": 1.4,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "randomness": 0.3,
+          "waveInterval": 28,
+          "maxRadius": 2
+        }
+      },
+      {
+        "brick": "crt_scanlines",
+        "params": {
+          "scanlineColor": "#000000",
+          "density": 1,
+          "speed": 0.2,
+          "depth": 0.15,
+          "intensity": 0.3,
+          "randomness": 0.15,
+          "curvature": 0.06,
+          "rollIntensity": 0.1
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.15,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.8,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "skynet_laser_scan",
+        "category": "special",
+        "reason": "Faisceau laser rouge collimaté balayant horizontalement les ruines avec réticule de télémétrie HUD et point focal lumineux."
+      }
+    ]
+  },
+  {
+    "id": "proton_pack",
+    "name": "Proton Pack",
+    "family": "Magie & fantasy",
+    "intensity": 2,
+    "universe": "ghostbusters",
+    "evocation": "Ghostbusters (Ivan Reitman, 1984) : La chasse aux spectres surnaturels à New York et la puissance déchaînée des accélérateurs de particules à protons. La nuit sur les toits Art déco d'un gratte-ciel de Manhattan baigné par un orage paranormal menaçant. Des flux de protons torsadés rougeoyants et crépitants tressés d'arcs électriques bleus fusent dans l'air pour piéger des apparitions spectrales. Des gouttelettes d'ectoplasme vert fluorescent luminescent retombent en suspension, tandis que le cyclotron surchauffé du pack fume doucement sous la pression quantique.",
+    "signature": "Un faisceau de protons ondulant et crépitant d'énergie ionisée rouge et orange, tressé d'arcs électriques bleu azur, qui tourbillonne dans l'obscurité et disperse des gouttelettes d'ectoplasme vert fluorescent.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel d'orage spectral new-yorkais violet et noir (#000000) zébré d'éclairs surnaturels lointains."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes de flèches Art déco de gratte-ciels de Manhattan illuminées par des éclairs d'orage paranormaux."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faisceau de plasma protonique torsadé orange ardent (#f97316) et rouge zébré d'arcs électriques crépitants."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Gouttes d'ectoplasme vert gluant (#84cc16) et particules bioluminescentes en flottaison dans l'air ionisé."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Volutes de fumée d'ozone surchauffé, étincelles quantiques et vignettage sombre aux reflets spectraux."
+      }
+    ],
+    "particles": {
+      "type": "Gouttelettes d'ectoplasme fluorescent et étincelles quantiques (bubbles & sparks)",
+      "size": "1.5 à 3.5 px pour les bulles d'ectoplasme visqueux, 1.0 à 2.4 px pour les étincelles de protons",
+      "speed": "0.22 pour la dérive des bulles gluantes, 1.3 pour les étincelles de plasma",
+      "density": "75 gouttelettes d'ectoplasme vert + 85 étincelles quantiques orange et bleu",
+      "behavior": "Lévitation ondulante en quasi-apesanteur pour l'ectoplasme et éjections balistiques tranchantes le long du flux protonique."
+    },
+    "atmosphere": {
+      "mist": "Vapeurs d'ozone ionisé et nappe d'ectoplasme vaporeux vert lime (#84cc16) flottant dans la pénombre.",
+      "light": "Énergétique, électrique et surnaturelle, sculptée par les éclats du faisceau de protons et les flashs d'orage.",
+      "airColor": "Noir nocturne (#000000) fendu par l'énergie rouge/orange et la bioluminescence verte (#84cc16).",
+      "mainLightSource": "Le faisceau de protons ondulant au plan médian et les éclairs spectraux."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclair spectral paranormal",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Un arc de foudre surnaturelle violette et cyan déchire le ciel nocturne derrière les toits de Manhattan, illuminant un instant toute la skyline."
+      },
+      {
+        "name": "Surcharge du flux de protons",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Une onde de choc circulaire d'énergie ionisée verte et orange explose au centre, faisant tressaillir les particules d'ectoplasme."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le faisceau de protons réagit dynamiquement au curseur, s'orientant et fouettant l'espace avec des ondulations torsadées ; les gouttes d'ectoplasme sont repoussées.",
+      "scroll": "Modifie la fréquence de battement du cyclotron, faisant pulser les lumières du pack tout en garantissant un contraste lisible."
+    },
+    "palette": [
+      "#000000",
+      "#84cc16",
+      "#65a30d",
+      "#ef4444",
+      "#f97316",
+      "#38bdf8"
+    ],
+    "references": [
+      "Ghostbusters proton stream stream cross ectoplasm glow",
+      "Shadertoy procedural proton beam plasma lightning",
+      "CodePen ghostbusters ectoplasm slime glowing particles"
+    ],
+    "risks": {
+      "pitfall": "Un flux trop chaotique et clignotant qui perturbe la navigation ou fatigue rapidement la vue.",
+      "solution": "Faisceau lissé par des harmoniques sinusoïdales organiques, lueur verte cantonnée aux particules d'accent et fond noir profond protecteur."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#1e1b4b",
+          "density": 1.15,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.25,
+          "noiseScale": 1.3
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#05070f",
+          "windowColor": "#84cc16",
+          "beaconColor": "#ef4444",
+          "density": 0.85,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "randomness": 0.5,
+          "smogIntensity": 0.75
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "boltColor": "#38bdf8",
+          "glowColor": "#84cc16",
+          "density": 0.6,
+          "speed": 1.6,
+          "depth": 0.25,
+          "intensity": 1.1,
+          "randomness": 0.45,
+          "strikeInterval": 18,
+          "branchiness": 1.2
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#f97316",
+          "coreColor": "#ffffff",
+          "density": 0.9,
+          "speed": 1.2,
+          "depth": 0.35,
+          "intensity": 1.2,
+          "randomness": 0.5,
+          "gravity": 0.4,
+          "burstInterval": 1.8
+        }
+      },
+      {
+        "brick": "bubbles",
+        "params": {
+          "bubbleColor": "#84cc16",
+          "highlightColor": "#fef08a",
+          "density": 0.7,
+          "speed": 0.25,
+          "depth": 0.45,
+          "intensity": 0.95,
+          "randomness": 0.45,
+          "wobbleSpeed": 1.5
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#475569",
+          "tintColor": "#000000",
+          "density": 0.55,
+          "speed": 0.25,
+          "depth": 0.35,
+          "intensity": 0.6,
+          "randomness": 0.4,
+          "expansionRate": 1.4,
+          "dissipationSpeed": 1
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "waveColor": "#84cc16",
+          "density": 0.55,
+          "speed": 1.3,
+          "depth": 0.3,
+          "intensity": 0.7,
+          "randomness": 0.3,
+          "waveInterval": 28,
+          "maxRadius": 1.9
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.75,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "proton_beam_stream",
+        "category": "special",
+        "reason": "Faisceau torsadé de plasma ionisé ondulant avec double ruban hélicoïdal rouge/orange et arcs électriques bleus instables."
+      }
+    ]
+  },
+  {
+    "id": "gentleman_burglar",
+    "name": "Gentleman Burglar",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "lupin",
+    "evocation": "Arsène Lupin / Lupin (Maurice Leblanc / adaptation contemporaine) : L'élégance suprême, l'audace et le mystère feutré du cambrioleur de génie au cœur de Paris. La nuit sur les toits en zinc bleuté de la capitale, les lucarnes Mansart et les cheminées en terre cuite baignées par la lueur argentée de la pleine lune. Dans les couloirs feutrés d'un grand musée ou d'un hôtel particulier de la Place Vendôme, le faisceau discret d'une lampe torche inspecte des vitrines blindées. Des cartes à jouer virevoltent au ralenti dans l'air, tandis que les facettes d'un collier de diamants dérobé projettent des éclats d'or et de cristal dans la pénombre.",
+    "signature": "Une silhouette en haut-de-forme se découpant sur les toits de zinc parisiens au clair de lune, tandis qu'un faisceau de projecteur balaye les coupoles d'ardoise et que des étincelles de diamants scintillent dans la pénombre.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Nuit parisienne bleu nuit profond (#1e293b) éclairée par la pleine lune argentée et un ciel sans nuages."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes des toits de zinc haussmanniens, cheminées en terre cuite et dômes parisiens baignés de lueur lunaire."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faisceau conique d'un projecteur discret balayant les façades et révélant des arabesques d'architecture classique."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Motes de poussière dorée (#d4a853) dansant dans le rai de lumière et micro-éclats de diamants scintillants."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Vignettage noir soyeux haut de gamme et grain 35mm raffiné évoquant un film de casse prestigieux."
+      }
+    ],
+    "particles": {
+      "type": "Poussières dorées de musée et éclats de diamants purs (dust & sparks)",
+      "size": "1.0 à 2.2 px pour les poussières muséales, 1.5 à 3.0 px avec aigrettes à 4 branches pour les diamants",
+      "speed": "0.14 pour la dérive brownienne des poussières, 0.4 pour les reflets de gemmes",
+      "density": "120 motes dorées étincelantes + 40 éclats de pierres précieuses",
+      "behavior": "Lévitation calme et aristocratique avec scintillement asynchrone non-périodique au nombre d'or."
+    },
+    "atmosphere": {
+      "mist": "Brume nocturne très légère et vaporeuse flottant au ras des toits en zinc de la capitale.",
+      "light": "Élégante, ciblée et feutrée, opposant l'argent lunaire froid à l'or précieux (#d4a853) des trésors cachés.",
+      "airColor": "Noir smoking satiné (#000000) et bleu ardoise parisien (#1e293b) sublimés par l'or joaillier (#d4a853).",
+      "mainLightSource": "La pleine lune argentée au zénith et le faisceau de la lampe torche du gentleman cambrioleur."
+    },
+    "rareEvents": [
+      {
+        "name": "Balayage de projecteur de surveillance",
+        "type": "god_rays",
+        "frequency": "Intervalle moyen de 22.0 secondes",
+        "description": "Un faisceau de lumière dorée traverse lentement l'écran en diagonale, révélant la texture des toits d'ardoise avant de disparaître dans la nuit."
+      },
+      {
+        "name": "Éclat d'un diamant pur (Carat Flash)",
+        "type": "lens_flare",
+        "frequency": "Intervalle moyen de 34.0 secondes",
+        "description": "Une gemme dérobée accroche la lumière, déclenchant une aigrette de diffraction étincelante à 4 branches avec dispersion prismatique."
+      }
+    ],
+    "interaction": {
+      "mouse": "La souris dirige délicatement le faisceau de lumière dans la nuit, éclairant les poussières dorées qui s'écartent avec grâce.",
+      "scroll": "Fait glisser la perspective le long des corniches haussmanniennes tout en conservant une lisibilité souveraine des cartes de jeux."
+    },
+    "palette": [
+      "#000000",
+      "#d4a853",
+      "#1e293b",
+      "#facc15",
+      "#334155",
+      "#fef08a"
+    ],
+    "references": [
+      "Lupin gentleman burglar Paris zinc rooftops night",
+      "Shadertoy moonlight volumetric beam museum dust",
+      "CodePen procedural paris rooftops night silhouette"
+    ],
+    "risks": {
+      "pitfall": "Un thème noir et doré clinquant ou pompier qui alourdit l'interface sans élégance.",
+      "solution": "Minimalisme raffiné inspiré du luxe français : fond d'encre sombre, éclairage subtil au clair de lune et accents d'or délicats."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#1e293b",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.2,
+          "noiseScale": 1.2
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#070c18",
+          "windowColor": "#d4a853",
+          "beaconColor": "#facc15",
+          "density": 0.85,
+          "speed": 0.14,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "randomness": 0.45,
+          "smogIntensity": 0.65
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#93c5fd",
+          "outerColor": "#1e293b",
+          "density": 0.85,
+          "speed": 0.15,
+          "depth": 0.25,
+          "intensity": 0.95,
+          "randomness": 0.25,
+          "glowRadius": 1.1
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#fef08a",
+          "density": 0.75,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "randomness": 0.3,
+          "lightSourceX": 0.4,
+          "lightSourceY": 0.85,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#d4a853",
+          "density": 0.85,
+          "speed": 0.14,
+          "depth": 0.45,
+          "intensity": 0.95,
+          "randomness": 0.4,
+          "twinkleSpeed": 1.2
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#facc15",
+          "coreColor": "#ffffff",
+          "density": 0.55,
+          "speed": 0.6,
+          "depth": 0.4,
+          "intensity": 1.05,
+          "randomness": 0.4,
+          "gravity": 0.2,
+          "burstInterval": 2.5
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.7,
+          "randomness": 0.15,
+          "roundness": 0.7,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 0.95,
+          "speed": 0.6,
+          "depth": 0.15,
+          "intensity": 0.05,
+          "randomness": 0.35,
+          "monochrome": true,
+          "clumpSize": 1
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "paris_zinc_rooftops",
+        "category": "intermediate",
+        "reason": "Silhouettes des crêtes de toits haussmanniens en zinc bleuté avec cheminées en terre cuite et lucarnes Mansart sous la pleine lune."
+      }
+    ]
+  },
+  {
+    "id": "sic_mundus",
+    "name": "Sic Mundus",
+    "family": "Horreur & mystère",
+    "intensity": 2,
+    "universe": "dark",
+    "evocation": "Dark (Baran bo Odar & Jantje Friese, 2017-2020) : La ville forestière de Winden en Allemagne, captive d'une boucle temporelle inexorable de 33 ans (« Sic Mundus Creatus Est » / « Le commencement est la fin, et la fin est le commencement »). Une forêt de conifères sombres et austères battue par une pluie froide continue. À l'orée des bois, la bouche rocheuse et ténébreuse des grottes de Winden d'où s'échappent des bourrasques temporelles surnaturelles. La lanterne d'un voyageur au ciré jaune éclatant vacille sous le vent, tandis que des particules de césium radioactif lévitent et que des oiseaux tombent mystérieusement du ciel.",
+    "signature": "L'entrée obscure de la grotte de Winden au cœur d'une forêt de sapins battue par une pluie froide continue, d'où jaillit une bourrasque temporelle faisant vaciller une lanterne à huile et léviter des particules de césium radioactif.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel gris ardoise pluvieux (#475569) plombé par la brume et les silhouettes distantes des deux tours de la centrale nucléaire."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Forêt dense de sapins noirs de Winden oscillant lugubrement sous les rafales de pluie continue."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "L'antre ténébreux de la grotte rocheuse avec lanterne à huile vacillant d'un éclat jaune chaud (#facc15)."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Rideau de pluie froide allemande zébrant l'air et nappe de brouillard épais montant de l'humus forestier."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Micro-particules de césium radioactif en lévitation temporelle anormale et vignettage ardoise oppressant."
+      }
+    ],
+    "particles": {
+      "type": "Pluie froide battante et particules de césium radioactif en lévitation (rain & dust)",
+      "size": "0.9 à 1.5 px pour la pluie continue, 1.2 à 2.8 px pour les particules de césium dorées",
+      "speed": "1.7 pour la chute de pluie, 0.12 pour la lévitation inversée des particules temporelles",
+      "density": "200 traits de pluie dense + 65 particules de césium lévitantes",
+      "behavior": "Chute régulière et mélancolique pour l'averse, tandis que les particules de césium remontent lentement contre la gravité."
+    },
+    "atmosphere": {
+      "mist": "Brouillard froid et humide de sous-bois (#1e293b) s'échappant de la bouche de la caverne.",
+      "light": "Austère, désaturée et mélancolique, ponctuée par le point focal vibrant du jaune ciré (#facc15).",
+      "airColor": "Gris ardoise froid (#475569) et vert sapin noir (#0f172a) contrastant avec le jaune franc (#facc15).",
+      "mainLightSource": "La lanterne à huile du voyageur temporel à l'entrée de la grotte."
+    },
+    "rareEvents": [
+      {
+        "name": "Bourrasque temporelle de la grotte",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Un souffle de vent surnaturel jaillit des profondeurs de la grotte, courbant les branches des conifères et affolant la trajectoire de la pluie."
+      },
+      {
+        "name": "Sursaut de passage temporel (33 ans)",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 32.0 secondes",
+        "description": "Une secousse tellurique sourde et une pulsation de lumière ébranlent l'écran, simulant l'ouverture de la porte temporelle de Tannhaus."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace les rangées de sapins sombres révélant la faille rocheuse ; le curseur perturbe la lévitation des particules de césium.",
+      "scroll": "Donne la sensation d'avancer pas à pas vers l'entrée sombre de la grotte, intensifiant le contraste entre le jaune chaud et la brume ardoise."
+    },
+    "palette": [
+      "#475569",
+      "#facc15",
+      "#0f172a",
+      "#1e293b",
+      "#eab308",
+      "#020617"
+    ],
+    "references": [
+      "Dark Netflix winden cave forest rain yellow raincoat",
+      "Shadertoy rainy pine forest mist cave opening",
+      "CodePen procedural rain dark woods time loop"
+    ],
+    "risks": {
+      "pitfall": "Un décor de forêt terne et morose sans tension dramatique où le gris domine de façon étouffante.",
+      "solution": "Point focal éclatant avec la lanterne jaune et le ciré, lévitation inversée intrigante des particules de césium et pluie rythmée par les bourrasques de la grotte."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#475569",
+          "density": 1.15,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.25,
+          "noiseScale": 1.3
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#020617",
+          "fogColor": "#1e293b",
+          "density": 1.05,
+          "speed": 0.16,
+          "depth": 0.35,
+          "intensity": 0.9,
+          "randomness": 0.45,
+          "windStrength": 0.4
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#475569",
+          "density": 0.85,
+          "speed": 0.14,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "randomness": 0.4,
+          "heightFalloff": 1.7,
+          "windAngle": 0.15
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#facc15",
+          "secondaryColor": "#eab308",
+          "density": 1,
+          "speed": 0.35,
+          "depth": 0.3,
+          "intensity": 1.15,
+          "randomness": 0.4,
+          "lightX": -0.25,
+          "lightY": 0,
+          "flickerType": 0
+        }
+      },
+      {
+        "brick": "rain",
+        "params": {
+          "rainColor": "#cbd5e1",
+          "density": 1.1,
+          "speed": 1.7,
+          "depth": 0.5,
+          "intensity": 0.85,
+          "randomness": 0.35,
+          "windAngle": 0.18,
+          "streakLength": 1.2
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#facc15",
+          "density": 0.75,
+          "speed": 0.12,
+          "depth": 0.4,
+          "intensity": 0.95,
+          "randomness": 0.45,
+          "twinkleSpeed": 1.3
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#e2e8f0",
+          "density": 0.85,
+          "speed": 1.4,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "randomness": 0.4,
+          "gustInterval": 18,
+          "gustAngle": 0.18,
+          "swirlScale": 1.1
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeColor": "#0f172a",
+          "density": 0.6,
+          "speed": 1.1,
+          "depth": 0.2,
+          "intensity": 0.5,
+          "randomness": 0.4,
+          "shakeInterval": 32,
+          "decayRate": 4.5
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.75,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.05,
+          "speed": 0.65,
+          "depth": 0.15,
+          "intensity": 0.06,
+          "randomness": 0.4,
+          "monochrome": true,
+          "clumpSize": 1.1
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "god_particle_orb",
+        "category": "special",
+        "reason": "Orbe de matière noire en lévitation instable, fluide chaotique en rotation avec éclairs de surface et micro-distorsion de l'espace-temps."
+      }
+    ]
+  },
+  {
+    "id": "slappy",
+    "name": "Slappy",
+    "family": "Horreur & mystère",
+    "intensity": 2,
+    "universe": "chair-de-poule",
+    "evocation": "Chair de Poule / Goosebumps (R.L. Stine, 1992-présent) : L'effroi fantastique et réjouissant des romans jeunesse des années 90, incarné par la marionnette maléfique Slappy. Un grenier obscur encombré de vieux meubles poussiéreux, éclairé par les flashs d'un orage violent à travers une lucarne fêlée. Sur une table de chêne sombre, un grimoire relié de cuir usé s'entrebâille de lui-même, libérant une bave verte ectoplasmique phosphorescente qui s'écoule le long des rayonnages et des lettres d'imprimerie fantomatiques tremblotantes s'échappant des pages. Dans la pénombre, deux yeux de verre peints pivotent brusquement avec un rictus grinçant.",
+    "signature": "Un grimoire ancien relié de cuir qui s'entrebâille sur une table de bois sombre, laissant s'échapper une vapeur verte phosphorescente et des lettres d'imprimerie fantomatiques qui lévitent sous les éclairs d'un orage.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel d'orage nocturne menaçant (#0d0d0d) découpé par une fenêtre de grenier aux carreaux fêlés."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes de poutres mansardées, malles anciennes et toiles d'araignées dans la pénombre du grenier."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Le livre maudit entrebâillé d'où s'échappe une vapeur vert fluo (#22c55e) et une ampoule suspendue vacillante."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Poussières anciennes en suspension dorée et micro-gouttelettes d'ectoplasme vert gluant lévitant doucement."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Trame rétro vintage style couverture de roman d'horreur des années 90, avec vignettage noir prononcé."
+      }
+    ],
+    "particles": {
+      "type": "Poussières de vieux grenier et étincelles de magie verte maléfique (dust & sparks)",
+      "size": "0.9 à 2.0 px pour la poussière ancestrale, 1.4 à 3.0 px pour les étincelles de sortilège vert",
+      "speed": "0.14 pour la flottaison des poussières, 0.9 pour les jaillissements d'étincelles vertes",
+      "density": "110 motes de poussière + 45 étincelles magiques vert fluo",
+      "behavior": "Lévitation brownienne lente perturbée par de brusques sursauts ascensionnels lors des flashs d'éclairs."
+    },
+    "atmosphere": {
+      "mist": "Volutes de vapeur verte phosphorescente (#22c55e) suintant des pages ouvertes du grimoire.",
+      "light": "Contrastée et théâtrale, alternant la lumière chaude vacillante d'une vieille ampoule et les flashs bleutés d'éclairs.",
+      "airColor": "Noir d'encre grenier (#0d0d0d) illuminé par le vert gluant radioactif (#22c55e) et des touches violettes (#7c3aed).",
+      "mainLightSource": "La vapeur verte du livre maudit et les éclairs périodiques à la lucarne."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclair d'orage à la lucarne",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 16.0 secondes",
+        "description": "Un puissant éclair illumine brutalement le grenier d'un bleu spectral, projetant des ombres inquiétantes d'armoires et de marionnette."
+      },
+      {
+        "name": "Fracas de tonnerre",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 17.0 secondes",
+        "description": "Immédiatement après l'éclair, un coup de tonnerre fait trembler le plancher et décrocher une averse de poussière des combles."
+      }
+    ],
+    "interaction": {
+      "mouse": "La souris fait vaciller l'ampoule suspendue et modifie l'axe des ombres dans le grenier ; un passage rapide disperse la vapeur verte.",
+      "scroll": "Rapproche le regard du livre maudit, faisant pulser l'aura vert fluo tout en maintenant les textes parfaitement lisibles."
+    },
+    "palette": [
+      "#0d0d0d",
+      "#22c55e",
+      "#15803d",
+      "#7c3aed",
+      "#a855f7",
+      "#4ade80"
+    ],
+    "references": [
+      "Goosebumps Slappy dummy haunted attic lightning",
+      "Shadertoy spooky attic glowing magic book green fog",
+      "CodePen 90s horror book cover glowing slime effect"
+    ],
+    "risks": {
+      "pitfall": "Un vert fluo trop strident et kitch qui rend l'écran illisible ou donne un effet bande dessinée non maîtrisé.",
+      "solution": "Vert réservé aux volutes d'énergie et étincelles du grimoire, intégré sur un fond boisé sombre et poussiéreux très feutré."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0d0d0d",
+          "bottomColor": "#15803d",
+          "horizonColor": "#7c3aed",
+          "density": 1.2,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.25,
+          "noiseScale": 1.3
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "boltColor": "#ffffff",
+          "glowColor": "#22c55e",
+          "density": 0.7,
+          "speed": 1.8,
+          "depth": 0.25,
+          "intensity": 1.2,
+          "randomness": 0.45,
+          "strikeInterval": 16,
+          "branchiness": 1.3
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#fef08a",
+          "secondaryColor": "#ea580c",
+          "density": 0.95,
+          "speed": 0.4,
+          "depth": 0.3,
+          "intensity": 1.1,
+          "randomness": 0.45,
+          "lightX": 0.1,
+          "lightY": 0.35,
+          "flickerType": 2
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#22c55e",
+          "density": 0.75,
+          "speed": 0.18,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "randomness": 0.4,
+          "heightFalloff": 1.8,
+          "windAngle": 0.1
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#e2e8f0",
+          "density": 0.85,
+          "speed": 0.14,
+          "depth": 0.45,
+          "intensity": 0.85,
+          "randomness": 0.45,
+          "twinkleSpeed": 1.1
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#4ade80",
+          "coreColor": "#ffffff",
+          "density": 0.65,
+          "speed": 0.9,
+          "depth": 0.35,
+          "intensity": 1.15,
+          "randomness": 0.5,
+          "gravity": 0.4,
+          "burstInterval": 2.2
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeColor": "#0d0d0d",
+          "density": 0.6,
+          "speed": 1.2,
+          "depth": 0.2,
+          "intensity": 0.55,
+          "randomness": 0.4,
+          "shakeInterval": 17,
+          "decayRate": 5
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0d0d0d",
+          "density": 1.15,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.8,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.1,
+          "speed": 0.7,
+          "depth": 0.15,
+          "intensity": 0.07,
+          "randomness": 0.45,
+          "monochrome": true,
+          "clumpSize": 1.1
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "creepy_doll_eyes",
+        "category": "intermediate",
+        "reason": "Paire d'yeux de poupée ventriloque en porcelaine peinte pivotant de façon saccadée dans la pénombre avec reflet vert lumineux."
+      }
+    ]
+  }
+]

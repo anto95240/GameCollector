@@ -1,0 +1,449 @@
+[
+  {
+    "id": "glade",
+    "name": "Glade",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "le-labyrinthe",
+    "evocation": "The Maze Runner (Le Labyrinthe, 2014) : la Clairière (« The Glade »), un havre de verdure et de terre battue cerné par d'écrasantes murailles de béton brut et de pierre calcaire de plusieurs dizaines de mètres de hauteur, envahies de lierre séculaire. Chaque matin, les portes titanesques du dédale s'ouvrent dans un fracas mécanique d'engrenages rouillés et de pierres frottées, libérant une nappe de brume froide et des tourbillons de poussière calcaire, avant de se refermer au crépuscule. Atmosphère d'enfermement oppressant sous un ciel voilé, bruissement des herbes folles et des feuilles de lierre sous les courants d'air s'engouffrant dans les coursives.",
+    "signature": "Des murailles cyclopéennes de pierre et de béton lézardé tapissées de lierre sauvage qui coulissent lourdement dans un grincement d'engrenages, libérant des volutes de poussière calcaire et dévoilant les couloirs brumeux du labyrinthe.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel matinal voilé et laiteux, percé d'une clarté zénithale froide sans soleil direct, enfermé entre les arêtes supérieures des parois vertigineuses."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Perspective fuyante des coursives intérieures du labyrinthe, blocs monolithiques monumentaux étagés dans une brume froide et menaçante."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "L'ouverture monumentale des deux portes cyclopéennes de béton brut veiné de fissures et de plaques de lierre dense, d'où s'écoule une nappe de brume rampante."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Sol herbeux et terre battue de la Clairière balayés par des courants d'air, avec retombées de vrilles de lierre oscillantes et touffes végétales."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Nuée de grains de poussière calcaire et micro-débris de feuilles en suspension brownienne, renforcée par un vignettage pierre sombre et un grain argentique texturé."
+      }
+    ],
+    "particles": {
+      "type": "Poussière minérale calcaire et fragments de feuilles de lierre en suspension (dust & leaves)",
+      "size": "1.0 à 2.6 px pour les poussières, 3.0 à 5.5 px pour les fragments foliaires",
+      "speed": "0.18 pour la dérive brownienne des poussières, 0.25 pour la descente tournoyante des feuilles",
+      "density": "120 motes de poussière calcaire + 35 fragments de feuilles (instanciation GPU ultra-fluide)",
+      "behavior": "Flottaison brownienne 3D par bruit de Simplex avec dérive douce poussée vers l'extérieur des portes, et tournoiement aérodynamique tumbling des fragments végétaux lors des rafales."
+    },
+    "atmosphere": {
+      "mist": "Nappe de brume froide et humide s'écoulant au ras du sol depuis l'ouverture béante des portes du labyrinthe.",
+      "light": "Austère, froide et matinale, dominée par une clarté zénithale indirecte zébrée de faisceaux volumétriques descendant le long des parois verticales.",
+      "airColor": "Gris calcaire froid (#78716c) et vert lierre sombre (#4d7c0f), virant à l'ombre ardoise terreuse (#292524) au fond des coursives.",
+      "mainLightSource": "La brèche zénithale découpée entre les sommets des murs verticaux du labyrinthe."
+    },
+    "rareEvents": [
+      {
+        "name": "Grondement mécanique des portes du labyrinthe",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 25.0 secondes",
+        "description": "Une secousse tellurique sourde à basse fréquence ébranle l'écran avec résonance mécanique, simulant le coulissement des blocs de pierre titanesques et faisant décrocher une pluie de poussière calcaire."
+      },
+      {
+        "name": "Courant d'air frais des coursives",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 32.0 secondes",
+        "description": "Une bourrasque d'air humide et comprimé jaillit du dédale, faisant tourbillonner vivement les débris de feuilles et courbant les volutes de brume au sol."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe 3D modifie l'axe de fuite vers l'ouverture du labyrinthe, révélant la profondeur de la coursive ; le curseur génère un souffle thermique feutré qui repousse les poussières et ondule la nappe de brume.",
+      "scroll": "Fait monter l'angle de vue vers le sommet écrasant des murailles monolithiques en augmentant l'intensité de l'ombre portée pour détacher lisiblement les cartes et le contenu de l'interface."
+    },
+    "palette": [
+      "#4d7c0f",
+      "#78716c",
+      "#292524",
+      "#a8a29e",
+      "#1c1917",
+      "#65a30d"
+    ],
+    "references": [
+      "The Maze Runner glade monolithic walls",
+      "Shadertoy procedural stone monolith parallax fog",
+      "CodePen sliding concrete monoliths dust"
+    ],
+    "risks": {
+      "pitfall": "Un décor de mur gris uniforme et plat avec un à-plat de verdure sans sentiment d'échelle monumentale ni de tension claustrophobique.",
+      "solution": "Contraste de profondeur marqué grâce à l'écoulement volumétrique de la brume depuis la brèche des portes, secousse mécanique tellurique à basse fréquence simulant les parois mobiles, et nuée de poussières calcaire en lévitation réactive."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#44403c",
+          "bottomColor": "#78716c",
+          "horizonColor": "#a8a29e",
+          "density": 1.1,
+          "speed": 0.15,
+          "depth": 0.1,
+          "intensity": 0.9,
+          "randomness": 0.15,
+          "noiseScale": 1.2
+        }
+      },
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "cloudColor": "#a8a29e",
+          "skyColor": "#292524",
+          "density": 0.45,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.85,
+          "randomness": 0.35,
+          "windAngle": 0.15
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#78716c",
+          "density": 0.75,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "randomness": 0.35,
+          "heightFalloff": 1.8,
+          "windAngle": 0.1
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#d6d3d1",
+          "density": 0.9,
+          "speed": 0.12,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "randomness": 0.35,
+          "lightSourceX": 0.5,
+          "lightSourceY": 0.9,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#e7e5e4",
+          "density": 0.85,
+          "speed": 0.18,
+          "depth": 0.4,
+          "intensity": 0.85,
+          "randomness": 0.4,
+          "twinkleSpeed": 0.9
+        }
+      },
+      {
+        "brick": "leaves",
+        "params": {
+          "leafColor": "#4d7c0f",
+          "altColor": "#78716c",
+          "density": 0.55,
+          "speed": 0.25,
+          "depth": 0.45,
+          "intensity": 0.85,
+          "randomness": 0.5
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeColor": "#78716c",
+          "density": 0.8,
+          "speed": 1.1,
+          "depth": 0.25,
+          "intensity": 0.65,
+          "randomness": 0.45,
+          "shakeInterval": 25.0,
+          "decayRate": 4.0
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#e2e8f0",
+          "density": 0.8,
+          "speed": 1.2,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "randomness": 0.4,
+          "gustAngle": 0.1,
+          "gustInterval": 32.0,
+          "swirlScale": 1.0
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1c1917",
+          "density": 1.05,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.65,
+          "randomness": 0.15,
+          "roundness": 0.7
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.0,
+          "speed": 0.6,
+          "depth": 0.15,
+          "intensity": 0.05,
+          "randomness": 0.4,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "sliding_monolith_gates",
+        "category": "intermediate",
+        "reason": "Deux dalles monolithiques colossales de béton armé et roche calcaire se faisant face, coulissant horizontalement avec inertie asynchrone, texture de rainures de friction et rideau de lierre pour matérialiser fidèlement l'entrée du Labyrinthe."
+      }
+    ]
+  },
+  {
+    "id": "panem",
+    "name": "Panem",
+    "family": "Urbain & action",
+    "intensity": 2,
+    "universe": "hunger-games",
+    "evocation": "The Hunger Games (2012-2015) : Panem, empire autoritaire dystopique post-apocalyptique. Le contraste brutal entre l'opulence dorée néo-classique et l'acier du Capitole, et les districts miniers opprimés noyés sous la suie de charbon. Au cœur de l'Arène des Jeux, le ciel crépusculaire d'orage est verrouillé par un dôme de force électromagnétique translucide fait d'alvéoles hexagonales scintillantes. Au sol, les braises incandescentes et les flammes du geai moqueur (« The Girl on Fire ») symbolisent l'embrasement de la rébellion, tandis que le canon officiel retentit pour marquer chaque chute.",
+    "signature": "Un dôme de force hexagonal translucide qui scintille doucement au-dessus d'une arène crépusculaire, tandis que des flammèches dorées et des particules de suie s'élèvent au rythme d'impulsions de rébellion.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel crépusculaire d'arène aux tonalités d'encre anthracite et de plomb, balayé de lourdes masses nuageuses cuivrées."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Chaîne montagneuse sombre ceinturant l'arène ou silhouettes distantes des monolithes architecturaux du Capitole baignées dans un halo doré ambré."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Dôme de force électromagnétique en réseau d'alvéoles hexagonales semi-transparentes, vibrant à pulsation lente avec étincelles de courant le long des arêtes."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Foyer de rébellion au sol d'où s'élèvent des volutes de fumée chaude et un rideau ascendant de flammèches et de braises or et ambre."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Particules de suie de charbon en descente oscillante et micro-étincelles incandescentes au passage du vent, avec vignettage charbon et grain pellicule de diffusion officielle."
+      }
+    ],
+    "particles": {
+      "type": "Braises incandescentes dorées ascendantes et flocons de suie de charbon (embers & ash)",
+      "size": "1.2 à 3.2 px pour les braises dorées, 1.8 à 3.6 px pour les particules de suie",
+      "speed": "0.48 pour l'ascension thermique des braises, 0.22 pour la chute lente et le flottement de la suie",
+      "density": "110 braises dorées + 75 flocons de suie (rendu InstancedMesh 60 fps garanti)",
+      "behavior": "Convection thermique Simplex ascendante pour les étincelles d'or flamboyant avec refroidissement chromatique progressif ; basculement tumbling 3D nonchalant pour la suie de district."
+    },
+    "atmosphere": {
+      "mist": "Brume thermique chaude et volutes de fumée cuivrée montant depuis les foyers de rébellion.",
+      "light": "Dramatique et incandescente, combinant la radiance d'or chaud de la révolte et le bleu-acier froid du dôme de contrôle du Capitole.",
+      "airColor": "Or patiné (#ca8a04) et ambre ardent (#eab308) au ras du sol, se dégradant vers le gris acier (#52525b) et le noir carbone (#18181b) au sommet.",
+      "mainLightSource": "Le foyer ardent de braises au sol et la lueur crépusculaire de la ligne d'horizon."
+    },
+    "rareEvents": [
+      {
+        "name": "Décharge électrique sur le dôme de l'arène",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Un arc électrique ramifié cyan et blanc zèbre soudainement une portion du dôme hexagonal, illuminant brièvement les alvéoles de force comme lors d'un impact de projectile ou d'une défaillance du champ."
+      },
+      {
+        "name": "Détonation du canon des tributs",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 30.0 secondes",
+        "description": "Une onde de choc circulaire en distorsion optique se propage depuis le centre de la scène avec dispersion chromatique, évoquant le tir de canon officiel annonçant la chute d'un tribut."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace la perspective de la coupole hexagonale et des reliefs d'arrière-plan ; le passage de la souris produit une onde thermique qui disperse les braises et illumine les hexagones survolés.",
+      "scroll": "Plonge la perspective vers le brasier de l'arène en augmentant la cadence ascensionnelle des flammèches et en assombrissant les marges pour assurer un contraste impeccable avec les éléments de texte."
+    },
+    "palette": [
+      "#ca8a04",
+      "#52525b",
+      "#18181b",
+      "#eab308",
+      "#71717a",
+      "#fef08a"
+    ],
+    "references": [
+      "Hunger games arena force field dome hex grid",
+      "Shadertoy mockingjay fire embers rebellion",
+      "CodePen glowing hex force field particles"
+    ],
+    "risks": {
+      "pitfall": "Un fond de braises générique rappelant un feu de camp médiéval banal, sans l'aspect technologique oppressant ni le faste dystopique du Capitole.",
+      "solution": "Intégration nette de la grille hexagonale du dôme de confinement avec pulsations d'énergie, éclairs de décharge électrique dans le champ de force, et étagement rigoureux des braises dorées contrastant avec la suie de charbon."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#18181b",
+          "bottomColor": "#3f3f46",
+          "horizonColor": "#ca8a04",
+          "density": 1.2,
+          "speed": 0.18,
+          "depth": 0.1,
+          "intensity": 1.0,
+          "randomness": 0.15,
+          "noiseScale": 1.2
+        }
+      },
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "cloudColor": "#52525b",
+          "skyColor": "#18181b",
+          "density": 0.5,
+          "speed": 0.12,
+          "depth": 0.25,
+          "intensity": 0.85,
+          "randomness": 0.35,
+          "windAngle": 0.2
+        }
+      },
+      {
+        "brick": "hex_grid",
+        "params": {
+          "borderColor": "#ca8a04",
+          "fillColor": "#18181b",
+          "pulseColor": "#fef08a",
+          "density": 1.1,
+          "speed": 0.2,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "randomness": 0.3,
+          "borderWidth": 0.05,
+          "innerGlow": 0.35
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#27272a",
+          "sunColor": "#ca8a04",
+          "mistColor": "#52525b",
+          "density": 1.0,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#ca8a04",
+          "hotColor": "#fef08a",
+          "density": 0.85,
+          "speed": 0.48,
+          "depth": 0.4,
+          "intensity": 1.2,
+          "randomness": 0.45
+        }
+      },
+      {
+        "brick": "ash",
+        "params": {
+          "ashColor": "#71717a",
+          "darkColor": "#18181b",
+          "density": 0.75,
+          "speed": 0.22,
+          "depth": 0.5,
+          "intensity": 0.8,
+          "randomness": 0.55
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "lightningColor": "#67e8f9",
+          "flashColor": "#ca8a04",
+          "density": 0.9,
+          "speed": 1.2,
+          "depth": 0.3,
+          "intensity": 1.1,
+          "randomness": 0.5,
+          "strikeInterval": 18.0,
+          "forkSpread": 0.6
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#fef08a",
+          "density": 0.85,
+          "speed": 1.2,
+          "depth": 0.3,
+          "intensity": 1.1,
+          "randomness": 0.3,
+          "epicenterX": 0.0,
+          "epicenterY": 0.1,
+          "waveInterval": 30.0,
+          "chromaticAberration": 0.02
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#09090b",
+          "density": 1.0,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.7,
+          "randomness": 0.2,
+          "roundness": 0.7
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.1,
+          "speed": 0.7,
+          "depth": 0.2,
+          "intensity": 0.05,
+          "randomness": 0.4,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "force_field_dome_distortion",
+        "category": "special",
+        "reason": "Shader de distorsion optique sphérique courbée simulant la voûte électromagnétique du dôme de l'arène déformant le ciel et les nuages lors des ondes de choc."
+      }
+    ]
+  }
+]
+

@@ -1,0 +1,810 @@
+[
+  {
+    "id": "autobots",
+    "name": "Autobots",
+    "family": "Super-héros & comics",
+    "intensity": 2,
+    "universe": "transformers",
+    "evocation": "La base secrète et l'atelier high-tech de maintenance des Autobots (rappelant l'Arche crashée sur Terre ou l'avant-poste Omega One). Un complexe industriel et souterrain taillé dans la roche volcanique et renforcé d'épaisses cloisons d'acier d'armement et de titane brossé rouge vermillon (#dc2626) et bleu cobalt (#3b82f6). Des baies d'assemblage automatisées où des bras robotisés et des vérins hydrauliques réalignent de massives plaques d'armure biseautées. Des gerbes d'étincelles de soudure jaillissent sporadiquement dans la pénombre industrielle tandis que des soupapes de surpression libèrent des jets de vapeur pressurisée. L'atmosphère résonne d'une ingénierie mécanique héroïque, puissante et protectrice.",
+    "signature": "Des plaques de blindage en titane rouge et bleu qui s'assemblent et se verrouillent au millimètre avec des à-coups hydrauliques cadencés, laissant échapper des jets de vapeur sous pression et des gerbes d'étincelles dorées.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Parois d'acier et cloisons d'atelier militaire plongées dans une pénombre chaude, balayées par des faisceaux de projecteurs industriels et la lueur tamisée d'accumulateurs d'énergie."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Portiques de levage géants, faisceaux de câbles haute tension suspendus et structures d'échafaudages d'entretien étagées en perspective fuyante."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Baie de montage mécanique où de lourds modules de carrosserie rouge vermillon et bleu cobalt s'emboîtent sous le guidage de vérins hydrauliques réactifs."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Gerbes d'étincelles balistiques de soudure rebondissant au sol et volutes de vapeur pressurisée s'élevant des valves de décharge thermique."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Vignettage industriel feutré, micro-aberration chromatique périphérique simulant une optique de diagnostic mécanique et grain argentique fin."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles balistiques de soudure et volutes de vapeur pressurisée (sparks & smoke)",
+      "size": "1.2 à 2.8 px pour les étincelles, 18 à 40 px pour les volutes de vapeur",
+      "speed": "1.4 pour les jaillissements vifs d'étincelles, 0.22 pour la montée convective de vapeur",
+      "density": "45 étincelles vives + 15 bouffées de vapeur (instanciation GPU ultra-légère)",
+      "behavior": "Trajectoires paraboliques nettes à forte vitesse initiale et courbure gravitationnelle pour les étincelles, avec ascension lente et dissipation vaporeuse pour les panaches de vapeur."
+    },
+    "atmosphere": {
+      "mist": "Vapeur blanche chaude et brume thermique s'échappant de valves de surpression au ras du sol métallique.",
+      "light": "Éclairage contrasté de projecteurs d'atelier et de lampes stroboscopiques ambrées, traversé d'éclats spéculaires bleus cobalt et rouges carrosserie.",
+      "airColor": "Anthracite chaud (#1e293b) mêlé de bleu électrique (#3b82f6) et de rouge vermillon (#dc2626).",
+      "mainLightSource": "Les projecteurs zénithaux des ponts de montage et les arcs lumineux de soudure robotisée."
+    },
+    "rareEvents": [
+      {
+        "name": "Décharge d'arc de soudure à haute énergie",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 22.0 secondes",
+        "description": "Un flash blanc-bleu aveuglant d'arc de soudure illumine instantanément les silhouettes des carrosseries avec un crépitement électrique et projette une gerbe d'étincelles balistiques."
+      },
+      {
+        "name": "Secousse de recalibrage hydraulique",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 35.0 secondes",
+        "description": "Une impulsion mécanique sourde ébranle l'écran lorsque deux plaques de blindage colossales s'emboîtent et se verrouillent lourdement dans leur gorge d'acier."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace les portiques industriels et fait glisser les reflets spéculaires le long des arêtes de blindage ; le survol du curseur déclenche des micro-étincelles sur les points d'assemblage.",
+      "scroll": "Accélère la dérive convective de la vapeur d'échappement et renforce la pénombre au sol pour maintenir un contraste parfait sur l'interface."
+    },
+    "palette": [
+      "#dc2626",
+      "#3b82f6",
+      "#1e293b",
+      "#f59e0b",
+      "#0f172a",
+      "#93c5fd"
+    ],
+    "references": [
+      "Autobots Ark repair bay concept art",
+      "Shadertoy industrial robotic welding sparks",
+      "CodePen mechanical hydraulic sliding plates"
+    ],
+    "risks": {
+      "pitfall": "Un fond bicolore rouge et bleu statique avec des logos sérigraphiés plats, sans impression de métal lourd ni d'ingénierie cinétique vivante.",
+      "solution": "Reflets métalliques directionnels en biseau, gerbes d'étincelles balistiques à physique parabolique, panaches de vapeur de décompression et secousse d'emboîtement hydraulique."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#3b82f6",
+          "density": 1.2,
+          "speed": 0.15,
+          "depth": 0.1,
+          "intensity": 0.9,
+          "randomness": 0.15,
+          "noiseScale": 1.1
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "cityColor": "#0b1329",
+          "windowColor": "#dc2626",
+          "beaconColor": "#f59e0b",
+          "density": 0.8,
+          "speed": 0.05,
+          "depth": 0.45,
+          "intensity": 0.85,
+          "randomness": 0.25,
+          "roofStyle": "industrial",
+          "windowDensity": 0.3
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#f59e0b",
+          "coreColor": "#ffffff",
+          "density": 0.8,
+          "speed": 1.4,
+          "depth": 0.5,
+          "intensity": 1.3,
+          "randomness": 0.4,
+          "gravity": 1.8,
+          "lifespan": 0.8
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#94a3b8",
+          "density": 0.6,
+          "speed": 0.22,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "randomness": 0.35,
+          "expansionRate": 2.2
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#3b82f6",
+          "density": 1.0,
+          "speed": 0.8,
+          "depth": 0.2,
+          "intensity": 0.7,
+          "randomness": 0.5,
+          "flickerMode": "neon"
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "boltColor": "#ffffff",
+          "glowColor": "#3b82f6",
+          "density": 0.5,
+          "speed": 1.5,
+          "depth": 0.3,
+          "intensity": 1.2,
+          "randomness": 0.6,
+          "branchCount": 3
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "intensity": 0.6,
+          "decayRate": 3.0,
+          "speed": 1.2,
+          "depth": 0.0,
+          "randomness": 0.4,
+          "axes": "xy"
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#030712",
+          "density": 1.0,
+          "speed": 0.0,
+          "depth": 0.0,
+          "intensity": 0.75,
+          "randomness": 0.1,
+          "radius": 0.82,
+          "softness": 0.45
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 0.8,
+          "speed": 0.6,
+          "depth": 0.0,
+          "intensity": 0.15,
+          "randomness": 0.5,
+          "monochrome": true,
+          "clumpSize": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "robotic_armor_assembly",
+        "category": "special",
+        "reason": "Module d'armure mécanique modulaire avec plaques biseautées mobiles qui s'emboîtent et se décalent au rythme de vérins hydrauliques avec reflets spéculaires d'acier peint."
+      }
+    ]
+  },
+  {
+    "id": "decepticons",
+    "name": "Decepticons",
+    "family": "Super-héros & comics",
+    "intensity": 2,
+    "universe": "transformers",
+    "evocation": "La passerelle de commandement sombre et menaçante du cuirassé Nemesis ou les fonderies d'armement souterraines de Kaon. Une atmosphère hostile, anguleuse et prédatrice dominée par des alliages métalliques noirs obsidienne et des résonances d'un violet pourpre profond (#4c1d95, #a855f7). Des canalisations d'Energon corrompu (Dark Energon) parcourent les coursives biseautées, suintant d'une luminescence radioactive instable. Des conduits d'évacuation thermique crachent des fumerolles d'échappement denses tandis que des arcs électriques haute tension crépitent entre deux pylônes métalliques aux lignes acérées. La scène incarne la tyrannie technologique, la militarisation impitoyable et la férocité froide des armées de Megatron.",
+    "signature": "Des conduits de Dark Energon translucides pulsant d'un éclat violet menaçant qui crépitent d'arcs électriques haute tension, éclairant de violentes arêtes d'armures métalliques acérées.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Abîme d'acier ténébreux d'un hangar militaire extraterrestre, ponctué de voyants pourpres d'accumulateurs de Dark Energon et de lignes de fuite angulaires."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes de tourelles plasma automatisées, d'ailerons en flèche et de poutrelles géométriques acérées étagées dans une brume industrielle pourpre."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Réseau de canalisations et d'injecteurs d'Energon violet pulsant de manière asynchrone, raccordés à des plaques de blindage en biseau affûtées comme des lames."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Cendres métalliques sombres en suspension et éclairs de décharge électrique crépitant le long des parois conductrices."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Vignettage pourpre sombre d'obscurité oppressante, micro-glitch numérique furtif sur les bordures et grain de pellicule texturé."
+      }
+    ],
+    "particles": {
+      "type": "Cendres d'alliage calciné et étincelles de décharge électrique violette (ash & sparks)",
+      "size": "1.0 à 2.4 px pour les particules d'alliage, 1.5 à 3.0 px pour les étincelles violettes",
+      "speed": "0.20 pour la retombée lente des cendres métalliques, 1.6 pour les étincelles de décharge",
+      "density": "40 particules de suie industrielle + 30 étincelles de haute tension instables",
+      "behavior": "Dérive lourde et lente des cendres magnétiques descendant en spirale, zébrée par de soudaines gerbes d'étincelles haute fréquence fusant le long des conduites d'énergie."
+    },
+    "atmosphere": {
+      "mist": "Fumerolle toxique lourde et vapeur ionisée violette s'infiltrant depuis les grilles d'évacuation au sol.",
+      "light": "Sombre, crépusculaire et agressive, dominée par les pulsations d'un violet radioactif et des reflets spéculaires métalliques froids sur les arêtes acérées.",
+      "airColor": "Violet noir d'encre (#180828) et pourpre toxique (#4c1d95), traversé d'éclats améthyste (#a855f7) et de reflets d'acier sombre (#260f4b).",
+      "mainLightSource": "Les réacteurs à Dark Energon et les arcs de décharge électrique crépitant entre les pylônes de blindage."
+    },
+    "rareEvents": [
+      {
+        "name": "Arc électrique de Dark Energon",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "Une violente décharge ramifiée pourpre et blanche claque brutalement entre deux pylônes métalliques, projetant une ombre acérée portée sur toute la coursive."
+      },
+      {
+        "name": "Glitch d'optique de visée prédatrice",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Une micro-interférence cybernétique déchire furtivement l'écran avec découpage horizontal par blocs et aberration chromatique pourpre/cyan."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace les pylônes d'acier biseautés et oriente les reflets rasants sur les surfaces acérées ; le curseur attire de subtils filaments d'électricité statique violette.",
+      "scroll": "Modifie la radiance des canalisations de Dark Energon et densifie le vignettage périphérique pour garantir un détachement net des textes et cartes."
+    },
+    "palette": [
+      "#4c1d95",
+      "#a855f7",
+      "#260f4b",
+      "#c084fc",
+      "#180828",
+      "#ef4444"
+    ],
+    "references": [
+      "Decepticon Nemesis warship dark energon interior",
+      "Shadertoy purple plasma electric conduit",
+      "CodePen angular sci-fi armor glow"
+    ],
+    "risks": {
+      "pitfall": "Un décor violet monotone et uniforme sans relief, ressemblant à une ambiance néon générique plutôt qu'à un cuirassé de guerre cybernétique.",
+      "solution": "Formes biseautées prédatrices étagées en profondeur, canalisations d'Energon pulsant à des rythmes asynchrones chaotiques, brume d'échappement dense et claquements d'arcs électriques."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#180828",
+          "bottomColor": "#260f4b",
+          "horizonColor": "#4c1d95",
+          "density": 1.3,
+          "speed": 0.12,
+          "depth": 0.1,
+          "intensity": 0.95,
+          "randomness": 0.18,
+          "noiseScale": 1.2
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#4c1d95",
+          "density": 0.65,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "randomness": 0.3,
+          "heightMask": 0.6
+        }
+      },
+      {
+        "brick": "ash",
+        "params": {
+          "ashColor": "#260f4b",
+          "density": 0.7,
+          "speed": 0.2,
+          "depth": 0.4,
+          "intensity": 0.75,
+          "randomness": 0.35,
+          "airTurbulence": 0.4
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#c084fc",
+          "coreColor": "#ffffff",
+          "density": 0.6,
+          "speed": 1.6,
+          "depth": 0.5,
+          "intensity": 1.4,
+          "randomness": 0.45,
+          "gravity": 1.2,
+          "lifespan": 0.7
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "boltColor": "#ffffff",
+          "glowColor": "#a855f7",
+          "density": 0.6,
+          "speed": 1.8,
+          "depth": 0.3,
+          "intensity": 1.3,
+          "randomness": 0.5,
+          "branchCount": 4
+        }
+      },
+      {
+        "brick": "glitch",
+        "params": {
+          "sliceHeight": 0.06,
+          "rgbSplit": 0.015,
+          "speed": 1.4,
+          "depth": 0.0,
+          "intensity": 0.7,
+          "randomness": 0.6
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#090214",
+          "density": 1.0,
+          "speed": 0.0,
+          "depth": 0.0,
+          "intensity": 0.85,
+          "randomness": 0.1,
+          "radius": 0.8,
+          "softness": 0.5
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 0.8,
+          "speed": 0.6,
+          "depth": 0.0,
+          "intensity": 0.18,
+          "randomness": 0.5,
+          "monochrome": true,
+          "clumpSize": 1.0
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "pulsing_energon_conduits",
+        "category": "special",
+        "reason": "Réseau de tuyauteries et canalisations biomécaniques translucides où circule un fluide énergétique plasma pulsant avec surtensions stochastiques."
+      }
+    ]
+  },
+  {
+    "id": "cybertron",
+    "name": "Cybertron",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "transformers",
+    "evocation": "La planète mère Cybertron contemplée depuis les profondeurs vertigineuses de ses canyons mécaniques ou depuis une orbite basse spectaculaire. Un monde artificiel monumental entièrement façonné d'acier bleuté, de titane brossé (#94a3b8) et d'alliages chromés, exempt de toute matière organique. Des méga-engrenages planétaires et des anneaux orbitaux titanesques pivotent avec une lenteur majestueuse et inexorable, articulant les strates tectoniques de la planète-machine. Dans les failles abyssales s'écoulent des fleuves de plasma Energon liquide pur d'un bleu céleste aveuglant (#38bdf8), illuminant des spires métalliques effilées qui percent une exosphère zébrée d'aurores d'ions. Une démesure d'ingénierie cosmique où la géométrie mathématique et l'immensité spatiale s'unissent.",
+    "signature": "De colossaux engrenages planétaires en rotation lente qui s'entrecroisent au-dessus de failles tectoniques abyssales où coule un fleuve de plasma Energon bleu turquoise lumineux.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Le vide spatial profond semé d'étoiles froides et le profil courbé de Cybertron ceinturé par un anneau orbital colossal zébré d'aurores d'ions."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Spires et citadelles métalliques vertigineuses de la métropole d'Iacon se découpant en contre-jour, reliées par des autoroutes de lumière et des passerelles d'acier."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Canyons tectoniques d'acier où des sections d'engrenages planétaires à dents biseautées pivotent lentement au-dessus d'une faille incandescente d'Energon bleu céleste."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Nuée de poussières stellaires métallisées et débris de micro-météorites dérivant en quasi-apesanteur dans les rais de plasma bleu."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Lueur volumétrique bleutée diffuse en bordure d'écran, vignettage spatial d'acier froid et grain argentique fin."
+      }
+    ],
+    "particles": {
+      "type": "Poussières métalliques scintillantes et particules d'Energon en apesanteur (dust & sparks)",
+      "size": "0.8 à 2.0 px pour les poussières de métal poli, 1.2 à 2.6 px pour les motes d'Energon bleu",
+      "speed": "0.12 pour la dérive orbitale feutrée, 0.4 pour les remontées de plasma thermique",
+      "density": "90 particules métalliques + 35 étincelles d'énergie ionique lente",
+      "behavior": "Dérive brownienne en quasi-apesanteur le long des lignes de champ magnétique planétaire, avec scintillement spéculaire argenté au contact de la lumière."
+    },
+    "atmosphere": {
+      "mist": "Nappe de vapeur ionisée froide flottant au-dessus des canyons d'Energon liquide.",
+      "light": "Éclat froid, majestueux et technologique dominé par la luminescence azurée du plasma Energon (#38bdf8) et les reflets d'acier brossé (#94a3b8) sous la lueur d'étoiles lointaines.",
+      "airColor": "Gris acier bleuté (#1e293b) et bleu azur pur (#38bdf8), nuancé d'ardoise spatiale (#0f172a).",
+      "mainLightSource": "Le fleuve d'Energon bouillonnant dans la faille tectonique et les réacteurs orbitaux."
+    },
+    "rareEvents": [
+      {
+        "name": "Sursaut d'aurore ionique planétaire",
+        "type": "aurora",
+        "frequency": "Intervalle moyen de 24.0 secondes",
+        "description": "Une draperie d'énergie électromagnétique traverse le zénith spatial en ondulant d'un cyan pur avant de se dissiper le long de l'anneau orbital."
+      },
+      {
+        "name": "Impulsion tellurique du noyau (Vector Sigma)",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 34.0 secondes",
+        "description": "Une onde de compression bleue lumineuse irradie depuis le fond de la faille mécanique, dilatant doucement la perspective du paysage d'acier."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe 3D révèle la profondeur vertigineuse des canyons métalliques et fait glisser les reflets anamorphiques le long des dents des méga-engrenages.",
+      "scroll": "Modifie l'altitude apparente du regard, descendant des spires supérieures d'acier vers la lueur turquoise intense des rivières d'Energon souterraines."
+    },
+    "palette": [
+      "#94a3b8",
+      "#38bdf8",
+      "#1e293b",
+      "#0f172a",
+      "#e2e8f0",
+      "#0284c7"
+    ],
+    "references": [
+      "Cybertron planetary gears fall of cybertron",
+      "Shadertoy sci-fi megastructure blue plasma",
+      "CodePen metallic gears parallax landscape"
+    ],
+    "risks": {
+      "pitfall": "Un paysage gris métallique stérile et figé ressemblant à un simple schéma 3D low-poly sans relief ni vie cosmique.",
+      "solution": "Profondeur étagée monumentale, rotation lente et inexorable de méga-structures articulées, fleuves d'Energon incandescents créant un contraste fort, et dérive de poussières de métal en apesanteur."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0a1128",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#0284c7",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.08,
+          "intensity": 0.9,
+          "randomness": 0.12,
+          "noiseScale": 1.1
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#e2e8f0",
+          "density": 1.0,
+          "speed": 0.05,
+          "depth": 0.15,
+          "intensity": 0.85,
+          "randomness": 0.3,
+          "layerCount": 3,
+          "twinkleSpeed": 0.4
+        }
+      },
+      {
+        "brick": "lava_flow",
+        "params": {
+          "crustColor": "#0f172a",
+          "magmaColor": "#0284c7",
+          "coreColor": "#38bdf8",
+          "density": 1.0,
+          "speed": 0.25,
+          "depth": 0.4,
+          "intensity": 1.2,
+          "randomness": 0.35,
+          "twist": 0.4
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#94a3b8",
+          "density": 0.9,
+          "speed": 0.12,
+          "depth": 0.45,
+          "intensity": 0.8,
+          "randomness": 0.4,
+          "brownianMotion": 0.3
+        }
+      },
+      {
+        "brick": "aurora",
+        "params": {
+          "auroraColor": "#38bdf8",
+          "secondaryColor": "#818cf8",
+          "density": 0.6,
+          "speed": 0.2,
+          "depth": 0.2,
+          "intensity": 0.75,
+          "randomness": 0.35,
+          "curtainHeight": 0.5
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "waveColor": "#38bdf8",
+          "speed": 0.8,
+          "depth": 0.3,
+          "intensity": 0.9,
+          "randomness": 0.2,
+          "ringThickness": 0.04
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "glowColor": "#38bdf8",
+          "density": 0.8,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "randomness": 0.2,
+          "radius": 1.2
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#050b14",
+          "density": 1.0,
+          "speed": 0.0,
+          "depth": 0.0,
+          "intensity": 0.7,
+          "randomness": 0.1,
+          "radius": 0.85,
+          "softness": 0.4
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 0.7,
+          "speed": 0.5,
+          "depth": 0.0,
+          "intensity": 0.12,
+          "randomness": 0.4,
+          "monochrome": true,
+          "clumpSize": 0.8
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "planetary_mega_gears",
+        "category": "special",
+        "reason": "Silhouettes monumentales d'engrenages et couronnes dentées planétaires imbriquées en rotation lente non-linéaire avec crans mécaniques détaillés et reflets d'acier brossé."
+      }
+    ]
+  },
+  {
+    "id": "the_mys_terious_tf",
+    "name": "AllSpark",
+    "family": "Néon & cyber",
+    "intensity": 2,
+    "universe": "transformers",
+    "evocation": "L'AllSpark (le Cube primordial), la relique cybernétique sacrée ancestrale renfermant la matrice de toute existence mécanique. Flottant en lévitation silencieuse au cœur d'une chambre voûtée mystique d'un sanctuaire pré-cybertronien oublié. Un cube géométrique titanesque dont les faces d'airain et d'or ciselé (#facc15) sont gravées d'anciens glyphes et de hiéroglyphes cybertroniens lumineux. Des nervures d'énergie d'un rouge ambré incandescent (#ef4444) et d'or céleste palpitent sous sa surface comme un cœur biomécanique millénaire. Le cube pivote lentement en décalage dimensionnel, projetant des rais de lumière dorée volumétrique et émettant périodiquement des ondes électrostatiques qui font léviter les fragments de métal alentour et insufflent une étincelle de vie métallique à toute matière inerte.",
+    "signature": "Le cube de l'AllSpark sculpté de runes cybernétiques dorées qui flotte en lévitation en pivotant lentement, pulsant d'un cœur rougeoyant et libérant des vagues d'étincelles dorées vivifiantes.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Voûte d'un temple antique cybertronien perdue dans la pénombre, rythmée par des colonnades hexagonales d'airain et des bas-reliefs mécaniques séculaires."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Anneaux concentriques géométriques suspendus autour de l'autel, tournant lentement à contre-sens du cube pour canaliser son énergie matricielle."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Le cube géométrique de l'AllSpark en sustentation magnétique, gravé de runes dorées chatoyantes avec cœur ambré et rouge vif pulsant à travers les failles des plaques."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Nuée de poussières sacrées d'or et étincelles d'activation énergétique lévitant en spirale ascendante vers le cube."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Faisceaux volumétriques de rais de lumière dorée (god rays), micro-aberration chromatique prismatique et vignettage ambré chaleureux."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles dorées de transmutation et poussières métalliques incandescentes (sparks & dust)",
+      "size": "1.0 à 2.5 px pour les motes d'or, 1.8 à 3.5 px pour les étincelles d'éveil d'Energon",
+      "speed": "0.16 pour la lévitation hélicoïdale lente des poussières d'or, 0.9 pour les étincelles énergétiques",
+      "density": "75 fragments dorés + 25 étincelles d'activation runique",
+      "behavior": "Mouvement spiralé ascendant défiant la gravité, attiré vers les arêtes du cube avant d'être propulsé doucement vers l'extérieur lors des battements énergétiques."
+    },
+    "atmosphere": {
+      "mist": "Vapeur dorée diaphane et halo de poussières ionisées saturant l'air sacré du sanctuaire.",
+      "light": "Éblouissement sacré, solaire et divin dominé par l'or ambré (#facc15) et des reflets rouge rubis incandescents (#ef4444), découpant la pénombre sombre du temple.",
+      "airColor": "Or chaud (#facc15), cuivre incandescent (#f59e0b) et rouge rubis (#ef4444), reposant sur un fond d'obsidienne antique (#1c1917).",
+      "mainLightSource": "Le cœur rayonnant de l'AllSpark et les runes gravées sur ses facettes dorées."
+    },
+    "rareEvents": [
+      {
+        "name": "Onde de souffle vital (Spark Pulse)",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 22.0 secondes",
+        "description": "Le cube pulse violemment d'un éclat rouge et doré, projetant une onde de choc sphérique qui fait frémir les poussières dorées et dilate l'espace."
+      },
+      {
+        "name": "Faisceau de transmutation runique",
+        "type": "god_rays",
+        "frequency": "Intervalle moyen de 30.0 secondes",
+        "description": "Les glyphes s'alignent sur les facettes du cube, libérant un rai de lumière dorée pénétrant traversant la pièce de part en part."
+      }
+    ],
+    "interaction": {
+      "mouse": "L'angle de rotation et l'inclinaison du cube de l'AllSpark s'ajustent subtilement selon le curseur, modifiant l'illumination spéculaire dorée ; le pointeur déclenche de petites étincelles de vie au survol.",
+      "scroll": "Fait respirer la pulsation du cœur rouge du cube et ajuste la diffusion des rais de lumière pour détacher impeccablement les éléments d'interface utilisateur."
+    },
+    "palette": [
+      "#facc15",
+      "#ef4444",
+      "#f59e0b",
+      "#7f1d1d",
+      "#1c1917",
+      "#fde047"
+    ],
+    "references": [
+      "AllSpark cube Transformers glowing glyphs",
+      "Shadertoy golden energy cube levitation",
+      "CodePen glowing runic cube sacred geometry"
+    ],
+    "risks": {
+      "pitfall": "Un simple cube jaune statique ou une boîte 3D basique sans aura mystique, sans solennité ni impression d'énergie vitale colossale.",
+      "solution": "Runes luminescentes complexes à travers les failles des plaques d'or, cœur d'énergie rougeoyante battant comme une étincelle de vie, et champ gravitationnel inversé attirant les étincelles dorées."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#1c1917",
+          "bottomColor": "#292524",
+          "horizonColor": "#7f1d1d",
+          "density": 1.2,
+          "speed": 0.12,
+          "depth": 0.1,
+          "intensity": 0.9,
+          "randomness": 0.15,
+          "noiseScale": 1.1
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#facc15",
+          "density": 0.8,
+          "speed": 0.25,
+          "depth": 0.3,
+          "intensity": 1.1,
+          "randomness": 0.35,
+          "decay": 0.95
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#facc15",
+          "density": 0.8,
+          "speed": 0.16,
+          "depth": 0.45,
+          "intensity": 0.85,
+          "randomness": 0.4,
+          "brownianMotion": 0.35
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#fde047",
+          "coreColor": "#ffffff",
+          "density": 0.6,
+          "speed": 0.9,
+          "depth": 0.5,
+          "intensity": 1.3,
+          "randomness": 0.4,
+          "gravity": -0.4,
+          "lifespan": 1.2
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "waveColor": "#facc15",
+          "speed": 0.9,
+          "depth": 0.35,
+          "intensity": 1.0,
+          "randomness": 0.25,
+          "ringThickness": 0.05
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "glowColor": "#ef4444",
+          "density": 0.85,
+          "speed": 0.2,
+          "depth": 0.35,
+          "intensity": 0.9,
+          "randomness": 0.2,
+          "radius": 1.1
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0c0a09",
+          "density": 1.0,
+          "speed": 0.0,
+          "depth": 0.0,
+          "intensity": 0.75,
+          "randomness": 0.1,
+          "radius": 0.8,
+          "softness": 0.45
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 0.75,
+          "speed": 0.5,
+          "depth": 0.0,
+          "intensity": 0.14,
+          "randomness": 0.4,
+          "monochrome": true,
+          "clumpSize": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "runic_levitating_cube",
+        "category": "special",
+        "reason": "Cube géométrique 3D en sustentation magnétique avec rotation multiaxiale douce, facettes d'or ciselé et fissures runiques pulsant d'une énergie interne incandescente."
+      }
+    ]
+  }
+]
+

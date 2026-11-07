@@ -1,0 +1,1516 @@
+[
+  {
+    "id": "berk",
+    "name": "Berk",
+    "family": "Magie & fantasy",
+    "intensity": 2,
+    "universe": "dragons",
+    "evocation": "L'île sauvage de Berk dans la saga d'animation Dragons (DreamWorks) : un promontoire scandinave battu par les vents de la mer du Nord, où les bastions vikings s'accrochent aux falaises maritimes vertigineuses face à des cieux orageux balayés par des souffles de feu de dragons et des braises de forge ancestrale.",
+    "signature": "Des bouffées de flammes de plasma et de braises rougeoyantes jaillissant d'une faille rocheuse lointaine, illuminant par intermittence les falaises maritimes et les silhouettes d'ailes draconiques fendant les brumes du fjord.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel orageux scandinave en dégradé vert mousse sombre vers émeraude éteint et rouge crépusculaire, animé d'une lente dérive de masses nuageuses sous la bise nordique."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette escarpée de pitons rocheux et d'arches maritimes (stack rocks) typiques des fjords de Berk, drapée dans une nappe de brume rasante."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Foyer ardent d'un brasier viking et nid de dragon au pied des contreforts rocheux, projetant une pulsation thermique et lumineuse vacillante."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan dynamique",
+        "description": "Nuée ascendante de braises incandescentes et de flammèches portées par les courants chauds, refroidissant progressivement du blanc-or au rouge sang."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan optique",
+        "description": "Vignettage froid cinématographique combiné à un grain argentique discret évoquant la rudesse épique des chroniques vikings."
+      }
+    ],
+    "particles": {
+      "type": "Braises incandescentes et flammèches de feu de dragon (embers)",
+      "size": "1.5 à 3.2 px",
+      "speed": "0.55 (ascension convective turbulente avec ralentissement en refroidissement)",
+      "density": "85 braises actives instanciées GPU (calibré intensité 2)",
+      "behavior": "Convection thermique ascendante avec micro-tourbillons Simplex 3D et extinction progressive du blanc-jaune vers le rouge sombre."
+    },
+    "atmosphere": {
+      "mist": "Brume maritime lourde et froide rampant au ras de l'eau du fjord scandinave.",
+      "light": "Lueur rougeoyante et ambrée d'un foyer volcanique/brasier contrastant avec la froideur ténébreuse du ciel boréal.",
+      "airColor": "Vert forêt ténébreux (#0a2a17), vert mousse (#14532d), rouge ardent (#ef4444), ambre chaud (#f97316).",
+      "mainLightSource": "Le foyer de braises et le jaillissement de flammes draconiques en contrebas."
+    },
+    "rareEvents": [
+      {
+        "name": "Rafale Boréale",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 14.0 secondes",
+        "description": "Une violente bourrasque d'air marin courbe les bancs de brume et accélère la dérive oblique des braises incandescentes."
+      },
+      {
+        "name": "Éclair Nuageux Furtif",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 22.0 secondes",
+        "description": "Une décharge diffuse embrase brièvement la voûte nuageuse, révélant la crête déchiquetée des falaises de l'île."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe 3D déplace les falaises maritimes sur trois couches distinctes ; les mouvements vifs du curseur créent un sillage aérodynamique qui disperse les braises.",
+      "scroll": "Densifie la nappe de brume basse et abaisse légèrement la ligne d'horizon rocheuse tout en maintenant une lisibilité totale sur les cartes de jeu."
+    },
+    "palette": [
+      "#0a2a17",
+      "#14532d",
+      "#27613e",
+      "#ef4444",
+      "#f97316",
+      "#fbd5d5"
+    ],
+    "references": [
+      "How to Train Your Dragon Berk Isle concept art",
+      "Shadertoy volcanic embers storm",
+      "CodePen nordic cliff misty fog parallax"
+    ],
+    "risks": {
+      "pitfall": "Paraître comme une montagne scandinave générique sans la férocité et la magie des feux de dragons.",
+      "solution": "Focaliser l'éclairage sur les sursauts thermiques rouge magma dans une nuit vert sombre, renforcés par des braises incandescentes et des crêtes rocheuses acérées."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0a2a17",
+          "bottomColor": "#14532d",
+          "horizonColor": "#ef4444",
+          "density": 1.1,
+          "speed": 0.15,
+          "depth": 0.1,
+          "intensity": 0.95,
+          "randomness": 0.25,
+          "noiseScale": 1.4
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#0a2a17",
+          "sunColor": "#27613e",
+          "mistColor": "#14532d",
+          "density": 1.15,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 1.0,
+          "randomness": 0.5,
+          "snowLevel": 0.75,
+          "sunAngle": 0.65
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#ef4444",
+          "secondaryColor": "#f97316",
+          "density": 0.95,
+          "speed": 0.4,
+          "depth": 0.3,
+          "intensity": 1.15,
+          "randomness": 0.55,
+          "lightX": -0.25,
+          "lightY": -0.35,
+          "flickerType": 0
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#14532d",
+          "density": 1.1,
+          "speed": 0.22,
+          "depth": 0.3,
+          "intensity": 0.85,
+          "randomness": 0.4,
+          "heightFalloff": 1.8,
+          "windAngle": 0.2
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#ef4444",
+          "hotColor": "#fef08a",
+          "density": 0.85,
+          "speed": 0.55,
+          "depth": 0.4,
+          "intensity": 1.25,
+          "randomness": 0.5,
+          "coolingRate": 1.1
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0a2a17",
+          "density": 1.0,
+          "speed": 0.12,
+          "depth": 0.3,
+          "intensity": 0.65,
+          "randomness": 0.2,
+          "roundness": 0.7,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#d9e0e9",
+          "density": 0.9,
+          "speed": 1.35,
+          "depth": 0.35,
+          "intensity": 0.9,
+          "randomness": 0.45,
+          "gustAngle": 0.2,
+          "gustInterval": 14.0,
+          "swirlScale": 1.1
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "dragon_flight_silhouette",
+        "category": "intermediate",
+        "reason": "Silhouettes vectorielles procédurales d'ailes draconiques ondulantes planant au loin à travers les strates de brume et de nuages du fjord scandinave."
+      }
+    ]
+  },
+  {
+    "id": "mystery_machine",
+    "name": "Mystery Machine",
+    "family": "Horreur & mystère",
+    "intensity": 2,
+    "universe": "scooby-doo",
+    "evocation": "La mythique camionnette Mystery Machine de Scooby-Doo et du gang Mystery Inc. : l'ambiance cartoon d'horreur comique des années 70, la traversée nocturne d'un sous-bois brumeux aux branches biscornues menant à un manoir délabré, et le contraste jouissif entre la pénombre gothique et les couleurs pop psychédéliques (vert lime, bleu ciel, orange vif).",
+    "signature": "Deux cônes de phares jumelés jaune beurre perçant l'obscurité d'un sous-bois hanté aux troncs noueux, balayant une brume violette où dansent des lucioles spectrales vert fluo.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel nocturne de dessin animé rétro en dégradé bleu pétrole profond vers violet spectre, ponctué par la pâleur diffuse d'une lune cachée derrière les branchages."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes d'arbres tordus et décharnés en parallaxe, aux branches crochues caractéristiques des décors peints de Hanna-Barbera."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Double faisceau volumétrique de projecteurs (phares jumelés de la camionnette) oscillant doucement comme un véhicule avançant sur un chemin de terre."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Volutes de brume rampante violette et essaim de lucioles bioluminescentes vert lime fuyant le balayage lumineux des phares."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan optique",
+        "description": "Trame rétro de demi-teintes comics (halftone) et vignettage feutré renforçant l'aspect celluloïd et planche de comic book vintage."
+      }
+    ],
+    "particles": {
+      "type": "Lucioles spectrales et spores bioluminescentes (fireflies)",
+      "size": "2.0 à 4.5 px",
+      "speed": "0.35 (vols saccadés de cartoon, alternant surplace curieux et esquives vives)",
+      "density": "28 lucioles actives (calibré intensité 2)",
+      "behavior": "Pulsations asynchrones en cloche respirante, attirées par les coins sombres et fuyant l'axe direct des phares."
+    },
+    "atmosphere": {
+      "mist": "Brume de cimetière vaporeuse violette et lavande rampant au ras du sol entre les racines noueuses.",
+      "light": "Deux faisceaux volumétriques jaune pâle perçant l'obscurité bleu pétrole et vert menthe.",
+      "airColor": "Bleu pétrole nocturne (#074f70), vert menthe pop (#86efac), bleu cyan (#0ea5e9), violet spectre (#581c87).",
+      "mainLightSource": "Les deux optiques de phares de la Mystery Machine illuminant le chemin forestier."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclair Cartoon Silhouettant",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Un flash violacé bref découpe en contre-jour la silhouette squelettique des arbres de la forêt hantée."
+      },
+      {
+        "name": "Frisson dans le Sous-bois",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 15.0 secondes",
+        "description": "Une bourrasque soudaine fait vaciller les branches crochues et disperse les volutes de brume violette."
+      }
+    ],
+    "interaction": {
+      "mouse": "Oriente subtilement l'axe des faisceaux de phares comme si l'utilisateur tenait le volant du van ; le survol repousse doucement les lucioles spectrales.",
+      "scroll": "Rapproche les rangées d'arbres tordus et resserre la trame halftone rétro sans gêner le confort de lecture."
+    },
+    "palette": [
+      "#074f70",
+      "#86efac",
+      "#0ea5e9",
+      "#f97316",
+      "#581c87",
+      "#fef08a"
+    ],
+    "references": [
+      "Scooby Doo background art spooky forest",
+      "Shadertoy car headlights volumetric fog",
+      "CodePen vintage cartoon parallax mist"
+    ],
+    "risks": {
+      "pitfall": "Glisser vers un univers d'horreur gothique trop sombre ou menaçant, trahissant le ton comique et groovy du dessin animé.",
+      "solution": "Injecter des teintes vert menthe éclatantes, du bleu turquoise pop et une trame halftone d'imprimerie rétro qui sanctuarisent l'identité cartoon festive."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#074f70",
+          "bottomColor": "#1e1b4b",
+          "horizonColor": "#581c87",
+          "density": 1.2,
+          "speed": 0.16,
+          "depth": 0.12,
+          "intensity": 0.9,
+          "randomness": 0.2,
+          "noiseScale": 1.3
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#074f70",
+          "fogColor": "#581c87",
+          "density": 0.95,
+          "speed": 0.2,
+          "depth": 0.35,
+          "intensity": 1.0,
+          "randomness": 0.55,
+          "windStrength": 0.45
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#fef08a",
+          "density": 1.1,
+          "speed": 0.25,
+          "depth": 0.4,
+          "intensity": 1.15,
+          "randomness": 0.35,
+          "lightSourceX": 0.0,
+          "lightSourceY": -0.2,
+          "decay": 0.88
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#581c87",
+          "density": 0.9,
+          "speed": 0.18,
+          "depth": 0.28,
+          "intensity": 0.85,
+          "randomness": 0.4,
+          "heightFalloff": 1.6,
+          "windAngle": 0.15
+        }
+      },
+      {
+        "brick": "fireflies",
+        "params": {
+          "glowColor": "#86efac",
+          "coreColor": "#fef08a",
+          "density": 0.65,
+          "speed": 0.35,
+          "depth": 0.45,
+          "intensity": 1.3,
+          "randomness": 0.6,
+          "pulseFrequency": 1.5
+        }
+      },
+      {
+        "brick": "halftone",
+        "params": {
+          "dotColor": "#074f70",
+          "density": 1.1,
+          "speed": 0.15,
+          "depth": 0.25,
+          "intensity": 0.35,
+          "randomness": 0.25,
+          "patternAngle": 0.79,
+          "dotRadius": 0.38
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "lightningColor": "#86efac",
+          "flashColor": "#c4b5fd",
+          "density": 0.8,
+          "speed": 1.3,
+          "depth": 0.3,
+          "intensity": 1.1,
+          "randomness": 0.5,
+          "strikeInterval": 18.0,
+          "forkSpread": 0.55
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "twin_headlights_sweep",
+        "category": "atmosphere",
+        "reason": "Double cône volumétrique de phares automobiles jumelés balayant le chemin avec micro-vibrations de châssis et décentrement optique coordonné."
+      }
+    ]
+  },
+  {
+    "id": "street_football",
+    "name": "Foot 2 Rue",
+    "family": "Urbain & action",
+    "intensity": 2,
+    "universe": "foot-2-rue",
+    "evocation": "L'univers urbain vibrant de la série animée Foot 2 Rue à Port-Marie : les tournois clandestins disputés sur le bitume des hangars désaffectés, les grillages métalliques rouillés, les quais portuaires sous le soleil couchant d'été, l'odeur du goudron chaud et la ferveur sportive des Bleuets.",
+    "signature": "Une silhouette de ballon de football tournoyant au ras du bitume sous une lumière rasante dorée, soulevant des gerbes de poussière chaude et faisant vibrer les mailles d'un grillage d'enceinte.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel de fin d'après-midi méditerranéen en dégradé gris ardoise vers orange ambré et jaune soleil couchant."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette étagée des docks et hangars industriels de Port-Marie (grues portuaires, toitures métalliques, briques rouges et antennes)."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faisceaux solaires rasants filtrant à travers les poutrelles métalliques et les grillages d'un terrain vague réaménagé."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan dynamique",
+        "description": "Nuées de poussière de bitume et grains de sable dorés soulevés en suspension par les dribbles et les courses rapides."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan optique",
+        "description": "Grain photochimique texturé façon bitume et vignettage chaleureux concentrant le regard sur le centre de l'action."
+      }
+    ],
+    "particles": {
+      "type": "Poussières de bitume et particules de sable dorées (dust)",
+      "size": "1.2 à 2.8 px",
+      "speed": "0.28 (dérive paresseuse dans l'air tiède avec tourbillons au passage)",
+      "density": "95 motes actives instanciées GPU (calibré intensité 2)",
+      "behavior": "Flottaison brownienne dans les rais solaires dorés avec micro-répulsion feutrée au passage du pointeur."
+    },
+    "atmosphere": {
+      "mist": "Halo de chaleur estivale et brume de smog doré au ras du sol de la zone portuaire.",
+      "light": "Lumière solaire couchante chaude et rasante projetant de longues ombres cuivrées.",
+      "airColor": "Gris ardoise (#1e293b), bitume froid (#475569), béton clair (#94a3b8), jaune soleil (#facc15), orange couchant (#ea580c).",
+      "mainLightSource": "Le soleil descendant à l'horizon au travers des hangars industriels."
+    },
+    "rareEvents": [
+      {
+        "name": "Frappe Puissante au Grillage",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 16.0 secondes",
+        "description": "Une micro-secousse tellurique amortie simule l'impact d'une frappe lourde heurtant les montants du but improvisé."
+      },
+      {
+        "name": "Rafale des Docks",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 13.0 secondes",
+        "description": "Une brise marine balaye le terrain vague, dispersant les particules de poussière dorée de gauche à droite."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace les hangars et grues de Port-Marie sur trois profondeurs ; le mouvement du curseur disperse les poussières comme une foulée sur le bitume.",
+      "scroll": "Modifie l'angle de perspective du terrain vague et renforce le contraste doré du couchant sans altérer les contrastes de l'interface."
+    },
+    "palette": [
+      "#1e293b",
+      "#475569",
+      "#94a3b8",
+      "#facc15",
+      "#ea580c",
+      "#f8fafc"
+    ],
+    "references": [
+      "Foot 2 Rue background Port-Marie docks",
+      "Shadertoy urban sunset dust particles",
+      "CodePen industrial city skyline parallax"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à une friche industrielle austère ou terne sans la fougue et la jeunesse du football de rue.",
+      "solution": "Inonder le décor d'une éclatante lumière de fin de journée dorée et orangée (#facc15, #ea580c) évoquant la passion du jeu et l'énergie du dessin animé."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#1e293b",
+          "bottomColor": "#475569",
+          "horizonColor": "#facc15",
+          "density": 1.0,
+          "speed": 0.2,
+          "depth": 0.1,
+          "intensity": 1.05,
+          "randomness": 0.2,
+          "noiseScale": 1.2
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#1e293b",
+          "windowColor": "#facc15",
+          "beaconColor": "#ea580c",
+          "density": 0.95,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 0.95,
+          "randomness": 0.45,
+          "smogIntensity": 0.5
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#facc15",
+          "density": 1.0,
+          "speed": 0.2,
+          "depth": 0.35,
+          "intensity": 1.1,
+          "randomness": 0.35,
+          "lightSourceX": 0.35,
+          "lightSourceY": 0.4,
+          "decay": 0.9
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#facc15",
+          "density": 0.95,
+          "speed": 0.25,
+          "depth": 0.5,
+          "intensity": 1.1,
+          "randomness": 0.45,
+          "twinkleSpeed": 1.1
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.2,
+          "speed": 0.7,
+          "depth": 0.2,
+          "intensity": 0.07,
+          "randomness": 0.4,
+          "monochrome": true,
+          "clumpSize": 1.1
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1e293b",
+          "density": 1.0,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.55,
+          "randomness": 0.2,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeColor": "#94a3b8",
+          "density": 1.0,
+          "speed": 1.2,
+          "depth": 0.25,
+          "intensity": 0.8,
+          "randomness": 0.45,
+          "shakeInterval": 16.0,
+          "decayRate": 3.8
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "chainlink_fence_vibration",
+        "category": "intermediate",
+        "reason": "Maillage géométrique procédural de grillage urbain ondulant et vibrant avec résonance mécanique lors d'un tir de ballon."
+      }
+    ]
+  },
+  {
+    "id": "lasagna",
+    "name": "Lasagna",
+    "family": "Cosy & gestion",
+    "intensity": 2,
+    "universe": "garfield",
+    "evocation": "L'oasis de délices et de farniente du chat le plus paresseux de la bande dessinée : l'après-midi ensoleillé dans la cuisine de Jon Arbuckle, où un plat de lasagnes tout juste gratiné sort du four, diffusant ses effluves réconfortants dans une lumière tamisée propice à une sieste féline sans fin.",
+    "signature": "De moelleuses volutes de vapeur aromatique s'élevant en rubans sinueux d'un plat gratiné fumant, se dissipant lentement dans la lumière dorée d'une fin d'après-midi ensoleillée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Dégradé chaud et gourmand en terracotta cuit profond vers orange chaleureux et jaune crème."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Distorsion thermique convective ondulante suggérant la présence d'un plat sortant tout juste du four."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Dôme de lueur volumétrique dorée et enveloppante mimant la lumière feutrée d'une suspension de cuisine."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan dynamique",
+        "description": "Volutes de vapeur blanche crémeuse s'élevant avec paresse, mêlées à de fines poussières dorées flottant dans la lumière."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan optique",
+        "description": "Vignettage caramel feutré resserrant l'intimité du foyer sans assombrir les cartes de collection."
+      }
+    ],
+    "particles": {
+      "type": "Volutes de vapeur culinaire (smoke) et poussières dorées en suspension (dust)",
+      "size": "Expansion x2.2 pour la vapeur, 1.0 à 2.2 px pour les poussières",
+      "speed": "0.22 (ascension lente et voluptueuse, sans précipitation)",
+      "density": "24 volutes de vapeur + 45 grains de poussière dorée (calibré intensité 2)",
+      "behavior": "Épanouissement volumétrique lent avec dissipation vaporeuse douce au sommet du cadre."
+    },
+    "atmosphere": {
+      "mist": "Vapeur d'eau culinaire tiède et parfumée, créant une ambiance cocooning et appétissante.",
+      "light": "Lumière dorée tamisée d'une fin d'après-midi ensoleillée dans une pièce à vivre.",
+      "airColor": "Brun caramel cuit (#451a03), orange terracotta (#ea580c), orange feu (#f97316), jaune parmesan (#fde047), crème (#fffbeb).",
+      "mainLightSource": "La lueur dorée et chaude émise par le plat au centre de la scène."
+    },
+    "rareEvents": [
+      {
+        "name": "Souffle de Gourmandise",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 16.0 secondes",
+        "description": "Un doux déplacement d'air étire délicatement les volutes de vapeur avant qu'elles ne reprennent leur course paresseuse."
+      },
+      {
+        "name": "Crépitement Thermique",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 12.0 secondes",
+        "description": "Un sursaut stochastique de rayonnement lumineux évoque une bulle de sauce qui éclate doucement sous le fromage doré."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le passage du pointeur étire et dissipe délicatement la vapeur fumante comme une main passant au-dessus d'un plat chaud ; légère parallaxe sur la lueur dorée.",
+      "scroll": "Approfondit la pénombre caramel des bordures tout en préservant une netteté totale sur les textes et éléments de collection."
+    },
+    "palette": [
+      "#1c0a00",
+      "#451a03",
+      "#ea580c",
+      "#f97316",
+      "#fde047",
+      "#fffbeb"
+    ],
+    "references": [
+      "Garfield lasagna kitchen art warm",
+      "Shadertoy hot steam rising soup food",
+      "CodePen cozy warm kitchen glow animation"
+    ],
+    "risks": {
+      "pitfall": "Donner l'illusion d'un incendie ou de fumée industrielle toxique si les volutes sont grises et rugueuses.",
+      "solution": "Employer des teintes blanc ivoire et crème avec une diffusion très douce, soutenues par une ambiance lumineuse ultra-chaleureuse terracotta et or."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#451a03",
+          "bottomColor": "#7c2d12",
+          "horizonColor": "#ea580c",
+          "density": 1.1,
+          "speed": 0.12,
+          "depth": 0.1,
+          "intensity": 1.0,
+          "randomness": 0.2,
+          "noiseScale": 1.0
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#f97316",
+          "density": 0.9,
+          "speed": 0.25,
+          "depth": 0.25,
+          "intensity": 0.75,
+          "randomness": 0.35,
+          "heatHeight": 0.6,
+          "chromaticAberration": 0.008
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fffbeb",
+          "glowColor": "#fde047",
+          "outerColor": "#ea580c",
+          "density": 1.0,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 1.1,
+          "randomness": 0.25,
+          "glowX": 0.0,
+          "glowY": -0.1
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#fffbeb",
+          "tintColor": "#fef08a",
+          "density": 0.7,
+          "speed": 0.25,
+          "depth": 0.4,
+          "intensity": 0.65,
+          "randomness": 0.45,
+          "expansionRate": 1.5,
+          "dissipationSpeed": 0.9
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fde047",
+          "density": 0.65,
+          "speed": 0.18,
+          "depth": 0.45,
+          "intensity": 0.95,
+          "randomness": 0.35,
+          "twinkleSpeed": 1.0
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1c0a00",
+          "density": 1.0,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.6,
+          "randomness": 0.15,
+          "roundness": 0.7,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#f97316",
+          "secondaryColor": "#ea580c",
+          "density": 0.8,
+          "speed": 0.3,
+          "depth": 0.25,
+          "intensity": 0.95,
+          "randomness": 0.4,
+          "lightX": 0.0,
+          "lightY": -0.2,
+          "flickerType": 0
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "culinary_steam_plume",
+        "category": "particles",
+        "reason": "Volutes de vapeur d'eau alimentaire à lobes multiples et diffusion douce spécifiquement calibrées pour évoquer la chaleur d'un mets sortant du four."
+      }
+    ]
+  },
+  {
+    "id": "sarsaparilla",
+    "name": "Sarsaparilla",
+    "family": "Animation & cartoon",
+    "intensity": 2,
+    "universe": "les-schtroumpfs",
+    "evocation": "Le sous-bois féerique du village des Schtroumpfs créé par Peyo : une nature verdoyante et surdimensionnée vue à hauteur de lutin, bordée de champignons géants aux toits rouges, de mousses moelleuses et de buissons sauvages de salsepareille baignés d'une rosée matinale étincelante.",
+    "signature": "De délicates bulles de rosée printanière et de nectar de salsepareille s'élevant en oscillant entre des brins d'herbe géants, réfléchissant un éclat blanc azuréen sous des rais de soleil filtrants.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel d'été bleu azur limpide en dégradé vers blanc nuageux lumineux."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes de troncs colossaux et de champignons géants vus à l'échelle miniature d'un habitant de la forêt."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faisceaux de lumière solaire matinale perçant la canopée de feuilles géantes pour inonder la clairière."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan dynamique",
+        "description": "Bulles de rosée translucides irisées montant doucement en oscillant entre les herbes, accompagnées d'une fine brume matinale."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan optique",
+        "description": "Vignettage doux aux reflets végétaux préservant l'éclat immaculé du bleu et blanc du thème."
+      }
+    ],
+    "particles": {
+      "type": "Bulles de rosée et nectar de salsepareille (bubbles)",
+      "size": "3.0 à 7.5 px",
+      "speed": "0.38 (ascension aérienne fluide avec ondulation sinusoïdale)",
+      "density": "36 bulles actives instanciées (calibré intensité 2)",
+      "behavior": "Balancement en zigzag sinueux avec dilatation progressive et éclatement au sommet du champ de vision."
+    },
+    "atmosphere": {
+      "mist": "Brume matinale fraîche et transparente flottant au ras de l'humus et des mousses vertes.",
+      "light": "Rais de lumière zénithaux dorés et purs perçant à travers les fougères.",
+      "airColor": "Bleu schtroumpf franc (#3b82f6), bleu ciel (#93c5fd), blanc pur (#ffffff), vert sous-bois (#15803d).",
+      "mainLightSource": "La percée de soleil matinal à travers le feuillage protecteur de la forêt."
+    },
+    "rareEvents": [
+      {
+        "name": "Bourrasque Printanière",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 15.0 secondes",
+        "description": "Un souffle d'air pur fait onduler les herbes géantes et emporte les bulles de rosée selon une trajectoire inclinée."
+      },
+      {
+        "name": "Éclat de Rosée Cristallin",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "Un trait lumineux étincelant traverse furtivement le feuillage, simulant le reflet du soleil sur une baie de salsepareille."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le curseur repousse doucement les bulles de rosée par champ de force fluide ; la parallaxe déploie la profondeur des champignons géants en arrière-plan.",
+      "scroll": "Modifie légèrement l'angle des faisceaux lumineux tout en conservant une lisibilité irréprochable des fiches de jeux."
+    },
+    "palette": [
+      "#1d4ed8",
+      "#3b82f6",
+      "#93c5fd",
+      "#ffffff",
+      "#15803d",
+      "#22c55e"
+    ],
+    "references": [
+      "Smurfs forest village concept art Peyo",
+      "Shadertoy iridescent rising soap bubbles",
+      "CodePen enchanted forest morning god rays"
+    ],
+    "risks": {
+      "pitfall": "Donner l'impression d'un décor sous-marin en raison de la présence de bulles et de la dominante bleue.",
+      "solution": "Ancrer clairement l'environnement dans un sous-bois terrestre grâce à des silhouettes d'arbres feuillus massifs (parallax_forest), des rayons solaires (god_rays) et des accents vert herbe."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#1d4ed8",
+          "bottomColor": "#3b82f6",
+          "horizonColor": "#93c5fd",
+          "density": 1.0,
+          "speed": 0.15,
+          "depth": 0.1,
+          "intensity": 1.0,
+          "randomness": 0.15,
+          "noiseScale": 1.1
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#15803d",
+          "fogColor": "#93c5fd",
+          "density": 0.9,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 1.0,
+          "randomness": 0.45,
+          "windStrength": 0.4
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#ffffff",
+          "density": 1.0,
+          "speed": 0.2,
+          "depth": 0.4,
+          "intensity": 1.1,
+          "randomness": 0.35,
+          "lightSourceX": 0.2,
+          "lightSourceY": 0.85,
+          "decay": 0.91
+        }
+      },
+      {
+        "brick": "bubbles",
+        "params": {
+          "bubbleColor": "#93c5fd",
+          "density": 0.75,
+          "speed": 0.38,
+          "depth": 0.5,
+          "intensity": 1.15,
+          "randomness": 0.4,
+          "wobbleAmount": 0.45,
+          "expansionRate": 1.2
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#93c5fd",
+          "density": 0.8,
+          "speed": 0.15,
+          "depth": 0.25,
+          "intensity": 0.75,
+          "randomness": 0.3,
+          "heightFalloff": 1.7,
+          "windAngle": 0.1
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1d4ed8",
+          "density": 1.0,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.5,
+          "randomness": 0.15,
+          "roundness": 0.7,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#ffffff",
+          "density": 0.85,
+          "speed": 1.2,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "randomness": 0.4,
+          "gustAngle": 0.15,
+          "gustInterval": 15.0,
+          "swirlScale": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "oversized_foliage_mushrooms",
+        "category": "intermediate",
+        "reason": "Silhouettes de champignons à chapeaux bombés et herbes géantes procédurales étagées à l'échelle miniature des Schtroumpfs."
+      }
+    ]
+  },
+  {
+    "id": "potion_magique",
+    "name": "Potion Magique",
+    "family": "Magie & fantasy",
+    "intensity": 2,
+    "universe": "asterix",
+    "evocation": "La clairière sacrée de la forêt des Carnutes où le druide Panoramix mitonne son breuvage d'invincibilité : le chaudron de bronze bouillonnant sur un lit de braises, le gui sacré coupé à la serpe d'or, les menhirs d'Armorique dressés au crépuscule et l'énergie triomphale de la Gaule insoumise.",
+    "signature": "De grosses bulles luminescentes émeraude et dorées éclatant à la surface d'un chaudron bouillonnant, projetant des étincelles de gui magique qui illuminent la silhouette de menhirs millénaires.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel crépusculaire celte en dégradé rouge braise gaulois vers vert forêt ténébreux."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette des fiers chênes d'Armorique et de menhirs dressés en sentinelles contre l'horizon crépusculaire."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Feu de bois sous le chaudron de bronze et halo volumétrique émeraude émanant de la préparation druidique."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan dynamique",
+        "description": "Double bouillonnement combinant bouillons gazeux vert émeraude et étincelles dorées balistiques de gui magique."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan optique",
+        "description": "Vignettage alchimique chaleureux concentrant la force mystique au cœur de l'écran."
+      }
+    ],
+    "particles": {
+      "type": "Bulles d'effervescence magique (bubbles) et étincelles de gui doré (sparks)",
+      "size": "3.5 à 8.0 px pour les bouillons, 1.5 à 3.0 px pour les étincelles",
+      "speed": "0.45 pour les bouillons, 1.1 pour les étincelles balistiques",
+      "density": "32 bulles magiques + 45 étincelles dorées instanciées GPU (calibré intensité 2)",
+      "behavior": "Bulles montant en tourbillon depuis le chaudron puis éclatant en libérant une gerbe d'étincelles dorées retombant sous gravité parabolique."
+    },
+    "atmosphere": {
+      "mist": "Vapeurs alchimiques aromatiques vert jade s'élevant du chaudron sacré.",
+      "light": "Éclat émeraude surnaturel de la potion en fusion mêlé aux reflets chauds des braises.",
+      "airColor": "Rouge braise gaulois (#ef4444), vert forêt (#0b3e1e), émeraude alchimique (#15803d), or druidique (#facc15).",
+      "mainLightSource": "Le bouillonnement incadescent au cœur du chaudron de Panoramix."
+    },
+    "rareEvents": [
+      {
+        "name": "Onde de Puissance Surhumaine",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 17.0 secondes",
+        "description": "Un anneau de compression vert émeraude se propage depuis le chaudron, symbolisant la force herculéenne libérée par le breuvage."
+      },
+      {
+        "name": "Sursaut du Brasier",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 10.0 secondes",
+        "description": "Une flamme vive sous le chaudron crépite plus fort, projetant un flash doré sur les troncs de chêne voisins."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le survol dynamise l'ébullition et déclenche une brève éjection d'étincelles dorées ; la parallaxe déplace la ligne de menhirs en arrière-plan.",
+      "scroll": "Donne de la profondeur à la forêt armoricaine sans perturber le contraste net des textes d'interface."
+    },
+    "palette": [
+      "#052110",
+      "#15803d",
+      "#22c55e",
+      "#ef4444",
+      "#facc15",
+      "#fef08a"
+    ],
+    "references": [
+      "Asterix Panoramix magic potion cauldron art",
+      "Shadertoy magic cauldron boiling sparks",
+      "CodePen druidic glowing green brew"
+    ],
+    "risks": {
+      "pitfall": "Évoquer un chaudron maléfique de sorcière ou un poison verdâtre angoissant.",
+      "solution": "Associer des étincelles dorées vives, des touches rouge franc gaulois et un vert émeraude pur et lumineux qui respire la vigueur et la fête triomphale."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#ef4444",
+          "bottomColor": "#15803d",
+          "horizonColor": "#facc15",
+          "density": 1.1,
+          "speed": 0.18,
+          "depth": 0.1,
+          "intensity": 1.0,
+          "randomness": 0.2,
+          "noiseScale": 1.2
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#052110",
+          "fogColor": "#15803d",
+          "density": 1.0,
+          "speed": 0.2,
+          "depth": 0.35,
+          "intensity": 0.95,
+          "randomness": 0.45,
+          "windStrength": 0.4
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#facc15",
+          "secondaryColor": "#ef4444",
+          "density": 0.95,
+          "speed": 0.38,
+          "depth": 0.3,
+          "intensity": 1.15,
+          "randomness": 0.5,
+          "lightX": 0.0,
+          "lightY": -0.3,
+          "flickerType": 0
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fef08a",
+          "glowColor": "#22c55e",
+          "outerColor": "#15803d",
+          "density": 1.05,
+          "speed": 0.22,
+          "depth": 0.3,
+          "intensity": 1.2,
+          "randomness": 0.3,
+          "glowX": 0.0,
+          "glowY": -0.15
+        }
+      },
+      {
+        "brick": "bubbles",
+        "params": {
+          "bubbleColor": "#22c55e",
+          "density": 0.8,
+          "speed": 0.45,
+          "depth": 0.45,
+          "intensity": 1.2,
+          "randomness": 0.45,
+          "wobbleAmount": 0.5,
+          "expansionRate": 1.3
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#facc15",
+          "coreColor": "#ffffff",
+          "density": 0.75,
+          "speed": 1.1,
+          "depth": 0.4,
+          "intensity": 1.3,
+          "randomness": 0.5,
+          "gravity": 1.25,
+          "burstInterval": 1.8
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#22c55e",
+          "density": 0.9,
+          "speed": 1.2,
+          "depth": 0.3,
+          "intensity": 1.15,
+          "randomness": 0.35,
+          "epicenterX": 0.0,
+          "epicenterY": -0.2,
+          "waveInterval": 17.0,
+          "chromaticAberration": 0.015
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#052110",
+          "density": 1.0,
+          "speed": 0.12,
+          "depth": 0.3,
+          "intensity": 0.6,
+          "randomness": 0.2,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "cauldron_boiling_liquid",
+        "category": "background",
+        "reason": "Shader de surface liquide alchimique avec remous concentriques et éclatement de dômes de potion visqueuse dans un récipient de bronze."
+      }
+    ]
+  },
+  {
+    "id": "reporter",
+    "name": "Tintin",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "tintin",
+    "evocation": "L'esthétique légendaire de la Ligne Claire créée par Hergé dans Les Aventures de Tintin : de l'exploration des hauts massifs de Syldavie au décollage nocturne de la mythique fusée lunaire à damier rouge et blanc sur le pas de tir de Sbrodj (Objectif Lune et On a marché sur la Lune).",
+    "signature": "La silhouette profilée d'un astronef à damiers rouge et blanc dressé vers un ciel nocturne bleu cobalt, balayé par les faisceaux de projecteurs de recherche et les vapeurs cryogéniques du pas de tir.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel nocturne d'encre bleu cobalt profond et pur, sans dégradé baveux, fidèle à la clarté rigoureuse du style Ligne Claire."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Massif montagneux des monts Zmyhlpathes aux arêtes géométriques nettes et névés épurés découpés en contre-jour."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Puissant faisceau de projecteur de recherche blanc pur balayant lentement l'espace aérien de la base syldave."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan dynamique",
+        "description": "Volutes de vapeur cryogénique blanche s'écoulant au pied de la rampe de lancement, parsemées de fines poussières d'aventure."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan optique",
+        "description": "Trame d'impression offset vintage (halftone) évoquant la texture noble des albums Casterman cartonnés d'époque."
+      }
+    ],
+    "particles": {
+      "type": "Vapeur cryogénique blanche (smoke) et poussières en suspension (dust)",
+      "size": "Volutes expansives blanches + micro-grains 1.0 à 2.0 px",
+      "speed": "0.25 (dérive fluide et ordonnée, fidèle au graphisme épuré)",
+      "density": "20 volutes de vapeur + 50 poussières d'aventure (calibré intensité 2)",
+      "behavior": "Nappes de condensation glissant au sol avec dissipation propre et nette sans flou parasite."
+    },
+    "atmosphere": {
+      "mist": "Condensation blanche pure de propergol liquide au sol du pas de tir.",
+      "light": "Faisceau lumineux blanc pur d'un projecteur d'investigation fendant le ciel bleu nuit.",
+      "airColor": "Bleu nuit encre (#0f172a), bleu roi d'investigation (#1e3a8a), bleu cobalt (#3b82f6), rouge fusée (#ef4444), blanc pur (#f8fafc).",
+      "mainLightSource": "Le projecteur de recherche de la base d'essai et la lueur de la lune."
+    },
+    "rareEvents": [
+      {
+        "name": "Étoile Filante d'Exploration",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 16.0 secondes",
+        "description": "Un bolide lumineux blanc pur fend la voûte céleste selon un angle oblique net, annonçant le voyage vers la Lune."
+      },
+      {
+        "name": "Balayage Vif du Projecteur",
+        "type": "god_rays",
+        "frequency": "Intervalle moyen de 12.0 secondes",
+        "description": "Le projecteur accélère sa trajectoire angulaire d'exploration pour scruter le zénith avant de reprendre son rythme régulier."
+      }
+    ],
+    "interaction": {
+      "mouse": "Incline avec précision l'angle du faisceau du projecteur de recherche ; décalage en parallaxe nette sur les arêtes des montagnes de Syldavie.",
+      "scroll": "Ajuste l'altitude apparente du pas de tir sans compromettre la netteté légendaire des contrastes d'interface."
+    },
+    "palette": [
+      "#0f172a",
+      "#1e3a8a",
+      "#3b82f6",
+      "#ef4444",
+      "#f8fafc",
+      "#451a03"
+    ],
+    "references": [
+      "Tintin Moon rocket Hergé ligne claire art",
+      "Shadertoy searchlight in night sky",
+      "CodePen vintage comic printing halftone"
+    ],
+    "risks": {
+      "pitfall": "Surcharger la scène de textures réalistes, de bruit flou ou de dégradés délavés qui trahiraient l'esthétique de la Ligne Claire.",
+      "solution": "Conserver des contours nets, des aplats colorés francs et une trame halftone fine qui rend hommage aux reliures prestigieuses de la bande dessinée franco-belge."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f172a",
+          "bottomColor": "#1e3a8a",
+          "horizonColor": "#3b82f6",
+          "density": 1.0,
+          "speed": 0.12,
+          "depth": 0.1,
+          "intensity": 0.95,
+          "randomness": 0.15,
+          "noiseScale": 1.0
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#0f172a",
+          "sunColor": "#1e3a8a",
+          "mistColor": "#3b82f6",
+          "density": 1.0,
+          "speed": 0.14,
+          "depth": 0.35,
+          "intensity": 0.95,
+          "randomness": 0.4,
+          "snowLevel": 0.7,
+          "sunAngle": 0.75
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#f8fafc",
+          "density": 1.05,
+          "speed": 0.22,
+          "depth": 0.4,
+          "intensity": 1.2,
+          "randomness": 0.3,
+          "lightSourceX": -0.2,
+          "lightSourceY": 0.7,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#f8fafc",
+          "tintColor": "#3b82f6",
+          "density": 0.65,
+          "speed": 0.25,
+          "depth": 0.4,
+          "intensity": 0.6,
+          "randomness": 0.35,
+          "expansionRate": 1.3,
+          "dissipationSpeed": 0.95
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f8fafc",
+          "density": 0.6,
+          "speed": 0.2,
+          "depth": 0.5,
+          "intensity": 0.9,
+          "randomness": 0.35,
+          "twinkleSpeed": 1.2
+        }
+      },
+      {
+        "brick": "halftone",
+        "params": {
+          "dotColor": "#0f172a",
+          "density": 1.2,
+          "speed": 0.15,
+          "depth": 0.25,
+          "intensity": 0.3,
+          "randomness": 0.2,
+          "patternAngle": 0.79,
+          "dotRadius": 0.35
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#ffffff",
+          "trailColor": "#3b82f6",
+          "density": 0.85,
+          "speed": 1.35,
+          "depth": 0.4,
+          "intensity": 1.2,
+          "randomness": 0.4,
+          "angle": -0.65,
+          "trailLength": 1.1,
+          "starInterval": 16.0
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "checkerboard_rocket_silhouette",
+        "category": "intermediate",
+        "reason": "Silhouette vectorielle procédurale d'astronef d'exploration à ailerons arqués et motif géométrique en damier inspiré de la Ligne Claire sans reproduction de marques protégées."
+      }
+    ]
+  },
+  {
+    "id": "flux",
+    "name": "Flux",
+    "family": "Néon & cyber",
+    "intensity": 2,
+    "universe": "galactik-football",
+    "evocation": "L'énergie mystique et technologique du Souffle d'Akillian dans la saga Galactik Football : le Fluide magique sommeillant dans les neiges éternelles, réveillé par les Snow Kids sur le terrain de la Genèse Stadium, mêlant match de football galactique, réacteurs antigravité et aurores de plasma cyano-glacé.",
+    "signature": "Un ruban de plasma cyano-glacé en vortex rapide (le Souffle) ondulant autour d'un champ de force hexagonal, crépitant d'étincelles électriques bleues lors d'une accélération fulgurante.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Espace sidéral sombre illuminé par les draperies ondulantes d'une aurore cosmique bleu glacier et turquoise (le Flux en sommeil)."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Grille hexagonale holographique semi-transparente matérialisant le dôme de confinement et la cage de but de la Genèse Stadium."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Halo volumétrique de plasma concentré pulsant au rythme des vagues d'énergie du Souffle d'Akillian."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan dynamique",
+        "description": "Gerbes d'étincelles de plasma bleu électrique et blanc fusant à haute vélocité le long des lignes de force magnétiques."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan optique",
+        "description": "Aberration chromatique spectrale sur les bords de l'écran traduisant la vitesse cinétique prodigieuse du fluide en mouvement."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles ionisées et fragments de plasma haute énergie (sparks)",
+      "size": "1.8 à 3.5 px étirés par la vitesse",
+      "speed": "1.45 (mouvements balistiques fusants avec freinage magnétique)",
+      "density": "80 étincelles de plasma (calibré intensité 2)",
+      "behavior": "Jaillissements vifs par salves le long du champ de force avec décroissance d'incandescence fulgurante."
+    },
+    "atmosphere": {
+      "mist": "Voiles de plasma cyano-glacé ionisé dérivant sous forme d'aurore magnétique cosmique.",
+      "light": "Radiance bleutée aveuglante au centre du vortex de Flux.",
+      "airColor": "Noir sidéral (#030712), bleu électrique (#0284c7), cyan glacier (#38bdf8), blanc énergie (#e0f2fe), turquoise pur (#67e8f9).",
+      "mainLightSource": "La singularité de plasma du Souffle d'Akillian au centre de l'arène orbitale."
+    },
+    "rareEvents": [
+      {
+        "name": "Frappe Surnaturelle sous Flux",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 15.0 secondes",
+        "description": "Une onde de choc annulaire cyan se dilate brutalement depuis le centre du terrain, faisant pulser l'ensemble de la grille hexagonale."
+      },
+      {
+        "name": "Fissure Électrostatique",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Un arc de décharge de plasma blanc-bleu zébrant deux sommets de la matrice d'énergie du stade spatial."
+      }
+    ],
+    "interaction": {
+      "mouse": "La souris attire et courbe la trajectoire des gerbes de plasma comme un joueur guidant le ballon en lévitation ; génère une onde réactive sur la grille hexagonale.",
+      "scroll": "Accélère la vitesse d'ondulation de l'aurore boréale cosmique et étire l'aberration chromatique périphérique."
+    },
+    "palette": [
+      "#030712",
+      "#0284c7",
+      "#38bdf8",
+      "#e0f2fe",
+      "#ffffff",
+      "#67e8f9"
+    ],
+    "references": [
+      "Galactik Football Breath of Akillian flux effect",
+      "Shadertoy electric cyan plasma vortex",
+      "CodePen scifi energy shield hexagonal field"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à un simple thème cybernétique froid sans le dynamisme sportif et le souffle glacial d'Akillian.",
+      "solution": "Centrer la chromatique sur les bleus glaciaires et le blanc pur, tout en associant les ondes de choc sportives percutantes à la grille holographique de stade."
+    },
+    "bricks": [
+      {
+        "brick": "aurora",
+        "params": {
+          "topColor": "#38bdf8",
+          "bottomColor": "#0284c7",
+          "density": 0.8,
+          "speed": 0.28,
+          "depth": 0.25,
+          "intensity": 1.25,
+          "randomness": 0.45,
+          "waveFrequency": 2.8
+        }
+      },
+      {
+        "brick": "hex_grid",
+        "params": {
+          "borderColor": "#38bdf8",
+          "fillColor": "#030712",
+          "pulseColor": "#67e8f9",
+          "density": 0.9,
+          "speed": 0.35,
+          "depth": 0.35,
+          "intensity": 0.95,
+          "randomness": 0.35,
+          "borderWidth": 0.05,
+          "innerGlow": 0.4,
+          "waveSpread": 1.3
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#38bdf8",
+          "outerColor": "#0284c7",
+          "density": 1.0,
+          "speed": 0.2,
+          "depth": 0.35,
+          "intensity": 1.25,
+          "randomness": 0.3,
+          "glowX": 0.0,
+          "glowY": 0.0
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#67e8f9",
+          "coreColor": "#ffffff",
+          "density": 0.85,
+          "speed": 1.45,
+          "depth": 0.4,
+          "intensity": 1.35,
+          "randomness": 0.55,
+          "gravity": 0.6,
+          "burstInterval": 1.4
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#38bdf8",
+          "density": 1.0,
+          "speed": 1.3,
+          "depth": 0.3,
+          "intensity": 1.25,
+          "randomness": 0.35,
+          "epicenterX": 0.0,
+          "epicenterY": 0.0,
+          "waveInterval": 15.0,
+          "chromaticAberration": 0.025
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "aberrationColor": "#38bdf8",
+          "density": 1.0,
+          "speed": 0.3,
+          "depth": 0.4,
+          "intensity": 0.65,
+          "randomness": 0.3,
+          "spread": 0.025,
+          "radialFalloff": 1.6
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "spiral_plasma_stream",
+        "category": "special",
+        "reason": "Ruban de plasma ou fluide énergétique en hélice tridimensionnelle tourbillonnante enroulé autour d'un axe dynamique pour matérialiser le Souffle de Galactik Football."
+      }
+    ]
+  }
+]
+

@@ -1,0 +1,1470 @@
+[
+  {
+    "id": "ici_c_est_paris",
+    "name": "Ici c'est Paris",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "psg",
+    "evocation": "Paris Saint-Germain et le Parc des Princes lors d'un grand soir européen : l'architecture en béton nervuré de Roger Taillibert découpée sur la nuit parisienne, le balayage lent et panoramique du faisceau lumineux doré de la Tour Eiffel à travers la brume fluviale de la Seine, et une fine nappe de brume pyrotechnique bleu roi et rouge carmin montant avec lenteur au-dessus des gradins.",
+    "signature": "Le balayage lent et majestueux d'un faisceau lumineux doré type phare de la Tour Eiffel fendant le ciel bleu nuit au-dessus de la crête dentelée du Parc des Princes, traversé par de rares volutes de fumée bleu roi et carmin.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel nocturne parisien bleu marine profond vers bleu nuit d'encre avec diffusion lumineuse urbaine à l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette nocturne des toits parisiens et des nervures de béton du Parc des Princes balayée par un faisceau lumineux doré en rotation lente."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian atmosphérique",
+        "description": "Nappe vaporeuse de brume fluviale et volutes ultra-lentes de fumée bleu nuit et carmin dérivant au ras des tribunes."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan cinétique & overlay",
+        "description": "Rares motes de poussière lumineuse flottant au ralenti dans l'air froid nocturne et vignettage bleu marine feutré préservant la lisibilité."
+      }
+    ],
+    "particles": {
+      "type": "Volutes de fumée diffuse (smoke) et micro-poussières lumineuses (dust)",
+      "size": "1.0 à 2.2 px pour la poussière, nappes diffuses pour la fumée",
+      "speed": "0.12 (ascension laminaire très lente)",
+      "density": "28 particules de poussière et 2 volutes douces de brume",
+      "behavior": "Ascension thermique douce sans à-coups, dispersion vaporeuse continue et frémissement subtil au passage de la souris."
+    },
+    "atmosphere": {
+      "mist": "Voile d'air frais d'automne au-dessus des toits parisiens et de la Seine.",
+      "light": "Feutrée et élégante, rythmée par le passage lent du faisceau lumineux doré et les teintes bleu nuit et carmin.",
+      "airColor": "Bleu marine profond (#1e3a8a), bleu nuit d'encre (#0a1128) et rouge carmin diffus (#ef4444).",
+      "mainLightSource": "Faisceau rotatif lointain au zénith-gauche combiné au halo tamisé des projecteurs du stade."
+    },
+    "rareEvents": [
+      {
+        "name": "Scintillement de la tour lointaine",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 40 secondes",
+        "description": "Une douce pulsation scintillante blanc-or traverse la brume d'arrière-plan pendant 3 secondes avant de s'estomper avec élégance."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe discrète décalant l'angle d'incidence du faisceau lumineux et la ligne de crête des toits ; répulsion délicate des particules proches.",
+      "scroll": "Atténue l'éclat du faisceau et approfondit la noirceur du bleu marine pour garantir un contraste idéal sur les listes de jeux."
+    },
+    "palette": [
+      "#1e3a8a",
+      "#ef4444",
+      "#0a1128",
+      "#ffffff",
+      "#d4af37",
+      "#020617"
+    ],
+    "references": [
+      "Parc des Princes night stadium light beam",
+      "Eiffel tower searchlight Paris night sky",
+      "Paris rooftop subtle stadium mist"
+    ],
+    "risks": {
+      "pitfall": "Transformer la scène en show pyrotechnique criard qui dégrade la lisibilité des textes ou copier des emblèmes protégés.",
+      "solution": "Maintenir une intensité 1 feutrée avec des volutes de fumée diaphanes très lentes (speed 0.12), un faisceau lumineux adouci et une palette sombre raffinée."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#0a1128",
+          "horizonColor": "#1e3a8a",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "cityColor": "#040915",
+          "windowGlowColor": "#d4af37",
+          "density": 0.65,
+          "speed": 0.05,
+          "depth": 0.35,
+          "lightActivity": 0.2
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "lightSourceX": 0.2,
+          "lightSourceY": 0.9,
+          "rayColor": "#fef08a",
+          "density": 0.8,
+          "intensity": 0.75,
+          "speed": 0.15,
+          "decay": 0.94
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#1e3a8a",
+          "density": 0.3,
+          "speed": 0.12,
+          "dissipation": 0.9,
+          "swirlStrength": 0.25
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#d4af37",
+          "density": 0.3,
+          "speed": 0.12,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "intensity": 0.65,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "rotating_beacon_beam",
+        "category": "lighting",
+        "reason": "Simulation d'un pinceau lumineux conique en rotation continue 360° évoquant le phare de la Tour Eiffel à travers la brume nocturne."
+      }
+    ]
+  },
+  {
+    "id": "citizens",
+    "name": "Citizens",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "manchester_city",
+    "evocation": "Manchester City et l'Etihad Stadium au cœur de l'Etihad Campus : l'ingénierie contemporaine des mâts cylindriques et haubans en acier blanc baignés d'un halo bleu ciel limpide, la fine bruine mancunienne transformée en une rosée de lumière argentée sous les projecteurs, et la modernité épurée d'une arène technologique.",
+    "signature": "Un anneau d'effluves volumétriques bleu ciel et blanc glacier palpitant doucement autour des silhouettes de mâts suspendus, traversé par une fine bruine argentée en apesanteur.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel nocturne ardoise et bleu acier très sombre avec lueur d'horizon bleu ciel évanescente."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes élancées de câbles de tension et de mâts de suspension circulaires de l'Etihad Stadium enveloppées d'un halo zénithal cyan et blanc."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian atmosphérique",
+        "description": "Nappe de bruine atmosphérique fine et vaporeuse dérivant sous une brise constante, teintée de bleu ciel."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan cinétique & overlay",
+        "description": "Micro-gouttelettes d'eau argentées et particules cristallines étincelant discrètement au ralenti, bordées d'un vignettage ardoise soyeux."
+      }
+    ],
+    "particles": {
+      "type": "Bruine cristalline mancunienne (rain / dust)",
+      "size": "0.8 à 1.8 px",
+      "speed": "0.18 (chute oblique ralentie et douce)",
+      "density": "35 micro-gouttelettes",
+      "behavior": "Chute laminaire fluide inclinée par une brise d'air frais continue, miroitement au contact des halos lumineux et déviation soyeuse au curseur."
+    },
+    "atmosphere": {
+      "mist": "Voile de bruine vaporeux et propre typique du nord-ouest anglais, illuminé par les projecteurs de l'arène.",
+      "light": "Froide, cristalline, immaculée et technologique, dominée par le bleu ciel et le blanc pur.",
+      "airColor": "Bleu ciel évanescent (#38bdf8), ardoise humide (#1e293b) et blanc glacier (#ffffff).",
+      "mainLightSource": "Halo de projecteurs annulaires entourant la toiture circulaire du stade."
+    },
+    "rareEvents": [
+      {
+        "name": "Onde lumineuse azurée",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 42 secondes",
+        "description": "Une douce pulsation concentrique bleu cyan parcourt la silhouette circulaire des pylônes comme l'allumage progressif d'un ruban LED géant."
+      }
+    ],
+    "interaction": {
+      "mouse": "Incline très subtilement l'angle de la bruine argentée et déplace doucement le point d'écho du halo bleuté.",
+      "scroll": "Étire le dégradé atmosphérique vers un bleu ardoise plus profond pour garantir un repos visuel total."
+    },
+    "palette": [
+      "#38bdf8",
+      "#ffffff",
+      "#0284c7",
+      "#0b1726",
+      "#1e293b",
+      "#030712"
+    ],
+    "references": [
+      "Etihad stadium architectural night floodlights",
+      "Manchester rain stadium light mist",
+      "sky blue ring glow modern arena"
+    ],
+    "risks": {
+      "pitfall": "Donner l'impression d'une bruine grise industrielle déprimante ou au contraire d'un néon cyberpunk saturé.",
+      "solution": "Finesse extrême des gouttelettes cristallines blanc/cyan, éclairage architectural raffiné et contraste d'ardoise premium."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#030712",
+          "bottomColor": "#0b1726",
+          "horizonColor": "#0284c7",
+          "density": 1.15,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#38bdf8",
+          "outerColor": "#0b1726",
+          "glowX": 0.5,
+          "glowY": 0.7,
+          "density": 0.8,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "rain",
+        "params": {
+          "rainColor": "#e0f2fe",
+          "density": 0.35,
+          "speed": 0.25,
+          "angle": 0.2,
+          "splashIntensity": 0.1
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#38bdf8",
+          "density": 0.25,
+          "speed": 0.12,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#030712",
+          "intensity": 0.6,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "tensile_cable_silhouettes",
+        "category": "scenery",
+        "reason": "Réseau filaire 3D de câbles de tension et pylônes coniques blancs caractéristiques de l'architecture moderne de l'Etihad Stadium."
+      }
+    ]
+  },
+  {
+    "id": "red_devils",
+    "name": "Red Devils",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "manchester_united",
+    "evocation": "Manchester United et le Théâtre des Rêves d'Old Trafford : les imposantes structures de briques victoriennes et verrières de la tribune Sir Alex Ferguson sous un crépuscule ouvrier, une lueur carmin incandescente filtrant à travers la brume des anciens canaux industriels, et de très rares flammèches montant comme le souvenir des forges de Newton Heath.",
+    "signature": "Une silhouette de tribune monumentale en briques sombres et verre rétroéclairée par un halo cramoisi profond, d'où s'élèvent de rares flammèches incandescentes dérivant au ralenti dans une brume charbonneuse.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel crépusculaire d'un noir charbon vers pourpre ténébreux, strié d'une lueur carmin étouffée à l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette massive des portiques métalliques d'Old Trafford et des cheminées industrielles estompées dans la pénombre."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian atmosphérique",
+        "description": "Lueur volumétrique rouge carmin irradiant doucement depuis le cœur de l'arène à travers une brume industrielle vaporeuse."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan cinétique & overlay",
+        "description": "Une trentaine de micro-braises rougeoyantes montant en lévitation thermique lente avec vignettage noir charbon appuyé."
+      }
+    ],
+    "particles": {
+      "type": "Braises industrielles et flammèches ralenties (embers)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.16 (ascension thermique lente)",
+      "density": "28 micro-braises",
+      "behavior": "Ascension convective douce sans turbulence agressive, refroidissement progressif du rouge vif vers la suie et dispersion feutrée au survol."
+    },
+    "atmosphere": {
+      "mist": "Brume industrielle charbonneuse filtrant l'éclairage rouge des projecteurs.",
+      "light": "Sombre, théâtrale et majestueuse, fondée sur le contraste noble entre l'obscurité totale et le rouge rubis.",
+      "airColor": "Noir anthracite (#000000), pourpre charbonneux (#1c0404) et rouge carmin (#dc2626).",
+      "mainLightSource": "Halo rougeoyant émanant de la pelouse et éclairant la charpente en contre-jour."
+    },
+    "rareEvents": [
+      {
+        "name": "Souffle de forge industrielle",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 38 secondes",
+        "description": "Une brise chaude traverse la scène, inclinant la lueur rougeoyante et dispersant doucement la grappe de braises en suspension."
+      }
+    ],
+    "interaction": {
+      "mouse": "Fait varier l'angle d'éclairage de la tribune en contre-jour et crée une légère traînée thermique dans le sillage du pointeur.",
+      "scroll": "Renforce la noirceur des marges périphériques pour découper les cartes de jeu avec une netteté totale."
+    },
+    "palette": [
+      "#dc2626",
+      "#000000",
+      "#7f1d1d",
+      "#f59e0b",
+      "#18181b",
+      "#450a0a"
+    ],
+    "references": [
+      "Old Trafford night stadium fog",
+      "Theatre of dreams red backlight",
+      "industrial Manchester embers glow"
+    ],
+    "risks": {
+      "pitfall": "Rendu agressif, diabolique ou criard, inapproprié pour un club de football historique.",
+      "solution": "Ancrage dans l'héritage ouvrier noble de Manchester (briques, suie, brume de canal), rouge carmin profond et braises très espacées à vitesse ralentie."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#180404",
+          "horizonColor": "#7f1d1d",
+          "density": 1.2,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#dc2626",
+          "glowColor": "#7f1d1d",
+          "outerColor": "#000000",
+          "glowX": 0.5,
+          "glowY": 0.85,
+          "density": 0.9,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#1c0404",
+          "density": 0.55,
+          "speed": 0.1,
+          "heightFalloff": 1.8,
+          "depth": 0.3
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#dc2626",
+          "sparkColor": "#f59e0b",
+          "density": 0.3,
+          "speed": 0.16,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.75,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "industrial_truss_silhouettes",
+        "category": "scenery",
+        "reason": "Silhouettes géométriques des fermes métalliques en treillis blanc et rouge typiques des tribunes d'Old Trafford."
+      }
+    ]
+  },
+  {
+    "id": "the_reds",
+    "name": "The Reds",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "liverpool",
+    "evocation": "Liverpool FC et l'émotion légendaire d'Anfield Road : la tribune du Kop baignée par la lueur dorée et carmin du crépuscule sur l'estuaire de la Mersey, une houle fraternelle d'étoffes rouges vibrant sous de chauds projecteurs à incandescence, et la ferveur solennelle de 'You'll Never Walk Alone' flottant dans une brume maritime dorée.",
+    "signature": "Une houle douce et vaporeuse de tissu carmin et de brume du couchant sur la Mersey ondulant lentement sous des projecteurs dorés chaleureux, laissant flotter de rares grains de lumière dorée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Crépuscule maritime sur l'estuaire de la Mersey, reliant un pourpre sombre à une douce lueur ambre cuivré à l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette du Kop et des toitures en brique rouge d'Anfield découpée sous la lumière chaude des projecteurs vintage."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian atmosphérique",
+        "description": "Drapés carmin et brume fluviale ondulant en vagues amples et régulières comme une marée d'écharpes tendues."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan cinétique & overlay",
+        "description": "Poussières d'or et micro-fibres en apesanteur dans les rais de lumière chaleureuse, bordées d'un vignettage grenat soyeux."
+      }
+    ],
+    "particles": {
+      "type": "Poussières dorées en suspension et micro-brume (dust)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.14 (flottaison calme et majestueuse)",
+      "density": "32 motes de poussière dorée",
+      "behavior": "Mouvement brownien ralenti, traversée des cônes de lumière avec étincellement doux, bercé par une respiration d'air continue."
+    },
+    "atmosphere": {
+      "mist": "Brume fluviale lumineuse captant les reflets carmin et or couchant.",
+      "light": "Nostalgique, incandescente, solennelle et profondément chaleureuse.",
+      "airColor": "Rouge carmin vif (#ef4444), rouge grenat (#991b1b) et ambre cuivré (#d97706).",
+      "mainLightSource": "Projecteurs d'angle historiques diffusant une lumière chaude et réconfortante depuis le haut-gauche."
+    },
+    "rareEvents": [
+      {
+        "name": "Frémissement de la marée rouge",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 36 secondes",
+        "description": "Une douce onde d'air traverse les textures carmin en arrière-plan comme un écho du chant des supporters qui s'élève en tribune."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace les nappes de brume et crée une brise très subtile qui oriente les poussières dorées vers le pointeur.",
+      "scroll": "Réchauffe imperceptiblement la température de couleur du fond tout en préservant le contraste immaculé du texte."
+    },
+    "palette": [
+      "#ef4444",
+      "#ffffff",
+      "#991b1b",
+      "#d97706",
+      "#180308",
+      "#fef3c7"
+    ],
+    "references": [
+      "Anfield Kop sunset atmosphere",
+      "Liverpool red scarves sea glow",
+      "warm football stadium golden dust"
+    ],
+    "risks": {
+      "pitfall": "Confondre avec les autres clubs rouges (Manchester United, Arsenal) ou créer un fond uni rouge vif agressif.",
+      "solution": "Dominante chaleureuse dorée/cuivrée (brume de la Mersey, esprit YNWA), texture d'étoffe ondulante et éclairage vintage à incandescence."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#180308",
+          "bottomColor": "#450a0a",
+          "horizonColor": "#d97706",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "lightSourceX": 0.15,
+          "lightSourceY": 0.85,
+          "rayColor": "#fef08a",
+          "density": 0.9,
+          "intensity": 0.8,
+          "speed": 0.12,
+          "decay": 0.93
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#991b1b",
+          "density": 0.5,
+          "speed": 0.1,
+          "heightFalloff": 2.0,
+          "depth": 0.25
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef08a",
+          "density": 0.32,
+          "speed": 0.14,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#180308",
+          "intensity": 0.65,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "undulating_tifo_wave",
+        "category": "particles",
+        "reason": "Simulation shader d'une marée d'étoffes carmin et d'écharpes ondulant au ralenti sous l'effet du vent des gradins."
+      }
+    ]
+  },
+  {
+    "id": "gunners",
+    "name": "Gunners",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "arsenal",
+    "evocation": "Arsenal FC et le patrimoine de North London, entre la façade art déco classée d'Highbury et les arches graciles de l'Emirates Stadium : l'héritage d'orfèvrerie de l'Arsenal royal de Woolwich, un panache vaporeux de fumée de canon blanche et cuivrée se dissipant dans l'air froid londonien, et de très rares étincelles de laiton doré.",
+    "signature": "Une volute de fumée blanche et bronze évoquant un tir de canon cérémonial qui s'estompe lentement sous l'arc architectural immaculé du stade, ponctuée de très rares étincelles de laiton doré.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Nuit londonienne bleu ardoise foncé avec lueur de réverbération urbaine carmin à l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette de l'horloge d'Highbury et arches de suspension blanches de l'Emirates Stadium découpées dans la fraîcheur nocturne."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian atmosphérique",
+        "description": "Panache vaporeux et diaphane de fumée blanche et bronze s'étirant horizontalement au ralenti."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan cinétique & overlay",
+        "description": "Micro-étincelles dorées et poussières métalliques scintillantes retombant très doucement avec vignettage ardoise raffiné."
+      }
+    ],
+    "particles": {
+      "type": "Micro-étincelles de laiton (sparks) et volutes éthérées (smoke)",
+      "size": "0.8 à 1.6 px pour les étincelles",
+      "speed": "0.15 (refroidissement et chute ralentie)",
+      "density": "22 étincelles très espacées",
+      "behavior": "Dérive balistique douce amortie par une brise d'hiver, vacillement doré éphémère avant extinction dans le froid nocturne."
+    },
+    "atmosphere": {
+      "mist": "Fumée légère de poudre d'artillerie et brume londonienne feutrée.",
+      "light": "Contrastée, noble et claire, alliant le rouge cardinal d'Arsenal, le blanc pur et des reflets de laiton ancien.",
+      "airColor": "Bleu ardoise profond (#0f172a), rouge cardinal (#dc2626) et or patiné (#eab308).",
+      "mainLightSource": "Projecteurs blancs zénithaux illuminant la toiture suspendue et le panache de fumée."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclat de salve cérémoniale",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 42 secondes",
+        "description": "Une brève lueur dorée fugitive à l'horizon illumine la base des fumées avec un scintillement noble et feutré."
+      }
+    ],
+    "interaction": {
+      "mouse": "Fait tournoyer subtilement les volutes de fumée dans le sillage du curseur ; parallaxe étagée sur les silhouettes de l'arche.",
+      "scroll": "Intensifie la blancheur pure des lignes géométriques tout en maintenant un fond sombre reposant pour l'œil."
+    },
+    "palette": [
+      "#dc2626",
+      "#ffffff",
+      "#0f172a",
+      "#eab308",
+      "#7f1d1d",
+      "#f8fafc"
+    ],
+    "references": [
+      "Arsenal Highbury art deco architecture",
+      "brass cannon smoke slow motion",
+      "Emirates stadium night roof lights"
+    ],
+    "risks": {
+      "pitfall": "Rendu belliqueux ou militaire agressif inapproprié pour un club de football élégant.",
+      "solution": "Traitement cérémonial et aristocratique (laiton doré, volute de fumée poétique, lignes architecturales pures art déco)."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#090d16",
+          "bottomColor": "#111827",
+          "horizonColor": "#7f1d1d",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#f8fafc",
+          "density": 0.25,
+          "speed": 0.12,
+          "dissipation": 0.92,
+          "swirlStrength": 0.2
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#eab308",
+          "density": 0.22,
+          "speed": 0.15,
+          "gravity": 0.3,
+          "lifeSpan": 2.5
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#dc2626",
+          "outerColor": "#0f172a",
+          "glowX": 0.5,
+          "glowY": 0.8,
+          "density": 0.75,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#090d16",
+          "intensity": 0.65,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "art_deco_facade_lines",
+        "category": "scenery",
+        "reason": "Lignes géométriques art déco en filigrane discret inspirées de la façade historique de la tribune Est d'Highbury."
+      }
+    ]
+  },
+  {
+    "id": "los_merengues",
+    "name": "Los Merengues",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "real_madrid",
+    "evocation": "Real Madrid et la majesté futuriste du nouveau Santiago Bernabéu sur le Paseo de la Castellana : l'enveloppe sculpturale de lames d'acier inoxydable incurvées réfléchissant la nuit de Madrid, la pureté immaculée du blanc merengue sublimé de reflets or royaux, et une voûte céleste castillane piquée de micropoussières de diamant comme les étoiles d'un palmarès éternel.",
+    "signature": "Une onde de clarté blanc opale et or royal glissant doucement le long des lames d'acier sculpturales du Bernabéu, sous un ciel nocturne constellé de micropoussières de diamant en apesanteur.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel nocturne madrilène d'un bleu nuit saphir profond, limpide et piqué de discrètes étoiles étincelantes."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Courbure monumentale des lamelles d'acier de la façade du Bernabéu striée de reflets spéculaires blanc argent et or doux."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian atmosphérique",
+        "description": "Halo volumétrique blanc platine et lueur dorée zénithale diffusant une ambiance royale et aérienne."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan cinétique & overlay",
+        "description": "Pluie ralentie de micro-paillettes d'or et de cristal dérivant comme des confettis microscopiques de victoire."
+      }
+    ],
+    "particles": {
+      "type": "Poussière de diamant et micro-paillettes d'or (dust)",
+      "size": "0.9 à 2.0 px",
+      "speed": "0.14 (lévitation aérienne élégante)",
+      "density": "35 particules scintillantes",
+      "behavior": "Scintillement prismatique non-périodique, descente oscillante imperceptible et réfraction soyeuse au passage du curseur."
+    },
+    "atmosphere": {
+      "mist": "Air nocturne castillan sec et cristallin, nappe lumineuse immaculée.",
+      "light": "Royale, pure, architecturale et éclatante, combinant le blanc platine (#ffffff) et l'or chaud (#d4a853).",
+      "airColor": "Bleu nuit royal (#0b1329), blanc platine (#ffffff) et or solaire (#d4a853).",
+      "mainLightSource": "Voûte lumineuse rétractable et rétro-éclairage de la peau métallique du stade."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclat d'étoile royale",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 40 secondes",
+        "description": "Un rai de lumière traverse les lamelles d'acier avec un éclat doré subtil qui s'éteint en douceur dans la voûte nocturne."
+      }
+    ],
+    "interaction": {
+      "mouse": "La lumière spéculaire sur les lamelles d'acier suit l'orientation de la souris ; les particules d'or réagissent par une douce onde d'écartement.",
+      "scroll": "Accroît la profondeur du bleu saphir du fond pour maintenir un contraste de premier ordre sur les fiches de jeux."
+    },
+    "palette": [
+      "#ffffff",
+      "#d4a853",
+      "#0b1329",
+      "#1e293b",
+      "#fef08a",
+      "#020617"
+    ],
+    "references": [
+      "Santiago Bernabeu new facade metallic light",
+      "Real Madrid white gold luxury aesthetic",
+      "specular steel slats stadium glow"
+    ],
+    "risks": {
+      "pitfall": "Éblouir l'utilisateur avec un fond blanc trop lumineux qui détruirait la lisibilité des textes et l'ambiance nocturne.",
+      "solution": "Conserver un fond bleu nuit saphir profond, et n'utiliser le blanc et l'or que comme des reflets architecturaux et des rais de lumière sculptés."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#0b1329",
+          "horizonColor": "#1e293b",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#d4a853",
+          "outerColor": "#0b1329",
+          "glowX": 0.5,
+          "glowY": 0.75,
+          "density": 0.85,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#d4a853",
+          "density": 0.35,
+          "speed": 0.14,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "lens_flare",
+        "params": {
+          "flareColor": "#fef08a",
+          "intensity": 0.6,
+          "speed": 0.1,
+          "scale": 0.7
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "intensity": 0.6,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "curved_metallic_louvers",
+        "category": "scenery",
+        "reason": "Lames d'acier incurvées à reflets spéculaires interactifs évoquant la façade moderne enveloppante du Santiago Bernabéu."
+      }
+    ]
+  },
+  {
+    "id": "blaugrana",
+    "name": "Blaugrana",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "barcelona",
+    "evocation": "FC Barcelone et la douceur d'une soirée catalane au Spotify Camp Nou : le bol ouvert de l'arène baigné par le couchant méditerranéen sur Montjuïc, de larges rubans d'étoffe bleu profond et grenat pourpre ondulant lentement comme les tentures d'un tifo infini, et une brise tiède portant de rares grains de lumière dorée sous les projecteurs.",
+    "signature": "De larges ondes lumineuses verticales bleu roi et grenat profond ondulant comme un tifo de soie géant sous la brise marine tiède d'une fin de soirée catalane.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Crépuscule méditerranéen lilas et pourpre sombre avec lueur ambrée chaude à la ligne d'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette de la cuvette géante du Camp Nou et collines barcelonaises se découpant en aplats sombres sous le ciel d'été."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian atmosphérique",
+        "description": "Voiles verticaux alternés bleu roi et grenat noble ondulant selon des vagues de simplex douces et translucides."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan cinétique & overlay",
+        "description": "Particules dorées microscopiques flottant dans les contre-jours et vignettage indigo profond feutré."
+      }
+    ],
+    "particles": {
+      "type": "Poussières solaires méditerranéennes et micro-fibres de soie (dust)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.14 (dérive ralentie portée par la brise marine)",
+      "density": "32 particules dorées",
+      "behavior": "Ascension paresseuse, scintillement ambré lors de la traversée des rubans bleus et grenat, déflexion soyeuse à la souris."
+    },
+    "atmosphere": {
+      "mist": "Nappe d'air marin tiède et salin, filtrant le crépuscule en teintes harmonieuses et douces.",
+      "light": "Chaleureuse, polychrome et vibrante, dominée par l'accord chromatique bleu outremer et rouge grenat.",
+      "airColor": "Bleu roi (#1d4ed8), grenat catalan (#991b1b), indigo d'ombre (#0b0c1e) et or de couchant (#f59e0b).",
+      "mainLightSource": "Projecteurs latéraux du stade combinés à l'ultime lueur du soleil couchant marin."
+    },
+    "rareEvents": [
+      {
+        "name": "Rafale de brise marine",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 38 secondes",
+        "description": "Une douce risée d'air marin traverse les tentures blaugrana, propageant une vaguelette fluide de gauche à droite."
+      }
+    ],
+    "interaction": {
+      "mouse": "Génère une légère courbure dans l'ondulation des rubans verticaux et disperse la poussière dorée en volutes fluides.",
+      "scroll": "Module harmonieusement la balance d'équilibre entre le bleu et le grenat sans perturber la lisibilité."
+    },
+    "palette": [
+      "#1d4ed8",
+      "#991b1b",
+      "#0b0c1e",
+      "#f59e0b",
+      "#431407",
+      "#1e1b4b"
+    ],
+    "references": [
+      "Camp Nou sunset dusk tifo",
+      "blaugrana silk ribbons undulating",
+      "mediterranean stadium evening light"
+    ],
+    "risks": {
+      "pitfall": "Rayures de maillot rigides façon code-barres statique et criard.",
+      "solution": "Mouvement d'ondulation organique en shader Simplex, translucidité soyeuse des couches et intégration crépusculaire chaleureuse."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0b0c1e",
+          "bottomColor": "#1e1b4b",
+          "horizonColor": "#431407",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "waves",
+        "params": {
+          "waterColor": "#1d4ed8",
+          "foamColor": "#991b1b",
+          "waveHeight": 0.35,
+          "speed": 0.12,
+          "waveFrequency": 0.8
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f59e0b",
+          "density": 0.32,
+          "speed": 0.14,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#1e1b4b",
+          "density": 0.45,
+          "speed": 0.1,
+          "heightFalloff": 2.0,
+          "depth": 0.25
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0b0c1e",
+          "intensity": 0.65,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "vertical_fabric_banners",
+        "category": "particles",
+        "reason": "Tentures verticales suspendues avec transparence et dynamique de tissu fluide ondulant sous la brise marine."
+      }
+    ]
+  },
+  {
+    "id": "colchoneros",
+    "name": "Colchoneros",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "atletico_madrid",
+    "evocation": "Atlético de Madrid et la ferveur populaire du Civitas Metropolitano et des berges du Manzanares : la tradition des rayures matelassées blanches et rouges réinterprétées en toiles tendues sous un ciel orageux castillan, la brume lourde montant du fleuve, et l'éclair lointain d'une combativité collective indomptable.",
+    "signature": "Des bandes de toile brute rouge carmin et blanc lin ondulant sous un ciel d'orage castillan grondant, traversées par la lueur diffuse d'éclairs intranuageux lointains.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel orageux d'ardoise et de suie tourmenté par des bancs de nuages bas dérivant au-dessus du plateau madrilène."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Profil robuste de la toiture tendue du Metropolitano découpé en contre-jour sous des projecteurs rasant la pelouse."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian atmosphérique",
+        "description": "Alternance rythmée de bandes textiles rouge carmin et blanc cassé vibrant comme de la toile de bâche sous le vent."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan cinétique & overlay",
+        "description": "Poussière d'orage et micro-gouttes d'averse descendant au ralenti avec vignettage ardoise orageux."
+      }
+    ],
+    "particles": {
+      "type": "Poussière d'orage et micro-gouttelettes d'air lourd (ash / dust)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.18 (descente sous pression orageuse ralentie)",
+      "density": "32 particules d'orage",
+      "behavior": "Trajectoire rectiligne troublée par de petites turbulences Simplex, extinction feutrée au bas de l'écran."
+    },
+    "atmosphere": {
+      "mist": "Vapeur orageuse lourde et électrique au-dessus des gradins.",
+      "light": "Dramatique, contrastée, intermittente, dominée par le rouge carmin ardent et le blanc lin brut.",
+      "airColor": "Bleu tempête (#0f172a), rouge carmin (#dc2626) et blanc lin (#f1f5f9).",
+      "mainLightSource": "Projecteurs obliques combinés à des éclairs diffus intranuageux en haute altitude."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclair intranuageux lointain",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 35 secondes",
+        "description": "Une brève illumination bleutée diffuse dans les nuages lointains sans tonnerre violent, respectant la discrétion de l'intensité 1."
+      }
+    ],
+    "interaction": {
+      "mouse": "Provoque un léger frémissement de tension dans la toile rayée et oriente la dérive de la poussière d'orage.",
+      "scroll": "Augmente la profondeur de l'ardoise en bordure pour faire ressortir avec panache les cartes de jeux."
+    },
+    "palette": [
+      "#dc2626",
+      "#ffffff",
+      "#0f172a",
+      "#1e293b",
+      "#991b1b",
+      "#020617"
+    ],
+    "references": [
+      "Metropolitano stormy sky night",
+      "red and white canvas texture wind",
+      "dramatic storm clouds stadium lights"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à un chapiteau de cirque rouge et blanc ou paraître trop agressif et tapageur.",
+      "solution": "Texture mate de toile brute (effet matelas/bâche vintage), ciel d'orage noble et ténébreux, éclairs intranuageux doux et très lointains."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#1e293b",
+          "density": 1.15,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "cloudColor": "#1e293b",
+          "skyColor": "#0f172a",
+          "density": 0.6,
+          "speed": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.35
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "flashColor": "#e2e8f0",
+          "flashInterval": 35.0,
+          "intensity": 0.45,
+          "branchCount": 2
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f1f5f9",
+          "density": 0.32,
+          "speed": 0.18,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "intensity": 0.65,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "striped_canvas_relief",
+        "category": "scenery",
+        "reason": "Shader de toile texturée à rayures rouge et blanc avec relief de tissage et déformation mécanique sous le vent."
+      }
+    ]
+  },
+  {
+    "id": "les_bavarois",
+    "name": "Les Bavarois",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "bayern_munich",
+    "evocation": "FC Bayern München et la féerie géométrique de l'Allianz Arena à Fröttmaning : l'enveloppe iconique en coussins ETFE gonflables en losanges illuminée d'un rouge rubis étincelant, les cimes des Alpes bavaroises enneigées se découpant au loin dans l'air nocturne limpide, et une pulsation lumineuse à la précision chirurgicale.",
+    "signature": "Une mosaïque de coussins losangiques translucides pulsant d'une lueur rouge rubis et blanc neige, se détachant sur la nuit froide des contreforts alpins bavarois.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Nuit alpine bleu nuit et acier glacial piquée d'étoiles scintillantes par un froid sec."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette acérée des cimes des Alpes bavaroises saupoudrées de neige bleutée en arrière-plan."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian atmosphérique",
+        "description": "Courbure de la façade de l'arène composée de losanges géométriques rétroéclairés d'une pulsation rouge rubis et blanc givre."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan cinétique & overlay",
+        "description": "Poussières de givre cristallines microscopiques dérivant dans l'air glacé avec vignettage feutré soigné."
+      }
+    ],
+    "particles": {
+      "type": "Cristaux de givre et poussière de neige en suspension (snow / dust)",
+      "size": "0.8 à 1.8 px",
+      "speed": "0.12 (dérive très lente d'air froid immobile)",
+      "density": "28 micro-cristaux",
+      "behavior": "Scintillement ponctuel facetté, suspension laminaire et dispersion délicate au mouvement de la souris."
+    },
+    "atmosphere": {
+      "mist": "Brume de givre très fine au ras du sol munichois.",
+      "light": "Cristalline, pure, rythmée par la douce luminescence des coussins d'air pneumatiques.",
+      "airColor": "Rouge rubis bavarois (#dc2626), blanc givre (#ffffff), bleu nuit alpin (#0f172a) et azur glacial (#38bdf8).",
+      "mainLightSource": "Façade translucide rétroéclairée de l'Allianz Arena."
+    },
+    "rareEvents": [
+      {
+        "name": "Respiration de diamant",
+        "type": "volumetric_glow",
+        "frequency": "Intervalle moyen de 40 secondes",
+        "description": "Une onde lumineuse blanche parcourt les losanges de la façade de haut en bas comme une vague d'énergie pure."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déplace subtilement le point focal d'intensité lumineuse des losanges les plus proches du curseur.",
+      "scroll": "Atténue l'éclat des losanges pour garantir une totale discrétion visuelle derrière le contenu actif."
+    },
+    "palette": [
+      "#dc2626",
+      "#ffffff",
+      "#0f172a",
+      "#38bdf8",
+      "#7f1d1d",
+      "#030712"
+    ],
+    "references": [
+      "Allianz Arena red facade lozenge glow",
+      "Bavarian night stadium alpine air",
+      "geometric ETFE cushion illumination"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à un pneu rouge ou à une grille de carrelage 2D mécanique et répétitive.",
+      "solution": "Courbure 3D élégante de l'arène, diffusion volumétrique douce à travers la matière plastique translucide, et respiration lumineuse ultra-lente."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#030712",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#1e293b",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "mountainColor": "#060b14",
+          "fogColor": "#0f172a",
+          "density": 0.5,
+          "speed": 0.05,
+          "depth": 0.4
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#dc2626",
+          "glowColor": "#7f1d1d",
+          "outerColor": "#0f172a",
+          "glowX": 0.5,
+          "glowY": 0.8,
+          "density": 0.85,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#e0f2fe",
+          "density": 0.28,
+          "speed": 0.12,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#030712",
+          "intensity": 0.65,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "lozenge_etfe_facade",
+        "category": "scenery",
+        "reason": "Grille losangique paramétrique avec pulsation lumineuse interne simulant les coussins ETFE de l'Allianz Arena."
+      }
+    ]
+  },
+  {
+    "id": "bianconeri",
+    "name": "Bianconeri",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "juventus",
+    "evocation": "Juventus FC et l'Allianz Stadium de Turin : l'élégance absolue du chiaroscuro italien et de la haute couture piémontaise, les rayures zébrées noires et blanches réinterprétées en lames architecturales sculpturales de verre fumé et d'acier brossé, le vent frais des Alpes italiennes et la solennité d'un prestige centenaire discret.",
+    "signature": "Des lames verticales cinématiques en alternance de noir obsidienne et de blanc albâtre découpant un clair-obscur sculptural, d'où s'élèvent de rares micro-paillettes d'or et de givre piémontais.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel nocturne piémontais monochrome en dégradé noir d'encre vers gris anthracite métallique."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Ligne acérée des cimes des Alpes italiennes en ombre chinoise sombre sous un éclat argenté."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian atmosphérique",
+        "description": "Lames architecturales verticales zébrées alternant noir mat, blanc albâtre et reflets d'acier poli avec jeu d'ombres portées."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan cinétique & overlay",
+        "description": "Poussière cristalline et très rares éclats d'or stellaire flottant dans le clair-obscur avec vignettage noir absolu."
+      }
+    ],
+    "particles": {
+      "type": "Cristaux d'albâtre et micro-motes d'or subtil (dust)",
+      "size": "0.9 à 1.9 px",
+      "speed": "0.13 (flottement calme en apesanteur)",
+      "density": "26 particules",
+      "behavior": "Suspension lévitante, alternance de visibilité selon le passage sur une bande noire ou blanche, répulsion discrète au survol."
+    },
+    "atmosphere": {
+      "mist": "Voile d'air pur et sec des vallées piémontaises, d'une limpidité quasi minérale.",
+      "light": "Clair-obscur tranché (chiaroscuro cinématographique), sans teintes criardes, sublimé par un reflet doré impérial discret.",
+      "airColor": "Noir de jais (#000000), blanc pur (#ffffff), gris acier (#71717a) et or noble (#eab308).",
+      "mainLightSource": "Lumière rasante zénithale blanche soulignant le relief des trames verticales."
+    },
+    "rareEvents": [
+      {
+        "name": "Reflet doré stellaire",
+        "type": "lens_flare",
+        "frequency": "Intervalle moyen de 45 secondes",
+        "description": "Un glissement de reflet or étincelle discrètement sur l'arête d'une lame verticale comme le scintillement d'une étoile de titre."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace l'angle d'incidence de la lumière rasante sur les trames zébrées, modifiant les ombres portées.",
+      "scroll": "Accroît la profondeur du noir absolu dans les zones de texte pour un confort de lecture optimal."
+    },
+    "palette": [
+      "#000000",
+      "#ffffff",
+      "#18181b",
+      "#71717a",
+      "#eab308",
+      "#27272a"
+    ],
+    "references": [
+      "Juventus chiaroscuro monochrome lighting",
+      "black and white vertical architectural slats",
+      "Turin alpine night minimalism"
+    ],
+    "risks": {
+      "pitfall": "Écran de téléviseur sans signal ou motif de passage piéton rigide et sans âme.",
+      "solution": "Traitement sculptural inspiré du design automobile et architectural turinois, reflets spéculaires doux sur acier brossé, et étincelles d'or très rares."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#18181b",
+          "horizonColor": "#27272a",
+          "density": 1.2,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "mountainColor": "#09090b",
+          "fogColor": "#18181b",
+          "density": 0.5,
+          "speed": 0.05,
+          "depth": 0.4
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#eab308",
+          "density": 0.26,
+          "speed": 0.13,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.06,
+          "speed": 0.6,
+          "density": 1.1,
+          "monochrome": true
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.7,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "chiaroscuro_vertical_slats",
+        "category": "scenery",
+        "reason": "Lames architecturales 3D à ombres rasantes et alternance noir/blanc avec texture marbre et acier poli."
+      }
+    ]
+  },
+  {
+    "id": "rossoneri",
+    "name": "Rossoneri",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "ac_milan",
+    "evocation": "AC Milan et la majesté brute du mythique Stadio San Siro (Giuseppe Meazza) : les emblématiques tours cylindriques hélicoïdales en béton brut s'élevant dans la brume nocturne milanaise ('la nebbia'), les gigantesques poutres rouges de la toiture découpées dans la nuit, et des ombres théâtrales rouge sang et noir suie portées par des projecteurs dramatiques.",
+    "signature": "Les silhouettes monumentales des tours cylindriques hélicoïdales de San Siro émergeant de la brume milanaise, enveloppées dans un halo rouge sang profond et des ombres portées gothiques.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Nuit lombarde d'un noir de suie profond voilée par des nuages d'hiver bas et lourds."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes imposantes des tours spirales en béton et des immenses poutres métalliques rouges de la toiture de San Siro."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian atmosphérique",
+        "description": "Nappe vaporeuse de brume milanaise ('nebbia') teintée de reflets rouge sombre et noir onyx."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan cinétique & overlay",
+        "description": "Grains de suie et micro-volutes de brume dérivant lentement avec vignettage noir charbonneux enveloppant."
+      }
+    ],
+    "particles": {
+      "type": "Poussière de béton et micro-cendres urbaines (ash / dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.14 (dérive ralentie dans l'air froid et humide)",
+      "density": "28 particules urbaines",
+      "behavior": "Mouvement brownien alourdi par l'humidité, dispersion sous les courants d'air froids et contournement doux de la souris."
+    },
+    "atmosphere": {
+      "mist": "Épaisse brume milanaise légendaire (nebbia) filtrant la lumière en un dégradé vaporeux dramatique.",
+      "light": "Théâtrale, contrastée et intimidante, alliant la noirceur gothique à un rouge sang de bœuf profond.",
+      "airColor": "Noir charbon (#000000), rouge diabolique (#dc2626), rouille industrielle (#7f1d1d) et gris béton humide (#334155).",
+      "mainLightSource": "Projecteurs nichés dans la charpente métallique rouge éclairant la brume du sol."
+    },
+    "rareEvents": [
+      {
+        "name": "Balayage d'ombre hélicoïdale",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 40 secondes",
+        "description": "Une ombre géante projetée par les rampes spirales traverse lentement le voile de brume milanaise."
+      }
+    ],
+    "interaction": {
+      "mouse": "Fait pivoter l'angle de projection de la lueur rouge à travers les silhouettes de béton de San Siro.",
+      "scroll": "Renforce le vignettage et la profondeur de la brume au bas de l'écran pour garder les listes de jeux impeccablement lisibles."
+    },
+    "palette": [
+      "#dc2626",
+      "#000000",
+      "#7f1d1d",
+      "#334155",
+      "#450a0a",
+      "#18181b"
+    ],
+    "references": [
+      "San Siro spiral towers night fog",
+      "AC Milan rossoneri dramatic mist",
+      "brutalist concrete stadium red floodlights"
+    ],
+    "risks": {
+      "pitfall": "Confondre avec Red Devils (Manchester United) car tous deux partagent le rouge et le noir.",
+      "solution": "Différenciation architecturale et stylistique absolue : San Siro se caractérise par son béton brut brutaliste, ses tours cylindriques hélicoïdales uniques au monde, et la brume milanaise vaporeuse plutôt que les briques industrielles anglaises et les cheminées de Manchester."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#140505",
+          "horizonColor": "#450a0a",
+          "density": 1.2,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#334155",
+          "density": 0.55,
+          "speed": 0.1,
+          "heightFalloff": 1.8,
+          "depth": 0.3
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#dc2626",
+          "glowColor": "#7f1d1d",
+          "outerColor": "#000000",
+          "glowX": 0.5,
+          "glowY": 0.85,
+          "density": 0.85,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "ash",
+        "params": {
+          "ashColor": "#71717a",
+          "density": 0.28,
+          "speed": 0.14,
+          "turbulence": 0.25
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.75,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "helical_tower_silhouettes",
+        "category": "scenery",
+        "reason": "Silhouettes 3D des tours cylindriques à rampes hélicoïdales emblématiques de l'architecture brutaliste du Stadio San Siro."
+      }
+    ]
+  }
+]

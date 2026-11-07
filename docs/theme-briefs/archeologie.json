@@ -1,0 +1,1269 @@
+[
+  {
+    "id": "whip_hat",
+    "name": "Whip & Hat",
+    "family": "Aventure & histoire",
+    "intensity": 3,
+    "universe": "indiana-jones",
+    "evocation": "Les Aventuriers de l'Arche Perdue (Raiders of the Lost Ark, 1981) : la jungle amazonienne péruvienne et le temple chachapoyan de l'Idole de la Fertilité. Une crypte végétale millénaire dissimulée sous la canopée, des dalles de pierre taillée moussues truffées de pièges mortels, des toiles d'araignées épaisses et des rais de lumière dorée traversant la poussière séculaire.",
+    "signature": "Des rais de lumière dorée volumétriques (god rays) qui percent la canopée d'une crypte végétale millénaire pour illuminer un piédestal de pierre ancestrale où flottent des poussières d'or et des lianes frémissantes.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Paroi de pierre cyclopéenne gravée de bas-reliefs précolombiens érodés, envahie de mousses sombres et de racines géantes sous la pénombre sylvestre."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Dalles de dallage antique disjointes et contreforts de temple en ruine étagés en perspective avec puits de lumière vertical zénithal."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Piédestal de pierre sculptée sacrificielle baigné d'un faisceau solaire éclatant perçant une ouverture de la voûte, avec micro-reflets d'or patiné."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Lianes épaisses et racines aériennes suspendues ondulant doucement sous un courant d'air de crypte, projetant des ombres portées feutrées."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Nuée de grains de poussière dorée en suspension dérivant en apesanteur, vignettage cuir patiné et grain cinéma 35mm d'aventure d'époque."
+      }
+    ],
+    "particles": {
+      "type": "Poussière ancestrale dorée et spores végétales en suspension (dust motes)",
+      "size": "1.0 à 2.4 px",
+      "speed": "0.16 (dérive brownienne très lente en apesanteur)",
+      "density": "170 motes instanciées en 1 draw call GPU",
+      "behavior": "Mouvement brownien 3D à très basse fréquence par Simplex noise, scintillement doux non-périodique lors du passage dans le faisceau solaire et répulsion interactive feutrée au passage de la souris."
+    },
+    "atmosphere": {
+      "mist": "Nappe de brume végétale humide rampante au ras des dalles de pierre moussues.",
+      "light": "Chaleureuse, mystique et contrastée, dominée par le rai de soleil doré tranchant avec la pénombre sépulcrale de la crypte.",
+      "airColor": "Ocre doré et ambre (#d4a853) dans le halo du faisceau solaire, virant au vert mousse et terre brûlée (#451a03) dans l'ombre.",
+      "mainLightSource": "Puits de lumière zénithal oblique perçant le plafond végétal du temple."
+    },
+    "rareEvents": [
+      {
+        "name": "Secousse tellurique du temple",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 18 secondes",
+        "description": "Un grondement sourd ébranle la crypte comme le réveil d'un piège antique ou le roulement d'un bloc de pierre au loin, faisant vibrer la caméra et décrocher une averse de poussière."
+      },
+      {
+        "name": "Souffle d'air de crypte",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 28 secondes",
+        "description": "Une bourrasque d'air frais s'engouffre à travers les fissures de la roche, faisant osciller vivement les lianes et tourbillonner la poussière dorée."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe 3D différenciée déplace l'angle d'incidence du faisceau lumineux et la perspective des lianes au premier plan ; le passage du curseur disperse doucement le nuage de poussières dorées.",
+      "scroll": "Plonge le regard vers le cœur de la crypte en resserrant le cône de lumière sur le piédestal central et en intensifiant la pénombre sur les marges pour détacher le texte de l'interface."
+    },
+    "palette": [
+      "#451a03",
+      "#d4a853",
+      "#78350f",
+      "#1c1917",
+      "#fef08a",
+      "#292524"
+    ],
+    "references": [
+      "Indiana Jones temple sunbeam dust",
+      "Shadertoy jungle ancient ruins god rays",
+      "CodePen ancient temple parallax dust"
+    ],
+    "risks": {
+      "pitfall": "Donner l'impression d'une simple image de jungle statique avec un filtre jaune ou des faisceaux de lumière rigides en stores vénitiens.",
+      "solution": "Modulation angulaire non-linéaire des rayons solaires par Simplex noise, poussières scintillantes uniquement lorsqu'elles traversent le faisceau lumineux, et secousse tellurique imprévisible pour dynamiser la tension dramatique."
+    },
+    "bricks": [
+      {
+        "brick": "god_rays",
+        "params": {
+          "lightSourceX": 0.25,
+          "lightSourceY": 0.95,
+          "rayColor": "#fef08a",
+          "density": 1.25,
+          "intensity": 1.35,
+          "speed": 0.2,
+          "decay": 0.93
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#451a03",
+          "density": 0.8,
+          "speed": 0.15,
+          "heightFalloff": 2.2,
+          "depth": 0.3
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef08a",
+          "density": 1.2,
+          "speed": 0.16,
+          "intensity": 1.2,
+          "twinkleSpeed": 1.3
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeInterval": 18.0,
+          "intensity": 0.85,
+          "speed": 1.4,
+          "decayRate": 3.8
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#d4a853",
+          "gustInterval": 28.0,
+          "speed": 1.1,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1c1917",
+          "intensity": 0.65,
+          "smoothness": 0.9,
+          "roundness": 0.7
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.07,
+          "speed": 0.7,
+          "density": 1.2,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "dappled_canopy_shadows",
+        "category": "special",
+        "reason": "Projection d'ombres portées mouvantes de feuillage végétal et lianes oscillant doucement à travers le faisceau lumineux."
+      }
+    ]
+  },
+  {
+    "id": "temple_of_doom",
+    "name": "Temple of Doom",
+    "family": "Aventure & histoire",
+    "intensity": 3,
+    "universe": "indiana-jones",
+    "evocation": "Indiana Jones et le Temple Maudit (Indiana Jones and the Temple of Doom, 1984) : les catacombes infernales sous le palais de Pankot. Un gouffre volcanique souterrain baigné de brasiers sacrificiels, de coulées de magma incandescent, de chaînes suspendues au-dessus du vide et de fumée suffocante.",
+    "signature": "Une coulée de lave magmatique rougeoyante qui serpente au fond d'une faille de basalte noir, illuminant par en-dessous des panaches de fumée sombre et projetant des gerbes de braises incandescentes ascendantes.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Rivière de magma en fusion profonde coulant avec torsion visqueuse dans une gorge abyssale de basalte craquelé, émettant une pulsation thermique orange et jaune."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Parois de roche magmatique et piliers souterrains cyclopéens sculptés de bas-reliefs sacrificiels illuminés en contre-jour par la rougeur du gouffre."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Brasiers et vasques cérémonielles de feu ardent vacillant violemment sous les courants d'air de la fournaise."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Nappe de distorsion thermique ascensionnelle faisant chatoyer optiquement l'espace et voiles de fumée noire en expansion."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Nuée de braises et d'étincelles incandescentes en convection turbulente montant vers le haut de l'écran, bordée d'un vignettage charbon brûlé."
+      }
+    ],
+    "particles": {
+      "type": "Braises incandescentes et flammèches thermiques ascendantes (embers)",
+      "size": "1.2 à 3.2 px",
+      "speed": "0.65 (ascension convective turbulente rapide)",
+      "density": "190 braises instanciées en 1 draw call",
+      "behavior": "Convection thermique ascendante avec turbulence Simplex 3D, dérive sous le vent chaud, gradient de refroidissement progressif du blanc-jaune ardent vers l'orange puis le rouge suie en s'éteignant."
+    },
+    "atmosphere": {
+      "mist": "Fumerolles et volutes de fumée âcre s'élevant des failles volcaniques.",
+      "light": "Brûlante, menaçante et incandescente, projetée du bas vers le haut par le magma et les brasiers.",
+      "airColor": "Rouge braise ardent (#dc2626) et orange magma (#ea580c) irradiant sur la roche noire (#0f172a).",
+      "mainLightSource": "La coulée de magma au fond du gouffre et les foyers de flammes sacrificielles."
+    },
+    "rareEvents": [
+      {
+        "name": "Onde de choc volcanique",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 15 secondes",
+        "description": "Une détonation de gaz souterrain libère une onde de surpression radiale circulaire qui déchire le magma et disloque momentanément la fumée."
+      },
+      {
+        "name": "Gerbe d'étincelles balistiques",
+        "type": "sparks",
+        "frequency": "Intervalle moyen de 11 secondes",
+        "description": "Une fissure magmatique projette une salve explosive d'étincelles blanches et dorées à courbure parabolique vers le haut."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe fait basculer la perspective verticale vers le gouffre de lave ; la position de la souris repousse physiquement les volutes de fumée et dévie la trajectoire ascensionnelle des braises incandescentes.",
+      "scroll": "Descend la caméra vers la fournaise magmatique, augmentant la radiance de l'orange incandescent et la densité du mirage de chaleur."
+    },
+    "palette": [
+      "#dc2626",
+      "#d4a853",
+      "#7f1d1d",
+      "#ea580c",
+      "#0f1117",
+      "#fef08a"
+    ],
+    "references": [
+      "Temple of Doom lava pit",
+      "Shadertoy magma lava flow heat distortion",
+      "CodePen underground fiery embers cave"
+    ],
+    "risks": {
+      "pitfall": "Avoir un fond rouge uniforme criard sans sensation de profondeur ou des flammes plates de dessin animé.",
+      "solution": "Superposition d'une croûte de basalte craquelée Voronoi, pulsation thermique continue du cœur de lave à 1200°C, et réfraction optique par distorsion de chaleur réelle."
+    },
+    "bricks": [
+      {
+        "brick": "lava_flow",
+        "params": {
+          "magmaColor": "#ea580c",
+          "coreColor": "#fef08a",
+          "crustColor": "#0f1117",
+          "density": 1.1,
+          "speed": 0.18,
+          "heatPulseSpeed": 1.25,
+          "intensity": 1.35
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#ea580c",
+          "density": 1.15,
+          "speed": 0.32,
+          "intensity": 1.1,
+          "chromaticAberration": 0.018,
+          "heatHeight": 0.75
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#dc2626",
+          "secondaryColor": "#ea580c",
+          "flickerType": 0,
+          "speed": 0.38,
+          "intensity": 1.2,
+          "density": 1.3
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#ea580c",
+          "hotColor": "#fef08a",
+          "density": 1.15,
+          "speed": 0.65,
+          "coolingRate": 1.1,
+          "intensity": 1.3
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#334155",
+          "tintColor": "#0f172a",
+          "density": 0.8,
+          "speed": 0.3,
+          "expansionRate": 1.5,
+          "intensity": 0.65
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#ea580c",
+          "waveInterval": 15.0,
+          "speed": 1.3,
+          "intensity": 1.1,
+          "chromaticAberration": 0.025
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#fef08a",
+          "coreColor": "#ffffff",
+          "burstInterval": 11.0,
+          "speed": 1.3,
+          "density": 1.0
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0a0708",
+          "intensity": 0.7,
+          "smoothness": 0.85,
+          "roundness": 0.6
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.06,
+          "speed": 0.8,
+          "density": 1.0,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "holy_grail",
+    "name": "Holy Grail",
+    "family": "Aventure & histoire",
+    "intensity": 3,
+    "universe": "indiana-jones",
+    "evocation": "Indiana Jones et la Dernière Croisade (The Last Crusade, 1989) : le temple du Croissant de la Lune sculpté dans les falaises de grès rose du canyon d'Al-Khazneh (Pétra) et la crypte secrète du Saint Graal gardée par le dernier chevalier templier.",
+    "signature": "Une monumentale faille de falaise de grès ocre baignée de poussière désertique, fendue en son centre par un faisceau céleste immaculé qui illumine un autel de pierre séculaire d'une lueur divine dorée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel bleu azur oriental limpide au zénith virant à la brume ocre de chaleur solaire sur la ligne de crête désertique."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Parois rocheuses vertigineuses de grès rose et colonnades corinthiennes taillées à même la falaise sous un éclairage solaire rasant."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Étroit défilé du canyon du Siq s'ouvrant sur une chambre sacrée où plonge une colonne verticale de lumière immaculée."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Tourbillons doux de poussière minérale et micro-particules de sable doré flottant au cœur du rai de lumière céleste."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Encadrement de roche taillée millénaire en contre-jour, vignettage ambre chaud et grain argentique vintage 35mm."
+      }
+    ],
+    "particles": {
+      "type": "Poussière dorée de roche sacrée et motes étincelantes (dust)",
+      "size": "0.9 à 2.0 px",
+      "speed": "0.18 (lévitation aérienne feutrée)",
+      "density": "160 motes instanciées en 1 draw call",
+      "behavior": "Flottaison brownienne en quasi-apesanteur, scintillement doux non-périodique lorsqu'elles traversent le faisceau solaire sacré et répulsion feutrée au passage du curseur."
+    },
+    "atmosphere": {
+      "mist": "Brume sèche et vaporeuse de poussière de désert filtrant la lumière.",
+      "light": "Céleste, majestueuse et sacrée, un contraste sublime entre la pureté d'un blanc immaculé (#f8fafc) et l'or chaud du grès antique (#d4a853).",
+      "airColor": "Blanc-doré éclatant dans la colonne de lumière, s'adoucissant en ocre rose et terre de Sienne dans les pénombres.",
+      "mainLightSource": "Faisceau zénithal sacré perçant la faille rocheuse du canyon pour frapper l'autel."
+    },
+    "rareEvents": [
+      {
+        "name": "Rafale de sirocco du canyon",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 16 secondes",
+        "description": "Une bourrasque d'air chaud s'engouffre dans le défilé rocheux, emportant un voile doré de sable fin et faisant osciller le faisceau de lumière."
+      },
+      {
+        "name": "Éclat céleste de relique sacrée",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 22 secondes",
+        "description": "Un éclat éblouissant de lumière pure traverse l'axe sacré comme un reflet étincelant sur la coupe du Graal, inondant un instant la scène de clarté céleste."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe oriente l'angle d'incidence du faisceau divin et déplace la profondeur des parois de grès ; le curseur fait tournoyer les poussières dorées.",
+      "scroll": "Fait descendre le regard dans la chambre sacrée, concentrant la radiance blanche au centre de l'écran pour sublimer la liste de jeux."
+    },
+    "palette": [
+      "#d4a853",
+      "#f8fafc",
+      "#78350f",
+      "#fef08a",
+      "#b45309",
+      "#1e293b"
+    ],
+    "references": [
+      "Petra Al-Khazneh Holy Grail light beam",
+      "Shadertoy temple sacred god rays dust",
+      "CodePen desert canyon sunbeam parallax"
+    ],
+    "risks": {
+      "pitfall": "Ressembler au thème Whip & Hat en étant juste 'un autre temple avec de la lumière'.",
+      "solution": "Différenciation radicale de cadre : aucun élément végétal, roche de grès rose désertique de Pétra, faisceau de pure lumière divine blanche et dorée (#f8fafc, #d4a853), vents de sable et austérité sacrée chevaleresque."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#1e3a8a",
+          "bottomColor": "#78350f",
+          "horizonColor": "#d4a853",
+          "density": 1.1,
+          "intensity": 1.1,
+          "depth": 0.1
+        }
+      },
+      {
+        "brick": "dunes",
+        "params": {
+          "sandColor": "#d4a853",
+          "shadowColor": "#78350f",
+          "skyColor": "#1e293b",
+          "density": 0.9,
+          "sunAngle": 0.75,
+          "intensity": 1.2
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "lightSourceX": 0.0,
+          "lightSourceY": 1.1,
+          "rayColor": "#f8fafc",
+          "density": 1.3,
+          "intensity": 1.45,
+          "decay": 0.94
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#fef08a",
+          "outerColor": "#78350f",
+          "glowX": 0.0,
+          "glowY": 0.2,
+          "density": 1.2,
+          "intensity": 1.3
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef08a",
+          "density": 1.1,
+          "speed": 0.18,
+          "intensity": 1.25,
+          "twinkleSpeed": 1.2
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#d4a853",
+          "gustInterval": 16.0,
+          "speed": 1.2,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#ffffff",
+          "trailColor": "#fef08a",
+          "starInterval": 22.0,
+          "speed": 1.5,
+          "intensity": 1.3
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#2d1810",
+          "intensity": 0.55,
+          "smoothness": 0.9,
+          "roundness": 0.7
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.05,
+          "speed": 0.6,
+          "density": 1.1,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "canyon_rock_face",
+        "category": "intermediate",
+        "reason": "Parois rocheuses verticales de défilé géologique sculptées dans le grès avec strates géologiques en parallaxe."
+      }
+    ]
+  },
+  {
+    "id": "sic_parvis_magna",
+    "name": "Sic Parvis Magna",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "uncharted",
+    "evocation": "Uncharted (la saga de Nathan Drake et la devise de Sir Francis Drake : 'La grandeur naît de débuts modestes') : le bureau d'explorateur et la quête de Libertalia. Cartes marines anciennes jaunies, compas en laiton patiné, journal de bord relié de cuir usé, loupe, et lumière d'or d'une fin d'après-midi tropicale sur l'océan.",
+    "signature": "Une boussole maritime antique en laiton patiné dont l'aiguille magnétique oscille lentement sur des cartes marines au milieu de rais de lumière d'atelier d'explorateur et de grains de poussière dorée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Horizon océanique crépusculaire sous nuages marins vaporeux dérivants et lueur ambrée de fin de jour."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette de gréements et mâts de caravelle au mouillage découpés dans la brume maritime au-delà de la baie vitrée de la cabine."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Grande table de navigation en chêne patiné couverte de cartes nautiques calligraphiées, de calques et d'une rose des vents aux gravures dorées."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Rai de soleil déclinant filtrant à travers des persiennes en bois, motes de poussière de vieux parchemins et vignettage cuir vieilli."
+      }
+    ],
+    "particles": {
+      "type": "Poussière d'atelier et reflets dorés de laiton en suspension (dust)",
+      "size": "0.8 à 1.9 px",
+      "speed": "0.15 (dérive brownienne feutrée)",
+      "density": "110 motes instanciées en 1 draw call",
+      "behavior": "Flottaison calme en suspension dans l'air chaud de la cabine, scintillement doré délicat et répulsion interactive feutrée au curseur."
+    },
+    "atmosphere": {
+      "mist": "Brume marine salée lointaine visible au large, air intérieur chaud et feutré.",
+      "light": "Dorée, intime et nostalgique, évoquant les après-midis d'étude de cartes avant le départ en expédition.",
+      "airColor": "Ambre doré (#d4a853) et brun cuir (#451a03) sur fond bleu marine crépusculaire (#1e1b4b).",
+      "mainLightSource": "Soleil couchant bas sur l'horizon perçant la fenêtre de la cabine maritime."
+    },
+    "rareEvents": [
+      {
+        "name": "Brise du large par la fenêtre",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 20 secondes",
+        "description": "Une brise marine s'engouffre dans la pièce, soulevant un coin de carte parcheminée et faisant tournoyer les grains de poussière dans le rai solaire."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace les calques de cartes et l'axe de visée vers la baie maritime ; le curseur fait vaciller doucement l'aiguille magnétique de la boussole.",
+      "scroll": "Modifie subtilement la profondeur focale en concentrant la lumière sur la zone de travail centrale."
+    },
+    "palette": [
+      "#451a03",
+      "#d4a853",
+      "#78350f",
+      "#fef3c7",
+      "#1e1b4b",
+      "#b45309"
+    ],
+    "references": [
+      "Uncharted Nathan Drake desk map",
+      "Shadertoy parchment nautical map compass",
+      "CodePen antique explorer desk parallax"
+    ],
+    "risks": {
+      "pitfall": "Rendu statique de texture de parchemin plat ressemblant à un fond d'écran Photoshop fixe.",
+      "solution": "Perspective 3D vivante avec verrière donnant sur la mer houleuse, rais de lumière vivants à poussières dorées dynamiques et aiguille de boussole réagissant magnétiquement au curseur."
+    },
+    "bricks": [
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "skyColor": "#1e1b4b",
+          "cloudColor": "#d4a853",
+          "density": 0.5,
+          "speed": 0.12,
+          "intensity": 1.1
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "lightSourceX": 0.45,
+          "lightSourceY": 0.7,
+          "rayColor": "#fef3c7",
+          "density": 0.9,
+          "intensity": 1.2,
+          "decay": 0.91
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef08a",
+          "density": 0.85,
+          "speed": 0.15,
+          "intensity": 1.1,
+          "twinkleSpeed": 1.1
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#fef3c7",
+          "gustInterval": 20.0,
+          "speed": 0.9,
+          "intensity": 0.6
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1c1917",
+          "intensity": 0.6,
+          "smoothness": 0.85,
+          "roundness": 0.7
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.05,
+          "speed": 0.5,
+          "density": 1.1,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "nautical_compass_rose",
+        "category": "special",
+        "reason": "Rose des vents et aiguille de boussole en laiton à shader vectoriel avec balancement inertiel magnétique sous la souris."
+      }
+    ]
+  },
+  {
+    "id": "drakes_fortune",
+    "name": "Drake's Fortune",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "uncharted",
+    "evocation": "Uncharted: Drake's Fortune (2007) : l'île tropicale inexplorée du Pacifique sur la trace de l'El Dorado. Canopée émeraude luxuriante, cascades tumultueuses d'eau turquoise, ruines espagnoles moussues et carcasse de navire rouillé prise dans les lianes.",
+    "signature": "Une cascade d'eau vive tropicale turquoise perçant une falaise de jungle émeraude, générant un voile d'embruns humides traversé de reflets dorés et de feuilles dérivant au vent.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Pics rocheux karstiques tropicaux émergeant d'une mer de brume sylvestre sous un ciel bleu lagon ensoleillé."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Forêt tropicale étagée avec rideau de cascade d'eau écumante dévalant les falaises de basalte moussues."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Ruines de pierre coloniale espagnole du XVIe siècle envahies de fougères arborescentes et de monsteras ondulant sous la brise."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Tourbillons de feuilles mortes d'acajou et de jungle portées par le vent, micro-gouttelettes d'embruns et vignettage feuillage profond."
+      }
+    ],
+    "particles": {
+      "type": "Feuilles tropicales rousses et vertes en chute libre aérodynamique (leaves)",
+      "size": "1.5 à 3.5 px",
+      "speed": "0.38 (descente avec portance et tumbling 3D)",
+      "density": "70 feuilles instanciées en 1 draw call",
+      "behavior": "Glissade, portance et décrochage aérodynamique en 3D sous les brises de la vallée, panachage bicolore vert émeraude et roux doré, rafales réactives au curseur."
+    },
+    "atmosphere": {
+      "mist": "Nappe d'embruns humides et de brume de sous-bois rafraîchissant l'air.",
+      "light": "Claire, vibrante et aventureuse, soleil tropical filtré à travers les frondaisons épaisses.",
+      "airColor": "Vert émeraude profond (#065f46) et or solaire (#d4a853) avec reflets turquoise d'eau vive (#34d399).",
+      "mainLightSource": "Soleil tropical généreux baignant la cime de la forêt et la cascade."
+    },
+    "rareEvents": [
+      {
+        "name": "Rafale de vent tropicale",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 18 secondes",
+        "description": "Une bourrasque de mousson balaie la clairière, faisant plier la canopée et projetant une gerbe de feuilles tourbillonnantes vers l'avant-plan."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe décale la ligne de crête des montagnes et la canopée ; le passage de la souris génère un souffle d'air qui dévie les feuilles en chute libre.",
+      "scroll": "Fait descendre la perspective le long de la cascade, renforçant la densité d'embruns au bas de l'écran."
+    },
+    "palette": [
+      "#065f46",
+      "#d4a853",
+      "#064e3b",
+      "#34d399",
+      "#1e293b",
+      "#fef08a"
+    ],
+    "references": [
+      "Uncharted jungle waterfall ruins",
+      "Shadertoy tropical rainforest waterfall",
+      "CodePen lush jungle parallax leaves"
+    ],
+    "risks": {
+      "pitfall": "Forêt verte uniforme manquant de contraste et de relief, ressemblant à une tapisserie végétale plate.",
+      "solution": "Étagement en 3 plans de conifères/feuillus avec flexion quadratique des cimes sous le vent, nappe d'embruns vaporeuse et panachage chromatique de feuilles tombantes."
+    },
+    "bricks": [
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#064e3b",
+          "sunColor": "#d4a853",
+          "mistColor": "#065f46",
+          "density": 0.9,
+          "depth": 0.35,
+          "intensity": 1.0
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#064e3b",
+          "fogColor": "#065f46",
+          "density": 1.1,
+          "windStrength": 0.45,
+          "speed": 0.22
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#065f46",
+          "density": 0.75,
+          "speed": 0.18,
+          "heightFalloff": 1.6,
+          "depth": 0.3
+        }
+      },
+      {
+        "brick": "leaves",
+        "params": {
+          "leafColor": "#d4a853",
+          "altColor": "#34d399",
+          "density": 0.9,
+          "speed": 0.38,
+          "flutterRate": 1.5
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#34d399",
+          "gustInterval": 18.0,
+          "speed": 1.2,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#022c22",
+          "intensity": 0.55,
+          "smoothness": 0.9,
+          "roundness": 0.65
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "waterfall_cascade",
+        "category": "special",
+        "reason": "Rideau d'eau vive vertical procédural avec texture d'écoulement rapide et nappe d'embruns écumants à la base."
+      }
+    ]
+  },
+  {
+    "id": "tomb_raider",
+    "name": "Tomb Raider",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "tomb-raider",
+    "evocation": "Les racines originelles de Tomb Raider (Lara Croft, Core Design 1996) : les catacombes de Vilcabamba, les pyramides précolombiennes et les cités englouties de la Méditerranée. Dalles de pierre cyclopéenne taillée, corridors silencieux millénaires, bassins souterrains d'eau cristalline aux caustiques bleutées et mystère archéologique pur.",
+    "signature": "Des reflets caustiques turquoise mouvants projetés par un bassin souterrain sacré sur les parois de pierre millénaire d'une crypte ornée de glyphes, où montent de lentes bulles d'eau cristalline.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Paroi de crypte cyclopéenne taillée dans le roc sombre, ornée de glyphes et bas-reliefs antiques patinés de calcaire sous pénombre bleutée."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Colonnes et arches de temple submergé émergeant d'un bassin d'eau souterraine limpide et immobile."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Réseau de caustiques lumineuses turquoise ondulant et réfractant des lignes de lumière vive sur les dalles de pierre mouillées."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Sphères de bulles d'eau translucides remontant doucement en zig-zag depuis le bassin sacré, encadrées d'un vignettage pierre sombre."
+      }
+    ],
+    "particles": {
+      "type": "Bulles d'eau souterraine cristallines et reflets irisés (bubbles)",
+      "size": "1.2 à 2.8 px",
+      "speed": "0.45 (ascension sinueuse douce)",
+      "density": "65 bulles instanciées en 1 draw call",
+      "behavior": "Ascension verticale oscillante en zig-zag sinueux, expansion graduelle avec la baisse de pression vers la surface, reflets spéculaires turquoise et éclatement discret."
+    },
+    "atmosphere": {
+      "mist": "Humidité fraîche et vaporeuse flottant au-dessus de la nappe d'eau du sanctuaire.",
+      "light": "Subaquatique, mystique et feutrée, portée par les caustiques turquoise contrastant avec la roche brune.",
+      "airColor": "Turquoise sarcophage (#14b8a6) et bleu lagon (#0f766e) diffusant sur la terre d'ombre brûlée (#451a03).",
+      "mainLightSource": "Réfraction de lumière zénithale filtrée par l'eau du bassin souterrain."
+    },
+    "rareEvents": [
+      {
+        "name": "Ondulation caustique sous-marine",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 17 secondes",
+        "description": "Un remous invisible perturbe la surface du bassin sacré, propageant des cercles concentriques qui font vibrer et onduler les caustiques sur les murs."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace la perspective des colonnes submergées ; le curseur de la souris fait onduler les motifs Voronoi de caustiques et repousse délicatement les bulles d'eau.",
+      "scroll": "Plonge le point de vue plus près de la surface de l'eau, amplifiant la brillance des lignes caustiques tout en préservant le contraste des cartes UI."
+    },
+    "palette": [
+      "#451a03",
+      "#14b8a6",
+      "#0f766e",
+      "#2dd4bf",
+      "#1e1b4b",
+      "#f59e0b"
+    ],
+    "references": [
+      "Tomb Raider cistern underwater caustics",
+      "Shadertoy water caustics ancient ruins",
+      "CodePen submerged ancient temple reflections"
+    ],
+    "risks": {
+      "pitfall": "Motif cellulaire de caustiques trop régulier ressemblant à un carrelage de piscine moderne.",
+      "solution": "Superposition de deux diagrammes Voronoi déphasés en interférence constructive avec micro-dispersion chromatique RVB et pulsation non-périodique de l'eau."
+    },
+    "bricks": [
+      {
+        "brick": "water_caustics",
+        "params": {
+          "waterColor": "#451a03",
+          "causticColor": "#14b8a6",
+          "density": 1.05,
+          "speed": 0.22,
+          "intensity": 1.25,
+          "causticScale": 3.2
+        }
+      },
+      {
+        "brick": "bubbles",
+        "params": {
+          "bubbleColor": "#2dd4bf",
+          "density": 0.75,
+          "speed": 0.45,
+          "intensity": 1.1,
+          "wobbleAmount": 0.35
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#14b8a6",
+          "secondaryColor": "#0f766e",
+          "flickerType": 2,
+          "speed": 0.2,
+          "intensity": 0.95
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#2dd4bf",
+          "waveInterval": 17.0,
+          "speed": 0.9,
+          "intensity": 0.8,
+          "chromaticAberration": 0.015
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#180c05",
+          "intensity": 0.62,
+          "smoothness": 0.9,
+          "roundness": 0.7
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.05,
+          "speed": 0.5,
+          "density": 1.0,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "croft_manor",
+    "name": "Croft Manor",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "tomb-raider",
+    "evocation": "Le Manoir des Croft dans le Surrey, Angleterre (Tomb Raider II, III, Legend, Rise of the Tomb Raider) : la demeure victorienne aristocratique sous la pluie battante anglaise. Bibliothèque majestueuse aux parquets et lambris de chêne sombre, feu crépitant dans un âtre monumental, pluie ruisselant sur une haute baie vitrée et reliques du monde entier sous cloche.",
+    "signature": "Une haute verrière victorienne ruisselante d'une pluie battante donnant sur un parc anglais brumeux, tandis que la lueur dansante d'un grand feu de cheminée projette des ombres chaleureuses sur de vieux grimoires et des reliques dorées.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Parc anglais embrumé sous un ciel d'orage crépusculaire d'ardoise froide, silhouettes floues de vieux chênes et conifères."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Haute baie vitrée victorienne à croisillons plombés où s'écrasent et ruissellent des filets de pluie battante oblique."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Cheminée monumentale en pierre d'abbaye sculptée où flamboie un feu de bûches chaleureux aux reflets orangés et cuivrés."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Poussière dorée en suspension flottant paisiblement dans la chaleur de la bibliothèque, encadrée d'un vignettage noble et chaleureux."
+      }
+    ],
+    "particles": {
+      "type": "Pluie battante extérieure et motes dorées intérieures (rain + dust)",
+      "size": "Traits de pluie fins étirés (rain) + motes de poussière fines (0.8 à 1.8 px)",
+      "speed": "Pluie vive (1.5) + poussière lente en flottaison intérieure (0.14)",
+      "density": "140 gouttes de pluie + 80 motes de poussière dorée",
+      "behavior": "Averse cinématique extérieure avec traits inclinés sous le vent ; flottaison brownienne calme et feutrée des grains de poussière dans le halo du feu."
+    },
+    "atmosphere": {
+      "mist": "Brume humide et froide dehors dans le parc, s'opposant à l'atmosphère chaleureuse et sèche de la bibliothèque.",
+      "light": "Contraste somptueux entre la lumière froide bleu ardoise (#475569) filtrant de la verrière et la chaleur flamboyante ambrée (#d4a853) du foyer de cheminée.",
+      "airColor": "Gris ardoise froid à l'extérieur, ambre et or de boiserie à l'intérieur.",
+      "mainLightSource": "Le foyer ardent de la cheminée projetant une lueur vivante vacillante sur la pièce."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclair lointain sur le parc",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 19 secondes",
+        "description": "Un éclair bleuté illumine brièvement le parc à travers la verrière, dessinant un court instant l'ombre géométrique des croisillons sur le parquet avant de s'éteindre."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe décale subtilement les croisillons de la verrière par rapport aux arbres du parc ; le curseur fait danser la convection thermique du halo de cheminée.",
+      "scroll": "Focalise la vue sur l'âtre et les reliures anciennes en estompant la froideur de la vitre extérieure."
+    },
+    "palette": [
+      "#475569",
+      "#d4a853",
+      "#1e293b",
+      "#b45309",
+      "#fef08a",
+      "#0f172a"
+    ],
+    "references": [
+      "Croft Manor library fireplace rain",
+      "Shadertoy rainy window cozy fireplace",
+      "CodePen gothic library fireplace rain parallax"
+    ],
+    "risks": {
+      "pitfall": "Lignes de pluie ressemblant à des barreaux rigides ou feu de cheminée clignotant de façon binaire comme un stroboscope.",
+      "solution": "Orientation dynamique de la pluie selon le vent, vacillement organique multi-fréquence du foyer par Simplex noise avec convection thermique, et éclair furtif asynchrone."
+    },
+    "bricks": [
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#0f172a",
+          "fogColor": "#475569",
+          "density": 0.85,
+          "speed": 0.15,
+          "windStrength": 0.35
+        }
+      },
+      {
+        "brick": "rain",
+        "params": {
+          "rainColor": "#94a3b8",
+          "density": 0.85,
+          "speed": 1.5,
+          "windAngle": 0.15,
+          "streakLength": 1.2,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#d4a853",
+          "secondaryColor": "#b45309",
+          "flickerType": 0,
+          "speed": 0.32,
+          "intensity": 1.25,
+          "lightX": 0.3,
+          "lightY": -0.2
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef08a",
+          "density": 0.7,
+          "speed": 0.14,
+          "intensity": 1.05,
+          "twinkleSpeed": 1.0
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "lightningColor": "#93c5fd",
+          "flashColor": "#f8fafc",
+          "strikeInterval": 19.0,
+          "speed": 1.3,
+          "intensity": 1.1
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0b101b",
+          "intensity": 0.58,
+          "smoothness": 0.9,
+          "roundness": 0.7
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.05,
+          "speed": 0.6,
+          "density": 1.1,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "rain_on_window_panes",
+        "category": "special",
+        "reason": "Gouttes d'eau condensées et traînées de ruissellement gravitaire sur carreaux de verre à shader de réfraction."
+      }
+    ]
+  },
+  {
+    "id": "the_survivor",
+    "name": "The Survivor",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "tomb-raider",
+    "evocation": "Tomb Raider (le reboot de 2013 / Yamatai, l'île du Triangle du Dragon) : l'épreuve de survie viscérale de Lara Croft sur une île maudite balayée par des tempêtes perpétuelles. Falaises déchiquetées au-dessus d'un océan démonté semé d'épaves de navires rouillés, pluie torrentielle glaciale et flamme fragile d'un feu de camp de fortune protecteur.",
+    "signature": "Une falaise déchiquetée battue par une pluie torrentielle et les vagues houleuses d'un océan hostile, où un feu de camp de fortune vacille désespérément sous les rafales en crachant des flammèches écarlates.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Océan houleux déchaîné sous des nuages d'orage tourmentés en perpétuel brassage."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Crêtes de falaises escarpées et carcasses d'épaves de navires échoués découpées en contre-jour sombre."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Campement de fortune adossé à un surplomb de roche avec foyer de feu de camp crépitant et abri de branchages."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Pluie battante diluvienne étirée par les bourrasques, gerbes de braises rouges arrachées au foyer et vignettage dramatique avec grain 16mm."
+      }
+    ],
+    "particles": {
+      "type": "Averse de pluie diluvienne et braises de campement arrachées par le vent (rain + embers)",
+      "size": "Traits de pluie étirés (1.4) + braises incandescentes (1.0 à 2.5 px)",
+      "speed": "Pluie très rapide (1.7) + braises soufflées latéralement (0.55)",
+      "density": "180 traits de pluie + 55 braises rouges incandescentes",
+      "behavior": "Averse inclinée par un vent violent balayant l'écran ; braises ascendantes avec forte dérive horizontale et micro-scintillements rouges et orange."
+    },
+    "atmosphere": {
+      "mist": "Brouillard marin d'embruns fouettés par le vent et fumée humide de feu de bois.",
+      "light": "Hostile, froide et dramatique, ponctuellement réchauffée par le rougeoiement intense du campement de survie.",
+      "airColor": "Vert mousse nocturne (#14532d) et gris tempête (#0f172a), perforé par le rouge sang et braise (#dc2626).",
+      "mainLightSource": "Le petit foyer de camp de survie et les éclairs fendant l'orage marin."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclair de tempête déchirant le ciel",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 13 secondes",
+        "description": "Un coup de foudre ramifié zèbre les nuages d'orage au-dessus de l'océan, projetant un flash aveuglant blanc et violet qui détache la silhouette des falaises et des épaves."
+      }
+    ],
+    "interaction": {
+      "mouse": "La souris incline l'angle de chute de la pluie battante (simulation du vent dynamique) et fait trembler la flamme du campement.",
+      "scroll": "Rapproche le regard du feu de camp protecteur, réduisant l'agression visuelle de la tempête au profit d'un halo chaleureux pour la lisibilité."
+    },
+    "palette": [
+      "#14532d",
+      "#dc2626",
+      "#0f172a",
+      "#ea580c",
+      "#334155",
+      "#f8fafc"
+    ],
+    "references": [
+      "Tomb Raider 2013 Yamatai camp storm",
+      "Shadertoy stormy ocean cliff rain lightning",
+      "CodePen survival campfire storm parallax"
+    ],
+    "risks": {
+      "pitfall": "Scène trop sombre ou étouffante où les éléments d'interface deviennent illisibles sous la tempête.",
+      "solution": "Canaliser le foyer du feu de camp comme point d'ancrage lumineux chaleureux, appliquer un voile contentShield doux et limiter le contraste des traits de pluie au centre."
+    },
+    "bricks": [
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "skyColor": "#0f172a",
+          "cloudColor": "#334155",
+          "density": 0.85,
+          "speed": 0.25,
+          "windAngle": 0.25,
+          "intensity": 1.2
+        }
+      },
+      {
+        "brick": "waves",
+        "params": {
+          "deepColor": "#0f172a",
+          "crestColor": "#94a3b8",
+          "density": 1.1,
+          "speed": 0.35,
+          "waveSteepness": 0.65,
+          "intensity": 1.1
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#0a1120",
+          "sunColor": "#14532d",
+          "mistColor": "#1e293b",
+          "density": 1.0,
+          "depth": 0.35
+        }
+      },
+      {
+        "brick": "rain",
+        "params": {
+          "rainColor": "#93c5fd",
+          "density": 1.1,
+          "speed": 1.7,
+          "windAngle": 0.28,
+          "streakLength": 1.35,
+          "intensity": 0.95
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#dc2626",
+          "secondaryColor": "#ea580c",
+          "flickerType": 0,
+          "speed": 0.4,
+          "intensity": 1.3,
+          "lightX": -0.2,
+          "lightY": -0.15
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#dc2626",
+          "hotColor": "#ea580c",
+          "density": 0.85,
+          "speed": 0.55,
+          "coolingRate": 1.2,
+          "intensity": 1.25
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "lightningColor": "#c4b5fd",
+          "flashColor": "#f8fafc",
+          "strikeInterval": 13.0,
+          "speed": 1.4,
+          "intensity": 1.35
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#050811",
+          "intensity": 0.68,
+          "smoothness": 0.85,
+          "roundness": 0.6
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.08,
+          "speed": 0.8,
+          "density": 1.2,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": []
+  }
+]
+

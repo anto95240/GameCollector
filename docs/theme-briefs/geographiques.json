@@ -1,0 +1,1371 @@
+[
+  {
+    "id": "egypte_antique",
+    "name": "Égypte Antique",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": "egypte-antique",
+    "evocation": "L'Égypte des pharaons, la majesté intemporelle de la nécropole de Gizeh, le souffle du Nil et la mystique des tombes de la Vallée des Rois. Un univers d'exploration archéologique grandiose (Assassin's Creed Origins, La Momie, Tomb Raider IV), où la chaleur accablante du désert crée un mirage doré à l'horizon tandis que de fines particules de sable d'or dérivent sous un soleil rasant cuivré.",
+    "signature": "Un mirage doré faisant onduler à l'horizon les crêtes des dunes et les silhouettes pyramidales sous une pluie lente de poussières de sable d'or illuminées par un soleil couchant cuivré.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel crépusculaire d'Égypte au dégradé ocre et ambre profond vers une lueur solaire dorée à l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Crêtes de dunes sinueuses aux versants d'or brûlé et aux ombres allongées sculptées par le sirocco."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Silhouette colossale de pyramides et de pylônes antiques se découpant en contre-jour dans la brume de chaleur."
+      },
+      {
+        "plan": 4,
+        "type": "Atmosphère & lumière",
+        "description": "Faisceaux obliques de soleil couchant perçant l'air chaud chargé de silice et légère distorsion thermique convective au ras du sol."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan atmosphérique",
+        "description": "Grains de sable dorés et micro-poussières en suspension dérivant au vent du désert, encadrés par un vignettage chaud et feutré."
+      }
+    ],
+    "particles": {
+      "type": "Poussières de sable d'or et micro-motes de calcaire (dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.18 (dérive éolienne brownienne lente)",
+      "density": "30 motes instanciées",
+      "behavior": "Lévitation aérienne douce avec oscillations imperceptibles et légère accélération horizontale lors du souffle du sirocco."
+    },
+    "atmosphere": {
+      "mist": "Brume sèche de sable et de chaleur enveloppant la base des monuments lointains.",
+      "light": "Lumière vespérale rasante dorée et cuivrée, instaurant une atmosphère noble, mystique et reposante.",
+      "airColor": "Ambre solaire (#d4a853), crème d'albâtre (#fef3c7) et ocre antique (#78350f).",
+      "mainLightSource": "Disque solaire bas sur l'horizon droit (lightSourceX: 0.65, lightSourceY: 0.25) projetant des faisceaux crépusculaires allongés."
+    },
+    "rareEvents": [
+      {
+        "name": "Souffle du Sirocco",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 40.0 secondes",
+        "description": "Une rafale de vent chaud du désert traverse le champ de vision, soulevant momentanément un ruban de poussière dorée et étirant les crêtes de sable."
+      }
+    ],
+    "interaction": {
+      "mouse": "Décalage parallaxe progressif des dunes et des silhouettes pyramidales, avec dispersion feutrée des motes de sable à proximité du curseur.",
+      "scroll": "Amplifie légèrement le rayonnement des faisceaux solaires à l'horizon sans perturber le contraste des cartes et typographies de l'interface."
+    },
+    "palette": [
+      "#fef3c7",
+      "#fde68a",
+      "#d4a853",
+      "#b45309",
+      "#78350f",
+      "#1c1917"
+    ],
+    "references": [
+      "Desert dunes sandstorm god rays WebGL",
+      "Ancient Egypt golden hour pyramids atmosphere",
+      "Three.js dust particles sunset desert"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à un simple désert jaune uniforme et statique qui fatiguerait les yeux ou masquerait le texte.",
+      "solution": "Utiliser un contraste d'ombre ocre profond pour ancrer l'interface, limiter la densité particulaire à 30 motes et employer une distorsion thermique très basse fréquence."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#78350f",
+          "bottomColor": "#1c1917",
+          "horizonColor": "#d4a853",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "dunes",
+        "params": {
+          "sandColor": "#d4a853",
+          "shadowColor": "#78350f",
+          "skyColor": "#b45309",
+          "density": 0.85,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.9,
+          "sunAngle": 0.75
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#fde68a",
+          "density": 0.7,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "lightSourceX": 0.65,
+          "lightSourceY": 0.3,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#d4a853",
+          "density": 0.6,
+          "speed": 0.2,
+          "depth": 0.25,
+          "intensity": 0.45,
+          "heatHeight": 0.4
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fde68a",
+          "density": 0.4,
+          "speed": 0.14,
+          "depth": 0.4,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1c1917",
+          "intensity": 0.42,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "viking_norse",
+    "name": "Norse & Vikings",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": "nordique-vikings",
+    "evocation": "L'épopée maritime scandinave des sagas et l'atmosphère brute du Grand Nord (God of War Ragnarök, Assassin's Creed Valhalla, Vikings). Les fjords austères aux eaux d'ardoise et falaises de basalte sombre, les campements côtiers où crépitent des feux de camp aux braises rougeoyantes rappelant la couleur sang des boucliers ronds, le souffle glacial de la mer du Nord et les voiles spectraux d'une aurore boréale silencieuse.",
+    "signature": "Des braises écarlates s'élevant d'un feu de campement côtier devant la silhouette brumeuse de falaises de fjord baignées par les reflets d'une onde sombre et d'une discrète aurore polaire.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel nocturne scandinave d'encre bleu ardoise, éclairé par les ondulations d'une aurore boréale ténue vert émeraude et pourpre."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Paroi monumentale de falaises de fjord aux arêtes de basalte sombre couronnées de névés étanches."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Eaux profondes et calmes du fjord clapotant avec de subtils reflets métalliques dans la pénombre."
+      },
+      {
+        "plan": 4,
+        "type": "Atmosphère & lumière",
+        "description": "Volutes de brume marine côtière rampante adoucissant la base des parois rocheuses."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan atmosphérique",
+        "description": "Braises incandescentes et flammèches rouge sang s'élevant lentement dans le vent boréal, cerclées d'un vignettage d'ardoise."
+      }
+    ],
+    "particles": {
+      "type": "Braises incandescentes et flammèches écarlates (embers)",
+      "size": "1.2 à 2.4 px",
+      "speed": "0.22 (ascension convective et dérive latérale sous le vent marin)",
+      "density": "28 braises actives",
+      "behavior": "Montée lente en spirale sous la convection thermique avec refroidissement graduel du jaune-or vers le rouge sang profond (#991b1b) avant extinction."
+    },
+    "atmosphere": {
+      "mist": "Bancs de brume marine froide glissant au ras des flots et s'accrochant aux contreforts rocheux.",
+      "light": "Dualité thermique saisissante entre la lueur froide bleutée du fjord nordique et la pulsation rougeoyante du foyer de campement.",
+      "airColor": "Gris ardoise (#334155), bleu nuit boréal (#0f172a) et rouge sang de bouclier (#991b1b).",
+      "mainLightSource": "Foyer ardent au bas gauche (lightX: -0.45, lightY: -0.55) réchauffant le bas de l'écran avec une lueur rougeoyante discrète."
+    },
+    "rareEvents": [
+      {
+        "name": "Bise Glaciale du Fjord",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 45.0 secondes",
+        "description": "Une rafale de bise glaciale venue du large fouette le fjord, étirant les draperies de l'aurore et dispersant les braises en un panache vermeil."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déplacement parallaxe différencié entre les parois du fjord et l'onde marine, avec perturbation thermique des braises au passage du pointeur.",
+      "scroll": "Fait légèrement varier la rémanence lumineuse de l'aurore boréale à l'horizon sans éblouir l'interface."
+    },
+    "palette": [
+      "#0f172a",
+      "#1e293b",
+      "#334155",
+      "#64748b",
+      "#991b1b",
+      "#ef4444"
+    ],
+    "references": [
+      "Nordic fjord night embers fog WebGL",
+      "Viking camp fire mist atmospheric scene",
+      "Three.js aurora borealis mountains dark waters"
+    ],
+    "risks": {
+      "pitfall": "Sombrer dans un décor grisâtre trop ténébreux où les braises paraîtraient agressives ou distrayantes.",
+      "solution": "Calibrer les braises avec un rouge rubis feutré et une faible densité, tout en conservant une nappe de brume pour adoucir les contrastes avec le texte."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#334155",
+          "density": 1.0,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "aurora",
+        "params": {
+          "topColor": "#991b1b",
+          "bottomColor": "#10b981",
+          "density": 0.45,
+          "speed": 0.12,
+          "depth": 0.2,
+          "intensity": 0.65,
+          "waveFrequency": 2.0
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#0f172a",
+          "sunColor": "#334155",
+          "mistColor": "#1e293b",
+          "density": 0.9,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.85,
+          "snowLevel": 0.7
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#1e293b",
+          "density": 0.65,
+          "speed": 0.15,
+          "depth": 0.25,
+          "intensity": 0.7,
+          "heightFalloff": 1.8
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#991b1b",
+          "hotColor": "#f59e0b",
+          "density": 0.35,
+          "speed": 0.18,
+          "depth": 0.4,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0f172a",
+          "intensity": 0.48,
+          "smoothness": 0.88
+        }
+      }
+    ],
+    "missingBricks": [
+      "glowing_runes (particules ou stèle de glyphes runiques nordiques rougeoyants pulsant en lévitation)"
+    ]
+  },
+  {
+    "id": "tundra",
+    "name": "Tundra",
+    "family": "Éléments & catastrophes",
+    "intensity": 1,
+    "universe": "toundra-arctique",
+    "evocation": "L'immensité silencieuse et glacée de la toundra arctique et du grand nord sibérien (The Long Dark, Horizon Zero Dawn: The Frozen Wilds, les expéditions polaires d'Amundsen). Un désert de glace infini sans arbres, où le permafrost est pétrifié sous le givre, baigné par une lumière crépusculaire d'un bleu azur perçant et balayé par un blizzard de poudreuse lente qui efface l'horizon.",
+    "signature": "Un blizzard vaporeux de poudreuse blanche tourbillonnant en rafales lentes au-dessus d'une plaine de permafrost gelée baignée d'une froide lumière d'azur arctique.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel arctique dépouillé au dégradé bleu ciel glacial vers un blanc de givre boréal éclatant."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Crêtes rocheuses lointaines pétrifiées sous des névés éternels et voiles de blizzard."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Étendue de steppe gelée et de congères de permafrost sculptées par le vent polaire."
+      },
+      {
+        "plan": 4,
+        "type": "Atmosphère & lumière",
+        "description": "Nappe de blizzard basse et givre en suspension diffusant la clarté polaire au ras du sol."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan atmosphérique",
+        "description": "Flocons cristallins légers et poudreuse blanche dérivant sous un vent latéral soutenu, entourés d'un vignettage bleuté givré."
+      }
+    ],
+    "particles": {
+      "type": "Poudreuse cristalline et micro-flocons fins de toundra (snow)",
+      "size": "0.8 à 1.8 px",
+      "speed": "0.24 (dérive horizontale fluide avec micro-turbulences Simplex)",
+      "density": "35 flocons instanciés",
+      "behavior": "Trajectoires presque horizontales sculptées par le vent polaire avec légers tourbillons ascendants intermittents."
+    },
+    "atmosphere": {
+      "mist": "Brouillard blanc de givre rampant sur le sol gelé et estompant la séparation entre terre et ciel.",
+      "light": "Lumière polaire diffuse, pure et pénétrante, apportant une grande clarté sans éblouir l'œil.",
+      "airColor": "Bleu ciel arctique (#0ea5e9), blanc givre (#f8fafc) et bleu acier polaire (#0369a1).",
+      "mainLightSource": "Soleil boréal très bas, presque invisible derrière la nappe de brume blanche d'horizon."
+    },
+    "rareEvents": [
+      {
+        "name": "Bourrasque de Blizzard Boréal",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 35.0 secondes",
+        "description": "Une bourrasque glaciale accélère vivement le défilement de la poudreuse et épaissit un voile blanc translucide sur le bas de l'écran."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe douce déplaçant les crêtes enneigées et dispersion en sillage des particules de neige au passage du curseur.",
+      "scroll": "Ajuste subtilement l'épaisseur de la brume au sol sans impacter la visibilité des cartes du catalogue."
+    },
+    "palette": [
+      "#f8fafc",
+      "#e0f2fe",
+      "#7dd3fc",
+      "#0ea5e9",
+      "#0284c7",
+      "#0f172a"
+    ],
+    "references": [
+      "Arctic tundra blizzard snowdrift Three.js",
+      "Permafrost frozen landscape atmospheric fog",
+      "Winter polar wind snow particles WebGL"
+    ],
+    "risks": {
+      "pitfall": "Créer un fond blanc trop cru qui éblouirait l'utilisateur et nuirait à la lecture des textes clairs.",
+      "solution": "Adopter un ciel bleu polaire profond en contraste (#0ea5e9/#0284c7) et réserver le blanc pur aux micro-cristaux et aux crêtes de névés, avec un vignettage froid sécurisant."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0284c7",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#7dd3fc",
+          "density": 1.0,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#0f172a",
+          "sunColor": "#0284c7",
+          "mistColor": "#7dd3fc",
+          "density": 0.8,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "snowLevel": 0.85
+        }
+      },
+      {
+        "brick": "dunes",
+        "params": {
+          "sandColor": "#e0f2fe",
+          "shadowColor": "#0369a1",
+          "skyColor": "#0ea5e9",
+          "density": 0.7,
+          "speed": 0.12,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "sunAngle": 0.85
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#e0f2fe",
+          "density": 0.7,
+          "speed": 0.2,
+          "depth": 0.25,
+          "intensity": 0.75,
+          "heightFalloff": 1.6
+        }
+      },
+      {
+        "brick": "snow",
+        "params": {
+          "snowColor": "#f8fafc",
+          "density": 0.45,
+          "speed": 0.24,
+          "depth": 0.4,
+          "intensity": 0.85,
+          "windDrift": 0.35
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0f172a",
+          "intensity": 0.4,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "andalousie",
+    "name": "Andalousie",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": "andalousie-espagne",
+    "evocation": "L'Andalousie solaire et passionnée, Séville, Cordoue et les palais de l'Alhambra de Grenade. Les patios secrets pavés d'azulejos géométriques baignés de lumière chaude, les orangers en fleurs diffusant leur parfum dans la brise d'après-midi, la fraîcheur murmurante de l'eau des bassins, l'ombre bienveillante des moucharabiehs et la cadence vibrante d'une guitare flamenca.",
+    "signature": "Des faisceaux de lumière solaire dorée perçant les arcades d'un patio mauresque où voltigent doucement des pétales de fleurs d'oranger dans une brise tiède parfumée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel d'été ibérique d'un bleu azur lumineux s'adoucissant en blanc chaud solaire vers l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette architecturale de créneaux et d'arcades mauresques en stuc ocre et pierre chaude."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faisceaux obliques de soleil d'après-midi (god rays) zébrant la cour intérieure ombragée."
+      },
+      {
+        "plan": 4,
+        "type": "Atmosphère & lumière",
+        "description": "Miroitement de chaleur léger et discret montant des dalles en terre cuite."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan atmosphérique",
+        "description": "Pétales blancs et ivoire de fleurs d'oranger voletant avec grâce dans la brise tiède, encadrés d'un vignettage terracotta chaleureux."
+      }
+    ],
+    "particles": {
+      "type": "Pétales de fleurs d'oranger et de jasmin (petals)",
+      "size": "1.2 à 2.2 px",
+      "speed": "0.16 (balancement et portance vespérale très douce)",
+      "density": "25 pétales actifs",
+      "behavior": "Vrilles douces et rotations 3D feutrées au gré de la brise avec évitement fluide sous le curseur."
+    },
+    "atmosphere": {
+      "mist": "Absence de brouillard ; atmosphère limpide et baignée d'un air tiède aux reflets d'or et d'agrume.",
+      "light": "Lumière solaire d'or chaud filtrée par des arcs festonnés, projetant des rais lumineux protecteurs et rassurants.",
+      "airColor": "Blanc chaud crème (#fff7ed), ocre terracotta (#ea580c) et jaune soleil (#f59e0b).",
+      "mainLightSource": "Soleil méditerranéen haut à gauche (lightSourceX: -0.4, lightSourceY: 0.85) diffusant des rais dorés ambrés."
+    },
+    "rareEvents": [
+      {
+        "name": "Brise d'Oranger du Guadalquivir",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 45.0 secondes",
+        "description": "Un souffle de vent tiède fait danser les pétales en spirale avant qu'ils ne reprennent leur douce descente nonchalante."
+      }
+    ],
+    "interaction": {
+      "mouse": "Décalage d'arcades en parallaxe et déviation aérienne des pétales lors du survol de la souris.",
+      "scroll": "Incline légèrement l'angle apparent des rais solaires pour accompagner le mouvement vertical de l'utilisateur."
+    },
+    "palette": [
+      "#fff7ed",
+      "#fed7aa",
+      "#fb923c",
+      "#ea580c",
+      "#9a3412",
+      "#1c1917"
+    ],
+    "references": [
+      "Alhambra patio sunlight god rays petals",
+      "Orange blossom petals floating wind WebGL",
+      "Mediterranean warm terracotta summer atmosphere"
+    ],
+    "risks": {
+      "pitfall": "Tomber dans le cliché d'une surcharge festive bariolée ou d'une animation kitsch qui déconcentrerait le visiteur.",
+      "solution": "Adopter une élégance architecturale sobre et épurée, centrée sur la poésie des fleurs d'oranger et des faisceaux de lumière ambrée."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#ea580c",
+          "bottomColor": "#1c1917",
+          "horizonColor": "#fed7aa",
+          "density": 1.0,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_castle",
+        "params": {
+          "castleColor": "#1c1917",
+          "torchColor": "#ea580c",
+          "rockColor": "#9a3412",
+          "density": 0.7,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "ruinDecay": 0.05
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#fed7aa",
+          "density": 0.8,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "lightSourceX": -0.4,
+          "lightSourceY": 0.85,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#fb923c",
+          "density": 0.5,
+          "speed": 0.18,
+          "depth": 0.25,
+          "intensity": 0.35,
+          "heatHeight": 0.35
+        }
+      },
+      {
+        "brick": "petals",
+        "params": {
+          "petalColor": "#fff7ed",
+          "accentColor": "#fed7aa",
+          "density": 0.35,
+          "speed": 0.16,
+          "depth": 0.4,
+          "intensity": 0.85,
+          "windDrift": 0.2
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1c1917",
+          "intensity": 0.38,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      "azulejos_tiles (trame géométrique céramique hispano-mauresque en filigrane discret)"
+    ]
+  },
+  {
+    "id": "silk_road",
+    "name": "Route de la Soie",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": "route-de-la-soie",
+    "evocation": "L'antique route commerciale millénaire traversant les déserts d'Asie centrale, les oasis de Samarcande et de Dunhuang, et les cols du Pamir (Marco Polo, Civilizations, récits de caravanes marchandes). Le voyage des caravanes de chameaux chargées d'étoffes de soie damassée, de rouleaux précieux, de safran et de cannelle, sous un ciel de crépuscule d'ambre et d'or où la poussière du désert brille comme des paillettes précieuses.",
+    "signature": "Une brume ambrée et des poussières d'épices dorées s'élevant lentement au-dessus des crêtes d'un désert de caravanes balayé par les vents d'Asie centrale sous une lueur de crépuscule soyeuse.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel vespéral d'Asie centrale, dégradé de terre d'ombre brûlée vers un ambre doré chaud."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes estompées de hauts sommets enneigés (les monts Célestes / Tian Shan) fermant l'horizon."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Crêtes de dunes ocres et collines de lœss étagées en perspective sous un éclairage rasant."
+      },
+      {
+        "plan": 4,
+        "type": "Atmosphère & lumière",
+        "description": "Nappe de brume chaude et vaporeuse teintée d'épices ambrées flottant dans les creux de vallées."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan atmosphérique",
+        "description": "Poussières d'or et pigments de safran en suspension scintillante dérivant au vent, entourés d'un vignettage cuir ambré."
+      }
+    ],
+    "particles": {
+      "type": "Poussières de soie dorée et pigments d'épices (dust)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.15 (dérive éolienne vespérale lente)",
+      "density": "30 particules en flottaison",
+      "behavior": "Lévitation brownienne très douce avec micro-scintillements dorés intermittents au gré de l'orientation lumineuse."
+    },
+    "atmosphere": {
+      "mist": "Nappe de poussière impalpable et de brume chaude dorée créant un effet de profondeur velouté.",
+      "light": "Lumière crépusculaire soyeuse et feutrée aux tons miel et cannelle, très flatteuse pour l'interface.",
+      "airColor": "Ambre safran (#fcd34d), ocre de lœss (#b45309) et terre d'ombre profonde (#78350f).",
+      "mainLightSource": "Coucher de soleil bas au centre-droit diffusant un voile de lueur volumétrique ambrée."
+    },
+    "rareEvents": [
+      {
+        "name": "Rafale du Vent d'Asie",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 42.0 secondes",
+        "description": "Une rafale de vent de steppe traverse lentement le paysage, étirant le voile de brume et faisant tournoyer délicatement les grains d'épices dorés."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe multi-couches entre les dunes de sable et les sommets du Pamir, avec dispersion douce des particules dorées.",
+      "scroll": "Module légèrement l'opacité de la brume ambrée pour révéler les crêtes lointaines au fil de la navigation."
+    },
+    "palette": [
+      "#fef3c7",
+      "#fde68a",
+      "#fcd34d",
+      "#d97706",
+      "#78350f",
+      "#451a03"
+    ],
+    "references": [
+      "Silk Road Samarkand desert sunset dunes",
+      "Golden amber spice dust particles WebGL",
+      "Three.js central asian mountain desert haze"
+    ],
+    "risks": {
+      "pitfall": "Confondre l'atmosphère avec le désert égyptien (egypte_antique).",
+      "solution": "Différencier radicalement la géographie par la présence des massifs alpins du Pamir en arrière-plan, la texture de brume d'épices safran/ambre et l'absence de mirage pyramidal."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#78350f",
+          "bottomColor": "#451a03",
+          "horizonColor": "#fcd34d",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#451a03",
+          "sunColor": "#78350f",
+          "mistColor": "#fcd34d",
+          "density": 0.75,
+          "speed": 0.1,
+          "depth": 0.25,
+          "intensity": 0.75,
+          "snowLevel": 0.8
+        }
+      },
+      {
+        "brick": "dunes",
+        "params": {
+          "sandColor": "#fcd34d",
+          "shadowColor": "#78350f",
+          "skyColor": "#d97706",
+          "density": 0.8,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.85,
+          "sunAngle": 0.7
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#fcd34d",
+          "density": 0.6,
+          "speed": 0.15,
+          "depth": 0.25,
+          "intensity": 0.7,
+          "heightFalloff": 1.5
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fcd34d",
+          "density": 0.4,
+          "speed": 0.14,
+          "depth": 0.4,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#451a03",
+          "intensity": 0.42,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "hellas",
+    "name": "Grèce Antique",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": "grece-antique-hellas",
+    "evocation": "La Grèce antique classique et le bassin égéen sous le soleil des dieux (Assassin's Creed Odyssey, Titan Quest, mythologie grecque). Des promontoires rocheux couronnés de colonnes de marbre immaculé surplombant une mer Égée aux flots bleu saphir étincelants, des rais de lumière divine (god rays) descendant de l'Olympe et le frémissement de feuilles d'olivier argentées portées par le vent du large.",
+    "signature": "Des rais de lumière solaire méditerranéenne perçant l'azur au-dessus d'une mer Égée saphir scintillante aux crêtes d'écume blanche bordée de falaises côtières ensoleillées.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel hellénique d'une limpidité divine, dégradé bleu céleste vers un blanc d'écume solaire."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Mer Égée infinie animée d'un train de houle douce aux crêtes d'écume blanche scintillante."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Promontoire côtier de falaises calcaires blanches se découpant avec netteté contre l'azur maritime."
+      },
+      {
+        "plan": 4,
+        "type": "Atmosphère & lumière",
+        "description": "Faisceaux volumétriques de lumière divine dorée descendant du zénith céleste."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan atmosphérique",
+        "description": "Feuilles d'olivier vert sauge et argent voletant doucement sur la brise marine, encadrées d'un vignettage bleu marine profond."
+      }
+    ],
+    "particles": {
+      "type": "Feuilles d'olivier argentées et micro-gouttelettes d'embruns (leaves)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.18 (dérive aérée sous la brise marine)",
+      "density": "24 feuilles d'olivier en vol",
+      "behavior": "Oscillation aérodynamique douce avec reflets argentés intermittents simulant le revers soyeux de la feuille d'olivier."
+    },
+    "atmosphere": {
+      "mist": "Brume marine très légère à l'horizon lointain, laissant régner une clarté solaire olympienne.",
+      "light": "Lumière solaire zénithale éclatante mais adoucie, symbolisant la faveur des dieux et la pureté classique.",
+      "airColor": "Blanc marbre (#e0f2fe), bleu azur égéen (#0284c7) et bleu outremer profond (#0369a1).",
+      "mainLightSource": "Soleil zénithal légèrement décalé (lightSourceX: 0.25, lightSourceY: 0.95) dardant des rayons dorés limpides."
+    },
+    "rareEvents": [
+      {
+        "name": "Souffle du Zéphyr Égéen",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 38.0 secondes",
+        "description": "Une brise marine vivifiante accentue brièvement l'écume sur les crêtes des vagues et soulève une volée de feuilles d'olivier."
+      }
+    ],
+    "interaction": {
+      "mouse": "Décalage d'horizon et de crêtes de vagues en parallaxe, avec esquive gracieuse des feuilles d'olivier à l'approche de la souris.",
+      "scroll": "Modifie subtilement la diffusion lumineuse des god rays pour préserver une lisibilité parfaite des cartes de jeux."
+    },
+    "palette": [
+      "#e0f2fe",
+      "#bae6fd",
+      "#38bdf8",
+      "#0284c7",
+      "#0369a1",
+      "#0c4a6e"
+    ],
+    "references": [
+      "Aegean sea waves sunlight Greek islands",
+      "Ancient Greece marble temple god rays WebGL",
+      "Three.js olive leaves floating sea breeze"
+    ],
+    "risks": {
+      "pitfall": "Paraître un thème purement marin générique sans ancrage historique hellénique.",
+      "solution": "Intégrer les feuilles d'olivier argentées, les falaises calcaires blanches baignées de lumière divine zénithale et un jeu de contraste noble entre marbre blanc et saphir égéen."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0284c7",
+          "bottomColor": "#0c4a6e",
+          "horizonColor": "#e0f2fe",
+          "density": 1.0,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "waves",
+        "params": {
+          "crestColor": "#e0f2fe",
+          "deepColor": "#0c4a6e",
+          "density": 0.85,
+          "speed": 0.2,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "waveSteepness": 0.5
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#0c4a6e",
+          "sunColor": "#e0f2fe",
+          "mistColor": "#38bdf8",
+          "density": 0.7,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "snowLevel": 0.0
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#bae6fd",
+          "density": 0.75,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "lightSourceX": 0.25,
+          "lightSourceY": 0.95,
+          "decay": 0.93
+        }
+      },
+      {
+        "brick": "leaves",
+        "params": {
+          "leafColor": "#e0f2fe",
+          "altColor": "#38bdf8",
+          "density": 0.32,
+          "speed": 0.18,
+          "depth": 0.4,
+          "intensity": 0.8,
+          "windDrift": 0.25
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0c4a6e",
+          "intensity": 0.38,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      "greek_colonnade (silhouette procédurale de colonnes doriques ou fronton de marbre blanc)"
+    ]
+  },
+  {
+    "id": "middle_kingdom",
+    "name": "Empire du Milieu",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": "chine-imperiale",
+    "evocation": "La Chine impériale des dynasties Ming et Tang, la splendeur de la Cité Interdite et la poésie des peintures traditionnelles de paysage Shanshui (Tigre et Dragon, Dynasty Warriors, Total War: Three Kingdoms). Les pitons rocheux vertigineux de Guilin enveloppés dans un lavis d'encre et de brume soyeuse, les forêts de bambous géants bruissant au vent, la laque rouge cinabre impériale mariée aux dorures impériales et les pétales de pêcher dérivant dans un sanctuaire sacré.",
+    "signature": "Des volutes de brume soyeuse s'étirant entre les silhouettes de pitons karstiques escarpés, traversées par une dérive paisible de pétales de pêcher et de braises de lanternes dorées sous une lueur impériale pourpre.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel crépusculaire impérial en lavis d'encre dégradé de rouge laque pourpre vers un or soyeux lumineux."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Pitons karstiques majestueux aux arêtes verticales vertigineuses estompées dans les volutes de brume."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Cimes de bambous géants et toits de pagodes traditionnelles esquissés en contre-jour."
+      },
+      {
+        "plan": 4,
+        "type": "Atmosphère & lumière",
+        "description": "Nappes de brume d'encre et volutes d'encens montant des vallées fluviales."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan atmosphérique",
+        "description": "Pétales de pêcher rose carmin et flammèches dorées de lanternes en suspension lente, soulignés par un vignettage rouge laque feutré."
+      }
+    ],
+    "particles": {
+      "type": "Pétales de pêcher printaniers et étincelles de lanternes célestes (petals)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.14 (descente lente et poétique en spirale douce)",
+      "density": "26 pétales instanciés",
+      "behavior": "Flottaison gracieuse avec micro-ondulations simulant le souffle d'air ascendant des vallées brumeuses."
+    },
+    "atmosphere": {
+      "mist": "Brume poétique et vaporeuse en couches superposées, évoquant les lavis d'encre de Chine des maîtres anciens.",
+      "light": "Lueur crépusculaire impériale, chaude et sacrée, alliant la puissance du rouge cinabre et la richesse de l'or.",
+      "airColor": "Rouge cinabre impérial (#7f1d1d), pourpre impérial (#991b1b) et or soyeux (#fef08a).",
+      "mainLightSource": "Lueur vespérale diffuse au bas de l'horizon, irradiant à travers les failles des pitons rocheux."
+    },
+    "rareEvents": [
+      {
+        "name": "Brise Sacrée des Monts Célestes",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 40.0 secondes",
+        "description": "Un souffle de vent frais descend des montagnes, étirant les nappes de brume et faisant tournoyer les pétales de pêcher en une arabesque fluide."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe différenciée des pitons rocheux et des bambous, avec dispersion aérienne délicate des pétales au survol.",
+      "scroll": "Épaissit subtilement la brume de fond dans les gorges pour mettre en relief les cartes de contenu au premier plan."
+    },
+    "palette": [
+      "#7f1d1d",
+      "#991b1b",
+      "#b91c1c",
+      "#fef08a",
+      "#fde047",
+      "#1c1917"
+    ],
+    "references": [
+      "Chinese ink painting shanshui Guilin karst fog",
+      "Peach blossom petals floating ancient China WebGL",
+      "Imperial red and gold misty mountain landscape"
+    ],
+    "risks": {
+      "pitfall": "Avoir un rouge cinabre trop saturé et agressif qui fatiguerait la rétine ou réduirait la lisibilité.",
+      "solution": "Adopter un rouge laque sombre et noble (#7f1d1d), tempéré par la brume soyeuse et la douceur d'un or pâle (#fef08a)."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#7f1d1d",
+          "bottomColor": "#1c1917",
+          "horizonColor": "#fef08a",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#1c1917",
+          "sunColor": "#7f1d1d",
+          "mistColor": "#fef08a",
+          "density": 0.8,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "snowLevel": 0.0
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#1c1917",
+          "fogColor": "#991b1b",
+          "density": 0.65,
+          "speed": 0.12,
+          "depth": 0.25,
+          "intensity": 0.75,
+          "windStrength": 0.2
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#fef08a",
+          "density": 0.65,
+          "speed": 0.15,
+          "depth": 0.25,
+          "intensity": 0.7,
+          "heightFalloff": 1.6
+        }
+      },
+      {
+        "brick": "petals",
+        "params": {
+          "petalColor": "#fef08a",
+          "accentColor": "#b91c1c",
+          "density": 0.35,
+          "speed": 0.14,
+          "depth": 0.4,
+          "intensity": 0.85,
+          "windDrift": 0.2
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1c1917",
+          "intensity": 0.44,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "new_world",
+    "name": "Monde Nouveau",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": "monde-nouveau-explorations",
+    "evocation": "L'épopée de l'exploration du Nouveau Monde au XVIe siècle et la fascination des terres vierges d'Amérique centrale et d'Amazonie (Les Mystérieuses Cités d'Or, Eldorado, Uncharted). Une canopée émeraude impénétrable, les eaux turquoise mystiques des cénotes et des fleuves sauvages, la brume d'évapotranspiration montant des profondeurs sylvestres à l'aube et les lucioles bioluminescentes scintillant dans la pénombre de la jungle.",
+    "signature": "Une brume de jungle tropicale dense s'élevant d'une canopée émeraude baignée de rayons d'azur turquoise, où scintillent des lucioles sylvestres parmi les fougères centenaires.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel d'aube tropicale humide, dégradé turquoise brumeux vers vert émeraude profond."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Reliefs de plateaux de jungle et de tepuys perdus se découpant dans la brume matinale."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Silhouette étagée de la canopée tropicale aux houppiers d'arbres géants ondulant sous la brise humide."
+      },
+      {
+        "plan": 4,
+        "type": "Atmosphère & lumière",
+        "description": "Nappes d'évaporation et brume de jungle s'élevant du sous-bois et traversées par des rayons de soleil obliques."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan atmosphérique",
+        "description": "Lucioles sylvestres turquoise et spores luminescentes dérivant paisiblement, avec vignettage émeraude sombre."
+      }
+    ],
+    "particles": {
+      "type": "Lucioles de jungle et spores bioluminescentes (fireflies)",
+      "size": "1.2 à 2.2 px",
+      "speed": "0.15 (mouvement biologique flottant et curieux)",
+      "density": "22 lucioles réparties",
+      "behavior": "Pulsation douce et asynchrone avec trajectoires organiques lentes et légère attraction/répulsion au passage du curseur."
+    },
+    "atmosphere": {
+      "mist": "Brume tropicale humide et épaisse au creux de la forêt, évoquant la rosée et l'humidité bienfaisante de la forêt pluviale.",
+      "light": "Lumière d'aube filtrée par la canopée, combinant l'émeraude végétal et le turquoise limpide des eaux sacrées.",
+      "airColor": "Vert émeraude profond (#064e3b), vert jungle (#047857) et cyan turquoise (#67e8f9).",
+      "mainLightSource": "Soleil du matin perçant la trouée de la canopée en haut à droite avec des faisceaux bleutés et dorés."
+    },
+    "rareEvents": [
+      {
+        "name": "Éveil de la Forêt Tropicale",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 42.0 secondes",
+        "description": "Un souffle d'air chaud fait frémir la canopée, soulevant une brume légère et provoquant une brève accélération luminescente des lucioles."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe multi-strates des arbres de la jungle et comportement interactif des lucioles qui s'écartent doucement du pointeur.",
+      "scroll": "Fait descendre légèrement la nappe de brume pour donner l'impression de plonger sous la canopée protectrice."
+    },
+    "palette": [
+      "#064e3b",
+      "#065f46",
+      "#047857",
+      "#10b981",
+      "#67e8f9",
+      "#022c22"
+    ],
+    "references": [
+      "Tropical rainforest canopy morning mist god rays",
+      "Amazonian jungle bioluminescent fireflies WebGL",
+      "Three.js deep green forest turquoise river fog"
+    ],
+    "risks": {
+      "pitfall": "Rendre le fond de jungle trop étouffant ou trop sombre, réduisant la lisibilité des cartes de jeu.",
+      "solution": "Utiliser la clarté lumineuse turquoise (#67e8f9) dans les rayons et les lucioles pour illuminer délicatement la scène sans saturer l'écran."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#064e3b",
+          "bottomColor": "#022c22",
+          "horizonColor": "#67e8f9",
+          "density": 1.0,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#022c22",
+          "sunColor": "#047857",
+          "mistColor": "#67e8f9",
+          "density": 0.7,
+          "speed": 0.1,
+          "depth": 0.25,
+          "intensity": 0.75,
+          "snowLevel": 0.0
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#022c22",
+          "fogColor": "#065f46",
+          "density": 0.8,
+          "speed": 0.12,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "windStrength": 0.25
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#67e8f9",
+          "density": 0.65,
+          "speed": 0.16,
+          "depth": 0.25,
+          "intensity": 0.75,
+          "heightFalloff": 1.5
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#67e8f9",
+          "density": 0.7,
+          "speed": 0.14,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "lightSourceX": 0.45,
+          "lightSourceY": 0.85,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "fireflies",
+        "params": {
+          "glowColor": "#67e8f9",
+          "coreColor": "#10b981",
+          "density": 0.3,
+          "speed": 0.15,
+          "depth": 0.4,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#022c22",
+          "intensity": 0.45,
+          "smoothness": 0.88
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "terra_incognita",
+    "name": "Terra Incognita",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": "terra-incognita-cartographie",
+    "evocation": "Les cartes marines anciennes et l'inconnu insondable des Grandes Découvertes (portulans de la Renaissance, monstres marins 'Hic Sunt Dracones', roses des vents et lignes de rhumb). La traversée solitaire d'un océan d'encre noire sous un dôme d'étoiles de navigation guidant la caravelle vers des terres mystérieuses et inexplorées, baignées dans un brouillard de fin du monde et le roulis berçant des flots.",
+    "signature": "Une houle océanique nocturne d'encre sombre couronnée d'écume blanche phosphorescente roulant sous une voûte d'étoiles de navigation guidant l'explorateur vers l'horizon inconnu.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Voûte céleste d'encre nocturne scintillante poudrée d'étoiles de navigation australes réparties en 3 strates."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Mer océanique infinie déployant une houle sombre et majestueuse aux crêtes d'écume blanche nacrée."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Nappe de brume marine fantomatique masquant et dévoilant tour à tour la ligne d'horizon inexplorée."
+      },
+      {
+        "plan": 4,
+        "type": "Atmosphère & lumière",
+        "description": "Embruns marins microscopiques et poussières salines flottant dans l'air nocturne."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan atmosphérique",
+        "description": "Grain argentique discret rappelant la texture d'un parchemin marin ancien et vignettage d'abysse profond."
+      }
+    ],
+    "particles": {
+      "type": "Embruns marins microscopiques et particules d'air salin (dust)",
+      "size": "0.8 à 1.6 px",
+      "speed": "0.16 (dérive aéroportée en apesanteur)",
+      "density": "25 micro-particules",
+      "behavior": "Flottaison fluide au-dessus des vagues avec scintillement discret réagissant à la lumière des étoiles."
+    },
+    "atmosphere": {
+      "mist": "Brume maritime nocturne lente et mystérieuse glissant entre les crêtes des flots.",
+      "light": "Lueur astrale argentée et froide, mystérieuse et contemplative, idéale pour une concentration sereine.",
+      "airColor": "Bleu nuit abyssal (#0f172a), ardoise marine (#1e293b) et blanc écume lunaire (#f8fafc).",
+      "mainLightSource": "Constellations zénithales et éclat lunaire diffus au centre de la voûte céleste."
+    },
+    "rareEvents": [
+      {
+        "name": "Étoile Filante du Navigateur",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 45.0 secondes",
+        "description": "Un météore argenté trace un sillage oblique rapide à travers le champ stellaire avant de s'évanouir dans la brume marine."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe fluide décalant les étoiles en profondeur et la houle marine, avec micro-sillage dans les embruns au passage de la souris.",
+      "scroll": "Amplifie doucement l'intensité de la houle tout en conservant une parfaite stabilité des composants de navigation."
+    },
+    "palette": [
+      "#0f172a",
+      "#1e293b",
+      "#334155",
+      "#475569",
+      "#94a3b8",
+      "#f8fafc"
+    ],
+    "references": [
+      "Night ocean waves starfield Renaissance cartography",
+      "Three.js deep sea waves white foam mist",
+      "Uncharted ocean navigator starfield shooting star"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à un thème d'espace quelconque ou à un fond d'eau trop sombre et monotone.",
+      "solution": "Allier la dynamique physique de la houle d'encre aux étoiles de navigation et à la texture subtile de grain parcheminé pour ancrer l'imaginaire du portulan d'exploration maritime."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#334155",
+          "density": 1.0,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#f8fafc",
+          "density": 0.6,
+          "speed": 0.06,
+          "depth": 0.9,
+          "intensity": 0.75,
+          "twinkleSpeed": 1.0
+        }
+      },
+      {
+        "brick": "waves",
+        "params": {
+          "crestColor": "#f8fafc",
+          "deepColor": "#0f172a",
+          "density": 0.8,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "waveSteepness": 0.55
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#1e293b",
+          "density": 0.6,
+          "speed": 0.12,
+          "depth": 0.25,
+          "intensity": 0.7,
+          "heightFalloff": 1.6
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f8fafc",
+          "density": 0.35,
+          "speed": 0.14,
+          "depth": 0.4,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.0,
+          "speed": 0.6,
+          "depth": 0.1,
+          "intensity": 0.06,
+          "monochrome": true
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0f172a",
+          "intensity": 0.45,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      "compass_rose (rose des vents et lignes de rhumb vectorielles en filigrane cartographique)"
+    ]
+  }
+]
+

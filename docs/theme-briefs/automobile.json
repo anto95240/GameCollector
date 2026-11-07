@@ -1,0 +1,1988 @@
+[
+  {
+    "id": "wild_gallop",
+    "name": "Wild Gallop",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "ford-mustang",
+    "evocation": "L'esprit originel de la pony car américaine incarné par la Ford Mustang : une virée crépusculaire sur une ligne droite infinie du désert de Mojave, le grondement sourd d'un gros V8 atmosphérique, deux bandes de course blanches longitudinales fendant un bleu nuit profond, et la poussière dorée soulevée par les rafales chaudes de l'ouest.",
+    "signature": "Le reflet fuyant d'une double bande de course blanche et de feux à triple barre verticale rouge se découpant sur une ligne d'asphalte désertique baignée d'un crépuscule ambré.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel crépusculaire désertique californien dégradé du bleu nuit profond au zénith vers un horizon ambré et pourpre."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette feutrée de crêtes rocheuses et mesas arides du canyon de Mojave se découpant sur la lueur d'horizon."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian cinétique",
+        "description": "Lignes de fuite de la route rectiligne avec fine distorsion thermique résiduelle montant de l'asphalte chaud et halo rouge des feux arrière."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan & overlay",
+        "description": "Motes de poussière dorée flottant lentement dans l'air tiède sous un vignettage chaud préservant la lisibilité de l'interface."
+      }
+    ],
+    "particles": {
+      "type": "Poussière désertique en suspension (dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.10 (dérive laminaire très lente)",
+      "density": "24 motes lumineuses",
+      "behavior": "Dérive brownienne douce en apesanteur dans les rayons horizontaux, répulsion imperceptible au passage du curseur."
+    },
+    "atmosphere": {
+      "mist": "Brume de chaleur sèche et rase au niveau du tarmac lointain.",
+      "light": "Ambrée et dorée en contre-jour horizontal, contrastant avec l'azur sombre du ciel.",
+      "airColor": "Bleu nuit (#1e3a8a), rouge écarlate (#ef4444) et ambre cuivré (#d97706).",
+      "mainLightSource": "Soleil couchant rasant sous l'horizon droit et réverbération rouge des feux arrière."
+    },
+    "rareEvents": [
+      {
+        "name": "Rafale de poussière du désert",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 45 secondes",
+        "description": "Une bourrasque de vent chaud balaie l'asphalte de gauche à droite, étirant momentanément les poussières dorées en fins rubans."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe douce décalant les crêtes rocheuses lointaines et infléchissant l'angle de dérive des micro-poussières.",
+      "scroll": "Adoucit la radiance de l'horizon ambré et intensifie le bleu nuit pour maximiser le contraste des fiches de jeux."
+    },
+    "palette": [
+      "#1e3a8a",
+      "#ef4444",
+      "#f8fafc",
+      "#d97706",
+      "#0f172a",
+      "#020617"
+    ],
+    "references": [
+      "Mustang tail lights night desert highway",
+      "California Mojave dusk heat shimmer",
+      "Classic muscle car sunset road"
+    ],
+    "risks": {
+      "pitfall": "Rendre la scène trop chargée avec un véhicule 3D encombrant ou un soleil aveuglant qui nuit à la lisibilité.",
+      "solution": "Maintenir une intensité 1 contemplative : décor sobre et épuré, poussières discrètes, horizon feutré et lisibilité textuelle absolue."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#d97706",
+          "density": 1.1,
+          "speed": 0.12,
+          "depth": 0.1,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#0b1222",
+          "sunColor": "#7c2d12",
+          "mistColor": "#1e1b4b",
+          "density": 0.7,
+          "speed": 0.08,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "snowLevel": 0.95,
+          "sunAngle": 0.65
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#d97706",
+          "density": 0.6,
+          "speed": 0.15,
+          "depth": 0.25,
+          "intensity": 0.5,
+          "heatHeight": 0.4,
+          "chromaticAberration": 0.008
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f59e0b",
+          "density": 0.35,
+          "speed": 0.1,
+          "depth": 0.45,
+          "intensity": 0.8,
+          "twinkleSpeed": 1.0
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "density": 1.0,
+          "intensity": 0.5,
+          "roundness": 0.7,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#d97706",
+          "density": 0.4,
+          "speed": 0.9,
+          "depth": 0.35,
+          "intensity": 0.6,
+          "gustAngle": 0.1,
+          "gustInterval": 45.0
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "bavarian_motorsport",
+    "name": "Bavarian Motorsport",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "bmw-m",
+    "evocation": "La division sportive BMW M et le mythique circuit du Nürburgring Nordschleife lové dans les forêts de l'Eifel : rigueur d'ingénierie germanique, livrée blanche alpine ornée des trois bandes obliques bleu ciel, bleu foncé et rouge vermillon, et brume matinale d'automne s'étirant au ras des vibreurs d'asphalte humide.",
+    "signature": "Trois faisceaux lumineux parallèles et inclinés — bleu ciel, bleu marine et rouge vermillon — fendant avec une précision chirurgicale la brume matinale de conifères au ras des vibreurs d'un virage en dévers.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel d'aube bavaroise froid et brumeux, dégradé subtil du bleu ardoise foncé vers un blanc laiteux à l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette sombre et étagée de massifs de conifères de l'Eifel baignée d'une brume stagnante."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian cinétique",
+        "description": "Nappe de brouillard matinal rampant sur l'asphalte humide, traversée par des rais de phares blancs et des reflets tricolores M."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan & overlay",
+        "description": "Micro-gouttelettes d'humidité en lévitation froide et grain argentique fin évoquant les archives photographiques des courses d'endurance."
+      }
+    ],
+    "particles": {
+      "type": "Micro-bruine matinale en suspension (dust)",
+      "size": "0.8 à 1.6 px",
+      "speed": "0.08 (chute presque imperceptible)",
+      "density": "20 particules froides",
+      "behavior": "Lévitation douce et stable dans l'air saturé d'humidité, frémissement subtil sous les courants d'air."
+    },
+    "atmosphere": {
+      "mist": "Brouillard de sous-bois épais et froid rampant entre les sapins et les bordures de piste.",
+      "light": "Clinique, diffuse et pure, rythmée par l'éclat blanc des optiques modernes et les trois teintes M-Sport.",
+      "airColor": "Blanc laiteux (#ffffff), bleu clair (#38bdf8), bleu marine (#1e3a8a) et rouge (#dc2626).",
+      "mainLightSource": "Lueur diurne montante à travers la brume combinée aux faisceaux directionnels des phares."
+    },
+    "rareEvents": [
+      {
+        "name": "Flash de phares longue portée",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 50 secondes",
+        "description": "Un appel de phares blanc pur à LED illumine brièvement les cimes des sapins et la nappe de brume pendant une demi-seconde."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe directionnelle décalant la profondeur des conifères et modifiant l'angle de réfraction des faisceaux lumineux.",
+      "scroll": "Densifie légèrement la nappe de brume basse tout en conservant un noir d'asphalte profond pour la lisibilité."
+    },
+    "palette": [
+      "#ffffff",
+      "#38bdf8",
+      "#1e3a8a",
+      "#dc2626",
+      "#0b0f19",
+      "#020617"
+    ],
+    "references": [
+      "Nurburgring morning mist pine trees",
+      "BMW M colors livery track aesthetic",
+      "Endurance racing dawn fog headlights"
+    ],
+    "risks": {
+      "pitfall": "Donner un aspect aseptisé ou copier le logo rond à hélice protégé.",
+      "solution": "Évoquer la légende par le trio chromatique emblématique (bleu ciel, marine, rouge), la forêt de l'Eifel brumeuse et une pureté technique feutrée."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0b0f19",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#94a3b8",
+          "density": 1.2,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#050d18",
+          "fogColor": "#1e293b",
+          "density": 0.85,
+          "speed": 0.06,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "windStrength": 0.2
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#64748b",
+          "density": 0.6,
+          "speed": 0.12,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "heightFalloff": 1.8
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#ffffff",
+          "density": 0.7,
+          "speed": 0.12,
+          "depth": 0.4,
+          "intensity": 0.7,
+          "lightSourceX": -0.3,
+          "lightSourceY": 0.8,
+          "decay": 0.94
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f8fafc",
+          "density": 0.3,
+          "speed": 0.08,
+          "depth": 0.5,
+          "intensity": 0.65
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.1,
+          "intensity": 0.05,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "tri_color_beam_stripes",
+        "category": "atmosphere",
+        "reason": "Projection vectorielle de trois bandes lumineuses parallèles obliques (cyan, bleu foncé, rouge) fendant la brume de piste."
+      }
+    ]
+  },
+  {
+    "id": "quattro",
+    "name": "Quattro",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": "audi-sport",
+    "evocation": "L'épopée de l'Audi Sport Quattro et la fureur du rallye Groupe B dans les années 1980 : spéciale de nuit au col du Turini ou au Rallye de Suède, transmission intégrale bravant les congères, rampe de phares longue portée perçant le blizzard et panaches de neige soulevés dans l'obscurité glaciale.",
+    "signature": "Une rampe de projecteurs halogènes jaune d'or perçant le blizzard nocturne d'un col alpin, illuminant les tourbillons de poudreuse soulevés par une transmission intégrale invisible.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Nuit alpine polaire bleu acier profond, voûte obscure ponctuée de sommets rocheux enneigés sous la clarté lunaire."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Chaîne de pics alpins escarpés avec névés étincelants et mer de brume glacée étagée dans les gouffres."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian cinétique",
+        "description": "Faisceaux puissants et concentrés d'une rampe de phares halogènes jaunes perçant le rideau d'air froid et d'asphalte verglacé."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan & overlay",
+        "description": "Flocons de neige cotonneux tourbillonnant doucement dans le halo doré, encadrés d'un vignettage nocturne froid."
+      }
+    ],
+    "particles": {
+      "type": "Flocons de neige et poudreuse (snow)",
+      "size": "1.2 à 2.6 px",
+      "speed": "0.30 (chute feutrée et oscillante)",
+      "density": "35 flocons légers",
+      "behavior": "Oscillation pendulaire douce sous la brise alpine, tournoiement feutré accentué à l'approche des faisceaux lumineux."
+    },
+    "atmosphere": {
+      "mist": "Air pur et givré d'altitude, cristaux de glace en suspension diffusant les projecteurs.",
+      "light": "Chaleur dorée des ampoules halogènes d'époque s'opposant au bleu ardoise froid de la nuit polaire.",
+      "airColor": "Gris nardo (#475569), rouge turbo (#ef4444), or halogène (#fef08a) et blanc neige (#f8fafc).",
+      "mainLightSource": "Double cône puissant de la rampe de projecteurs longue portée au centre-bas de la scène."
+    },
+    "rareEvents": [
+      {
+        "name": "Bourrasque de neige alpine",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 40 secondes",
+        "description": "Un coup de vent tourbillonnant fait vriller les flocons de neige horizontalement à travers les cônes lumineux avant de s'apaiser."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe accentuée décalant les sommets enneigés et incurvant la trajectoire de la neige sous l'impulsion du curseur.",
+      "scroll": "Renforce le contraste sombre de la nuit alpine pour garantir une lisibilité optimale sur les listes de jeux."
+    },
+    "palette": [
+      "#475569",
+      "#ef4444",
+      "#f8fafc",
+      "#fef08a",
+      "#0b1120",
+      "#020617"
+    ],
+    "references": [
+      "Group B rally night stage snow headlights",
+      "Audi Quattro Turini pass lights",
+      "Winter rally snowfall mountain spotlight"
+    ],
+    "risks": {
+      "pitfall": "Transformer l'ambiance en tempête agressive aveuglante ou afficher les 4 anneaux de la marque sous copyright.",
+      "solution": "Privilégier la magie feutrée d'une nuit de rallye hivernale : neige calme, faisceaux halogènes chauds et palette gris nardo / blanc pur."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#0b1120",
+          "horizonColor": "#1e293b",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#070b14",
+          "sunColor": "#334155",
+          "mistColor": "#0f172a",
+          "density": 0.9,
+          "speed": 0.08,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "snowLevel": 0.45,
+          "sunAngle": 0.8
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#fef08a",
+          "density": 0.8,
+          "speed": 0.15,
+          "depth": 0.4,
+          "intensity": 0.85,
+          "lightSourceX": 0.0,
+          "lightSourceY": -0.2,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "snow",
+        "params": {
+          "snowColor": "#f8fafc",
+          "density": 0.4,
+          "speed": 0.35,
+          "depth": 0.55,
+          "intensity": 0.85,
+          "windStrength": 0.2,
+          "swayFrequency": 1.2
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "density": 1.0,
+          "intensity": 0.55,
+          "roundness": 0.65,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#f8fafc",
+          "density": 0.35,
+          "speed": 1.1,
+          "depth": 0.35,
+          "intensity": 0.7,
+          "gustAngle": 0.25,
+          "gustInterval": 40.0
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "silver_arrow",
+    "name": "Silver Arrow",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": "mercedes-benz",
+    "evocation": "Les mythiques Flèches d'Argent (Silberpfeile) de Mercedes-Benz : l'âge d'or des Grands Prix des années 30 sur l'Avus et le Nürburgring jusqu'à l'excellence de Stuttgart contemporaine, la carrosserie en aluminium brut poncée à blanc, les reflets d'argent liquide sous un ciel d'orage et la pureté mécanique absolue.",
+    "signature": "Un reflet d'argent liquide et de chrome poli qui ondule avec lenteur comme la surface d'une carrosserie profilée d'avant-guerre balayée par une lumière zénithale évanescente.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel d'orage métallique dégradé du noir graphite au gris platine brossé, empreint de noblesse d'avant-guerre."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette basse de tribunes historiques de circuit en brique et béton estompées dans la brume argentée."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian cinétique",
+        "description": "Ligne de lumière anamorphique argentée et reflets métalliques étirés le long d'une courbure fuselée en aluminium."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan & overlay",
+        "description": "Micro-étincelles métalliques froides en suspension, grain photochimique 35mm d'époque et vignettage noble."
+      }
+    ],
+    "particles": {
+      "type": "Poussières de chrome et reflets spéculaires (dust)",
+      "size": "0.9 à 1.8 px",
+      "speed": "0.09 (lévitation quasi stationnaire)",
+      "density": "22 motes d'argent",
+      "behavior": "Scintillement asynchrone non-périodique simulant la brillance d'éclats métalliques sous un ciel orageux."
+    },
+    "atmosphere": {
+      "mist": "Brume fine et vaporeuse couleur platine, atmosphère de paddock historique feutré.",
+      "light": "Éclairage zénithal froid, reflets spéculaires sur aluminium poli sans éblouissement agressif.",
+      "airColor": "Gris argent (#94a3b8), ardoise (#0f172a), chrome (#e2e8f0) et noir graphite (#090d16).",
+      "mainLightSource": "Trouée de lumière blanche diffuse perçant les nuages d'orage au zénith."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclat spéculaire argenté",
+        "type": "lens_flare",
+        "frequency": "Intervalle moyen de 50 secondes",
+        "description": "Un faisceau de lumière zénithal frappe une arête d'aluminium brossé, générant un bref trait anamorphique argenté horizontal."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe subtile déplaçant le point de réflexion métallique et inclinant le faisceau d'argent liquide.",
+      "scroll": "Approfondit la densité du graphite pour créer un écrin de contraste feutré sous le contenu."
+    },
+    "palette": [
+      "#94a3b8",
+      "#0f172a",
+      "#e2e8f0",
+      "#38bdf8",
+      "#090d16",
+      "#020617"
+    ],
+    "references": [
+      "Silberpfeil vintage aluminum car reflection",
+      "Mercedes Silver Arrow aerodynamic body polish",
+      "Monochrome brushed metal automotive lighting"
+    ],
+    "risks": {
+      "pitfall": "Rendu terne ou grisâtre ressemblant à une page non texturée, ou reproduction de l'étoile à 3 branches.",
+      "solution": "Sublimer les nuances de gris platine, d'argent liquide et de chrome poli avec un grain argentique délicat et des reflets optiques nobles."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#090d16",
+          "horizonColor": "#475569",
+          "density": 1.15,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#050912",
+          "windowColor": "#94a3b8",
+          "beaconColor": "#38bdf8",
+          "density": 0.5,
+          "speed": 0.05,
+          "depth": 0.35,
+          "intensity": 0.6,
+          "smogIntensity": 0.3
+        }
+      },
+      {
+        "brick": "lens_flare",
+        "params": {
+          "flareColor": "#ffffff",
+          "accentColor": "#94a3b8",
+          "density": 0.6,
+          "speed": 0.1,
+          "depth": 0.45,
+          "intensity": 0.65,
+          "sourceX": 0.2,
+          "sourceY": 0.7,
+          "streakLength": 1.5
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#e2e8f0",
+          "density": 0.3,
+          "speed": 0.09,
+          "depth": 0.45,
+          "intensity": 0.7,
+          "twinkleSpeed": 1.1
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.2,
+          "intensity": 0.06,
+          "monochrome": true
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "density": 1.0,
+          "intensity": 0.5,
+          "roundness": 0.7,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "metallic_sheen",
+        "category": "atmosphere",
+        "reason": "Voile de reflets métalliques liquides et brossés en balayage lent évoquant une carrosserie en aluminium poli."
+      }
+    ]
+  },
+  {
+    "id": "shark_bite",
+    "name": "Shark Bite",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "chevrolet-corvette",
+    "evocation": "La Chevrolet Corvette Stingray et le concept originel Mako Shark : le capot plongeant effilé en gueule de requin, les ouïes latérales acérées, l'agressivité nocturne d'un run sur les grands boulevards de Miami ou le long de la côte de Floride, la moiteur de l'air marin et les doubles optiques rouges perçantes.",
+    "signature": "Deux feux arrière jumelés rouge sang perçant un nuage d'asphalte chaud et de buée nocturne, esquissant la silhouette basse et féline d'un capot en museau de requin.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Nuit tropicale d'été lourde et sombre, ciel noir d'encre rehaussé d'une lueur pourpre menaçante à l'horizon marin."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette côtière sombre de palmiers et piliers d'autoroute surélevée découpée dans la pénombre."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian cinétique",
+        "description": "Nappe de distorsion thermique ondulant au-dessus des tuyères d'échappement latérales et halo rougeoyante intense."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan & overlay",
+        "description": "Micro-braises et étincelles sporadiques montant lentement du bitume sous un vignettage noir dramatique."
+      }
+    ],
+    "particles": {
+      "type": "Micro-braises d'échappement feutrées (embers)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.22 (ascension lente et turbulente)",
+      "density": "18 particules incandescentes",
+      "behavior": "Convection thermique ascendante douce, refroidissement progressif du rouge vif au rubis sombre."
+    },
+    "atmosphere": {
+      "mist": "Air moite et chaud saturé d'odeur de bitume et d'ozone maritime.",
+      "light": "Nocturne et intimidante, dominée par les faisceaux rouge sang et la silhouette noire carbone.",
+      "airColor": "Rouge carmin (#ef4444), noir asphalte (#000000), rouge sombre (#991b1b) et braise (#f97316).",
+      "mainLightSource": "Double rangée de feux ronds rouge sang à l'arrière projetant un halo rasant."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclair d'orage tropical muet",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 45 secondes",
+        "description": "Une lueur d'éclair lointaine et étouffée illumine les nuages côtiers en pourpre sombre sans bruit, soulignant la silhouette basse."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe fluide décalant les ombres côtières et courbant les volutes de chaleur convective sous la souris.",
+      "scroll": "Intensifie la noirceur du fond pour laisser ressortir les éléments de navigation avec un contraste parfait."
+    },
+    "palette": [
+      "#ef4444",
+      "#000000",
+      "#991b1b",
+      "#f97316",
+      "#18181b",
+      "#020617"
+    ],
+    "references": [
+      "Corvette Stingray mako shark silhouette night",
+      "Miami night drive red tail lights heat",
+      "Muscle car dark aesthetic red glow asphalt"
+    ],
+    "risks": {
+      "pitfall": "Aspect 'film d'horreur' ou agressivité visuelle excessive fatiguant la vue.",
+      "solution": "Doser l'intensité 1 avec rigueur : rouge profond et raffiné (pas criard), fond noir pur reposant et micro-particules feutrées."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#09090b",
+          "horizonColor": "#7f1d1d",
+          "density": 1.2,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#ef4444",
+          "density": 0.7,
+          "speed": 0.2,
+          "depth": 0.25,
+          "intensity": 0.6,
+          "heatHeight": 0.45,
+          "chromaticAberration": 0.012
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#ef4444",
+          "hotColor": "#f97316",
+          "density": 0.3,
+          "speed": 0.25,
+          "depth": 0.4,
+          "intensity": 0.8,
+          "coolingRate": 1.2
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.1,
+          "intensity": 0.6,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "lightningColor": "#991b1b",
+          "flashColor": "#450a0a",
+          "density": 0.4,
+          "speed": 0.9,
+          "depth": 0.2,
+          "intensity": 0.6,
+          "strikeInterval": 45.0
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "carrera",
+    "name": "Carrera",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "porsche",
+    "evocation": "La quintessence de la Porsche 911 Carrera : de la course Panamericana historique aux longues traversées nocturnes sur l'Autobahn sans limitation de vitesse. La ligne fastback intemporelle, le bandeau lumineux arrière transversal à LED rouge rubis filant dans l'obscurité et la pluie fine miroitant sur l'asphalte.",
+    "signature": "Un mince bandeau continu rouge rubis horizontal flottant dans la pénombre, dont le sillage lumineux se reflète avec une netteté de miroir sur un asphalte frais balayé par une bruine nocturne.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Nuit d'autoroute d'Europe centrale, ciel bleu nuit vers gris graphite profond ponctué de nuages bas rapides."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette feutrée de collines de la Forêt Noire et glissières de sécurité métalliques s'enfuyant en perspective."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian cinétique",
+        "description": "Traînée lumineuse rouge rubis continue et reflets miroitants des phares blancs perçant une fine nappe de bruine."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan & overlay",
+        "description": "Pluie fine cinématique filant en diagonale, encadrée d'un vignettage optique haute définition."
+      }
+    ],
+    "particles": {
+      "type": "Bruine fine d'autoroute nocturne (rain)",
+      "size": "0.8 à 1.4 px d'épaisseur, traits étirés",
+      "speed": "1.1 (chute vive mais fluide)",
+      "density": "35 gouttes légères",
+      "behavior": "Gouttes obliques entraînées par la vitesse aérodynamique et le vent de la course, réactives à la souris."
+    },
+    "atmosphere": {
+      "mist": "Brume de pulvérisation d'eau (spray) soulevée par les pneus sur chaussée détrempée.",
+      "light": "Épurée et moderne : ligne rouge rubis rectiligne tranchant sur la carrosserie sobre gris craie et l'asphalte noir.",
+      "airColor": "Gris argent (#94a3b8), rouge rubis (#ef4444), blanc pur (#ffffff) et asphalte mouillé (#080c14).",
+      "mainLightSource": "Bandeau lumineux transversal rouge rubis à l'arrière et faisceaux matriciels blancs à l'avant."
+    },
+    "rareEvents": [
+      {
+        "name": "Balayage d'optique matricielle à LED",
+        "type": "god_rays",
+        "frequency": "Intervalle moyen de 45 secondes",
+        "description": "Un faisceau de lumière blanche haute précision balaie brièvement la bruine nocturne avec un éclat anamorphique."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe directionnelle décalant la ligne d'horizon et modifiant l'angle d'inclinaison des gouttes de bruine.",
+      "scroll": "Adoucit les reflets de l'asphalte pour assurer un fond d'une clarté exemplaire sous les cartes et tableaux."
+    },
+    "palette": [
+      "#94a3b8",
+      "#ef4444",
+      "#dc2626",
+      "#ffffff",
+      "#080c14",
+      "#020617"
+    ],
+    "references": [
+      "Porsche 911 continuous rear light bar night",
+      "Autobahn night rain reflections headlights",
+      "Porsche Carrera chalk gray aesthetic minimalist"
+    ],
+    "risks": {
+      "pitfall": "Tomber dans le cliché tuning criard ou reproduire le logo armorié de Stuttgart.",
+      "solution": "Célébrer la sobriété du design industriel allemand : ligne lumineuse ultra-pure, asphalte miroir mouillé et gris craie distingué."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#080c14",
+          "horizonColor": "#1e293b",
+          "density": 1.15,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#050912",
+          "sunColor": "#1e293b",
+          "mistColor": "#0f172a",
+          "density": 0.65,
+          "speed": 0.08,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "snowLevel": 0.95
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#334155",
+          "density": 0.5,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.7,
+          "heightFalloff": 1.9
+        }
+      },
+      {
+        "brick": "rain",
+        "params": {
+          "rainColor": "#94a3b8",
+          "density": 0.35,
+          "speed": 1.1,
+          "depth": 0.5,
+          "intensity": 0.7,
+          "windAngle": 0.2,
+          "streakLength": 0.85
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "density": 1.0,
+          "intensity": 0.5,
+          "roundness": 0.7,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#ffffff",
+          "density": 0.6,
+          "speed": 0.1,
+          "depth": 0.4,
+          "intensity": 0.65,
+          "lightSourceX": 0.4,
+          "lightSourceY": 0.8,
+          "decay": 0.93
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "light_trail_ribbon",
+        "category": "special",
+        "reason": "Ruban rectiligne horizontal ultra-fin rouge rubis simulant la signature lumineuse continue d'un bandeau à LED arrière."
+      }
+    ]
+  },
+  {
+    "id": "scuderia_pride",
+    "name": "Scuderia Pride",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": "ferrari",
+    "evocation": "La Scuderia Ferrari et la passion vibrante des Tifosi à Monza : la terre sacrée de Maranello, le mythe du cheval cabré en Formule 1, la carrosserie rouge écarlate Rosso Corsa sublimée par le jaune solaire de Modène, le bitume surchauffé en été et les étincelles dorées jaillissant du fond plat en pleine ligne droite.",
+    "signature": "Une onde de mirage thermique ondulant au-dessus d'une ligne droite ensoleillée de Monza, illuminée par l'éclat flamboyant d'un rouge Rosso Corsa et d'un halo doré de Modène.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel d'été italien saturé et lumineux, dégradé crépusculaire d'ambre doré vers un rouge pourpre profond."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette feutrée des grands arbres du parc royal de Monza et des vieux virages relevés sous la brume de chaleur."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian cinétique",
+        "description": "Distorsion optique intense d'asphalte chauffé à blanc avec reflets rouge écarlate et lueur jaune solaire."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan & overlay",
+        "description": "Étincelles de titane sporadiques fusant au ras de la piste et vignettage chaleureux concentrant le regard."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles de fond plat en titane (sparks)",
+      "size": "1.0 à 1.9 px",
+      "speed": "0.85 (jaillissement parabolique rasant)",
+      "density": "16 étincelles dorées",
+      "behavior": "Projections rases et vives avec extinction thermique fulgurante simulant le contact de l'acier sur le bitume."
+    },
+    "atmosphere": {
+      "mist": "Miroitement de chaleur estivale écrasante au ras du vibreur.",
+      "light": "Passionnée, flamboyante et solaire, rayonnant du rouge vif et de l'or sans éblouir l'interface.",
+      "airColor": "Rouge Rosso Corsa (#dc2626), jaune Modène (#facc15), or (#fef08a) et noir bitume (#18181b).",
+      "mainLightSource": "Soleil rasant d'Italie du Nord illuminant la carrosserie et réverbération du bitume chaud."
+    },
+    "rareEvents": [
+      {
+        "name": "Gerbe d'étincelles de fond plat",
+        "type": "sparks",
+        "frequency": "Intervalle moyen de 40 secondes",
+        "description": "Une brève rafale d'étincelles dorées étincelle au centre-bas de l'écran avant de disparaître dans la distorsion thermique."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe dynamique décalant les arbres de Monza et ondulant la colonne de distorsion de chaleur sous le curseur.",
+      "scroll": "Régule la saturation du rouge pour maintenir un confort de lecture reposant sur tous les composants UI."
+    },
+    "palette": [
+      "#dc2626",
+      "#facc15",
+      "#fef08a",
+      "#18181b",
+      "#991b1b",
+      "#050505"
+    ],
+    "references": [
+      "Monza straight Ferrari sparks heat haze",
+      "Rosso Corsa Ferrari golden hour reflection",
+      "F1 titanium skid block sparks summer track"
+    ],
+    "risks": {
+      "pitfall": "Saturation excessive du rouge provoquant de la fatigue oculaire ou utilisation du logo au cheval protégé.",
+      "solution": "Équilibrer le Rosso Corsa avec un fond anthracite neutre (#18181b) et une distorsion thermique fluide et légère."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#050505",
+          "bottomColor": "#18181b",
+          "horizonColor": "#7f1d1d",
+          "density": 1.15,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#0c0a09",
+          "fogColor": "#292524",
+          "density": 0.65,
+          "speed": 0.06,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "windStrength": 0.15
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#dc2626",
+          "density": 0.8,
+          "speed": 0.25,
+          "depth": 0.25,
+          "intensity": 0.65,
+          "heatHeight": 0.45,
+          "chromaticAberration": 0.012
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#facc15",
+          "coreColor": "#ffffff",
+          "density": 0.3,
+          "speed": 0.9,
+          "depth": 0.4,
+          "intensity": 0.85,
+          "gravity": 1.4,
+          "burstInterval": 40.0
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#050505",
+          "density": 1.05,
+          "intensity": 0.55,
+          "roundness": 0.7,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "raging_bull",
+    "name": "Raging Bull",
+    "family": "Néon & cyber",
+    "intensity": 1,
+    "universe": "lamborghini",
+    "evocation": "L'univers radical de Lamborghini (Sant'Agata Bolognese) et l'emblème du taureau furieux : des supercars aux arêtes biseautées inspirées des avions furtifs (Countach, Murciélago, Revuelto), une teinte vert acide Mantis ou jaune fluo contrastant avec le carbone brut, et des flammes bleutées crépitant à l'échappement.",
+    "signature": "Des angles géométriques acérés vert acide et noir mat furtif fendant l'obscurité, ponctués par la flamme bleutée éphémère d'une double tuyère d'échappement en pleine décélération.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Nuit noire d'encre d'Émilie-Romagne illuminée par une fine lueur d'horizon vert acide froid."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Grille perspective discrète au sol évoquant les maillages de modélisation aérodynamique en soufflerie."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian cinétique",
+        "description": "Lueurs volumétriques vert lime pulsant doucement le long d'arêtes polygonales et volutes d'air froid."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan & overlay",
+        "description": "Étincelles bleutées de combustion et micro-aberration chromatique anguleuse sur les bordures du cadre."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles de retour de flamme bleutées (sparks)",
+      "size": "0.9 à 1.8 px",
+      "speed": "0.95 (décharge vive)",
+      "density": "14 particules cyan",
+      "behavior": "Jaillissements latéraux courts avec traînée rapide simulant les flammèches d'un échappement libre en carbone."
+    },
+    "atmosphere": {
+      "mist": "Air froid et sec d'atelier aéronautique, brume nocturne teintée de néon vert.",
+      "light": "Acérée, contrastée et furtive, où le vert acide électrise l'obscurité totale.",
+      "airColor": "Vert acide Mantis (#bef264), noir carbone (#000000), cyan postcombustion (#38bdf8) et vert sombre (#064e3b).",
+      "mainLightSource": "Arêtes luminescentes vert acide et flash bleuté d'échappement."
+    },
+    "rareEvents": [
+      {
+        "name": "Flamme bleutée d'échappement",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 45 secondes",
+        "description": "Une micro-déflagration bleutée naît au centre-bas, projetant une onde d'air comprimé et un flash cyan avant de s'éteindre."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe affûtée modifiant l'angle de projection des arêtes de la grille et repoussant les particules bleutées.",
+      "scroll": "Atténue l'intensité du vert acide pour garder un fond noir reposant pendant la lecture des listes."
+    },
+    "palette": [
+      "#bef264",
+      "#000000",
+      "#38bdf8",
+      "#22c55e",
+      "#27272a",
+      "#020617"
+    ],
+    "references": [
+      "Lamborghini stealth fighter angular lines neon",
+      "Verde Mantis supercar night exhaust blue flame",
+      "Dark aerodynamic carbon fiber geometric lighting"
+    ],
+    "risks": {
+      "pitfall": "Dériver vers un thème tuning criard fluo ou copier le blason du taureau sous copyright.",
+      "solution": "Miser sur le minimalisme furtif : 85% de noir mat et carbone, relevé de fines lignes vert acide chirurgicales et d'étincelles bleues rares."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#050907",
+          "horizonColor": "#14532d",
+          "density": 1.2,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "neon_grid",
+        "params": {
+          "gridColor": "#bef264",
+          "horizonColor": "#064e3b",
+          "pulseColor": "#ffffff",
+          "density": 0.7,
+          "speed": 0.1,
+          "depth": 0.35,
+          "intensity": 0.45,
+          "lineWidth": 0.02,
+          "horizonHeight": 0.35
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#bef264",
+          "glowColor": "#22c55e",
+          "outerColor": "#000000",
+          "density": 0.6,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.6,
+          "glowX": 0.0,
+          "glowY": -0.2
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#38bdf8",
+          "coreColor": "#ffffff",
+          "density": 0.25,
+          "speed": 1.0,
+          "depth": 0.4,
+          "intensity": 0.8,
+          "gravity": 1.0,
+          "burstInterval": 45.0
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "aberrationColor": "#bef264",
+          "density": 1.0,
+          "intensity": 0.45,
+          "spread": 0.015,
+          "radialFalloff": 2.0
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.1,
+          "intensity": 0.65,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "db_series",
+    "name": "DB Series",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "aston-martin",
+    "evocation": "La mythique lignée Aston Martin DB (de la DB5 de Sean Connery à la DB12 contemporaine) et l'élégance de l'agent secret britannique au service de Sa Majesté : col alpin du Furka embrumé au crépuscule, carrosserie British Racing Green et Silver Birch, calandre en trapèze chromée et distinction feutrée sans ostentation.",
+    "signature": "Une silhouette d'Aston Martin vert anglais glissant avec une distinction feutrée sur une route alpine embrumée au crépuscule, ses optiques rondes sculptant deux longs cônes d'or dans la brume du col.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel crépusculaire d'Écosse ou des Alpes suisses, dégradé vert céladon vers un ambre doré doux."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette escarpée de cols montagneux et forêts de mélèzes nimbée de brume de vallée stagnante."
+      },
+      {
+        "plan": 3,
+        "type": "Plan intermédiaire volumétrique",
+        "description": "Faisceaux cinématiques chaleureux d'optiques classiques perçant les nappes de brouillard d'altitude."
+      },
+      {
+        "plan": 4,
+        "type": "Plan médian atmosphérique",
+        "description": "Volutes de brume d'automne rampant sur l'asphalte frais avec reflets vert anglais et argentés."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan & overlay",
+        "description": "Feuilles d'automne dorées tourbillonnant avec flegme au passage de l'air, grain 35mm argentique et vignettage feutré."
+      }
+    ],
+    "particles": {
+      "type": "Feuilles mortes d'automne en tourbillon (leaves)",
+      "size": "2.8 à 5.5 px",
+      "speed": "0.32 (balancement et portance douce)",
+      "density": "45 feuilles dorées et rousses",
+      "behavior": "Chute libre avec alternance de glissade et de décrochage 3D délicat, réagissant aux bourrasques de vent."
+    },
+    "atmosphere": {
+      "mist": "Brume vaporeuse d'altitude et volutes d'air humide enveloppant la route de col.",
+      "light": "Dorée, chaleureuse et noble, contrastant avec la profondeur sombre du vert British Racing.",
+      "airColor": "Vert anglais profond (#064e3b), gris argent Silver Birch (#94a3b8), or doux (#fef08a) et noir nocturne (#020617).",
+      "mainLightSource": "Double faisceau volumétrique d'optiques classiques à l'avant perçant la brume vers la droite."
+    },
+    "rareEvents": [
+      {
+        "name": "Tourbillon de vent dans les mélèzes",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 35 secondes",
+        "description": "Une rafale de vent d'altitude fait virevolter une gerbe de feuilles dorées à travers les faisceaux de phares avant de se dissoudre."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe noble décalant les crêtes alpines et infléchissant la trajectoire des faisceaux de phares et des feuilles.",
+      "scroll": "Assombrit subtilement la brume pour apporter une assise parfaite aux textes et éléments interactifs."
+    },
+    "palette": [
+      "#064e3b",
+      "#94a3b8",
+      "#022c22",
+      "#fef08a",
+      "#cbd5e1",
+      "#020617"
+    ],
+    "references": [
+      "Aston Martin DB5 Swiss Alps mountain pass dusk",
+      "British Racing Green classic fog headlights",
+      "James Bond Aston Martin Furka Pass mist"
+    ],
+    "risks": {
+      "pitfall": "Rendre la scène trop sombre ou austère, ou faire une allusion explicite non autorisée à la franchise 007.",
+      "solution": "Évoquer le mythe par l'ambiance : la route de montagne embrumée, le vert anglais intemporel, les feuilles dorées et des phares nobles."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#064e3b",
+          "horizonColor": "#94a3b8",
+          "density": 1.15,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#031c15",
+          "sunColor": "#064e3b",
+          "mistColor": "#0f231c",
+          "density": 0.8,
+          "speed": 0.08,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "snowLevel": 0.75
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#fef08a",
+          "density": 0.85,
+          "speed": 0.15,
+          "depth": 0.4,
+          "intensity": 0.8,
+          "lightSourceX": -0.25,
+          "lightSourceY": 0.2,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#64748b",
+          "density": 0.65,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "heightFalloff": 1.7
+        }
+      },
+      {
+        "brick": "leaves",
+        "params": {
+          "leafColor": "#ea580c",
+          "altColor": "#ca8a04",
+          "density": 0.55,
+          "speed": 0.35,
+          "depth": 0.5,
+          "intensity": 0.85,
+          "windDrift": 0.4
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.15,
+          "intensity": 0.06,
+          "monochrome": true
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#fef08a",
+          "density": 0.4,
+          "speed": 1.1,
+          "depth": 0.35,
+          "intensity": 0.7,
+          "gustAngle": 0.2,
+          "gustInterval": 35.0
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "crewe_luxury",
+    "name": "Crewe Luxury",
+    "family": "Cosy & gestion",
+    "intensity": 2,
+    "universe": "bentley",
+    "evocation": "L'aristocratie automobile de Bentley Motors et l'héritage de la manufacture de Crewe (Cheshire) : les 'Bentley Boys' vainqueurs au Mans, le grand tourisme de luxe (Continental GT), le cuir Connolly pleine fleur vanillé, les boiseries en ronce de noyer cirée, la calandre grillagée matricielle chromée et le prestigieux 'Flying B' ailé.",
+    "signature": "Un halo d'or chaud et d'ivoire caressant une calandre grillagée chromée, tandis que des volutes de brume matinale se dissipent sur l'allée gravillonnée d'un manoir victorien.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel d'aurore brumeux de la campagne anglaise, dégradé vert céleste très doux vers un ivoire crémeux."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette noble d'un manoir victorien entouré de chênes séculaires se découpant dans la brume du matin."
+      },
+      {
+        "plan": 3,
+        "type": "Plan intermédiaire volumétrique",
+        "description": "Rais de soleil matinal perçant le feuillage des arbres et illuminant l'allée de gravier."
+      },
+      {
+        "plan": 4,
+        "type": "Plan médian atmosphérique",
+        "description": "Micro-poussières d'or et gouttelettes de rosée flottant en apesanteur dans les rais lumineux."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan & overlay",
+        "description": "Vignettage velouté vert sombre et grain photochimique discret conférant un cachet haute couture."
+      }
+    ],
+    "particles": {
+      "type": "Poussières d'or et particules de rosée (dust)",
+      "size": "1.1 à 2.4 px",
+      "speed": "0.12 (lévitation feutrée)",
+      "density": "50 motes dorées",
+      "behavior": "Dérive brownienne apaisée en suspension dans les faisceaux de lumière solaire, frémissement délicat au survol."
+    },
+    "atmosphere": {
+      "mist": "Brume de rosée matinale s'élevant doucement des pelouses du domaine.",
+      "light": "Opulente, soyeuse et sereine, évoquant un salon de club privé anglais baigné de lumière douce.",
+      "airColor": "Vert impérial (#14532d), ivoire vanillé (#fef3c7), or brossé (#d4af37) et noir aristocratique (#020617).",
+      "mainLightSource": "Soleil d'aube filtré à travers les branches séculaires en haut à gauche."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclat spéculaire sur le Flying B",
+        "type": "lens_flare",
+        "frequency": "Intervalle moyen de 35 secondes",
+        "description": "Un rai de soleil frappe la proue chromée, créant un éclat doré et une aigrette lumineuse scintillante pendant 2 secondes."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe feutrée décalant avec lenteur la silhouette du manoir et attirant doucement les particules d'or vers le pointeur.",
+      "scroll": "Approfondit la teinte vert mousse pour offrir un contraste digne d'une sellerie artisanale."
+    },
+    "palette": [
+      "#14532d",
+      "#fef3c7",
+      "#052e16",
+      "#d4af37",
+      "#e2e8f0",
+      "#020617"
+    ],
+    "references": [
+      "Bentley Crewe manor house morning driveway",
+      "Bentley matrix grille chrome golden light",
+      "British luxury interior Connolly leather green"
+    ],
+    "risks": {
+      "pitfall": "Aspect pompeux ou palette trop chargée risquant de nuire à la clarté de l'interface.",
+      "solution": "Privilégier la zénitude et la noblesse d'un matin anglais : vert impérial sombre en fond, touches d'ivoire crème et particules d'or feutrées."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#052e16",
+          "horizonColor": "#14532d",
+          "density": 1.2,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_castle",
+        "params": {
+          "castleColor": "#031c0e",
+          "torchColor": "#d4af37",
+          "rockColor": "#082f1b",
+          "density": 0.7,
+          "speed": 0.05,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "ruinDecay": 0.0,
+          "torchGlow": 0.5
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#fef3c7",
+          "density": 0.8,
+          "speed": 0.12,
+          "depth": 0.4,
+          "intensity": 0.75,
+          "lightSourceX": -0.35,
+          "lightSourceY": 0.75,
+          "decay": 0.93
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#d4af37",
+          "density": 0.5,
+          "speed": 0.12,
+          "depth": 0.5,
+          "intensity": 0.8,
+          "twinkleSpeed": 1.0
+        }
+      },
+      {
+        "brick": "lens_flare",
+        "params": {
+          "flareColor": "#ffffff",
+          "accentColor": "#d4af37",
+          "density": 0.5,
+          "speed": 0.1,
+          "depth": 0.45,
+          "intensity": 0.65,
+          "sourceX": 0.0,
+          "sourceY": -0.1,
+          "streakLength": 1.2
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.1,
+          "intensity": 0.05,
+          "monochrome": true
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020617",
+          "density": 1.0,
+          "intensity": 0.5,
+          "roundness": 0.7,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "french_blue",
+    "name": "French Blue",
+    "family": "Urbain & action",
+    "intensity": 2,
+    "universe": "bugatti",
+    "evocation": "La suprématie de Bugatti (Atelier de Molsheim en Alsace) et le record de la vitesse absolue : de la mythique Type 35 Bleu de France aux hypercars Chiron et Tourbillon franchissant les 400 km/h, la calandre iconique en fer à cheval, la signature latérale en C ('Bugatti Line') et la fureur aérodynamique d'un W16 quadri-turbo sur l'anneau d'Ehra-Lessien.",
+    "signature": "L'arc d'un C-line Bugatti en aluminium poli s'illuminant dans un cyclone aérodynamique bleu de France, au milieu de rubans de vitesse supersoniques fendant l'asphalte infini.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Ciel bleu nuit d'Alsace avec ligne d'horizon cyan luminescente évoquant la piste d'essai infinie."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Lignes de perspective d'un anneau de vitesse convergeant vers l'horizon avec éclairage bleuté."
+      },
+      {
+        "plan": 3,
+        "type": "Plan intermédiaire thermique",
+        "description": "Colonne de distorsion thermique intense émanant des tuyères d'échappement et des turbocompresseurs."
+      },
+      {
+        "plan": 4,
+        "type": "Plan médian cinétique",
+        "description": "Particules d'air ionisé et étincelles aérodynamiques fendant l'espace à très haute vélocité."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan & overlay",
+        "description": "Aberration chromatique cinématique radiale accentuant la sensation de vitesse supersonique et vignettage carbone."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles de friction aérodynamique et traînées de vitesse (sparks)",
+      "size": "1.2 à 2.5 px",
+      "speed": "1.7 (vélocité supersonique)",
+      "density": "55 particules cyan et blanches",
+      "behavior": "Projections longitudinales ultra-rapides étirées en flèche dans le sens du flux d'air, sillage réactif au curseur."
+    },
+    "atmosphere": {
+      "mist": "Air surchauffé par le frottement aérodynamique à plus de 400 km/h, vapeur d'asphalte en onde continue.",
+      "light": "Puissante, bleutée et athlétique, mariant le Bleu de France royal et l'éclat cyan électrique.",
+      "airColor": "Bleu de France (#1d4ed8), cyan supersonique (#0284c7), noir carbone (#000000) et aluminium (#e2e8f0).",
+      "mainLightSource": "Signature lumineuse rouge horizontale arrière et réverbération cyan des lignes de piste."
+    },
+    "rareEvents": [
+      {
+        "name": "Onde de choc supersonique",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 30 secondes",
+        "description": "Une onde de surpression annulaire cyan éclate au centre de l'écran avec dispersion chromatique, symbolisant le franchissement d'un record de vitesse."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe réactive étirant la perspective de piste et incurvant le flux des étincelles supersoniques.",
+      "scroll": "Augmente la profondeur de noir carbone pour maintenir un contraste net sur les interfaces denses."
+    },
+    "palette": [
+      "#1d4ed8",
+      "#0284c7",
+      "#000000",
+      "#e2e8f0",
+      "#ef4444",
+      "#020617"
+    ],
+    "references": [
+      "Bugatti Chiron high speed test Ehra Lessien",
+      "Bugatti C line blue aesthetic aerodynamics",
+      "Hypercar supersonic speed lines night track"
+    ],
+    "risks": {
+      "pitfall": "Vitesse trop chaotique perturbant l'ergonomie ou reproduction du logo EB déposé.",
+      "solution": "Canaliser l'intensité 2 sur la fluidité cinématique : étincelles nettes, Bleu de France noble et onde de choc rare et majestueuse."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#000000",
+          "horizonColor": "#1d4ed8",
+          "density": 1.25,
+          "speed": 0.12,
+          "depth": 0.1,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#0284c7",
+          "density": 0.8,
+          "speed": 0.35,
+          "depth": 0.25,
+          "intensity": 0.7,
+          "heatHeight": 0.5,
+          "chromaticAberration": 0.02
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#38bdf8",
+          "coreColor": "#ffffff",
+          "density": 0.6,
+          "speed": 1.6,
+          "depth": 0.4,
+          "intensity": 1.1,
+          "gravity": 0.8,
+          "burstInterval": 3.0
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#38bdf8",
+          "density": 1.0,
+          "speed": 1.4,
+          "depth": 0.3,
+          "intensity": 1.1,
+          "waveInterval": 30.0,
+          "chromaticAberration": 0.025
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "aberrationColor": "#0284c7",
+          "density": 1.0,
+          "intensity": 0.55,
+          "spread": 0.02,
+          "radialFalloff": 1.7
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.1,
+          "intensity": 0.6,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "speed_lines",
+        "category": "special",
+        "reason": "Filaments de vitesse aérodynamique radiaux convergeant vers le point de fuite central pour simuler l'accélération à 400+ km/h."
+      }
+    ]
+  },
+  {
+    "id": "phantom_luxury",
+    "name": "Phantom Luxury",
+    "family": "Cosy & gestion",
+    "intensity": 2,
+    "universe": "rolls-royce",
+    "evocation": "Le sanctuaire de Rolls-Royce Motor Cars (Goodwood, West Sussex) : l'opulence silencieuse absolue, le 'Magic Carpet Ride' effaçant toute imperfection de la route, la proue ornée de la calandre Panthéon monumentale et de la statuette Spirit of Ecstasy, et l'iconique pavillon étoilé 'Starlight Headliner' constellé de milliers de fibres optiques scintillantes.",
+    "signature": "Un plafond céleste Starlight constellé de centaines de micro-étoiles de fibre optique qui scintillent doucement au nombre d'or au-dessus de la silhouette immaculée du Spirit of Ecstasy flottant en apesanteur dans un silence souverain.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Nuit cosmique noire laquée avec champ d'étoiles multi-couches simulant le pavillon intérieur Starlight Headliner."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Voile nébuleux diaphane bleu nuit et argenté flottant au zénith avec une lenteur de velours."
+      },
+      {
+        "plan": 3,
+        "type": "Plan intermédiaire volumétrique",
+        "description": "Faisceau vertical délicat blanc-argenté descendant sur la proue comme un projecteur d'opéra silencieux."
+      },
+      {
+        "plan": 4,
+        "type": "Plan médian cinétique",
+        "description": "Poussières de diamant et motes lumineuses étincelant en quasi-apesanteur dans la pénombre feutrée."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan & overlay",
+        "description": "Vignettage noir piano laqué souverain et micro-aberration chromatique opalescente sur les pourtours."
+      }
+    ],
+    "particles": {
+      "type": "Poussières de diamant et micro-étoiles (dust)",
+      "size": "0.8 à 1.8 px",
+      "speed": "0.07 (apesanteur presque absolue)",
+      "density": "50 micro-points étincelants",
+      "behavior": "Lévitation calme au mouvement brownien infinitésimal, scintillement déphasé évoquant des fibres optiques artisanales."
+    },
+    "atmosphere": {
+      "mist": "Silence acoustique total, air purifié et tempéré, absence de toute vibration mécanique.",
+      "light": "Céleste, feutrée et nocturne, contrastant le noir piano le plus pur avec des éclats blancs et argentés.",
+      "airColor": "Noir piano laqué (#000000), blanc constellation (#f8fafc), argent (#94a3b8) et bleu nuit (#09090b).",
+      "mainLightSource": "Voûte céleste Starlight au zénith et halo délicat sur la mascotte proue."
+    },
+    "rareEvents": [
+      {
+        "name": "Étoile filante dans le pavillon Starlight",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 30 secondes",
+        "description": "Une fine étoile filante argentée traverse le champ stellaire zénithal avec une traînée de plasma soyeuse avant de disparaître."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe tridimensionnelle feutrée étirant le champ stellaire Starlight et créant un halo doux autour du curseur.",
+      "scroll": "Maintient une profondeur de noir absolu inaltérée pour magnifier la typographie et les bordures de cartes."
+    },
+    "palette": [
+      "#000000",
+      "#f8fafc",
+      "#94a3b8",
+      "#38bdf8",
+      "#c084fc",
+      "#09090b"
+    ],
+    "references": [
+      "Rolls-Royce Starlight headliner fiber optics night",
+      "Spirit of Ecstasy chrome hood ornament spotlight",
+      "Black badge Rolls Royce piano lacquer luxury"
+    ],
+    "risks": {
+      "pitfall": "Rendre la scène glaciale ou semblable à un thème spatial générique sans lien avec l'automobile de prestige.",
+      "solution": "Ancrer la scène dans l'esprit Rolls-Royce : noir piano laqué, faisceau théâtral sur la proue, éclat blanc argenté et silence feutré."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#09090b",
+          "horizonColor": "#1e1b4b",
+          "density": 1.2,
+          "speed": 0.05,
+          "depth": 0.1,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#ffffff",
+          "density": 0.8,
+          "speed": 0.05,
+          "depth": 1.0,
+          "intensity": 0.9,
+          "twinkleSpeed": 1.4
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#f8fafc",
+          "density": 0.7,
+          "speed": 0.08,
+          "depth": 0.4,
+          "intensity": 0.65,
+          "lightSourceX": 0.0,
+          "lightSourceY": 0.85,
+          "decay": 0.94
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f8fafc",
+          "density": 0.5,
+          "speed": 0.07,
+          "depth": 0.5,
+          "intensity": 0.85,
+          "twinkleSpeed": 1.5
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#ffffff",
+          "trailColor": "#94a3b8",
+          "density": 0.5,
+          "speed": 1.2,
+          "depth": 0.4,
+          "intensity": 1.0,
+          "starInterval": 30.0,
+          "trailLength": 1.0
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.15,
+          "intensity": 0.65,
+          "roundness": 0.65,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "street_racing",
+    "name": "Toretto Family",
+    "family": "Urbain & action",
+    "intensity": 2,
+    "universe": "fast-and-furious",
+    "evocation": "La saga Fast & Furious et les runs clandestins au quart de mille dans les bas-fonds de Los Angeles : la Dodge Charger noire survitaminée de Dominic Toretto, le crissement des pneus sur l'asphalte humide, les néons cyan sous les bas de caisse, les bouteilles de protoxyde d'azote (NOS) purgeant des jets de vapeur glacée sous haute pression et la fraternité de la famille.",
+    "signature": "Deux colonnes jumelles de vapeur de protoxyde d'azote blanc-cyan jaillissant sous haute pression du capot, balayant un sol d'asphalte mouillé illuminé par la lueur d'un néon bleu électrique sous châssis et des volutes de fumée de pneu.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan céleste lointain",
+        "description": "Skyline nocturne de Downtown Los Angeles découpée sur un ciel noir zébré par la pollution lumineuse et les projecteurs urbains."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Piliers de ponts en béton et viaducs industriels illuminés par des lueurs de lampadaires au sodium."
+      },
+      {
+        "plan": 3,
+        "type": "Plan intermédiaire au sol",
+        "description": "Grille de perspective d'asphalte luisant sous viaduc avec néon bleu cyan diffus projeté sous le châssis."
+      },
+      {
+        "plan": 4,
+        "type": "Plan médian cinétique",
+        "description": "Épaisses volutes de fumée de gomme brûlée montant des roues arrière et jets pressurisés de vapeur NOS blanc-cyan."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan & overlay",
+        "description": "Étincelles de friction urbaine, scanlines d'écran télémétrique de bord et vignettage sombre avec aberration chromatique."
+      }
+    ],
+    "particles": {
+      "type": "Volutes de fumée de burnout (smoke) et étincelles de friction (sparks)",
+      "size": "Volutes expansives 2.5x et étincelles 1.0 à 2.2 px",
+      "speed": "0.45 (ascension turbulente et rapide)",
+      "density": "45 volutes de fumée et 25 étincelles cyan",
+      "behavior": "Expansion vortex continue de la fumée de pneus combinée à des projections vives d'étincelles réagissant au passage de la souris."
+    },
+    "atmosphere": {
+      "mist": "Brouillard épais de gomme brûlée et vapeur de nitro pressurisée flottant au ras du bitume.",
+      "light": "Électrique, nocturne et contrastée, dominée par le cyan néon sous châssis et les feux stop rouges.",
+      "airColor": "Noir bitume (#000000), cyan néon NOS (#0ea5e9), bleu azur (#38bdf8), rouge feu stop (#f43f5e) et vapeur blanche (#f8fafc).",
+      "mainLightSource": "Néon sous châssis cyan projetant une nappe de lumière au sol et feux stop rougeoyants."
+    },
+    "rareEvents": [
+      {
+        "name": "Purge explosive de nitro (NOS)",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 25 secondes",
+        "description": "Une violente détente de vapeur blanche pressurisée éclate avec une onde de choc luminescente cyan et un flash bleu électrique avant de se dissiper."
+      }
+    ],
+    "interaction": {
+      "mouse": "Parallaxe nerveuse décalant les piliers urbains de LA et dispersant dynamiquement les volutes de fumée de pneu.",
+      "scroll": "Adoucit l'éclat des néons cyan au profit d'un noir asphalte profond pour préserver une lisibilité maximale."
+    },
+    "palette": [
+      "#000000",
+      "#0ea5e9",
+      "#38bdf8",
+      "#f43f5e",
+      "#f8fafc",
+      "#1e293b"
+    ],
+    "references": [
+      "Fast and Furious night drag race downtown LA",
+      "Underglow neon cyan car smoke burnout",
+      "NOS purge vapor blast night asphalt"
+    ],
+    "risks": {
+      "pitfall": "Surcharge visuelle avec des néons aveuglants qui écrasent le contenu ou utilisation directe des visages d'acteurs.",
+      "solution": "Restreindre le néon au plancher et aux purges de vapeur, maintenir un fond noir profond (80% de la surface) et une lisibilité textuelle sans faille."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#0ea5e9",
+          "density": 1.25,
+          "speed": 0.12,
+          "depth": 0.1,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#030712",
+          "windowColor": "#0ea5e9",
+          "beaconColor": "#f43f5e",
+          "density": 0.8,
+          "speed": 0.08,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "smogIntensity": 0.6
+        }
+      },
+      {
+        "brick": "neon_grid",
+        "params": {
+          "gridColor": "#0ea5e9",
+          "horizonColor": "#0284c7",
+          "pulseColor": "#ffffff",
+          "density": 0.8,
+          "speed": 0.2,
+          "depth": 0.35,
+          "intensity": 0.6,
+          "lineWidth": 0.03,
+          "horizonHeight": 0.4
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#334155",
+          "tintColor": "#0ea5e9",
+          "density": 0.7,
+          "speed": 0.4,
+          "depth": 0.45,
+          "intensity": 0.75,
+          "expansionRate": 1.6,
+          "dissipationSpeed": 1.1
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#38bdf8",
+          "coreColor": "#ffffff",
+          "density": 0.45,
+          "speed": 1.2,
+          "depth": 0.4,
+          "intensity": 0.95,
+          "gravity": 1.2,
+          "burstInterval": 25.0
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#0ea5e9",
+          "density": 1.0,
+          "speed": 1.6,
+          "depth": 0.3,
+          "intensity": 1.2,
+          "waveInterval": 25.0,
+          "chromaticAberration": 0.02
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "aberrationColor": "#0ea5e9",
+          "density": 1.0,
+          "intensity": 0.5,
+          "spread": 0.02,
+          "radialFalloff": 1.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.1,
+          "intensity": 0.65,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "underglow_neon",
+        "category": "special",
+        "reason": "Projection au sol d'un halo lumineux diffus de néon sous châssis (tubes néon ou LED) illuminant l'asphalte avec reflet mouillé."
+      }
+    ]
+  }
+]
+

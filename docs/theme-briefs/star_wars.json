@@ -1,0 +1,1597 @@
+[
+  {
+    "id": "galaxy_far_away",
+    "name": "A Galaxy Far, Far Away",
+    "family": "Espace & cosmos",
+    "intensity": 3,
+    "universe": "star-wars",
+    "evocation": "L'ouverture mythique de la saga Star Wars : le vide spatial infini et silencieux où les étoiles scintillent dans l'obscurité insondable, soudainement transpercé par l'activation de l'hyperpropulsion. Les étoiles se déforment et s'étirent en faisceaux de lumière radiaux convergents, propulsant le regard à travers un vortex d'hyperespace cyan et cobalt avant de stabiliser la course aux abords d'un champ d'astéroïdes et d'une flottille de croiseurs stellaires glissant majestueusement dans l'ombre.",
+    "signature": "Un saut en hyperespace foudroyant où les étoiles lointaines s'étirent en faisceaux de lumière bleutée et blanche convergeant vers un point de fuite central dans un flash d'éblouissement anamorphique.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Vide spatial noir d'encre absolu baigné de nébuleuses froides bleu nuit (#0a1128) et cobalt profond aux voiles de gaz ionisé asymétriques."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Champ d'étoiles multi-strates 3D dérivant lentement en rotation orbitale avant d'entrer en phase d'étirement relativiste sous l'hyperpropulsion."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Silhouette en dague d'un croiseur stellaire colossal escorté de deux frégates d'escorte naviguant à vitesse sub-luminique, tuyères ioniques bleues allumées."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Poussières cosmiques et micro-motes d'énergie ionisée dérivant en apesanteur dans les faisceaux lumineux froids."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Trait anamorphique de flare horizontal cyan cinéma, vignettage optique cosmique et grain argentique 35mm évoquant la pellicule originale de 1977."
+      }
+    ],
+    "particles": {
+      "type": "Poussières stellaires ionisées et étincelles d'hyperpropulsion (dust & sparks)",
+      "size": "0.8 à 2.2 px pour les poussières cosmiques, 1.5 à 3.2 px pour les étincelles ioniques",
+      "speed": "0.15 pour la dérive stellaire, 1.4 pour les jaillissements de tuyères d'escorte",
+      "density": "140 motes cosmiques + 40 étincelles de propulsion à l'arrière des coques",
+      "behavior": "Flottaison brownienne 3D fluide avec déflexion radiale vers l'extérieur lors des phases d'accélération d'hyperdrive."
+    },
+    "atmosphere": {
+      "mist": "Filaments de gaz interstellaire d'hyperespace cyan et voiles de nébuleuse cobalt dérivant dans le vide.",
+      "light": "Éclats bleus Cherenkov froids et blancs purs contrastant violemment avec le noir d'encre du néant absolu.",
+      "airColor": "Noir profond (#000000) et bleu nuit galactique (#0a1128), nimbé d'un halo bleu cobalt (#3b82f6) et cyan nébuleux (#93c5fd).",
+      "mainLightSource": "Le point de fuite central de saut en hyperespace et les tuyères à plasma des croiseurs stellaires."
+    },
+    "rareEvents": [
+      {
+        "name": "Onde de choc de sortie d'hyperespace",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Une détonation d'onde gravitationnelle annulaire bleue en expansion radiale ultra-rapide depuis le centre de fuite, avec dispersion chromatique prismatique et décélération cinématique."
+      },
+      {
+        "name": "Météore ionique hypersonique",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 24.0 secondes",
+        "description": "Un bolide fendant la voûte céleste d'un angle oblique avec tête incandescente blanche et traînée de plasma cyan persistant à micro-fragmentation."
+      },
+      {
+        "name": "Flash d'éblouissement anamorphique",
+        "type": "lens_flare",
+        "frequency": "Intervalle moyen de 30.0 secondes",
+        "description": "Un éblouissement optique anamorphique étiré sur tout l'axe horizontal balayant le champ stellaire lors de l'arrivée d'un vaisseau capital."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe 3D réoriente l'axe de perspective du saut d'hyperespace vers le curseur ; le mouvement rapide de la souris produit une traînée de dispersion sur les étoiles proches.",
+      "scroll": "Accélère la vitesse de défilement apparent des étoiles et intensifie la longueur des traînées ioniques des croiseurs lointains."
+    },
+    "palette": [
+      "#000000",
+      "#0a1128",
+      "#1e3a8a",
+      "#3b82f6",
+      "#93c5fd",
+      "#ffffff"
+    ],
+    "references": [
+      "Star Wars hyperspace jump VFX",
+      "Shadertoy starfield warp speed tunnel",
+      "Three.js anamorphic lens flare deep space"
+    ],
+    "risks": {
+      "pitfall": "Un simple fond d'étoiles fixes sur fond noir ressemblant à un économiseur d'écran générique des années 90 sans sentiment de vitesse ni d'immensité cosmique.",
+      "solution": "Superposition de nébuleuses FBM rotatives, 3 strates de profondeur Z distinctes pour les étoiles, présence de silhouettes de croiseurs aux réacteurs ioniques vivants, et ondes de choc relativistes avec éblouissement anamorphique horizontal."
+    },
+    "bricks": [
+      {
+        "brick": "nebula",
+        "params": {
+          "primaryColor": "#1e3a8a",
+          "secondaryColor": "#000000",
+          "accentColor": "#3b82f6",
+          "density": 0.65,
+          "speed": 0.12,
+          "depth": 0.2,
+          "intensity": 0.95,
+          "randomness": 0.35,
+          "coreScale": 1.5
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#ffffff",
+          "density": 1.3,
+          "speed": 0.18,
+          "depth": 1.0,
+          "intensity": 1.1,
+          "randomness": 0.5,
+          "twinkleSpeed": 1.6
+        }
+      },
+      {
+        "brick": "parallax_fleet",
+        "params": {
+          "hullColor": "#0a1120",
+          "engineColor": "#38bdf8",
+          "density": 0.8,
+          "speed": 0.18,
+          "depth": 0.45,
+          "intensity": 1.3,
+          "randomness": 0.35,
+          "trailLength": 1.1
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#93c5fd",
+          "density": 0.85,
+          "speed": 0.2,
+          "depth": 0.4,
+          "intensity": 0.9,
+          "randomness": 0.4,
+          "twinkleSpeed": 1.2
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#38bdf8",
+          "density": 1.0,
+          "speed": 1.4,
+          "depth": 0.3,
+          "intensity": 1.2,
+          "randomness": 0.3,
+          "epicenterX": 0.0,
+          "epicenterY": 0.0,
+          "waveInterval": 18.0,
+          "chromaticAberration": 0.025
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#ffffff",
+          "trailColor": "#38bdf8",
+          "density": 0.9,
+          "speed": 1.5,
+          "depth": 0.4,
+          "intensity": 1.2,
+          "randomness": 0.45,
+          "angle": -0.55,
+          "trailLength": 1.3,
+          "starInterval": 24.0
+        }
+      },
+      {
+        "brick": "lens_flare",
+        "params": {
+          "flareColor": "#ffffff",
+          "accentColor": "#38bdf8",
+          "density": 0.9,
+          "speed": 0.2,
+          "depth": 0.4,
+          "intensity": 1.15,
+          "randomness": 0.3,
+          "sourceX": 0.0,
+          "sourceY": 0.05,
+          "streakLength": 1.6
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.7,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.1,
+          "speed": 0.7,
+          "depth": 0.15,
+          "intensity": 0.06,
+          "randomness": 0.4,
+          "monochrome": true,
+          "clumpSize": 1.0
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "hyperspace_warp_tunnel",
+        "category": "special",
+        "reason": "Effet cinématique de passage en vitesse lumière où les étoiles se dilatent et s'étirent le long de vecteurs radiaux convergents avec phase de saut (warp jump) et traînées tubulaires lumineuses."
+      }
+    ]
+  },
+  {
+    "id": "jedi_order",
+    "name": "The Jedi Order",
+    "family": "Magie & fantasy",
+    "intensity": 3,
+    "universe": "star-wars",
+    "evocation": "Le Temple Jedi de Coruscant et les sanctuaires antiques d'Ilum et d'Ahch-To : un lieu de méditation silencieux et sacré, baigné d'une clarté zénithale apaisante. Au centre de la salle des piliers monumentaux, un grand cristal Kyber brut flotte en lévitation au-dessus du sol de marbre poli, pulsant au rythme régulier de la Force lumineuse et diffusant des faisceaux d'un bleu saphir pur qui font léviter des grains de poussière dorée en quasi-apesanteur.",
+    "signature": "Un sanctuaire Jedi aux hautes colonnades solennelles où un cristal Kyber suspendu au centre pulse d'une lueur bleue immaculée, projetant des rais de lumière sacrée et faisant léviter des poussières dorées en apesanteur.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel crépusculaire serein dégradé d'ardoise nocturne (#0f172a) vers un cobalt céleste profond, percé de la clarté lointaine de soleils couchants."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes majestueuses de hautes flèches et colonnades du Temple Jedi s'élevant dans une brume vaporeuse immaculée."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Le cœur du sanctuaire : un dôme de lueur volumétrique saphir et cyan rayonnant depuis le cristal Kyber central en lévitation magnétique."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Faisceaux volumétriques (god rays) obliques descendant des hautes baies vitrées et nimbant une nappe de brume de sanctuaire rampante."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Motes dorées et orbes de Force bleu-cyan lévitant en suspension brownienne, renforcés par un vignettage doux et une texture photochimique fine."
+      }
+    ],
+    "particles": {
+      "type": "Motes de lumière dorée et orbes d'énergie de la Force (dust & fireflies)",
+      "size": "1.0 à 2.8 px pour les poussières sacrées, 3.0 à 6.0 px pour les orbes de Force",
+      "speed": "0.15 pour la lévitation ascendante douce, 0.28 pour les orbes ondulants",
+      "density": "120 motes dorées + 25 orbes d'énergie de la Force à pulsation respiratoire",
+      "behavior": "Sustentation en apesanteur par Simplex 3D avec mouvement d'ascension lente et attirance douce vers le pointeur comme guidé par la Force."
+    },
+    "atmosphere": {
+      "mist": "Nappe de brume cristalline très légère et pure dérivant entre les dalles de pierre polie du temple.",
+      "light": "Sereine, radiale et solennelle, dominée par le rayonnement saphir froid du cristal Kyber et les rais solaires dorés indirects.",
+      "airColor": "Bleu ardoise profond (#0f172a) et bleu royal (#1e293b), nimbé de bleu cobalt (#3b82f6) et cyan éthéré (#60a5fa).",
+      "mainLightSource": "Le cristal Kyber rayonnant au centre et les faisceaux de lumière sacrée descendant de la haute voûte."
+    },
+    "rareEvents": [
+      {
+        "name": "Harmonique de résonance de la Force",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "Une onde de résonance cyan douce et luminescente émise par le cristal Kyber en pulsation lente, faisant briller intensément les poussières en lévitation."
+      },
+      {
+        "name": "Illumination zénithale de la Force",
+        "type": "god_rays",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Un renforcement majestueux des faisceaux volumétriques célestes perçant la voûte du temple, illuminant la salle de reflets dorés et azurs."
+      },
+      {
+        "name": "Souffle spirituel",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 35.0 secondes",
+        "description": "Une brise invisible de Force traversant le sanctuaire, faisant onduler les volutes de brume et dispersant les motes dorées en volutes harmonieuses."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le curseur canalise la Force lumineuse : les orbes de lumière bleue sont attirés délicatement vers le pointeur tandis que l'angle de parallaxe incline respectueusement les colonnades.",
+      "scroll": "Élève le regard vers les sommets des voûtes du temple tout en amplifiant la résonance lumineuse du halo central."
+    },
+    "palette": [
+      "#0f172a",
+      "#1e293b",
+      "#1d4ed8",
+      "#3b82f6",
+      "#60a5fa",
+      "#e0f2fe"
+    ],
+    "references": [
+      "Jedi Temple Coruscant meditation chamber lighting",
+      "Shadertoy kyber crystal volumetric glow",
+      "Star Wars Jedi sanctuary god rays dust"
+    ],
+    "risks": {
+      "pitfall": "Un sanctuaire bleu terne ressemblant à une cathédrale gothique ordinaire sans l'aura mystique et futuriste caractéristique des Jedi.",
+      "solution": "Centrage sur la pulsation organique du cristal Kyber via volumetric_glow, inversion de gravité sur les poussières lévitant vers le zénith, et faisceaux volumétriques god rays ultra-purs."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#1d4ed8",
+          "density": 1.1,
+          "speed": 0.12,
+          "depth": 0.1,
+          "intensity": 0.9,
+          "randomness": 0.15,
+          "noiseScale": 1.2
+        }
+      },
+      {
+        "brick": "parallax_castle",
+        "params": {
+          "castleColor": "#0a1120",
+          "torchColor": "#60a5fa",
+          "rockColor": "#0f172a",
+          "density": 0.85,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.9,
+          "randomness": 0.3,
+          "ruinDecay": 0.05,
+          "torchGlow": 0.8
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#e0f2fe",
+          "glowColor": "#3b82f6",
+          "outerColor": "#0f172a",
+          "density": 1.1,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 1.25,
+          "randomness": 0.25,
+          "glowX": 0.0,
+          "glowY": 0.1
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#93c5fd",
+          "density": 1.0,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 1.15,
+          "randomness": 0.35,
+          "lightSourceX": 0.0,
+          "lightSourceY": 0.85,
+          "decay": 0.94
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#1e293b",
+          "density": 0.6,
+          "speed": 0.12,
+          "depth": 0.25,
+          "intensity": 0.85,
+          "randomness": 0.3,
+          "heightFalloff": 2.0,
+          "windAngle": 0.05
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef08a",
+          "density": 0.9,
+          "speed": 0.15,
+          "depth": 0.45,
+          "intensity": 1.1,
+          "randomness": 0.4,
+          "twinkleSpeed": 1.1
+        }
+      },
+      {
+        "brick": "fireflies",
+        "params": {
+          "glowColor": "#38bdf8",
+          "coreColor": "#ffffff",
+          "density": 0.6,
+          "speed": 0.25,
+          "depth": 0.4,
+          "intensity": 1.2,
+          "randomness": 0.5,
+          "pulseFrequency": 1.3
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#60a5fa",
+          "density": 0.8,
+          "speed": 1.0,
+          "depth": 0.25,
+          "intensity": 0.95,
+          "randomness": 0.25,
+          "epicenterX": 0.0,
+          "epicenterY": 0.1,
+          "waveInterval": 20.0,
+          "chromaticAberration": 0.012
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#080c15",
+          "density": 1.0,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.65,
+          "randomness": 0.15,
+          "roundness": 0.7,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.0,
+          "speed": 0.6,
+          "depth": 0.15,
+          "intensity": 0.05,
+          "randomness": 0.35,
+          "monochrome": true,
+          "clumpSize": 1.0
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "levitating_kyber_crystal",
+        "category": "intermediate",
+        "reason": "Maillage géométrique 3D de cristal Kyber facetté en sustentation magnétique, animé d'une oscillation d'apesanteur et d'une réfraction optique interne au rythme respiratoire de la Force."
+      }
+    ]
+  },
+  {
+    "id": "sith_empire",
+    "name": "Sith Empire",
+    "family": "Éléments & catastrophes",
+    "intensity": 3,
+    "universe": "star-wars",
+    "evocation": "Moraband (Korriban), berceau ancestral des Seigneurs Sith, et Mustafar : une terre stérile de roches d'obsidienne et de citadelles pyramidales colossales en basalte noir. Au fond des failles telluriques, des fleuves de lave rouge sang bouillonnent et irradient une chaleur étouffante, tandis que le ciel nocturne lourd et lie-de-vin est déchiré par des tempêtes d'éclairs pourpres et carmins alimentées par la haine et la puissance du Côté Obscur.",
+    "signature": "Une faille de basalte noir surplombée de monolithes Sith acérés où s'écoule un fleuve de lave rouge sang, sous un ciel tourmenté déchiré par des éclairs pourpres zébrant la nuit.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel d'orage cataclysmique FBM couleur lie-de-vin sombre (#180c14) et suie noire, traversé de nuages de cendres denses et menaçants."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouettes monumentales de pyramides et monolithes Sith acérés taillés dans l'obsidienne noire se découpant contre l'horizon incandescent."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Coulée de lave magmatique rouge vermillon (#dc2626) et magma liquide incandescent serpentant entre les plaques de basalte noir fracturé."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Distorsion thermique ascensionnelle et panaches de fumée sulfureuse opaque s'élevant des failles volcaniques ardentes."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Nuée de braises incandescentes ascendantes et flocons de suie noire tourbillonnante, encadrée d'un vignettage charbon étouffant."
+      }
+    ],
+    "particles": {
+      "type": "Braises incandescentes, cendres calcinées et étincelles Sith (embers, ash & sparks)",
+      "size": "1.2 à 3.0 px pour les braises chaudes, 2.0 à 4.5 px pour les flocons de cendre, 1.0 à 2.0 px pour les étincelles",
+      "speed": "0.65 pour l'ascension des braises, 0.35 pour la chute erratique des cendres, 1.3 pour les étincelles",
+      "density": "150 braises ardentes + 80 flocons de suie + 45 étincelles d'arc électrique",
+      "behavior": "Convection thermique ascendante turbulente par Simplex 3D avec refroidissement continu du jaune-or au rouge sombre calciné."
+    },
+    "atmosphere": {
+      "mist": "Fumée sulfureuse dense et vapeurs d'obsidienne brûlée stagnant au ras du sol avant d'être aspirées vers le ciel.",
+      "light": "Éclairage violent par le bas émis par la lave en fusion rouge sang (#dc2626), entrecoupé des flashs crus des décharges de foudre Sith pourpres.",
+      "airColor": "Noir ardoise suie (#0f172a), rouge brique obscur (#7f1d1d) et rouge carmin vif (#dc2626).",
+      "mainLightSource": "La rivière de lave magmatique au sol et les éclairs de foudre Sith au zénith."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclair de foudre Sith",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 14.0 secondes",
+        "description": "Une décharge de foudre fractale pourpre et carmine zébrant violemment le ciel avec ramifications multiples et double flash atmosphérique éblouissant."
+      },
+      {
+        "name": "Secousse tellurique des cryptes",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 26.0 secondes",
+        "description": "Un tremblement tellurique sourd faisant vibrer l'ensemble de la scène, simulant l'écroulement d'un pan de basalte ou le réveil d'une tombe Sith millénaire."
+      },
+      {
+        "name": "Geyser d'étincelles magmatiques",
+        "type": "sparks",
+        "frequency": "Intervalle moyen de 19.0 secondes",
+        "description": "Une gerbe d'étincelles balistiques rougeoyantes jaillissant d'une fissure de basalte avec trajectoire parabolique et retombée lourde."
+      }
+    ],
+    "interaction": {
+      "mouse": "La présence du curseur attise la convection thermique, repoussant violemment les volutes de fumée et créant un sillage de braises vives autour du pointeur.",
+      "scroll": "Plonge la caméra plus profondément au cœur de la gorge de lave en accentuant la distorsion thermique et la pénombre supérieure."
+    },
+    "palette": [
+      "#0f172a",
+      "#180c14",
+      "#7f1d1d",
+      "#dc2626",
+      "#f97316",
+      "#fef08a"
+    ],
+    "references": [
+      "Mustafar Vader fortress lava storm VFX",
+      "Shadertoy dark sith lightning red storm",
+      "Korriban Sith monoliths procedural lava"
+    ],
+    "risks": {
+      "pitfall": "Un simple décor de lave générique type volcan médiéval-fantastique sans le gigantisme oppressant de l'architecture Sith ni la menace du Côté Obscur.",
+      "solution": "Intégration d'éclairs de foudre Sith pourpres et carmins distincts de la foudre naturelle, juxtaposition de plaques géométriques de basalte noir strictes, et pulsation thermique agressive de la lave."
+    },
+    "bricks": [
+      {
+        "brick": "lava_flow",
+        "params": {
+          "crustColor": "#0b0c10",
+          "magmaColor": "#dc2626",
+          "coreColor": "#fef08a",
+          "density": 1.1,
+          "speed": 0.22,
+          "depth": 0.25,
+          "intensity": 1.35,
+          "randomness": 0.45,
+          "heatPulseSpeed": 1.4
+        }
+      },
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "cloudColor": "#2d0b14",
+          "skyColor": "#0f172a",
+          "density": 0.65,
+          "speed": 0.16,
+          "depth": 0.2,
+          "intensity": 1.1,
+          "randomness": 0.45,
+          "windAngle": 0.25
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "lightningColor": "#dc2626",
+          "flashColor": "#c084fc",
+          "density": 1.2,
+          "speed": 1.4,
+          "depth": 0.35,
+          "intensity": 1.4,
+          "randomness": 0.55,
+          "strikeInterval": 14.0,
+          "forkSpread": 0.7
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#ea580c",
+          "density": 1.1,
+          "speed": 0.35,
+          "depth": 0.25,
+          "intensity": 1.15,
+          "randomness": 0.45,
+          "heatHeight": 0.7,
+          "chromaticAberration": 0.02
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#dc2626",
+          "hotColor": "#fef08a",
+          "density": 1.15,
+          "speed": 0.7,
+          "depth": 0.45,
+          "intensity": 1.3,
+          "randomness": 0.55,
+          "coolingRate": 1.1
+        }
+      },
+      {
+        "brick": "ash",
+        "params": {
+          "ashColor": "#475569",
+          "darkColor": "#0f172a",
+          "density": 0.85,
+          "speed": 0.35,
+          "depth": 0.5,
+          "intensity": 0.85,
+          "randomness": 0.6,
+          "drift": 0.3
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#1e293b",
+          "tintColor": "#450a0a",
+          "density": 0.8,
+          "speed": 0.38,
+          "depth": 0.4,
+          "intensity": 0.75,
+          "randomness": 0.55,
+          "expansionRate": 1.5,
+          "dissipationSpeed": 1.0
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeColor": "#7f1d1d",
+          "density": 0.9,
+          "speed": 1.2,
+          "depth": 0.3,
+          "intensity": 0.85,
+          "randomness": 0.5,
+          "shakeInterval": 26.0,
+          "decayRate": 3.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#05070d",
+          "density": 1.15,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "randomness": 0.2,
+          "roundness": 0.6,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.1,
+          "speed": 0.75,
+          "depth": 0.15,
+          "intensity": 0.07,
+          "randomness": 0.45,
+          "monochrome": true,
+          "clumpSize": 1.1
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "sith_monolith_citadel",
+        "category": "intermediate",
+        "reason": "Silhouettes polygonales de pyramides inversées et d'obélisques Sith colossaux aux arêtes tranchantes en basalte noir gravées de glyphes carmins rougeoyants."
+      }
+    ]
+  },
+  {
+    "id": "hutt_cartel",
+    "name": "Hutt Cartel",
+    "family": "Aventure & histoire",
+    "intensity": 3,
+    "universe": "star-wars",
+    "evocation": "Les bas-fonds de Tatooine et de Nar Shaddaa sous la férule impitoyable du Cartel des Hutts : le palais troglodyte de Jabba juché au-delà de la mer de dunes sous les soleils jumeaux. Une ambiance étouffante et clandestine où l'air est saturé de vapeurs de narguilé et d'épice illicite, de grains de sable soulevés par le sirocco et d'ombres profondes où luisent des lanternes vacillantes à l'huile rouillée et des trésors de contrebande.",
+    "signature": "Les dômes crasseux d'une forteresse du désert où des volutes épaisses de narguilé et de vapeur d'épice s'élèvent sous la lueur louche de lanternes vacillantes, balayées par un sirocco de sable chaud.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel crépusculaire de désert alien ambre cuivré (#b45309) et lie-de-vin poussiéreux sous la chaleur mourante de deux soleils."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Crêtes successives de dunes de sable ondulantes balayées par le vent et silhouette lointaine d'une barge à voile stationnaire."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Entrée voûtée en adobe taillée dans la roche et grilles de fer forgé rouillé du palais, baignées dans la lueur d'une lanterne clandestine rouge sombre (#7f1d1d)."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Volutes épaisses et denses de narguilé et vapeur d'épice s'étirant au ras du sol avec distorsion de chaleur chatoyante."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Grains de sable fin en suspension brownienne tourbillonnant sous les rafales de vent, bordés d'un vignettage cuir sombre."
+      }
+    ],
+    "particles": {
+      "type": "Grains de sable minéral, volutes de narguilé et flammèches de pipe à épice (dust, smoke & embers)",
+      "size": "0.9 à 2.4 px pour le sable fin, 4.0 à 8.0 px pour les volutes de fumée, 1.2 à 2.0 px pour les braises de pipe",
+      "speed": "0.22 pour la dérive de sable, 0.32 pour l'expansion des fumerolles, 0.45 pour les braises",
+      "density": "130 grains de sable soufflés + 40 volutes de fumée d'épice + 20 braises rougeoyantes",
+      "behavior": "Chasse-poussière horizontal intermittent sous l'effet du sirocco avec volutes d'épice expansives montant paresseusement."
+    },
+    "atmosphere": {
+      "mist": "Vapeurs d'épice lourdes, encens aromatique et brume de sable chaud saturant l'air d'une texture poisseuse.",
+      "light": "Chaude, tamisée, clandestine et confinée, dominée par le rouge brique sombre (#7f1d1d) et les reflets ambrés cuivrés.",
+      "airColor": "Noir profond (#000000), rouge bordeaux obscur (#2a0a0a) et ambre brûlé (#b45309).",
+      "mainLightSource": "La lanterne à huile crépitante de l'alcôve et les braises du narguilé du seigneur du crime."
+    },
+    "rareEvents": [
+      {
+        "name": "Rafale de sirocco de Tatooine",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 22.0 secondes",
+        "description": "Une bourrasque de vent sec et chaud balayant l'écran, faisant tourbillonner vivement les grains de sable et déviant les volutes de fumée d'épice."
+      },
+      {
+        "name": "Vacillement clandestin de la lanterne",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 16.0 secondes",
+        "description": "Un saut stochastique d'intensité dans le foyer de la lanterne à huile, plongeant un court instant la pièce dans une pénombre rougeoyante avant de se stabiliser."
+      },
+      {
+        "name": "Vibration mécanique d'une barge à voile",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 32.0 secondes",
+        "description": "Un grondement sourd à très basse fréquence simulant les moteurs répulsifs d'un convoi de criminels approchant de la forteresse."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le curseur déplace le centre d'éclairage feutré de la lanterne clandestine et dissipe doucement les nappes de fumée d'épice au survol.",
+      "scroll": "Fait plonger la vue vers les profondeurs ombragées de la fosse sous la herse en accentuant l'épaisseur du vignettage noir."
+    },
+    "palette": [
+      "#000000",
+      "#2a0a0a",
+      "#451a03",
+      "#7f1d1d",
+      "#b45309",
+      "#f59e0b"
+    ],
+    "references": [
+      "Jabba palace lighting Tatooine interior",
+      "Shadertoy desert sand dune dust wind",
+      "CodePen dense hookah smoke volumetric"
+    ],
+    "risks": {
+      "pitfall": "Un simple désert jaune générique sans le caractère poisseux, confiné et interlope du syndicat du crime des Hutts.",
+      "solution": "Contraste brutal entre le noir absolu (#000000) et le rouge bordeaux (#7f1d1d), présence de fumée de narguilé multi-lobes avec expansion lente, et lanterne vacillante organique."
+    },
+    "bricks": [
+      {
+        "brick": "dunes",
+        "params": {
+          "sandColor": "#b45309",
+          "shadowColor": "#2a0a0a",
+          "skyColor": "#451a03",
+          "density": 1.0,
+          "speed": 0.14,
+          "depth": 0.35,
+          "intensity": 0.95,
+          "randomness": 0.4,
+          "sunAngle": 0.75
+        }
+      },
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#2a0a0a",
+          "bottomColor": "#451a03",
+          "horizonColor": "#b45309",
+          "density": 1.1,
+          "speed": 0.12,
+          "depth": 0.1,
+          "intensity": 0.9,
+          "randomness": 0.15,
+          "noiseScale": 1.2
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#7f1d1d",
+          "secondaryColor": "#b45309",
+          "density": 1.1,
+          "speed": 0.32,
+          "depth": 0.3,
+          "intensity": 1.2,
+          "randomness": 0.5,
+          "lightX": -0.2,
+          "lightY": 0.1,
+          "flickerType": 0
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#451a03",
+          "tintColor": "#2a0a0a",
+          "density": 0.9,
+          "speed": 0.32,
+          "depth": 0.4,
+          "intensity": 0.8,
+          "randomness": 0.5,
+          "expansionRate": 1.6,
+          "dissipationSpeed": 0.95
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f59e0b",
+          "density": 1.1,
+          "speed": 0.22,
+          "depth": 0.45,
+          "intensity": 0.95,
+          "randomness": 0.45,
+          "twinkleSpeed": 1.0
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#b45309",
+          "density": 0.85,
+          "speed": 1.3,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "randomness": 0.45,
+          "gustAngle": 0.15,
+          "gustInterval": 22.0,
+          "swirlScale": 1.1
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#b45309",
+          "density": 0.9,
+          "speed": 0.28,
+          "depth": 0.25,
+          "intensity": 0.85,
+          "randomness": 0.4,
+          "heatHeight": 0.6,
+          "chromaticAberration": 0.015
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.2,
+          "speed": 0.1,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "randomness": 0.2,
+          "roundness": 0.6,
+          "smoothness": 0.8
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.2,
+          "speed": 0.7,
+          "depth": 0.15,
+          "intensity": 0.08,
+          "randomness": 0.45,
+          "monochrome": true,
+          "clumpSize": 1.2
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "palace_archway_silhouette",
+        "category": "intermediate",
+        "reason": "Silhouette d'arche orientale en adobe crasseuse et grille de herse rouillée aux barreaux massifs avec lanternes suspendues oscillant sous les courants d'air du repaire de Jabba."
+      }
+    ]
+  },
+  {
+    "id": "droid_rebellion",
+    "name": "Droid Rebellion",
+    "family": "Néon & cyber",
+    "intensity": 3,
+    "universe": "star-wars",
+    "evocation": "L'insurrection armée des droïdes de travail dans les mines d'épice de Kessel et les fonderies automatisées de Géonosis : le soulèvement mécanique mené par des automates brisant leurs chaînes d'asservissement. Une atmosphère d'usine industrielle saturée de circuits en surchauffe, de vérins hydrauliques expulsant des jets de vapeur sous pression, d'étincelles de meulage dorées et de terminaux de contrôle piratés aux grilles alvéolaires violettes et ambrées clignotant en alerte maximale.",
+    "signature": "Un terminal de chaîne d'assemblage industrielle en plein piratage d'émancipation, crachant des gerbes d'étincelles dorées et des jets de vapeur sous pression tandis qu'un flux de code binaire violet s'emballe sur un réseau d'alvéoles piratées.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Entrepôt d'usine industrielle automatisée baigné d'une lueur d'ambiance violet profond (#2e1065) et charpentes métalliques massives."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Châssis d'automates sur rails suspendus et bras robotiques articulés étagés en perspective avec voyants d'alerte stroboscopiques."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Grille de sécurité nanotechnologique alvéolaire (hex_grid) violette (#7c3aed) clignotant en surtension jaune ambre (#facc15) sous l'attaque d'un virus d'émancipation."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Jets de vapeur hydraulique pressurisée et cascades de code binaire corrompu s'échappant des circuits surchargés."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Pluie d'étincelles de court-circuit dorées et blanches, glitchs optiques stochastiques et trame de balayage CRT industrielle."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles de court-circuit balistiques, vapeur hydraulique et micro-débris d'usinage (sparks, smoke & dust)",
+      "size": "1.0 à 2.8 px pour les étincelles tranchantes, 3.5 à 7.5 px pour la vapeur, 0.8 à 1.8 px pour la limaille",
+      "speed": "1.3 pour l'éjection vive des étincelles, 0.4 pour l'expansion des panaches de vapeur, 0.2 pour la poussière",
+      "density": "140 étincelles de court-circuit + 35 volutes de vapeur de vérin + 90 particules de limaille",
+      "behavior": "Projections balistiques paraboliques vives sous gravité g avec extinction thermique fulgurante et cascades de vapeur d'échappement."
+    },
+    "atmosphere": {
+      "mist": "Panaches de vapeur industrielle blanche et brume d'ozone ionisé violette stagnant entre les consoles.",
+      "light": "Électrique, saccadée, agressive et cybernétique, dominée par le contraste violent entre violet survolté (#7c3aed) et jaune étincelant (#facc15).",
+      "airColor": "Violet sombre électrique (#2e1065), pourpre incandescent (#7c3aed) et jaune ambre de sécurité (#facc15).",
+      "mainLightSource": "Le terminal piraté en court-circuit et les jaillissements d'arcs de soudure des automates révoltés."
+    },
+    "rareEvents": [
+      {
+        "name": "Glitch de rupture de protocole",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 15.0 secondes",
+        "description": "Une défaillance d'affichage cybernétique avec découpage horizontal par blocs stochastiques, micro-flicker à haute fréquence et séparation chromatique RVB des flux de données."
+      },
+      {
+        "name": "Court-circuit haute tension",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 21.0 secondes",
+        "description": "Un arc électrique jaune doré crépitant entre deux bornes d'alimentation dénudées, illuminant brutalement la machinerie d'arrière-plan."
+      },
+      {
+        "name": "Impact de presse hydraulique",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 27.0 secondes",
+        "description": "Une secousse mécanique amortie simulant le choc sourd d'un vérin lourd ou d'une porte de hangar forcer par les droïdes insurgés."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le curseur propage une onde de surtension concentrique le long des alvéoles de la grille hexagonale et génère une gerbe de micro-étincelles réactives au passage.",
+      "scroll": "Accélère la cadence de défilement des flux de code binaire et fait osciller l'angle de vue des consoles d'atelier."
+    },
+    "palette": [
+      "#2e1065",
+      "#581c87",
+      "#7c3aed",
+      "#a855f7",
+      "#facc15",
+      "#fef08a"
+    ],
+    "references": [
+      "Droid rebellion Kessel factory VFX",
+      "Cyberpunk overloaded circuit hex grid sparks",
+      "Shadertoy industrial machinery glitch"
+    ],
+    "risks": {
+      "pitfall": "Un thème néon techno générique sans matière industrielle, oubliant l'aspect ferraille, sueur mécanique et révolte d'esclaves d'usine.",
+      "solution": "Combinaison d'étincelles balistiques réelles, jets de vapeur hydraulique pressurisée via smoke, grille alvéolaire hex_grid en mode surtension et glitchs de rupture de protocole."
+    },
+    "bricks": [
+      {
+        "brick": "hex_grid",
+        "params": {
+          "borderColor": "#7c3aed",
+          "fillColor": "#2e1065",
+          "pulseColor": "#facc15",
+          "density": 1.15,
+          "speed": 0.35,
+          "depth": 0.35,
+          "intensity": 1.1,
+          "randomness": 0.4,
+          "borderWidth": 0.06,
+          "innerGlow": 0.5,
+          "waveSpread": 1.3
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#facc15",
+          "coreColor": "#ffffff",
+          "density": 1.2,
+          "speed": 1.3,
+          "depth": 0.4,
+          "intensity": 1.4,
+          "randomness": 0.55,
+          "gravity": 1.3,
+          "burstInterval": 1.8
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#e2e8f0",
+          "tintColor": "#7c3aed",
+          "density": 0.75,
+          "speed": 0.4,
+          "depth": 0.45,
+          "intensity": 0.75,
+          "randomness": 0.5,
+          "expansionRate": 1.4,
+          "dissipationSpeed": 1.1
+        }
+      },
+      {
+        "brick": "glitch",
+        "params": {
+          "glitchColor": "#facc15",
+          "density": 1.0,
+          "speed": 1.5,
+          "depth": 0.25,
+          "intensity": 1.25,
+          "randomness": 0.6,
+          "sliceHeight": 0.07,
+          "glitchInterval": 15.0,
+          "chromaticShift": 0.05
+        }
+      },
+      {
+        "brick": "code_rain",
+        "params": {
+          "primaryColor": "#7c3aed",
+          "headColor": "#facc15",
+          "glowColor": "#2e1065",
+          "density": 0.85,
+          "speed": 0.45,
+          "depth": 0.35,
+          "intensity": 0.95,
+          "randomness": 0.35,
+          "charSize": 0.9,
+          "tailLength": 0.75,
+          "mouseGlow": 0.6
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#facc15",
+          "secondaryColor": "#7c3aed",
+          "density": 1.0,
+          "speed": 0.45,
+          "depth": 0.3,
+          "intensity": 1.2,
+          "randomness": 0.6,
+          "lightX": 0.3,
+          "lightY": 0.2,
+          "flickerType": 1
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeColor": "#7c3aed",
+          "density": 0.85,
+          "speed": 1.2,
+          "depth": 0.25,
+          "intensity": 0.75,
+          "randomness": 0.45,
+          "shakeInterval": 27.0,
+          "decayRate": 4.0
+        }
+      },
+      {
+        "brick": "crt_scanlines",
+        "params": {
+          "scanlineColor": "#000000",
+          "density": 1.1,
+          "speed": 0.3,
+          "depth": 0.25,
+          "intensity": 0.4,
+          "randomness": 0.25,
+          "curvature": 0.1,
+          "rollIntensity": 0.15
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1e0b36",
+          "density": 1.05,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.65,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "industrial_robotic_conveyor",
+        "category": "intermediate",
+        "reason": "Silhouettes de convoyeurs industriels automatisés avec bras robotiques articulés et pinces de soudure suspendues en défilement asynchrone."
+      }
+    ]
+  },
+  {
+    "id": "galactic_empire",
+    "name": "Force Ghost",
+    "family": "Magie & fantasy",
+    "intensity": 3,
+    "universe": "star-wars",
+    "evocation": "La manifestation immortelle des Maîtres Jedi transcendés dans la Force cosmique (Obi-Wan Kenobi, Yoda, Anakin Skywalker) veillant sur la lune forestière d'Endor ou dans la brume de Dagobah. Une clairière nocturne sereine et solennelle où les arbres géants filtrent les rayons d'argent de la lune, tandis qu'une présence bienveillante et diaphane apparaît sous la forme d'un halo bleu cobalt luminescent entouré d'aurores de plasma spirituel et d'orbes bioluminescents en lévitation.",
+    "signature": "Une clairière nocturne nimbée de brume où s'élève une silhouette spectrale diaphane ondulant dans un halo bleu cobalt luminescent, entourée de volutes de plasma spirituel et d'orbes scintillants en flottaison.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Voûte céleste nocturne d'Endor d'un bleu nuit insondable (#020617) parsemée d'étoiles calmes et de lueurs lunaires argentées à travers la canopée."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette majestueuse de conifères et troncs séculaires géants (parallax_forest) estompés dans une nappe de brume argentée."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "La présence spectrale : un dôme de lueur volumétrique bleu cobalt (#3b82f6) et cyan luminescent nimbé de draperies ondulantes de plasma spirituel (aurora)."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Nappe de brume mystique rampante dérivant entre les racines des arbres géants, zébrée de rais de lune obliques (god_rays)."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Essaim d'orbes et lucioles bioluminescentes bleu-vert oscillant doucement en suspension, adouci d'un vignettage nocturne profond."
+      }
+    ],
+    "particles": {
+      "type": "Orbes bioluminescents et motes spectrales de Force (fireflies & dust)",
+      "size": "2.5 à 5.5 px pour les orbes de Force, 0.9 à 2.2 px pour les motes spectrales",
+      "speed": "0.25 pour le vol ondulant des lucioles, 0.12 pour la dérive brownienne des motes",
+      "density": "35 orbes bioluminescents + 110 motes d'énergie de Force en suspension",
+      "behavior": "Flottaison erratique douce en cloche avec attirance curieuse vers le pointeur et pulsation biologique asynchrone."
+    },
+    "atmosphere": {
+      "mist": "Brume de clairière nocturne pure et vaporeuse dérivant au ras du sol avec sillage interactif à la souris.",
+      "light": "Phosphorescente, mystique, feutrée et apaisante, bleu électrique diaphane (#3b82f6) et cyan spectral (#67e8f9).",
+      "airColor": "Bleu nuit insondable (#020617), ardoise forestière (#0f172a) et lueur cobalt spectrale (#3b82f6).",
+      "mainLightSource": "Le halo volumétrique de l'apparition spectrale et la lumière argentée de la lune filtrant de la canopée."
+    },
+    "rareEvents": [
+      {
+        "name": "Onde de rémanence spectrale",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "Une pulsation d'onde lumineuse cyan douce et circulaire se diffusant depuis le cœur du spectre, intensifiant temporairement la phosphorescence de la brume."
+      },
+      {
+        "name": "Brise spectrale nocturne",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 29.0 secondes",
+        "description": "Une brise invisible d'air pur balayant la clairière, faisant frémir la canopée et tourbillonner délicatement les orbes bioluminescents."
+      },
+      {
+        "name": "Étoile filante à travers la canopée",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 34.0 secondes",
+        "description": "Un météore argenté traversant furtivement la brèche du ciel étoilé entre les cimes des séquoias d'Endor."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le spectre spirituel incline doucement son halo lumineux vers le curseur ; les orbes de bioluminescence suivent la trajectoire du pointeur avec une inertie poétique.",
+      "scroll": "Épaissit la nappe de brume mystique au ras du sol et amplifie la phosphorescence de l'apparition centrale."
+    },
+    "palette": [
+      "#020617",
+      "#0f172a",
+      "#1e3a8a",
+      "#3b82f6",
+      "#67e8f9",
+      "#f0f9ff"
+    ],
+    "references": [
+      "Force Ghost blue aura Return of the Jedi",
+      "Shadertoy ethereal spirit volumetric glow",
+      "Three.js ghostly aurora volumetric mist"
+    ],
+    "risks": {
+      "pitfall": "Un spectre effrayant ressemblant à un fantôme d'Halloween ou à un mort-vivant gothique sinistre.",
+      "solution": "Palette lumineuse cobalt et cyan très pure et rassurante, mouvements ondulatoires lents et gracieux via aurora et volumetric_glow, et décor de forêt paisible sous la lune d'Endor."
+    },
+    "bricks": [
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#020617",
+          "fogColor": "#0f172a",
+          "density": 0.9,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 0.95,
+          "randomness": 0.4,
+          "windStrength": 0.35
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#f0f9ff",
+          "glowColor": "#3b82f6",
+          "outerColor": "#020617",
+          "density": 1.1,
+          "speed": 0.14,
+          "depth": 0.3,
+          "intensity": 1.3,
+          "randomness": 0.3,
+          "glowX": 0.0,
+          "glowY": 0.1
+        }
+      },
+      {
+        "brick": "aurora",
+        "params": {
+          "topColor": "#3b82f6",
+          "bottomColor": "#67e8f9",
+          "density": 0.65,
+          "speed": 0.18,
+          "depth": 0.25,
+          "intensity": 1.1,
+          "randomness": 0.45,
+          "waveFrequency": 2.2
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#0f172a",
+          "density": 0.75,
+          "speed": 0.14,
+          "depth": 0.3,
+          "intensity": 0.9,
+          "randomness": 0.35,
+          "heightFalloff": 1.8,
+          "windAngle": 0.1
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#93c5fd",
+          "density": 0.85,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.95,
+          "randomness": 0.35,
+          "lightSourceX": 0.2,
+          "lightSourceY": 0.9,
+          "decay": 0.93
+        }
+      },
+      {
+        "brick": "fireflies",
+        "params": {
+          "glowColor": "#67e8f9",
+          "coreColor": "#ffffff",
+          "density": 0.8,
+          "speed": 0.28,
+          "depth": 0.45,
+          "intensity": 1.25,
+          "randomness": 0.55,
+          "pulseFrequency": 1.3
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#e0f2fe",
+          "density": 0.85,
+          "speed": 0.14,
+          "depth": 0.45,
+          "intensity": 0.95,
+          "randomness": 0.4,
+          "twinkleSpeed": 1.0
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#67e8f9",
+          "density": 0.75,
+          "speed": 0.9,
+          "depth": 0.25,
+          "intensity": 0.85,
+          "randomness": 0.25,
+          "epicenterX": 0.0,
+          "epicenterY": 0.1,
+          "waveInterval": 20.0,
+          "chromaticAberration": 0.01
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#010409",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.7,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.0,
+          "speed": 0.6,
+          "depth": 0.15,
+          "intensity": 0.05,
+          "randomness": 0.35,
+          "monochrome": true,
+          "clumpSize": 1.0
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "spectral_apparition_silhouette",
+        "category": "intermediate",
+        "reason": "Silhouette humanoïde translucide procédurale ondulant dans un rideau d'énergie de Force diaphane avec franges spectrales et réfraction optique douce."
+      }
+    ]
+  },
+  {
+    "id": "the_mys_terious_sw",
+    "name": "The Whills",
+    "family": "Espace & cosmos",
+    "intensity": 3,
+    "universe": "star-wars",
+    "evocation": "Le Journal des Whills, les Chamans et le Purgatoire de la Force : la genèse métaphysique et cosmique de tout l'univers Star Wars. Une dimension mystique hors du temps et de l'espace, baignée d'un plasma stellaire pourpre profond et d'un vortex de nébuleuse dorée. Un réseau synaptique de constellations célestes y tisse des filaments d'or pur reliant les nœuds du destin de la galaxie, vibrant au rythme des marées de la Force cosmique.",
+    "signature": "Une mer cosmique de plasma violet profond traversée par un vortex nébuleux doré d'où s'élèvent des constellations de filaments synaptiques connectant des orbes d'or pur au rythme des marées de la Force.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Nébuleuse cosmique primordiale de plasma pourpre profond (#1e0b36) et violet impérial (#7c3aed) en rotation lente de vortex asymétrique."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Voûte céleste d'étoiles dorées scintillantes (#facc15) réparties sur 3 couches de profondeur Z avec aigrettes de diffraction optique."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Graphe synaptique de constellations 3D (line_constellation) reliant des nœuds d'or pur par des filaments lumineux, représentant les chroniques sacrées des Whills."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Dôme de lueur volumétrique ambrée et halos dorés au centre du vortex, pulsant au nombre d'or avec la respiration cosmique."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Motes dorées célestes en lévitation brownienne, dispersion chromatique spectrale en périphérie et vignettage royal violet nuit."
+      }
+    ],
+    "particles": {
+      "type": "Motes d'or cosmique et nœuds de constellation stellaire (dust & line_constellation)",
+      "size": "1.0 à 2.8 px pour les poussières dorées, 2.0 à 4.0 px pour les nœuds stellaires",
+      "speed": "0.15 pour la lévitation brownienne, 0.22 pour la dérive des nœuds synaptiques",
+      "density": "130 motes de poussière céleste dorée + 65 nœuds de constellation interconnectés",
+      "behavior": "Dérive synaptique 3D continue avec impulsions lumineuses voyageant le long des filaments reliant les orbes du destin."
+    },
+    "atmosphere": {
+      "mist": "Voiles de plasma stellaire violet et nappe ionisée primordiale vibrant de lumière dorée.",
+      "light": "Métaphysique, royale, sacrée et céleste, opposant la profondeur insondable du violet (#7c3aed) au rayonnement solaire de l'or divin (#facc15).",
+      "airColor": "Violet nuit profond (#1e0b36), améthyste galactique (#4c1d95) et éclat d'or pur (#facc15).",
+      "mainLightSource": "Le cœur incandescent du vortex nébuleux des Whills et les nœuds synaptiques du réseau cosmique."
+    },
+    "rareEvents": [
+      {
+        "name": "Marée cosmique de la destinée",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Une onde de résonance concentrique dorée en expansion radiale depuis le cœur du nexus, faisant scintiller intensément tous les filaments synaptiques de la constellation."
+      },
+      {
+        "name": "Comète de Force primordiale",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 25.0 secondes",
+        "description": "Un bolide d'or pur traversant la nébuleuse pourpre avec longue traînée de plasma doré à dissipation thermique lente."
+      },
+      {
+        "name": "Dispersion spectrale métaphysique",
+        "type": "chromatic_aberration",
+        "frequency": "Intervalle moyen de 32.0 secondes",
+        "description": "Une onde de diffraction prismatique accentuant brièvement les franges dorées et violettes vers les bordures de l'écran lors d'une impulsion du nexus."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le curseur exerce une attraction gravitationnelle douce sur les nœuds de la constellation des Whills, modifiant la géométrie des filaments sacrés au passage.",
+      "scroll": "Fait pivoter doucement l'axe d'inclinaison de la nébuleuse cosmique, révélant de nouveaux plans d'interconnexion entre les étoiles du destin."
+    },
+    "palette": [
+      "#1e0b36",
+      "#4c1d95",
+      "#7c3aed",
+      "#c084fc",
+      "#facc15",
+      "#fef08a"
+    ],
+    "references": [
+      "World Between Worlds Star Wars Rebels portal",
+      "Shadertoy cosmic nexus gold purple nebula",
+      "Clone Wars Force Planet Whills VFX"
+    ],
+    "risks": {
+      "pitfall": "Une nébuleuse spatiale banale sans la charge mystique de la création de la Force ni l'évocation des archives sacrées de la galaxie.",
+      "solution": "Mise en avant du réseau synaptique line_constellation incarnant les fils de la destinée du Journal des Whills, vortex nébuleux pourpre et or, et ondes de marée cosmique dorée."
+    },
+    "bricks": [
+      {
+        "brick": "nebula",
+        "params": {
+          "primaryColor": "#7c3aed",
+          "secondaryColor": "#1e0b36",
+          "accentColor": "#facc15",
+          "density": 0.7,
+          "speed": 0.12,
+          "depth": 0.25,
+          "intensity": 1.1,
+          "randomness": 0.35,
+          "coreScale": 1.6
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#fef08a",
+          "density": 1.1,
+          "speed": 0.15,
+          "depth": 0.9,
+          "intensity": 1.05,
+          "randomness": 0.45,
+          "twinkleSpeed": 1.5
+        }
+      },
+      {
+        "brick": "line_constellation",
+        "params": {
+          "nodeColor": "#facc15",
+          "lineColor": "#c084fc",
+          "pulseColor": "#ffffff",
+          "density": 1.1,
+          "speed": 0.22,
+          "depth": 0.4,
+          "intensity": 1.2,
+          "randomness": 0.35,
+          "connectDistance": 2.9,
+          "nodeSize": 1.1,
+          "pulseSpeed": 1.6
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fef08a",
+          "glowColor": "#7c3aed",
+          "outerColor": "#1e0b36",
+          "density": 1.05,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 1.2,
+          "randomness": 0.3,
+          "glowX": 0.0,
+          "glowY": 0.1
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef08a",
+          "density": 0.9,
+          "speed": 0.16,
+          "depth": 0.45,
+          "intensity": 1.05,
+          "randomness": 0.4,
+          "twinkleSpeed": 1.1
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#facc15",
+          "density": 0.9,
+          "speed": 1.1,
+          "depth": 0.3,
+          "intensity": 1.1,
+          "randomness": 0.3,
+          "epicenterX": 0.0,
+          "epicenterY": 0.1,
+          "waveInterval": 18.0,
+          "chromaticAberration": 0.02
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#ffffff",
+          "trailColor": "#facc15",
+          "density": 0.85,
+          "speed": 1.4,
+          "depth": 0.4,
+          "intensity": 1.2,
+          "randomness": 0.45,
+          "angle": -0.65,
+          "trailLength": 1.25,
+          "starInterval": 25.0
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "aberrationColor": "#facc15",
+          "density": 1.0,
+          "speed": 0.25,
+          "depth": 0.35,
+          "intensity": 0.55,
+          "randomness": 0.3,
+          "spread": 0.02,
+          "radialFalloff": 1.6
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#130524",
+          "density": 1.05,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.65,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "whills_runic_astrolabe",
+        "category": "intermediate",
+        "reason": "Anneaux concentriques d'astrolabe céleste ou glyphes anciens des Whills tournant lentement sur des axes déphasés dans le plan médian avec filaments dorés orbitaux."
+      }
+    ]
+  }
+]
+

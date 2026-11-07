@@ -1,0 +1,1947 @@
+[
+  {
+    "id": "007_classic",
+    "name": "007",
+    "family": "Urbain & action",
+    "intensity": 2,
+    "universe": "james-bond",
+    "evocation": "James Bond (MI6) : l'archétype ultime de l'agent secret britannique au service de Sa Majesté, né sous la plume de Ian Fleming et immortalisé par des décennies de cinéma de légende. Le thème évoque l'ouverture rituelle 'Gunbarrel' conçue par Maurice Binder (la vision subjective depuis l'intérieur du canon rayé d'un pistolet Walther PPK dont les stries hélicoïdales pivotent), l'élégance suprême du smoking noir et blanc, l'atmosphère luxueuse et feutrée des casinos de Monte-Carlo, le cocktail dry martini ('shaken, not stirred'), la silhouette d'un agent qui se retourne et tire face caméra, suivie d'une coulée fluide de sang écarlate glissant avec distinction le long du cadre.",
+    "signature": "L'iris circulaire d'un canon de pistolet strié de rayures hélicoïdales pivotantes qui cadre la scène, au centre duquel un éclair de tir blanc pur déclenche une nappe fluide de sang écarlate coulant avec élégance.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Fond monochrome blanc épuré et lumineux, percé d'une clarté zénithale douce rappelant le studio graphique des génériques cinématiques classiques."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette graphique d'un salon de casino prestigieux aux reflets d'or ambré et lustres de cristal diffus dans un fondu optique feutré."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Contre-jour noir d'ébène tranché et net d'une silhouette d'agent secret en smoking ajusté, figé dans une pose d'alerte millimétrée."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Volutes de fumée de poudre et micro-motes de poussière dorée en suspension brownienne lente dans l'air tiède du salon."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Stries circulaires et hélicoïdales de l'ouverture Gunbarrel formant un masque optique mécanique avec grain argentique 35mm et vignettage franc."
+      }
+    ],
+    "particles": {
+      "type": "Volutes de fumée de poudre et micro-motes dorées de casino (smoke & dust)",
+      "size": "1.2 à 2.5 px pour la poussière dorée, volutes expansives pour la fumée",
+      "speed": "0.15 dérive lente en flottaison quasi stationnaire",
+      "density": "75 particules dorées scintillantes + 15 volutes de fumée légères",
+      "behavior": "Suspension aérienne feutrée avec rémanence dorée, traversée par des déviations douces lors des coups de feu."
+    },
+    "atmosphere": {
+      "mist": "Fine buée de dry martini et légères volutes de fumée de canon s'effilochant lentement.",
+      "light": "Contraste dramatique noir et blanc de pellicule argentique, ponctué de reflets dorés chauds et du flash aveuglant du coup de feu.",
+      "airColor": "Noir d'ébène profond (#000000), blanc immaculé (#ffffff) et reflets d'or chaud (#f59e0b).",
+      "mainLightSource": "Le contre-jour blanc aveuglant projeté à travers l'ouverture circulaire de l'iris du canon."
+    },
+    "rareEvents": [
+      {
+        "name": "Coup de feu au centre du Gunbarrel",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Un éclair blanc intense jaillit au centre de l'iris, propulsant une onde de choc lumineuse circulaire qui fait vibrer l'écran et déclenche un ruissellement rouge sang stylisé."
+      },
+      {
+        "name": "Reflet doré d'un jeton de casino",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 38.0 secondes",
+        "description": "Une lueur or scintillante balaie brièvement le cadre de gauche à droite comme le reflet d'une montre de luxe ou d'une coupe de champagne."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déplace l'ouverture de l'iris du viseur Gunbarrel en créant une légère parallaxe sur les stries hélicoïdales du canon, tout en faisant vaciller les particules dorées.",
+      "scroll": "Resserre temporairement l'ouverture du diaphragme pour densifier le contraste noir et blanc et mettre en valeur la netteté des cartes de l'interface."
+    },
+    "palette": [
+      "#000000",
+      "#ffffff",
+      "#dc2626",
+      "#b91c1c",
+      "#f59e0b",
+      "#1e293b"
+    ],
+    "references": [
+      "James Bond gunbarrel sequence Maurice Binder opening",
+      "Shadertoy procedural gunbarrel rifling shader",
+      "CodePen 007 silhouette smoke parallax golden dust"
+    ],
+    "risks": {
+      "pitfall": "Un simple cercle noir statique avec une tache rouge figée qui ressemble à un masque 2D d'amateur sans tension cinématique.",
+      "solution": "Modélisation des stries hélicoïdales avec rotation physique lente, flash de tir dynamique avec onde de choc et dissipation fluide de la teinte cramoisie."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#ffffff",
+          "density": 1.4,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 1.0,
+          "randomness": 0.1,
+          "noiseScale": 1.0
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#94a3b8",
+          "tintColor": "#475569",
+          "density": 0.6,
+          "speed": 0.2,
+          "depth": 0.35,
+          "intensity": 0.65,
+          "randomness": 0.4,
+          "expansionRate": 1.5,
+          "dissipationSpeed": 0.9
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f59e0b",
+          "density": 0.7,
+          "speed": 0.15,
+          "depth": 0.45,
+          "intensity": 1.1,
+          "randomness": 0.35,
+          "twinkleSpeed": 1.2
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#dc2626",
+          "density": 1.0,
+          "speed": 1.4,
+          "depth": 0.2,
+          "intensity": 1.3,
+          "randomness": 0.3,
+          "epicenterX": 0.0,
+          "epicenterY": 0.0,
+          "waveInterval": 28.0,
+          "chromaticAberration": 0.02
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.3,
+          "speed": 0.1,
+          "depth": 0.4,
+          "intensity": 0.75,
+          "randomness": 0.15,
+          "roundness": 1.0,
+          "smoothness": 0.7
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.3,
+          "speed": 0.8,
+          "depth": 0.2,
+          "intensity": 0.07,
+          "randomness": 0.5,
+          "monochrome": true,
+          "clumpSize": 1.0
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "gunbarrel_iris",
+        "category": "overlay",
+        "reason": "Shader d'iris mécanique circulaire à rayures de canon hélicoïdales rotatives et ruissellement vertical procédural de sang rouge écarlate sur l'objectif."
+      }
+    ]
+  },
+  {
+    "id": "shadow_agent",
+    "name": "Shadow Agent",
+    "family": "Urbain & action",
+    "intensity": 2,
+    "universe": "james-bond",
+    "evocation": "James Bond (Skyfall, No Time To Die) : l'agent de l'ombre en opération clandestine nocturne. Traque silencieuse dans les docks brumeux de Londres ou sur les toits d'un complexe industriel sous une pluie fine. L'obscurité quasi totale est striée par le faisceau chirurgical d'une visée laser rouge infrarouge qui balaie les conteneurs métalliques, sonde les recoins sombres à travers la bruine et se verrouille sur sa cible. Ambiance de tension feutrée, pas étouffés sur les pavés mouillés, échos de gouttes d'eau et frisson de danger imminent.",
+    "signature": "Un faisceau de visée laser rouge écarlate collimaté qui balaie silencieusement l'obscurité d'un quai brumeux, se réfractant dans une bruine fine avant de se verrouiller sur sa cible.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel nocturne bleu nuit d'orage étouffé par une brume industrielle lourde masquant les étoiles au-dessus de la Tamise."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette en contre-jour de grues portuaires, ponts et conteneurs maritimes aux arêtes métalliques sombres mouillées."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faisceau volumétrique rectiligne rouge vif qui traverse la scène en diagonale, créant un point d'impact ardent avec micro-diffusion."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Rideau de bruine fine inclinée et nappe de brume basse rampant le long de pavés humides luisants."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Gouttes d'eau ruisselantes en micro-bokeh, vignettage resserré bleu nuit et légère aberration chromatique sur les bords."
+      }
+    ],
+    "particles": {
+      "type": "Bruine fine oblique et poussière d'eau pulvérisée (rain & dust)",
+      "size": "0.8 à 1.8 px pour les gouttes filantes, 1.0 px pour les micro-embruns",
+      "speed": "1.2 chute rapide et régulière avec inclinaison sous la brise",
+      "density": "180 gouttes de pluie fines + 60 micro-embruns au ras du sol",
+      "behavior": "Trajectoire descendante vive illuminée en rouge rubis lors du passage à travers le faisceau laser."
+    },
+    "atmosphere": {
+      "mist": "Nappe de brouillard marin et de vapeur d'eau industrielle suintant des canalisations de quai.",
+      "light": "Pénombre nocturne dense déchirée par le trait chirurgical et incisif d'un laser rouge (#dc2626).",
+      "airColor": "Bleu nuit abyssal (#020617) et noir carbone (#000000) relevés d'éclats rubis (#ef4444).",
+      "mainLightSource": "La diode collimatée du viseur laser et les reflets spéculaires sur le bitume mouillé."
+    },
+    "rareEvents": [
+      {
+        "name": "Verrouillage de cible et pulsation laser",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 22.0 secondes",
+        "description": "Le faisceau laser rouge se fige, triple d'intensité avec une pulsation stroboscopique et un léger artefact de visée optique HUD."
+      },
+      {
+        "name": "Bourrasque sur les quais",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 34.0 secondes",
+        "description": "Une rafale de vent balaye la pluie, inclinant brutalement l'angle de chute des gouttes et dispersant la brume."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le pointeur guide subtilement l'orientation et le point d'impact du faisceau laser rouge, créant une lueur spéculaire réactive sur les parois.",
+      "scroll": "Accentue la densité de la brume et l'inclinaison de la pluie pour donner une sensation d'accélération de la course poursuite."
+    },
+    "palette": [
+      "#020617",
+      "#dc2626",
+      "#0f172a",
+      "#ef4444",
+      "#475569",
+      "#000000"
+    ],
+    "references": [
+      "Skyfall night sniper laser docks rain",
+      "Shadertoy volumetric laser beam in fog",
+      "CodePen rainy night harbor silhouette red laser target"
+    ],
+    "risks": {
+      "pitfall": "Un écran trop sombre où le rouge devient agressif ou illisible pour le texte de l'interface.",
+      "solution": "Laser très fin et volumétrique translucide, fond bleu nuit texturé avec bruine douce et préservation stricte du contraste WCAG AA au centre."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#020617",
+          "horizonColor": "#0f172a",
+          "density": 1.2,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.9,
+          "randomness": 0.15,
+          "noiseScale": 1.1
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#020617",
+          "windowColor": "#475569",
+          "beaconColor": "#dc2626",
+          "density": 0.8,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "randomness": 0.4,
+          "smogIntensity": 0.5
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#0f172a",
+          "density": 0.85,
+          "speed": 0.18,
+          "depth": 0.3,
+          "intensity": 0.85,
+          "randomness": 0.4,
+          "heightFalloff": 1.7,
+          "windAngle": 0.2
+        }
+      },
+      {
+        "brick": "rain",
+        "params": {
+          "rainColor": "#64748b",
+          "density": 0.9,
+          "speed": 1.4,
+          "depth": 0.45,
+          "intensity": 0.8,
+          "randomness": 0.35,
+          "windAngle": 0.22,
+          "streakLength": 1.1
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#334155",
+          "density": 0.8,
+          "speed": 1.5,
+          "depth": 0.35,
+          "intensity": 0.9,
+          "randomness": 0.4,
+          "gustAngle": 0.2,
+          "gustInterval": 34.0,
+          "swirlScale": 1.1
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.1,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 0.7,
+          "randomness": 0.2,
+          "roundness": 0.7,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "aberrationColor": "#dc2626",
+          "density": 0.9,
+          "speed": 0.2,
+          "depth": 0.35,
+          "intensity": 0.5,
+          "randomness": 0.25,
+          "spread": 0.02,
+          "radialFalloff": 1.8
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "laser_targeting_beam",
+        "category": "atmosphere",
+        "reason": "Faisceau laser rouge collimaté ultra-fin avec point focal illuminant, dispersion volumétrique dans les particules de brume et gigue cinématique de visée."
+      }
+    ]
+  },
+  {
+    "id": "spectre",
+    "name": "Spectre",
+    "family": "Horreur & mystère",
+    "intensity": 2,
+    "universe": "james-bond",
+    "evocation": "James Bond (Spectre, Thunderball, Casino Royale) : l'organisation criminelle mondiale occulte SPECTRE (Special Executive for Counter-intelligence, Terrorism, Revenge and Extortion) dirigée par Ernst Stavro Blofeld. Le thème matérialise une réunion secrète d'oligarques et de cerveaux criminels dans une salle de conférence brutaliste en marbre noir et béton poli, dissimulée sous un palais romain ou un bunker alpin. Au mur, une projection d'ombre monumentale d'une pieuvre aux tentacules lents symbolisant le contrôle global des réseaux d'information, nimbée d'une fumée de cigare froide et de lueurs métalliques chirurgicales.",
+    "signature": "L'ombre gigantesque et menaçante d'une pieuvre aux tentacules ondulants qui s'étire lentement sur un mur de béton brutaliste, enveloppée dans des volutes de fumée froide.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Mur colossal de béton brut strié et de panneaux d'acier brossé gris anthracite, éclairé par une lumière rasante zénithale froide."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Projection d'ombre portée de tentacules stylisés ondulant avec une lenteur calculée et inquiétante sur la paroi minérale."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Table de conseil monolithique en marbre noir poli reflétant les lueurs froides des écrans de surveillance dissimulés."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Volutes de fumée de cigare grise et de vapeur froide dérivant en strates horizontales suspendues."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Particules de suie et micro-poussières minérales en apesanteur, cadre obscurci par un vignettage froid et grain argentique austère."
+      }
+    ],
+    "particles": {
+      "type": "Volutes de fumée de cigare dense et micro-poussières minérales (smoke & dust)",
+      "size": "1.0 à 2.2 px pour la poussière, volutes amples pour la fumée",
+      "speed": "0.12 ascension extrêmement lente et majestueuse",
+      "density": "25 volutes de fumée étirées + 80 motes minérales grises",
+      "behavior": "Dérive laminaire horizontale sans à-coups, simulant une pièce close calfeutrée sous climatisation feutrée."
+    },
+    "atmosphere": {
+      "mist": "Fumée froide stagnante créant un voile opalescent à mi-hauteur de la salle de conseil.",
+      "light": "Lumière chirurgicale rasante, froide et clinique, sculptant les reliefs minéraux sans chaleur.",
+      "airColor": "Noir d'encre (#000000), gris ardoise (#94a3b8) et reflets d'acier glacé (#334155).",
+      "mainLightSource": "Fente lumineuse zénithale encastrée dans le plafond de béton et rétroéclairage discret de la table de conseil."
+    },
+    "rareEvents": [
+      {
+        "name": "Frémissement d'ombre tentaculaire",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 30.0 secondes",
+        "description": "Une micro-secousse tellurique amortie accompagne l'ondulation d'un tentacule géant qui se replie dans la pénombre."
+      },
+      {
+        "name": "Glitch d'écran de surveillance clandestine",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 24.0 secondes",
+        "description": "Une brève ligne de balayage horizontale corrompue traverse les parois, trahissant un réseau d'écoute secret."
+      }
+    ],
+    "interaction": {
+      "mouse": "L'angle de vue déplace la parallaxe entre l'ombre de la pieuvre et le mur de béton, tandis que le curseur fend les volutes de fumée stagnante.",
+      "scroll": "Plonge la perspective vers la surface lustrée de la table noire, renforçant le contraste et la clarté du texte."
+    },
+    "palette": [
+      "#000000",
+      "#94a3b8",
+      "#334155",
+      "#cbd5e1",
+      "#0f172a",
+      "#475569"
+    ],
+    "references": [
+      "James Bond Spectre boardroom meeting Rome octopus shadow",
+      "Shadertoy procedural undulating tentacles shadow fog",
+      "CodePen brutalist dark architecture smoke volumetric lighting"
+    ],
+    "risks": {
+      "pitfall": "Un monochrome grisâtre fade ressemblant à une dalle de ciment vide sans mystère ni autorité.",
+      "solution": "Contrastes acérés entre reflets métalliques spéculaires et ombres profondes, ondulation organique hypnotique des tentacules et texture de fumée volumétrique."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#334155",
+          "density": 1.3,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.1,
+          "noiseScale": 1.0
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#475569",
+          "density": 0.7,
+          "speed": 0.12,
+          "depth": 0.25,
+          "intensity": 0.75,
+          "randomness": 0.35,
+          "heightFalloff": 1.6,
+          "windAngle": 0.05
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#94a3b8",
+          "tintColor": "#334155",
+          "density": 0.75,
+          "speed": 0.15,
+          "depth": 0.4,
+          "intensity": 0.7,
+          "randomness": 0.4,
+          "expansionRate": 1.4,
+          "dissipationSpeed": 0.8
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#cbd5e1",
+          "density": 0.65,
+          "speed": 0.12,
+          "depth": 0.45,
+          "intensity": 0.85,
+          "randomness": 0.35,
+          "twinkleSpeed": 0.9
+        }
+      },
+      {
+        "brick": "glitch",
+        "params": {
+          "glitchColor": "#94a3b8",
+          "density": 0.8,
+          "speed": 1.4,
+          "depth": 0.25,
+          "intensity": 0.9,
+          "randomness": 0.5,
+          "sliceHeight": 0.06,
+          "glitchInterval": 24.0,
+          "chromaticShift": 0.025
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.15,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "randomness": 0.15,
+          "roundness": 0.65,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.2,
+          "speed": 0.7,
+          "depth": 0.2,
+          "intensity": 0.06,
+          "randomness": 0.4,
+          "monochrome": true,
+          "clumpSize": 1.0
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "spectral_octopus_shadow",
+        "category": "intermediate",
+        "reason": "Silhouette d'ombre portée procédurale de tentacules de pieuvre géante ondulant avec lenteur par bruit de Simplex sur paroi architecturale de béton."
+      }
+    ]
+  },
+  {
+    "id": "imf",
+    "name": "IMF Protocol",
+    "family": "Urbain & action",
+    "intensity": 2,
+    "universe": "mission-impossible",
+    "evocation": "Mission: Impossible (Ethan Hunt, IMF - Impossible Mission Force) : la franchise reine de l'action et des cascades impossibles. Le thème puise dans l'incontournable séquence d'ouverture au tempo 5/4 de Lalo Schifrin : la mèche incandescente qui s'enflamme dans un grésillement de poudre noire, brûlant à vive allure en projetant des gerbes d'étincelles dorées et blanches, le compte à rebours numérique d'un message secret ('Ce message s'autodétruira dans 5 secondes') et le panache de fumée de destruction finale. Énergie explosive, adrénaline technologique et tension de course contre la montre.",
+    "signature": "Une mèche pyrotechnique incandescente qui traverse l'écran à grande vitesse en crachant une gerbe d'étincelles dorées crépitantes, laissant une traînée de fumée grise évanescente.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel bleu ardoise nocturne texturé de grilles de données holographiques militaires discrètes."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette de gratte-ciels modernes et complexes de haute sécurité découpés dans la pénombre."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Trait de feu de la mèche qui progresse de gauche à droite, générant un foyer lumineux chaud palpitant et mobile."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Nuée d'étincelles balistiques à haute vélocité tombant en cloche parabolique avec micro-fumée de poudre."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Flocons de cendre chaude refroidissante, vignettage bleu marine et micro-aberration chromatique périphérique."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles balistiques fuselées et flammèches incandescentes (sparks & embers)",
+      "size": "1.0 à 3.0 px avec étirement dynamique selon la vélocité",
+      "speed": "1.5 éjection vive avec retombée parabolique sous gravité",
+      "density": "140 étincelles actives en salves continues + 40 braises montantes",
+      "behavior": "Projection en gerbe évasée autour du front de combustion de la mèche avec extinction thermique rapide en rouge sombre."
+    },
+    "atmosphere": {
+      "mist": "Fines volutes de fumée sulfureuse émanant du point de brûlure de la mèche.",
+      "light": "Foyer lumineux chaud très vif (#f59e0b) illuminant localement un environnement d'acier et d'ardoise bleue (#1e293b).",
+      "airColor": "Bleu ardoise froid (#1e293b) chauffé par des éclats or et blanc pur (#ffffff).",
+      "mainLightSource": "La braise ultra-chaude de la mèche en progression continue."
+    },
+    "rareEvents": [
+      {
+        "name": "Détonation finale d'autodestruction",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 26.0 secondes",
+        "description": "Lorsque la mèche atteint son terme, une onde de choc lumineuse circulaire se déploie avec expansion radiale rapide et souffle de fumée."
+      },
+      {
+        "name": "Secousse de déflagration",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 26.0 secondes",
+        "description": "Une secousse cinématique amortie accompagne l'onde de choc pour simuler l'explosion du dispositif de message."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le curseur attire et courbe légèrement la trajectoire des étincelles sous un champ magnétique virtuel, créant des gerbes interactives.",
+      "scroll": "Accélère la cadence de combustion de la mèche et intensifie la projection d'étincelles pour accompagner le défilement."
+    },
+    "palette": [
+      "#1e293b",
+      "#3b82f6",
+      "#f59e0b",
+      "#ef4444",
+      "#0f172a",
+      "#ffffff"
+    ],
+    "references": [
+      "Mission Impossible opening fuse sparks burning",
+      "Shadertoy ballistic fuse sparks particle system",
+      "CodePen burning fuse gunpowder smoke glowing ember"
+    ],
+    "risks": {
+      "pitfall": "Une simple ligne jaune avec des points statiques qui ressemble à une guirlande électrique de fête foraine.",
+      "solution": "Véritable balistique parabolique des étincelles avec étirement de vitesse, pulsation thermique irrégulière du cœur incandescent et traînée de fumée volumétrique."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#3b82f6",
+          "density": 1.2,
+          "speed": 0.15,
+          "depth": 0.1,
+          "intensity": 0.95,
+          "randomness": 0.15,
+          "noiseScale": 1.2
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#0f172a",
+          "windowColor": "#3b82f6",
+          "beaconColor": "#ef4444",
+          "density": 0.9,
+          "speed": 0.2,
+          "depth": 0.35,
+          "intensity": 0.9,
+          "randomness": 0.45,
+          "smogIntensity": 0.5
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#f59e0b",
+          "coreColor": "#ffffff",
+          "density": 1.2,
+          "speed": 1.4,
+          "depth": 0.4,
+          "intensity": 1.4,
+          "randomness": 0.5,
+          "gravity": 1.3,
+          "burstInterval": 1.4
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#64748b",
+          "tintColor": "#334155",
+          "density": 0.8,
+          "speed": 0.35,
+          "depth": 0.45,
+          "intensity": 0.7,
+          "randomness": 0.5,
+          "expansionRate": 1.4,
+          "dissipationSpeed": 1.0
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#f59e0b",
+          "secondaryColor": "#ef4444",
+          "density": 1.1,
+          "speed": 0.4,
+          "depth": 0.3,
+          "intensity": 1.2,
+          "randomness": 0.5,
+          "lightX": 0.0,
+          "lightY": 0.0,
+          "flickerType": 0
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#f59e0b",
+          "density": 1.1,
+          "speed": 1.5,
+          "depth": 0.3,
+          "intensity": 1.3,
+          "randomness": 0.35,
+          "epicenterX": 0.0,
+          "epicenterY": 0.0,
+          "waveInterval": 26.0,
+          "chromaticAberration": 0.02
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeColor": "#3b82f6",
+          "density": 1.0,
+          "speed": 1.4,
+          "depth": 0.3,
+          "intensity": 1.1,
+          "randomness": 0.5,
+          "shakeInterval": 26.0,
+          "decayRate": 3.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0f172a",
+          "density": 1.1,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.65,
+          "randomness": 0.2,
+          "roundness": 0.7,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "burning_fuse_trail",
+        "category": "special",
+        "reason": "Traînée linéaire continue de mèche pyrotechnique à vitesse paramétrable, avec cœur de combustion incandescent mobile et retombées d'étincelles synchronisées."
+      }
+    ]
+  },
+  {
+    "id": "kingsman",
+    "name": "Kingsman",
+    "family": "Urbain & action",
+    "intensity": 2,
+    "universe": "kingsman",
+    "evocation": "Kingsman: The Secret Service (Colin Firth, Galahad, Matthew Vaughn) : le sanctuaire feutré des gentlemen espions britanniques à Savile Row, Londres. Boiseries d'acajou vernies, moquettes moelleuses, miroirs dorés à la feuille et vitrines d'armurerie dissimulées derrière les panneaux de tissu sur-mesure ('Manners maketh man'). L'arsenal high-tech sous l'apparence des traditions : le parapluie noir d'apparence classique dont la toile pare-balles déploie un réticule HUD holographique doré affichant visée balistique et données tactiques sous la pluie londonienne, complété par les richelieus empoisonnés et les bagues à arc électrique.",
+    "signature": "La voilure protectrice d'un parapluie noir pare-balles dont la texture révèle un affichage tête haute (HUD) holographique doré, sous lequel ruissellent des gouttes de pluie londonienne.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ruelle pavée de Mayfair sous la bruine nocturne de Londres, avec réverbères au gaz diffusant un halo ambré feutré."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Façade cossue de la boutique de tailleur aux boiseries d'acajou vernies et vitrines chaleureuses."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "L'arche supérieure de la toile de parapluie noir tendu, sur laquelle s'allument des tracés filaires de télémétrie dorée."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Gouttes de pluie perlant et glissant le long du dôme déperlant avec micro-éclats dorés."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Poussières de tissu de tweed et fines particules d'or en suspension brownienne dans un vignettage chaleureux cuir et acajou."
+      }
+    ],
+    "particles": {
+      "type": "Gouttes de pluie glissantes et particules de poussière dorée d'atelier (rain & dust)",
+      "size": "1.2 à 2.8 px pour les gouttes, 1.0 px pour les motes d'or",
+      "speed": "0.35 ruissellement doux le long de la toile",
+      "density": "90 gouttes perlantes + 70 motes dorées irisées",
+      "behavior": "Glissade laminaire et fluide avec rebond doux sur le bouclier du parapluie."
+    },
+    "atmosphere": {
+      "mist": "Légère vapeur de pluie londonienne réchauffée par les éclairages d'antan.",
+      "light": "Lumière dorée tamisée et luxueuse (#d4a853) baignant des ombres chaudes acajou (#451a03).",
+      "airColor": "Ambre chaleureux, brun cuir de Cordoue et reflets d'or vieilli.",
+      "mainLightSource": "Le réticule holographique doré de la visière du parapluie et les lanternes de Mayfair."
+    },
+    "rareEvents": [
+      {
+        "name": "Décharge balistique du parapluie",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 32.0 secondes",
+        "description": "Une impulsion cinétique dorée se propage depuis la pointe du parapluie, chassant les gouttes de pluie en cercle."
+      },
+      {
+        "name": "Rechargement de l'affichage HUD tactique",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 26.0 secondes",
+        "description": "Les lignes de visée dorées du parapluie clignotent avec élégance et se recalibrent en affichant des coordonnées vectorielles."
+      }
+    ],
+    "interaction": {
+      "mouse": "Incline l'orientation du parapluie et fait glisser les gouttes d'eau selon la direction du mouvement, révélant les reflets de l'acajou.",
+      "scroll": "Modifie le zoom de l'affichage tête haute doré, dévoilant des cercles de télémétrie concentriques autour des cartes."
+    },
+    "palette": [
+      "#451a03",
+      "#d4a853",
+      "#1e1b4b",
+      "#78350f",
+      "#fef08a",
+      "#292524"
+    ],
+    "references": [
+      "Kingsman umbrella shield HUD Savile row tailor",
+      "Shadertoy glowing golden circular HUD telemetry",
+      "CodePen rain drops on transparent umbrella shield gold light"
+    ],
+    "risks": {
+      "pitfall": "Un marron terne ou kitsch qui ressemble à un vieux meuble sans l'élégance technologique moderne de Kingsman.",
+      "solution": "Alliance de reflets dorés métalliques précieux (laiton poli), texture soyeuse de parapluie high-tech et ruissellement de gouttes d'eau réactif."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#1e1b4b",
+          "bottomColor": "#451a03",
+          "horizonColor": "#78350f",
+          "density": 1.2,
+          "speed": 0.12,
+          "depth": 0.1,
+          "intensity": 0.9,
+          "randomness": 0.15,
+          "noiseScale": 1.1
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#d4a853",
+          "density": 0.9,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "randomness": 0.35,
+          "lightSourceX": 0.4,
+          "lightSourceY": 0.85,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "rain",
+        "params": {
+          "rainColor": "#d4a853",
+          "density": 0.75,
+          "speed": 0.9,
+          "depth": 0.45,
+          "intensity": 0.7,
+          "randomness": 0.3,
+          "windAngle": 0.12,
+          "streakLength": 0.8
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef08a",
+          "density": 0.8,
+          "speed": 0.16,
+          "depth": 0.4,
+          "intensity": 1.0,
+          "randomness": 0.4,
+          "twinkleSpeed": 1.1
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fef08a",
+          "glowColor": "#d4a853",
+          "outerColor": "#451a03",
+          "density": 1.0,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 1.1,
+          "randomness": 0.25,
+          "glowX": 0.0,
+          "glowY": 0.15
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#292524",
+          "density": 1.1,
+          "speed": 0.12,
+          "depth": 0.3,
+          "intensity": 0.65,
+          "randomness": 0.2,
+          "roundness": 0.7,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.15,
+          "speed": 0.75,
+          "depth": 0.2,
+          "intensity": 0.06,
+          "randomness": 0.4,
+          "monochrome": true,
+          "clumpSize": 1.0
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "umbrella_hud_shield",
+        "category": "special",
+        "reason": "Dôme de parapluie vu en contre-plongée avec nervures cintrées, texture hydrofuge faisant ruisseler les gouttes et réticule circulaire HUD doré avec télémétrie balistique."
+      }
+    ]
+  },
+  {
+    "id": "splinter",
+    "name": "Splinter",
+    "family": "Urbain & action",
+    "intensity": 2,
+    "universe": "splinter-cell",
+    "evocation": "Tom Clancy's Splinter Cell (Sam Fisher, Third Echelon) : la référence absolue de l'infiltration furtive militaire. Évoluer dans l'obscurité totale des couloirs d'une base secrète, ramper dans les conduits de ventilation ou rester suspendu en grand écart entre deux parois d'entrepôt. L'icône indissociable de la saga : le son strident aigu d'allumage et les trois optiques luminescentes circulaires vert phosphore en triangle des lunettes trifocales de vision nocturne (NVG) et thermique de Sam Fisher, fendant la noirceur d'encre de la nuit, accompagnées par l'écho d'une onde sonar qui cartographie brièvement l'environnement immédiat.",
+    "signature": "Trois optiques circulaires vertes phosphorescentes disposées en triangle qui s'allument dans le noir d'encre absolu, projetant une onde sonar circulaire qui cartographie brièvement l'environnement.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Obscurité dense d'un complexe industriel secret, ponctuée par des silhouettes géométriques de piliers et poutrelles en fer."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Maillage filaire vert émeraude basse intensité révélé périodiquement par les balayages sonar."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Le halo luminescent triangulaire des trois optiques vertes (NVG), avec diffusion de phosphore vert vif."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Particules de poussière en suspension réagissant au rayonnement vert et nappe de brume d'aération industrielle."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Scanlines fines d'amplificateur de lumière, grain vidéo de vision nocturne haute sensibilité et vignettage d'objectif d'optique militaire."
+      }
+    ],
+    "particles": {
+      "type": "Poussières d'aération illuminées en vert phosphore (dust)",
+      "size": "1.0 à 2.4 px",
+      "speed": "0.18 dérive brownienne suspendue",
+      "density": "100 particules fluorescentes vertes",
+      "behavior": "Flottaison feutrée dans les cônes d'émission lumineuse des trois lentilles vertes."
+    },
+    "atmosphere": {
+      "mist": "Fines fumerolles d'air conditionné s'échappant d'une grille de ventilation.",
+      "light": "Noir d'encre dominant (#000000) fendu par l'éclat hypnotique et radioactif du vert phosphorescent (#22c55e).",
+      "airColor": "Noir d'ébène et vert émeraude spectral.",
+      "mainLightSource": "Les 3 diodes trifocales des lunettes de Sam Fisher."
+    },
+    "rareEvents": [
+      {
+        "name": "Impulsion sonar d'écholocalisation",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "Une onde circulaire verte translucide s'étend depuis le centre, révélant brièvement les reliefs du décor dans un halo phosphorescent."
+      },
+      {
+        "name": "Brouillage électromagnétique NVG",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Un micro-glitch avec saut de scanlines cathodiques vertes simule l'interférence d'une caméra de sécurité ou d'un brouilleur portable."
+      }
+    ],
+    "interaction": {
+      "mouse": "Les 3 optiques vertes suivent les mouvements du pointeur avec une légère inertie cinématique de tête, éclairant les zones sombres de l'interface.",
+      "scroll": "Déclenche une micro-impulsion d'amplification de lumière verte, faisant scintiller les scanlines pour accentuer l'immersion furtive."
+    },
+    "palette": [
+      "#000000",
+      "#22c55e",
+      "#15803d",
+      "#14532d",
+      "#052e16",
+      "#4ade80"
+    ],
+    "references": [
+      "Splinter Cell Sam Fisher night vision goggles green trifocal",
+      "Shadertoy green night vision NVG phosphor scanlines",
+      "CodePen stealth sonar pulse dark room green optics"
+    ],
+    "risks": {
+      "pitfall": "Un fond tout noir avec trois points verts immobiles qui ressemble à une diode de batterie sur un écran éteint.",
+      "solution": "Halo volumétrique de phosphore vert vivant avec respiration lumineuse, impulsion d'écholocalisation sonar révélant le décor et scanlines d'optique militaire."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#052e16",
+          "horizonColor": "#14532d",
+          "density": 1.4,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.8,
+          "randomness": 0.1,
+          "noiseScale": 1.0
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#14532d",
+          "density": 0.7,
+          "speed": 0.14,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "randomness": 0.35,
+          "heightFalloff": 1.8,
+          "windAngle": 0.1
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#4ade80",
+          "density": 0.85,
+          "speed": 0.18,
+          "depth": 0.45,
+          "intensity": 1.1,
+          "randomness": 0.4,
+          "twinkleSpeed": 1.3
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#22c55e",
+          "density": 1.0,
+          "speed": 1.3,
+          "depth": 0.25,
+          "intensity": 1.25,
+          "randomness": 0.3,
+          "epicenterX": 0.0,
+          "epicenterY": 0.0,
+          "waveInterval": 20.0,
+          "chromaticAberration": 0.015
+        }
+      },
+      {
+        "brick": "glitch",
+        "params": {
+          "glitchColor": "#22c55e",
+          "density": 0.75,
+          "speed": 1.6,
+          "depth": 0.25,
+          "intensity": 0.9,
+          "randomness": 0.55,
+          "sliceHeight": 0.05,
+          "glitchInterval": 28.0,
+          "chromaticShift": 0.03
+        }
+      },
+      {
+        "brick": "crt_scanlines",
+        "params": {
+          "scanlineColor": "#000000",
+          "density": 1.2,
+          "speed": 0.25,
+          "depth": 0.2,
+          "intensity": 0.4,
+          "randomness": 0.2,
+          "curvature": 0.08,
+          "rollIntensity": 0.12
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.3,
+          "speed": 0.1,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "randomness": 0.15,
+          "roundness": 0.9,
+          "smoothness": 0.75
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "night_vision_trigoggles",
+        "category": "special",
+        "reason": "Trio d'orbes bioluminescents vert phosphore en disposition triangulaire avec halo volumétrique de diffusion, rémanence d'amplificateur de lumière et balayage sonar concentrique."
+      }
+    ]
+  },
+  {
+    "id": "syndicate",
+    "name": "The Syndicate",
+    "family": "Horreur & mystère",
+    "intensity": 2,
+    "universe": "mission-impossible",
+    "evocation": "The Syndicate (Mission: Impossible - Rogue Nation, Solomon Lane) : l'anti-IMF, le syndicat criminel composé d'anciens agents des services secrets déclarés disparus. La somptueuse et angoissante séquence de l'Opéra d'État de Vienne durant la représentation de Turandot : les coulisses ténébreuses, les machineries de scène vertigineuses, les lourds rideaux de velours rouge qui frémissent sous les courants d'air froids, et les tireurs d'élite embusqués dans les loges avec des fusils dissimulés dans des instruments de musique classique. Rigueur chirurgicale, sang-froid assassin et tension dramatique à son paroxysme.",
+    "signature": "Des tentures de velours rouge d'un balcon d'opéra qui ondulent lourdement dans la pénombre, tandis qu'un rai de projecteur isole la lunette d'un fusil de précision embusqué.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Voûte monumentale d'une salle d'opéra plongée dans l'obscurité, avec dorures éteintes et balcons superposés fantomatiques."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Machinerie de cintres de théâtre, poulies et cordages métalliques suspendus dans une brume de scène."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Lourde draperie de velours carmin qui tombe en plis dramatiques, ondulant sous un courant d'air froid."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Rai de lumière rouge et blanche perçant entre deux rideaux, illuminant des micro-fibres de tissu en suspension."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Particules de suie et de poussière théâtrale en lévitation, encadrées par un vignettage dramatique noir suie et grain 35mm."
+      }
+    ],
+    "particles": {
+      "type": "Poussières théâtrales et micro-fibres de velours rouge en suspension (dust & ash)",
+      "size": "1.0 à 2.6 px",
+      "speed": "0.14 lévitation feutrée dans les rais de lumière",
+      "density": "85 particules d'or et carmin",
+      "behavior": "Mouvement brownien ralenti, tourbillonnant brièvement sous les rafales de rideaux."
+    },
+    "atmosphere": {
+      "mist": "Fine brume de scène vaporeuse stagnant au pied des tentures.",
+      "light": "Pénombre baroque oppressante (#1c1917) zébrée par un projecteur carmin tranchant (#ef4444).",
+      "airColor": "Noir d'encre, rouge velours opulent et reflets d'ombre théâtrale.",
+      "mainLightSource": "Faisceau directionnel de projecteur d'opéra perçant les cintres."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclat d'optique de sniper",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 25.0 secondes",
+        "description": "Un bref reflet spéculaire tranchant scintille au fond d'une loge obscure, trahissant la lentille d'un assassin."
+      },
+      {
+        "name": "Bourrasque des coulisses",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 36.0 secondes",
+        "description": "Une bourrasque d'air frais écarte temporairement les plis du rideau rouge en projetant un tourbillon de poussières."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déplace l'angle d'éclairage du projecteur de scène, créant des ombres portées mouvantes derrière les plis de velours.",
+      "scroll": "Fait onduler la retombée des tentures de velours et assombrit la périphérie pour concentrer le regard sur les détails centraux."
+    },
+    "palette": [
+      "#1c1917",
+      "#ef4444",
+      "#7f1d1d",
+      "#44403c",
+      "#0c0a09",
+      "#b91c1c"
+    ],
+    "references": [
+      "Mission Impossible Rogue Nation Vienna opera sniper velvet",
+      "Shadertoy undulating red velvet curtain theatrical light",
+      "CodePen dark opera stage dramatic red spotlight dust"
+    ],
+    "risks": {
+      "pitfall": "Un rideau rouge statique qui ressemble à un logo de cinéma de quartier sans tension dramatique.",
+      "solution": "Ondulation organique des plis du velours par bruit Simplex, éclairage directionnel rasant créant des ombres volumétriques et éclats furtifs d'optique de tireur d'élite."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0c0a09",
+          "bottomColor": "#1c1917",
+          "horizonColor": "#7f1d1d",
+          "density": 1.3,
+          "speed": 0.1,
+          "depth": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.15,
+          "noiseScale": 1.1
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#ef4444",
+          "density": 0.85,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.9,
+          "randomness": 0.35,
+          "lightSourceX": 0.3,
+          "lightSourceY": 0.9,
+          "decay": 0.93
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#44403c",
+          "density": 0.7,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "randomness": 0.35,
+          "heightFalloff": 1.7,
+          "windAngle": 0.12
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#b91c1c",
+          "density": 0.75,
+          "speed": 0.14,
+          "depth": 0.45,
+          "intensity": 0.9,
+          "randomness": 0.4,
+          "twinkleSpeed": 1.0
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#7f1d1d",
+          "density": 0.75,
+          "speed": 1.3,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "randomness": 0.4,
+          "gustAngle": 0.15,
+          "gustInterval": 36.0,
+          "swirlScale": 1.0
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0c0a09",
+          "density": 1.2,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "randomness": 0.2,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.2,
+          "speed": 0.75,
+          "depth": 0.2,
+          "intensity": 0.065,
+          "randomness": 0.45,
+          "monochrome": true,
+          "clumpSize": 1.0
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "opera_velvet_drapes",
+        "category": "intermediate",
+        "reason": "Draperies de velours rouge procédurales avec drapé physique, reflets spéculaires soyeux et ondulations organiques sous les courants d'air de scène."
+      }
+    ]
+  },
+  {
+    "id": "echelon",
+    "name": "Echelon",
+    "family": "Néon & cyber",
+    "intensity": 2,
+    "universe": "splinter-cell",
+    "evocation": "Third Echelon & Fourth Echelon (Splinter Cell), combinés au réseau mondial d'interception et d'écoute électronique ECHELON (NSA, surveillance satellitaire globale, SIGINT). Le centre d'opérations stratégiques de pointe : pénombre bleue feutrée, mur d'écrans haute résolution affichant un globe terrestre filaire 3D en rotation silencieuse, orbites de satellites géostationnaires émettant des trains d'ondes chiffrées, faisceaux radar coniques balayant la planète et triangulation de cibles en temps réel.",
+    "signature": "Un globe terrestre holographique filaire en rotation bleu cyan, ceinturé d'arcs orbitaux de satellites qui pulsent des paquets de données cryptées et de grilles de triangulation radar.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Carte du monde filaire et grille de coordonnées géodésiques projetées dans un bleu nuit profond."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Constellation de satellites espions SIGINT en orbite, interconnectés par des faisceaux laser de données bleu ciel."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Globe holographique central cyan transparent avec méridiens et parallèles pulsant des ondes de triangulation."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Paquets de données et impulsions numériques voyageant le long de lignes synaptiques entre nœuds de communication."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Trame fine de radar circulaire, micro-scanlines de moniteur de commandement et léger vignettage cyan."
+      }
+    ],
+    "particles": {
+      "type": "Paquets d'octets lumineux et nœuds de communication satellitaire (sparks & dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.45 translation rapide le long des segments orbitaux",
+      "density": "120 nœuds et paquets d'interception de données",
+      "behavior": "Flux de données synaptiques rectilignes circulant d'un satellite à un relais terrestre."
+    },
+    "atmosphere": {
+      "mist": "Halo de luminescence bleue émanant des dalles de projection holographique.",
+      "light": "Éclairage cybernétique cyan froid (#0ea5e9) et bleu azur (#38bdf8) sur fond d'espace maritime nocturne (#082f49).",
+      "airColor": "Bleu marine high-tech, cyan électrique et cobalt profond.",
+      "mainLightSource": "Le cœur incandescent du globe terrestre holographique et les balises satellitaires."
+    },
+    "rareEvents": [
+      {
+        "name": "Interception de transmission et triangulation",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 22.0 secondes",
+        "description": "Une onde circulaire radar cyan s'étend depuis un point du globe avec balayage angulaire et bip visuel de cible verrouillée."
+      },
+      {
+        "name": "Surtension de bande passante chiffrée",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 27.0 secondes",
+        "description": "Un micro-saut de coordonnées chiffrées avec décalage RGB split cyan/bleu rafraîchit la matrice satellite."
+      }
+    ],
+    "interaction": {
+      "mouse": "Pivote l'angle du globe holographique et attire les paquets de données vers la position du pointeur comme une antenne d'écoute.",
+      "scroll": "Modifie le rayon orbital des satellites et la compacité des méridiens, densifiant le réseau de surveillance."
+    },
+    "palette": [
+      "#082f49",
+      "#0ea5e9",
+      "#0369a1",
+      "#38bdf8",
+      "#021a2f",
+      "#ffffff"
+    ],
+    "references": [
+      "Splinter Cell Echelon OPSAT satellite tracking globe",
+      "Shadertoy holographic wireframe globe radar telemetry",
+      "CodePen cyber satellite network plexus triangulation cyan"
+    ],
+    "risks": {
+      "pitfall": "Une simple sphère filaire 3D basique qui ressemble à un logo de télécoms générique sans tension militaire.",
+      "solution": "Flux de transmission asynchrones avec paquets de paquets de données pulsants, balayage radar volumétrique et coordonnées militaires cryptiques."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#021a2f",
+          "bottomColor": "#082f49",
+          "horizonColor": "#0369a1",
+          "density": 1.25,
+          "speed": 0.12,
+          "depth": 0.1,
+          "intensity": 0.9,
+          "randomness": 0.15,
+          "noiseScale": 1.1
+        }
+      },
+      {
+        "brick": "line_constellation",
+        "params": {
+          "nodeColor": "#0ea5e9",
+          "lineColor": "#0369a1",
+          "pulseColor": "#ffffff",
+          "density": 1.1,
+          "speed": 0.25,
+          "depth": 0.4,
+          "intensity": 1.1,
+          "randomness": 0.35,
+          "connectDistance": 2.8,
+          "nodeSize": 1.0,
+          "pulseSpeed": 1.6
+        }
+      },
+      {
+        "brick": "hex_grid",
+        "params": {
+          "borderColor": "#0ea5e9",
+          "fillColor": "#021a2f",
+          "pulseColor": "#38bdf8",
+          "density": 1.2,
+          "speed": 0.3,
+          "depth": 0.35,
+          "intensity": 0.9,
+          "randomness": 0.35,
+          "borderWidth": 0.05,
+          "innerGlow": 0.4,
+          "waveSpread": 1.2
+        }
+      },
+      {
+        "brick": "code_rain",
+        "params": {
+          "primaryColor": "#0ea5e9",
+          "headColor": "#ffffff",
+          "glowColor": "#082f49",
+          "density": 0.7,
+          "speed": 0.4,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "randomness": 0.35,
+          "charSize": 0.9,
+          "tailLength": 0.6,
+          "mouseGlow": 0.45
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#38bdf8",
+          "density": 1.0,
+          "speed": 1.3,
+          "depth": 0.3,
+          "intensity": 1.2,
+          "randomness": 0.3,
+          "epicenterX": 0.0,
+          "epicenterY": 0.0,
+          "waveInterval": 22.0,
+          "chromaticAberration": 0.015
+        }
+      },
+      {
+        "brick": "glitch",
+        "params": {
+          "glitchColor": "#0ea5e9",
+          "density": 0.8,
+          "speed": 1.5,
+          "depth": 0.25,
+          "intensity": 0.9,
+          "randomness": 0.5,
+          "sliceHeight": 0.06,
+          "glitchInterval": 27.0,
+          "chromaticShift": 0.03
+        }
+      },
+      {
+        "brick": "crt_scanlines",
+        "params": {
+          "scanlineColor": "#021a2f",
+          "density": 1.1,
+          "speed": 0.25,
+          "depth": 0.2,
+          "intensity": 0.35,
+          "randomness": 0.2,
+          "curvature": 0.07,
+          "rollIntensity": 0.1
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#021a2f",
+          "density": 1.1,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 0.65,
+          "randomness": 0.2,
+          "roundness": 0.7,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "sigint_globe_radar",
+        "category": "special",
+        "reason": "Sphère géodésique holographique en rotation avec anneaux orbitaux de satellites, faisceau de balayage radar conique et points d'impact géolocalisés."
+      }
+    ]
+  },
+  {
+    "id": "ghost_protocol",
+    "name": "Ghost Protocol",
+    "family": "Urbain & action",
+    "intensity": 2,
+    "universe": "mission-impossible",
+    "evocation": "Mission: Impossible - Ghost Protocol (Brad Bird, Tom Cruise) : l'anthologie de l'action vertigineuse à Dubaï. L'ascension à mains nues de la façade vitrée de la tour Burj Khalifa à plus de 500 mètres au-dessus du sol, avec des gants électro-adhésifs dont les voyants oscillent nerveusement entre le bleu d'adhérence stable et le jaune/rouge d'alarme de surchauffe. En contrebas, une tempête de sable dorée colossale s'élève du désert d'Arabie pour engloutir la métropole dans un maelström de quartz et de poussière cinglante, réduisant la visibilité à néant dans un vertige étourdissant.",
+    "signature": "La paroi vitrée vertigineuse d'un gratte-ciel miroitant le vide, balayée par des rafales de sable doré tandis que la diode électro-adhésive d'un gant clignote nerveusement en jaune d'alerte.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel bleu ardoise d'altitude zébré par le front de poussière d'une gigantesque tempête de sable dorée à l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Perspective plongeante vertigineuse vers le sol urbain lointain, estompé par les volutes de sable et la brume de chaleur."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Dalles de verre colossales de la façade du gratte-ciel, avec reflets obliques fuyants et joints métalliques d'étanchéité."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Tourbillons de grains de sable doré et poussière minérale cinglant violemment les vitres sous le vent d'altitude."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Rayures de friction sur le verre, vignettage ardoise et pulsations lumineuses jaune/rouge de la diode d'alerte."
+      }
+    ],
+    "particles": {
+      "type": "Grains de sable du désert et poussière dorée cinglante (dust & ash)",
+      "size": "0.8 à 2.2 px pour le sable fin, micro-éclats de quartz scintillants",
+      "speed": "1.4 rafales horizontales vives et turbulentes sous le vent d'altitude",
+      "density": "220 grains de sable en tourbillon continu",
+      "behavior": "Trajectoires balayées par des bourrasques d'air chaud avec déviations violentes lors des rafales."
+    },
+    "atmosphere": {
+      "mist": "Mur de poussière ocre et sable fin réduisant la visibilité extérieure.",
+      "light": "Lumière solaire désertique rasante filtrée à travers la tempête de sable, créant des rais dorés ambrés (#facc15).",
+      "airColor": "Bleu ardoise d'altitude (#0f172a), or chaud (#eab308) et rouge avertisseur (#ef4444).",
+      "mainLightSource": "Le soleil filtré par le sirocco et la LED d'alerte du gant d'escalade."
+    },
+    "rareEvents": [
+      {
+        "name": "Bourrasque de tempête de sable",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 19.0 secondes",
+        "description": "Une violente rafale de sirocco obscurcit l'écran sous un flot dense de sable doré, faisant vibrer la vue du gratte-ciel."
+      },
+      {
+        "name": "Panne d'adhérence du gant magnétique",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 27.0 secondes",
+        "description": "La LED jaune passe brutalement au rouge alarme avec un grésillement électrique et une brève secousse cinématique."
+      }
+    ],
+    "interaction": {
+      "mouse": "Fait pivoter la perspective fuyante vers le vide vertigineux et courbe le flux des rafales de sable selon l'inclinaison.",
+      "scroll": "Simule l'escalade vers le haut le long de la façade vitrée, accélérant le défilement des dalles et le miroitement du soleil."
+    },
+    "palette": [
+      "#0f172a",
+      "#facc15",
+      "#eab308",
+      "#ca8a04",
+      "#1e293b",
+      "#ef4444"
+    ],
+    "references": [
+      "Mission Impossible Ghost Protocol Burj Khalifa climb sandstorm",
+      "Shadertoy vertical skyscraper glass reflection sandstorm",
+      "CodePen golden sandstorm high altitude wind particles"
+    ],
+    "risks": {
+      "pitfall": "Une simple tempête de sable marron uniforme qui bouche complètement la vue sans sensation de hauteur ni de vide.",
+      "solution": "Perspective fuyante le long des montants de verre avec reflets spéculaires du ciel, contraste entre verre bleu froid et sable doré chaud, et clignotement de la LED tactique."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#ca8a04",
+          "density": 1.2,
+          "speed": 0.15,
+          "depth": 0.1,
+          "intensity": 0.95,
+          "randomness": 0.2,
+          "noiseScale": 1.2
+        }
+      },
+      {
+        "brick": "dunes",
+        "params": {
+          "sandColor": "#facc15",
+          "shadowColor": "#1e293b",
+          "skyColor": "#0f172a",
+          "density": 0.9,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 0.9,
+          "randomness": 0.45,
+          "sunAngle": 0.8
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#facc15",
+          "density": 1.3,
+          "speed": 0.8,
+          "depth": 0.45,
+          "intensity": 1.2,
+          "randomness": 0.5,
+          "twinkleSpeed": 1.4
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#eab308",
+          "density": 1.1,
+          "speed": 1.6,
+          "depth": 0.35,
+          "intensity": 1.2,
+          "randomness": 0.5,
+          "gustAngle": 0.25,
+          "gustInterval": 19.0,
+          "swirlScale": 1.2
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#eab308",
+          "density": 0.9,
+          "speed": 0.25,
+          "depth": 0.3,
+          "intensity": 0.85,
+          "randomness": 0.35,
+          "heatHeight": 0.6,
+          "chromaticAberration": 0.02
+        }
+      },
+      {
+        "brick": "glitch",
+        "params": {
+          "glitchColor": "#ef4444",
+          "density": 0.8,
+          "speed": 1.5,
+          "depth": 0.25,
+          "intensity": 0.95,
+          "randomness": 0.5,
+          "sliceHeight": 0.06,
+          "glitchInterval": 27.0,
+          "chromaticShift": 0.035
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0f172a",
+          "density": 1.15,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 0.65,
+          "randomness": 0.2,
+          "roundness": 0.65,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "vertigo_glass_reflection",
+        "category": "intermediate",
+        "reason": "Perspective plongeante vertigineuse le long d'une façade de gratte-ciel avec reflets distordus du vide urbain, joints d'aluminium et particules de sable heurtant les vitres."
+      }
+    ]
+  },
+  {
+    "id": "black_ops",
+    "name": "Black Ops",
+    "family": "Horreur & mystère",
+    "intensity": 2,
+    "universe": "call-of-duty",
+    "evocation": "Call of Duty: Black Ops (Treyarch, Alex Mason, Viktor Reznov, CIA, Projet MKUltra, guerre froide) : le chef-d'œuvre du thriller conspirationniste d'espionnage psychologique. La légendaire salle d'interrogatoire clandestine éclairée par une ampoule suspendue oscillante : un mur de moniteurs cathodiques CRT bombés crachant des suites de nombres cryptographiques défilant frénétiquement ('The numbers, Mason! What do they mean?'), bobines de magnétophones à bande tournant dans l'ombre, volutes de fumée de cigarette et flashs de traumatismes mémoriels et de programmation mentale sous hypnose.",
+    "signature": "Un mur de moniteurs cathodiques incurvés crachant des colonnes de nombres cryptographiques défilants ('The numbers, Mason!'), secoué par des interférences magnétiques et des flashs d'amnésie.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Mur de béton brut fissuré d'une salle d'interrogatoire clandestine sous la guerre froide, plongé dans une pénombre oppressante."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Baie d'enregistrement avec magnétophones à bande magnétique audio tournant silencieusement et amplificateurs à aiguilles."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Matrice de moniteurs CRT cathodiques bombés affichant des flux de nombres défilants, coordonnées d'agents dormants et formes d'ondes oscilloscopiques."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Épaisses volutes de fumée de cigarette stagnant dans le faisceau d'une lampe chirurgicale suspendue."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Scanlines CRT entrelacées, lueurs de phosphore blanc et vert, grain argentique 16mm rugueux et vignettage étouffant."
+      }
+    ],
+    "particles": {
+      "type": "Volutes de fumée de tabac et poussières d'archivage dans la lumière CRT (smoke & dust)",
+      "size": "1.2 à 2.8 px pour les poussières, volutes vaporeuses étirées",
+      "speed": "0.15 ascension lente avec micro-tourbillons de convection thermique",
+      "density": "25 volutes de fumée lentes + 90 poussières grises",
+      "behavior": "Flottaison lourde et feutrée dans l'air saturé de la cellule d'interrogatoire."
+    },
+    "atmosphere": {
+      "mist": "Fumée de cigarette bleue-grise créant un brouillard opaque entre le prisonnier et les moniteurs.",
+      "light": "Éclairage cru et contrasté de tubes cathodiques (#ffffff et #22c55e) oscillant au rythme d'une ampoule vacillante.",
+      "airColor": "Noir d'encre (#000000), blanc éclatant (#ffffff) et vert phosphoreux militaire (#22c55e).",
+      "mainLightSource": "Le rayonnement pulsant des écrans cathodiques et une ampoule nue pendue au plafond."
+    },
+    "rareEvents": [
+      {
+        "name": "Flash de crise mémorielle et blackout",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Un violent flash de glitch blanc saturé déchire l'écran avec découpage de lignes et décalage RGB split, symbolisant un souvenir refoulé."
+      },
+      {
+        "name": "Oscillation de l'ampoule suspendue",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "La lumière vacille brusquement, faisant basculer les ombres portées du mobilier d'interrogatoire."
+      },
+      {
+        "name": "Fracas sur la table d'interrogatoire",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 34.0 secondes",
+        "description": "Une secousse cinématique amortie fait tressauter l'image et vibrer les bobines d'enregistrement."
+      }
+    ],
+    "interaction": {
+      "mouse": "Oriente le faisceau de l'ampoule suspendue et génère une distorsion magnétique sur les colonnes de nombres des moniteurs CRT au survol.",
+      "scroll": "Accélère la vitesse de défilement des suites numériques et densifie le balayage cathodique pour accroître la tension psychologique."
+    },
+    "palette": [
+      "#000000",
+      "#ffffff",
+      "#22c55e",
+      "#64748b",
+      "#0f172a",
+      "#1e293b"
+    ],
+    "references": [
+      "Call of Duty Black Ops interrogation numbers Mason CRT screens",
+      "Shadertoy green phosphor CRT code numbers stream glitch",
+      "CodePen interrogation room swinging bulb smoke CRT scanlines"
+    ],
+    "risks": {
+      "pitfall": "Un écran Matrix vert bis ou un simple texte vert sans l'ambiance crasseuse et psychologique de la guerre froide.",
+      "solution": "Moniteurs cathodiques bombés avec masque de phosphore et phosphor roll, contrastes noir et blanc tranchés, volutes de cigarette lourdes et flashs mémoriels traumatiques."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#1e293b",
+          "density": 1.35,
+          "speed": 0.08,
+          "depth": 0.1,
+          "intensity": 0.85,
+          "randomness": 0.15,
+          "noiseScale": 1.1
+        }
+      },
+      {
+        "brick": "code_rain",
+        "params": {
+          "primaryColor": "#ffffff",
+          "headColor": "#22c55e",
+          "glowColor": "#0f172a",
+          "density": 1.1,
+          "speed": 0.5,
+          "depth": 0.35,
+          "intensity": 1.1,
+          "randomness": 0.45,
+          "charSize": 0.85,
+          "tailLength": 0.7,
+          "mouseGlow": 0.5
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#64748b",
+          "tintColor": "#1e293b",
+          "density": 0.8,
+          "speed": 0.2,
+          "depth": 0.4,
+          "intensity": 0.75,
+          "randomness": 0.45,
+          "expansionRate": 1.35,
+          "dissipationSpeed": 0.9
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#94a3b8",
+          "density": 0.7,
+          "speed": 0.14,
+          "depth": 0.45,
+          "intensity": 0.8,
+          "randomness": 0.35,
+          "twinkleSpeed": 1.0
+        }
+      },
+      {
+        "brick": "crt_scanlines",
+        "params": {
+          "scanlineColor": "#000000",
+          "density": 1.3,
+          "speed": 0.3,
+          "depth": 0.25,
+          "intensity": 0.45,
+          "randomness": 0.25,
+          "curvature": 0.14,
+          "rollIntensity": 0.15
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#ffffff",
+          "secondaryColor": "#64748b",
+          "density": 1.0,
+          "speed": 0.35,
+          "depth": 0.3,
+          "intensity": 1.1,
+          "randomness": 0.55,
+          "lightX": 0.0,
+          "lightY": 0.3,
+          "flickerType": 1
+        }
+      },
+      {
+        "brick": "glitch",
+        "params": {
+          "glitchColor": "#ffffff",
+          "density": 0.9,
+          "speed": 1.7,
+          "depth": 0.25,
+          "intensity": 1.15,
+          "randomness": 0.6,
+          "sliceHeight": 0.07,
+          "glitchInterval": 18.0,
+          "chromaticShift": 0.04
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeColor": "#ffffff",
+          "density": 1.0,
+          "speed": 1.3,
+          "depth": 0.3,
+          "intensity": 1.0,
+          "randomness": 0.5,
+          "shakeInterval": 34.0,
+          "decayRate": 3.5
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "density": 1.25,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "randomness": 0.2,
+          "roundness": 0.6,
+          "smoothness": 0.85
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "density": 1.3,
+          "speed": 0.85,
+          "depth": 0.2,
+          "intensity": 0.08,
+          "randomness": 0.5,
+          "monochrome": true,
+          "clumpSize": 1.1
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "interrogation_cctv_wall",
+        "category": "special",
+        "reason": "Matrice multi-écrans cathodiques bombés avec flux désynchronisés de chiffres cryptographiques, oscillogrammes audio et neige de tube CRT vintage."
+      }
+    ]
+  }
+]

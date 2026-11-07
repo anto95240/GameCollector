@@ -1,0 +1,1159 @@
+[
+  {
+    "id": "eruption",
+    "name": "Eruption",
+    "family": "Éléments & catastrophes",
+    "intensity": 3,
+    "universe": null,
+    "evocation": "Éruption volcanique cataclysmique (Vésuve, Krakatoa, Mont Saint Helens, cinéma catastrophe volcanique type Dante's Peak et Volcano). Une nuit d'encre déchirée par une caldeira en furie : rivière de lave magmatique rougeoyante à 1 200 °C serpentant entre des plaques de basalte craquelées, colonnes d'air brûlant faisant miroiter l'espace, panaches de cendres lourdes et gerbes de braises ardentes illuminées par des décharges électriques volcaniques sales.",
+    "signature": "Une coulée de lave magmatique rougeoyante qui serpente entre des plaques de basalte fracturées, propulsant des geysers de braises ardentes et des panaches de cendres sous des éclairs volcaniques zébrant la pénombre.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel nocturne obscurci par un nuage pyroclastique lourd illuminé par le bas d'un rougeoiement magmatique sourd."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Pentes volcaniques abruptes en silhouette noire de basalte avec contreforts rocheux et cheminées secondaires actives crachant de la fumée."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Rivière de magma en fusion profonde avec torsion visqueuse dans une gorge béante, lézardée de failles incandescentes blanches et orange."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Colonnes de distorsion thermique ascensionnelle faisant onduler la vision et rideau de cendres volcaniques calcinées tournoyant dans les courants d'air."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Nuée dense de braises ardentes en convection turbulente projetées vers le haut de l'écran, avec vignettage suie et micro-grain photochimique 35mm."
+      }
+    ],
+    "particles": {
+      "type": "Braises incandescentes ascendantes et flocons de cendres volcaniques descendantes (embers & ash)",
+      "size": "1.2 à 3.4 px pour les braises, 2.0 à 4.5 px pour les cendres calcinées",
+      "speed": "0.65 pour l'ascension convective des braises, 0.32 pour la chute lente et tourbillonnante des cendres",
+      "density": "180 braises incandescentes + 140 flocons de cendre (InstancedMesh en 2 draw calls distincts)",
+      "behavior": "Convection thermique Simplex 3D ascendante pour les flammèches avec gradient thermique (jaune-or vers rouge sombre en s'éteignant) ; basculement 3D tumbling sur 3 axes et portance d'air erratique pour les flocons de cendre calcinés."
+    },
+    "atmosphere": {
+      "mist": "Nappe de fumée sulfureuse et de vapeur magmatique rampante dans les failles de basalte.",
+      "light": "Incandescente, tellurique et contrastée, pulsant au rythme des respirations thermiques du magma souterrain.",
+      "airColor": "Orange ardent et ambre brûlé (#ea580c) au-dessus des failles de fusion, virant au rouge sang (#7f1d1d) et noir suie (#000000) dans les hauteurs.",
+      "mainLightSource": "La coulée de lave magmatique au fond du gouffre, illuminant toute la scène par contre-plongée."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclair volcanique sale dans le panache",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 9.5 secondes",
+        "description": "Décharge de plasma violet et bleu ramifiée née des frottements électrostatiques violents des particules de cendres dans le nuage éruptif."
+      },
+      {
+        "name": "Grondement éruptif tellurique",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 14.0 secondes",
+        "description": "Secousse sismique amortie ébranlant la caméra Three.js, décrochant une averse de cendres et faisant vaciller l'éclat du magma."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace les silhouettes des crêtes volcaniques et l'angle d'observation du fleuve de lave ; le curseur génère un souffle thermique qui repousse les braises et courbe les volutes de fumée.",
+      "scroll": "Plonge le regard vers le cœur de la faille magmatique en accentuant la distorsion de chaleur et en densifiant le rougeoiement thermique sans saturer le fond de l'interface."
+    },
+    "palette": [
+      "#000000",
+      "#ea580c",
+      "#f97316",
+      "#fef08a",
+      "#7f1d1d",
+      "#451a03"
+    ],
+    "references": [
+      "Shadertoy procedural volcanic lava flow",
+      "CodePen realistic embers convection magma",
+      "Three.js volcanic lightning ash storm"
+    ],
+    "risks": {
+      "pitfall": "Fond orange statique ressemblant à un coulis de tomate ou répétition mécanique d'étincelles verticales monotones.",
+      "solution": "Modulation de lave par Voronoi fracturé sinueux avec 3 gradients thermiques (croûte/magma/cœur 1200°C), basculement tumbling 3D réaliste des cendres et éclairs volcaniques asynchrones."
+    },
+    "bricks": [
+      {
+        "brick": "lava_flow",
+        "params": {
+          "magmaColor": "#ea580c",
+          "crustColor": "#000000",
+          "coreColor": "#fef08a",
+          "density": 1.1,
+          "speed": 0.18,
+          "intensity": 1.35,
+          "heatPulseSpeed": 1.2
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#000000",
+          "sunColor": "#451a03",
+          "mistColor": "#7f1d1d",
+          "density": 1.1,
+          "depth": 0.35,
+          "intensity": 0.9,
+          "snowLevel": 0.0
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#ea580c",
+          "density": 1.2,
+          "speed": 0.35,
+          "intensity": 1.1,
+          "heatHeight": 0.7,
+          "chromaticAberration": 0.018
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#451a03",
+          "density": 0.9,
+          "speed": 0.22,
+          "heightFalloff": 2.0,
+          "depth": 0.3
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#ea580c",
+          "hotColor": "#fef08a",
+          "density": 1.2,
+          "speed": 0.65,
+          "intensity": 1.3,
+          "coolingRate": 1.1
+        }
+      },
+      {
+        "brick": "ash",
+        "params": {
+          "ashColor": "#64748b",
+          "darkColor": "#1e293b",
+          "density": 1.0,
+          "speed": 0.32,
+          "drift": 0.25,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "lightningColor": "#c4b5fd",
+          "flashColor": "#ea580c",
+          "strikeInterval": 9.5,
+          "intensity": 1.4,
+          "density": 1.1
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeInterval": 14.0,
+          "intensity": 0.9,
+          "speed": 1.3,
+          "decayRate": 3.6
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.7,
+          "smoothness": 0.9,
+          "roundness": 0.65
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.08,
+          "speed": 0.75,
+          "density": 1.2,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "pyroclastic_plume",
+        "category": "special",
+        "reason": "Panache pyroclastique volumétrique en colonne ascendante formant un champignon éruptif de cendres et de blocs volcaniques illuminé de l'intérieur."
+      }
+    ]
+  },
+  {
+    "id": "tsunami",
+    "name": "Tsunami",
+    "family": "Éléments & catastrophes",
+    "intensity": 3,
+    "universe": null,
+    "evocation": "Mégatsunami océanique dévastateur (cinéma catastrophe maritime type The Day After Tomorrow, The Impossible, San Andreas, réinterprétation moderne et cinématique de la Grande Vague de Kanagawa d'Hokusai). Une dépression marine cyclopéenne en plein océan : un horizon obscurci par un ciel d'orage cobalt, une onde de Gerstner titanesque se redressant en mur d'eau avec crêtes d'écume déchiquetées par des vents furieux, pluie diluvienne battante et embruns pulvérisés.",
+    "signature": "Une onde océanique titanesque aux crêtes d'écume blanche déferlant en perspective infinie, balayée par des embruns diluviens et déchirée par des éclairs marins lointains.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel d'orage océanique ténébreux d'encre bleu nuit chargé de strates nuageuses violacées et de dépressions barométriques tourmentées."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Ligne d'horizon engloutie où les crêtes de houle lointaines forment un dénivelé colossal contre le ciel d'encre."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Train de vagues de Gerstner majeures avec crêtes acérées d'eau turquoise sombre, écume blanche pulvérisée et reflets spéculaires intenses sous les éclairs."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Nappe d'embruns salins et de brume d'eau pulvérisée tourbillonnant à ras de surface, traversée par des traits de pluie diluvienne inclinés par le vent."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Ruissellement et micro-gouttelettes plaquées contre l'objectif, dispersion chromatique prismatique et vignettage bleu abyssal profond."
+      }
+    ],
+    "particles": {
+      "type": "Pluie diluvienne battante, embruns marins pulvérisés et bulles d'eau en suspension (rain & bubbles)",
+      "size": "Traits de pluie de 12 à 28 px de long, bulles d'écume de 1.5 à 4.0 px",
+      "speed": "1.9 pour la pluie oblique, 0.45 pour l'écume en suspension et bulles",
+      "density": "260 traits de pluie + 90 bulles d'écume instanciées",
+      "behavior": "Chute oblique cinématique ultra-rapide des gouttes alignées sur le vent dynamique ; tournoiement chaotique et dispersion vaporeuse des embruns sous les rafales maritimes."
+    },
+    "atmosphere": {
+      "mist": "Brume d'embruns salins violente saturant l'air de micro-gouttelettes d'eau de mer pulvérisée.",
+      "light": "Sombre, froide et dramatique, scandée par les flashs violents des éclairs marins se réverbérant sur les crêtes d'eau.",
+      "airColor": "Bleu nuit abyssal (#082f49) et cyan électrique (#0ea5e9) dans les crêtes d'eau, ciel d'orage indigo (#021a2f).",
+      "mainLightSource": "Reflets célestes d'orage et flashs diffus des éclairs à l'horizon marin."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclair d'orage océanique",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 7.5 secondes",
+        "description": "Fulgurance ramifiée violette et blanche illuminant en contre-jour la crête de la vague géante et révélant la texture de l'écume."
+      },
+      {
+        "name": "Fracas de la déferlante sur le littoral",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 16.0 secondes",
+        "description": "Détonation hydraulique sourde faisant vibrer la scène comme le choc de millions de tonnes d'eau heurtant les hauts-fonds."
+      }
+    ],
+    "interaction": {
+      "mouse": "La souris incline la direction du vent dynamique, modifiant l'angle de chute de la pluie battante et le tangage de la perspective océanique ; les mouvements rapides créent des sillages dans la brume d'embruns.",
+      "scroll": "Fait monter le niveau apparent de la houle vers le premier plan, intensifiant le bouillonnement d'écume tout en préservant la transparence pour l'interface."
+    },
+    "palette": [
+      "#082f49",
+      "#0ea5e9",
+      "#021a2f",
+      "#38bdf8",
+      "#f8fafc",
+      "#0369a1"
+    ],
+    "references": [
+      "Shadertoy ocean storm Gerstner waves",
+      "CodePen tsunami rough sea threejs",
+      "Three.js storm ocean spray lightning"
+    ],
+    "risks": {
+      "pitfall": "Donner l'illusion d'une simple tôle ondulée bleue en mouvement ou d'une texture de piscine calme sans gigantisme ni menace.",
+      "solution": "Combinaison de 4 trains d'ondes de Gerstner croisés à cambrure acérée (waveSteepness: 0.75), génération procédurale d'écume blanche texturée sur les crêtes et pluie diluvienne réactive au vent de la souris."
+    },
+    "bricks": [
+      {
+        "brick": "waves",
+        "params": {
+          "deepColor": "#082f49",
+          "crestColor": "#f8fafc",
+          "density": 1.25,
+          "speed": 0.35,
+          "depth": 0.4,
+          "intensity": 1.3,
+          "randomness": 0.45,
+          "waveSteepness": 0.75
+        }
+      },
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "skyColor": "#021a2f",
+          "cloudColor": "#082f49",
+          "density": 0.85,
+          "speed": 0.22,
+          "intensity": 1.2,
+          "randomness": 0.45,
+          "windAngle": 0.2
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#082f49",
+          "density": 1.1,
+          "speed": 0.28,
+          "heightFalloff": 1.4,
+          "depth": 0.35
+        }
+      },
+      {
+        "brick": "rain",
+        "params": {
+          "rainColor": "#38bdf8",
+          "density": 1.2,
+          "speed": 1.9,
+          "depth": 0.5,
+          "intensity": 1.1,
+          "windAngle": 0.3,
+          "streakLength": 1.5
+        }
+      },
+      {
+        "brick": "bubbles",
+        "params": {
+          "bubbleColor": "#0ea5e9",
+          "density": 0.8,
+          "speed": 0.45,
+          "intensity": 0.9,
+          "wobbleAmount": 0.5
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "lightningColor": "#38bdf8",
+          "flashColor": "#f8fafc",
+          "strikeInterval": 7.5,
+          "intensity": 1.5,
+          "forkSpread": 0.7
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeInterval": 16.0,
+          "intensity": 0.95,
+          "speed": 1.2,
+          "decayRate": 3.2
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "aberrationColor": "#0ea5e9",
+          "intensity": 0.7,
+          "spread": 0.03,
+          "radialFalloff": 1.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#021a2f",
+          "intensity": 0.75,
+          "smoothness": 0.9,
+          "roundness": 0.6
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "breaking_wave_crest",
+        "category": "special",
+        "reason": "Lèvre d'eau géante en rouleau concave de mégatsunami avec rideau d'écume déferlant et turbulences d'aspiration hydraulique."
+      }
+    ]
+  },
+  {
+    "id": "twister",
+    "name": "Twister",
+    "family": "Éléments & catastrophes",
+    "intensity": 3,
+    "universe": null,
+    "evocation": "Tornade monstre F5 ravageant les Grandes Plaines (cinéma catastrophe américain culte Twister, Twisters, Into the Storm). L'atmosphère oppressante de la « Tornado Alley » en Oklahoma : ciel verdâtre caractéristique des chutes de grêle géante, mésocyclone rotatif colossal étalé au-dessus des plaines, rafales d'air hurlantes arrachant débris et limons du sol, et décharges électriques intra-nuageuses illuminant le vortex.",
+    "signature": "Un entonnoir nuageux en rotation violente qui balaye l'horizon dans un ciel vert-de-gris, aspirant des tourbillons de poussières et débris sous des rafales hurlantes.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Voûte de cumulonimbus mammatus étouffante au teint vert-de-gris d'orage, en rotation différentielle lente autour de l'axe cyclonique."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette de plaine désolée et de rideau de pluie lointain estompé dans la pénombre atmosphérique."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Cône cyclonique en vortex tourbillonnant descendant de la base nuageuse jusqu'au sol, avec parois spiralées denses et micro-éclairs internes."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Lignes de courant de rafales de vent violentes et nuages de brume basse cisaillés par la force centrifuge du vortex."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Nuée chaotique de particules de poussière ocre, brins d'herbe et feuilles arrachées tourbillonnant autour de l'observateur, bordée d'un vignettage orageux noir et d'aberration chromatique de basse pression."
+      }
+    ],
+    "particles": {
+      "type": "Poussière tellurique soulevée, fragments de débris et feuilles mortes arrachées en rotation (dust & leaves)",
+      "size": "Poussières de 0.8 à 2.2 px, débris/feuilles de 3.0 à 7.0 px",
+      "speed": "1.45 (rotation tangentielle et turbulence centrifuge vive)",
+      "density": "200 motes de poussière + 65 fragments de débris végétaux",
+      "behavior": "Trajectoires spiralées hélicoïdales accélérant à l'approche de l'axe central du vortex, portance aérodynamique chaotique et dispersion sous les bourrasques de vent."
+    },
+    "atmosphere": {
+      "mist": "Brume de cisaillement et voiles de condensation tournoyant autour de la colonne d'aspiration.",
+      "light": "Crépusculaire, sinistre et diffuse, dominée par la teinte d'orage vert-de-gris filtrant à travers le mésocyclone.",
+      "airColor": "Gris ardoise sale (#94a3b8) et vert d'orage (#334155), virant au noir d'encre (#000000) au cœur du nuage.",
+      "mainLightSource": "Lueur blafarde filtrant entre les rouleaux nuageux et éclairs intra-nuageux."
+    },
+    "rareEvents": [
+      {
+        "name": "Bourrasque hurlante de tornade",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 5.0 secondes",
+        "description": "Rubans d'air de condensation traversant violemment l'écran et courbant tous les éléments de la scène."
+      },
+      {
+        "name": "Éclair intra-nuageux dans le mésocyclone",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 8.5 secondes",
+        "description": "Flash stochastique zébrant la colonne du vortex et illuminant les nappes de poussière en suspension."
+      },
+      {
+        "name": "Choc de pression barométrique au passage du vortex",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 12.0 secondes",
+        "description": "Vibration sourde et continue ébranlant l'écran lorsque l'entonnoir frôle la caméra."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le déplacement horizontal de la souris tire l'axe de rotation du vortex tornadique et amplifie la courbure des rafales d'air ; le curseur agit comme un point de cisaillement perturbant les trajectoires de poussières.",
+      "scroll": "Rapproche l'entonnoir vers l'avant-plan, augmentant la densité des débris en suspension et la force du vent sans gêner la lecture des textes."
+    },
+    "palette": [
+      "#94a3b8",
+      "#000000",
+      "#475569",
+      "#334155",
+      "#cbd5e1",
+      "#c4b5fd"
+    ],
+    "references": [
+      "Shadertoy realistic tornado volumetric vortex",
+      "CodePen storm twister particles simulation",
+      "Three.js whirlwind debris physics"
+    ],
+    "risks": {
+      "pitfall": "Tornade ressemblant à un triangle gris statique ou un cône 3D rigide sans fluidité ni débris crédibles.",
+      "solution": "Superposition de nappes FBM tourbillonnantes, de lignes de courant wind_gust asynchrones, d'étirement gravitationnel des débris et de déformations optiques d'aberration chromatique traduisant la chute brutale de pression atmosphérique."
+    },
+    "bricks": [
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "skyColor": "#000000",
+          "cloudColor": "#334155",
+          "density": 0.9,
+          "speed": 0.35,
+          "intensity": 1.25,
+          "randomness": 0.55,
+          "windAngle": 0.45
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#cbd5e1",
+          "gustInterval": 5.0,
+          "speed": 1.8,
+          "intensity": 1.3,
+          "density": 1.25,
+          "swirlScale": 1.4
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#94a3b8",
+          "density": 1.2,
+          "speed": 0.45,
+          "intensity": 1.0,
+          "twinkleSpeed": 1.8
+        }
+      },
+      {
+        "brick": "leaves",
+        "params": {
+          "leafColor": "#475569",
+          "altColor": "#334155",
+          "density": 0.85,
+          "speed": 0.65,
+          "flutterRate": 2.2,
+          "windDrift": 0.9
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "lightningColor": "#c4b5fd",
+          "flashColor": "#ffffff",
+          "strikeInterval": 8.5,
+          "intensity": 1.35,
+          "forkSpread": 0.8
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeInterval": 12.0,
+          "intensity": 0.85,
+          "speed": 1.4,
+          "decayRate": 2.8
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#334155",
+          "density": 0.95,
+          "speed": 0.3,
+          "heightFalloff": 1.8,
+          "depth": 0.35
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "aberrationColor": "#94a3b8",
+          "intensity": 0.65,
+          "spread": 0.03,
+          "radialFalloff": 1.5
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.75,
+          "smoothness": 0.85,
+          "roundness": 0.65
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "tornado_vortex",
+        "category": "special",
+        "reason": "Colonne conique volumétrique en vortex tourbillonnant descendant de la base nuageuse avec pied d'aspiration au sol et débris en rotation concentrique."
+      }
+    ]
+  },
+  {
+    "id": "whiteout",
+    "name": "Whiteout",
+    "family": "Éléments & catastrophes",
+    "intensity": 3,
+    "universe": null,
+    "evocation": "Blizzard polaire aveuglant et whiteout total (expéditions antarctiques de Shackleton et Scott, The Thing de John Carpenter, roman graphique et film Whiteout, toundra arctique en furie à -50 °C). Phénomène optique extrême où ciel et terre se fondent dans une blancheur laiteuse totale sans horizon perceptible : neige horizontale soufflée à 130 km/h, cristaux de glace cinglants givrant instantanément la lentille de l'objectif, et bourrasques glaciales hurlantes.",
+    "signature": "Une tempête de neige aveuglante aux cristaux de glace propulsés à l'horizontale par des bourrasques glaciales, dissolvant l'horizon dans une nappe blanche laiteuse.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Voile céleste polaire continu blanc-gris laiteux où la démarcation entre ciel et banquise a totalement disparu sous la poudrerie."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Crêtes rocheuses et séracs de glace lointains à peine devinables, réduits à de pâles silhouettes spectrales bleu glacier."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Nappe de poudrerie (ground blizzard) et rideaux de neige en poudre balayés à grande vitesse par des rafales rasantes."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Bourrasques glaciales hurlantes et brume laiteuse opaque tourbillonnant en nappes denses."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Flocons de neige et aiguilles de glace cinglants fonçant vers la caméra, grain givré crépitant et vignettage froid cyan glacier."
+      }
+    ],
+    "particles": {
+      "type": "Flocons de neige cristallins et aiguilles de glace propulsés à l'horizontale (snow)",
+      "size": "1.0 à 3.2 px (micro-cristaux étirés par la vélocité extrême)",
+      "speed": "1.8 (trajectoire quasi-horizontale ultra-rapide sous vent violent)",
+      "density": "260 flocons et cristaux de glace instanciés",
+      "behavior": "Propulsion horizontale sous vent continu (windStrength: 1.4), micro-ondulations de sillage à haute fréquence et flou cinétique de poudrerie."
+    },
+    "atmosphere": {
+      "mist": "Brouillard blanc laiteux aveuglant saturant l'espace et annulant tout repère de profondeur.",
+      "light": "Blanche, crue, diffuse et omniprésente, sans ombre portée directionnelle identifiable.",
+      "airColor": "Blanc pur (#ffffff) et givre laiteux (#f8fafc), teinté de cyan glacier électrique (#0ea5e9) et bleu polaire (#bae6fd) dans les creux.",
+      "mainLightSource": "Diffusion omnidirectionnelle de lumière blanche réfléchie à l'infini par la banquise et le blizzard."
+    },
+    "rareEvents": [
+      {
+        "name": "Rafale de blizzard arctique hurlante",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 6.0 secondes",
+        "description": "Mur de poudrerie blanche balayant l'écran d'un coup de vent glacial et masquant temporairement le décor."
+      },
+      {
+        "name": "Pression d'ouragan polaire",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Trépidation feutrée de la caméra sous la violence d'une bourrasque dépassant les 130 km/h."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le pointeur de la souris dévie la trajectoire des cristaux de glace en créant un sillage aérodynamique ; le déplacement rapide génère un éclaircissement temporaire dans la brume laiteuse.",
+      "scroll": "Modifie la densité du voile de neige en suspension, offrant un contraste réglable pour assurer la lisibilité parfaite des cartes de la collection."
+    },
+    "palette": [
+      "#f8fafc",
+      "#0ea5e9",
+      "#e2e8f0",
+      "#bae6fd",
+      "#64748b",
+      "#ffffff"
+    ],
+    "references": [
+      "Shadertoy blizzard whiteout polar storm",
+      "CodePen horizontal snow storm particles",
+      "Three.js arctic blizzard wind fog"
+    ],
+    "risks": {
+      "pitfall": "Écran entièrement blanc délavé rendant les textes illisibles, ou simple chute de flocons verticaux de Noël trop douce.",
+      "solution": "Préservation d'un gradient de lisibilité sombre sous les cartes UI, vitesse horizontale extrême des cristaux de glace (windStrength: 1.4), et étagement de silhouettes bleu glacier fardées de brume pour donner une profondeur glaciale vertigineuse."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#e2e8f0",
+          "bottomColor": "#f8fafc",
+          "horizonColor": "#bae6fd",
+          "density": 0.8,
+          "speed": 0.15,
+          "intensity": 1.0,
+          "depth": 0.15
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#64748b",
+          "sunColor": "#f8fafc",
+          "mistColor": "#bae6fd",
+          "density": 0.85,
+          "depth": 0.35,
+          "intensity": 0.65,
+          "snowLevel": 0.95
+        }
+      },
+      {
+        "brick": "snow",
+        "params": {
+          "snowColor": "#ffffff",
+          "density": 1.3,
+          "speed": 1.8,
+          "depth": 0.55,
+          "intensity": 1.2,
+          "windStrength": 1.4,
+          "swayFrequency": 2.5
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#f8fafc",
+          "density": 1.2,
+          "speed": 0.35,
+          "heightFalloff": 0.8,
+          "depth": 0.3
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#ffffff",
+          "gustInterval": 6.0,
+          "speed": 1.9,
+          "intensity": 1.25,
+          "density": 1.2
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeInterval": 18.0,
+          "intensity": 0.7,
+          "speed": 1.5,
+          "decayRate": 4.0
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "intensity": 0.09,
+          "speed": 0.85,
+          "density": 1.3,
+          "monochrome": true
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0ea5e9",
+          "intensity": 0.45,
+          "smoothness": 0.95,
+          "roundness": 0.75
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "frost_vignette",
+        "category": "overlay",
+        "reason": "Cristallisation procédurale d'aiguilles de glace et dendrites de givre sur les bordures de l'écran avec croissance et fonte thermique."
+      }
+    ]
+  },
+  {
+    "id": "meteor_strike",
+    "name": "Meteor Strike",
+    "family": "Éléments & catastrophes",
+    "intensity": 3,
+    "universe": null,
+    "evocation": "Impact d'astéroïde cataclysmique et extinction planétaire (Armageddon, Deep Impact, événement de Chicxulub / disparition des dinosaures, bolide de Tcheliabinsk). L'embrasement de l'atmosphère terrestre : entrée hypersonique d'un bolide incandescent fendant la stratosphère, détonation aveuglante à l'impact, onde de choc circulaire rasant les reliefs et nuée d'étincelles de fusion balistiques retombant sur un cratère fumant.",
+    "signature": "Un bolide cosmique hypersonique fendant le ciel nocturne dans une traînée de plasma incandescent, déclenchant une onde de choc circulaire explosive et une averse d'étincelles dorées.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Voûte céleste nocturne piquetée d'étoiles lointaines baignée du rougeoiement atmosphérique d'ionisation de la rentrée orbitale."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Crêtes déchiquetées d'un cratère d'impact illuminées en contre-jour par le flash du bolide."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Épicentre de l'impact avec bolide hypersonique traçant son sillage et onde de choc circulaire en expansion violente rasant le sol."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Dôme de lueur thermique incandescente rouge et or et voiles de fumée noire soulevés par le souffle."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Salves d'étincelles balistiques de fusion et braises retombant en cloche parabolique, aberration chromatique d'onde de souffle et vignettage de roche calcinée."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles balistiques de fusion ardente et braises de fragmentation (sparks & embers)",
+      "size": "1.2 à 3.8 px pour les étincelles fuselées, 1.5 à 3.0 px pour les braises",
+      "speed": "1.5 pour les étincelles éjectées sous gravité, 0.55 pour les braises en suspension",
+      "density": "170 étincelles balistiques + 110 braises incandescentes",
+      "behavior": "Éjection balistique ultra-rapide en trajectoire parabolique (v = v0 + gt), étirement dynamique aligné sur le vecteur vitesse et retombée en pluie incandescente."
+    },
+    "atmosphere": {
+      "mist": "Panache de poussière minérale pulvérisée et fumerolles d'ionisation entourant le cratère.",
+      "light": "Fulgurante, thermique et apocalyptique, alternant flashs blancs aveuglants et lueurs rouge-orange ardentes.",
+      "airColor": "Rouge ardent (#ef4444) et jaune éclatant (#facc15) au cœur de l'impact, virant à l'orange fusion (#f97316) et au noir cratère (#1c1917).",
+      "mainLightSource": "Le bolide hypersonique et la boule de feu de l'onde d'impact au sol."
+    },
+    "rareEvents": [
+      {
+        "name": "Bolide météoritique traversant",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 5.5 secondes",
+        "description": "Météore colossal hypersonique avec tête incandescente blanche ultra-brillante et traînée conique de plasma étirée."
+      },
+      {
+        "name": "Onde de choc explosive circulaire",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 7.0 secondes",
+        "description": "Détonation annulaire en expansion supersonique avec réfraction optique et dispersion chromatique RVB dissociée."
+      },
+      {
+        "name": "Déflagration sismique d'impact",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 7.0 secondes",
+        "description": "Secousse tellurique majeure de la caméra, synchronisée avec l'onde de choc et libérant une gerbe d'étincelles."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe oriente l'angle de vue vers l'épicentre du cratère ; le curseur de la souris agit comme un point d'attraction gravitationnelle courbant les trajectoires des étincelles balistiques.",
+      "scroll": "Plonge vers le cratère en intensifiant la radiance thermique et l'onde de choc, tout en préservant le contraste sombre des panneaux de lecture."
+    },
+    "palette": [
+      "#ef4444",
+      "#facc15",
+      "#f97316",
+      "#ffffff",
+      "#1c1917",
+      "#b91c1c"
+    ],
+    "references": [
+      "Shadertoy meteor strike impact explosion",
+      "CodePen shockwave fiery sparks explosion",
+      "Three.js asteroid impact particle blast"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à un simple feu d'artifice de fête foraine ou à une explosion de jeu 8-bit plate sans gravité ni souffle physique.",
+      "solution": "Balistique physique parabolique réaliste des étincelles avec étirement vectoriel, couplage synchrone strict entre l'onde de choc (shockwave) et la secousse sismique (screen_shake), et dispersion chromatique RVB."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#1c1917",
+          "bottomColor": "#b91c1c",
+          "horizonColor": "#ef4444",
+          "density": 1.1,
+          "speed": 0.2,
+          "intensity": 1.25,
+          "depth": 0.15
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#facc15",
+          "density": 0.7,
+          "speed": 0.08,
+          "depth": 0.8,
+          "intensity": 0.85,
+          "twinkleSpeed": 1.2
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#1c1917",
+          "sunColor": "#ef4444",
+          "mistColor": "#b91c1c",
+          "density": 1.0,
+          "depth": 0.35,
+          "intensity": 1.0,
+          "snowLevel": 0.0
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#facc15",
+          "outerColor": "#ef4444",
+          "density": 1.2,
+          "speed": 0.2,
+          "intensity": 1.35,
+          "glowY": -0.2
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#ffffff",
+          "trailColor": "#f97316",
+          "starInterval": 5.5,
+          "speed": 2.2,
+          "intensity": 1.45,
+          "trailLength": 2.0,
+          "angle": -0.75
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#facc15",
+          "waveInterval": 7.0,
+          "speed": 1.6,
+          "intensity": 1.35,
+          "chromaticAberration": 0.028,
+          "epicenterY": -0.25
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeInterval": 7.0,
+          "intensity": 1.15,
+          "speed": 1.6,
+          "decayRate": 4.2
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#facc15",
+          "coreColor": "#ffffff",
+          "density": 1.15,
+          "speed": 1.4,
+          "intensity": 1.4,
+          "gravity": 1.3,
+          "burstInterval": 1.8
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#ef4444",
+          "hotColor": "#facc15",
+          "density": 0.9,
+          "speed": 0.55,
+          "intensity": 1.15,
+          "coolingRate": 1.2
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "aberrationColor": "#ef4444",
+          "intensity": 0.65,
+          "spread": 0.03,
+          "radialFalloff": 1.6
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1c1917",
+          "intensity": 0.7,
+          "smoothness": 0.9,
+          "roundness": 0.65
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "meteor_crater_glow",
+        "category": "special",
+        "reason": "Cœur de cratère incandescent en fusion résiduelle au sol avec failles de plasma et respiration thermique post-impact."
+      }
+    ]
+  },
+  {
+    "id": "sinkhole",
+    "name": "Sinkhole",
+    "family": "Éléments & catastrophes",
+    "intensity": 3,
+    "universe": null,
+    "evocation": "Effondrement tellurique soudain et gouffre karstique béant (The Core, cénotes insondables du Yucatán, les « dolines géantes » de Chine, la Porte de l'Enfer de Darvaza). La rupture brutale des strates géologiques : le sol se dérobe en un gouffre circulaire plongeant vers des ténèbres insondables, entraînant des rideaux d'éboulis rocheux, des volutes de poussière d'argile en suspension et des fumerolles souterraines étouffantes.",
+    "signature": "Un gouffre géologique abyssal aux lèvres de roche fracturées aspirant des rideaux de gravats et de poussières ocre vers les profondeurs de la Terre sous des secousses telluriques.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Puits abyssal plongeant vers un néant d'ébène absolu au centre du gouffre, bordé d'une lueur ocre sourde provenant de la surface."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Strates géologiques étagées et failles concentriques découpées en gradins abrupts s'enfonçant dans les ténèbres."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Lèvres du gouffre béant fracturées par des failles d'effondrement en spirale, où des pans de roche se décrochent et basculent dans le vide."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Fumerolles de vapeurs souterraines et nappes de poussière minérale rampante s'engouffrant dans la dépression."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Rideaux de micro-gravats, grains de poussière de silice et d'argile en chute continue vers le centre, resserrés par un vignettage géologique très sombre."
+      }
+    ],
+    "particles": {
+      "type": "Grains de poussière d'argile, silice et micro-gravats en aspiration descendante (dust & ash)",
+      "size": "Poussières de 0.9 à 2.4 px, gravats de 2.5 à 5.5 px",
+      "speed": "0.58 pour la chute accélérée des débris rocheux, 0.22 pour la poussière en suspension",
+      "density": "190 motes de silice + 120 fragments rocheux instanciés",
+      "behavior": "Chute gravitaire accélérée vers le point de fuite central du gouffre, micro-tournoiements dus aux courants d'air d'aspiration de la caverne et rebonds stochastiques."
+    },
+    "atmosphere": {
+      "mist": "Brume minérale lourde et fumerolles souterraines s'élevant des failles rocheuses profondes.",
+      "light": "Sépulcrale, tamisée et claustrophobique, venant du ciel et déclinant rapidement vers le noir absolu du gouffre.",
+      "airColor": "Brun terreux (#451a03) et ocre argileux (#78350f) sur les parois rocheuses, s'évanouissant dans le noir d'encre (#000000).",
+      "mainLightSource": "Ouverture zénithale du gouffre éclairant les arêtes rocheuses supérieures."
+    },
+    "rareEvents": [
+      {
+        "name": "Effondrement géologique d'une lèvre rocheuse",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 11.0 secondes",
+        "description": "Grondement tellurique profond ébranlant les parois rocheuses et décrochant une volée d'éboulis dans l'abîme."
+      },
+      {
+        "name": "Appel d'air d'aspiration souterraine",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 15.0 secondes",
+        "description": "Courant d'air s'engouffrant violemment vers le fond du gouffre et aspirant les voiles de poussière."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace la perspective vertigineuse au-dessus du gouffre, donnant une sensation de vide plongeant ; le passage de la souris disperse les fumerolles au bord de la faille.",
+      "scroll": "Descend l'angle de caméra plus profondément dans les strates du gouffre en accentuant le vignettage et l'obscurité tout en gardant les cartes de la collection bien contrastées."
+    },
+    "palette": [
+      "#000000",
+      "#451a03",
+      "#78350f",
+      "#1c1917",
+      "#a16207",
+      "#292524"
+    ],
+    "references": [
+      "Shadertoy abyss sinkhole underground cave",
+      "CodePen cavern rocks dust falling parallax",
+      "Three.js deep hole gravity particles"
+    ],
+    "risks": {
+      "pitfall": "Avoir un fond marron terne ou un simple trou noir 2D sans sensation de vertige, de relief rocheux ni de profondeur abyssale.",
+      "solution": "Étagement en 3 strates géologiques aux ombrages rasants nets (parallax_mountains), gravitation centripète des particules vers l'épicentre du gouffre, secousses telluriques d'effondrement imprévisibles et vignettage optique concentrique."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#78350f",
+          "bottomColor": "#000000",
+          "horizonColor": "#451a03",
+          "density": 1.4,
+          "speed": 0.12,
+          "intensity": 1.1,
+          "depth": 0.2
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#000000",
+          "sunColor": "#451a03",
+          "mistColor": "#1c1917",
+          "density": 1.25,
+          "depth": 0.4,
+          "intensity": 1.1,
+          "snowLevel": 0.0,
+          "sunAngle": 0.95
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#a16207",
+          "density": 1.25,
+          "speed": 0.35,
+          "intensity": 1.15,
+          "twinkleSpeed": 1.1
+        }
+      },
+      {
+        "brick": "ash",
+        "params": {
+          "ashColor": "#78350f",
+          "darkColor": "#1c1917",
+          "density": 1.1,
+          "speed": 0.58,
+          "drift": 0.15,
+          "intensity": 1.0
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#451a03",
+          "density": 0.9,
+          "speed": 0.18,
+          "heightFalloff": 2.4,
+          "depth": 0.3
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeInterval": 11.0,
+          "intensity": 0.9,
+          "speed": 1.3,
+          "decayRate": 3.5
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#78350f",
+          "gustInterval": 15.0,
+          "speed": 1.2,
+          "intensity": 0.85,
+          "gustAngle": -1.57
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "grainColor": "#ffffff",
+          "intensity": 0.08,
+          "speed": 0.7,
+          "density": 1.25,
+          "monochrome": true
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.8,
+          "smoothness": 0.85,
+          "roundness": 0.7
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "sinkhole_abyss",
+        "category": "special",
+        "reason": "Gouffre circulaire procédural en coupe géologique avec failles concentriques d'effondrement et gravitation centripète aspirant particules et roche vers le centre."
+      }
+    ]
+  }
+]

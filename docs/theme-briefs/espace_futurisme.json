@@ -1,0 +1,1832 @@
+[
+  {
+    "id": "nebula",
+    "name": "Nebula",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "astrophysique / hubble / james webb",
+    "evocation": "Les nébuleuses stellaires immortalisées par les télescopes spatiaux Hubble et James Webb (nébuleuse d'Orion, Carina, nébuleuse de l'Aigle et ses Piliers de la Création). D'immenses draperies vaporeuses de gaz ionisé pourpre et magenta, peuplées de poussières sombres et de cocons proto-stellaires étincelants où naissent de nouveaux soleils au cœur du vide spatial.",
+    "signature": "Des voiles vaporeux de gaz ionisé pourpre et magenta qui se déploient en volutes tourbillonnantes lentes autour d'un cœur stellaire cyan incandescent.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Vide spatial abyssal bleu-nuit parsemé de micro-étoiles de fond à scintillement feutré et de galaxies spirales estompées."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Filaments de poussières cosmiques froides et bandes d'absorption sombres sculptant le relief des nuages de gaz en contre-jour."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Grand vortex de nébuleuse volumétrique en rotation différentielle lente, déployant des voiles ondulants de plasma violet (#7c3aed) et rose fuchsia (#ec4899)."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Nuée de micro-poussières stellaires et d'étoiles naissantes scintillantes en flottaison brownienne, diffusant une douce lueur azurée."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Halo de radiance volumétrique centrale, vignettage cinématographique respirant et grain argentique fin préservant la texture argentique 35mm."
+      }
+    ],
+    "particles": {
+      "type": "Poussières cosmiques et micro-étoiles scintillantes (dust)",
+      "size": "1.0 à 2.5 px",
+      "speed": "0.15 dérive brownienne orbitale lente",
+      "density": "110 particules actives",
+      "behavior": "Attraction fluide douce vers le cœur du vortex avec scintillement asynchrone non-périodique et dispersion au passage de la souris."
+    },
+    "atmosphere": {
+      "mist": "Volutes de gaz d'hydrogène et d'oxygène ionisé à variations de densité organiques par Simplex 2D.",
+      "light": "Diffusion volumétrique centrale émanant de la pouponnière stellaire (#38bdf8 et #aa7ef3).",
+      "airColor": "Bleu nuit abyssal (#020617) s'enrichissant de pourpre et violet profond (#7c3aed).",
+      "mainLightSource": "Le cœur stellaire naissant au centre du complexe nébulaire."
+    },
+    "rareEvents": [
+      {
+        "name": "Éruption proto-stellaire",
+        "type": "volumetric_glow",
+        "frequency": "Intervalle moyen de 14.0 secondes",
+        "description": "Sursaut de radiance d'une étoile en formation au cœur du vortex, projetant un halo cyan étincelant qui illumine les voiles gazeux périphériques."
+      },
+      {
+        "name": "Traversée de bolide interstellaire",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "Un météore supersonique traverse obliquement un des bras de la nébuleuse, laissant une traînée de plasma à dissipation thermique progressive."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace la perspective des strates de voiles gazeux en trois dimensions et disperse délicatement les poussières cosmiques au survol.",
+      "scroll": "Amplifie la sensation d'immersion au cœur de la nébuleuse en resserrant les filaments centraux tout en maintenant la lisibilité totale de l'UI."
+    },
+    "palette": [
+      "#020617",
+      "#1e1035",
+      "#7c3aed",
+      "#aa7ef3",
+      "#ec4899",
+      "#38bdf8"
+    ],
+    "references": [
+      "Shadertoy cosmic nebula gas fbm volumetric",
+      "CodePen space nebula threejs particles dust",
+      "Hubble James Webb Carina Pillars of Creation"
+    ],
+    "risks": {
+      "pitfall": "Un dégradé radial violet statique donnant l'impression d'une simple image de fond floue sans profondeur vivante.",
+      "solution": "Vortex volumétrique à vitesse différentielle radiale combiné à un champ stellaire multi-couches et des poussières browniennes réactives."
+    },
+    "bricks": [
+      {
+        "brick": "nebula",
+        "params": {
+          "primaryColor": "#7c3aed",
+          "secondaryColor": "#020617",
+          "accentColor": "#38bdf8",
+          "density": 0.7,
+          "speed": 0.12,
+          "depth": 0.25,
+          "intensity": 1.15
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#ffffff",
+          "density": 0.85,
+          "speed": 0.08,
+          "depth": 1,
+          "twinkleSpeed": 1.2
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#38bdf8",
+          "glowColor": "#aa7ef3",
+          "outerColor": "#020617",
+          "density": 1.1,
+          "intensity": 1.2,
+          "glowX": 0,
+          "glowY": 0
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#aa7ef3",
+          "density": 0.75,
+          "speed": 0.15,
+          "depth": 0.45,
+          "intensity": 1.1
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#f8fafc",
+          "trailColor": "#38bdf8",
+          "starInterval": 20,
+          "speed": 1.4,
+          "angle": -0.6
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.55,
+          "roundness": 0.65
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.06,
+          "speed": 0.7,
+          "density": 1.2,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "black_hole",
+    "name": "Black Hole",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "interstellar / astrophysique relativiste",
+    "evocation": "Le trou noir supermassif Gargantua (Interstellar de Christopher Nolan et Kip Thorne) et les observations de M87* et Sagittarius A* par l'Event Horizon Telescope. Un monstre gravitationnel au cœur du néant dont le disque d'accrétion de matière surchauffée est courbé par une lentille gravitationnelle en boucle d'or ardent autour d'une sphère d'obscurité absolue.",
+    "signature": "Un disque d'accrétion incandescent orange et or en rotation ultra-rapide dont les anneaux de lumière se courbent sous la lentille gravitationnelle autour d'une sphère de noirceur absolue.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Voûte étoilée lointaine dont les constellations sont déformées et incurvées en arcs tangents par la lentille gravitationnelle d'Einstein."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Arche supérieure du disque d'accrétion, visible au-dessus du trou noir par effet de mirage optique gravitationnel relativiste."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "L'horizon des événements : sphère d'ombre absolue de Schwarzschild cerclée par l'anneau de photons ultra-brillant jaune-or incandescent."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Disque d'accrétion horizontal en rotation différentielle ultra-rapide avec dégradé thermique ardent (#ea580c, #f97316) et asymétrie Doppler."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Dispersion chromatique optique de lentille sur les pourtours du cadre et pénombre radiale de vignettage accentuant le vide gravitationnel."
+      }
+    ],
+    "particles": {
+      "type": "Plasma relativiste et débris incandescents (sparks / embers)",
+      "size": "1.2 à 2.8 px",
+      "speed": "0.85 orbite circulaire spiralante rapide",
+      "density": "130 particules actives",
+      "behavior": "Rotation orbitale frénétique autour de l'axe central avec accélération centripète vers le rayon de Schwarzschild et extinction thermique."
+    },
+    "atmosphere": {
+      "mist": "Gaz raréfié super-chauffé à friction extrême, émettant une incandescence thermique continue.",
+      "light": "Radiance thermique intense orange et or (#ea580c, #fde047) contrastant avec le néant central.",
+      "airColor": "Noir absolu (#000000) saturé d'énergie infrarouge et optique aux abords du disque.",
+      "mainLightSource": "La zone de friction ultra-dense du disque d'accrétion et l'anneau de photons."
+    },
+    "rareEvents": [
+      {
+        "name": "Éjection de sursaut relativiste",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 15.0 secondes",
+        "description": "Instabilité magnétique dans le disque interne projetant une onde de surpression lumineuse annulaire avec aberration chromatique le long du plan équatorial."
+      },
+      {
+        "name": "Micro-éruption de nodule de matière",
+        "type": "volumetric_glow",
+        "frequency": "Intervalle moyen de 22.0 secondes",
+        "description": "Un grumeau de matière disloqué franchit l'horizon dans un éclair d'émission synchrotron doré aveuglant."
+      }
+    ],
+    "interaction": {
+      "mouse": "La position du pointeur modifie l'angle d'inclinaison de la lentille gravitationnelle et accentue la distorsion optique des étoiles d'arrière-plan.",
+      "scroll": "Rapproche la caméra de l'horizon des événements, amplifiant la sensation de force de marée et d'aspiration spatiale."
+    },
+    "palette": [
+      "#000000",
+      "#180a02",
+      "#ea580c",
+      "#f97316",
+      "#fde047",
+      "#ffffff"
+    ],
+    "references": [
+      "Shadertoy black hole gravitational lensing accretion disc",
+      "Interstellar Gargantua black hole VFX Kip Thorne",
+      "Three.js black hole raymarching shader"
+    ],
+    "risks": {
+      "pitfall": "Un simple cercle noir fixe entouré d'un dégradé orange plat sans distorsion optique ni rotation cinématique réaliste.",
+      "solution": "Rotation dynamique asymétrique par effet Doppler, anneaux de photons courbés et gerbes d'étincelles orbitales en accélération relativiste."
+    },
+    "bricks": [
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#ffffff",
+          "density": 0.9,
+          "speed": 0.05,
+          "depth": 0.8,
+          "twinkleSpeed": 1
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fef08a",
+          "glowColor": "#ea580c",
+          "outerColor": "#000000",
+          "density": 1.3,
+          "intensity": 1.4,
+          "glowX": 0,
+          "glowY": 0
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#ea580c",
+          "coreColor": "#fef08a",
+          "density": 0.85,
+          "speed": 0.9,
+          "gravity": 0,
+          "burstInterval": 2
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f97316",
+          "density": 0.7,
+          "speed": 0.25,
+          "depth": 0.4
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#ea580c",
+          "speed": 1.1,
+          "waveInterval": 15,
+          "chromaticAberration": 0.03
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "intensity": 0.5,
+          "spread": 0.02,
+          "speed": 0.3
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.75,
+          "roundness": 0.7
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.07,
+          "speed": 0.8,
+          "density": 1.2,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "black_hole_lensing",
+        "category": "special",
+        "reason": "Shader analytique de trou noir de Schwarzschild/Kerr calculant la lentille gravitationnelle d'Einstein 360°, l'ombre centrale et le disque d'accrétion à double courbure avec décalage Doppler-Fizeau."
+      }
+    ]
+  },
+  {
+    "id": "quantum",
+    "name": "Quantum",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "physique quantique / accélerateurs de particules / cern",
+    "evocation": "Le monde subatomique de la physique quantique et des accélérateurs géants (CERN, Large Hadron Collider), les orbitales électroniques de Schrödinger et le royaume quantique immaculé. Un thème lumineux et pur à dominante blanc opale (#f8fafc) et cyan électrique (#0ea5e9), où la matière se décompose en probabilités d'ondes vibratoires, nœuds de spin et sauts d'énergie discrets.",
+    "signature": "Des anneaux d'orbitales électroniques cyan translucides pulsant en résonance autour de micro-nœuds quantiques qui apparaissent et s'effacent dans un éclat de lumière blanche.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Matrice immaculée blanc opalin (#f8fafc) traversée de subtiles ondulations sinusoïdales évoquant des paquets d'ondes de probabilité."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Trame alvéolaire d'états superposés en filigrane gris perle (#e2e8f0), oscillant doucement selon les fluctuations du vide quantique."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Réseau de nœuds d'intrication et de filaments de corrélation quantique cyan (#0ea5e9) et azur (#0284c7) animés de pulsations de spin."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Nuée de quanta et de photons virtuels en mouvements browniens stochastiques, matérialisant des sauts d'orbite imprévisibles."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Micro-aberration chromatique prismatique et halo de clarté stérile garantissant une lisibilité optimale de l'interface en thème clair."
+      }
+    ],
+    "particles": {
+      "type": "Quanta d'énergie et photons virtuels (dust / motes)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.35 sauts stochastiques et micro-dérive",
+      "density": "100 particules actives",
+      "behavior": "Clignotement discontinu en superposition d'états, alternant micro-lévitation et téléportation spontanée sur les nœuds de la grille."
+    },
+    "atmosphere": {
+      "mist": "Brume d'indétermination quantique vaporeuse et claire, sans opacité assombrissante.",
+      "light": "Luminescence cyan électrique (#0ea5e9) et blanche, diffuse et omnidirectionnelle.",
+      "airColor": "Blanc pur immaculé (#f8fafc) teinté de reflets azur et gris glacier.",
+      "mainLightSource": "Les nœuds d'énergie de spin et les paquets d'ondes en interférence constructive."
+    },
+    "rareEvents": [
+      {
+        "name": "Effondrement de fonction d'onde",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 9.0 secondes",
+        "description": "Brève fluctuation quantique de 2 frames provoquant un micro-déphasage spectral des orbitales avant retour à l'équilibre."
+      },
+      {
+        "name": "Décharge de cohérence quantique",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 16.0 secondes",
+        "description": "Onde annulaire concentrique ultra-fine cyan se propageant depuis un nœud central à travers la matrice d'orbitales."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le curseur perturbe le champ de probabilités locales, attirant les filaments d'intrication et provoquant des basculements de spin sur son passage.",
+      "scroll": "Fait varier la fréquence spatiale des ondes de phase, resserrant subtilement la trame des orbitales."
+    },
+    "palette": [
+      "#f8fafc",
+      "#e2e8f0",
+      "#0ea5e9",
+      "#0284c7",
+      "#09628a",
+      "#10b981"
+    ],
+    "references": [
+      "Shadertoy quantum atomic orbital wave function",
+      "CodePen clean plexux particles cybernetic node white",
+      "CERN particle physics quantum foam visualization"
+    ],
+    "risks": {
+      "pitfall": "Un fond blanc éblouissant et stérile qui fatigue les yeux ou des lignes géométriques trop rigides sans vie subatomique.",
+      "solution": "Animations douces non-linéaires basées sur le bruit Simplex, contrastes calibrés pour thème clair (textes en #09628a) et particules en saut discret."
+    },
+    "bricks": [
+      {
+        "brick": "hex_grid",
+        "params": {
+          "borderColor": "#0ea5e9",
+          "fillColor": "#f8fafc",
+          "pulseColor": "#0284c7",
+          "density": 1.2,
+          "speed": 0.25,
+          "intensity": 0.65,
+          "borderWidth": 0.03
+        }
+      },
+      {
+        "brick": "line_constellation",
+        "params": {
+          "nodeColor": "#0ea5e9",
+          "lineColor": "#0d95d2",
+          "pulseColor": "#ffffff",
+          "density": 0.9,
+          "speed": 0.3,
+          "depth": 0.4,
+          "connectDistance": 2.5,
+          "nodeSize": 0.8
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#0ea5e9",
+          "outerColor": "#f8fafc",
+          "density": 0.8,
+          "intensity": 0.6,
+          "glowX": 0,
+          "glowY": 0.1
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#0284c7",
+          "density": 0.8,
+          "speed": 0.35,
+          "depth": 0.5,
+          "twinkleSpeed": 2.2
+        }
+      },
+      {
+        "brick": "glitch",
+        "params": {
+          "glitchColor": "#0ea5e9",
+          "intensity": 0.45,
+          "glitchInterval": 9,
+          "chromaticShift": 0.02
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#0ea5e9",
+          "speed": 1.4,
+          "waveInterval": 16,
+          "chromaticAberration": 0.015
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "intensity": 0.3,
+          "spread": 0.015
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "quantum_orbitals",
+        "category": "special",
+        "reason": "Modélisation procédurale 3D d'orbitales atomiques de Schrödinger en harmoniques sphériques avec nuage de probabilités d'électrons semi-transparents."
+      }
+    ]
+  },
+  {
+    "id": "mars_colony",
+    "name": "Mars Colony",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "the martian / total recall / colonisation spatiale",
+    "evocation": "La colonisation pionnière de la planète rouge (Seul sur Mars, Total Recall, Red Faction, Surviving Mars). Un panorama désertique hostile d'oxyde de fer rouille et d'ocre brûlé (#7f1d1d, #ea580c), où des silhouettes de dômes géodésiques et d'antennes de communication émergent à travers les tourbillons d'une tempête de sable martienne sous un ciel crépusculaire carmin.",
+    "signature": "Des crêtes de roches martiennes ocres balayées par un blizzard de poussière d'oxyde de fer orange au pied de dômes de survie pressurisés lointains.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel martien bas et lourd rouge sombre (#450a0a) virant à l'ocre à l'horizon sous l'effet de la poussière atmosphérique en suspension continue."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Chaîne de crêtes volcaniques escarpées (contreforts d'Olympus Mons) et silhouettes de dômes pressurisés aux balises de guidage clignotantes."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Crêtes de dunes de régolithe martien (#7f1d1d, #c2410c) étagées en profondeur, sculptées par des vents violents sous éclairage rasant."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Bourrasques de poussière orange incandescent (#ea580c) rasant les roches en vagues de vortex, avec miroitements de distorsion thermique."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Grain de capteur de caméra de rover de surface et vignettage chaleureux teinté de rouille évoquant la visière d'un scaphandrier."
+      }
+    ],
+    "particles": {
+      "type": "Grains d'oxyde de fer et poussière de régolithe (dust / ash)",
+      "size": "1.0 à 3.0 px",
+      "speed": "0.55 dérive latérale rapide sous le vent",
+      "density": "140 particules actives",
+      "behavior": "Balayage horizontal rasant avec turbulences en volutes et tourbillons périodiques mimant les tornades de poussière martiennes (dust devils)."
+    },
+    "atmosphere": {
+      "mist": "Nappe de poussière minérale ocre et brume thermique basse rampant au ras des crêtes rocheuses.",
+      "light": "Soleil lointain blafard filtré par l'atmosphère ténue de dioxyde de carbone, générant de longs contrastes rasants.",
+      "airColor": "Rouge brique profond (#7f1d1d) saturé d'orange rouille (#ea580c) et de terre de Sienne.",
+      "mainLightSource": "Le soleil blanc-jaune pâle bas sur la ligne d'horizon martienne."
+    },
+    "rareEvents": [
+      {
+        "name": "Bourrasque de tempête martienne (dust devil)",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 11.0 secondes",
+        "description": "Une rafale subite soulève un rideau dense de micro-grains ocres qui traverse rapidement l'écran de gauche à droite."
+      },
+      {
+        "name": "Pulsation de balise de la colonie",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Un faisceau de signalisation au sommet d'une tour de forage clignote de façon saccadée à travers les volutes de sable."
+      }
+    ],
+    "interaction": {
+      "mouse": "La souris déplace la parallaxe des crêtes de dunes et incline dynamiquement l'angle de balayage des rafales de poussière.",
+      "scroll": "Fait plonger la perspective vers le sol martien, accentuant la densité des tourbillons au ras du régolithe."
+    },
+    "palette": [
+      "#450a0a",
+      "#7f1d1d",
+      "#c2410c",
+      "#ea580c",
+      "#f8c5aa",
+      "#fed7aa"
+    ],
+    "references": [
+      "The Martian film cinematography red dust storm",
+      "Shadertoy mars terrain dunes sand wind",
+      "Perseverance rover atmospheric dust captures NASA"
+    ],
+    "risks": {
+      "pitfall": "Un simple fond marron-rouge statique ressemblant à un désert terrestre standard sans l'atmosphère hostile et étrangère de Mars.",
+      "solution": "Multi-couches de dunes en éclairage rasant, distorsion thermique, silhouette de reliefs montagneux volcaniques et particules d'oxyde de fer à haute vélocité."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#450a0a",
+          "bottomColor": "#7f1d1d",
+          "horizonColor": "#ea580c",
+          "density": 1.1,
+          "speed": 0.1
+        }
+      },
+      {
+        "brick": "dunes",
+        "params": {
+          "sandColor": "#ea580c",
+          "shadowColor": "#450a0a",
+          "skyColor": "#7f1d1d",
+          "density": 1,
+          "speed": 0.12,
+          "depth": 0.35,
+          "sunAngle": 0.6
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#450a0a",
+          "sunColor": "#c2410c",
+          "mistColor": "#7f1d1d",
+          "density": 0.85,
+          "depth": 0.4,
+          "speed": 0.1
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f8c5aa",
+          "density": 1.1,
+          "speed": 0.55,
+          "depth": 0.45,
+          "intensity": 1.1
+        }
+      },
+      {
+        "brick": "wind_gust",
+        "params": {
+          "windColor": "#ea580c",
+          "density": 0.9,
+          "speed": 1.2,
+          "gustInterval": 11,
+          "gustAngle": 0.1
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#ea580c",
+          "density": 0.7,
+          "speed": 0.2,
+          "heatHeight": 0.4,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#2b0505",
+          "intensity": 0.65,
+          "roundness": 0.6
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.08,
+          "speed": 0.7,
+          "monochrome": false
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "colony_structures",
+        "category": "intermediate",
+        "reason": "Silhouettes vectorielles procédurales de dômes géodésiques pressurisés, antennes paraboliques et pylônes d'antennes de communication martienne."
+      }
+    ]
+  },
+  {
+    "id": "stargate",
+    "name": "Stargate",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "stargate sg-1 / stargate atlantis",
+    "evocation": "La porte des étoiles en Naquadah créée par les Anciens (film Stargate de Roland Emmerich et série Stargate SG-1). Un immense anneau circulaire alien gravé de symboles de constellations et verrouillé par 9 chevrons, à l'intérieur duquel ondule un vortex d'horizon d'événements fluide comme un miroir d'eau vertical baigné d'un rayonnement Cherenkov bleu électrique (#0f172a, #3b82f6).",
+    "signature": "Un grand anneau alien de Naquadah dont l'horizon d'événements intérieur miroite comme une surface d'eau verticale bleu Cherenkov traversée d'ondes d'énergie pulsantes.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Obscurité minérale de la salle d'embarquement souterraine du SGC, percée des reflets bleutés du trou de ver sub-spatial."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette monumentale de l'anneau circulaire en alliage sombre avec chevrons gravés et glyphes de constellations en rétro-éclairage."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "L'horizon d'événements liquide vertical : nappe fluide bleu électrique (#3b82f6) ondulant de caustiques en interférence constructive."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Rayonnement volumétrique Cherenkov bleuté projetant des cônes de lumière et étincelles de décharge plasma aux points de verrouillage."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Réfraction prismatique annulaire en périphérie du cadre et vignetage bleu nuit cinématographique."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles ionisées et décharges de Naquadah (sparks)",
+      "size": "1.2 à 2.4 px",
+      "speed": "0.75 retombée balistique et éclats sporadiques",
+      "density": "80 particules actives",
+      "behavior": "Jaillissements vifs par salves depuis les chevrons de la porte, se dissipant rapidement dans l'air ionisé."
+    },
+    "atmosphere": {
+      "mist": "Volutes d'ozone et de vapeur ionisée flottant au pied de la rampe d'accès du vortex.",
+      "light": "Luminescence aquatique pulsante bleu azur (#3b82f6, #71a4f9) éclairant violemment les parois métalliques.",
+      "airColor": "Bleu nuit sombre (#0f172a) saturé d'énergie électromagnétique Cherenkov.",
+      "mainLightSource": "La surface liquide miroitante de l'horizon d'événements."
+    },
+    "rareEvents": [
+      {
+        "name": "Onde d'établissement de vortex (Kawoosh résiduel)",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 12.0 secondes",
+        "description": "Pulsation d'énergie concentrique bleue jaillissant du centre du portail vers l'observateur avec dispersion chromatique."
+      },
+      {
+        "name": "Verrouillage de chevron énergétique",
+        "type": "sparks",
+        "frequency": "Intervalle moyen de 17.0 secondes",
+        "description": "Un chevron supérieur s'allume brièvement d'une incandescence orange/or vive avant de libérer une salve d'étincelles."
+      }
+    ],
+    "interaction": {
+      "mouse": "La perspective parallaxe fait pivoter l'anneau en 3D et perturbe la vitesse des caustiques liquides du trou de ver au survol.",
+      "scroll": "Accentue la réfraction centrale en donnant l'impression de franchir l'horizon d'événements pour voyager dans le réseau."
+    },
+    "palette": [
+      "#080d1a",
+      "#0f172a",
+      "#1e3a8a",
+      "#3b82f6",
+      "#71a4f9",
+      "#e0f2fe"
+    ],
+    "references": [
+      "Stargate SG-1 event horizon puddle animation VFX",
+      "Shadertoy water caustics cherenkov blue glow",
+      "Three.js circular ring portal shader volumetric"
+    ],
+    "risks": {
+      "pitfall": "Une texture d'eau 2D banale collée dans un cercle gris sans l'énergie de vortex ni le rayonnement Cherenkov caractéristique de Stargate.",
+      "solution": "Caustiques Voronoi doubles en interférence constructive, halo volumétrique bleu froid, salves d'étincelles de chevrons et onde de choc kawoosh."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#080d1a",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#1e3a8a",
+          "density": 1,
+          "speed": 0.15
+        }
+      },
+      {
+        "brick": "water_caustics",
+        "params": {
+          "waterColor": "#0f172a",
+          "causticColor": "#71a4f9",
+          "density": 1.1,
+          "speed": 0.28,
+          "intensity": 1.3,
+          "depth": 0.25
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#e0f2fe",
+          "glowColor": "#3b82f6",
+          "outerColor": "#0f172a",
+          "density": 1.2,
+          "intensity": 1.25,
+          "glowX": 0,
+          "glowY": 0
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#71a4f9",
+          "coreColor": "#ffffff",
+          "density": 0.7,
+          "speed": 0.8,
+          "burstInterval": 3
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#71a4f9",
+          "speed": 1.3,
+          "waveInterval": 12,
+          "chromaticAberration": 0.025
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "intensity": 0.45,
+          "spread": 0.02
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.65,
+          "roundness": 0.7
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.06,
+          "speed": 0.6,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "stargate_ring",
+        "category": "special",
+        "reason": "Modélisation de l'anneau mécanique en Naquadah avec 9 chevrons biseautés à rétro-éclairage orange et couronne intérieure de symboles rotatifs."
+      }
+    ]
+  },
+  {
+    "id": "deep_space",
+    "name": "Deep Space",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "espace profond / sondes voyager / 2001 l'odyssée de l'espace",
+    "evocation": "Le vide interstellaire insondable au-delà de l'héliosphère parcouru par les sondes Voyager 1 et 2, le silence infini et la majesté cosmique (2001: L'Odyssée de l'espace). Une obscurité noire absolue (#000000) piquée d'un champ multi-couches de milliers d'étoiles scintillantes violettes et blanches (#a855f7), traversée par la fugacité d'étoiles filantes et le passage silencieux d'un vaisseau d'exploration solitaire.",
+    "signature": "Une voûte stellaire d'une profondeur abyssale où mille étoiles de magnitude variable scintillent lentement, fendant le silence par la traversée fugace de météores argentés.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Le néant noir absolu de l'espace profond semé de nébuleuses ultra-lointaines pourpres estompées et de galaxies naines immobiles."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Première strate stellaire dense d'étoiles froides à dérive orbitale imperceptible et lueur violette spectrale (#581c87)."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Deuxième strate d'étoiles proches aux aigrettes de diffraction à 4 branches scintillantes (#a855f7 et #ffffff) et silhouette d'un vaisseau d'exploration en dérive."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Traversées occasionnelles de poussières cométaires et bolides hypersoniques argentés fendant le champ visuel."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Vignettage circulaire doux et grain argentique discret reproduisant l'émulsion d'un cliché astronomique à longue pose."
+      }
+    ],
+    "particles": {
+      "type": "Poussières cométaires et micro-motes cosmiques (dust)",
+      "size": "0.8 à 2.0 px",
+      "speed": "0.12 dérive rectiligne lente en apesanteur",
+      "density": "85 particules actives",
+      "behavior": "Mouvement inertiel régulier sans frottement avec micro-scintillement non-périodique simulant la réflexion de la lumière stellaire."
+    },
+    "atmosphere": {
+      "mist": "Absence totale de brume terrestre, transparence pure du vide spatial parfait.",
+      "light": "Lueurs ponctuelles éclatantes des étoiles scintillantes et traînées de plasma évanescentes.",
+      "airColor": "Noir pur (#000000) ponctué de subtils reflets spectraux violets (#a855f7).",
+      "mainLightSource": "La concentration des étoiles géantes de la constellation dominante."
+    },
+    "rareEvents": [
+      {
+        "name": "Bolide hypersonique étincelant",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 8.0 secondes",
+        "description": "Une étoile filante brillante traverse rapidement le cadre d'un angle oblique avec traînée de plasma à décroissance exponentielle."
+      },
+      {
+        "name": "Sursaut de supernova lointaine",
+        "type": "volumetric_glow",
+        "frequency": "Intervalle moyen de 25.0 secondes",
+        "description": "Un point lumineux lointain pulse soudainement d'un éclat blanc-violet x3 avant de s'éteindre lentement dans l'obscurité."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe différentielle sépare les 3 strates stellaires sur l'axe Z, conférant un vertige de perspective spatiale infini.",
+      "scroll": "Produit une douce accélération en perspective simulant un micro-saut de croisière sub-luminique."
+    },
+    "palette": [
+      "#000000",
+      "#090514",
+      "#581c87",
+      "#a855f7",
+      "#b975f9",
+      "#ffffff"
+    ],
+    "references": [
+      "Voyager 1 interstellar space pale blue dot photography",
+      "Shadertoy realistic multi layer starfield 3d parallax",
+      "Hubble deep field ultra deep space captures"
+    ],
+    "risks": {
+      "pitfall": "Un simple fond d'écran d'étoiles fixes donnant l'impression d'une tapisserie ou d'un économiseur d'écran Windows 95.",
+      "solution": "3 strates de profondeur Z indépendantes avec aigrettes de diffraction, scintillement déphasé individuel au nombre d'or et météores rapides."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#090514",
+          "horizonColor": "#581c87",
+          "density": 1.5,
+          "speed": 0.05
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#ffffff",
+          "density": 1.4,
+          "speed": 0.06,
+          "depth": 1.2,
+          "twinkleSpeed": 1.3
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#b975f9",
+          "density": 0.65,
+          "speed": 0.12,
+          "depth": 0.5
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#ffffff",
+          "trailColor": "#a855f7",
+          "starInterval": 8,
+          "speed": 1.6,
+          "trailLength": 1.4,
+          "angle": -0.55
+        }
+      },
+      {
+        "brick": "parallax_fleet",
+        "params": {
+          "hullColor": "#05020a",
+          "engineColor": "#a855f7",
+          "density": 0.3,
+          "speed": 0.08,
+          "depth": 0.6,
+          "trailLength": 0.5
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.7,
+          "roundness": 0.6
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.06,
+          "speed": 0.5,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "event_horizon",
+    "name": "Event Horizon",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "event horizon (film) / astrophysique du gouffre relativiste",
+    "evocation": "Le film culte de science-fiction sombre Event Horizon (Paul W.S. Anderson) et le point critique relativiste d'où aucune lumière ne peut s'échapper. Les confins de l'univers connu où les forces de marée étirent l'espace-temps en une faille carmin menaçante (#dc2626, #e66262), zébrée de rougeoiements gravitationnels et de déformations chromatiques angoissantes dans un noir absolu.",
+    "signature": "Une faille gravitationnelle instable où la lumière se déchire en un anneau carmin incandescent sous l'effet d'un redshift extrême, avalant l'espace-temps environnant.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel stellaire ténébreux comprimé en anneaux concentriques d'Einstein autour du point de singularité gravitationnelle."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Rides de courbure d'espace-temps sombres et voiles de décalage gravitationnel vers le rouge (redshift) s'assombrissant vers le centre."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "L'horizon critique : anneau d'effondrement carmin incandescent (#dc2626) pulsant au rythme d'une résonance instable de marée relativiste."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Tourbillon de braises et fragments de matière disloquée spiralant inexorablement vers le centre du gouffre."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Aberration chromatique spectrale rouge prononcée et micro-secousses cinématiques de surpression gravitationnelle."
+      }
+    ],
+    "particles": {
+      "type": "Braises de matière disloquée et fragments de marée (embers)",
+      "size": "1.0 à 2.8 px",
+      "speed": "0.80 vortex centripète plongeant vers le centre",
+      "density": "110 particules actives",
+      "behavior": "Accélération progressive vers l'épicentre avec rougissement thermique continu et extinction abrupte au passage de l'horizon."
+    },
+    "atmosphere": {
+      "mist": "Voile de distorsion relativiste dense et lourd, créant une tension visuelle dramatique.",
+      "light": "Lumière rouge sang et rubis sombre (#dc2626, #7f1d1d) rayonnant depuis la lisière du gouffre.",
+      "airColor": "Noir total (#000000) baigné d'une lueur carmin sinistre et étouffante.",
+      "mainLightSource": "La frange de redshift gravitationnel déchirant le bord de l'horizon."
+    },
+    "rareEvents": [
+      {
+        "name": "Micro-secousse tellurique de marée gravitationnelle",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 14.0 secondes",
+        "description": "Secousse cinématique amortie ébranlant la caméra alors qu'une masse colossale franchit la singularité."
+      },
+      {
+        "name": "Onde de surpression relativiste rouge",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 19.0 secondes",
+        "description": "Onde annulaire carmin violente en expansion radiale avec forte dispersion spectrale sur sa crête."
+      }
+    ],
+    "interaction": {
+      "mouse": "Décentre la courbure de la faille gravitationnelle et déforme l'angle d'aspiration des braises en spirale.",
+      "scroll": "Amplifie la force d'attraction vers le centre et resserre l'anneau rougeoyant autour de l'axe central."
+    },
+    "palette": [
+      "#000000",
+      "#1a0404",
+      "#7f1d1d",
+      "#dc2626",
+      "#e66262",
+      "#fca5a5"
+    ],
+    "references": [
+      "Event Horizon movie gravity drive VFX aesthetics",
+      "Shadertoy gravitational redshift singularity red halo",
+      "Dark space scifi horror relativistic distortion"
+    ],
+    "risks": {
+      "pitfall": "Une simple copie de Black Hole en rouge sans l'identité de rupture critique et la charge horrifique/angoissante du gouffre relativiste.",
+      "solution": "Inflexion dramatique avec screen_shake stochastique, décalage spectral rouge agressif, braises en dislocation thermique et anneau d'instabilité."
+    },
+    "bricks": [
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#fca5a5",
+          "density": 0.8,
+          "speed": 0.05,
+          "depth": 0.7,
+          "twinkleSpeed": 1.1
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#dc2626",
+          "glowColor": "#7f1d1d",
+          "outerColor": "#000000",
+          "density": 1.25,
+          "intensity": 1.35,
+          "glowX": 0,
+          "glowY": 0
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#dc2626",
+          "hotColor": "#fca5a5",
+          "density": 0.9,
+          "speed": 0.7,
+          "coolingRate": 1.4,
+          "depth": 0.4
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#e66262",
+          "density": 0.6,
+          "speed": 0.3,
+          "depth": 0.45
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#dc2626",
+          "speed": 1.1,
+          "waveInterval": 19,
+          "chromaticAberration": 0.035
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "intensity": 0.5,
+          "speed": 1.4,
+          "shakeInterval": 14
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "intensity": 0.65,
+          "spread": 0.03
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.8,
+          "roundness": 0.65
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "gravitational_redshift",
+        "category": "special",
+        "reason": "Shader d'aspiration optique centripète non-linéaire simulant le décalage gravitationnel vers le rouge (gravitational redshift) et la courbure de marée critique."
+      }
+    ]
+  },
+  {
+    "id": "cosmic_void",
+    "name": "Cosmic Void",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "supervide de boötes / grands vides cosmologiques",
+    "evocation": "Le supervide de Boötes (Boötes Void) et les déserts cosmiques colossaux de plusieurs centaines de millions d'années-lumière où la matière est quasi absente. Un minimalisme grandiose et hypnotique d'un noir bleu nuit d'une pureté absolue (#020617), ponctué uniquement de rares étoiles solitaires blanc pur (#ffffff) et de poussières froides immobiles dans un silence d'éternité.",
+    "signature": "Un abîme insondable de noirceur totale où flottent de rares îlots de poussière froide immobiles, troublés uniquement par le scintillement solitaire d'étoiles orphelines.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Le vide absolu intergalactique, noir d'encre pur (#010309) sans halo de galaxie ni nébuleuse, étirant le regard à l'infini."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Quelques très rares étoiles orphelines de magnitude lointaine brillant d'un blanc pur et froid, au scintillement très lent."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Voile évanescent d'hydrogène primordial froid à peine perceptible, ondulant à fréquence infinitésimale par Simplex 2D."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Motes de poussière froide en suspension quasi-stationnaire, dérivant à une vitesse presque imperceptible en apesanteur stérile."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Vignettage profond concentrant l'attention au centre de l'écran et grain argentique fin évitant tout aplat mort."
+      }
+    ],
+    "particles": {
+      "type": "Motes de poussière interstellaire froide (dust)",
+      "size": "0.8 à 1.8 px",
+      "speed": "0.06 micro-dérive quasi-statique",
+      "density": "45 particules actives (très clairsemé)",
+      "behavior": "Suspension silencieuse et solitaire, sans collision ni précipitation, illustrant la quasi-absence de matière du supervide."
+    },
+    "atmosphere": {
+      "mist": "Absence de brume visible, sensation de vide pur et d'atmosphère glacée non perturbée.",
+      "light": "Éclairage minimaliste reposant uniquement sur les rares points stellaires blancs éclatants.",
+      "airColor": "Bleu nuit abyssal glacé (#020617) virant au noir absolu (#010309).",
+      "mainLightSource": "La lumière froide des quelques étoiles isolées d'avant-plan."
+    },
+    "rareEvents": [
+      {
+        "name": "Fluctuation spontanée du vide quantique",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 17.0 secondes",
+        "description": "Micro-scintillement fugace monochrome blanc de 2 frames dans le néant, simulant l'apparition et l'annihilation d'une particule virtuelle."
+      },
+      {
+        "name": "Météore solitaire traversant le néant",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Un météore blanc pur effilé fend lentement le grand vide cosmique d'une extrémité à l'autre."
+      }
+    ],
+    "interaction": {
+      "mouse": "La souris provoque une dérive extrêmement lente et feutrée de la perspective, accentuant le sentiment de vide insondable.",
+      "scroll": "Assombrit encore les lointains pour plonger l'interface dans un contraste austère et épuré d'une élégance absolue."
+    },
+    "palette": [
+      "#010309",
+      "#020617",
+      "#0f172a",
+      "#334155",
+      "#cbd5e1",
+      "#ffffff"
+    ],
+    "references": [
+      "Boötes Void astronomy cosmological void captures",
+      "Minimalist deep black starry space Threejs",
+      "Cinematic slow space drift quiet void simulation"
+    ],
+    "risks": {
+      "pitfall": "Un écran tout noir ennuyeux qui semble éteint ou non interactif.",
+      "solution": "Micro-scintillements asynchrones d'étoiles blanc pur, particules froides en quasi-stase, texture de grain argentique vivante et contrastes subtils."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#010309",
+          "bottomColor": "#020617",
+          "horizonColor": "#0f172a",
+          "density": 2,
+          "speed": 0.04
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#ffffff",
+          "density": 0.4,
+          "speed": 0.03,
+          "depth": 1,
+          "twinkleSpeed": 0.8
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#cbd5e1",
+          "density": 0.4,
+          "speed": 0.06,
+          "depth": 0.4
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#ffffff",
+          "trailColor": "#94a3b8",
+          "starInterval": 28,
+          "speed": 1.8,
+          "trailLength": 1,
+          "angle": -0.4
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.85,
+          "roundness": 0.6
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.08,
+          "speed": 0.4,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "galactic_core",
+    "name": "Galactic Core",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "centre galactique / bulbe de la voie lactée / elite dangerous",
+    "evocation": "Le cœur incandescent de la galaxie (le bulbe galactique de la Voie Lactée et Sagittarius A* dans Elite Dangerous ou Spore). Une concentration titanesque de millions d'étoiles dorées tourbillonnant frénétiquement dans un bain de pourpre royal (#4c1d95) et de rayonnement synchrotron jaune-or (#facc15), d'où jaillissent de monumentaux jets polaires de plasma relativiste.",
+    "signature": "Un bulbe galactique colossal saturé de milliards d'étoiles dorées tourbillonnant frénétiquement autour d'un cœur pourpre aveuglant d'où jaillissent deux faisceaux d'énergie synchrotron.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Voûte céleste pourpre profond (#2e1065) illuminée par l'éclat combiné de millions d'étoiles géantes du bulbe central."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Nuages de gaz d'accrétion ionisé et voiles nébulaires dorés en rotation rapide autour du centre de gravité galactique."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Le cœur galactique flamboyant : orbe colossal de lumière dorée (#facc15) flanqué de deux colonnes de rayons crépusculaires verticaux (jets synchrotron)."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Essaim dense d'étoiles supergéantes dorées et bleues avec gerbes d'étincelles énergétiques jaillissant le long des lignes magnétiques."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Éblouissement optique d'objectif anamorphique cinéma (lens flare) et vignettage chaud pourpre encadrant la scène."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles de fusion et plasma à haute énergie (sparks / dust)",
+      "size": "1.2 à 2.8 px",
+      "speed": "0.95 orbite dynamique et éjections balistiques",
+      "density": "160 particules actives",
+      "behavior": "Rotation orbitale rapide autour du bulbe avec jaillissements paraboliques intermittents vers les pôles magnétiques."
+    },
+    "atmosphere": {
+      "mist": "Plasma interstellaire surchauffé diffusant une brume dorée luminescente continue.",
+      "light": "Radiance royale dorée saturée (#facc15, #fef08a) et pourpre (#4c1d95), éblouissante et majestueuse.",
+      "airColor": "Pourpre royal (#4c1d95) baigné d'or ambré ardent (#d97706).",
+      "mainLightSource": "Le noyau supermassif central et son amas d'étoiles géantes concentré."
+    },
+    "rareEvents": [
+      {
+        "name": "Pulsation du jet synchrotron polaire",
+        "type": "god_rays",
+        "frequency": "Intervalle moyen de 10.0 secondes",
+        "description": "Montée en puissance éclatante des faisceaux verticaux qui illuminent majestueusement l'ensemble du bulbe galactique."
+      },
+      {
+        "name": "Onde de souffle de fusion thermonucléaire",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 16.0 secondes",
+        "description": "Une onde de choc circulaire dorée balaye la scène avec dispersion chromatique suite à l'embrasement d'un cœur stellaire dense."
+      }
+    ],
+    "interaction": {
+      "mouse": "Incline la perspective de la rotation du bulbe et oriente les faisceaux anamorphiques du lens flare en temps réel.",
+      "scroll": "Plonge le regard dans la densité du centre galactique, intensifiant la brillance des étoiles dorées environnantes."
+    },
+    "palette": [
+      "#2e1065",
+      "#4c1d95",
+      "#6d28d9",
+      "#d97706",
+      "#facc15",
+      "#fef08a"
+    ],
+    "references": [
+      "Milky Way galactic core Sagittarius A radio glow",
+      "Elite Dangerous galactic center Sagittarius A capture",
+      "Shadertoy bright galactic nucleus volumetric rays"
+    ],
+    "risks": {
+      "pitfall": "Une surexposition jaune-violette brouillonne qui noie l'écran et détruit le contraste avec le texte de l'UI.",
+      "solution": "Canalisation de la lumière dans des rayons verticaux (god_rays) et un dôme volumétrique calibré, avec préservation stricte du contentShield."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#2e1065",
+          "bottomColor": "#4c1d95",
+          "horizonColor": "#d97706",
+          "density": 1.2,
+          "speed": 0.2
+        }
+      },
+      {
+        "brick": "nebula",
+        "params": {
+          "primaryColor": "#6d28d9",
+          "secondaryColor": "#2e1065",
+          "accentColor": "#facc15",
+          "density": 0.8,
+          "speed": 0.18,
+          "intensity": 1.3
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#fef08a",
+          "density": 1.6,
+          "speed": 0.1,
+          "depth": 1,
+          "twinkleSpeed": 2
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#facc15",
+          "density": 1.2,
+          "speed": 0.3,
+          "lightSourceX": 0,
+          "lightSourceY": 0.5,
+          "intensity": 1.3
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fef08a",
+          "glowColor": "#facc15",
+          "outerColor": "#4c1d95",
+          "density": 1.4,
+          "intensity": 1.45,
+          "glowX": 0,
+          "glowY": 0
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#facc15",
+          "coreColor": "#ffffff",
+          "density": 0.9,
+          "speed": 1.1,
+          "burstInterval": 2.2
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#facc15",
+          "speed": 1.2,
+          "waveInterval": 16,
+          "chromaticAberration": 0.02
+        }
+      },
+      {
+        "brick": "lens_flare",
+        "params": {
+          "flareColor": "#fef08a",
+          "accentColor": "#facc15",
+          "density": 1.1,
+          "intensity": 1.3,
+          "sourceX": 0,
+          "sourceY": 0.5
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1e0b3c",
+          "intensity": 0.55,
+          "roundness": 0.65
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.06,
+          "speed": 0.8,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "dark_matter",
+    "name": "Dark Matter",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "toile cosmique / lentille gravitationnelle faible / cosmologie",
+    "evocation": "La toile cosmique de matière noire (cosmic web) qui structure l'univers invisiblement, reliant galaxies et amas par des filaments gravitationnels révélés par lentille gravitationnelle faible. Une esthétique sombre et mystérieuse mêlant noir d'encre (#000000) et luminescence indigo/bleu profond (#4f46e5, #8c86ee), où des réseaux synaptiques d'énergie sombre pulsent au gré des résonances de l'univers à grande échelle.",
+    "signature": "Une toile arachnéenne de filaments gravitationnels invisibles qui pulse d'ondes indigo fantomatiques, courbant subtilement la lumière des galaxies d'arrière-plan.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Fond cosmique noir profond parsemé de petits amas de galaxies d'arrière-plan déformés en arcs subtils par effet de lentille gravitationnelle."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Toile cosmique de filaments gravitationnels 3D reliant les superamas, ondulant lentement sous le vent de matière sombre."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Halos de surdensité de matière noire émettant une phosphorescence indigo (#4f46e5) et violette (#8c86ee) avec propagation d'impulsions le long des segments."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Micro-particules exotiques (WIMP) et motes d'énergie sombre en dérive brownienne ordonnée le long des lignes de champ de la toile."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Dispersion chromatique prismatique et vignettage doux concentrant le regard sur le maillage gravitationnel."
+      }
+    ],
+    "particles": {
+      "type": "Particules exotiques WIMP et motes d'énergie sombre (dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.18 dérive le long des filaments cosmiques",
+      "density": "90 particules actives",
+      "behavior": "Glissement guidé le long des segments de la toile cosmique avec concentration progressive aux nœuds de jonction gravitationnels."
+    },
+    "atmosphere": {
+      "mist": "Nappe de brume éthérée indigo très subtile, figurant le halo de matière noire enveloppant les galaxies.",
+      "light": "Luminescence fantomatique indigo et lavande (#4f46e5, #8c86ee) pulsant le long des liaisons.",
+      "airColor": "Noir cosmique (#000000) teinté de reflets bleu nuit et indigo profond (#312e81).",
+      "mainLightSource": "Les carrefours de filaments de la toile cosmique et les halos galactiques."
+    },
+    "rareEvents": [
+      {
+        "name": "Onde d'annihilation de matière sombre",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 13.0 secondes",
+        "description": "Une onde annulaire indigo se déploie depuis un nœud de convergence avec une dispersion chromatique spectrale douce."
+      },
+      {
+        "name": "Distorsion de lentille gravitationnelle en arc d'Einstein",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 21.0 secondes",
+        "description": "Brève courbure optique ondulante simulant la réfraction de la lumière par une masse invisible en transit."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le curseur agit comme une lentille de masse locale, courbant les filaments de la toile cosmique et attirant doucement les particules d'énergie sombre.",
+      "scroll": "Modifie la profondeur de champ Z du maillage synaptique, révélant des structures filamentaires plus lointaines."
+    },
+    "palette": [
+      "#000000",
+      "#0c0a2a",
+      "#312e81",
+      "#4f46e5",
+      "#8c86ee",
+      "#c7d2fe"
+    ],
+    "references": [
+      "Millennium Simulation dark matter cosmic web visualization",
+      "Shadertoy neural network cosmic web plexus indigo",
+      "Hubble gravitational lensing Einstein ring dark matter map"
+    ],
+    "risks": {
+      "pitfall": "Une simple copie de Matrix en bleu ou un réseau Plexus générique sans l'épaisseur mystérieuse et cosmologique de la matière noire.",
+      "solution": "Association d'un réseau 3D à opacité continue (line_constellation), d'une brume volumétrique FBM et d'ondes d'annihilation rares."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000000",
+          "bottomColor": "#0c0a2a",
+          "horizonColor": "#312e81",
+          "density": 1.3,
+          "speed": 0.1
+        }
+      },
+      {
+        "brick": "line_constellation",
+        "params": {
+          "nodeColor": "#8c86ee",
+          "lineColor": "#4f46e5",
+          "pulseColor": "#c7d2fe",
+          "density": 1.1,
+          "speed": 0.2,
+          "depth": 0.4,
+          "connectDistance": 3,
+          "nodeSize": 0.9,
+          "pulseSpeed": 1.2
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#312e81",
+          "density": 0.75,
+          "speed": 0.15,
+          "depth": 0.35,
+          "heightFalloff": 0.8
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#8c86ee",
+          "density": 0.75,
+          "speed": 0.18,
+          "depth": 0.45
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#8c86ee",
+          "speed": 0.9,
+          "waveInterval": 13,
+          "chromaticAberration": 0.03
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "intensity": 0.5,
+          "spread": 0.025
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.7,
+          "roundness": 0.6
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.07,
+          "speed": 0.6,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "gravitational_lensing_web",
+        "category": "special",
+        "reason": "Shader d'effet de lentille gravitationnelle faible (weak lensing) déformant continuellement le champ stellaire de fond en arcs d'Einstein au passage de la souris."
+      }
+    ]
+  },
+  {
+    "id": "great_attractor",
+    "name": "The Great Attractor",
+    "family": "Espace & cosmos",
+    "intensity": 2,
+    "universe": "le grand attracteur / superamas laniakea",
+    "evocation": "Le Grand Attracteur (The Great Attractor), anomalie gravitationnelle colossale au centre du superamas Laniakea, cachée derrière la Zone d'Évitement de la Voie Lactée, vers laquelle des centaines de milliers de galaxies convergent à des vitesses de millions de kilomètres par heure. Un spectacle grandiose où le bleu nuit cosmique (#1e1b4b) est traversé par des fleuves d'étoiles dorées (#eab308) aspirées inexorablement vers un foyer mystérieux et invisible.",
+    "signature": "Un vortex gravitationnel colossal invisible vers lequel convergent inexorablement des millions d'amas galactiques dans un tourbillon d'étoiles dorées et de brume ambrée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "L'immensité du superamas Laniakea dans un bleu nuit profond (#0f0d2e, #1e1b4b), marbré d'ombres de poussières intergalactiques."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Fleuves de galaxies et courants stellaires traçant des lignes de fuite courbes en spirale vers le point de convergence focal."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "L'œil du Grand Attracteur : centre gravitationnel ceinturé d'un dôme de diffusion ambre doré (#eab308) et de voiles pourpres en rotation lente."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Amas stellaires et poussières intergalactiques dorées aspirés à vive allure en translation axiale vers la profondeur Z."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Déformation optique de compression d'aspiration, aberration chromatique d'accélération et vignettage focalisant le regard vers le centre."
+      }
+    ],
+    "particles": {
+      "type": "Amas galactiques et fragments stellaires (dust)",
+      "size": "1.0 à 2.8 px",
+      "speed": "0.65 flux d'aspiration continue vers le centre",
+      "density": "130 particules actives",
+      "behavior": "Convergence gravitationnelle irrésistible le long des lignes de flux du superamas, avec accélération continue à l'approche du centre."
+    },
+    "atmosphere": {
+      "mist": "Brume d'accrétion intergalactique vaporeuse dorée et pourpre, condensée par l'immense pression gravitationnelle.",
+      "light": "Lumière ambrée et dorée vibrante (#eab308, #ca8a04) irradiant depuis la zone d'impact des amas.",
+      "airColor": "Bleu nuit indigo cosmique (#1e1b4b) saturé de filaments ambrés.",
+      "mainLightSource": "La concentration énergétique résultant de la compression des courants galactiques au foyer attracteur."
+    },
+    "rareEvents": [
+      {
+        "name": "Onde de choc de marée intergalactique",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 14.0 secondes",
+        "description": "Front de compression circulaire doré traversant la scène alors qu'un amas colossal entre en collision au centre d'attraction."
+      },
+      {
+        "name": "Sursaut de convergence d'amas",
+        "type": "volumetric_glow",
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "Embrasement ambré diffus au foyer invisible de l'attracteur, révélant fugitivement la structure des lignes de champ gravitationnel."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déplace le foyer de gravité de l'attracteur, réorientant l'angle d'aspiration des fleuves d'étoiles et modifiant la courbure des courants.",
+      "scroll": "Plonge le regard au cœur de la convergence de Laniakea, augmentant la vitesse axiale d'aspiration des galaxies environnantes."
+    },
+    "palette": [
+      "#0f0d2e",
+      "#1e1b4b",
+      "#3730a3",
+      "#ca8a04",
+      "#eab308",
+      "#fde047"
+    ],
+    "references": [
+      "Laniakea Supercluster flow lines Nature visualization",
+      "The Great Attractor astronomical mystery simulation",
+      "Shadertoy cosmic gravitational inflow golden vortex"
+    ],
+    "risks": {
+      "pitfall": "Une ressemblance excessive avec Galactic Core ou un vortex générique sans l'expression cinétique de flux convergeant de tout un superamas.",
+      "solution": "Modélisation de flux d'aspiration centripète linéaire et courbe (inflow), palette indigo et ambre doré distinctive, et réactivité interactive du foyer de convergence."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f0d2e",
+          "bottomColor": "#1e1b4b",
+          "horizonColor": "#3730a3",
+          "density": 1.1,
+          "speed": 0.15
+        }
+      },
+      {
+        "brick": "nebula",
+        "params": {
+          "primaryColor": "#3730a3",
+          "secondaryColor": "#0f0d2e",
+          "accentColor": "#eab308",
+          "density": 0.7,
+          "speed": 0.16,
+          "depth": 0.35,
+          "intensity": 1.2
+        }
+      },
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#fde047",
+          "density": 1.3,
+          "speed": 0.15,
+          "depth": 1.2,
+          "twinkleSpeed": 1.6
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fde047",
+          "glowColor": "#eab308",
+          "outerColor": "#1e1b4b",
+          "density": 1.3,
+          "intensity": 1.35,
+          "glowX": 0,
+          "glowY": 0
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#eab308",
+          "density": 1,
+          "speed": 0.65,
+          "depth": 0.6,
+          "intensity": 1.2
+        }
+      },
+      {
+        "brick": "shockwave",
+        "params": {
+          "ringColor": "#eab308",
+          "speed": 1.1,
+          "waveInterval": 14,
+          "chromaticAberration": 0.025
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "intensity": 0.5,
+          "spread": 0.02
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#08071a",
+          "intensity": 0.75,
+          "roundness": 0.65
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.06,
+          "speed": 0.7,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "gravitational_inflow",
+        "category": "special",
+        "reason": "Champ vectoriel d'aspiration gravitationnelle centripète 3D simulant le flux cinétique des galaxies du superamas de Laniakea convergeant vers un foyer attracteur."
+      }
+    ]
+  }
+]

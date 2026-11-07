@@ -1,0 +1,2519 @@
+[
+  {
+    "id": "cozy_farm",
+    "name": "Cozy Farm",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "stardew-valley",
+    "evocation": "Les jeux de ferme pastoraux et réconfortants (Stardew Valley, Story of Seasons, Animal Crossing). Une fin d'après-midi dorée d'été au cœur d'une vallée verdoyante et paisible : le vent tiède fait frissonner les vergers fruitiers, les champs de céréales ondulent doucement et de petites feuilles dorées dérivent avec paresse dans une lumière d'or réconfortante.",
+    "signature": "Des feuilles d'arbres fruitiers dorées et des pétales qui dérivent doucement dans une brise vespérale au-dessus d'une prairie ensoleillée aux collines ondoyantes.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel de fin d'après-midi d'été avec dégradé subtil or doux vers bleu lavande apaisant."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette de collines boisées douces et de vergers dont les houppiers ondulent lentement sous la brise."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Nappe de lueur dorée diffuse du soleil couchant réchauffant l'horizon et les crêtes des collines."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Feuilles dorées et pétales voletant paresseusement dans l'air tiède sous un vignettage doux et chaleureux."
+      }
+    ],
+    "particles": {
+      "type": "Feuilles d'arbres fruitiers et pétales dorés (leaves)",
+      "size": "1.2 à 2.0 px",
+      "speed": "0.15 (dérive vespérale très lente)",
+      "density": "35 feuilles instanciées",
+      "behavior": "Chute paresseuse avec portance aérodynamique oscillante, basculements 3D légers et déflexion douce au passage du curseur."
+    },
+    "atmosphere": {
+      "mist": "Nappe de brume légère et dorée reposant au creux des vallons à l'horizon.",
+      "light": "Lumière vespérale rasante, chaude et enveloppante, instaurant une atmosphère intime et reposante pour l'interface.",
+      "airColor": "Crème vanille (#fef3c7) et or paille (#fde68a) au centre, virant au vert prairie tendre (#22c55e).",
+      "mainLightSource": "Soleil couchant rasant bas sur l'horizon gauche diffusant un halo volumétrique doré."
+    },
+    "rareEvents": [
+      {
+        "name": "Brise printanière dans le verger",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 35.0 secondes",
+        "description": "Une douce rafale de vent tiède traverse la scène, faisant onduler temporairement les cimes des arbres et accélérant la ronde des feuilles dorées."
+      }
+    ],
+    "interaction": {
+      "mouse": "Décalage parallaxe très doux des collines d'arrière-plan et évitement feutré des feuilles au passage de la souris.",
+      "scroll": "Modifie subtilement l'intensité de la lueur dorée à l'horizon sans altérer le contraste des cartes UI."
+    },
+    "palette": [
+      "#fef3c7",
+      "#fde68a",
+      "#86efac",
+      "#22c55e",
+      "#15803d",
+      "#1e293b"
+    ],
+    "references": [
+      "Stardew Valley peaceful summer farm sunset",
+      "Three.js falling leaves gentle wind",
+      "Cozy game pastoral twilight meadow"
+    ],
+    "risks": {
+      "pitfall": "Paraître un simple fond vert campagnard plat et statique sans âme.",
+      "solution": "Apporter un éclairage vespéral or et crème chaleureux, des mouvements de feuillage non-linéaires et des feuilles à la physique d'oscillation ultra-douce."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#1e293b",
+          "bottomColor": "#15803d",
+          "horizonColor": "#fde68a",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#14532d",
+          "fogColor": "#86efac",
+          "density": 0.7,
+          "speed": 0.12,
+          "depth": 0.25,
+          "intensity": 0.75,
+          "windStrength": 0.25
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fef3c7",
+          "glowColor": "#fde68a",
+          "outerColor": "#15803d",
+          "density": 1.0,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.7,
+          "glowX": -0.35,
+          "glowY": 0.2
+        }
+      },
+      {
+        "brick": "leaves",
+        "params": {
+          "leafColor": "#fde68a",
+          "altColor": "#86efac",
+          "density": 0.45,
+          "speed": 0.18,
+          "depth": 0.4,
+          "intensity": 0.85,
+          "windDrift": 0.25
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#0f172a",
+          "intensity": 0.4,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "tycoon",
+    "name": "Tycoon",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "rollercoaster-tycoon",
+    "evocation": "Les jeux de gestion et de magnat des parcs d'attractions des années 90 (RollerCoaster Tycoon de Chris Sawyer, Theme Park). Le plan d'architecte bleu technique (blueprint) déployé sur une table d'ingénieur, où se superposent des tracés de rails isométriques, des cotes de construction précises et le scintillement d'investissements dorés fructueux.",
+    "signature": "Une trame de plan d'architecte bleu blueprint luminescente survolée par des micro-étincelles dorées évoquant le profit et l'assemblage minutieux d'attractions mécaniques.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Fond bleu cobalt technique et profond simulant le papier calque d'un blueprint d'ingénieur."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Grille millimétrique technique cyan et bleue à trame discrète évoquant le carroyage d'un plan de parc."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Lueur volumétrique dorée centrale feutrée symbolisant la rentabilité financière et le dynamisme du parc."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Poussières et paillettes dorées scintillantes montant lentement en apesanteur sous un vignettage technique feutré."
+      }
+    ],
+    "particles": {
+      "type": "Paillettes dorées et motes d'or en flottaison lente (dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.12 (ascension brownienne douce)",
+      "density": "45 particules légères",
+      "behavior": "Ascension lente avec dérive brownienne, scintillement asynchrone non-périodique et attraction magnétique feutrée au passage du curseur."
+    },
+    "atmosphere": {
+      "mist": "Halo de diffusion bleutée très discret au centre de la grille technique.",
+      "light": "Éclairage net et structuré, associant la rigueur du bleu cobalt à la chaleur valorisante de touches d'or éclatantes.",
+      "airColor": "Bleu blueprint profond (#0a192f) s'éclaircissant en bleu cobalt (#2563eb) et reflets jaune or (#facc15).",
+      "mainLightSource": "La lueur centrale du plan d'architecte illuminant le maillage géométrique par en-dessous."
+    },
+    "rareEvents": [
+      {
+        "name": "Afflux de rentabilité du parc",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Une onde de lumière dorée traverse subtilement les lignes de la grille technique, simulant un afflux soudain de recettes et d'investissements réussis."
+      }
+    ],
+    "interaction": {
+      "mouse": "Incline la perspective de la grille blueprint en parallaxe et attire doucement les particules d'or vers le curseur.",
+      "scroll": "Resserre imperceptiblement la densité de la grille millimétrique sans perturber la lisibilité de l'interface."
+    },
+    "palette": [
+      "#0a192f",
+      "#1e3a8a",
+      "#2563eb",
+      "#60a5fa",
+      "#facc15",
+      "#fef08a"
+    ],
+    "references": [
+      "RollerCoaster Tycoon isometric blueprint aesthetic",
+      "Architectural blueprint grid shader Three.js",
+      "Floating gold particles over blue engineering grid"
+    ],
+    "risks": {
+      "pitfall": "Prendre un aspect cyberpunk froid ou science-fiction au lieu d'un jeu de gestion chaleureux.",
+      "solution": "Privilégier un bleu papier calque doux type cyanotype, des micro-paillettes dorées chaleureuses et aucun artefact de glitch agressif."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0a192f",
+          "bottomColor": "#1e3a8a",
+          "horizonColor": "#2563eb",
+          "density": 1.0,
+          "speed": 0.05,
+          "depth": 0.05,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "neon_grid",
+        "params": {
+          "gridColor": "#3b82f6",
+          "horizonColor": "#1d4ed8",
+          "pulseColor": "#facc15",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.25,
+          "intensity": 0.55,
+          "lineWidth": 0.02,
+          "waveHeight": 0.0
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#facc15",
+          "glowColor": "#2563eb",
+          "outerColor": "#0a192f",
+          "density": 0.9,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.6,
+          "glowX": 0.0,
+          "glowY": 0.0
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#facc15",
+          "density": 0.4,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#050b14",
+          "intensity": 0.5,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "aquarium",
+    "name": "Aquarium",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "megaquarium",
+    "evocation": "Les jeux de gestion d'aquarium public (Megaquarium, Zoo Tycoon Marine Mania) et les bassins monumentaux de Monterey Bay ou Okinawa. Le visiteur contemple une immense baie vitrée acrylique : la lumière zénithale traverse l'eau turquoise limpide, projetant un réseau ondoyant de caustiques vivantes sur le fond marin sablonneux, tandis que de fines colonnes de bulles d'aérateur montent en oscillant doucement.",
+    "signature": "Des rais de lumière azur et des caustiques mouvantes qui projettent leurs reflets liquides sur un fond marin baigné de fines colonnes de bulles d'air translucides qui oscillent vers la surface.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Abîme océanique bleu profond virant vers un bleu azur lumineux à la surface supérieure du bassin."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Réseau de caustiques lumineuses sous-marines en interférence constructive ondulant sur les parois et le fond."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faisceaux de lumière zénithaux filtrant à travers la surface de l'eau avec dispersion chromatique subtile."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Colonnes de bulles d'aérateur translucides montant vers la surface avec une douce oscillation pendulaire."
+      }
+    ],
+    "particles": {
+      "type": "Bulles d'eau et d'oxygène translucides (bubbles)",
+      "size": "1.5 à 3.5 px",
+      "speed": "0.35 (ascension hydrostatique douce)",
+      "density": "50 bulles instanciées",
+      "behavior": "Ascension sinueuse en zig-zag avec micro-reflets spéculaires, expansion très légère avec la hauteur et éclatement discret au sommet."
+    },
+    "atmosphere": {
+      "mist": "Diffusion liquide translucide azur et turquoise nimbant la scène sous-marine.",
+      "light": "Lumière filtrée zénithale douce et relaxante, caustiques chatoyantes créant un mouvement organique apaisant sans éblouir.",
+      "airColor": "Bleu abyssal sombre (#082f49) au fond, se transformant en cyan tropical cristallin (#06b6d4) et blanc d'écume.",
+      "mainLightSource": "Rampes d'éclairage zénithales de surface traversant le dôme d'eau du bassin."
+    },
+    "rareEvents": [
+      {
+        "name": "Courant d'aération marin",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 32.0 secondes",
+        "description": "Un flux laminaire d'eau traverse doucement le bassin, incurvant élégamment la trajectoire des bulles d'oxygène vers la droite."
+      }
+    ],
+    "interaction": {
+      "mouse": "Produit une douce turbulence dans les caustiques et dévie paresseusement les bulles montantes au passage du pointeur.",
+      "scroll": "Modifie imperceptiblement la profondeur apparente du bassin sans altérer la clarté du texte."
+    },
+    "palette": [
+      "#041527",
+      "#082f49",
+      "#0369a1",
+      "#06b6d4",
+      "#67e8f9",
+      "#e0f2fe"
+    ],
+    "references": [
+      "Underwater aquarium caustics Three.js",
+      "Megaquarium deep ocean tank exhibit",
+      "Peaceful blue water light rays and bubbles"
+    ],
+    "risks": {
+      "pitfall": "Rappeler un économiseur d'écran d'aquarium kitsch des années 90.",
+      "solution": "Éviter les poissons synthétiques en 2D, se concentrer sur l'élégance optique des caustiques, la pureté de la couleur de l'eau et des bulles physiques fines."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0369a1",
+          "bottomColor": "#041527",
+          "horizonColor": "#082f49",
+          "density": 1.2,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "water_caustics",
+        "params": {
+          "waterColor": "#082f49",
+          "causticColor": "#06b6d4",
+          "density": 0.9,
+          "speed": 0.18,
+          "depth": 0.2,
+          "intensity": 0.75,
+          "causticScale": 3.0
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#67e8f9",
+          "density": 0.7,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.65,
+          "lightSourceX": 0.2,
+          "lightSourceY": 1.1,
+          "decay": 0.94
+        }
+      },
+      {
+        "brick": "bubbles",
+        "params": {
+          "bubbleColor": "#38bdf8",
+          "density": 0.55,
+          "speed": 0.35,
+          "depth": 0.45,
+          "intensity": 0.85,
+          "wobbleAmount": 0.35
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020a14",
+          "intensity": 0.55,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "safari_zoo",
+    "name": "Safari Zoo",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "planet-zoo",
+    "evocation": "Un sanctuaire de savane africaine au crépuscule (inspiré de Planet Zoo et du Serengeti). Le soleil cuivré descend à l'horizon, découpant la silhouette des acacias parasols sur un ciel pourpre et ambre, tandis qu'une brise chaude soulève de fins nuages de poussière ocre au-dessus des hautes herbes dorées.",
+    "signature": "Un soleil crépusculaire écrasant qui diffuse un halo cuivré sur la ligne d'horizon d'une savane herbeuse où tourbillonne une brume de poussière ocre dorée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel de savane au coucher du soleil, dégradé pourpre brûlé vers orange ambre et jaune paille éclatant."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Ligne de crête de plaine et dunes de terre aride balayée par le soleil rasant."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Dôme solaire volumétrique ardent à l'horizon diffusant une lumière chaude et rassurante."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Grains de poussière ocre et graines d'herbe de savane dérivant à l'horizontale sous la brise crépusculaire."
+      }
+    ],
+    "particles": {
+      "type": "Poussière de latérite et graines d'herbe de savane (dust)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.20 (dérive horizontale douce)",
+      "density": "40 particules légères",
+      "behavior": "Dérive latérale continue guidée par le vent du soir, micro-scintillements chauds et dispersion feutrée au passage de la souris."
+    },
+    "atmosphere": {
+      "mist": "Brume de chaleur résiduelle oscillant au-dessus de la ligne d'horizon.",
+      "light": "Chaleureuse, ambrée et enveloppante, évoquant la quiétude de la fin d'une journée de safari.",
+      "airColor": "Terre brûlée (#451a03) et ambre cuivré (#d97706) s'adoucissant en paille dorée (#fef3c7).",
+      "mainLightSource": "Soleil couchant rasant bas sur l'horizon centre-droit."
+    },
+    "rareEvents": [
+      {
+        "name": "Sirocco du soir sur la plaine",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 30.0 secondes",
+        "description": "Une bouffée d'air chaud balaie la savane, soulevant momentanément un voile de poussière dorée avant de se dissiper."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déplace la parallaxe de la plaine de savane et crée une micro-turbulence dans la traînée de poussière.",
+      "scroll": "Modifie légèrement la chaleur de la diffusion atmosphérique sans altérer le contraste des textes."
+    },
+    "palette": [
+      "#270e02",
+      "#451a03",
+      "#9a3412",
+      "#d97706",
+      "#f59e0b",
+      "#fef3c7"
+    ],
+    "references": [
+      "Serengeti savannah golden hour dust Three.js",
+      "Planet Zoo savannah safari exhibit dusk",
+      "African sunset warm dunes atmosphere"
+    ],
+    "risks": {
+      "pitfall": "Être confondu avec un thème désertique aride sans végétation ni vie.",
+      "solution": "Intégrer des teintes de terre cuite riches, de paille dorée, des graines végétales flottantes et un halo solaire doux."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#270e02",
+          "bottomColor": "#451a03",
+          "horizonColor": "#d97706",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "dunes",
+        "params": {
+          "sandColor": "#d97706",
+          "shadowColor": "#451a03",
+          "skyColor": "#270e02",
+          "density": 0.8,
+          "speed": 0.06,
+          "depth": 0.25,
+          "intensity": 0.75,
+          "sunAngle": 0.9
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fef3c7",
+          "glowColor": "#f59e0b",
+          "outerColor": "#451a03",
+          "density": 1.1,
+          "speed": 0.09,
+          "depth": 0.2,
+          "intensity": 0.75,
+          "glowX": 0.25,
+          "glowY": 0.15
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f59e0b",
+          "density": 0.45,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1a0601",
+          "intensity": 0.55,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "city_builder",
+    "name": "City Builder",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "cities-skylines",
+    "evocation": "Les jeux de gestion urbaine et d'urbanisme (Cities: Skylines, SimCity). L'heure bleue sur une métropole vivante observée depuis les hauteurs : le crépuscule tombe sur les avenues, les balises de grues de construction clignotent en rouge au sommet des immeubles en chantier, et les fenêtres des tours résidentielles s'allument peu à peu comme des lucioles urbaines.",
+    "signature": "Une rangée de gratte-ciels et de grues de chantier découpée contre un ciel d'heure bleue crépusculaire où s'allument tour à tour des fenêtres jaune doré et des balises de sécurité aérienne.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel d'heure bleue crépusculaire, dégradé bleu ardoise vers bleu nuit avec lueur dorée résiduelle à l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette de gratte-ciels et de grues de chantier étagée avec fenêtres illuminées et balises rouges pulsantes."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Halo de smog lumineux urbain chaud et doux diffusé à la base des immeubles en construction."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Micro-poussières urbaines et reflets de projecteurs flottant sous un vignettage discret."
+      }
+    ],
+    "particles": {
+      "type": "Poussières urbaines et reflets de phares (dust)",
+      "size": "1.0 à 1.8 px",
+      "speed": "0.12 (dérive lente)",
+      "density": "35 particules",
+      "behavior": "Flottement lent en suspension dans l'air de la ville, micro-scintillements doux et légère répulsion au curseur."
+    },
+    "atmosphere": {
+      "mist": "Légère nappe de smog lumineux doré feutré au ras de la ligne d'horizon.",
+      "light": "Élégante ambiance d'heure bleue urbaine, associant la fraîcheur de l'ardoise bleutée à la chaleur rassurante des fenêtres illuminées.",
+      "airColor": "Gris béton ardoise (#334155) et bleu nuit (#1e293b) réchauffés par un jaune lumière (#facc15).",
+      "mainLightSource": "La lueur résiduelle du crépuscule à l'horizon et le halo collectif de la ville."
+    },
+    "rareEvents": [
+      {
+        "name": "Balayage de projecteur de chantier",
+        "type": "god_rays",
+        "frequency": "Intervalle moyen de 25.0 secondes",
+        "description": "Un faisceau de lumière volumétrique balaye doucement le ciel au-dessus des grues, soulignant la verticalité de la métropole en essor."
+      }
+    ],
+    "interaction": {
+      "mouse": "Incline la perspective des façades de bâtiments en parallaxe et repousse doucement les micro-poussières.",
+      "scroll": "Modifie légèrement l'angle de vue sur la ligne d'immeubles sans dégrader la lisibilité."
+    },
+    "palette": [
+      "#0f172a",
+      "#1e293b",
+      "#334155",
+      "#64748b",
+      "#facc15",
+      "#fef08a"
+    ],
+    "references": [
+      "Cities Skylines blue hour skyline dusk lights",
+      "Three.js city skyline illuminated windows",
+      "Urban twilight building construction cranes"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à une mégalopole cyberpunk agressive ou une mégacité obscure.",
+      "solution": "Conserver la poésie douce de l'heure bleue, une échelle de ville contemporaine accueillante et des fenêtres dorées chaleureuses."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#334155",
+          "density": 1.1,
+          "speed": 0.06,
+          "depth": 0.05,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#0b1220",
+          "windowColor": "#facc15",
+          "beaconColor": "#ef4444",
+          "density": 0.85,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "smogIntensity": 0.4
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#475569",
+          "density": 0.6,
+          "speed": 0.1,
+          "depth": 0.25,
+          "intensity": 0.45,
+          "heightFalloff": 1.8
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef08a",
+          "density": 0.35,
+          "speed": 0.1,
+          "depth": 0.35,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#080e1a",
+          "intensity": 0.5,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "jurassic",
+    "name": "Jurassic",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "jurassic-park",
+    "evocation": "L'enclos des grands carnivores de Jurassic Park lors de la violente tempête tropicale (le chef-d'œuvre de 1993 de Steven Spielberg et Jurassic World Evolution). Une jungle préhistorique oppressante fouettée par des trombes d'eau, des fougères géantes battues par les rafales, des câbles électriques qui oscillent dans la pénombre, et le célèbre tremblement cyclique faisant vibrer l'eau à chaque pas pesant du Tyrannosaurus Rex qui s'approche.",
+    "signature": "Une jungle préhistorique détrempée sous une pluie tropicale battante, ébranlée à intervalles réguliers par un tremblement tellurique lourd qui fait vibrer l'écran au rythme des pas d'un super-prédateur invisible.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel d'orage nocturne tumultueux zébré d'éclairs lointains derrière des nuages lourds et menaçants."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Canopée de jungle préhistorique dense étagée aux cimes d'arbres fouettées par les rafales de vent."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faisceau de projecteur de sécurité jaune ambré vacillant près d'une clôture haute tension endommagée."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Averse tropicale dense et oblique perçant l'obscurité végétale avec traînées de vitesse dynamiques."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Secousse tellurique amortie cadencée faisant frémir l'affichage, sous un vignettage humide de lentille de caméra."
+      }
+    ],
+    "particles": {
+      "type": "Pluie tropicale torrentielle battante (rain)",
+      "size": "1.4 étirement oblique",
+      "speed": "1.8 (chute vive orientée par les rafales)",
+      "density": "180 gouttes denses",
+      "behavior": "Averse oblique ultra-dynamique, réagissant à l'orientation du curseur souris avec micro-éclaboussures en bas d'écran."
+    },
+    "atmosphere": {
+      "mist": "Nappe de vapeur humide tropicale dense rampant entre les fougères géantes.",
+      "light": "Ambiance d'orage électrique nocturne, vert jungle ténébreux tranché par les flashs d'éclairs et l'ambre des projecteurs d'urgence.",
+      "airColor": "Vert jungle profond (#14532d) et noir d'orage (#052e16), déchirés par l'ambre d'alarme (#d97706) et des flashs bleu-blanc.",
+      "mainLightSource": "Éclairs de foudre zébrant le ciel et projecteur de sécurité vacillant."
+    },
+    "rareEvents": [
+      {
+        "name": "Pas titanesque du T-Rex",
+        "type": "screen_shake",
+        "frequency": "Intervalle moyen de 12.0 secondes",
+        "description": "Une secousse tellurique sourde et lourde ébranle l'affichage avec un amortissement harmonique puissant, évoquant le pas d'un carnivore géant."
+      },
+      {
+        "name": "Éclair d'orage tropical",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "Un arc de foudre fractal zèbre brutalement la jungle de haut en bas, illuminant brièvement les feuillages préhistoriques d'une lueur aveuglante."
+      }
+    ],
+    "interaction": {
+      "mouse": "Oriente dynamiquement l'angle de chute de l'averse tropicale et déplace la parallaxe de la jungle.",
+      "scroll": "Modifie la résonance du tremblement tellurique et la densité de la nappe de pluie sans masquer le contenu."
+    },
+    "palette": [
+      "#052e16",
+      "#14532d",
+      "#166534",
+      "#b45309",
+      "#d97706",
+      "#fef08a"
+    ],
+    "references": [
+      "Jurassic Park T-Rex paddock rain lightning scene",
+      "Heavy tropical jungle storm WebGL Three.js",
+      "Screen shake footprint ripple impact"
+    ],
+    "risks": {
+      "pitfall": "Devenir oppressant, trop bruyant visuellement ou nuire à la lisibilité des cartes de l'interface.",
+      "solution": "Calibrer le screen_shake pour qu'il reste feutré et court, placer la pluie derrière les panneaux de l'UI et maintenir un contraste élevé pour le texte."
+    },
+    "bricks": [
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "cloudColor": "#052e16",
+          "skyColor": "#02120a",
+          "density": 0.85,
+          "speed": 0.22,
+          "depth": 0.2,
+          "intensity": 0.9,
+          "windAngle": 0.25
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#072b15",
+          "fogColor": "#14532d",
+          "density": 1.2,
+          "speed": 0.25,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "windStrength": 0.6
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#d97706",
+          "secondaryColor": "#b45309",
+          "density": 0.9,
+          "speed": 0.4,
+          "depth": 0.3,
+          "intensity": 0.9,
+          "lightX": 0.35,
+          "lightY": 0.2
+        }
+      },
+      {
+        "brick": "rain",
+        "params": {
+          "rainColor": "#6ee7b7",
+          "density": 1.2,
+          "speed": 2.0,
+          "depth": 0.5,
+          "intensity": 0.9,
+          "windAngle": 0.25,
+          "streakLength": 1.5
+        }
+      },
+      {
+        "brick": "lightning",
+        "params": {
+          "lightningColor": "#99f6e4",
+          "flashColor": "#ffffff",
+          "density": 1.0,
+          "speed": 1.4,
+          "depth": 0.3,
+          "intensity": 1.3,
+          "strikeInterval": 20.0
+        }
+      },
+      {
+        "brick": "screen_shake",
+        "params": {
+          "shakeColor": "#14532d",
+          "density": 1.1,
+          "speed": 1.5,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "shakeInterval": 12.0,
+          "decayRate": 4.0
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#020d07",
+          "intensity": 0.65,
+          "smoothness": 0.8
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "dino_dna",
+    "name": "Dino DNA",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "jurassic-park",
+    "evocation": "Le laboratoire de bio-ingénierie et de séquençage génétique d'InGen (inspiré de Jurassic Park et de M. ADN). Un cocon d'ambre millénaire translucide où repose un moustique fossilisé, baigné dans une lumière dorée chaude qui contraste avec la haute technologie des incubateurs d'embryons cylindriques où montent d'infinies bulles bioluminescentes dans une matrice nanotechnologique.",
+    "signature": "Un cœur d'ambre fossile translucide incandescent d'où rayonnent des faisceaux de lumière dorée à travers des colonnes d'éprouvettes de bio-ingénierie remplies de bulles génétiques en ascension.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Pénombre de laboratoire de génétique high-tech avec dégradé vert émeraude stérile vers noir profond."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Trame moléculaire hexagonale subtile symbolisant la séquence de bases azotées de l'ADN en cours de reconstitution."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Cœur d'ambre fossilisé incandescent rayonnant des faisceaux de lumière dorée volumétriques (god rays)."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan volumétrique",
+        "description": "Bulles d'incubation génétique et de liquide nutritif montant dans des colonnes de verre cylindriques."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Micro-spores d'ambre et poussières organiques dorées scintillantes sous un vignettage optique macro."
+      }
+    ],
+    "particles": {
+      "type": "Bulles de liquide nutritif et motes d'ambre (bubbles + dust)",
+      "size": "1.5 à 3.2 px (bulles), 1.0 px (spores)",
+      "speed": "0.35 (ascension régulière des bulles)",
+      "density": "55 bulles et 30 motes instanciées",
+      "behavior": "Ascension continue et fluide des bulles dans les éprouvettes avec dérive brownienne des micro-spores d'ambre au premier plan."
+    },
+    "atmosphere": {
+      "mist": "Halo de vapeur cryogénique feutrée et stérile au bas des éprouvettes.",
+      "light": "Contraste fascinant entre le vert laboratoire émeraude profond et la chaleur incandescente ambrée du fossile millénaire.",
+      "airColor": "Vert jungle stérile (#14532d) embrasé par un jaune ambre incandescent (#d97706, #f59e0b).",
+      "mainLightSource": "Le cœur d'ambre fossile brillant au centre focal de la scène."
+    },
+    "rareEvents": [
+      {
+        "name": "Pulsation de séquençage génétique",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 22.0 secondes",
+        "description": "Une onde de lumière ambrée concentrique émane du cœur fossile, illuminant temporairement le maillage d'ADN hexagonal."
+      }
+    ],
+    "interaction": {
+      "mouse": "Fait pivoter doucement l'angle des rais de lumière émanant de l'ambre et repousse les bulles de solution nutritive.",
+      "scroll": "Modifie imperceptiblement la netteté focale macro sur le cœur d'ambre."
+    },
+    "palette": [
+      "#062413",
+      "#14532d",
+      "#78350f",
+      "#d97706",
+      "#f59e0b",
+      "#fef08a"
+    ],
+    "references": [
+      "Jurassic Park mosquito in amber glowing light",
+      "Bioluminescent DNA genetics laboratory Three.js",
+      "Macro amber resin caustics and bubbles"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à une simple copie du thème Jurassic de jungle et de pluie.",
+      "solution": "Bannir toute pluie et tout décor extérieur : focaliser la scène à 100% sur le laboratoire génétique stérile, l'ambre fossile et les colonnes d'incubation d'embryons."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#062413",
+          "bottomColor": "#14532d",
+          "horizonColor": "#78350f",
+          "density": 1.1,
+          "speed": 0.07,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "hex_grid",
+        "params": {
+          "borderColor": "#166534",
+          "fillColor": "#041b0d",
+          "pulseColor": "#d97706",
+          "density": 1.2,
+          "speed": 0.15,
+          "depth": 0.25,
+          "intensity": 0.5,
+          "borderWidth": 0.04
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fef08a",
+          "glowColor": "#d97706",
+          "outerColor": "#14532d",
+          "density": 1.0,
+          "speed": 0.12,
+          "depth": 0.3,
+          "intensity": 0.85,
+          "glowX": 0.0,
+          "glowY": 0.1
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#f59e0b",
+          "density": 0.8,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "lightSourceX": 0.0,
+          "lightSourceY": 0.1,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "bubbles",
+        "params": {
+          "bubbleColor": "#fef08a",
+          "density": 0.6,
+          "speed": 0.35,
+          "depth": 0.45,
+          "intensity": 0.85,
+          "wobbleAmount": 0.25
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f59e0b",
+          "density": 0.35,
+          "speed": 0.1,
+          "depth": 0.5,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#03140a",
+          "intensity": 0.6,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "isla_nublar",
+    "name": "Isla Nublar",
+    "family": "Aventure & histoire",
+    "intensity": 2,
+    "universe": "jurassic-park",
+    "evocation": "L'approche aérienne d'Isla Nublar par hélicoptère au large du Costa Rica (le plan d'ouverture mythique du film de 1993 de Steven Spielberg). Les gigantesques falaises volcaniques verdoyantes surgissant des brumes de l'océan Pacifique, les nuages tropicaux accrochés aux crêtes montagneuses escarpées et la beauté sauvage d'une île perdue au soleil couchant flamboyant.",
+    "signature": "Des falaises volcaniques monumentales couvertes de forêt tropicale émergeant d'un océan tumultueux au crépuscule, nimbées de bancs de brume marine et de nuages dérivants.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel crépusculaire d'île tropicale, dégradé de bleu océan vers orange flamboyant et pourpre volcanique."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Bancs de nuages tropicaux vaporeux défilant et s'effilochant autour des sommets montagneux."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Crêtes volcaniques escarpées couvertes de jungle émeraude étagées sur 3 plans de parallaxe."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan océanique",
+        "description": "Houle océanique aux crêtes d'écume blanche se fracassant au pied des falaises de basalte."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Nappe de brume marine rampante et embruns salés sous un grain cinéma 35mm d'aventure d'époque."
+      }
+    ],
+    "particles": {
+      "type": "Embruns marins et vapeur d'océan pulvérisée (dust)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.25 (dérive sous la brise marine)",
+      "density": "50 motes légères",
+      "behavior": "Dérive horizontale continue avec portance d'air, évoquant la salinité et l'humidité de l'air marin de l'île."
+    },
+    "atmosphere": {
+      "mist": "Bancs de brume océanique vaporeux glissant le long des ravins et cascades.",
+      "light": "Majestueuse, dramatique et crépusculaire, magnifiant le contraste entre le vert sombre des forêts et l'orange volcanique du couchant.",
+      "airColor": "Vert émeraude profond (#064e3b) et roche volcanique sombre, embrasés par l'orange solaire (#ea580c, #fb923c).",
+      "mainLightSource": "Soleil couchant océanique rasant par l'ouest éclairant les crêtes montagneuses."
+    },
+    "rareEvents": [
+      {
+        "name": "Rafale océanique du large",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "Une puissante bourrasque marine balaie les falaises, étirant les nuages et dispersant les bancs de brume côtière."
+      },
+      {
+        "name": "Étoile filante crépusculaire",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 35.0 secondes",
+        "description": "Un bolide lumineux traverse rapidement la haute voûte céleste au-dessus de l'océan Pacifique."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déploie la majestueuse perspective parallaxe des massifs volcaniques et incline la dérive des nuages marins.",
+      "scroll": "Modifie la densité perçue de la brume côtière sans masquer le texte des cartes."
+    },
+    "palette": [
+      "#022c22",
+      "#064e3b",
+      "#047857",
+      "#9a3412",
+      "#ea580c",
+      "#fb923c"
+    ],
+    "references": [
+      "Isla Nublar helicopter arrival cliffs Spielberg",
+      "Volcanic island ocean waves mist Three.js",
+      "Jurassic Park matte painting island mountains dusk"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à un massif alpin classique ou se confondre avec le thème Jurassic.",
+      "solution": "Associer explicitement les falaises tropicales abruptes, la présence de la houle océanique et un crépuscule orange volcanique flamboyant."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#022c22",
+          "bottomColor": "#064e3b",
+          "horizonColor": "#ea580c",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "cloudColor": "#064e3b",
+          "skyColor": "#9a3412",
+          "density": 0.65,
+          "speed": 0.15,
+          "depth": 0.25,
+          "intensity": 0.8,
+          "windAngle": 0.18
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#032018",
+          "sunColor": "#ea580c",
+          "mistColor": "#064e3b",
+          "density": 1.0,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 0.85,
+          "sunAngle": 0.8
+        }
+      },
+      {
+        "brick": "waves",
+        "params": {
+          "crestColor": "#f8fafc",
+          "deepColor": "#022c22",
+          "density": 0.8,
+          "speed": 0.2,
+          "depth": 0.4,
+          "intensity": 0.7,
+          "waveSteepness": 0.5
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#047857",
+          "density": 0.7,
+          "speed": 0.12,
+          "depth": 0.3,
+          "intensity": 0.5,
+          "heightFalloff": 1.6
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fb923c",
+          "density": 0.45,
+          "speed": 0.2,
+          "depth": 0.4,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.06,
+          "speed": 0.8,
+          "monochrome": true
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#011611",
+          "intensity": 0.6,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "wildlife_reserve",
+    "name": "Wildlife Reserve",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "wildlife-park",
+    "evocation": "Un sanctuaire naturel et écologique préservé au cœur d'une forêt primaire protégée (Bornéo ou Costa Rica). Une canopée luxuriante au petit matin, où les premiers rayons dorés percent la brume humide du sous-bois pour éveiller une myriade de lucioles et d'insectes bioluminescents dans une quiétude totale exempte de toute trace humaine.",
+    "signature": "Des faisceaux de lumière matinale perçant une canopée tropicale moussue pour illuminer des lucioles et micro-spores bioluminescentes dérivant au-dessus d'une brume sylvestre.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel matinal voilé, dégradé vert sous-bois profond vers jaune tilleul éclatant."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette de forêt tropicale étagée avec troncs moussus et lianes géantes ondulant sous le vent."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Rayons de lumière dorée volumétriques (god rays) perçant les trouées de la canopée vers le sol moussus."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Lucioles nocturnes tardives et micro-spores luminescentes en vol stationnaire doux au-dessus de la brume."
+      }
+    ],
+    "particles": {
+      "type": "Lucioles nocturnes et spores bioluminescentes (fireflies)",
+      "size": "1.5 à 2.8 px",
+      "speed": "0.20 (vol agile et respirant)",
+      "density": "24 lucioles",
+      "behavior": "Pulsation biologique asynchrone en cloche douce, vol 3D erratique alternant surplace et glissade, curiosité interactive envers le curseur."
+    },
+    "atmosphere": {
+      "mist": "Nappe de brume végétale fraîche et humide rampant au ras des racines et fougères géantes.",
+      "light": "Matinale, vivifiante et sereine, contrastant les ombres émeraude profondes et la radiance des rais de soleil filtrés.",
+      "airColor": "Vert canopée sombre (#064e3b) sublimé par un vert lime électrique vibrant (#a3e635) et des reflets d'or végétal.",
+      "mainLightSource": "Soleil matinal perçant la trouée zénithale de la canopée."
+    },
+    "rareEvents": [
+      {
+        "name": "Frémissement de brise matinale",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 35.0 secondes",
+        "description": "Un souffle d'air pur traverse la canopée, faisant vaciller doucement les rayons lumineux et danser les lucioles."
+      }
+    ],
+    "interaction": {
+      "mouse": "Attire doucement les lucioles proches vers le curseur et influe subtilement sur l'orientation des rayons solaires.",
+      "scroll": "Modifie l'opacité de la nappe de brume au sol sans gêner la lisibilité de l'interface."
+    },
+    "palette": [
+      "#022c22",
+      "#064e3b",
+      "#15803d",
+      "#65a30d",
+      "#a3e635",
+      "#ecfccb"
+    ],
+    "references": [
+      "Sunlight filtering rainforest canopy Three.js",
+      "Bioluminescent wildlife sanctuary morning",
+      "Fireflies peaceful morning mist jungle"
+    ],
+    "risks": {
+      "pitfall": "Paraître trop sombre ou monotone avec un excès de verts uniformes.",
+      "solution": "Créer un contraste franc avec le vert lime électrique ultra-lumineux (#a3e635), des faisceaux volumétriques nets et des lucioles vivantes."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#022c22",
+          "bottomColor": "#064e3b",
+          "horizonColor": "#15803d",
+          "density": 1.2,
+          "speed": 0.07,
+          "depth": 0.05,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#022c22",
+          "fogColor": "#064e3b",
+          "density": 1.0,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "windStrength": 0.35
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#a3e635",
+          "density": 0.8,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "lightSourceX": 0.25,
+          "lightSourceY": 0.95,
+          "decay": 0.93
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#064e3b",
+          "density": 0.7,
+          "speed": 0.1,
+          "depth": 0.25,
+          "intensity": 0.5,
+          "heightFalloff": 1.7
+        }
+      },
+      {
+        "brick": "fireflies",
+        "params": {
+          "glowColor": "#a3e635",
+          "coreColor": "#ecfccb",
+          "density": 0.55,
+          "speed": 0.22,
+          "depth": 0.4,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#011a14",
+          "intensity": 0.55,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "farm_life",
+    "name": "Farm Life",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "farming-simulator",
+    "evocation": "Les vastes plaines céréalières et l'agriculture extensive moderne au cœur de l'été (Farming Simulator, Pure Farming). Un horizon infini sous un ciel bleu éclatant balayé par un soleil ardent, des champs de blé mûrs qui ondulent comme une mer dorée, et des tourbillons de fétus de paille et de poussière de moisson soulevés par une brise d'été.",
+    "signature": "Des vagues de blé doré ondoyant vers un horizon dégagé sous un soleil estival généreux qui fait tourbillonner des brins de paille et de la poussière de moisson.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel bleu éclatant de plein été virant au jaune doré radieux à la ligne d'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Lignes de crêtes de collines moissonnées et ondulations de champs de céréales à perte de vue."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Nappe de distorsion de chaleur et brume atmosphérique estivale douce au ras du sol des cultures."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Brins de paille dorée et micro-graines dérivant avec vigueur sous les rafales de vent estival."
+      }
+    ],
+    "particles": {
+      "type": "Brins de paille dorée et glumes de céréales (leaves)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.30 (dérive vive sous le vent)",
+      "density": "35 brins",
+      "behavior": "Chute étirée et tournoiements horizontaux sous le vent de moisson avec micro-rotations 3D."
+    },
+    "atmosphere": {
+      "mist": "Miroitement de chaleur estivale ondulant au-dessus des épis de blé mûrs.",
+      "light": "Solaire, généreuse et énergisante, célébrant l'abondance et le travail agricole en plein air.",
+      "airColor": "Ambre doré flamboyant (#d97706, #f59e0b) contrasté par la fraîcheur des bordures bocagères vertes (#22c55e).",
+      "mainLightSource": "Soleil d'été zénithal éclatant réchauffant toute la plaine."
+    },
+    "rareEvents": [
+      {
+        "name": "Rafale thermique de moisson",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 30.0 secondes",
+        "description": "Une bourrasque de vent chaud traverse les champs, soulevant un nuage de paille dorée et accentuant l'ondulation des sillons."
+      }
+    ],
+    "interaction": {
+      "mouse": "Incline la direction de dérive des brins de paille et modifie l'axe de parallaxe des collines de blé.",
+      "scroll": "Modifie la profondeur de champ sur les parcelles agricoles sans impacter le contraste des textes."
+    },
+    "palette": [
+      "#14532d",
+      "#22c55e",
+      "#78350f",
+      "#d97706",
+      "#f59e0b",
+      "#fef3c7"
+    ],
+    "references": [
+      "Farming simulator golden wheat field breeze",
+      "Summer harvest golden hour dust Three.js",
+      "Blowing straw cereal field motion WebGL"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à Cozy Farm et perdre sa spécificité de grande exploitation céréalière.",
+      "solution": "Différencier radicalement : Farm Life est un paysage ouvert diurne de plein champ avec blé ondulant et paille, alors que Cozy Farm est un jardin vespéral intimiste."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#14532d",
+          "bottomColor": "#78350f",
+          "horizonColor": "#f59e0b",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "dunes",
+        "params": {
+          "sandColor": "#f59e0b",
+          "shadowColor": "#78350f",
+          "skyColor": "#14532d",
+          "density": 0.9,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "sunAngle": 0.75
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#fef3c7",
+          "density": 0.7,
+          "speed": 0.2,
+          "depth": 0.25,
+          "intensity": 0.45,
+          "heatHeight": 0.4
+        }
+      },
+      {
+        "brick": "leaves",
+        "params": {
+          "leafColor": "#f59e0b",
+          "altColor": "#d97706",
+          "density": 0.4,
+          "speed": 0.3,
+          "depth": 0.4,
+          "intensity": 0.85,
+          "windDrift": 0.45
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1c0b02",
+          "intensity": 0.45,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "pet_shop",
+    "name": "Pet Shop",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "pet-shop-story",
+    "evocation": "Une boutique d'adoption et un salon de soins pour animaux douillet et bienveillant (Pet Shop Story, Littlest Pet Shop, Nintendogs). Un univers pastel et chaleureux baigné d'une lumière solaire tamisée par des rideaux de lin, des corbeilles moelleuses, des bulles de savon de toilettage irisées et des confettis pastel qui flottent avec insouciance.",
+    "signature": "Une pluie de confettis pastels et de bulles légères scintillant dans la lumière dorée d'une vitrine de salon animalier douillet aux teintes rose guimauve et vanille.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Dégradé doux et crémeux rose bonbon poudré vers crème vanille lumineuse."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Dôme de lueur volumétrique rose et dorée évoquant le confort et la chaleur d'un intérieur protecteur."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Petites bulles translucides légères et iridescentes flottant comme des bulles de savon de toilettage."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Pétales et confettis pastels voletant doucement sous un halo vaporeux bienveillant."
+      }
+    ],
+    "particles": {
+      "type": "Pétales délicats et confettis pastels (petals)",
+      "size": "1.2 à 2.2 px",
+      "speed": "0.15 (descente vaporeuse très lente)",
+      "density": "30 pétales instanciés",
+      "behavior": "Voletement hélicoïdal soyeux et aérien avec rotations douces et curiosité interactive envers le curseur."
+    },
+    "atmosphere": {
+      "mist": "Diffusion de lumière feutrée et cotonneuse créant une atmosphère rassurante.",
+      "light": "Douce, réconfortante et poudrée, reposante pour le regard et idéale pour une navigation apaisée.",
+      "airColor": "Rose fuchsia tendre (#ec4899, #f472b6) fondu dans la douceur crème vanillée (#fef3c7).",
+      "mainLightSource": "Vitrine ensoleillée tamisée par un voilage diffusant une lumière chaude et tendre."
+    },
+    "rareEvents": [
+      {
+        "name": "Onde de joie et d'adoption",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 26.0 secondes",
+        "description": "Une douce onde lumineuse circulaire rose pastel se propage depuis le centre, diffusant une pulsation d'allégresse sur l'écran."
+      }
+    ],
+    "interaction": {
+      "mouse": "Fait tourbillonner joyeusement les petits pétales pastels et dévie doucement les bulles.",
+      "scroll": "Modifie délicatement la chaleur de la lumière vanille sans impacter la clarté des cartes."
+    },
+    "palette": [
+      "#831843",
+      "#be185d",
+      "#ec4899",
+      "#f472b6",
+      "#fbcfe8",
+      "#fef3c7"
+    ],
+    "references": [
+      "Cute pastel kawaii pet shop Three.js",
+      "Soft pink bubbles and golden motes WebGL",
+      "Nintendogs cozy puppy room pastel aesthetic"
+    ],
+    "risks": {
+      "pitfall": "Paraître criard, trop enfantin ou fatiguer la vue avec des roses saturés.",
+      "solution": "Sélectionner des teintes poudrées très douces (guimauve et vanille), ralentir les mouvements et privilégier la pureté de la lisibilité."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#831843",
+          "bottomColor": "#be185d",
+          "horizonColor": "#fef3c7",
+          "density": 1.1,
+          "speed": 0.06,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fef3c7",
+          "glowColor": "#f472b6",
+          "outerColor": "#831843",
+          "density": 1.0,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.7,
+          "glowX": 0.0,
+          "glowY": 0.1
+        }
+      },
+      {
+        "brick": "bubbles",
+        "params": {
+          "bubbleColor": "#fbcfe8",
+          "density": 0.45,
+          "speed": 0.25,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "wobbleAmount": 0.3
+        }
+      },
+      {
+        "brick": "petals",
+        "params": {
+          "petalColor": "#fbcfe8",
+          "accentColor": "#f472b6",
+          "density": 0.4,
+          "speed": 0.18,
+          "depth": 0.45,
+          "intensity": 0.85,
+          "windSpeed": 0.15
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#4c0519",
+          "intensity": 0.45,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "national_park",
+    "name": "National Park",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "yellowstone",
+    "evocation": "Les parcs nationaux mythiques d'Amérique du Nord (Yosemite Valley, Yellowstone, Banff). D'immenses dômes de granit escarpés baignés par la lumière solaire dorée du matin, une forêt de conifères séculaires s'étendant à perte de vue le long d'un torrent alpin cristallin, et la vapeur évanescente d'un geyser s'élevant dans l'air pur.",
+    "signature": "Des dômes de granit majestueux bordés de conifères centenaires illuminés par un soleil alpin rasant, d'où s'élèvent de fines volutes de vapeur géothermique et des poussières de résine dorée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel bleu alpin limpide virant à l'or pur au-dessus des crêtes rocheuses."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Chaîne de massifs rocheux et parois de granit étagées en 3 plans de perspective."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Forêt de conifères denses bordant la vallée glaciaire et ses cours d'eau."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan atmosphérique",
+        "description": "Fines volutes de brume matinale et vapeur de torrent montant dans l'air frais."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Poussières de résine de pin dorées et motes scintillantes flottant en apesanteur."
+      }
+    ],
+    "particles": {
+      "type": "Poussières de résine dorées et spores végétales de conifères (dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.14 (flottement calme en apesanteur)",
+      "density": "40 particules",
+      "behavior": "Dérive brownienne paisible avec scintillement délicat au passage dans les rais solaires."
+    },
+    "atmosphere": {
+      "mist": "Volutes de vapeur géothermique blanche s'élevant doucement entre les arbres.",
+      "light": "Alpin, vivifiant et magistral, associant la fraîcheur des sommets à la chaleur dorée du soleil levant.",
+      "airColor": "Vert pin profond (#14532d), roche grise (#64748b) et éclat solaire jaune or (#facc15).",
+      "mainLightSource": "Soleil alpin levant rasant par-dessus l'arête granitique."
+    },
+    "rareEvents": [
+      {
+        "name": "Panache de geyser dans la vallée",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 32.0 secondes",
+        "description": "Une brise de vallée disperse un panache de vapeur blanche entre les falaises de granit avec majesté."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déploie la perspective parallaxe entre les dômes de granit et les cimes de conifères.",
+      "scroll": "Modifie légèrement la profondeur atmosphérique de la vallée glaciaire sans nuire au contraste."
+    },
+    "palette": [
+      "#052e16",
+      "#14532d",
+      "#1e3a5f",
+      "#64748b",
+      "#facc15",
+      "#fef08a"
+    ],
+    "references": [
+      "Yosemite Valley granite cliffs morning Three.js",
+      "National Park pine forest alpine mist",
+      "Grand canyon golden hour parallax landscape"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à un thème de montagne générique sans caractère.",
+      "solution": "Combiner les falaises de granit verticales taillées, la forêt de conifères dense, les panaches de vapeur et un éclat d'or alpin."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#1e3a5f",
+          "bottomColor": "#14532d",
+          "horizonColor": "#facc15",
+          "density": 1.1,
+          "speed": 0.07,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#0b192c",
+          "sunColor": "#64748b",
+          "mistColor": "#14532d",
+          "density": 0.9,
+          "speed": 0.1,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "sunAngle": 0.75
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#052e16",
+          "fogColor": "#14532d",
+          "density": 0.9,
+          "speed": 0.14,
+          "depth": 0.3,
+          "intensity": 0.8,
+          "windStrength": 0.3
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#cbd5e1",
+          "density": 0.6,
+          "speed": 0.1,
+          "depth": 0.25,
+          "intensity": 0.45,
+          "heightFalloff": 1.8
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef08a",
+          "density": 0.4,
+          "speed": 0.12,
+          "depth": 0.4,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#03140b",
+          "intensity": 0.5,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "veterinary",
+    "name": "Veterinary Clinic",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "theme-hospital",
+    "evocation": "Une clinique vétérinaire moderne immaculée, technologique et bienveillante (Theme Hospital, Two Point Hospital). Le calme rassurant d'un bloc de soins baigné d'une lumière douce sans reflet, des surfaces laquées blanches et chromées, des moniteurs de constantes médicales aux pulsations régulières et le dévouement protecteur envers les animaux convalescents.",
+    "signature": "Une pulsation régulière et bienveillante d'ondes de signal médical blanc et rouge traversant un halo clinique pur et apaisant, ponctué de micro-particules aseptisées en suspension.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Fond immaculé blanc pur virant au gris perle doux et bleu médical feutré."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Trame de moniteur de surveillance médicale très discrète avec pulsations de signaux vitaux."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Dôme de lueur blanche pure équilibrée diffusant une clarté douce et sans ombre portée agressive."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Micro-particules d'air pur filtré flottant avec lenteur sous un vignettage clinique très clair."
+      }
+    ],
+    "particles": {
+      "type": "Micro-particules d'air purifié aseptisé (dust)",
+      "size": "0.8 à 1.6 px",
+      "speed": "0.08 (flottement quasi-immobile)",
+      "density": "30 particules",
+      "behavior": "Dérive extrêmement lente en apesanteur dans l'air conditionné filtré, avec reflets blancs soyeux."
+    },
+    "atmosphere": {
+      "mist": "Diffusion volumétrique lumineuse très pure sans aucune brume opaque.",
+      "light": "Clinique, immaculée, douce et sécurisante, garantissant un confort de lecture optimal pour l'utilisateur.",
+      "airColor": "Blanc immaculé (#f8fafc) et gris ardoise médical (#cbd5e1), ponctué d'accents rouge croix médicale (#ef4444).",
+      "mainLightSource": "Scialytique médical de plafond diffusant une lumière blanche équilibrée."
+    },
+    "rareEvents": [
+      {
+        "name": "Battement de signal vital apaisant",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 24.0 secondes",
+        "description": "Une onde de pulsation médicale verte et rouge traverse subtilement la scène, symbolisant la guérison et le rétablissement de l'animal."
+      }
+    ],
+    "interaction": {
+      "mouse": "Ondule très doucement la trame médicale et disperse délicatement les micro-particules aseptisées.",
+      "scroll": "Modifie imperceptiblement la clarté du halo central sans troubler la netteté des composants."
+    },
+    "palette": [
+      "#ffffff",
+      "#f8fafc",
+      "#cbd5e1",
+      "#64748b",
+      "#ef4444",
+      "#b91c1c"
+    ],
+    "references": [
+      "Clean modern veterinary clinic interior Three.js",
+      "Soft white and red medical cross ambient",
+      "Hospital monitor pulse gentle glow WebGL"
+    ],
+    "risks": {
+      "pitfall": "Paraître froid, aseptisé de façon anxiogène ou ressembler à un hôpital humain hostile.",
+      "solution": "Apporter un éclairage chaleureux doux, des mouvements très feutrés et mettre l'accent sur la protection, la guérison et le réconfort."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#cbd5e1",
+          "bottomColor": "#f8fafc",
+          "horizonColor": "#ffffff",
+          "density": 1.0,
+          "speed": 0.05,
+          "depth": 0.05,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "neon_grid",
+        "params": {
+          "gridColor": "#94a3b8",
+          "horizonColor": "#e2e8f0",
+          "pulseColor": "#ef4444",
+          "density": 1.2,
+          "speed": 0.06,
+          "depth": 0.2,
+          "intensity": 0.35,
+          "lineWidth": 0.015,
+          "waveHeight": 0.0
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#e2e8f0",
+          "outerColor": "#cbd5e1",
+          "density": 1.0,
+          "speed": 0.08,
+          "depth": 0.2,
+          "intensity": 0.75,
+          "glowX": 0.0,
+          "glowY": 0.15
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#ef4444",
+          "density": 0.3,
+          "speed": 0.08,
+          "depth": 0.3,
+          "intensity": 0.6
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#64748b",
+          "intensity": 0.3,
+          "smoothness": 0.95
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "business_empire",
+    "name": "Business Empire",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "capitalism",
+    "evocation": "Le sommet d'une tour financière internationale dominant la skyline d'un quartier d'affaires mondial (Manhattan, La Défense, Singapour) la nuit (Capitalism II, Industry Giant). Des vitrages teintés monumentaux, des reflets cyan et cobalt sur le marbre noir, des graphiques financiers abstraits et la sensation de contrôler un empire économique depuis les nuages.",
+    "signature": "Une perspective vertigineuse de gratte-ciels corporate nocturnes aux façades de verre miroitantes, traversée par des lignes de données financières cyan et des balises d'antennes pulsantes.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel urbain nocturne bleu nuit profond d'encre avec halo de smog lointain."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Tours corporate élancées aux parois de verre réfléchissantes étagées sur 3 plans de profondeur."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Lignes de flux financiers et cours boursiers reliant les sommets des gratte-ciels en réseau synaptique."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Poussières de lumière cyan et reflets de verre fumé flottant dans une atmosphère feutrée."
+      }
+    ],
+    "particles": {
+      "type": "Particules de données lumineuses et reflets cyan (dust)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.15 (dérive fluide)",
+      "density": "35 particules",
+      "behavior": "Dérive lente le long des segments de données avec micro-scintillements froids et élégants."
+    },
+    "atmosphere": {
+      "mist": "Halo de smog d'affaires bleu nuit et cyan froid diffusé à la base des tours.",
+      "light": "Nocturne, feutrée, haut de gamme et prestigieuse, évoquant les salons feutrés de haute direction.",
+      "airColor": "Bleu ardoise sombre (#1e293b, #0f172a) percé de cyan électrique boursier (#38bdf8) et de reflets argentés.",
+      "mainLightSource": "Éclairage architectural des façades de tours et constellation de données."
+    },
+    "rareEvents": [
+      {
+        "name": "Transaction boursière record",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Une impulsion d'énergie cyan se propage le long des lignes de flux boursiers, illuminant temporairement les gratte-ciels."
+      }
+    ],
+    "interaction": {
+      "mouse": "Oriente la perspective des façades de verre et fait converger les flux synaptiques de données vers le curseur.",
+      "scroll": "Modifie l'altitude perçue au-dessus de la métropole d'affaires sans impacter la lecture."
+    },
+    "palette": [
+      "#0b1329",
+      "#1e293b",
+      "#0369a1",
+      "#0284c7",
+      "#38bdf8",
+      "#bae6fd"
+    ],
+    "references": [
+      "Corporate financial skyline night Three.js",
+      "Wall Street boardroom skyscraper view",
+      "Abstract financial stock graph nodes glowing"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à Tycoon ou City Builder.",
+      "solution": "Adopter un point de vue de penthouse nocturne feutré, une constellation de flux financiers abstraits et un bleu acier corporate luxueux."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0b1329",
+          "bottomColor": "#1e293b",
+          "horizonColor": "#0369a1",
+          "density": 1.1,
+          "speed": 0.06,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#070e1e",
+          "windowColor": "#38bdf8",
+          "beaconColor": "#38bdf8",
+          "density": 0.8,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "smogIntensity": 0.35
+        }
+      },
+      {
+        "brick": "line_constellation",
+        "params": {
+          "nodeColor": "#38bdf8",
+          "lineColor": "#0284c7",
+          "pulseColor": "#ffffff",
+          "density": 0.7,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "connectDistance": 2.5
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#38bdf8",
+          "density": 0.35,
+          "speed": 0.12,
+          "depth": 0.4,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#050a14",
+          "intensity": 0.55,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "sports_manager",
+    "name": "Directeur Sportif",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "football-manager",
+    "evocation": "Le banc de touche ou le couloir des vestiaires d'un grand stade européen un soir de grand match (Football Manager, LFP Manager). Une pelouse impeccable tondue au cordeau, illuminée par des rampes de projecteurs monumentales qui créent des faisceaux volumétriques dans la vapeur d'arrosage nocturne, avec les tablettes tactiques lumineuses prêtes pour le coup d'envoi.",
+    "signature": "Des faisceaux de projecteurs de stade puissants transperçant la brume nocturne au-dessus d'une pelouse émeraude millimétrée d'où s'élèvent de fines gouttelettes d'eau en suspension.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel nocturne d'encre bleu canard profond au-dessus de l'arène monumentale du stade."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Poutres métalliques et mâts d'éclairage des tribunes découpés dans la nuit."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Puissants faisceaux de projecteurs halogènes volumétriques (god rays) vert émeraude et blanc."
+      },
+      {
+        "plan": 4,
+        "type": "Avant-plan pelouse",
+        "description": "Nappe de brume d'arrosage basse rampant sur le gazon vert émeraude fraîchement tondu."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Gouttelettes d'arrosage et fétus d'herbe coupée flottant sous la lumière crue des projecteurs."
+      }
+    ],
+    "particles": {
+      "type": "Micro-gouttelettes d'eau d'arrosage et brins d'herbe (dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.16 (flottement dans les courants d'air)",
+      "density": "40 particules",
+      "behavior": "Dérive en suspension dans les cônes de lumière des projecteurs avec reflets étincelants."
+    },
+    "atmosphere": {
+      "mist": "Vapeur d'arrosage nocturne s'élevant de la pelouse fraîchement coupée.",
+      "light": "Électrisante, dramatique et nette, dominée par les halogènes de stade qui découpent l'obscurité avec franchise.",
+      "airColor": "Vert émeraude profond (#042f2e, #10b981) sublimé par la clarté éclatante des projecteurs.",
+      "mainLightSource": "Rampes de projecteurs de stade braquées sur le terrain."
+    },
+    "rareEvents": [
+      {
+        "name": "Flash de photographes au bord du terrain",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 26.0 secondes",
+        "description": "Une salve de flashs blancs éclate brièvement en bas de scène, rappelant les journalistes et la pression du grand match."
+      }
+    ],
+    "interaction": {
+      "mouse": "Balaye les faisceaux de projecteurs à travers la brume du terrain avec dynamisme.",
+      "scroll": "Modifie la perspective au-dessus de la pelouse sans dégrader la lisibilité du texte."
+    },
+    "palette": [
+      "#021d1c",
+      "#042f2e",
+      "#065f46",
+      "#10b981",
+      "#34d399",
+      "#ecfdf5"
+    ],
+    "references": [
+      "Football stadium floodlights night fog Three.js",
+      "Football Manager matchday dugout perspective",
+      "Emerald pitch turf mist stadium lighting"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à un thème de club de football spécifique avec couleurs partisanes.",
+      "solution": "Exclure tout logo ou couleur de club, magnifier l'arène universelle : la pelouse tondue au cordeau, les halogènes et la brume d'avant-match."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#021d1c",
+          "bottomColor": "#042f2e",
+          "horizonColor": "#065f46",
+          "density": 1.1,
+          "speed": 0.06,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#10b981",
+          "density": 0.9,
+          "speed": 0.2,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "lightSourceX": 0.35,
+          "lightSourceY": 0.9,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#065f46",
+          "density": 0.7,
+          "speed": 0.12,
+          "depth": 0.25,
+          "intensity": 0.5,
+          "heightFalloff": 1.7
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#34d399",
+          "density": 0.4,
+          "speed": 0.14,
+          "depth": 0.4,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#011211",
+          "intensity": 0.55,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "zoo_director",
+    "name": "Zoo Director",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "zoo-tycoon",
+    "evocation": "La direction d'un parc zoologique paysager moderne et respectueux de la faune (Zoo Tycoon, Wildlife Park). Des allées arborées bordées de palmiers et de bambous, des pavillons en bois noble et verre, une atmosphère de balade familiale sereine au printemps sous une douce pluie de pétales et de feuilles d'arbres exotiques.",
+    "signature": "Des allées paysagères arborées où dérivent paisiblement des feuilles exotiques dorées sous un soleil d'après-midi filtré par des verrières botaniques.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel printanier chaud, dégradé brun terre cuite vers jaune miel doré."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette de cimes d'arbres exotiques et toitures bioclimatiques de serres paysagères."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Dôme de lueur solaire chaleureuse dorée au zénith des feuillages."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Feuilles et pétales dorés tourbillonnant avec douceur dans les allées du parc."
+      }
+    ],
+    "particles": {
+      "type": "Feuilles d'arbres de parc dorées et ocres (leaves)",
+      "size": "1.2 à 2.4 px",
+      "speed": "0.18 (vol en glissade douce)",
+      "density": "35 feuilles",
+      "behavior": "Chute lente avec oscillations aérodynamiques douces, panachage doré/ambré et déflexion au curseur."
+    },
+    "atmosphere": {
+      "mist": "Brume de serre tropicale très légère et tiède à l'horizon.",
+      "light": "Chaleureuse, accueillante et familiale, invitant à la découverte et au bien-être animal.",
+      "airColor": "Brun écorce noble (#451a03) rehaussé de jaune d'or étincelant (#facc15) et de miel tiède.",
+      "mainLightSource": "Soleil d'après-midi filtré à travers les verrières botaniques."
+    },
+    "rareEvents": [
+      {
+        "name": "Rafale printanière dans la canopée",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 32.0 secondes",
+        "description": "Une brise fait frissonner les feuillages des bambous et palmiers, faisant virevolter une envolée de feuilles dorées."
+      }
+    ],
+    "interaction": {
+      "mouse": "Accompagne le souffle du vent sur les feuilles et décale doucement la canopée arborée.",
+      "scroll": "Modifie légèrement la chaleur de l'éclairage zénithal sans perturber la lisibilité."
+    },
+    "palette": [
+      "#200c02",
+      "#451a03",
+      "#78350f",
+      "#ca8a04",
+      "#facc15",
+      "#fef08a"
+    ],
+    "references": [
+      "Botanical zoo garden pathway sunlight Three.js",
+      "Zoo Tycoon exhibit visitor path autumn",
+      "Golden leaves gentle fall park scenery"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à Safari Zoo ou Cozy Farm.",
+      "solution": "Safari Zoo est une savane sauvage aride au soleil couchant, tandis que Zoo Director est un parc paysager structuré avec allées, serres botaniques et ombrages d'arbres nobles."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#200c02",
+          "bottomColor": "#451a03",
+          "horizonColor": "#ca8a04",
+          "density": 1.1,
+          "speed": 0.07,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#301203",
+          "fogColor": "#78350f",
+          "density": 0.85,
+          "speed": 0.12,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "windStrength": 0.3
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fef08a",
+          "glowColor": "#facc15",
+          "outerColor": "#451a03",
+          "density": 1.0,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.7,
+          "glowX": 0.1,
+          "glowY": 0.2
+        }
+      },
+      {
+        "brick": "leaves",
+        "params": {
+          "leafColor": "#facc15",
+          "altColor": "#ca8a04",
+          "density": 0.45,
+          "speed": 0.2,
+          "depth": 0.4,
+          "intensity": 0.85,
+          "windDrift": 0.25
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#140601",
+          "intensity": 0.5,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "world_builder",
+    "name": "World Builder",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "populous",
+    "evocation": "Le god game et la simulation de création planétaire (Populous, Black & White, Spore, Civilization). Une perspective orbitale majestueuse au-dessus d'une planète en pleine formation : les volutes atmosphériques de nuages tournoient autour du globe, les masses continentales émergent des océans azur profonds, et un réseau de coordonnées et de flux d'énergie de terraformation pulse à l'échelle cosmologique.",
+    "signature": "Une planète en terraformation vue depuis l'orbite, entourée de voiles nuageux atmosphériques en rotation lente et de flux d'énergie de biosphère azur qui relient les continents naissants.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Vide spatial profond constellé d'étoiles scintillantes réparties sur 3 strates de profondeur."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Voiles nuageux atmosphériques FBM tourbillonnant en spirale au-dessus des océans bleus profonds."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Réseau synaptique de terraformation reliant les pôles et les masses continentales en énergie azur."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Poussières de biosphère luminescentes et particules d'énergie vitale flottant en apesanteur orbitale."
+      }
+    ],
+    "particles": {
+      "type": "Poussières de biosphère et particules de terraformation (dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.10 (apesanteur orbitale très lente)",
+      "density": "40 particules",
+      "behavior": "Dérive en quasi-apesanteur le long des lignes de champ magnétique planétaire avec scintillement azur doux."
+    },
+    "atmosphere": {
+      "mist": "Halo de diffusion d'atmosphère céleste entourant la courbure de la planète.",
+      "light": "Majestueuse, cosmique et bienveillante, évoquant la puissance créatrice et la naissance de la vie.",
+      "airColor": "Bleu océan profond (#082f49), filaments d'énergie azur (#38bdf8) et vide spatial nocturne.",
+      "mainLightSource": "Étoile solaire lointaine illuminant le limbe atmosphérique de la planète."
+    },
+    "rareEvents": [
+      {
+        "name": "Onde d'éveil de la biosphère",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 30.0 secondes",
+        "description": "Une onde de choc lumineuse azur concentrique se propage le long de l'atmosphère planétaire, stimulant le réseau de terraformation."
+      }
+    ],
+    "interaction": {
+      "mouse": "Fait pivoter la courbure atmosphérique de la planète et incline les constellations de données.",
+      "scroll": "Modifie l'altitude orbitale au-dessus de la planète sans affecter la lisibilité."
+    },
+    "palette": [
+      "#031626",
+      "#082f49",
+      "#0369a1",
+      "#0284c7",
+      "#38bdf8",
+      "#e0f2fe"
+    ],
+    "references": [
+      "Planet terraformation orbit view Three.js",
+      "God game planetary atmosphere simulation",
+      "Cosmic world builder glowing grid WebGL"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à un thème d'astronomie pur et perdre la dimension god game.",
+      "solution": "Mettre l'accent sur la terraformation vivante : océans bleus profonds, nuages atmosphériques animés et flux synaptiques d'énergie continentale."
+    },
+    "bricks": [
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#e0f2fe",
+          "density": 0.8,
+          "speed": 0.05,
+          "depth": 1.0,
+          "intensity": 0.75,
+          "twinkleSpeed": 1.2
+        }
+      },
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "cloudColor": "#38bdf8",
+          "skyColor": "#082f49",
+          "density": 0.6,
+          "speed": 0.1,
+          "depth": 0.25,
+          "intensity": 0.8,
+          "windAngle": 0.2
+        }
+      },
+      {
+        "brick": "line_constellation",
+        "params": {
+          "nodeColor": "#38bdf8",
+          "lineColor": "#0284c7",
+          "pulseColor": "#ffffff",
+          "density": 0.65,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.7,
+          "connectDistance": 2.6
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#38bdf8",
+          "density": 0.4,
+          "speed": 0.1,
+          "depth": 0.4,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#010a12",
+          "intensity": 0.55,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "megacity",
+    "name": "Megacity",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": "simcity-2000",
+    "evocation": "La métropole colossale à son apogée technologique, une cité-monde verticale dense de 50 millions d'habitants la nuit (SimCity 2000, Judge Dredd, Blade Runner). Des gratte-ciels monumentaux de plusieurs kilomètres de hauteur qui percent une mer de smog illuminée d'or et d'ambre, des balises de circulation aérienne et des millions de fenêtres lumineuses formant un tableau vivant de l'activité humaine.",
+    "signature": "Une forêt infinie de mégastructures kilométriques découpée dans une nuit d'encre où brille un smog doré et une myriade de fenêtres et balises aériennes palpitant sans fin.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Nuit d'encre noire profonde virant vers un halo de pollution lumineuse dorée à l'horizon."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Mégastructures urbaines monumentales et flèches de gratte-ciels étagées sur 3 rangées de profondeur."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Nappe volumétrique de smog urbain doré illuminé par l'activité incessante de la métropole."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Poussières urbaines et particules lumineuses en suspension sous un vignettage dramatique."
+      }
+    ],
+    "particles": {
+      "type": "Poussières de mégalopole dorées (dust)",
+      "size": "1.0 à 2.0 px",
+      "speed": "0.14 (dérive lente)",
+      "density": "45 particules",
+      "behavior": "Flottement lent en suspension au-dessus des gouffres urbains avec brillance dorée feutrée."
+    },
+    "atmosphere": {
+      "mist": "Halo de smog lumineux or et ambre dense montant depuis la base des canyons d'immeubles.",
+      "light": "Monumentale, spectaculaire et nocturne, célébrant l'immensité de l'ingénierie humaine sans agressivité néon.",
+      "airColor": "Noir d'encre (#020617) embrasé par l'or ambré et le jaune de la pollution lumineuse (#eab308, #facc15).",
+      "mainLightSource": "Pollution lumineuse collective de la cité-monde montant depuis les niveaux inférieurs."
+    },
+    "rareEvents": [
+      {
+        "name": "Projecteur de surveillance aérienne",
+        "type": "god_rays",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Un faisceau de projecteur vertical perce brièvement le smog au sommet des plus hautes tours."
+      }
+    ],
+    "interaction": {
+      "mouse": "Amplifie la parallaxe vertigineuse entre les mégastructures proches et lointaines.",
+      "scroll": "Modifie la densité du smog à la base des tours sans dégrader la lisibilité des cartes de l'interface."
+    },
+    "palette": [
+      "#020617",
+      "#0f172a",
+      "#1e293b",
+      "#854d0e",
+      "#eab308",
+      "#fef08a"
+    ],
+    "references": [
+      "Megacity nighttime skyline golden smog Three.js",
+      "Blade runner monolithic architecture golden lights",
+      "Endless vertical metropolis night view WebGL"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à City Builder.",
+      "solution": "City Builder est une ville diurne/heure bleue à échelle humaine avec grues de chantier et tons ardoise, tandis que Megacity est une mégalopole verticale vertigineuse de nuit noire aux accents d'or monumental et smog dense."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#0f172a",
+          "horizonColor": "#854d0e",
+          "density": 1.1,
+          "speed": 0.06,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#030816",
+          "windowColor": "#eab308",
+          "beaconColor": "#ef4444",
+          "density": 1.1,
+          "speed": 0.14,
+          "depth": 0.35,
+          "intensity": 0.8,
+          "smogIntensity": 0.6
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#854d0e",
+          "density": 0.8,
+          "speed": 0.1,
+          "depth": 0.25,
+          "intensity": 0.5,
+          "heightFalloff": 1.5
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef08a",
+          "density": 0.45,
+          "speed": 0.12,
+          "depth": 0.4,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#01030a",
+          "intensity": 0.6,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  }
+]
+

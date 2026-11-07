@@ -1,0 +1,2346 @@
+[
+  {
+    "id": "neon_night",
+    "name": "Neon Night",
+    "family": "Urbain & action",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Mégalopole nocturne élégante et épurée sous un ciel bleu pétrole profond. Évoque la sérénité feutrée d'une ville moderne au milieu de la nuit (Tokyo ou New York vue d'un rooftop à 3h du matin), où les silhouettes géométriques de gratte-ciels sont ponctuées de balises aéronautiques rouges pulsantes, de fenêtres de bureaux isolées et d'un halo de smog bleuté à la base des tours.",
+    "signature": "Un skyline de gratte-ciels en silhouette sombre sur fond bleu nuit, dont les balises d'antennes pulsent lentement sous une fine nappe de brume urbaine.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel dégradé bleu pétrole nuit vers un horizon cyan feutré avec variations organiques Simplex."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette de gratte-ciels monumentaux d'arrière-plan avec fenêtres discrètes au scintillement asynchrone et balises rouges au sommet des antennes."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Nappe de brume urbaine (smog nocturne) dérivant doucement à la base des édifices."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan atmosphérique",
+        "description": "Rares micro-poussières urbaines flottant lentement sous la brise nocturne avec vignettage feutré."
+      }
+    ],
+    "particles": {
+      "type": "Poussières urbaines en suspension atmosphérique (dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.12 (dérive horizontale très lente)",
+      "density": "45 particules légères",
+      "behavior": "Flottement brownien très lent influencé par une brise d'altitude imperceptible, avec micro-scintillements discrets."
+    },
+    "atmosphere": {
+      "mist": "Halo de smog nocturne et brume d'altitude bleutée dérivant au ras des toits.",
+      "light": "Lumière urbaine feutrée et diffuse issue des fenêtres et des balises, sans éblouissement agressif.",
+      "airColor": "Bleu nuit profond (#001128) virant au bleu saphir (#0068ac) sur la ligne d'horizon.",
+      "mainLightSource": "La lueur diffuse de la métropole à l'horizon, rétro-éclairant les silhouettes des gratte-ciels."
+    },
+    "rareEvents": [
+      {
+        "name": "Pulsation synchronisée des balises d'antennes",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 25.0 secondes",
+        "description": "Un éclat rouge doux et synchronisé traverse les balises des trois plus hautes tours avant de s'estomper dans l'obscurité."
+      }
+    ],
+    "interaction": {
+      "mouse": "Déplacement parallaxe subtil entre les rangées de tours urbaines et courbure légère de la dérive des poussières au passage du curseur.",
+      "scroll": "Amplifie légèrement la profondeur de champ en accentuant la brume à la base sans altérer le contraste des éléments d'interface."
+    },
+    "palette": [
+      "#001128",
+      "#002855",
+      "#0068ac",
+      "#0096c7",
+      "#ef4444",
+      "#f8fafc"
+    ],
+    "references": [
+      "Three.js urban night skyline shader",
+      "CodePen calm city night parallax",
+      "Shadertoy blue night cityscape"
+    ],
+    "risks": {
+      "pitfall": "Ressembler à un simple fond sombre statique avec des rectangles noirs sans vie.",
+      "solution": "Balises d'antennes pulsant à des fréquences asynchrones, dégradé organique Simplex évitant tout banding, et nappe de brume urbaine réactive à la parallaxe."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#000814",
+          "bottomColor": "#001128",
+          "horizonColor": "#0068ac",
+          "density": 1,
+          "speed": 0.1,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "parallax_city",
+        "params": {
+          "buildingColor": "#000a18",
+          "windowColor": "#38bdf8",
+          "beaconColor": "#ef4444",
+          "density": 0.85,
+          "speed": 0.15,
+          "depth": 0.25,
+          "intensity": 0.8,
+          "smogIntensity": 0.35
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#002244",
+          "density": 0.45,
+          "speed": 0.12,
+          "depth": 0.2,
+          "heightFalloff": 1.8
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#93c5fd",
+          "density": 0.35,
+          "speed": 0.12,
+          "drift": 0.15,
+          "intensity": 0.6
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000511",
+          "intensity": 0.45,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "arctic_day",
+    "name": "Arctic Day",
+    "family": "Éléments & catastrophes",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Immense désert blanc de la banquise arctique sous un soleil de plomb froid. Évoque la pureté silencieuse du Groenland ou des îles Svalbard à midi : étendues de glace immaculée reflétant un ciel bleu azur cristallin, silhouettes de glaciers lointains baignés d'un halo vaporeux et rares flocons de neige sèche dérivant au ras de la surface.",
+    "signature": "Des crêtes de glaciers lointains baignées de lumière polaire froide, survolées par de rares flocons légers qui glissent à l'horizontale sous une brise arctique.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel polaire dégradé blanc givré vers un bleu glacier évanescent avec bruit Simplex adouci."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette de reliefs glaciaires et de crêtes d'icebergs aux versants ombragés bleutés sous soleil rasant."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Nappe de brume blanche rampante simulant le blizzard rasant de surface au pied des contreforts."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Flocons de neige cristalline ultra-fins glissant lentement sur l'axe horizontal."
+      }
+    ],
+    "particles": {
+      "type": "Flocons de neige fine et cristaux de givre (snow)",
+      "size": "1.2 à 2.8 px",
+      "speed": "0.18 (glissement horizontal régulier sous vent constant)",
+      "density": "55 flocons légers",
+      "behavior": "Trajectoires horizontales douces avec micro-oscillations d'altitude simulant une neige poudreuse portée par un vent polaire feutré."
+    },
+    "atmosphere": {
+      "mist": "Brume blanche poudreuse rampante au sol masquant le pied des reliefs de glace.",
+      "light": "Lumière solaire polaire aveuglante mais feutrée, diffuse et sans ombres dures.",
+      "airColor": "Blanc pur (#f0f5fa) se fondant dans un bleu glacier doux (#dbeafe) et azur polaire (#0068ac).",
+      "mainLightSource": "Soleil boréal rasant hors champ, illuminant la crête des névés et glaciers."
+    },
+    "rareEvents": [
+      {
+        "name": "Rafale de poudreuse arctique",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 30.0 secondes",
+        "description": "Une brise subite accélère doucement les flocons horizontaux et soulève un léger voile de neige poudreuse avant de retomber."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe incline très doucement la chaîne de glaciers et dévie la trajectoire des flocons de neige au passage du pointeur.",
+      "scroll": "Épaissit subtilement la brume blanche au bas de la page pour maintenir un contraste de lecture parfait sur fond clair."
+    },
+    "palette": [
+      "#f0f5fa",
+      "#e2e8f0",
+      "#bfdbfe",
+      "#93c5fd",
+      "#0068ac",
+      "#0f172a"
+    ],
+    "references": [
+      "Three.js arctic snow landscape",
+      "Shadertoy frozen ice desert",
+      "CodePen polar glacier parallax"
+    ],
+    "risks": {
+      "pitfall": "Écran blanc brûlant et éblouissant sans relief, rendant les textes illisibles.",
+      "solution": "Calibration soignée d'un dégradé azur-glacier, contraste doux sur les versants ombragés des monts et limitation stricte de l'intensité des particules."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#f0f5fa",
+          "bottomColor": "#dbeafe",
+          "horizonColor": "#bfdbfe",
+          "density": 0.9,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#cbd5e1",
+          "sunColor": "#ffffff",
+          "mistColor": "#e2e8f0",
+          "density": 0.8,
+          "speed": 0.1,
+          "depth": 0.25,
+          "intensity": 0.75,
+          "snowLevel": 0.9
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#f8fafc",
+          "density": 0.4,
+          "speed": 0.1,
+          "depth": 0.2,
+          "heightFalloff": 2.2
+        }
+      },
+      {
+        "brick": "snow",
+        "params": {
+          "snowColor": "#ffffff",
+          "density": 0.35,
+          "speed": 0.18,
+          "wind": 0.4,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#94a3b8",
+          "intensity": 0.18,
+          "smoothness": 0.95
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "emerald_city",
+    "name": "Emerald City",
+    "family": "Magie & fantasy",
+    "intensity": 1,
+    "universe": "Le Magicien d'Oz",
+    "evocation": "La légendaire Cité d'Émeraude se dressant au bout de la route de briques jaunes. Évoque l'émerveillement féerique du pays d'Oz : flèches architecturales étincelantes en béryl et jade sculpté, faisceaux de lumière émeraude majestueux perçant une brume dorée et poussière de fée étincelante flottant dans l'atmosphère.",
+    "signature": "Des flèches de cristal vert émeraude qui se découpent contre un ciel d'or, traversées par de majestueux rais de lumière verte et des étincelles de poussière magique.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel crépusculaire magique dégradé vert forêt profond vers une aube ambrée dorée."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette élancée des flèches, donjons et dômes de la Cité d'Émeraude en perspective noble."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faisceaux volumétriques de lumière vert émeraude (god rays) descendant diagonalement depuis la cime des tours."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Particules de poussière magique dorées et émeraudes pulsant doucement en suspension."
+      }
+    ],
+    "particles": {
+      "type": "Poussières magiques et lucioles d'émeraude (fireflies)",
+      "size": "1.5 à 3.2 px",
+      "speed": "0.14 (ascension sinusoïdale lente)",
+      "density": "40 particules étincelantes",
+      "behavior": "Flottement aérien avec pulsation lumineuse asynchrone non-périodique, oscillant entre or pâle et vert menthe."
+    },
+    "atmosphere": {
+      "mist": "Vapeur féerique irisée teintée de vert jade au pied des remparts de cristal.",
+      "light": "Lumière solaire dorée filtrée à travers des vitraux d'émeraude géants, projetant des rais opalescents.",
+      "airColor": "Vert émeraude profond (#064e3b) sublimé par des rehauts dorés (#059669) et vert menthe (#34d399).",
+      "mainLightSource": "Le rayonnement interne au cœur du palais du Magicien, irradiant vers le ciel."
+    },
+    "rareEvents": [
+      {
+        "name": "Pulsation radiale du cœur d'émeraude",
+        "type": "volumetric_glow",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Une lueur émeraude chaude s'amplifie doucement au centre de la cité, illuminant l'horizon avant de se résorber avec grâce."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe fait glisser les flèches de la cité ; le mouvement du curseur fait vaciller la direction des rais de lumière émeraude.",
+      "scroll": "Fait monter doucement la concentration de particules dorées sans encombrer la zone de lecture."
+    },
+    "palette": [
+      "#022c22",
+      "#064e3b",
+      "#059669",
+      "#10b981",
+      "#34d399",
+      "#f8fafc"
+    ],
+    "references": [
+      "Shadertoy emerald crystal rays",
+      "CodePen emerald city fantasy landscape",
+      "Three.js fantasy castle god rays"
+    ],
+    "risks": {
+      "pitfall": "Vert fluo toxique ou agressif évoquant de l'acide plutôt qu'un joyau féerique précieux.",
+      "solution": "Palette fondée sur des verts impériaux nobles et vert forêt profond, tempérée par des faisceaux ambrés et un éclat feutré."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#022c22",
+          "bottomColor": "#064e3b",
+          "horizonColor": "#059669",
+          "density": 1,
+          "speed": 0.1,
+          "depth": 0.05,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "parallax_castle",
+        "params": {
+          "castleColor": "#022119",
+          "torchColor": "#34d399",
+          "rockColor": "#064e3b",
+          "density": 0.85,
+          "speed": 0.15,
+          "depth": 0.25,
+          "intensity": 0.8,
+          "ruinDecay": 0
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#34d399",
+          "density": 0.8,
+          "speed": 0.15,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "decay": 0.9
+        }
+      },
+      {
+        "brick": "fireflies",
+        "params": {
+          "fireflyColor": "#6ee7b7",
+          "glowColor": "#059669",
+          "density": 0.35,
+          "speed": 0.14,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#011c15",
+          "intensity": 0.45,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "coral_reef",
+    "name": "Coral Reef",
+    "family": "Éléments & catastrophes",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Atoll tropical corallien préservé dans les eaux cristallines de l'océan Pacifique. Évoque la biodiversité sous-marine ensoleillée : réseau de caustiques lumineuses dorées dansant sur le sable blanc et les formations coralliennes pourpres, colonnes de micro-bulles ascendantes et reflets turquoises apaisants.",
+    "signature": "Un réseau de caustiques lumineuses qui ondoie sur des massifs coralliens immergés, ponctué par de fines bulles d'oxygène montant vers la surface azur.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Eau océanique tropicale limpide dégradée bleu lagon profond vers turquoise ensoleillé."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Caustiques réfractées ondulant sur le fond sablonneux et les récifs lointains."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faisceaux de soleil sous-marins descendant en diagonale depuis la surface du clapotis."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Chapelets délicats de micro-bulles aquatiques montant vers le haut avec de légers zigzags."
+      }
+    ],
+    "particles": {
+      "type": "Micro-bulles d'oxygène aquatiques (bubbles)",
+      "size": "1.5 à 3.5 px",
+      "speed": "0.22 (ascension douce et chaloupée)",
+      "density": "45 bulles translucides",
+      "behavior": "Ascension verticale avec ondulation latérale douce sous l'effet de la houle sous-marine, éclatant avec discrétion au sommet."
+    },
+    "atmosphere": {
+      "mist": "Diffusion aquatique cristalline sans turbidité, avec légers dégradés de profondeur bleutés.",
+      "light": "Lumière solaire zénithale réfractée et concentrée par les vagues de surface en rubans mobiles.",
+      "airColor": "Bleu abyssal doux (#082f49) illuminé de reflets turquoise (#0284c7) et touches corail chaud (#ff6b6b).",
+      "mainLightSource": "La surface de l'eau au zénith, agissant comme une lentille optique naturelle."
+    },
+    "rareEvents": [
+      {
+        "name": "Passage d'une vaguelette concentrant les caustiques",
+        "type": "water_caustics",
+        "frequency": "Intervalle moyen de 26.0 secondes",
+        "description": "Une onde de surface amplifie brièvement la netteté et l'éclat des caustiques dorées sur le fond avant de revenir au calme."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le mouvement de la souris crée une légère distorsion de houle dans le réseau de caustiques et écarte doucement les bulles.",
+      "scroll": "Donne l'impression de descendre légèrement dans la colonne d'eau en augmentant la saturation des bleus profonds."
+    },
+    "palette": [
+      "#082f49",
+      "#0369a1",
+      "#0284c7",
+      "#38bdf8",
+      "#ff6b6b",
+      "#fed7aa"
+    ],
+    "references": [
+      "Three.js underwater caustics shader",
+      "Shadertoy coral reef sunlight",
+      "CodePen tropical ocean bubbles"
+    ],
+    "risks": {
+      "pitfall": "Fond bleu criard avec des bulles trop rapides et mécaniques donnant une impression de jeu d'arcade bon marché.",
+      "solution": "Caustiques procédurales Voronoi douces à vitesse ralentie, micro-aberration chromatique sous-marine et dispersion des bulles sur des axes asynchrones."
+    },
+    "bricks": [
+      {
+        "brick": "water_caustics",
+        "params": {
+          "waterColor": "#082f49",
+          "causticColor": "#38bdf8",
+          "density": 0.85,
+          "speed": 0.18,
+          "depth": 0.2,
+          "intensity": 0.85,
+          "causticScale": 3.2
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#7dd3fc",
+          "density": 0.7,
+          "speed": 0.12,
+          "depth": 0.35,
+          "intensity": 0.65,
+          "lightSourceY": 1.2
+        }
+      },
+      {
+        "brick": "bubbles",
+        "params": {
+          "bubbleColor": "#bae6fd",
+          "density": 0.4,
+          "speed": 0.22,
+          "wobble": 0.25,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "intensity": 0.008,
+          "radial": true
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#041926",
+          "intensity": 0.4,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "coral_silhouettes",
+        "category": "intermediate",
+        "reason": "Silhouettes vectorielles procédurales de récifs coralliens, anémones et gorgones étagées sur 2 à 3 plans de profondeur sous-marine."
+      }
+    ]
+  },
+  {
+    "id": "ember",
+    "name": "Ember",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Bivouac silencieux au fond des bois au milieu de la nuit. Évoque la quiétude réconfortante d'un feu de camp dont les flammes vives se sont éteintes pour ne laisser qu'un lit de braises rougeoyantes sous la cendre : lueurs orangées vacillantes réchauffant l'obscurité, flammèches solitaires montant dans le ciel noir et craquements feutrés.",
+    "signature": "Un foyer de braises rougeoyantes qui pulse lentement dans l'obscurité, libérant de fines flammèches incandescentes qui s'élèvent et s'éteignent avec douceur.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Obscurité nocturne profonde et feutrée dégradée noir charbon vers pourpre braise éteint."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette obscure de pierres de foyer ou de bûches calcinées au repos."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Foyer incandescent modulé par une respiration thermique lente et organique."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Braises ardentes légères s'élevant verticalement en dérivant avec le flux thermique."
+      }
+    ],
+    "particles": {
+      "type": "Braises incandescentes en flottaison lente (embers)",
+      "size": "1.0 à 2.6 px",
+      "speed": "0.28 (ascension convective feutrée)",
+      "density": "35 braises délicates",
+      "behavior": "Montée thermique sinusoïdale avec refroidissement progressif (passage de l'or vif au rouge sombre puis extinction progressive)."
+    },
+    "atmosphere": {
+      "mist": "Fine fumerolle de bois sec quasi invisible diffusant une atmosphère chaleureuse.",
+      "light": "Lumière vacillante intime, douce et chaleureuse, modulée par des battements apaisants.",
+      "airColor": "Noir de suie (#0a0505) chauffé par des accents rouge brique (#7f1d1d) et ambre ardent (#ea580c).",
+      "mainLightSource": "Le cœur incandescent du foyer de braises, situé au bas de l'écran."
+    },
+    "rareEvents": [
+      {
+        "name": "Crépitement doux du bois calciné",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 22.0 secondes",
+        "description": "Un micro-sursaut thermique ravive brièvement deux ou trois braises au cœur du lit de cendres sans éclair violent."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le souffle du curseur fait doucement osciller la colonne ascendante de braises et module la lueur du foyer.",
+      "scroll": "Réchauffe très subtilement la dominante ambrée en bas de page sans altérer la lisibilité des cartes de jeu."
+    },
+    "palette": [
+      "#0a0505",
+      "#450a0a",
+      "#7f1d1d",
+      "#ea580c",
+      "#f97316",
+      "#fef08a"
+    ],
+    "references": [
+      "Three.js cozy campfire embers",
+      "Shadertoy glowing embers dark",
+      "CodePen calm embers particles"
+    ],
+    "risks": {
+      "pitfall": "Confusion avec Inferno ou Lava par excès de violence pyrotechnique ou de vitesse d'ascension.",
+      "solution": "Cadence très ralentie (intensité 1), densité faible de braises minuscules, absence d'éclairs ou de distorsions agressives, ambiance feutrée et intime."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#050202",
+          "bottomColor": "#1a0606",
+          "horizonColor": "#7f1d1d",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#ea580c",
+          "secondaryColor": "#7f1d1d",
+          "density": 0.8,
+          "speed": 0.22,
+          "intensity": 0.75,
+          "lightX": 0,
+          "lightY": -0.6,
+          "flickerType": 2
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#ea580c",
+          "hotColor": "#fef08a",
+          "density": 0.35,
+          "speed": 0.28,
+          "drift": 0.15,
+          "coolingRate": 0.85,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "ash",
+        "params": {
+          "ashColor": "#78716c",
+          "darkColor": "#1c1917",
+          "density": 0.25,
+          "speed": 0.15,
+          "intensity": 0.45
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.65,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "arctic_neon",
+    "name": "Arctic Neon",
+    "family": "Néon & cyber",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Station scientifique autonome ou laboratoire cryogénique perdu au pôle Nord dans un univers cyberpunk. Évoque la rencontre du froid absolu et de la technologie futuriste : surfaces de glace immaculée traversées par des néons cyan luminescents, structures géométriques sub-zéro et brume d'azote liquide rampante.",
+    "signature": "Une trame géométrique givrée rétro-éclairée par des néons cyan froids, sur laquelle glissent des volutes de brume cryogénique et de rares étincelles électriques.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel polaire nocturne dégradé bleu d'encre vers bleu cobalt givré."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Maillage hexagonal ou grille en perspective rappelant des structures composites cryogéniques."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Nappe de brume d'azote liquide rampante au sol avec décroissance verticale nette."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Cristaux de glace en suspension et micro-arcs électriques cyan évanescents."
+      }
+    ],
+    "particles": {
+      "type": "Cristaux de givre et particules d'ionisation cyan (dust)",
+      "size": "1.0 à 2.4 px",
+      "speed": "0.15 (lente lévitation horizontale et tournoiement)",
+      "density": "40 particules cybernétiques",
+      "behavior": "Dérive fluide avec légères saccades angulaires simulant des particules prises dans un champ électrostatique froid."
+    },
+    "atmosphere": {
+      "mist": "Nappe de vapeur cryogénique dense et froide rampant au bas de l'écran.",
+      "light": "Éclairage fluorescent froid et tranchant, émis par des tubes néon et circuits sous la glace.",
+      "airColor": "Bleu nuit glacé (#020617) zébré par un cyan électrique pur (#00f0ff) et blanc givre (#f8fafc).",
+      "mainLightSource": "La grille sous-jacente illuminant la surface par transparence."
+    },
+    "rareEvents": [
+      {
+        "name": "Impulsion électrostatique cryogénique",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 32.0 secondes",
+        "description": "Une onde de charge cyan parcourt brièvement les arêtes de la grille avec une micro-vibration géométrique."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe incline les lignes de fuite de la grille ; le curseur génère un sillage ionisé bleuté temporaire.",
+      "scroll": "Fait glisser les lignes de fuite vers l'horizon sans altérer le confort visuel de lecture."
+    },
+    "palette": [
+      "#020617",
+      "#082f49",
+      "#0284c7",
+      "#00f0ff",
+      "#a5f3fc",
+      "#f8fafc"
+    ],
+    "references": [
+      "Three.js cyber ice grid",
+      "CodePen sub zero neon cyberpunk",
+      "Shadertoy glowing neon frost"
+    ],
+    "risks": {
+      "pitfall": "Trop agressif ou clignotant, fatiguant les yeux lors d'une session de gestion de collection.",
+      "solution": "Intensité 1 feutrée, pulsations très douces sans stroboscope, contraste adouci sur les lignes géométriques."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#082f49",
+          "horizonColor": "#00f0ff",
+          "density": 1,
+          "speed": 0.1,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "hex_grid",
+        "params": {
+          "gridColor": "#00f0ff",
+          "density": 0.9,
+          "speed": 0.12,
+          "depth": 0.25,
+          "intensity": 0.65,
+          "pulseSpeed": 0.8
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#06b6d4",
+          "density": 0.4,
+          "speed": 0.14,
+          "depth": 0.2,
+          "heightFalloff": 2.2
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#a5f3fc",
+          "density": 0.35,
+          "speed": 0.15,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#010b14",
+          "intensity": 0.5,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "gold_rush",
+    "name": "Gold Rush",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "La ruée vers l'or en Californie et au Klondike en 1849. Évoque la promesse de fortune et l'aventure pionnière de l'Ouest sauvage : le lit d'une rivière serpentant entre des canyons arides au soleil couchant, où le limon charrie des pépites précieuses et des paillettes d'or étincelantes sous une brise tiède.",
+    "signature": "Un canyon ocre baigné de soleil couchant où scintillent des milliers de paillettes d'or en suspension, traversé par des rais de lumière ambrée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel crépusculaire chaud dégradé brun terre de Sienne vers orange ocre et or doux."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Crêtes rocheuses découpées d'un canyon de l'Ouest sous une lumière rasante."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faisceaux de lumière solaire dorée perçant les gorges rocheuses."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Nuée de fines paillettes d'or et de poussières de roche étincelant avec lenteur."
+      }
+    ],
+    "particles": {
+      "type": "Paillettes d'or et motes solaires (dust)",
+      "size": "1.2 à 3.0 px",
+      "speed": "0.16 (dérive ondulante sous l'air chaud)",
+      "density": "45 paillettes précieuses",
+      "behavior": "Flottement aérien avec étincelle spéculaire périodique lorsque l'angle de la particule croise les rayons solaires."
+    },
+    "atmosphere": {
+      "mist": "Brume de chaleur sèche dorée et poussière minérale en suspension dans la gorge.",
+      "light": "Lumière solaire dorée rasante de fin d'après-midi, créant des reflets chauds métalliques.",
+      "airColor": "Ocre brun (#451a03) baigné de teintes ambrées (#b45309), d'or chaud (#f59e0b) et d'ivoire (#fef3c7).",
+      "mainLightSource": "Le soleil d'or bas sur l'horizon, générant un éclairage chaud contre-jour."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclat spéculaire d'une pépite au soleil",
+        "type": "lens_flare",
+        "frequency": "Intervalle moyen de 24.0 secondes",
+        "description": "Un flash lumineux discret et doré naît d'une crête rocheuse lorsqu'un angle de lumière parfait s'aligne."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe décale les crêtes du canyon ; le curseur attire doucement les paillettes d'or en suspension.",
+      "scroll": "Fait descendre le regard vers le lit de la rivière en intensifiant la tonalité d'or ambré."
+    },
+    "palette": [
+      "#1c1917",
+      "#451a03",
+      "#78350f",
+      "#b45309",
+      "#f59e0b",
+      "#fef3c7"
+    ],
+    "references": [
+      "Three.js golden dust particles",
+      "Shadertoy gold canyon sunset",
+      "CodePen golden sparks floating"
+    ],
+    "risks": {
+      "pitfall": "Confusion avec Desert Night ou Champagne par saturation excessive en jaune primaire criard.",
+      "solution": "Palette ancrée dans les terres brûlées et ocres de l'Ouest américain, particules traitées en paillettes minérales à scintillement spéculaire directionnel."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#1c1917",
+          "bottomColor": "#451a03",
+          "horizonColor": "#b45309",
+          "density": 1,
+          "speed": 0.1,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#292524",
+          "sunColor": "#b45309",
+          "mistColor": "#78350f",
+          "density": 0.9,
+          "speed": 0.12,
+          "depth": 0.25,
+          "intensity": 0.8,
+          "snowLevel": 0
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#fbbf24",
+          "density": 0.75,
+          "speed": 0.15,
+          "depth": 0.35,
+          "intensity": 0.7,
+          "decay": 0.92
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f59e0b",
+          "density": 0.45,
+          "speed": 0.16,
+          "drift": 0.2,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1a0b02",
+          "intensity": 0.45,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "midnight_ocean",
+    "name": "Midnight Ocean",
+    "family": "Éléments & catastrophes",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Pleine mer au milieu de la nuit sous un ciel étoilé immense. Évoque la solitude majestueuse du grand large : une houle sombre et paisible rythmée par le balancement des flots, des crêtes d'écume argentées illuminées par la lune et des nuages de phytoplancton bioluminescent cyan brillant dans le sillage de l'eau.",
+    "signature": "Une houle océanique nocturne berçant des traînées de plancton bioluminescent cyan, sous une voûte d'étoiles scintillantes.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Voûte céleste nocturne infinie parsemée d'étoiles fines aux scintillements asynchrones."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Ligne d'horizon marine où la mer noire et le ciel se confondent dans une lueur argentée."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Trains de vagues ondulants en houle croisée douce avec crêtes d'écume cyan phosphorescentes."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Rares micro-lucioles de bioluminescence marine flottant au ras de l'eau."
+      }
+    ],
+    "particles": {
+      "type": "Micro-organismes bioluminescents et embruns marins (fireflies)",
+      "size": "1.0 à 2.4 px",
+      "speed": "0.14 (ondulation en dérive marine)",
+      "density": "40 points phosphorescents",
+      "behavior": "Flottement fluide suivant la houle avec pulsations lumineuses très douces en teinte cyan lagune."
+    },
+    "atmosphere": {
+      "mist": "Brume marine d'horizon estompant la séparation entre le ciel étoilé et la surface des flots.",
+      "light": "Lumière lunaire bleutée douce, complétée par la bioluminescence autonome de l'eau.",
+      "airColor": "Bleu nuit d'encre (#020617) illuminé de reflets cyan électrique (#06b6d4) et bleu canard (#083344).",
+      "mainLightSource": "La lune argentée hors champ, créant un reflet spéculaire doux sur l'eau."
+    },
+    "rareEvents": [
+      {
+        "name": "Étoile filante sur l'océan",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 35.0 secondes",
+        "description": "Un météore discret traverse la partie supérieure du ciel étoilé avant de s'éteindre au-dessus de l'horizon marin."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe modifie l'angle de vue sur la houle ; le mouvement de la souris excite temporairement la lueur bioluminescente.",
+      "scroll": "Donne une sensation de bercement maritime régulier sans perturber le défilement des listes de jeux."
+    },
+    "palette": [
+      "#020617",
+      "#0f172a",
+      "#083344",
+      "#0e7490",
+      "#06b6d4",
+      "#a5f3fc"
+    ],
+    "references": [
+      "Three.js bioluminescent ocean waves",
+      "Shadertoy night sea stars",
+      "CodePen calm dark ocean waves"
+    ],
+    "risks": {
+      "pitfall": "Confusion avec Ocean Deep (qui est une plongée abyssale sous-marine) ou vagues trop agitées donnant le mal de mer.",
+      "solution": "Scène de surface nocturne calme et contemplative, houle lente à faible cambrure, étoiles en ciel de fond et bioluminescence délicate."
+    },
+    "bricks": [
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#ffffff",
+          "density": 0.7,
+          "speed": 0.05,
+          "depth": 1,
+          "intensity": 0.75,
+          "twinkleSpeed": 0.8
+        }
+      },
+      {
+        "brick": "waves",
+        "params": {
+          "deepColor": "#020617",
+          "crestColor": "#06b6d4",
+          "density": 0.8,
+          "speed": 0.18,
+          "depth": 0.35,
+          "intensity": 0.75,
+          "waveSteepness": 0.4
+        }
+      },
+      {
+        "brick": "fireflies",
+        "params": {
+          "fireflyColor": "#06b6d4",
+          "glowColor": "#083344",
+          "density": 0.3,
+          "speed": 0.12,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#010409",
+          "intensity": 0.55,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#a5f3fc",
+          "interval": 35,
+          "trailLength": 0.6,
+          "speed": 1.2
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "ocean_deep",
+    "name": "Ocean Deep",
+    "family": "Éléments & catastrophes",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Immersion dans les profondeurs abyssales de l'océan, à 4 000 mètres sous la surface dans la zone pélagique. Évoque le silence pesant des grands fonds : obscurité d'encre où la lumière du soleil n'est plus qu'un souvenir lointain, rais bleutés atténués, colonnes de bulles solitaires et neige marine descendant avec lenteur.",
+    "signature": "Une descente silencieuse dans les ténèbres abyssales où montent de rares colonnes de bulles solitaires à travers un voile de neige marine.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Obscurité océanique abyssale dégradée bleu nuit pétrole vers bleu cobalt sourd."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette estompée de reliefs sous-marins et de cheminées hydrothermales endormies."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faisceaux atténués et vaporeux perçant l'eau sombre comme le projecteur d'un submersible."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Particules de neige marine descendant au ralenti et micro-bulles ascendantes espacées."
+      }
+    ],
+    "particles": {
+      "type": "Neige marine organique et bulles abyssales (dust & bubbles)",
+      "size": "1.0 à 3.0 px",
+      "speed": "0.12 pour la neige marine, 0.2 pour les bulles",
+      "density": "30 particules de neige marine + 20 micro-bulles",
+      "behavior": "Double mouvement croisé : descente lente et indolente des flocons de neige marine vers le fond, ascension rectiligne des bulles d'oxygène."
+    },
+    "atmosphere": {
+      "mist": "Turbidité liquide feutrée propre aux grands fonds marins, absorbant la lumière.",
+      "light": "Lumière bleu profond mystérieuse et tamisée, à forte décroissance exponentielle.",
+      "airColor": "Bleu abysse ténébreux (#00172d) s'épanouissant en bleu saphir marin (#003459) et turquoise doux (#00b4d8).",
+      "mainLightSource": "Source lumineuse diffuse et lointaine en plongée zénithale très atténuée."
+    },
+    "rareEvents": [
+      {
+        "name": "Lueur fantomatique d'une créature pélagique",
+        "type": "volumetric_glow",
+        "frequency": "Intervalle moyen de 34.0 secondes",
+        "description": "Une nébuleuse bioluminescente turquoise glisse doucement dans le lointain avant de disparaître dans les ténèbres."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace les plans sous-marins avec une inertie liquide fluide ; le curseur dissipe délicatement la neige marine.",
+      "scroll": "Donne l'impression de descendre d'un palier de profondeur supplémentaire sans perte de lisibilité textuelle."
+    },
+    "palette": [
+      "#001020",
+      "#00223d",
+      "#003459",
+      "#0077b6",
+      "#00b4d8",
+      "#90e0ef"
+    ],
+    "references": [
+      "Three.js deep ocean abyss",
+      "Shadertoy marine snow underwater",
+      "CodePen deep sea underwater particles"
+    ],
+    "risks": {
+      "pitfall": "Écran trop sombre et angoissant ou ressemblant à un simple écran d'ordinateur éteint.",
+      "solution": "Dégradé riche en nuances d'indigo marin, faisceaux lumineux volumétriques doux et double système de particules animées."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#001020",
+          "bottomColor": "#00223d",
+          "horizonColor": "#003459",
+          "density": 1.1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "god_rays",
+        "params": {
+          "rayColor": "#00b4d8",
+          "density": 0.6,
+          "speed": 0.1,
+          "depth": 0.35,
+          "intensity": 0.55,
+          "decay": 0.94
+        }
+      },
+      {
+        "brick": "bubbles",
+        "params": {
+          "bubbleColor": "#90e0ef",
+          "density": 0.3,
+          "speed": 0.18,
+          "wobble": 0.15,
+          "intensity": 0.6
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#caf0f8",
+          "density": 0.3,
+          "speed": 0.1,
+          "drift": 0.08,
+          "intensity": 0.5
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000810",
+          "intensity": 0.6,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "abyssal_trench",
+        "category": "intermediate",
+        "reason": "Silhouettes de failles rocheuses abyssales sombres et fumerolles hydrothermales émettant de légers voiles de particules thermiques."
+      }
+    ]
+  },
+  {
+    "id": "lava",
+    "name": "Lava",
+    "family": "Éléments & catastrophes",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Une coulée de lave basaltique fluide (type pahoehoe à Hawaï) s'écoulant au ralenti dans la nuit. Évoque la géologie volcanique majestueuse : plaques de basalte noir refroidies qui se fissurent lentement, révélant un magma orange incandescent à 1 100 °C, avec une respiration thermique douce et de légères volutes de vapeur sulfureuse.",
+    "signature": "Une rivière de lave magmatique qui progresse au ralenti sous une croûte de basalte craquelée, pulsant d'une douce respiration thermique.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel de nuit volcanique obscurci de suie et teinté de rougeoiement magmatique sourd."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Pentes de roches volcaniques sombres en perspective inclinée."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Faille magmatique principale avec fractures lumineuses orange et cœur jaune-blanc."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Légère distorsion de chaleur au ras de la lave et rares flammèches solitaires."
+      }
+    ],
+    "particles": {
+      "type": "Micro-braises et vapeurs sulfureuses (embers & smoke)",
+      "size": "1.2 à 2.8 px",
+      "speed": "0.22 (montée lente et feutrée)",
+      "density": "30 micro-braises",
+      "behavior": "Flottement ascendant doux au-dessus des failles incandescentes, s'éteignant rapidement en altitude."
+    },
+    "atmosphere": {
+      "mist": "Nappe de vapeur chaude très fine et transparente ondulant sur la roche.",
+      "light": "Lumière incandescente rasante émise par les failles de fusion, projetant des ombres rouges.",
+      "airColor": "Noir basalte (#020617) réchauffé par l'ambre ardent (#ea580c) et l'orange lave (#ff4500).",
+      "mainLightSource": "La coulée de lave en contrebas, illuminant la scène par le dessous."
+    },
+    "rareEvents": [
+      {
+        "name": "Respiration thermique magmatique",
+        "type": "heat_distortion",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Une impulsion thermique lente fait rougeoyer plus intensément les failles de fusion avant de retrouver son rythme calme."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe décale l'angle d'observation des crêtes de basalte ; le curseur courbe délicatement les volutes thermiques.",
+      "scroll": "Donne l'impression de longer la coulée de roche en fusion sans saturer le fond des cartes d'information."
+    },
+    "palette": [
+      "#020617",
+      "#1a0805",
+      "#450a0a",
+      "#ea580c",
+      "#ff4500",
+      "#fef08a"
+    ],
+    "references": [
+      "Three.js volcanic lava flow shader",
+      "Shadertoy procedural lava slow",
+      "CodePen calm magma crust"
+    ],
+    "risks": {
+      "pitfall": "Éviter l'effet 'sauce tomate qui bout' ou la frénésie chaotique d'Eruption/Inferno.",
+      "solution": "Vitesse d'écoulement très ralentie (0.1), failles Voronoi précises à 3 gradients thermiques, intensité 1 mesurée et feutrée."
+    },
+    "bricks": [
+      {
+        "brick": "lava_flow",
+        "params": {
+          "magmaColor": "#ff4500",
+          "crustColor": "#020617",
+          "coreColor": "#fef08a",
+          "density": 0.9,
+          "speed": 0.1,
+          "depth": 0.2,
+          "intensity": 0.9,
+          "heatPulseSpeed": 0.8
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#ff4500",
+          "density": 0.8,
+          "speed": 0.2,
+          "depth": 0.25,
+          "intensity": 0.6,
+          "heatHeight": 0.5
+        }
+      },
+      {
+        "brick": "embers",
+        "params": {
+          "emberColor": "#ff4500",
+          "hotColor": "#fef08a",
+          "density": 0.3,
+          "speed": 0.22,
+          "drift": 0.1,
+          "intensity": 0.7
+        }
+      },
+      {
+        "brick": "smoke",
+        "params": {
+          "smokeColor": "#451a03",
+          "density": 0.3,
+          "speed": 0.15,
+          "intensity": 0.4
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.6,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "forest_dark",
+    "name": "Forest Dark",
+    "family": "Éléments & catastrophes",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Forêt ancienne et profonde à l'heure bleue, aux confins des massifs de conifères de Scandinavie ou de la Forêt-Noire. Évoque la quiétude solennelle des grands bois : troncs centenaires se dressant vers une voûte d'émeraude sombre, nappe de brume de sous-bois flottant sur la mousse humide et feuilles d'automne tombant avec lenteur.",
+    "signature": "Des silhouettes de grands conifères étagées sur trois plans de brume émeraude, traversées par des feuilles mortes qui tombent au ralenti.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel crépusculaire d'heure bleue dégradé vert mousse profond vers canopée sombre."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Silhouette estompée de cimes de conifères ondulant imperceptiblement sous le vent."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Nappe de brume de sous-bois rampante enveloppant la base des troncs."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Feuilles mortes dorées et vert sombre descendant en virevoltant doucement."
+      }
+    ],
+    "particles": {
+      "type": "Feuilles mortes d'automne et motes végétales (leaves)",
+      "size": "2.0 à 4.2 px",
+      "speed": "0.2 (descente oscillante lente et feuille morte)",
+      "density": "35 feuilles délicates",
+      "behavior": "Chute chaloupée avec portance d'air sinusoïdale sur les axes horizontaux, virevoltant sur elles-mêmes."
+    },
+    "atmosphere": {
+      "mist": "Nappe de brume végétale humide et fraîche s'élevant des tapis de mousse.",
+      "light": "Lumière crépusculaire diffuse et feutrée, filtrée par le feuillage de la haute canopée.",
+      "airColor": "Vert mousse ténébreux (#021a12) s'ouvrant sur le vert émeraude profond (#064e3b) et vert forêt (#065f46).",
+      "mainLightSource": "La clarté du ciel crépusculaire au-dessus de la ligne des arbres."
+    },
+    "rareEvents": [
+      {
+        "name": "Bourrasque feutrée dans la canopée",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 27.0 secondes",
+        "description": "Une brise douce fait légèrement fléchir les cimes des arbres et détache trois feuilles supplémentaires."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe décale harmonieusement les 3 strates de la forêt ; le curseur courbe la trajectoire des feuilles en chute.",
+      "scroll": "Donne l'impression de s'enfoncer doucement sous la frondaison sans masquer le texte des panneaux."
+    },
+    "palette": [
+      "#021a12",
+      "#064e3b",
+      "#065f46",
+      "#047857",
+      "#10b981",
+      "#f8fafc"
+    ],
+    "references": [
+      "Three.js dark forest fog parallax",
+      "CodePen falling leaves slow calm",
+      "Shadertoy mystic deep woods"
+    ],
+    "risks": {
+      "pitfall": "Vert terne ou 'boueux' manquant de contraste et de profondeur de plan.",
+      "solution": "Décomposition stricte en 3 strates de silhouettes d'arbres avec flexion quadratique réaliste, brume volumétrique entre les plans."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#021a12",
+          "bottomColor": "#064e3b",
+          "horizonColor": "#065f46",
+          "density": 1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "parallax_forest",
+        "params": {
+          "forestColor": "#021a12",
+          "fogColor": "#065f46",
+          "density": 0.9,
+          "speed": 0.12,
+          "depth": 0.3,
+          "intensity": 0.85,
+          "windStrength": 0.25
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#064e3b",
+          "density": 0.45,
+          "speed": 0.12,
+          "depth": 0.2,
+          "heightFalloff": 1.9
+        }
+      },
+      {
+        "brick": "leaves",
+        "params": {
+          "leafColor": "#047857",
+          "dryColor": "#b45309",
+          "density": 0.35,
+          "speed": 0.2,
+          "sway": 0.3,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#01120c",
+          "intensity": 0.5,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "parchment",
+    "name": "Parchment",
+    "family": "Aventure & histoire",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Un grimoire ancien d'érudit médiéval ou une carte au trésor sur parchemin de vélin jauni. Évoque la mémoire des manuscrits précieux : texture fibreuse aux bords roussis par le feu et la suie, halo chaleureux d'une bougie vacillante et micro-poussières de cire flottant dans l'air calme d'un scriptorium.",
+    "signature": "Un vélin médiéval aux bords noircis balayé par la lueur vacillante d'une bougie, sur lequel flottent de minuscules grains de cire dorée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Fond de table de chêne sombre et cuir vieilli."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Surface de parchemin patiné aux teintes beige ivoire et ambre antique."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Foyer lumineux chaleureux simulant une bougie hors champ projetant son halo sur le vélin."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Micro-poussières d'encre et de cire en suspension lente avec grain de papier marqué."
+      }
+    ],
+    "particles": {
+      "type": "Micro-poussières de reliure et cire d'abeille (dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.1 (flottement thermique presque imperceptible)",
+      "density": "30 particules feutrées",
+      "behavior": "Lévitation brownienne très douce dans le halo de lumière chaude de la bougie."
+    },
+    "atmosphere": {
+      "mist": "Volute de fumée de bougie quasi transparente s'élevant doucement sur le côté.",
+      "light": "Lumière dorée intime et vacillante de flamme de bougie, modulant doucement la luminosité du vélin.",
+      "airColor": "Ambre chaud (#b45309) et brun sépia (#78350f) sur un fond ivoire parchemin (#fef3c7).",
+      "mainLightSource": "La bougie de cire située en périphérie, illuminant la texture du parchemin."
+    },
+    "rareEvents": [
+      {
+        "name": "Saut de flamme de la bougie",
+        "type": "flickering_light",
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "La flamme de la bougie vacille doucement sous un courant d'air, déplaçant l'ombre périphérique du vélin."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le pointeur de souris déplace subtilement le centre du halo lumineux de la bougie sur la page de parchemin.",
+      "scroll": "Fait glisser la texture du vélin avec une sensation d'épaisseur et d'authenticité matérielle."
+    },
+    "palette": [
+      "#1c1917",
+      "#451a03",
+      "#78350f",
+      "#b45309",
+      "#d97706",
+      "#fef3c7"
+    ],
+    "references": [
+      "Three.js old parchment candle shader",
+      "CodePen medieval paper texture",
+      "Shadertoy burning parchment edges"
+    ],
+    "risks": {
+      "pitfall": "Fond jaune monotone ressemblant à une page web non stylée ou à un simple aplat beige sale.",
+      "solution": "Grain argentique/papier haute définition, vignettage sépia organique avec bords roussis et vacillement doux de bougie Simplex."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#292524",
+          "bottomColor": "#78350f",
+          "horizonColor": "#b45309",
+          "density": 1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#f59e0b",
+          "secondaryColor": "#b45309",
+          "density": 0.9,
+          "speed": 0.25,
+          "intensity": 0.75,
+          "lightX": -0.3,
+          "lightY": 0.2,
+          "flickerType": 2
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#fef3c7",
+          "density": 0.3,
+          "speed": 0.1,
+          "drift": 0.08,
+          "intensity": 0.6
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.12,
+          "speed": 0.2,
+          "density": 1.3,
+          "monochrome": true
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#451a03",
+          "intensity": 0.55,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "parchment_burn_edges",
+        "category": "overlay",
+        "reason": "Effet procédural de bordures de parchemin brûlées et ondulées avec roussissures de suie et dentelures de vélin."
+      }
+    ]
+  },
+  {
+    "id": "ice_cave",
+    "name": "Ice Cave",
+    "family": "Éléments & catastrophes",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Une caverne de glace glaciaire millénaire sous la calotte du Vatnajökull en Islande. Évoque la fascination minérale et transparente du grand froid : voûte de glace d'un bleu saphir profond, parois translucides sculptées par l'eau de fonte, reflets prismatiques et micro-paillettes de diamant étincelant sous une lueur froide.",
+    "signature": "Une voûte de glace translucide aux reflets cyan et lavande, d'où descendent de fines paillettes de givre qui scintillent sous la lumière.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Profondeur ténébreuse du glacier dégradée bleu cobalt vers cyan translucide."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Reliefs et parois de glace sculptées aux versants refractant la clarté extérieure."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Dôme de lueur bleutée diffuse simulant la clarté du jour filtrée à travers 10 mètres de glace."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Cristaux de givre et poussière de diamant étincelant avec lenteur dans l'air immobile."
+      }
+    ],
+    "particles": {
+      "type": "Poussières de diamant et cristaux de givre (dust)",
+      "size": "1.0 à 2.5 px",
+      "speed": "0.12 (lévitation cristalline en suspension)",
+      "density": "40 cristaux scintillants",
+      "behavior": "Flottement aérien pur avec scintillements asynchrones nets imitant la réfraction spéculaire de facettes de glace."
+    },
+    "atmosphere": {
+      "mist": "Brume de condensation glacée ultra-fine piégée sous la voûte de glace.",
+      "light": "Lumière azurée froide filtrée et magnifiée par l'épaisseur de la glace glaciaire.",
+      "airColor": "Bleu glacier profond (#0c192c) illuminé de cyan cristallin (#a5f3fc) et lavande opalescente (#c7d2fe).",
+      "mainLightSource": "La transparence de la voûte de glace illuminée par la lumière extérieure."
+    },
+    "rareEvents": [
+      {
+        "name": "Réfraction prismatique sur une arrête de glace",
+        "type": "lens_flare",
+        "frequency": "Intervalle moyen de 26.0 secondes",
+        "description": "Un éclat prismatique discret décompose brièvement la lumière en un arc-en-ciel glacé sur un cristal d'avant-plan."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe révèle les facettes intérieures de la caverne de glace ; le curseur fait chatoyer les cristaux de givre.",
+      "scroll": "Donne l'impression de s'avancer plus profondément dans le boyau de glace sans saturer le contraste de l'interface."
+    },
+    "palette": [
+      "#0c192c",
+      "#0e7490",
+      "#06b6d4",
+      "#a5f3fc",
+      "#c7d2fe",
+      "#f8fafc"
+    ],
+    "references": [
+      "Three.js ice cave crystalline shader",
+      "Shadertoy glacier ice refraction",
+      "CodePen frozen cave blue crystal"
+    ],
+    "risks": {
+      "pitfall": "Confusion avec Arctic Day (qui est un extérieur ensoleillé) ou aspect plastique bleu uniforme.",
+      "solution": "Translucidité interne par gradients de diffusion volumétrique, éclats prismatiques rares et particules fines type poussière de diamant."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#0c192c",
+          "bottomColor": "#164e63",
+          "horizonColor": "#a5f3fc",
+          "density": 1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#ffffff",
+          "glowColor": "#a5f3fc",
+          "outerColor": "#0e7490",
+          "density": 0.85,
+          "intensity": 0.75,
+          "glowX": 0,
+          "glowY": 0.4
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#a5f3fc",
+          "density": 0.4,
+          "speed": 0.12,
+          "drift": 0.1,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#05101a",
+          "intensity": 0.45,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "chromatic_aberration",
+        "params": {
+          "intensity": 0.007,
+          "radial": true
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "ice_crystals_geometry",
+        "category": "intermediate",
+        "reason": "Géométrie procédurale de stalactites et prismes de glace translucides suspendus à la voûte avec réfraction optique."
+      }
+    ]
+  },
+  {
+    "id": "aurora",
+    "name": "Aurora",
+    "family": "Espace & cosmos",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Une nuit polaire en Laponie sous le spectacle d'une aurore boréale céleste. Évoque le mystère des aurores polaires scandinaves : d'immenses draperies de plasma ionisé vert émeraude et violette ondulant au ralenti dans la haute atmosphère, au-dessus de crêtes alpines enneigées sous un champ d'étoiles scintillantes.",
+    "signature": "Des rideaux d'aurore boréale vert émeraude et magenta qui ondulent lentement dans un ciel nocturne étoilé au-dessus de montagnes enneigées.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Voûte céleste polaire d'encre parsemée d'étoiles scintillantes à trois strates de profondeur."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Draperies de plasma d'aurore boréale ondulant et changeant de teintes entre vert et violet."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Chaîne de montagnes nordiques enneigées en silhouette sombre à l'horizon."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Rares micro-cristaux de neige suspendus dérivant avec indolence."
+      }
+    ],
+    "particles": {
+      "type": "Micro-cristaux de neige et poussières célestes (snow)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.12 (dérive douce et feutrée)",
+      "density": "30 particules subtiles",
+      "behavior": "Flottement calme et régulier sans blizzard, évoquant une nuit polaire d'un calme absolu."
+    },
+    "atmosphere": {
+      "mist": "Brume polaire légère à la ligne d'horizon masquant le pied des reliefs montagneux.",
+      "light": "Lueur de plasma ionisé émise directement par les draperies boréales, teignant le paysage en émeraude.",
+      "airColor": "Noir d'encre (#020617) embrasé par le vert émeraude céleste (#10b981) et le pourpre polaire (#a855f7).",
+      "mainLightSource": "Le rideau ondulant de l'aurore boréale dans la haute atmosphère."
+    },
+    "rareEvents": [
+      {
+        "name": "Étoile filante à travers l'aurore",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 32.0 secondes",
+        "description": "Un météore blanc pur traverse en diagonale la draperie de plasma vert avant de se volatiliser."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe incline les rideaux d'aurore et les crêtes montagneuses ; la souris fait légèrement onduler la fréquence des draperies.",
+      "scroll": "Donne l'impression de contempler le zénith en amplifiant l'étendue céleste de l'aurore."
+    },
+    "palette": [
+      "#020617",
+      "#064e3b",
+      "#10b981",
+      "#34d399",
+      "#a855f7",
+      "#f8fafc"
+    ],
+    "references": [
+      "Three.js northern lights aurora shader",
+      "Shadertoy realistic aurora borealis",
+      "CodePen calm aurora night sky"
+    ],
+    "risks": {
+      "pitfall": "Couleurs saturées criardes type néon clignotant ou rideau figé ressemblant à un simple dégradé statique.",
+      "solution": "Ondulation par équations d'ondes harmoniques Simplex, gradients doux vert vers violet et intégration avec un champ d'étoiles Three.js."
+    },
+    "bricks": [
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#ffffff",
+          "density": 0.75,
+          "speed": 0.05,
+          "depth": 1,
+          "intensity": 0.75,
+          "twinkleSpeed": 0.7
+        }
+      },
+      {
+        "brick": "aurora",
+        "params": {
+          "topColor": "#a855f7",
+          "bottomColor": "#10b981",
+          "density": 0.65,
+          "speed": 0.15,
+          "depth": 0.25,
+          "intensity": 0.85,
+          "waveFrequency": 2.2
+        }
+      },
+      {
+        "brick": "parallax_mountains",
+        "params": {
+          "rockColor": "#020617",
+          "sunColor": "#064e3b",
+          "mistColor": "#0f172a",
+          "density": 0.8,
+          "speed": 0.1,
+          "depth": 0.35,
+          "intensity": 0.7,
+          "snowLevel": 0.75
+        }
+      },
+      {
+        "brick": "snow",
+        "params": {
+          "snowColor": "#ffffff",
+          "density": 0.25,
+          "speed": 0.12,
+          "intensity": 0.6
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#010810",
+          "intensity": 0.5,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#ffffff",
+          "interval": 32,
+          "trailLength": 0.7,
+          "speed": 1.2
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "desert_night",
+    "name": "Desert Night",
+    "family": "Éléments & catastrophes",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Une nuit sereine dans le désert du Sahara ou du Wadi Rum. Évoque la grandeur immobile des mers de sable nocturnes : dunes sinueuses aux crêtes affûtées refroidies sous la lune, ciel d'encre d'une pureté cosmique piqué de milliers d'étoiles et voile de sable doré soulevé par la brise nocturne.",
+    "signature": "Des crêtes de dunes ondulantes en silhouette sous une voûte d'étoiles scintillantes, balayées par un doux voile de poussière de sable doré.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Voûte céleste désertique ultra-claire et profonde avec étoiles scintillantes."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Crêtes de dunes sinueuses aux versants ombragés d'un bleu nuit sombre."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Crête de sable au premier plan aux reflets ocre doré révélés par la lumière céleste."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Grains de sable dorés et poussières minérales glissant horizontalement avec la brise."
+      }
+    ],
+    "particles": {
+      "type": "Grains de sable dorés en suspension (dust)",
+      "size": "1.0 à 2.2 px",
+      "speed": "0.22 (dérive horizontale fluide et continue)",
+      "density": "45 grains de sable",
+      "behavior": "Glissement rasant au-dessus des dunes sous l'effet du vent nocturne régulier."
+    },
+    "atmosphere": {
+      "mist": "Brume thermique nocturne estompant la base des crêtes lointaines.",
+      "light": "Lumière stellaire et lunaire bleutée pure, créant un doux contraste avec l'ocre chaud du sable.",
+      "airColor": "Bleu nuit désertique (#0f172a) réchauffé par l'ambre du sable (#d97706) et l'or doux (#f59e0b).",
+      "mainLightSource": "La voûte céleste nocturne diffusant une lumière froide sur les crêtes de sable."
+    },
+    "rareEvents": [
+      {
+        "name": "Étoile filante au-dessus des dunes",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Un météore net traverse l'espace céleste au-dessus de la ligne de crête des dunes de sable."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe déplace les crêtes de dunes avec une perspective réaliste ; le curseur soulève une légère traînée de sable.",
+      "scroll": "Fait glisser les crêtes de sable avec majesté sans perturber la lecture des cartes."
+    },
+    "palette": [
+      "#0a0f1d",
+      "#0f172a",
+      "#1e293b",
+      "#78350f",
+      "#d97706",
+      "#f59e0b"
+    ],
+    "references": [
+      "Three.js desert night dunes",
+      "Shadertoy starry desert sand",
+      "CodePen calm night dunes parallax"
+    ],
+    "risks": {
+      "pitfall": "Dunes ressemblant à de simples vagues d'eau ou fond trop jaune manquant du froid nocturne saharien.",
+      "solution": "Modèle de dunes à éclairage rasant opposant versants ombragés froids et crêtes dorées, ciel d'étoiles profond et grains de sable rasants."
+    },
+    "bricks": [
+      {
+        "brick": "multilayer_starfield",
+        "params": {
+          "starColor": "#ffffff",
+          "density": 0.8,
+          "speed": 0.05,
+          "depth": 1,
+          "intensity": 0.8,
+          "twinkleSpeed": 0.85
+        }
+      },
+      {
+        "brick": "dunes",
+        "params": {
+          "sandColor": "#d97706",
+          "shadowColor": "#0f172a",
+          "skyColor": "#0a0f1d",
+          "density": 0.85,
+          "speed": 0.1,
+          "depth": 0.3,
+          "intensity": 0.75,
+          "sunAngle": 0.6
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f59e0b",
+          "density": 0.4,
+          "speed": 0.22,
+          "drift": 0.3,
+          "intensity": 0.75
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#050811",
+          "intensity": 0.5,
+          "smoothness": 0.9
+        }
+      },
+      {
+        "brick": "shooting_star",
+        "params": {
+          "starColor": "#fed7aa",
+          "interval": 28,
+          "trailLength": 0.7,
+          "speed": 1.3
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "vapor",
+    "name": "Vapor",
+    "family": "Néon & cyber",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Esthétique onirique vaporeuse et pastel, inspirée de la douceur nostalgique de la vaporwave et de la brume d'aube sur l'eau. Évoque la sérénité aérienne et cotonneuse : dégradé délicat de lilas doux, rose poudré et azur évanescent, volutes de buée dérivant au ralenti et reflets diffus sans arêtes dures.",
+    "signature": "Des volutes de vapeur pastel rose et azur qui se dispersent avec grâce sur un ciel d'aube éthéré, traversées par de doux rais de lumière diffuse.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ciel matinal éthéré dégradé lavande pastel vers azur doux et blanc cassé."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Cirrus vaporeux et bancs de nuages cotonneux dérivant au ralenti."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Nappe de vapeur et de buée atmosphérique pastel flottant au centre de l'espace."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Particules de condensation et micro-gouttelettes irisées flottant avec apesanteur."
+      }
+    ],
+    "particles": {
+      "type": "Gouttelettes de condensation vaporeuses (dust)",
+      "size": "1.2 à 2.8 px",
+      "speed": "0.1 (flottement aérien quasi immobile)",
+      "density": "35 particules douces",
+      "behavior": "Dispersion lente et multidirectionnelle évoquant la dissipation d'une brume matinale tiède."
+    },
+    "atmosphere": {
+      "mist": "Buée atmosphérique opalescente et vaporeuse adoucissant toutes les perspectives.",
+      "light": "Lumière douce, diffuse et tamisée, exempte de contrastes agressifs.",
+      "airColor": "Blanc fumée (#f8fafc) marié à un bleu azur éthéré (#0ea5e9), lavande (#c084fc) et rose poudré (#f472b6).",
+      "mainLightSource": "La clarté diffuse du soleil matinal masqué par les brumes d'altitude."
+    },
+    "rareEvents": [
+      {
+        "name": "Rayon solaire perçant la buée",
+        "type": "god_rays",
+        "frequency": "Intervalle moyen de 35.0 secondes",
+        "description": "Un faisceau de lumière dorée pastel traverse doucement les volutes de vapeur avant de se fondre dans la brume."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le passage du curseur disperse temporairement la nappe de vapeur en créant un sillage fluide tout en douceur.",
+      "scroll": "Fait évoluer délicatement la nuance du dégradé pastel sans aucun saut chromatique."
+    },
+    "palette": [
+      "#f8fafc",
+      "#e0e7ff",
+      "#bae6fd",
+      "#0ea5e9",
+      "#c084fc",
+      "#f472b6"
+    ],
+    "references": [
+      "Three.js pastel vapor clouds",
+      "Shadertoy dreamy mist pastel",
+      "CodePen calm vaporwave fog"
+    ],
+    "risks": {
+      "pitfall": "Couleurs criardes synthwave violentes (magenta/cyan saturé) cassant la sérénité du thème.",
+      "solution": "Palette pastel lavée et feutrée (lilas, azur pâle, blanc fumée), mouvements extrêmement lents et grain cinéma doux pour lier les teintes."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#e0e7ff",
+          "bottomColor": "#bae6fd",
+          "horizonColor": "#0ea5e9",
+          "density": 0.9,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "fbm_clouds",
+        "params": {
+          "cloudColor": "#ffffff",
+          "skyColor": "#e0e7ff",
+          "density": 0.45,
+          "speed": 0.1,
+          "depth": 0.25,
+          "intensity": 0.7,
+          "windAngle": 0.2
+        }
+      },
+      {
+        "brick": "noisy_fog",
+        "params": {
+          "fogColor": "#bae6fd",
+          "density": 0.4,
+          "speed": 0.12,
+          "depth": 0.2,
+          "heightFalloff": 1.4
+        }
+      },
+      {
+        "brick": "dust",
+        "params": {
+          "dustColor": "#f8fafc",
+          "density": 0.3,
+          "speed": 0.1,
+          "drift": 0.1,
+          "intensity": 0.6
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.05,
+          "speed": 0.5,
+          "density": 1.2,
+          "monochrome": true
+        }
+      }
+    ],
+    "missingBricks": []
+  },
+  {
+    "id": "champagne",
+    "name": "Champagne",
+    "family": "Cosy & gestion",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "La célébration raffinée d'un grand cru millésimé servi dans une flûte de cristal fin. Évoque l'élégance aristocratique et le luxe discret : effervescence gracieuse de chapelets réguliers de micro-bulles dorées montant vers la surface, robe ambrée lumineuse aux reflets d'or pâle et fine collerette scintillante.",
+    "signature": "Des chapelets de micro-bulles effervescentes dorées qui s'élèvent en lignes fines et régulières au sein d'une lumière ambrée et feutrée.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Ambiance feutrée de salon précieux dégradée ivoire doré vers or ambré profond."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Halo de lueur volumétrique chaude évoquant la réfraction d'une flûte de cristal."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Chapelets rectilignes de micro-bulles effervescentes montant en coordonnées harmonieuses."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Rares étincelles d'éclatement de bulles dorées en surface avec micro-grain soigné."
+      }
+    ],
+    "particles": {
+      "type": "Micro-bulles de champagne effervescentes (bubbles)",
+      "size": "1.0 à 2.2 px (calibre extrêmement fin et uniforme)",
+      "speed": "0.28 (ascension verticale rectiligne et constante)",
+      "density": "50 micro-bulles régulières",
+      "behavior": "Montée en colonnes ascendantes discrètes avec accélération légère vers le haut, éclatant avec une étincelle miniature."
+    },
+    "atmosphere": {
+      "mist": "Clarté liquide cristalline ambrée, totalement limpide et lumineuse.",
+      "light": "Lumière dorée feutrée et flatteuse, diffusant un éclat noble et chaleureux.",
+      "airColor": "Ivoire pur (#fefce8) sublimé par l'or pétillant (#eab308) et l'ambre liquide (#ca8a04).",
+      "mainLightSource": "Le rayonnement interne doré au cœur de la coupe."
+    },
+    "rareEvents": [
+      {
+        "name": "Éclatement étincelant d'une bulle dorée",
+        "type": "sparks",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Une micro-étincelle d'or scintille brièvement en haut de l'écran lors de la rupture d'une bulle en surface."
+      }
+    ],
+    "interaction": {
+      "mouse": "Le passage du curseur crée une légère déviation dans les colonnes de bulles montantes, comme un léger remous de cristal.",
+      "scroll": "Fait scintiller délicatement les micro-bulles sans distraire la consultation des éléments d'inventaire."
+    },
+    "palette": [
+      "#1c1917",
+      "#451a03",
+      "#ca8a04",
+      "#eab308",
+      "#fef08a",
+      "#fefce8"
+    ],
+    "references": [
+      "Three.js champagne bubbles effervescence",
+      "CodePen golden luxury champagne bubbles",
+      "Shadertoy sparkling wine crystal"
+    ],
+    "risks": {
+      "pitfall": "Bulles trop grosses ressemblant à un aquarium sous-marin ou fond jaune saturé manquant de raffinement.",
+      "solution": "Calibre ultra-fin (1-2px) des bulles en chapelets rectilignes, vitesse constante, fond ivoire/ambre raffiné et grain argentique haut de gamme."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#292524",
+          "bottomColor": "#78350f",
+          "horizonColor": "#ca8a04",
+          "density": 1,
+          "speed": 0.08,
+          "depth": 0.05,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "volumetric_glow",
+        "params": {
+          "coreColor": "#fefce8",
+          "glowColor": "#eab308",
+          "outerColor": "#78350f",
+          "density": 0.9,
+          "intensity": 0.75,
+          "glowX": 0,
+          "glowY": -0.2
+        }
+      },
+      {
+        "brick": "bubbles",
+        "params": {
+          "bubbleColor": "#fef08a",
+          "density": 0.45,
+          "speed": 0.28,
+          "wobble": 0.08,
+          "intensity": 0.8
+        }
+      },
+      {
+        "brick": "grain",
+        "params": {
+          "intensity": 0.06,
+          "speed": 0.6,
+          "density": 1.2,
+          "monochrome": true
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#1c1917",
+          "intensity": 0.4,
+          "smoothness": 0.9
+        }
+      }
+    ],
+    "missingBricks": [
+      {
+        "name": "crystal_flute_caustics",
+        "category": "special",
+        "reason": "Réfraction de la lumière à travers les facettes biseautées d'une flûte en cristal avec guidage des bulles le long des parois de verre."
+      }
+    ]
+  },
+  {
+    "id": "inferno",
+    "name": "Inferno",
+    "family": "Éléments & catastrophes",
+    "intensity": 1,
+    "universe": null,
+    "evocation": "Une forge infernale ou le seuil d'une fournaise géologique dantesque. Évoque la puissance élémentaire du feu dévorant dans sa version la plus sombre et solennelle : tourbillons de gaz surchauffés, flammes rouge écarlate et braises ardentes montant dans des volutes de suie noire, avec une radiance tellurique hypnotique.",
+    "signature": "Un brasier écarlate qui pulse dans l'obscurité charbonneuse, projetant des tourbillons d'air surchauffé et de vives étincelles dorées.",
+    "scene": [
+      {
+        "plan": 1,
+        "type": "Arrière-plan lointain",
+        "description": "Obscurité d'encre carbonisée zébrée de rougeoiement écarlate profond."
+      },
+      {
+        "plan": 2,
+        "type": "Lointain intermédiaire",
+        "description": "Volutes de fumée noire et de gaz incandescents tourbillonnant dans la fournaise."
+      },
+      {
+        "plan": 3,
+        "type": "Plan médian focal",
+        "description": "Foyer ardent principal à pulsation thermique vive et contrastée."
+      },
+      {
+        "plan": 4,
+        "type": "Premier plan immédiat",
+        "description": "Étincelles balistiques et flammèches jaillissant vers le haut avec accélération."
+      }
+    ],
+    "particles": {
+      "type": "Étincelles balistiques et flammèches vives (sparks & embers)",
+      "size": "1.2 à 3.0 px",
+      "speed": "0.38 (jaillissement ascendant dynamique et vif)",
+      "density": "40 étincelles incandescentes",
+      "behavior": "Projection verticale rapide avec légères trajectoires paraboliques et refroidissement en altitude."
+    },
+    "atmosphere": {
+      "mist": "Volutes de fumée sombre et d'air brûlant faisant osciller la vision.",
+      "light": "Lumière flamboyante rouge vif et orange ardent, projetant des ombres tranchées.",
+      "airColor": "Noir charbon (#020617) embrasé par le rouge écarlate (#ef4444) et l'orange feu (#f97316).",
+      "mainLightSource": "Le cœur du brasier en bas d'écran, irradiant vers le haut."
+    },
+    "rareEvents": [
+      {
+        "name": "Sursaut de fournaise et gerbe d'étincelles",
+        "type": "sparks",
+        "frequency": "Intervalle moyen de 24.0 secondes",
+        "description": "Un souffle de chaleur avive le brasier et projette une grappe de cinq étincelles dorées plus haut que d'ordinaire."
+      }
+    ],
+    "interaction": {
+      "mouse": "La parallaxe oriente la direction du foyer ; le curseur courbe le flux des étincelles ascendantes.",
+      "scroll": "Plonge le regard vers la zone la plus chaude du brasier sans éblouir les éléments de lecture."
+    },
+    "palette": [
+      "#020617",
+      "#450a0a",
+      "#991b1b",
+      "#ef4444",
+      "#f97316",
+      "#fef08a"
+    ],
+    "references": [
+      "Three.js inferno fire sparks",
+      "Shadertoy blazing fire dark furnace",
+      "CodePen infernal flames sparks"
+    ],
+    "risks": {
+      "pitfall": "Confusion avec Ember (qui est un bivouac calme) ou Lava (qui est une coulée rocheuse lente) ; saturation excessive fatigante.",
+      "solution": "Mouvement ascendant vif et dynamique d'étincelles balistiques, pulsation de fournaise rouge écarlate et volutes de suie noire marquant le contraste."
+    },
+    "bricks": [
+      {
+        "brick": "gradient_sky",
+        "params": {
+          "topColor": "#020617",
+          "bottomColor": "#450a0a",
+          "horizonColor": "#ef4444",
+          "density": 1.1,
+          "speed": 0.1,
+          "depth": 0.05,
+          "intensity": 0.9
+        }
+      },
+      {
+        "brick": "flickering_light",
+        "params": {
+          "lightColor": "#ef4444",
+          "secondaryColor": "#f97316",
+          "density": 0.85,
+          "speed": 0.3,
+          "intensity": 0.85,
+          "lightX": 0,
+          "lightY": -0.5,
+          "flickerType": 0
+        }
+      },
+      {
+        "brick": "heat_distortion",
+        "params": {
+          "tintColor": "#ef4444",
+          "density": 0.8,
+          "speed": 0.25,
+          "depth": 0.25,
+          "intensity": 0.65,
+          "heatHeight": 0.6
+        }
+      },
+      {
+        "brick": "sparks",
+        "params": {
+          "sparkColor": "#f97316",
+          "hotColor": "#fef08a",
+          "density": 0.4,
+          "speed": 0.38,
+          "spread": 0.25,
+          "intensity": 0.85
+        }
+      },
+      {
+        "brick": "vignette",
+        "params": {
+          "vignetteColor": "#000000",
+          "intensity": 0.65,
+          "smoothness": 0.85
+        }
+      }
+    ],
+    "missingBricks": []
+  }
+]
