@@ -195,41 +195,49 @@ export class WavesInstance implements IBrickInstance {
 
           // Palette et nuances d'eau
           vec3 deep = uUseCustomColors ? uDeepColor : uPaletteSecondary;
-          vec3 crest = uUseCustomColors ? uCrestColor : mix(uPaletteAccent, vec3(0.96), 0.75);
+          vec3 crest = uUseCustomColors ? uCrestColor : mix(uPaletteAccent, vec3(0.95), 0.65);
           vec3 midWater = mix(deep, uPalettePrimary, 0.45);
           vec3 shallowWater = mix(midWater, mix(uPalettePrimary, crest, 0.35), 0.50);
 
           // Dégradé océanique selon la hauteur : creux profonds -> flancs translucides
-          vec3 waterCol = mix(deep, midWater, smoothstep(0.05, 0.50, totalHeight));
-          waterCol = mix(waterCol, shallowWater, smoothstep(0.45, 0.82, totalHeight) * 0.55);
+          vec3 waterCol = mix(deep, midWater, smoothstep(0.08, 0.52, totalHeight));
+          waterCol = mix(waterCol, shallowWater, smoothstep(0.48, 0.85, totalHeight) * 0.55);
 
           // Écume dynamique (foam) uniquement sur la pointe des crêtes aiguisées
-          float foamThreshold = mix(0.82, 0.62, clamp(uIntensity * 0.5, 0.0, 1.0));
-          float foam = smoothstep(foamThreshold, foamThreshold + 0.16, totalHeight);
+          float foamThreshold = mix(0.86, 0.74, clamp(uIntensity * 0.5, 0.0, 1.0));
+          float foam = smoothstep(foamThreshold, foamThreshold + 0.12, totalHeight);
 
           if (uQualityLevel >= 2) {
             // HIGH : écume découpée et texturée par bruit Simplex (embruns et dentelle d'écume)
             float foamNoise = snoise(p * 4.5 + vec2(t * 0.6, -t * 0.3));
             foam *= smoothstep(-0.25, 0.35, foamNoise);
+          } else if (uQualityLevel == 1) {
+            // MEDIUM : légère modulation pour briser l'écume continue
+            float foamNoise = snoise(p * 2.5 + vec2(t * 0.3, -t * 0.15));
+            foam *= smoothstep(-0.4, 0.4, foamNoise);
+          } else {
+            // LOW : crête fine et adoucie sans bruit lourd pour éviter les bandes blanches larges
+            foam *= 0.65;
           }
 
           // Mélange physique de l'écume : remplace la teinte sans jamais surexposer
-          float foamFactor = clamp(foam * uIntensity * 0.90, 0.0, 1.0);
+          float foamFactor = clamp(foam * uIntensity * 0.85, 0.0, 1.0);
           waterCol = mix(waterCol, crest, foamFactor);
 
-          // Reflets spéculaires directionnels sur la pente exposée des crêtes
+          // Reflets spéculaires directionnels sur la pente exposée des crêtes (non-additifs avec conservation d'énergie)
           if (uQualityLevel >= 1) {
             float specPower = uQualityLevel >= 2 ? 8.0 : 5.0;
-            float specIntensity = uQualityLevel >= 2 ? 0.38 : 0.20;
+            float specIntensity = uQualityLevel >= 2 ? 0.35 : 0.18;
             float spec = pow(clamp(totalSlope, 0.0, 1.0), specPower) * specIntensity;
             // Atténuation sur l'écume déjà lumineuse
-            spec *= (1.0 - foamFactor * 0.75);
+            spec *= (1.0 - foamFactor * 0.80);
             vec3 specColor = mix(crest, vec3(1.0), 0.55);
-            waterCol += specColor * (spec * clamp(uIntensity, 0.2, 1.4));
+            float specAmount = clamp(spec * uIntensity, 0.0, 1.0);
+            waterCol += (vec3(1.0) - waterCol) * (specColor * specAmount);
           }
 
           // Fondu atmosphérique vers l'horizon (haut de l'écran)
-          float horizonFade = smoothstep(0.55, 0.88, uv.y);
+          float horizonFade = smoothstep(0.48, 0.86, uv.y);
           vec3 horizonMist = mix(deep * 0.85, midWater * 0.65, 0.40);
           vec3 finalCol = mix(waterCol, horizonMist, horizonFade);
 

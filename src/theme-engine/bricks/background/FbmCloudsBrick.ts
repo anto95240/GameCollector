@@ -114,10 +114,10 @@ export class FbmCloudsInstance implements IBrickInstance {
 
         ${GLSL_NOISE_2D}
 
-        // FBM atmosphérique à persistance décroissante (privilégie les basses fréquences)
+        // FBM atmosphérique privilégiant les basses fréquences pour des nuages cotonneux
         float cloudFbm(vec2 p, int octaves) {
           float v = 0.0;
-          float a = 0.55;
+          float a = 0.60;
           float total = 0.0;
           mat2 rot = mat2(0.80, 0.60, -0.60, 0.80);
 
@@ -125,8 +125,8 @@ export class FbmCloudsInstance implements IBrickInstance {
             if (i >= octaves) break;
             v += a * snoise(p);
             total += a;
-            p = rot * p * 2.05 + vec2(17.2, 43.7);
-            a *= 0.45; // Décroissance rapide pour étouffer les micro-fréquences
+            p = rot * p * 2.02 + vec2(17.2, 43.7);
+            a *= 0.38; // Décroissance marquée pour étouffer les micro-froissures
           }
           return v / max(total, 0.001);
         }
@@ -149,18 +149,18 @@ export class FbmCloudsInstance implements IBrickInstance {
           vec2 r = vec2(0.0);
 
           if (uQualityLevel >= 1) {
-            // Warping restreint à 2 octaves pour éviter les froissures haute fréquence
-            q.x = cloudFbm(p + vec2(0.0, 0.0) + t * 0.05, 2);
-            q.y = cloudFbm(p + vec2(5.2, 1.3) - t * 0.04, 2);
+            // Warping doux basse fréquence (2 octaves)
+            q.x = cloudFbm(p + vec2(0.0, 0.0) + t * 0.04, 2);
+            q.y = cloudFbm(p + vec2(5.2, 1.3) - t * 0.03, 2);
 
             if (uQualityLevel >= 2) {
-              r.x = cloudFbm(p + 1.2 * q + vec2(1.7, 9.2) + t * 0.03, 2);
-              r.y = cloudFbm(p + 1.2 * q + vec2(8.3, 2.8) - t * 0.03, 2);
+              r.x = cloudFbm(p + 0.6 * q + vec2(1.7, 9.2) + t * 0.02, 2);
+              r.y = cloudFbm(p + 0.6 * q + vec2(8.3, 2.8) - t * 0.02, 2);
             }
           }
 
-          // Échantillonnage FBM final avec amplitude de warping modérée
-          float warpFactor = uRandomness * 0.40;
+          // Échantillonnage FBM final avec amplitude de warping adoucie
+          float warpFactor = uRandomness * 0.25;
           vec2 warpedP = p + warpFactor * (uQualityLevel >= 2 ? r : q);
 
           int octaves = 2;
@@ -172,46 +172,50 @@ export class FbmCloudsInstance implements IBrickInstance {
           // Normalisation [0, 1]
           float n = clamp(f * 0.5 + 0.5, 0.0, 1.0);
 
-          // Seuil progressif adouci selon la couverture nuageuse
-          float threshold = 1.0 - uDensity * 0.90;
-          float cloudMask = smoothstep(threshold - 0.22, threshold + 0.22, n);
-          cloudMask = smoothstep(0.0, 1.0, cloudMask); // Lissage en S des bords
+          // Seuil progressif adouci selon la couverture nuageuse (bords soyeux)
+          float threshold = 1.0 - uDensity * 0.85;
+          float cloudMask = smoothstep(threshold - 0.26, threshold + 0.26, n);
+          cloudMask = smoothstep(0.0, 1.0, cloudMask); // Lissage en S soyeux
 
           // Éclairage directionnel depuis le dessus (+y / zénith)
-          vec2 lightDir = normalize(vec2(0.15, 0.90));
-          vec2 lightOffset = lightDir * 0.08;
+          vec2 lightDir = normalize(vec2(0.15, 0.95));
+          vec2 lightOffset = lightDir * 0.12;
 
+          float topLight = 0.0;
           float sunLight = 1.0;
-          float rimLight = 0.0;
 
           if (uQualityLevel >= 1) {
-            // Échantillonnage léger (2 octaves) vers le haut pour détecter les crêtes exposées
+            // Échantillonnage cohérent basse fréquence (2 octaves) pour détecter la pente zénithale sans bruit parasite
+            float fBase = cloudFbm(warpedP, 2);
+            float nBase = clamp(fBase * 0.5 + 0.5, 0.0, 1.0);
+
             float fAbove = cloudFbm(warpedP + lightOffset, 2);
             float nAbove = clamp(fAbove * 0.5 + 0.5, 0.0, 1.0);
 
-            // Crête supérieure éclairée si la masse nuageuse s'arrête au-dessus
-            rimLight = clamp((n - nAbove) * 2.2, 0.0, 1.0);
-            // Ombrage interne volumétrique sous la masse
-            sunLight = clamp(1.0 - nAbove * 0.70 + rimLight * 0.50, 0.25, 1.35);
+            // Crête supérieure éclairée : la masse s'arrête vers le zénith
+            topLight = clamp((nBase - nAbove) * 2.2, 0.0, 1.0);
+            // Ombrage volumétrique doux sous la masse nuageuse
+            float underShadow = clamp((nAbove - nBase) * 1.3, 0.0, 1.0);
+            sunLight = clamp(0.92 + topLight * 0.35 - underShadow * 0.28, 0.65, 1.35);
           } else {
             // Palier LOW : formule analytique sans échantillonnage supplémentaire
-            sunLight = clamp(0.70 + 0.30 * (uv.y - 0.5) + 0.30 * smoothstep(threshold, 1.0, n), 0.35, 1.25);
-            rimLight = clamp(smoothstep(threshold + 0.10, 1.0, n) * uv.y, 0.0, 0.80);
+            topLight = clamp((uv.y - 0.25) * 0.7 + (n - threshold) * 0.4, 0.0, 1.0);
+            sunLight = clamp(0.80 + topLight * 0.30, 0.65, 1.25);
           }
 
           vec3 baseSky = uUseCustomColors ? uSkyColor : uPaletteSecondary;
           vec3 baseCloud = uUseCustomColors ? uCloudColor : mix(uPaletteAccent, vec3(0.96), 0.80);
 
-          // Teintes harmonieuses : sous-ventre ombré doux et crêtes ensoleillées
-          vec3 shadowColor = mix(baseSky * 0.65, baseCloud * 0.60, 0.55);
-          vec3 sunHighlight = mix(baseCloud, vec3(1.0), 0.40);
-          vec3 sunTint = mix(sunHighlight, uPaletteAccent, 0.15);
+          // Teintes harmonieuses : sous-ventre doux et crêtes ensoleillées lumineuses
+          vec3 shadowColor = mix(baseSky, baseCloud, 0.58);
+          vec3 sunHighlight = mix(baseCloud, vec3(1.0), 0.45);
+          vec3 sunTint = mix(sunHighlight, uPaletteAccent, 0.12);
 
-          // Modulation de la lumière sur le nuage
+          // Modulation douce de la lumière
           float lightFactor = mix(1.0, sunLight, clamp(uIntensity, 0.0, 1.5));
-          vec3 shadedCloud = mix(shadowColor, baseCloud, clamp(lightFactor, 0.0, 1.0));
+          vec3 shadedCloud = mix(shadowColor, baseCloud, clamp((lightFactor - 0.60) / 0.40, 0.0, 1.0));
           // Rehausse lumineuse sur le dessus
-          shadedCloud = mix(shadedCloud, sunTint, rimLight * 0.45 * uIntensity);
+          shadedCloud = mix(shadedCloud, sunTint, topLight * 0.38 * uIntensity);
 
           // Composition finale ciel / nuages
           vec3 col = mix(baseSky, shadedCloud, cloudMask * min(1.0, uIntensity));
