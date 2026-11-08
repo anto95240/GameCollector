@@ -88,7 +88,7 @@ export class SnowInstance implements IBrickInstance {
     this.swayFrequency = props.swayFrequency ?? 1.5
     this.currentQuality = context.quality ?? 'HIGH'
 
-    this.totalCount = Math.floor(220 * this.density)
+    this.totalCount = Math.floor(340 * this.density)
     this.activeCount = this.totalCount
 
     this.positions = new Float32Array(this.totalCount * 3)
@@ -130,22 +130,22 @@ export class SnowInstance implements IBrickInstance {
     this.positions[idx3 + 1] = randomAge ? (Math.random() - 0.5) * 12 : 5.8 + Math.random() * 1.8
     this.positions[idx3 + 2] = -14 * this.depthFactor + Math.random() * (5 * this.depthFactor)
 
-    // 3 paliers de taille bien calibrés :
-    // ~50% petites (fines, profondeur Z)
-    // ~35% moyennes (corps principal de la chute)
-    // ~15% grandes (premier plan majestueux / bokeh floconneux)
+    // 3 paliers de taille bien calibrés et nettement visibles sur 1920x927 :
+    // ~45% petits flocons cristallins (arrière-plan Z)
+    // ~35% flocons moyens (corps principal de la chute)
+    // ~20% grands flocons majestueux (premier plan / bokeh lumineux)
     const tierRand = Math.random()
     let size = 0
     let mass = 1.0
-    if (tierRand < 0.5) {
-      size = 0.28 + Math.random() * 0.1
-      mass = 0.7 + Math.random() * 0.25
-    } else if (tierRand < 0.85) {
-      size = 0.5 + Math.random() * 0.18
-      mass = 1.0 + Math.random() * 0.3
+    if (tierRand < 0.45) {
+      size = 0.52 + Math.random() * 0.2
+      mass = 0.75 + Math.random() * 0.25
+    } else if (tierRand < 0.8) {
+      size = 0.95 + Math.random() * 0.35
+      mass = 1.05 + Math.random() * 0.3
     } else {
-      size = 0.85 + Math.random() * 0.32
-      mass = 1.35 + Math.random() * 0.35
+      size = 1.7 + Math.random() * 0.6
+      mass = 1.45 + Math.random() * 0.35
     }
     this.baseScales[i] = size * this.intensity
 
@@ -224,8 +224,8 @@ export class SnowInstance implements IBrickInstance {
       if (this.positions[idx3] < -12.0) this.positions[idx3] = 12.0
 
       // Atténuation réaliste par la profondeur (Z) : taille et opacité/contraste
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -14 * this.depthFactor, 2, 0.5, 1.25)
-      const depthOpacity = THREE.MathUtils.mapLinear(pz, -14 * this.depthFactor, 2, 0.4, 1.0)
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -14 * this.depthFactor, 2, 0.55, 1.35)
+      const depthOpacity = THREE.MathUtils.mapLinear(pz, -14 * this.depthFactor, 2, 0.55, 1.0)
 
       const lifeProgress = this.life[i] / this.maxLife[i]
       let lifeFade = 1.0
@@ -235,7 +235,8 @@ export class SnowInstance implements IBrickInstance {
         lifeFade = (1.0 - lifeProgress) / 0.15
       }
 
-      const finalAlpha = Math.max(0.1, Math.min(1.0, lifeFade * depthOpacity))
+      // Préservation d'un plancher de radiance pour garder les flocons blancs et lumineux (jamais de points sombres)
+      const finalAlpha = Math.max(0.38, Math.min(1.0, lifeFade * depthOpacity))
       const cIdx = i * 3
       this.tempColor.setRGB(
         this.baseColors[cIdx] * finalAlpha,
@@ -307,11 +308,11 @@ export class SnowInstance implements IBrickInstance {
     const mobileRatio = isMobile ? 0.35 : 1.0
 
     if (quality === 'HIGH') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(220 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(340 * this.density * mobileRatio))
     } else if (quality === 'MEDIUM') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(120 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(180 * this.density * mobileRatio))
     } else {
-      this.activeCount = Math.min(this.totalCount, Math.floor(55 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(90 * this.density * mobileRatio))
     }
   }
 

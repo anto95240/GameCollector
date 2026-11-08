@@ -89,7 +89,7 @@ export class AshInstance implements IBrickInstance {
     this.drift = props.drift ?? 0.25
     this.currentQuality = context.quality ?? 'HIGH'
 
-    this.totalCount = Math.floor(160 * this.density)
+    this.totalCount = Math.floor(280 * this.density)
     this.activeCount = this.totalCount
 
     this.positions = new Float32Array(this.totalCount * 3)
@@ -138,34 +138,33 @@ export class AshInstance implements IBrickInstance {
     this.rotations[idx3 + 1] = Math.random() * Math.PI * 2
     this.rotations[idx3 + 2] = Math.random() * Math.PI * 2
 
-    this.rotVelocities[idx3] = (Math.random() - 0.5) * 1.5 * this.randomness
-    this.rotVelocities[idx3 + 1] = (Math.random() - 0.5) * 1.8 * this.randomness
-    this.rotVelocities[idx3 + 2] = (Math.random() - 0.5) * 1.2 * this.randomness
+    this.rotVelocities[idx3] = (Math.random() - 0.5) * 1.0 * this.randomness
+    this.rotVelocities[idx3 + 1] = (Math.random() - 0.5) * 1.2 * this.randomness
+    this.rotVelocities[idx3 + 2] = (Math.random() - 0.5) * 0.9 * this.randomness
 
     const maxLifeSec = 14.0 + Math.random() * 8.0
     this.maxLife[i] = maxLifeSec
     this.life[i] = randomAge ? Math.random() * maxLifeSec : 0
 
-    // 3 paliers de taille bien calibrés :
-    // ~50% petites (fines particules de suie en suspension)
-    // ~35% moyennes (corps principal de flocons de cendre)
-    // ~15% grandes (lambeaux calcinés de premier plan avec rotation 3D)
+    // 3 paliers de taille bien calibrés et nettement visibles sur 1920x927 :
+    // ~45% petites particules de suie et cendre (profondeur Z)
+    // ~35% flocons de cendre moyens (corps principal de flottaison)
+    // ~20% grands débris calcinés (premier plan avec rotation 3D visible)
     const tierRand = Math.random()
     let size = 0
-    if (tierRand < 0.5) {
-      size = 0.26 + Math.random() * 0.1
-    } else if (tierRand < 0.85) {
-      size = 0.48 + Math.random() * 0.16
+    if (tierRand < 0.45) {
+      size = 0.55 + Math.random() * 0.25
+    } else if (tierRand < 0.8) {
+      size = 1.05 + Math.random() * 0.35
     } else {
-      size = 0.75 + Math.random() * 0.28
+      size = 1.8 + Math.random() * 0.65
     }
     this.baseScales[i] = size * this.intensity
 
-    // Cendres grises bien lisibles : panachage entre gris cendre clair/moyen et suie
+    // Cendres grises bien contrastées : panachage entre cendre argentée claire et suie gris ardoise
     const ratio = Math.random()
-    // Utilisation d'une base grise équilibrée pour éviter que les particules ne deviennent invisibles
-    const lightAsh = new THREE.Color('#cbd5e1').lerp(this.ashColor, 0.5)
-    const darkSoot = new THREE.Color('#475569').lerp(this.darkColor, 0.4)
+    const lightAsh = new THREE.Color('#f1f5f9').lerp(this.ashColor, 0.45)
+    const darkSoot = new THREE.Color('#94a3b8').lerp(this.darkColor, 0.35)
     this.tempColor.copy(lightAsh).lerp(darkSoot, ratio)
 
     const cIdx = i * 3
@@ -239,8 +238,8 @@ export class AshInstance implements IBrickInstance {
       this.rotations[idx3 + 2] += this.rotVelocities[idx3 + 2] * delta
 
       // Atténuation réaliste par la profondeur (Z) : taille et opacité/contraste
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.5, 1.25)
-      const depthOpacity = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.42, 1.0)
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.55, 1.35)
+      const depthOpacity = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.55, 1.0)
 
       let lifeFade = 1.0
       if (progress < 0.12) {
@@ -249,7 +248,8 @@ export class AshInstance implements IBrickInstance {
         lifeFade = (1.0 - progress) / 0.15
       }
 
-      const finalAlpha = Math.max(0.1, Math.min(1.0, lifeFade * depthOpacity))
+      // Préservation d'un contraste lisible : les cendres restent grises et visibles sur fond sombre
+      const finalAlpha = Math.max(0.42, Math.min(1.0, lifeFade * depthOpacity))
       const cIdx = i * 3
       this.tempColor.setRGB(
         this.baseColors[cIdx] * finalAlpha,
@@ -295,8 +295,8 @@ export class AshInstance implements IBrickInstance {
     if (newProps.darkColor !== undefined) this.darkColor.set(newProps.darkColor)
 
     if (newProps.ashColor !== undefined || newProps.darkColor !== undefined) {
-      const lightAsh = new THREE.Color('#cbd5e1').lerp(this.ashColor, 0.5)
-      const darkSoot = new THREE.Color('#475569').lerp(this.darkColor, 0.4)
+      const lightAsh = new THREE.Color('#f1f5f9').lerp(this.ashColor, 0.45)
+      const darkSoot = new THREE.Color('#94a3b8').lerp(this.darkColor, 0.35)
       for (let i = 0; i < this.totalCount; i++) {
         const ratio = Math.random()
         this.tempColor.copy(lightAsh).lerp(darkSoot, ratio)
@@ -332,11 +332,11 @@ export class AshInstance implements IBrickInstance {
     const mobileRatio = isMobile ? 0.35 : 1.0
 
     if (quality === 'HIGH') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(160 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(280 * this.density * mobileRatio))
     } else if (quality === 'MEDIUM') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(90 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(160 * this.density * mobileRatio))
     } else {
-      this.activeCount = Math.min(this.totalCount, Math.floor(40 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(80 * this.density * mobileRatio))
     }
   }
 

@@ -41,13 +41,14 @@ export interface ConfettiProps {
 }
 
 const FESTIVE_PALETTE = [
-  '#ef4444', // Rouge éclatant
-  '#3b82f6', // Bleu vif
-  '#10b981', // Vert émeraude
-  '#f59e0b', // Jaune ambre
-  '#8b5cf6', // Violet festif
-  '#ec4899', // Rose fuchsia
-  '#06b6d4', // Cyan
+  '#ff1744', // Rouge éclatant vif
+  '#00e5ff', // Cyan électrique
+  '#ffea00', // Jaune soleil radieux
+  '#00e676', // Vert émeraude festif
+  '#d500f9', // Magenta néon
+  '#ff6d00', // Orange ambre éclatant
+  '#2979ff', // Bleu roi vibrant
+  '#ffffff', // Ruban argenté brillant
 ]
 
 export class ConfettiInstance implements IBrickInstance {
@@ -95,7 +96,7 @@ export class ConfettiInstance implements IBrickInstance {
     this.flutterStrength = props.flutterStrength ?? 1.0
     this.currentQuality = context.quality ?? 'HIGH'
 
-    this.totalCount = Math.floor(160 * this.density)
+    this.totalCount = Math.floor(300 * this.density)
     this.activeCount = this.totalCount
 
     this.positions = new Float32Array(this.totalCount * 3)
@@ -143,25 +144,25 @@ export class ConfettiInstance implements IBrickInstance {
 
     // Rotation 3D vive mais équilibrée pour préserver la face réfléchissante
     this.rotVelocities[idx3] =
-      (1.8 + Math.random() * 2.2) * this.spinSpeed * (Math.random() < 0.5 ? 1 : -1)
+      (1.0 + Math.random() * 1.5) * this.spinSpeed * (Math.random() < 0.5 ? 1 : -1)
     this.rotVelocities[idx3 + 1] =
-      (1.5 + Math.random() * 2.2) * this.spinSpeed * (Math.random() < 0.5 ? 1 : -1)
-    this.rotVelocities[idx3 + 2] = (Math.random() - 0.5) * 1.5 * this.randomness
+      (0.8 + Math.random() * 1.5) * this.spinSpeed * (Math.random() < 0.5 ? 1 : -1)
+    this.rotVelocities[idx3 + 2] = (Math.random() - 0.5) * 1.2 * this.randomness
 
     this.flutterPhases[i] = Math.random() * Math.PI * 2
 
-    // 3 paliers de taille bien calibrés :
-    // ~50% petits confettis festifs
-    // ~35% confettis moyens
-    // ~15% grands rubans festifs (mise en valeur des reflets métalliques)
+    // 3 paliers de taille bien calibrés et nettement visibles sur 1920x927 :
+    // ~45% petits confettis festifs d'arrière-plan
+    // ~35% confettis moyens (rubans standards)
+    // ~20% grands confettis festifs (mise en valeur des reflets métalliques)
     const tierRand = Math.random()
     let size = 0
-    if (tierRand < 0.5) {
-      size = 0.32 + Math.random() * 0.1
-    } else if (tierRand < 0.85) {
-      size = 0.55 + Math.random() * 0.16
+    if (tierRand < 0.45) {
+      size = 0.65 + Math.random() * 0.25
+    } else if (tierRand < 0.8) {
+      size = 1.2 + Math.random() * 0.4
     } else {
-      size = 0.85 + Math.random() * 0.3
+      size = 1.9 + Math.random() * 0.7
     }
     this.baseScales[i] = size * this.intensity
 
@@ -232,8 +233,8 @@ export class ConfettiInstance implements IBrickInstance {
       const pz = this.positions[idx3 + 2]
 
       // Atténuation réaliste par la profondeur (Z) : taille et opacité/contraste
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.5, 1.25)
-      const depthOpacity = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.45, 1.0)
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.55, 1.35)
+      const depthOpacity = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.65, 1.0)
 
       const cIdx = i * 3
       this.tempColor.setRGB(
@@ -315,11 +316,11 @@ export class ConfettiInstance implements IBrickInstance {
     const mobileRatio = isMobile ? 0.35 : 1.0
 
     if (quality === 'HIGH') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(160 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(300 * this.density * mobileRatio))
     } else if (quality === 'MEDIUM') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(90 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(170 * this.density * mobileRatio))
     } else {
-      this.activeCount = Math.min(this.totalCount, Math.floor(40 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(85 * this.density * mobileRatio))
     }
   }
 
