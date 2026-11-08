@@ -47,3 +47,17 @@ EMPILEMENT (interface au-dessus de l'animation)
 
 VALIDATION
 - Avant de dire qu'un thème est terminé : lancer la page, faire des captures à 3 moments différents, les comparer à la fiche de direction artistique, lister ce qui paraît plat ou répétitif, corriger, refaire une capture.
+
+SECTION À AJOUTER À LA FIN DU FICHIER DE RÈGLES (CONFIGS DE THÈMES)
+- Un thème est une config TypeScript de type ThemeEngineConfig dans src/theme-engine/configs/<id>.ts, enregistrée avec un import dynamique dans src/theme-engine/configs/index.ts. Jamais de code spécifique à un thème en dehors de sa config.
+- N'utilise que les brickType existants (catalogue ci-dessous). N'invente pas de brique ; signale-la.
+background : gradient_sky, fbm_clouds, nebula, multilayer_starfield, aurora, water_caustics, waves, lava_flow, dunes
+intermediate (parallaxe) : parallax_forest, parallax_mountains, parallax_city, parallax_castle, parallax_fleet, parallax_plane, parallax_pixel_tiles
+atmosphere : noisy_fog, god_rays, flickering_light, heat_distortion, volumetric_glow, lens_flare
+particles : instanced_particles, embers, ash, snow, rain, dust, fireflies, bubbles, leaves, sparks, petals, confetti, smoke
+events : lightning, shooting_star, wind_gust, shockwave, glitch, screen_shake
+overlay : film_grain, vignette, crt_scanlines, halftone, pixelation, chromatic_aberration, post_processing_overlay
+special : neon_grid, code_rain, hex_grid, line_constellation
+- Ne modifie pas le type ThemeFamily (catalogue). Table catégorie → family : classiques→classics ; saisonniers→seasons ; gaming_retro, jeux_video, archeologie, gestion_nature→gaming ; geographiques, historiques_fantasy, espace_futurisme, clubs_sport, automobile, catastrophes→realworld ; marvel, dc, star_wars, harry_potter, disney_pixar, animation, transformers→heroes ; films_series_culte, films_series_divers, espionnage, extraterrestres, dystopie→cinema ; univers_litterature→universes.
+- Les 11 familles d'animation (Éléments & catastrophes, Espace & cosmos, Magie & fantasy, Néon & cyber, Rétro & pixel, Aventure & histoire, Urbain & action, Super-héros & comics, Animation & cartoon, Horreur & mystère, Cosy & gestion) sont un concept distinct, géré par des presets dans src/theme-engine/presets/.
+- Honnêteté : ne jamais affirmer avoir vu une capture ou mesuré un FPS sans l'avoir réellement obtenu ; sinon écrire « non vérifié » et lister ce que l'utilisateur doit contrôler.

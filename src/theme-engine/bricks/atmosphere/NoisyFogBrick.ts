@@ -115,85 +115,87 @@ export class NoisyFogInstance implements IBrickInstance {
         ${GLSL_NOISE_2D}
         ${GLSL_HASH}
 
-        // FBM atmosphérique avec rotation anti-coutures
+        // FBM atmosphérique avec rotation anti-coutures et persistance douce
         float fogFbm(vec2 coord, int octaves) {
           float v = 0.0;
-          float a = 0.5;
+          float a = 0.50;
+          float total = 0.0;
           mat2 rot = mat2(0.80, 0.60, -0.60, 0.80);
           for (int i = 0; i < 4; i++) {
             if (i >= octaves) break;
             v += a * snoise(coord);
-            coord = rot * coord * 2.02 + vec2(100.0);
-            a *= 0.5;
+            total += a;
+            coord = rot * coord * 2.05 + vec2(17.2, 43.7);
+            a *= 0.45; // Décroissance rapide pour étouffer les micro-fréquences et le marbré
           }
-          return v;
+          return v / max(total, 0.001);
         }
 
         void main() {
           vec2 uv = vUv;
           float aspect = uResolution.x / max(1.0, uResolution.y);
-          // Échelle spatiale basse fréquence pour une brume douce et vaporeuse
-          vec2 p = (uv - 0.5) * vec2(aspect, 1.0) * 0.70;
+          // Échelle spatiale basse fréquence pour une brume douce, large et vaporeuse
+          vec2 p = (uv - 0.5) * vec2(aspect, 1.0) * 0.55;
 
-          // Déplacement lent et continu du vent
-          float t = uTime * uSpeed * 0.20;
+          // Déplacement lent et apaisé du vent (ambiance atmosphérique calme)
+          float t = uTime * (uSpeed * 0.12);
           vec2 windDir = vec2(cos(uWindAngle), sin(uWindAngle)) * t;
 
           // Parallaxe souris avec inertie douce
-          vec2 mouseOffset = uMouse * (uDepth * 0.15);
+          vec2 mouseOffset = uMouse * (uDepth * 0.12);
           p += mouseOffset + windDir;
 
           // Effet de sillage et dispersion au passage de la souris (mouse wake)
-          vec2 mCoord = (uMouse * 0.5) * vec2(aspect, 1.0) * 0.70;
+          vec2 mCoord = (uMouse * 0.5) * vec2(aspect, 1.0) * 0.55;
           float distToMouse = length(p - mCoord);
-          float mouseWake = smoothstep(0.40, 0.05, distToMouse) * (uDepth * 0.35);
+          float mouseWake = smoothstep(0.40, 0.05, distToMouse) * (uDepth * 0.30);
 
           float fogDensity = 0.0;
 
           if (uQualityLevel >= 2) {
-            // === PALIER HIGH : 4 octaves FBM + double domain warping doux ===
-            float warpFactor = uRandomness * 0.45;
+            // === PALIER HIGH : 4 octaves FBM + double domain warping doux (volutes organiques sans marbrure) ===
+            float warpFactor = uRandomness * 0.28;
             vec2 q = vec2(
-              fogFbm(p + vec2(t * 0.08, t * 0.04), 2),
-              fogFbm(p + vec2(5.2, 1.3) - vec2(t * 0.05, t * 0.09), 2)
+              fogFbm(p + vec2(t * 0.05, t * 0.03), 2),
+              fogFbm(p + vec2(5.2, 1.3) - vec2(t * 0.04, t * 0.06), 2)
             );
 
             vec2 r = vec2(
-              fogFbm(p + 1.0 * q + vec2(1.7, 9.2) + vec2(t * 0.04, -t * 0.06), 2),
-              fogFbm(p + 1.0 * q + vec2(8.3, 2.8) + vec2(-t * 0.05, t * 0.03), 2)
+              fogFbm(p + 0.60 * q + vec2(1.7, 9.2) + vec2(t * 0.03, -t * 0.04), 2),
+              fogFbm(p + 0.60 * q + vec2(8.3, 2.8) + vec2(-t * 0.03, t * 0.02), 2)
             );
 
             float fbmVal = fogFbm(p + warpFactor * r, 4);
-            // Micro-tendrils vaporeux très légers sans bruit agressif
-            float detailNoise = snoise(p * 2.2 - vec2(t * 0.12, t * 0.06)) * (0.07 * uRandomness);
-            fogDensity = fbmVal + detailNoise - mouseWake;
+            // Légère modulation douce basse fréquence au lieu d'un bruit haute fréquence marbré
+            float softMod = snoise(p * 1.1 - vec2(t * 0.06, t * 0.03)) * (0.05 * uRandomness);
+            fogDensity = fbmVal + softMod - mouseWake;
           } else if (uQualityLevel >= 1) {
             // === PALIER MEDIUM : 2 octaves FBM + warping simple ===
-            float warpFactor = uRandomness * 0.35;
+            float warpFactor = uRandomness * 0.22;
             vec2 q = vec2(
-              fogFbm(p + vec2(t * 0.07, t * 0.03), 2),
-              fogFbm(p + vec2(3.1, 1.5) - t * 0.05, 2)
+              fogFbm(p + vec2(t * 0.05, t * 0.02), 2),
+              fogFbm(p + vec2(3.1, 1.5) - t * 0.04, 2)
             );
             float fbmVal = fogFbm(p + warpFactor * q, 2);
             fogDensity = fbmVal - mouseWake;
           } else {
-            // === PALIER LOW : 1 octave Simplex étirée avec dérive douce (ultra-léger, 0 couture) ===
-            float n = snoise(vec2(p.x * 0.8, p.y * 1.1) + vec2(t * 0.06, t * 0.03));
-            fogDensity = n * 0.55;
+            // === PALIER LOW : 1 octave Simplex douce et étirée (0 couture, ultra-léger) ===
+            float n = snoise(vec2(p.x * 0.75, p.y * 0.95) + vec2(t * 0.05, t * 0.02));
+            fogDensity = n * 0.70;
           }
 
-          // Atténuation d'élévation réaliste (nappe rampante au sol qui s'évapore vers le haut)
-          float heightMask = exp(-max(0.0, uv.y) * uHeightFalloff);
-          // Résiduel d'ambiance atmosphérique très doux en altitude
-          heightMask = mix(0.10, 1.0, heightMask);
+          // Atténuation d'élévation réaliste (nappe rampante au sol qui s'estompe vers le haut)
+          float heightMask = exp(-max(0.0, uv.y) * (uHeightFalloff * 1.1));
+          heightMask = mix(0.12, 1.0, heightMask);
 
-          // Normalisation progressive et opacité vaporeuse translucide
-          float normDensity = clamp((fogDensity + 0.35) * 1.0, 0.0, 1.0);
-          float fogAlpha = smoothstep(0.08, 0.75, normDensity);
+          // Normalisation progressive en douceur [-1, 1] -> [0, 1]
+          float normDensity = clamp(fogDensity * 0.5 + 0.5, 0.0, 1.0);
+          // Transition vaporeuse avec fondu progressif sans coupure abrupte
+          float fogAlpha = smoothstep(0.15, 0.85, normDensity);
 
           // Faible opacité pour garantir la translucidité (on voit clairement à travers le décor)
-          float alpha = fogAlpha * heightMask * (uDensity * 0.55);
-          alpha = clamp(alpha * uIntensity, 0.0, 0.60);
+          float alpha = fogAlpha * heightMask * (uDensity * 0.38);
+          alpha = clamp(alpha * uIntensity, 0.0, 0.42);
 
           if (alpha <= 0.003) {
             discard;
@@ -202,10 +204,10 @@ export class NoisyFogInstance implements IBrickInstance {
           // Teinte de la brume avec absorption lumineuse atmosphérique douce
           vec3 baseFog = uUseCustomColor ? uFogColor : uPaletteSecondary;
           // Éclat d'horizon et lueur diffuse sans saturation excessive
-          float crestLight = clamp(normDensity * 0.35 + (1.0 - uv.y) * 0.25, 0.0, 1.0);
-          vec3 lightTint = mix(baseFog, mix(baseFog, uPaletteAccent, 0.20), crestLight * 0.40);
-          // Rehausse de clarté diffuse
-          lightTint += vec3(0.05, 0.06, 0.07) * smoothstep(0.3, 0.9, normDensity);
+          float crestLight = clamp(normDensity * 0.25 + (1.0 - uv.y) * 0.20, 0.0, 1.0);
+          vec3 lightTint = mix(baseFog, mix(baseFog, uPaletteAccent, 0.15), crestLight * 0.30);
+          // Voile atmosphérique très doux sans nervures brillantes
+          lightTint += vec3(0.03, 0.035, 0.04) * smoothstep(0.4, 0.95, normDensity);
 
           gl_FragColor = vec4(lightTint, alpha);
         }
