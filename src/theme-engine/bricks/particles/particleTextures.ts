@@ -289,56 +289,70 @@ export function getBubbleTexture(bubbleColorHex: string = '#38bdf8'): THREE.Canv
     const gCol = Math.round(color.g * 255)
     const bCol = Math.round(color.b * 255)
 
-    // 1. Corps intérieur de la bulle : translucide avec léger voile sphérique
-    const bodyGrad = ctx.createRadialGradient(cx - r * 0.15, cy - r * 0.15, 0, cx, cy, r)
-    bodyGrad.addColorStop(0, `rgba(${rCol}, ${gCol}, ${bCol}, 0.03)`)
-    bodyGrad.addColorStop(0.65, `rgba(${rCol}, ${gCol}, ${bCol}, 0.10)`)
-    bodyGrad.addColorStop(0.88, `rgba(${rCol}, ${gCol}, ${bCol}, 0.32)`)
-    bodyGrad.addColorStop(1, `rgba(${rCol}, ${gCol}, ${bCol}, 0.0)`)
+    // 1. Léger halo externe diffus pour détacher la bulle
+    const halo = ctx.createRadialGradient(cx, cy, r * 0.75, cx, cy, r * 1.06)
+    halo.addColorStop(0, `rgba(${rCol}, ${gCol}, ${bCol}, 0.0)`)
+    halo.addColorStop(0.7, `rgba(${rCol}, ${gCol}, ${bCol}, 0.14)`)
+    halo.addColorStop(1, `rgba(${rCol}, ${gCol}, ${bCol}, 0.0)`)
+    ctx.fillStyle = halo
+    ctx.fillRect(0, 0, w, h)
+
+    // 2. Corps intérieur de la bulle : sphère translucide avec gradient volumétrique
+    const bodyGrad = ctx.createRadialGradient(cx - r * 0.2, cy - r * 0.2, r * 0.05, cx, cy, r)
+    bodyGrad.addColorStop(0, 'rgba(255, 255, 255, 0.06)')
+    bodyGrad.addColorStop(0.55, `rgba(${rCol}, ${gCol}, ${bCol}, 0.12)`)
+    bodyGrad.addColorStop(0.85, `rgba(${rCol}, ${gCol}, ${bCol}, 0.38)`)
+    bodyGrad.addColorStop(1, `rgba(${rCol}, ${gCol}, ${bCol}, 0.06)`)
     ctx.fillStyle = bodyGrad
     ctx.beginPath()
     ctx.arc(cx, cy, r, 0, Math.PI * 2)
     ctx.fill()
 
-    // 2. Anneau de bordure lumineux (Fresnel rim)
-    ctx.strokeStyle = 'rgba(235, 248, 255, 0.88)'
-    ctx.lineWidth = 2.4
+    // 3. Anneau de bordure lumineux (Fresnel rim) bien net et lisible
+    ctx.strokeStyle = 'rgba(240, 250, 255, 0.95)'
+    ctx.lineWidth = 3.5
     ctx.beginPath()
-    ctx.arc(cx, cy, r - 1.2, 0, Math.PI * 2)
+    ctx.arc(cx, cy, r - 1.8, 0, Math.PI * 2)
     ctx.stroke()
 
-    // Deuxième contour subtil teinté intérieur
-    ctx.strokeStyle = `rgba(${rCol}, ${gCol}, ${bCol}, 0.65)`
-    ctx.lineWidth = 1.6
+    // Deuxième contour teinté intérieur (liseré cyan irisé)
+    ctx.strokeStyle = `rgba(${rCol}, ${gCol}, ${bCol}, 0.75)`
+    ctx.lineWidth = 2.2
     ctx.beginPath()
-    ctx.arc(cx, cy, r - 2.8, 0, Math.PI * 2)
+    ctx.arc(cx, cy, r - 3.8, 0, Math.PI * 2)
     ctx.stroke()
 
-    // 3. Reflet spéculaire principal (arc courbe éclatant blanc pur en haut à gauche)
+    // 4. Reflet spéculaire principal (arc lumineux blanc éclatant en haut à gauche)
     ctx.save()
     ctx.translate(cx, cy)
-    ctx.rotate(-Math.PI * 0.22)
+    ctx.rotate(-Math.PI * 0.25)
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.98)'
-    ctx.lineWidth = 3.6
+    ctx.lineWidth = 4.2
     ctx.lineCap = 'round'
     ctx.beginPath()
-    ctx.arc(0, 0, r * 0.72, -Math.PI * 0.32, Math.PI * 0.05)
+    ctx.arc(0, 0, r * 0.7, -Math.PI * 0.35, Math.PI * 0.05)
     ctx.stroke()
 
-    // Point focal spéculaire plus intense au centre de l'arc
-    ctx.fillStyle = 'rgba(255, 255, 255, 1.0)'
+    // Point focal spéculaire net (glint) sur le reflet
+    ctx.fillStyle = '#ffffff'
     ctx.beginPath()
-    const dotX = Math.cos(-Math.PI * 0.14) * (r * 0.72)
-    const dotY = Math.sin(-Math.PI * 0.14) * (r * 0.72)
-    ctx.arc(dotX, dotY, 2.8, 0, Math.PI * 2)
+    const dotX = Math.cos(-Math.PI * 0.15) * (r * 0.7)
+    const dotY = Math.sin(-Math.PI * 0.15) * (r * 0.7)
+    ctx.arc(dotX, dotY, 3.5, 0, Math.PI * 2)
     ctx.fill()
     ctx.restore()
 
-    // 4. Micro-reflet secondaire opposé (bas à droite)
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.45)'
+    // 5. Petit reflet secondaire spéculaire en bas à droite (lumière réfléchie)
+    ctx.save()
+    ctx.translate(cx, cy)
+    ctx.rotate(Math.PI * 0.75)
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.55)'
+    ctx.lineWidth = 2.4
+    ctx.lineCap = 'round'
     ctx.beginPath()
-    ctx.arc(cx + r * 0.42, cy + r * 0.42, r * 0.12, 0, Math.PI * 2)
-    ctx.fill()
+    ctx.arc(0, 0, r * 0.72, -Math.PI * 0.15, Math.PI * 0.12)
+    ctx.stroke()
+    ctx.restore()
   })
 }
 

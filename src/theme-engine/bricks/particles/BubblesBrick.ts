@@ -98,7 +98,7 @@ export class BubblesInstance implements IBrickInstance {
       map: getBubbleTexture(rawColor),
       transparent: true,
       depthWrite: false,
-      opacity: Math.min(1.0, 0.92 * this.intensity),
+      opacity: Math.min(1.0, 0.96 * this.intensity),
       side: THREE.DoubleSide,
     })
 
@@ -117,13 +117,13 @@ export class BubblesInstance implements IBrickInstance {
     const startX = (Math.random() - 0.5) * 16
     this.initialX[i] = startX
     this.positions[idx3] = startX
-    this.positions[idx3 + 1] = randomY ? (Math.random() - 0.5) * 14 : -7.5 + Math.random() * 2.0
-    this.positions[idx3 + 2] = -12 * this.depthFactor + Math.random() * (4 * this.depthFactor)
+    this.positions[idx3 + 1] = randomY ? (Math.random() - 0.5) * 11 : -5.8 + Math.random() * 1.2
+    this.positions[idx3 + 2] = -10 * this.depthFactor + Math.random() * (4 * this.depthFactor)
 
     // Tailles variées : distribution naturelle avec bulles fines, moyennes et quelques grandes
-    const sizeCurve = Math.pow(Math.random(), 1.5)
-    const minScale = 0.38
-    const maxScale = 0.95 + this.randomness * 0.7
+    const sizeCurve = Math.pow(Math.random(), 1.6)
+    const minScale = 0.55
+    const maxScale = 1.75 + this.randomness * 0.8
     const size = THREE.MathUtils.lerp(minScale, maxScale, sizeCurve)
 
     this.velocities[idx3] = 0
@@ -177,17 +177,17 @@ export class BubblesInstance implements IBrickInstance {
         (this.velocities[idx3 + 1] + repulseY) * delta * 2.0 * this.surgeMultiplier
 
       // Éclatement au sommet (surface de l'eau)
-      if (this.positions[idx3 + 1] > 7.5) {
+      if (this.positions[idx3 + 1] > 5.8) {
         this.resetParticle(i, false)
         continue
       }
 
-      // Dilatation hydrostatique en s'élevant (-7.5 -> +7.5)
-      const heightNorm = THREE.MathUtils.clamp((this.positions[idx3 + 1] + 7.5) / 15.0, 0, 1)
+      // Dilatation hydrostatique en s'élevant (-5.8 -> +5.8)
+      const heightNorm = THREE.MathUtils.clamp((this.positions[idx3 + 1] + 5.8) / 11.6, 0, 1)
       const expansion = 1.0 + heightNorm * (this.expansionRate - 1.0)
 
       const pz = this.positions[idx3 + 2]
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.55, 1.25)
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.65, 1.25)
       const scale = this.baseScales[i] * expansion * depthFactor * this.surgeMultiplier
 
       this.dummy.position.set(

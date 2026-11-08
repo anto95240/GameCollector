@@ -123,24 +123,23 @@ export class WaterCausticsInstance implements IBrickInstance {
           // Voronoi 1
           vec2 v1 = voronoi2D(p1, t * 1.2);
           float edge1 = abs(v1.y - v1.x);
-          // Profil caustique net et fin : 0 en dehors des lignes, crête lumineuse au centre
-          float c1 = 1.0 - smoothstep(0.01, 0.16, edge1);
-          c1 = pow(clamp(c1, 0.0, 1.0), 1.8);
+          // Lignes caustiques fines et délicates
+          float c1 = 1.0 - smoothstep(0.005, 0.08, edge1);
+          c1 = pow(clamp(c1, 0.0, 1.0), 2.4);
 
           if (quality == 0) {
             // LOW : Voronoi simple direct optimisé (garantit 60 FPS mobile)
-            return c1 * 0.85;
+            return c1 * 0.75;
           }
 
           vec2 p2 = p * (uDensity * 1.35) - flow + vec2(1.5, 3.2);
           vec2 v2 = voronoi2D(p2, t * 0.95);
           float edge2 = abs(v2.y - v2.x);
-          float c2 = 1.0 - smoothstep(0.01, 0.16, edge2);
-          c2 = pow(clamp(c2, 0.0, 1.0), 1.8);
+          float c2 = 1.0 - smoothstep(0.005, 0.08, edge2);
+          c2 = pow(clamp(c2, 0.0, 1.0), 2.4);
 
-          // Interférence constructive douce des deux nappes :
-          // superposition des lignes et points de convergence brillants aux croisements
-          float combined = (c1 + c2) * 0.45 + (c1 * c2) * 0.55;
+          // Interférence constructive douce : crêtes nettes aux croisements, sans fond néon uniforme
+          float combined = (c1 + c2) * 0.35 + (c1 * c2) * 0.65;
           return clamp(combined, 0.0, 1.0);
         }
 
@@ -162,11 +161,11 @@ export class WaterCausticsInstance implements IBrickInstance {
           // uv.y = 0.0 (bas de l'écran) -> abysse sombre et profond
           // uv.y = 1.0 (haut de l'écran) -> surface illuminée par la lumière zénithale
           float depthFactor = clamp(uv.y, 0.0, 1.0);
-          float lightDecay = pow(depthFactor, 1.35);
+          float lightDecay = pow(depthFactor, 1.6);
 
           // Eau profonde : bleu nuit abyssal en bas -> bleu translucide en haut
-          vec3 deepWater = water * 0.45;
-          vec3 shallowWater = mix(water * 1.1, caust, 0.25);
+          vec3 deepWater = water * 0.55;
+          vec3 shallowWater = mix(water * 1.05, caust, 0.18);
           vec3 baseWater = mix(deepWater, shallowWater, depthFactor);
 
           // Échantillonnage avec ou sans dispersion chromatique
@@ -174,9 +173,9 @@ export class WaterCausticsInstance implements IBrickInstance {
 
           if (uQualityLevel >= 2) {
             // HIGH : Légère dispersion chromatique (séparation prismatique optique de l'eau)
-            float rVal = sampleCaustics(p - vec2(0.012, 0.0), t, uQualityLevel);
+            float rVal = sampleCaustics(p - vec2(0.008, 0.0), t, uQualityLevel);
             float gVal = sampleCaustics(p, t, uQualityLevel);
-            float bVal = sampleCaustics(p + vec2(0.012, 0.0), t, uQualityLevel);
+            float bVal = sampleCaustics(p + vec2(0.008, 0.0), t, uQualityLevel);
             causticRgb = vec3(rVal, gVal, bVal) * caust;
           } else {
             float val = sampleCaustics(p, t, uQualityLevel);
@@ -184,14 +183,14 @@ export class WaterCausticsInstance implements IBrickInstance {
           }
 
           // Modulation par la profondeur et l'intensité :
-          // Caustiques très atténuées et douces en bas (12%), éclatantes et nettes en haut (95%)
-          float causticIntensityByDepth = mix(0.12, 0.95, lightDecay);
+          // Caustiques quasi invisibles dans les abysses en bas (2%), discrètes et lumineuses en haut (50%)
+          float causticIntensityByDepth = mix(0.02, 0.50, lightDecay);
           causticRgb *= (uIntensity * causticIntensityByDepth);
 
           // Reflet zénithal doux sur les caustiques de surface
-          vec3 causticHighlight = vec3(0.95, 0.98, 1.0) * (causticRgb * 0.35 * lightDecay);
+          vec3 causticHighlight = vec3(0.92, 0.96, 1.0) * (causticRgb * 0.25 * lightDecay);
 
-          // Composition finale équilibrée sans surexposition
+          // Composition finale équilibrée sans surexposition néon
           vec3 finalColor = baseWater + causticRgb + causticHighlight;
 
           gl_FragColor = vec4(clamp(finalColor, 0.0, 1.0), 1.0);
