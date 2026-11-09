@@ -2316,7 +2316,7 @@ export const OVERLAYS_BRICKS_CATALOG: BrickDescriptor[] = [
       density: 1.2,
       speed: 0.8,
       depth: 0.2,
-      intensity: 0.12,
+      intensity: 0.08,
       randomness: 0.5,
       clumpSize: 1.0,
     },

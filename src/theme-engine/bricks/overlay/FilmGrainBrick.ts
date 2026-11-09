@@ -32,7 +32,7 @@ export interface FilmGrainProps {
   randomness?: number
   /** Grain monochrome (true) ou micro-bruit chromatique argentique (false, défaut true). */
   monochrome?: boolean
-  /** Taille des amas d'émulsion argentique (0.5 à 3.0, défaut 1.0). */
+  /** Taille des amas d'émulsion argentique (0.4 à 2.5, défaut 1.0). */
   clumpSize?: number
 }
 
@@ -170,7 +170,7 @@ export class FilmGrainInstance implements IBrickInstance {
             finalRgb = mix(baseColor * 0.4, baseColor * 1.4, rgbNoise * 0.5 + 0.5);
           } else {
             // Grain bipolaire (cristaux clairs argentiques et micro-grains d'ombre)
-            finalRgb = grainVal > 0.0 ? baseColor : vec3(0.02, 0.02, 0.03);
+            finalRgb = grainVal > 0.0 ? baseColor : baseColor * 0.025;
           }
 
           gl_FragColor = vec4(finalRgb, alpha);
