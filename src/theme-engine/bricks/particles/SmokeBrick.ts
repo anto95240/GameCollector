@@ -2,7 +2,7 @@
  * src/theme-engine/bricks/particles/SmokeBrick.ts
  *
  * Brique de Particules : Volutes de Fumée Vaporeuses (Couche 3 : Particles).
- * Volutes de fumée expansives naissant compactes puis gonflant en s'élevant (facteur x2.5 à x3.5),
+ * Volutes de fumée expansives naissant compactes puis gonflant en s'élevant (facteur x2.5 à x4.0),
  * avec tournoiements de vortex lents, dissipation progressive par perte d'opacité,
  * grands sprites doux multi-lobes et convection thermique ascendante.
  */
@@ -26,7 +26,7 @@ export interface SmokeProps {
   smokeColor?: string
   /** Teinte secondaire d'ombrage interne (défaut: '#334155'). */
   tintColor?: string
-  /** Multiplicateur de densité/nombre de volutes (0.2 à 2.5, défaut: 1.0 -> 60 volutes). */
+  /** Multiplicateur de densité/nombre de volutes (0.2 à 2.5, défaut: 1.0 -> 130 volutes). */
   density?: number
   /** Vitesse d'ascension lente (0.1 à 2.0, défaut: 0.35). */
   speed?: number
@@ -60,6 +60,7 @@ export class SmokeInstance implements IBrickInstance {
   private baseScales: Float32Array
   private seeds: Float32Array
   private baseColors: Float32Array
+  private instanceAlphas: Float32Array
 
   private smokeColor: THREE.Color
   private tintColor: THREE.Color
@@ -91,7 +92,7 @@ export class SmokeInstance implements IBrickInstance {
     this.dissipationSpeed = props.dissipationSpeed ?? 1.0
     this.currentQuality = context.quality ?? 'HIGH'
 
-    this.totalCount = Math.floor(75 * this.density)
+    this.totalCount = Math.floor(150 * this.density)
     this.activeCount = this.totalCount
 
     this.positions = new Float32Array(this.totalCount * 3)
@@ -103,16 +104,35 @@ export class SmokeInstance implements IBrickInstance {
     this.baseScales = new Float32Array(this.totalCount)
     this.seeds = new Float32Array(this.totalCount)
     this.baseColors = new Float32Array(this.totalCount * 3)
+    this.instanceAlphas = new Float32Array(this.totalCount)
+    this.instanceAlphas.fill(1.0)
 
     const geometry = new THREE.PlaneGeometry(1, 1)
+    const alphaAttr = new THREE.InstancedBufferAttribute(this.instanceAlphas, 1)
+    alphaAttr.setUsage(THREE.DynamicDrawUsage)
+    geometry.setAttribute('instanceAlpha', alphaAttr)
+
     const material = new THREE.MeshBasicMaterial({
       map: getSmokeTexture(),
       color: 0xffffff,
       transparent: true,
       depthWrite: false,
-      opacity: Math.min(1.0, 0.85 * this.intensity),
+      opacity: Math.min(1.0, 0.4 * this.intensity),
       side: THREE.DoubleSide,
     })
+
+    material.customProgramCacheKey = () => 'smoke_instance_alpha'
+    material.onBeforeCompile = (shader) => {
+      shader.vertexShader =
+        `attribute float instanceAlpha;\nvarying float vInstanceAlpha;\n${shader.vertexShader}`.replace(
+          '#include <color_vertex>',
+          `#include <color_vertex>\nvInstanceAlpha = instanceAlpha;`
+        )
+      shader.fragmentShader = `varying float vInstanceAlpha;\n${shader.fragmentShader}`.replace(
+        '#include <color_fragment>',
+        `#include <color_fragment>\ndiffuseColor.a *= vInstanceAlpha;`
+      )
+    }
 
     this.mesh = new THREE.InstancedMesh(geometry, material, this.totalCount)
     this.mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage)
@@ -136,13 +156,17 @@ export class SmokeInstance implements IBrickInstance {
       this.baseColors[cIdx] = this.tempColor.r
       this.baseColors[cIdx + 1] = this.tempColor.g
       this.baseColors[cIdx + 2] = this.tempColor.b
+      this.mesh?.setColorAt(i, this.tempColor)
+    }
+    if (this.mesh?.instanceColor) {
+      this.mesh.instanceColor.needsUpdate = true
     }
   }
 
   private resetParticle(i: number, randomAge = false): void {
     const idx3 = i * 3
-    // Émission concentrée en bas avec étalement
-    this.positions[idx3] = (Math.random() - 0.5) * 14
+    // Émission resserrée en bas qui forme une colonne / panache ascendant naturel
+    this.positions[idx3] = (Math.random() - 0.5) * 8.5
     this.positions[idx3 + 1] = randomAge ? (Math.random() - 0.5) * 14 : -7.5 + Math.random() * 2.0
     this.positions[idx3 + 2] = -10 * this.depthFactor + Math.random() * (4 * this.depthFactor)
 
@@ -151,24 +175,25 @@ export class SmokeInstance implements IBrickInstance {
     this.velocities[idx3 + 2] = (Math.random() - 0.5) * 0.05
 
     this.rotations[i] = Math.random() * Math.PI * 2
-    this.rotVelocities[i] = (Math.random() - 0.5) * 0.15 * this.randomness
+    // Rotation lente de vortex
+    this.rotVelocities[i] = (Math.random() - 0.5) * 0.08 * this.randomness
 
-    const maxLifeSec = (7.0 + Math.random() * 5.0) / this.dissipationSpeed
+    const maxLifeSec = (8.0 + Math.random() * 5.0) / this.dissipationSpeed
     this.maxLife[i] = maxLifeSec
     this.life[i] = randomAge ? Math.random() * maxLifeSec : 0
 
-    // Grands sprites doux pour former des volutes amples et vaporeuses :
+    // Grands sprites doux et voluptueux pour former de véritables volutes expansives :
     // ~40% volutes moyennes (formation du panache)
     // ~40% gros bouillons de fumée
     // ~20% grandes nappes vaporeuses
     const tierRand = Math.random()
     let size = 0
     if (tierRand < 0.4) {
-      size = 1.8 + Math.random() * 0.6
+      size = 3.8 + Math.random() * 1.4
     } else if (tierRand < 0.8) {
-      size = 2.6 + Math.random() * 0.8
+      size = 5.8 + Math.random() * 1.8
     } else {
-      size = 3.6 + Math.random() * 1.0
+      size = 8.2 + Math.random() * 2.2
     }
     this.baseScales[i] = size * this.intensity
   }
@@ -199,8 +224,9 @@ export class SmokeInstance implements IBrickInstance {
       const py = this.positions[idx3 + 1]
       const pz = this.positions[idx3 + 2]
 
-      // Turbulence douce par Simplex 3D
+      // Turbulence douce par Simplex 3D + évasement naturel vers l'extérieur
       const seed = this.seeds[i]
+      const spread = (px / 7.0) * 0.12 * this.randomness
       const turbX = simplex3D(px * 0.15, py * 0.15 + seed, time * 0.15) * 0.4 * this.randomness
       const turbY = simplex3D(py * 0.15, pz * 0.15 + seed, time * 0.12) * 0.2 * this.randomness
 
@@ -218,14 +244,14 @@ export class SmokeInstance implements IBrickInstance {
         repulseY = (dy / dist) * force
       }
 
-      const vx = (this.velocities[idx3] + turbX + repulseX) * this.surgeMultiplier
+      const vx = (this.velocities[idx3] + turbX + spread + repulseX) * this.surgeMultiplier
       const vy = (this.velocities[idx3 + 1] + turbY + repulseY) * this.surgeMultiplier
 
       this.positions[idx3] += vx * delta * 2.0
       this.positions[idx3 + 1] += vy * delta * 2.0
       this.positions[idx3 + 2] += this.velocities[idx3 + 2] * delta * 2.0
 
-      if (this.positions[idx3 + 1] > 8.5) {
+      if (this.positions[idx3 + 1] > 9.5) {
         this.resetParticle(i, false)
         continue
       }
@@ -233,29 +259,23 @@ export class SmokeInstance implements IBrickInstance {
       // Rotation de vortex lente
       this.rotations[i] += this.rotVelocities[i] * delta
 
-      // Expansion continue avec l'âge : naît compacte puis s'élargit nettement (x2.5 à x3.5)
-      const expansion = 1.0 + Math.pow(progress, 0.7) * (this.expansionRate * 1.8)
+      // Expansion continue avec l'ascension : naît compacte puis gonfle nettement (facteur x2.5 à x4.0)
+      const expansion = 1.0 + Math.pow(progress, 0.65) * (this.expansionRate * 2.2)
 
-      // Évanouissement progressif par opacité : naissance douce puis dissipation lente sans rétrécissement
+      // Évanouissement progressif par opacité : naissance douce puis dissipation sans rétrécissement brusque
       let lifeFade = 1.0
       if (progress < 0.15) {
         lifeFade = progress / 0.15
-      } else if (progress > 0.7) {
-        lifeFade = Math.max(0.0, (1.0 - progress) / 0.3)
+      } else if (progress > 0.6) {
+        lifeFade = Math.max(0.0, (1.0 - progress) / 0.4)
       }
 
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.55, 1.25)
-      const depthOpacity = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.45, 1.0)
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.65, 1.25)
+      const depthOpacity = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.6, 1.0)
 
-      // Modulation d'opacité appliquée sur la couleur d'instance GPU
+      // Modulation d'opacité GPU par instance : la fumée s'estompe en transparence réelle
       const finalAlpha = Math.max(0.0, Math.min(1.0, lifeFade * depthOpacity))
-      const cIdx = i * 3
-      this.tempColor.setRGB(
-        this.baseColors[cIdx] * finalAlpha,
-        this.baseColors[cIdx + 1] * finalAlpha,
-        this.baseColors[cIdx + 2] * finalAlpha
-      )
-      this.mesh.setColorAt(i, this.tempColor)
+      this.instanceAlphas[i] = finalAlpha
 
       // Échelle croissante tout au long de la vie de la volute
       const scale = this.baseScales[i] * expansion * depthFactor * this.surgeMultiplier
@@ -273,6 +293,7 @@ export class SmokeInstance implements IBrickInstance {
     }
 
     for (let i = this.activeCount; i < this.totalCount; i++) {
+      this.instanceAlphas[i] = 0.0
       this.dummy.position.set(0, -999, 0)
       this.dummy.scale.set(0, 0, 0)
       this.dummy.updateMatrix()
@@ -280,8 +301,11 @@ export class SmokeInstance implements IBrickInstance {
     }
 
     this.mesh.instanceMatrix.needsUpdate = true
-    if (this.mesh.instanceColor) {
-      this.mesh.instanceColor.needsUpdate = true
+    const alphaAttr = this.mesh.geometry.getAttribute(
+      'instanceAlpha'
+    ) as THREE.InstancedBufferAttribute
+    if (alphaAttr) {
+      alphaAttr.needsUpdate = true
     }
   }
 
@@ -306,7 +330,7 @@ export class SmokeInstance implements IBrickInstance {
       if (this.mesh && this.mesh.material && !Array.isArray(this.mesh.material)) {
         ;(this.mesh.material as THREE.MeshBasicMaterial).opacity = Math.min(
           1.0,
-          0.85 * this.intensity
+          0.4 * this.intensity
         )
       }
     }
@@ -322,14 +346,14 @@ export class SmokeInstance implements IBrickInstance {
 
   private applyQuality(quality: QualityTier): void {
     const isMobile = window.innerWidth < 768
-    const mobileRatio = isMobile ? 0.4 : 1.0
+    const mobileRatio = isMobile ? 0.5 : 1.0
 
     if (quality === 'HIGH') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(65 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(130 * this.density * mobileRatio))
     } else if (quality === 'MEDIUM') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(38 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(80 * this.density * mobileRatio))
     } else {
-      this.activeCount = Math.min(this.totalCount, Math.floor(18 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(40 * this.density * mobileRatio))
     }
   }
 
@@ -339,7 +363,6 @@ export class SmokeInstance implements IBrickInstance {
   }
 
   public triggerEvent(_event: RareEventTrigger): void {
-    // Volute soudaine / bouffée de fumée
     this.surgeMultiplier = 2.2
   }
 

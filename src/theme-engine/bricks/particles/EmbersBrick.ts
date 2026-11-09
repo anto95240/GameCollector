@@ -4,7 +4,7 @@
  * Brique de Particules : Braises Incandescentes (Couche 3 : Particles).
  * Particules de braises ascendantes s'élevant d'un foyer ardent avec convection
  * thermique turbulente (bruit Simplex 3D), micro-scintillement non-linéaire,
- * refroidissement progressif continu (du blanc/jaune incandescent à l'orange puis rouge braise sombre),
+ * refroidissement progressif continu (du blanc/jaune incandescent à l'orange puis rouge braise somptueux),
  * extinction en fondu doux et 3 tiers de tailles bien visibles.
  */
 
@@ -27,7 +27,7 @@ export interface EmbersProps {
   emberColor?: string
   /** Teinte du cœur incandescent ultra-chaud (défaut: '#fef08a'). */
   hotColor?: string
-  /** Multiplicateur de densité/nombre de braises (0.2 à 2.5, défaut: 1.0 -> 180 braises). */
+  /** Multiplicateur de densité/nombre de braises (0.2 à 2.5, défaut: 1.0 -> 360 braises). */
   density?: number
   /** Vitesse d'ascension convective (0.1 à 2.0, défaut: 0.6). */
   speed?: number
@@ -61,8 +61,8 @@ export class EmbersInstance implements IBrickInstance {
   // Propriétés de simulation
   private emberColor: THREE.Color
   private hotColor: THREE.Color
-  private coolColor: THREE.Color = new THREE.Color('#dc2626') // Rouge vif incandescent
-  private darkColor: THREE.Color = new THREE.Color('#991b1b') // Rouge braise profond
+  private coolColor: THREE.Color = new THREE.Color('#ef4444') // Rouge incandescent vif
+  private darkColor: THREE.Color = new THREE.Color('#dc2626') // Rouge braise flamboyant
   private density: number
   private speed: number
   private depthFactor: number
@@ -90,7 +90,7 @@ export class EmbersInstance implements IBrickInstance {
     this.coolingRate = props.coolingRate ?? 1.0
     this.currentQuality = context.quality ?? 'HIGH'
 
-    this.totalCount = Math.floor(220 * this.density)
+    this.totalCount = Math.floor(400 * this.density)
     this.activeCount = this.totalCount
 
     this.positions = new Float32Array(this.totalCount * 3)
@@ -145,11 +145,11 @@ export class EmbersInstance implements IBrickInstance {
     const tierRand = Math.random()
     let size = 0
     if (tierRand < 0.5) {
-      size = 0.26 + Math.random() * 0.1
+      size = 0.38 + Math.random() * 0.16
     } else if (tierRand < 0.85) {
-      size = 0.42 + Math.random() * 0.16
-    } else {
       size = 0.65 + Math.random() * 0.25
+    } else {
+      size = 1.05 + Math.random() * 0.35
     }
     this.baseScales[i] = size * this.intensity
   }
@@ -218,19 +218,19 @@ export class EmbersInstance implements IBrickInstance {
       }
 
       // Refroidissement thermique continu et réaliste :
-      // blanc-jaune (chaud) -> orange incandescent -> rouge vif -> rouge sombre
+      // blanc-jaune (chaud) -> orange flamboyant -> rouge incandescent vif -> rouge braise
       const heat = Math.max(0.0, 1.0 - progress * this.coolingRate)
 
-      if (heat > 0.65) {
-        // Phase 1 : Cœur super-chaud blanc-jaune vers orange incandescent
-        const t = (heat - 0.65) / 0.35
+      if (heat > 0.6) {
+        // Phase 1 : Cœur ultra-chaud jaune-blanc vers orange étincelant
+        const t = (heat - 0.6) / 0.4
         this.tempColor.copy(this.emberColor).lerp(this.hotColor, t * t)
       } else if (heat > 0.25) {
-        // Phase 2 : Refroidissement vers le rouge vif
-        const t = (heat - 0.25) / 0.4
+        // Phase 2 : Transition vers le rouge incandescent vif
+        const t = (heat - 0.25) / 0.35
         this.tempColor.copy(this.coolColor).lerp(this.emberColor, t)
       } else {
-        // Phase 3 : Rouge sombre et tison mourant
+        // Phase 3 : Rouge braise flamboyant qui rougeoie sans noircir
         const t = heat / 0.25
         this.tempColor.copy(this.darkColor).lerp(this.coolColor, t)
       }
@@ -246,17 +246,17 @@ export class EmbersInstance implements IBrickInstance {
         lifeFade = (1.0 - progress) / 0.15
       }
 
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.5, 1.25)
-      const depthOpacity = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.45, 1.0)
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.6, 1.25)
+      const depthOpacity = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.6, 1.0)
 
-      // Éclat maintenu pour que les braises restent distinctes tout au long de leur trajet
-      const brightness = (0.4 + 0.6 * heat) * flicker * lifeFade * depthOpacity * this.intensity
+      // Éclat éclatant maintenu : la braise reste orange à rouge vif et s'éteint en fondu progressif
+      const brightness = (0.75 + 0.25 * heat) * flicker * lifeFade * depthOpacity * this.intensity
       this.tempColor.multiplyScalar(brightness)
       this.mesh.setColorAt(i, this.tempColor)
 
       // Échelle stable avec légère rétractation uniquement en fin de vie
       const scale =
-        this.baseScales[i] * depthFactor * Math.min(1.0, lifeFade + 0.35) * this.surgeMultiplier
+        this.baseScales[i] * depthFactor * Math.min(1.0, lifeFade * 1.3) * this.surgeMultiplier
 
       this.dummy.position.set(
         this.positions[idx3],
@@ -302,14 +302,14 @@ export class EmbersInstance implements IBrickInstance {
 
   private applyQuality(quality: QualityTier): void {
     const isMobile = window.innerWidth < 768
-    const mobileRatio = isMobile ? 0.35 : 1.0
+    const mobileRatio = isMobile ? 0.5 : 1.0
 
     if (quality === 'HIGH') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(200 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(360 * this.density * mobileRatio))
     } else if (quality === 'MEDIUM') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(110 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(210 * this.density * mobileRatio))
     } else {
-      this.activeCount = Math.min(this.totalCount, Math.floor(50 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(100 * this.density * mobileRatio))
     }
   }
 

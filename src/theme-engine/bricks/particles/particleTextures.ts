@@ -42,44 +42,47 @@ export function getSoftCircleTexture(): THREE.CanvasTexture {
     const cx = w / 2
     const cy = h / 2
 
-    // 1. Halo atmosphérique chaud externe
+    // 1. Halo atmosphérique chaud externe étendu et bien lumineux
     const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.48)
-    halo.addColorStop(0, 'rgba(254, 240, 138, 0.45)')
-    halo.addColorStop(0.3, 'rgba(253, 224, 71, 0.20)')
-    halo.addColorStop(0.7, 'rgba(234, 179, 8, 0.05)')
+    halo.addColorStop(0, 'rgba(255, 250, 210, 0.90)')
+    halo.addColorStop(0.25, 'rgba(254, 240, 138, 0.65)')
+    halo.addColorStop(0.55, 'rgba(250, 204, 21, 0.28)')
+    halo.addColorStop(0.85, 'rgba(234, 179, 8, 0.08)')
     halo.addColorStop(1, 'rgba(202, 138, 4, 0.0)')
     ctx.fillStyle = halo
-    ctx.fillRect(0, 0, w, h)
+    ctx.beginPath()
+    ctx.arc(cx, cy, w * 0.48, 0, Math.PI * 2)
+    ctx.fill()
 
-    // 2. Disque lumineux intermédiaire
-    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.3)
+    // 2. Disque lumineux intermédiaire doré
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.28)
     grad.addColorStop(0, 'rgba(255, 255, 255, 1.0)')
     grad.addColorStop(0.35, 'rgba(254, 240, 138, 0.95)')
-    grad.addColorStop(0.72, 'rgba(250, 204, 21, 0.55)')
+    grad.addColorStop(0.72, 'rgba(250, 204, 21, 0.75)')
     grad.addColorStop(1, 'rgba(234, 179, 8, 0.0)')
     ctx.fillStyle = grad
     ctx.beginPath()
-    ctx.arc(cx, cy, w * 0.3, 0, Math.PI * 2)
+    ctx.arc(cx, cy, w * 0.28, 0, Math.PI * 2)
     ctx.fill()
 
-    // 3. Cœur radiant pur et ponctuel
-    const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.12)
+    // 3. Cœur radiant pur étincelant (mote captant un rayon de lumière)
+    const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.14)
     core.addColorStop(0, 'rgba(255, 255, 255, 1.0)')
-    core.addColorStop(0.65, 'rgba(255, 255, 255, 0.92)')
-    core.addColorStop(1, 'rgba(255, 255, 255, 0.0)')
+    core.addColorStop(0.65, 'rgba(255, 255, 255, 0.95)')
+    core.addColorStop(1, 'rgba(254, 240, 138, 0.0)')
     ctx.fillStyle = core
     ctx.beginPath()
-    ctx.arc(cx, cy, w * 0.12, 0, Math.PI * 2)
+    ctx.arc(cx, cy, w * 0.14, 0, Math.PI * 2)
     ctx.fill()
 
-    // 4. Aigrette / éclat en croix subtil pour motes captant un rai de lumière
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.55)'
-    ctx.lineWidth = 1.2
+    // 4. Aigrette / éclat lumineux en croix pour accrocher la lumière
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)'
+    ctx.lineWidth = 1.8
     ctx.beginPath()
-    ctx.moveTo(cx - 20, cy)
-    ctx.lineTo(cx + 20, cy)
-    ctx.moveTo(cx, cy - 20)
-    ctx.lineTo(cx, cy + 20)
+    ctx.moveTo(cx - 24, cy)
+    ctx.lineTo(cx + 24, cy)
+    ctx.moveTo(cx, cy - 24)
+    ctx.lineTo(cx + 24, cy)
     ctx.stroke()
   })
 }
@@ -153,35 +156,37 @@ export function getEmberTexture(): THREE.CanvasTexture {
     const cx = w / 2
     const cy = h / 2
 
-    // 1. Halo thermique diffus rougeoyant
+    // 1. Halo thermique diffus ardent orange-rouge
     const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.48)
-    halo.addColorStop(0, 'rgba(239, 68, 68, 0.45)')
-    halo.addColorStop(0.35, 'rgba(220, 38, 38, 0.22)')
-    halo.addColorStop(0.75, 'rgba(185, 28, 28, 0.06)')
-    halo.addColorStop(1, 'rgba(153, 27, 27, 0.0)')
+    halo.addColorStop(0, 'rgba(249, 115, 22, 0.80)')
+    halo.addColorStop(0.3, 'rgba(239, 68, 68, 0.50)')
+    halo.addColorStop(0.7, 'rgba(220, 38, 38, 0.18)')
+    halo.addColorStop(1, 'rgba(185, 28, 28, 0.0)')
     ctx.fillStyle = halo
-    ctx.fillRect(0, 0, w, h)
+    ctx.beginPath()
+    ctx.arc(cx, cy, w * 0.48, 0, Math.PI * 2)
+    ctx.fill()
 
-    // 2. Manteau incandescent orange et rouge
-    const grad = ctx.createRadialGradient(cx - 2, cy - 2, 2, cx, cy, w * 0.34)
-    grad.addColorStop(0, 'rgba(255, 255, 255, 1.0)') // Cœur blanc-chaud
-    grad.addColorStop(0.22, 'rgba(254, 240, 138, 0.98)') // Jaune étincelant
-    grad.addColorStop(0.55, 'rgba(249, 115, 22, 0.92)') // Orange vif
-    grad.addColorStop(0.85, 'rgba(220, 38, 38, 0.65)') // Rouge braise
+    // 2. Manteau incandescent jaune d'or, orange vif et rouge braise
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.32)
+    grad.addColorStop(0, 'rgba(255, 255, 255, 1.0)')
+    grad.addColorStop(0.2, 'rgba(254, 240, 138, 1.0)')
+    grad.addColorStop(0.55, 'rgba(249, 115, 22, 0.95)')
+    grad.addColorStop(0.85, 'rgba(220, 38, 38, 0.75)')
     grad.addColorStop(1, 'rgba(185, 28, 28, 0.0)')
     ctx.fillStyle = grad
     ctx.beginPath()
-    ctx.arc(cx, cy, w * 0.34, 0, Math.PI * 2)
+    ctx.arc(cx, cy, w * 0.32, 0, Math.PI * 2)
     ctx.fill()
 
     // 3. Cœur incandescent ponctuel super-brillant
-    const core = ctx.createRadialGradient(cx - 1, cy - 1, 0, cx, cy, w * 0.14)
+    const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.15)
     core.addColorStop(0, 'rgba(255, 255, 255, 1.0)')
-    core.addColorStop(0.7, 'rgba(255, 250, 200, 0.95)')
+    core.addColorStop(0.7, 'rgba(255, 250, 210, 0.98)')
     core.addColorStop(1, 'rgba(254, 240, 138, 0.0)')
     ctx.fillStyle = core
     ctx.beginPath()
-    ctx.arc(cx, cy, w * 0.14, 0, Math.PI * 2)
+    ctx.arc(cx, cy, w * 0.15, 0, Math.PI * 2)
     ctx.fill()
   })
 }
@@ -464,46 +469,38 @@ export function getPetalTexture(): THREE.CanvasTexture {
     const cx = w / 2
     const cy = h / 2
 
-    // 1. Halo lumineux doux atmosphérique rosé
-    const halo = ctx.createRadialGradient(cx, cy, 10, cx, cy, w * 0.48)
-    halo.addColorStop(0, 'rgba(255, 240, 248, 0.42)')
-    halo.addColorStop(0.5, 'rgba(244, 114, 182, 0.16)')
-    halo.addColorStop(1, 'rgba(236, 72, 153, 0.0)')
-    ctx.fillStyle = halo
-    ctx.fillRect(0, 0, w, h)
-
     ctx.save()
     ctx.translate(cx, cy)
 
-    // 2. Silhouette distinctive de pétale sakura avec échancrure / encoche en V au sommet
+    // 1. Silhouette distinctive et généreuse de pétale sakura avec encoche en V au sommet
     ctx.beginPath()
-    ctx.moveTo(0, 46) // Base / attache tige
-    ctx.bezierCurveTo(-32, 28, -46, -4, -20, -46) // Flanc gauche vers lobe supérieur gauche
-    ctx.quadraticCurveTo(-10, -44, 0, -32) // Encoche sakura descendant au centre
-    ctx.quadraticCurveTo(10, -44, 20, -46) // Remontée vers lobe supérieur droit
-    ctx.bezierCurveTo(46, -4, 32, 28, 0, 46) // Flanc droit descendant vers la base
+    ctx.moveTo(0, 50)
+    ctx.bezierCurveTo(-36, 32, -50, -4, -22, -50)
+    ctx.quadraticCurveTo(-10, -46, 0, -34)
+    ctx.quadraticCurveTo(10, -46, 22, -50)
+    ctx.bezierCurveTo(50, -4, 36, 32, 0, 50)
     ctx.closePath()
 
-    // 3. Dégradé soyeux nacré : rose vif à la base vers rose pastel et liseré clair
-    const grad = ctx.createLinearGradient(0, 46, 0, -46)
-    grad.addColorStop(0, 'rgba(244, 114, 182, 0.96)') // Base rose profond
-    grad.addColorStop(0.35, 'rgba(251, 207, 232, 0.94)') // Corps satiné rose doux
-    grad.addColorStop(0.8, 'rgba(255, 240, 248, 0.96)') // Haut du pétale clair
-    grad.addColorStop(1, 'rgba(255, 255, 255, 0.98)') // Pointe nacrée
+    // 2. Dégradé soyeux nacré aux vraies teintes rosées (sakura authentique, jamais blanc délavé)
+    const grad = ctx.createLinearGradient(0, 50, 0, -50)
+    grad.addColorStop(0, 'rgba(225, 29, 72, 0.98)')
+    grad.addColorStop(0.35, 'rgba(244, 63, 94, 0.96)')
+    grad.addColorStop(0.7, 'rgba(244, 114, 182, 0.95)')
+    grad.addColorStop(1, 'rgba(251, 207, 232, 0.92)')
     ctx.fillStyle = grad
     ctx.fill()
 
-    // 4. Liseré délicat nacré sur tout le pourtour pour une excellente lisibilité
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)'
-    ctx.lineWidth = 2.2
+    // 3. Liseré soyeux nacré bien défini sur tout le contour pour détacher le pétale
+    ctx.strokeStyle = 'rgba(255, 230, 242, 0.90)'
+    ctx.lineWidth = 2.4
     ctx.stroke()
 
-    // 5. Nervure / pliure centrale délicate pour donner du volume 3D
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.55)'
-    ctx.lineWidth = 1.6
+    // 4. Nervure et pliure axiale galbée pour le relief 3D
+    ctx.strokeStyle = 'rgba(255, 240, 248, 0.65)'
+    ctx.lineWidth = 1.8
     ctx.beginPath()
-    ctx.moveTo(0, 44)
-    ctx.quadraticCurveTo(2, 6, 0, -28)
+    ctx.moveTo(0, 48)
+    ctx.quadraticCurveTo(3, 4, 0, -30)
     ctx.stroke()
 
     ctx.restore()
@@ -564,39 +561,40 @@ export function getSmokeTexture(): THREE.CanvasTexture {
     const cx = w / 2
     const cy = h / 2
 
-    // 1. Lobes asymétriques superposés pour créer un panache vaporeux organique
+    // Lobes asymétriques superposés avec dégradés ultra-doux simulant un bouillon de fumée
     const lobes = [
-      { x: cx, y: cy, r: 52, a: 0.62 },
-      { x: cx - 18, y: cy + 12, r: 44, a: 0.45 },
-      { x: cx + 20, y: cy - 10, r: 42, a: 0.45 },
-      { x: cx - 14, y: cy - 20, r: 38, a: 0.38 },
-      { x: cx + 18, y: cy + 18, r: 36, a: 0.38 },
-      { x: cx, y: cy - 14, r: 46, a: 0.5 },
+      { x: cx, y: cy, r: 56, a: 0.48 },
+      { x: cx - 18, y: cy + 10, r: 46, a: 0.38 },
+      { x: cx + 22, y: cy - 12, r: 44, a: 0.36 },
+      { x: cx - 14, y: cy - 22, r: 40, a: 0.32 },
+      { x: cx + 18, y: cy + 18, r: 38, a: 0.32 },
+      { x: cx - 2, y: cy - 16, r: 48, a: 0.4 },
     ]
 
     for (const lobe of lobes) {
       const grad = ctx.createRadialGradient(lobe.x, lobe.y, 0, lobe.x, lobe.y, lobe.r)
-      grad.addColorStop(0, `rgba(255, 255, 255, ${lobe.a})`)
-      grad.addColorStop(0.35, `rgba(245, 248, 255, ${lobe.a * 0.75})`)
-      grad.addColorStop(0.7, `rgba(225, 235, 250, ${lobe.a * 0.28})`)
-      grad.addColorStop(1, 'rgba(210, 225, 245, 0.0)')
+      grad.addColorStop(0, 'rgba(255, 255, 255, ' + lobe.a + ')')
+      grad.addColorStop(0.35, 'rgba(240, 245, 255, ' + lobe.a * 0.72 + ')')
+      grad.addColorStop(0.65, 'rgba(220, 230, 245, ' + lobe.a * 0.3 + ')')
+      grad.addColorStop(0.9, 'rgba(200, 215, 235, ' + lobe.a * 0.08 + ')')
+      grad.addColorStop(1, 'rgba(190, 210, 230, 0.0)')
       ctx.fillStyle = grad
       ctx.beginPath()
       ctx.arc(lobe.x, lobe.y, lobe.r, 0, Math.PI * 2)
       ctx.fill()
     }
 
-    // 2. Micro-tourbillons / filaments vaporeux internes
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)'
-    ctx.lineWidth = 3.0
+    // Filaments / volutes vaporeuses internes ondulantes
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.20)'
+    ctx.lineWidth = 3.5
     ctx.beginPath()
-    ctx.arc(cx - 6, cy + 4, 22, 0.2, Math.PI * 1.3)
+    ctx.arc(cx - 8, cy + 6, 26, 0.2, Math.PI * 1.3)
     ctx.stroke()
 
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.18)'
-    ctx.lineWidth = 2.4
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.16)'
+    ctx.lineWidth = 2.8
     ctx.beginPath()
-    ctx.arc(cx + 8, cy - 6, 18, Math.PI * 0.6, Math.PI * 1.8)
+    ctx.arc(cx + 10, cy - 8, 22, Math.PI * 0.6, Math.PI * 1.8)
     ctx.stroke()
   })
 }

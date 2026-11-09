@@ -24,7 +24,7 @@ import { getSoftCircleTexture } from './particleTextures'
 export interface DustProps {
   /** Teinte lumineuse des grains de poussière (défaut: '#fef08a'). */
   dustColor?: string
-  /** Multiplicateur de densité/nombre de motes (0.2 à 2.5, défaut: 1.0 -> 180 motes). */
+  /** Multiplicateur de densité/nombre de motes (0.2 à 2.5, défaut: 1.0 -> 320 motes). */
   density?: number
   /** Vitesse de dérive lente (0.05 à 1.5, défaut: 0.2). */
   speed?: number
@@ -79,7 +79,7 @@ export class DustInstance implements IBrickInstance {
     this.twinkleSpeed = props.twinkleSpeed ?? 1.2
     this.currentQuality = context.quality ?? 'HIGH'
 
-    this.totalCount = Math.floor(220 * this.density)
+    this.totalCount = Math.floor(360 * this.density)
     this.activeCount = this.totalCount
 
     this.positions = new Float32Array(this.totalCount * 3)
@@ -109,18 +109,18 @@ export class DustInstance implements IBrickInstance {
       this.positions[idx3 + 1] = (Math.random() - 0.5) * 14
       this.positions[idx3 + 2] = -12 * this.depthFactor + Math.random() * (5 * this.depthFactor)
 
-      // 3 paliers de taille bien calibrés pour que les grains soient nettement visibles :
-      // ~55% fines motes dorées d'ambiance
-      // ~33% grains lumineux de mi-plan
-      // ~12% grosses motes scintillantes traversant les rais de lumière
+      // 3 paliers de taille généreux pour que les grains soient nettement visibles dans les rais de lumière :
+      // ~50% motes dorées d'ambiance
+      // ~35% grains lumineux de mi-plan
+      // ~15% grandes motes étincelantes captant les faisceaux lumineux
       const tierRand = Math.random()
       let size = 0
-      if (tierRand < 0.55) {
-        size = 0.16 + Math.random() * 0.08
-      } else if (tierRand < 0.88) {
-        size = 0.28 + Math.random() * 0.12
+      if (tierRand < 0.5) {
+        size = 0.45 + Math.random() * 0.2
+      } else if (tierRand < 0.85) {
+        size = 0.75 + Math.random() * 0.3
       } else {
-        size = 0.46 + Math.random() * 0.2
+        size = 1.15 + Math.random() * 0.4
       }
       this.baseScales[i] = size * this.intensity
 
@@ -205,24 +205,24 @@ export class DustInstance implements IBrickInstance {
       if (this.positions[idx3] > 11.0) this.positions[idx3] = -11.0
       if (this.positions[idx3] < -11.0) this.positions[idx3] = 11.0
 
-      // Scintillement lumineux organique (modulant la radiance de couleur plutôt que d'annihiler la taille)
-      const twinkle = 0.5 + 0.5 * Math.sin(time * this.twinkleSpeed * 1.5 + this.phases[i])
+      // Scintillement lumineux organique et brillance soutenue dans les rais de lumière
+      const twinkle = 0.55 + 0.45 * Math.sin(time * this.twinkleSpeed * 1.5 + this.phases[i])
       const pz = this.positions[idx3 + 2]
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.5, 1.25)
-      const depthOpacity = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.45, 1.0)
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.65, 1.25)
+      const depthOpacity = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.7, 1.0)
 
-      const finalAlpha = Math.max(0.12, Math.min(1.0, twinkle * depthOpacity * this.intensity))
+      const brightness = twinkle * depthOpacity * this.intensity
       const cIdx = i * 3
       this.tempColor.setRGB(
-        this.baseColors[cIdx] * finalAlpha,
-        this.baseColors[cIdx + 1] * finalAlpha,
-        this.baseColors[cIdx + 2] * finalAlpha
+        this.baseColors[cIdx] * brightness,
+        this.baseColors[cIdx + 1] * brightness,
+        this.baseColors[cIdx + 2] * brightness
       )
       this.mesh.setColorAt(i, this.tempColor)
 
       // Échelle stable et visible avec pulsation douce
       const scale =
-        this.baseScales[i] * depthFactor * (0.85 + 0.15 * twinkle) * this.surgeMultiplier
+        this.baseScales[i] * depthFactor * (0.88 + 0.12 * twinkle) * this.surgeMultiplier
 
       this.dummy.position.set(
         this.positions[idx3],
@@ -267,14 +267,14 @@ export class DustInstance implements IBrickInstance {
 
   private applyQuality(quality: QualityTier): void {
     const isMobile = window.innerWidth < 768
-    const mobileRatio = isMobile ? 0.35 : 1.0
+    const mobileRatio = isMobile ? 0.5 : 1.0
 
     if (quality === 'HIGH') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(200 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(320 * this.density * mobileRatio))
     } else if (quality === 'MEDIUM') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(110 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(190 * this.density * mobileRatio))
     } else {
-      this.activeCount = Math.min(this.totalCount, Math.floor(50 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(95 * this.density * mobileRatio))
     }
   }
 

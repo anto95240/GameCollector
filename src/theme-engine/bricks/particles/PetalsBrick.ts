@@ -22,11 +22,11 @@ import { BrickRegistry } from '../registry'
 import { getPetalTexture } from './particleTextures'
 
 export interface PetalsProps {
-  /** Teinte dominante des pétales de fleur (défaut: '#fbcfe8'). */
+  /** Teinte dominante des pétales de fleur (défaut: '#f472b6'). */
   petalColor?: string
-  /** Teinte accentuée plus vive pour le cœur (défaut: '#f472b6'). */
+  /** Teinte accentuée plus vive pour le cœur (défaut: '#fb7185'). */
   accentColor?: string
-  /** Multiplicateur de densité/nombre de pétales (0.2 à 2.5, défaut: 1.0 -> 110 pétales). */
+  /** Multiplicateur de densité/nombre de pétales (0.2 à 2.5, défaut: 1.0 -> 130 pétales). */
   density?: number
   /** Vitesse de descente vaporeuse (0.1 à 2.0, défaut: 0.35). */
   speed?: number
@@ -61,6 +61,7 @@ export class PetalsInstance implements IBrickInstance {
   private life: Float32Array
   private maxLife: Float32Array
   private baseColors: Float32Array
+  private instanceAlphas: Float32Array
 
   private petalColor: THREE.Color
   private accentColor: THREE.Color
@@ -81,8 +82,8 @@ export class PetalsInstance implements IBrickInstance {
     this.id = id
     this.scene = context.scene
 
-    this.petalColor = new THREE.Color(props.petalColor ?? '#fbcfe8')
-    this.accentColor = new THREE.Color(props.accentColor ?? '#f472b6')
+    this.petalColor = new THREE.Color(props.petalColor ?? '#f472b6')
+    this.accentColor = new THREE.Color(props.accentColor ?? '#fb7185')
     this.density = props.density ?? 1.0
     this.speed = props.speed ?? 0.35
     this.depthFactor = props.depth ?? 0.5
@@ -92,21 +93,27 @@ export class PetalsInstance implements IBrickInstance {
     this.windSpeed = props.windSpeed ?? 0.4
     this.currentQuality = context.quality ?? 'HIGH'
 
-    this.totalCount = Math.floor(130 * this.density)
+    this.totalCount = Math.floor(150 * this.density)
     this.activeCount = this.totalCount
 
     this.positions = new Float32Array(this.totalCount * 3)
     this.velocities = new Float32Array(this.totalCount * 3)
-    this.rotations = new Float32Array(this.totalCount * 3)
-    this.rotVelocities = new Float32Array(this.totalCount * 3)
+    this.rotations = new Float32Array(this.totalCount)
+    this.rotVelocities = new Float32Array(this.totalCount)
     this.curlPhases = new Float32Array(this.totalCount)
     this.baseScales = new Float32Array(this.totalCount)
     this.seeds = new Float32Array(this.totalCount)
     this.life = new Float32Array(this.totalCount)
     this.maxLife = new Float32Array(this.totalCount)
     this.baseColors = new Float32Array(this.totalCount * 3)
+    this.instanceAlphas = new Float32Array(this.totalCount)
+    this.instanceAlphas.fill(1.0)
 
     const geometry = new THREE.PlaneGeometry(1, 1)
+    const alphaAttr = new THREE.InstancedBufferAttribute(this.instanceAlphas, 1)
+    alphaAttr.setUsage(THREE.DynamicDrawUsage)
+    geometry.setAttribute('instanceAlpha', alphaAttr)
+
     const material = new THREE.MeshBasicMaterial({
       map: getPetalTexture(),
       color: 0xffffff,
@@ -115,6 +122,19 @@ export class PetalsInstance implements IBrickInstance {
       opacity: Math.min(1.0, 0.95 * this.intensity),
       side: THREE.DoubleSide,
     })
+
+    material.customProgramCacheKey = () => 'petals_instance_alpha'
+    material.onBeforeCompile = (shader) => {
+      shader.vertexShader =
+        `attribute float instanceAlpha;\nvarying float vInstanceAlpha;\n${shader.vertexShader}`.replace(
+          '#include <color_vertex>',
+          `#include <color_vertex>\nvInstanceAlpha = instanceAlpha;`
+        )
+      shader.fragmentShader = `varying float vInstanceAlpha;\n${shader.fragmentShader}`.replace(
+        '#include <color_fragment>',
+        `#include <color_fragment>\ndiffuseColor.a *= vInstanceAlpha;`
+      )
+    }
 
     this.mesh = new THREE.InstancedMesh(geometry, material, this.totalCount)
     this.mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage)
@@ -132,13 +152,17 @@ export class PetalsInstance implements IBrickInstance {
 
   private updateBaseColors(): void {
     for (let i = 0; i < this.totalCount; i++) {
-      // Nuances délicates entre rose tendre et rose fuchsia nacré
-      const mixRatio = 0.2 + Math.random() * 0.65
+      // Nuances délicates et naturelles entre rose sakura soyeux et rose corail tendre
+      const mixRatio = 0.15 + Math.random() * 0.7
       this.tempColor.copy(this.petalColor).lerp(this.accentColor, mixRatio)
       const cIdx = i * 3
       this.baseColors[cIdx] = this.tempColor.r
       this.baseColors[cIdx + 1] = this.tempColor.g
       this.baseColors[cIdx + 2] = this.tempColor.b
+      this.mesh?.setColorAt(i, this.tempColor)
+    }
+    if (this.mesh?.instanceColor) {
+      this.mesh.instanceColor.needsUpdate = true
     }
   }
 
@@ -152,32 +176,27 @@ export class PetalsInstance implements IBrickInstance {
     this.velocities[idx3 + 1] = -(0.35 + Math.random() * 0.35) * this.speed
     this.velocities[idx3 + 2] = (Math.random() - 0.5) * 0.05
 
-    this.rotations[idx3] = Math.random() * Math.PI * 2
-    this.rotations[idx3 + 1] = Math.random() * Math.PI * 2
-    this.rotations[idx3 + 2] = Math.random() * Math.PI * 2
-
-    // Rotation douce et progressive pour que la silhouette de pétale reste identifiable
-    this.rotVelocities[idx3] = (Math.random() - 0.5) * 1.1 * this.curlAmount
-    this.rotVelocities[idx3 + 1] = (Math.random() - 0.5) * 1.5 * this.curlAmount
-    this.rotVelocities[idx3 + 2] = (Math.random() - 0.5) * 0.8 * this.curlAmount
+    this.rotations[i] = Math.random() * Math.PI * 2
+    // Rotation lente dans le plan caméra pour préserver l'orientation visible du pétale
+    this.rotVelocities[i] = (Math.random() - 0.5) * 0.45 * this.curlAmount
 
     this.curlPhases[i] = Math.random() * Math.PI * 2
     const maxLifeSec = 12.0 + Math.random() * 8.0
     this.maxLife[i] = maxLifeSec
     this.life[i] = randomAge ? Math.random() * maxLifeSec : 0
 
-    // 3 paliers de taille bien calibrés pour garantir la lisibilité de la forme de pétale :
-    // ~50% petits (pétales d'arrière-plan vaporeux)
-    // ~35% moyens (corps principal du voletement)
-    // ~15% grands (beaux pétales de premier plan avec échancrure sakura nette)
+    // 3 paliers de taille généreux pour garantir une excellente visibilité de la silhouette sakura :
+    // ~45% petits pétales délicats de mi-plan
+    // ~40% moyens pétales (corps principal du voletement)
+    // ~15% grands pétales d'avant-plan avec échancrure sakura parfaitement distincte
     const tierRand = Math.random()
     let size = 0
-    if (tierRand < 0.5) {
-      size = 0.38 + Math.random() * 0.12
+    if (tierRand < 0.45) {
+      size = 0.85 + Math.random() * 0.3
     } else if (tierRand < 0.85) {
-      size = 0.58 + Math.random() * 0.18
+      size = 1.25 + Math.random() * 0.4
     } else {
-      size = 0.88 + Math.random() * 0.25
+      size = 1.8 + Math.random() * 0.5
     }
     this.baseScales[i] = size * this.intensity
   }
@@ -245,46 +264,36 @@ export class PetalsInstance implements IBrickInstance {
       if (this.positions[idx3] > 12.0) this.positions[idx3] = -12.0
       if (this.positions[idx3] < -12.0) this.positions[idx3] = 12.0
 
-      // Rotation 3D douce
-      this.rotations[idx3] += this.rotVelocities[idx3] * delta
-      this.rotations[idx3 + 1] += this.rotVelocities[idx3 + 1] * delta
-      this.rotations[idx3 + 2] += this.rotVelocities[idx3 + 2] * delta
+      // Rotation principale lente en Z + voletement doux en X et Y (sans jamais se retourner sur la tranche)
+      this.rotations[i] += this.rotVelocities[i] * delta
+      const pitch = Math.sin(time * 1.5 + this.curlPhases[i]) * 0.32 * this.curlAmount
+      const roll = Math.cos(time * 1.2 + this.curlPhases[i] * 1.3) * 0.28 * this.curlAmount
 
       const pz = this.positions[idx3 + 2]
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.55, 1.25)
-      const depthOpacity = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.45, 1.0)
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.65, 1.25)
+      const depthOpacity = THREE.MathUtils.mapLinear(pz, -12 * this.depthFactor, 2, 0.65, 1.0)
 
-      // Fondu d'apparition doux et extinction sur les derniers 15 %
+      // Fondu d'apparition doux et évanouissement progressif en fin de vie
       let lifeFade = 1.0
-      if (progress < 0.1) {
-        lifeFade = progress / 0.1
+      if (progress < 0.12) {
+        lifeFade = progress / 0.12
       } else if (progress > 0.85) {
         lifeFade = (1.0 - progress) / 0.15
       }
 
-      // Application de l'opacité par teinte VRAM
-      const finalAlpha = Math.max(0.12, Math.min(1.0, lifeFade * depthOpacity))
-      const cIdx = i * 3
-      this.tempColor.setRGB(
-        this.baseColors[cIdx] * finalAlpha,
-        this.baseColors[cIdx + 1] * finalAlpha,
-        this.baseColors[cIdx + 2] * finalAlpha
-      )
-      this.mesh.setColorAt(i, this.tempColor)
+      // Vraie modulation d'opacité GPU par instance (ne noircit jamais le pétale)
+      const finalAlpha = Math.max(0.0, Math.min(1.0, lifeFade * depthOpacity))
+      this.instanceAlphas[i] = finalAlpha
 
       const scale =
-        this.baseScales[i] * Math.min(1.0, lifeFade + 0.3) * depthFactor * this.surgeMultiplier
+        this.baseScales[i] * Math.min(1.0, lifeFade + 0.25) * depthFactor * this.surgeMultiplier
 
       this.dummy.position.set(
         this.positions[idx3],
         this.positions[idx3 + 1],
         this.positions[idx3 + 2]
       )
-      this.dummy.rotation.set(
-        this.rotations[idx3],
-        this.rotations[idx3 + 1],
-        this.rotations[idx3 + 2]
-      )
+      this.dummy.rotation.set(pitch, roll, this.rotations[i])
       this.dummy.scale.set(scale, scale, scale)
       this.dummy.updateMatrix()
 
@@ -292,6 +301,7 @@ export class PetalsInstance implements IBrickInstance {
     }
 
     for (let i = this.activeCount; i < this.totalCount; i++) {
+      this.instanceAlphas[i] = 0.0
       this.dummy.position.set(0, -999, 0)
       this.dummy.scale.set(0, 0, 0)
       this.dummy.updateMatrix()
@@ -299,8 +309,11 @@ export class PetalsInstance implements IBrickInstance {
     }
 
     this.mesh.instanceMatrix.needsUpdate = true
-    if (this.mesh.instanceColor) {
-      this.mesh.instanceColor.needsUpdate = true
+    const alphaAttr = this.mesh.geometry.getAttribute(
+      'instanceAlpha'
+    ) as THREE.InstancedBufferAttribute
+    if (alphaAttr) {
+      alphaAttr.needsUpdate = true
     }
   }
 
@@ -341,14 +354,14 @@ export class PetalsInstance implements IBrickInstance {
 
   private applyQuality(quality: QualityTier): void {
     const isMobile = window.innerWidth < 768
-    const mobileRatio = isMobile ? 0.35 : 1.0
+    const mobileRatio = isMobile ? 0.5 : 1.0
 
     if (quality === 'HIGH') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(120 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(130 * this.density * mobileRatio))
     } else if (quality === 'MEDIUM') {
-      this.activeCount = Math.min(this.totalCount, Math.floor(65 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(75 * this.density * mobileRatio))
     } else {
-      this.activeCount = Math.min(this.totalCount, Math.floor(32 * this.density * mobileRatio))
+      this.activeCount = Math.min(this.totalCount, Math.floor(38 * this.density * mobileRatio))
     }
   }
 
@@ -358,7 +371,6 @@ export class PetalsInstance implements IBrickInstance {
   }
 
   public triggerEvent(_event: RareEventTrigger): void {
-    // Brise printanière tourbillonnante
     this.surgeMultiplier = 2.4
   }
 
