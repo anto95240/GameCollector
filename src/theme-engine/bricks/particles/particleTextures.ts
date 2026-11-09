@@ -563,12 +563,12 @@ export function getSmokeTexture(): THREE.CanvasTexture {
 
     // Lobes asymétriques superposés avec dégradés ultra-doux simulant un bouillon de fumée
     const lobes = [
-      { x: cx, y: cy, r: 56, a: 0.48 },
-      { x: cx - 18, y: cy + 10, r: 46, a: 0.38 },
-      { x: cx + 22, y: cy - 12, r: 44, a: 0.36 },
-      { x: cx - 14, y: cy - 22, r: 40, a: 0.32 },
-      { x: cx + 18, y: cy + 18, r: 38, a: 0.32 },
-      { x: cx - 2, y: cy - 16, r: 48, a: 0.4 },
+      { x: cx, y: cy, r: 56, a: 0.75 },
+      { x: cx - 18, y: cy + 10, r: 46, a: 0.62 },
+      { x: cx + 22, y: cy - 12, r: 44, a: 0.58 },
+      { x: cx - 14, y: cy - 22, r: 40, a: 0.52 },
+      { x: cx + 18, y: cy + 18, r: 38, a: 0.52 },
+      { x: cx - 2, y: cy - 16, r: 48, a: 0.65 },
     ]
 
     for (const lobe of lobes) {

@@ -81,8 +81,8 @@ export class SmokeInstance implements IBrickInstance {
     this.id = id
     this.scene = context.scene
 
-    this.smokeColor = new THREE.Color(props.smokeColor ?? '#64748b')
-    this.tintColor = new THREE.Color(props.tintColor ?? '#334155')
+    this.smokeColor = new THREE.Color(props.smokeColor ?? '#94a3b8')
+    this.tintColor = new THREE.Color(props.tintColor ?? '#64748b')
     this.density = props.density ?? 1.0
     this.speed = props.speed ?? 0.35
     this.depthFactor = props.depth ?? 0.45
@@ -117,7 +117,7 @@ export class SmokeInstance implements IBrickInstance {
       color: 0xffffff,
       transparent: true,
       depthWrite: false,
-      opacity: Math.min(1.0, 0.4 * this.intensity),
+      opacity: Math.min(1.0, 0.85 * this.intensity),
       side: THREE.DoubleSide,
     })
 
@@ -165,35 +165,35 @@ export class SmokeInstance implements IBrickInstance {
 
   private resetParticle(i: number, randomAge = false): void {
     const idx3 = i * 3
-    // Émission resserrée en bas qui forme une colonne / panache ascendant naturel
-    this.positions[idx3] = (Math.random() - 0.5) * 8.5
-    this.positions[idx3 + 1] = randomAge ? (Math.random() - 0.5) * 14 : -7.5 + Math.random() * 2.0
+    // Émission resserrée en bas qui forme un panache ascendant naturel
+    this.positions[idx3] = (Math.random() - 0.5) * 6.5
+    this.positions[idx3 + 1] = randomAge ? -4.5 + Math.random() * 10.0 : -4.8 + Math.random() * 1.5
     this.positions[idx3 + 2] = -10 * this.depthFactor + Math.random() * (4 * this.depthFactor)
 
-    this.velocities[idx3] = (Math.random() - 0.5) * 0.18 * this.randomness
-    this.velocities[idx3 + 1] = (0.35 + Math.random() * 0.35) * this.speed
+    this.velocities[idx3] = (Math.random() - 0.5) * 0.15 * this.randomness
+    this.velocities[idx3 + 1] = (0.45 + Math.random() * 0.35) * this.speed
     this.velocities[idx3 + 2] = (Math.random() - 0.5) * 0.05
 
     this.rotations[i] = Math.random() * Math.PI * 2
     // Rotation lente de vortex
-    this.rotVelocities[i] = (Math.random() - 0.5) * 0.08 * this.randomness
+    this.rotVelocities[i] = (Math.random() - 0.5) * 0.12 * this.randomness
 
-    const maxLifeSec = (8.0 + Math.random() * 5.0) / this.dissipationSpeed
+    const maxLifeSec = (7.0 + Math.random() * 4.0) / this.dissipationSpeed
     this.maxLife[i] = maxLifeSec
     this.life[i] = randomAge ? Math.random() * maxLifeSec : 0
 
-    // Grands sprites doux et voluptueux pour former de véritables volutes expansives :
-    // ~40% volutes moyennes (formation du panache)
-    // ~40% gros bouillons de fumée
-    // ~20% grandes nappes vaporeuses
+    // 3 paliers de taille pour former de véritables volutes expansives bien découpées :
+    // ~45% volutes compactes à la naissance
+    // ~35% volutes moyennes en ascension
+    // ~20% panaches expansifs étalés
     const tierRand = Math.random()
     let size = 0
-    if (tierRand < 0.4) {
-      size = 3.8 + Math.random() * 1.4
+    if (tierRand < 0.45) {
+      size = 0.95 + Math.random() * 0.35
     } else if (tierRand < 0.8) {
-      size = 5.8 + Math.random() * 1.8
+      size = 1.45 + Math.random() * 0.45
     } else {
-      size = 8.2 + Math.random() * 2.2
+      size = 2.15 + Math.random() * 0.65
     }
     this.baseScales[i] = size * this.intensity
   }

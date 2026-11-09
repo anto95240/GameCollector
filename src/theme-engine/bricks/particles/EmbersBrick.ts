@@ -116,6 +116,11 @@ export class EmbersInstance implements IBrickInstance {
     for (let i = 0; i < this.totalCount; i++) {
       this.baseSeeds[i] = Math.random() * 1000
       this.resetParticle(i, true)
+      this.mesh.setColorAt(i, this.hotColor)
+    }
+
+    if (this.mesh.instanceColor) {
+      this.mesh.instanceColor.needsUpdate = true
     }
 
     this.applyQuality(this.currentQuality)
@@ -124,9 +129,9 @@ export class EmbersInstance implements IBrickInstance {
 
   private resetParticle(i: number, randomAge = false): void {
     const idx3 = i * 3
-    // Émission depuis le bas de l'écran avec étalement conique
+    // Émission depuis le bas de l'écran avec étalement conique (ou répartition plein écran si démarrage avec âge aléatoire)
     this.positions[idx3] = (Math.random() - 0.5) * 16
-    this.positions[idx3 + 1] = -7.5 + Math.random() * 3.0
+    this.positions[idx3 + 1] = randomAge ? (Math.random() - 0.5) * 14 : -7.5 + Math.random() * 2.5
     this.positions[idx3 + 2] = -10 * this.depthFactor + Math.random() * (4 * this.depthFactor)
 
     // Vélocité : ascension Y rapide, dérive X douce
