@@ -131,102 +131,161 @@ export class CodeRainInstance implements IBrickInstance {
 
         ${GLSL_HASH}
 
-        // Génère un glyphe matriciel procédural 5x5 à partir de coordonnées locales et d'un ID de symbole
-        float proceduralChar(vec2 cellUv, float charId, float charSeed) {
-          // Grille 5x5 avec marges nettes
-          vec2 p = cellUv * vec2(5.0, 7.0);
-          vec2 ip = floor(p);
-          vec2 fp = fract(p);
+        // Génère un glyphe de style katakana / cyber-rune matriciel 5x7
+        float getGlyphPixel(vec2 ip, int gid, float rnd) {
+          float x = ip.x;
+          float y = ip.y;
 
-          // Marges extérieures
-          if (ip.x < 0.0 || ip.x >= 5.0 || ip.y < 0.0 || ip.y >= 7.0) return 0.0;
-          if (fp.x < 0.12 || fp.x > 0.88 || fp.y < 0.12 || fp.y > 0.88) return 0.0;
+          bool topBar = (y == 5.0 && x >= 1.0 && x <= 3.0);
+          bool midBar = (y == 3.0 && x >= 1.0 && x <= 3.0);
+          bool botBar = (y == 1.0 && x >= 1.0 && x <= 3.0);
+          bool centerCol = (x == 2.0 && y >= 1.0 && y <= 5.0);
+          bool leftCol = (x == 1.0 && y >= 1.0 && y <= 5.0);
+          bool rightCol = (x == 3.0 && y >= 1.0 && y <= 5.0);
+          bool leftHalf = (x == 1.0 && y >= 3.0 && y <= 5.0);
+          bool rightHalf = (x == 3.0 && y >= 1.0 && y <= 3.0);
+          bool diagDown = (x == (5.0 - y) && y >= 1.0 && y <= 5.0);
+          bool diagUp = (x == (y - 1.0) && y >= 1.0 && y <= 5.0);
 
-          // Hachage du pixel matriciel combiné avec l'identité du caractère
-          float pixelHash = hash12(vec2(ip.x + charId * 17.13, ip.y + charSeed * 29.41));
-          // Symétrie partielle pour rappeler des katakanas / runes cyber
-          if (ip.x >= 3.0) {
-            float symHash = hash12(vec2((4.0 - ip.x) + charId * 17.13, ip.y + charSeed * 29.41));
-            if (symHash > 0.5) pixelHash = max(pixelHash, symHash);
-          }
+          bool on = false;
+          if (gid == 0) on = topBar || centerCol; // T / 丁
+          else if (gid == 1) on = topBar || rightCol || botBar; // コ
+          else if (gid == 2) on = topBar || rightCol; // フ / 7
+          else if (gid == 3) on = topBar || botBar || leftCol || rightCol; // 口 / 0
+          else if (gid == 4) on = topBar || midBar || botBar || leftCol; // E
+          else if (gid == 5) on = topBar || midBar || botBar || centerCol; // 工 / エ
+          else if (gid == 6) on = leftCol || botBar; // L
+          else if (gid == 7) on = leftCol || midBar; // ト
+          else if (gid == 8) on = centerCol || (y == 3.0 && x != 2.0); // +
+          else if (gid == 9) on = leftCol || rightCol || midBar; // H
+          else if (gid == 10) on = diagDown || diagUp; // X
+          else if (gid == 11) on = topBar || leftCol || (y == 3.0 && x <= 2.0); // F
+          else if (gid == 12) on = (x == 1.0 && y >= 2.0) || (x == 3.0 && y <= 4.0); // リ
+          else if (gid == 13) on = topBar || botBar || (x == 2.0 && y >= 2.0 && y <= 4.0); // I avec empattements
+          else if (gid == 14) on = topBar || (x == 3.0 && y >= 3.0) || (y == 2.0 && x <= 2.0); // ユ
+          else if (gid == 15) on = (y == 4.0 && x >= 1.0 && x <= 3.0) || (y == 2.0 && x >= 1.0 && x <= 3.0); // 二
+          else if (gid == 16) on = topBar || leftHalf || midBar || rightHalf || botBar; // S / 5
+          else if (gid == 17) on = (x == 2.0) || (y == 5.0 && x == 1.0); // 1
+          else if (gid == 18) on = topBar || (y == 3.0 && x >= 2.0) || (x == 2.0 && y <= 3.0); // テ
+          else if (gid == 19) on = (x == 1.0 && y >= 1.0 && y <= 4.0) || (y == 4.0 && x >= 2.0); // レ
+          else if (gid == 20) on = diagDown || (x == 2.0 && y <= 2.0); // Y / λ
+          else if (gid == 21) on = (y == 5.0 && x == 2.0) || (y == 3.0 && (x == 1.0 || x == 3.0)) || (y == 1.0 && x == 2.0); // ◇
+          else if (gid == 22) on = topBar || leftCol || (x == 3.0 && y >= 3.0) || midBar; // P
+          else on = centerCol || topBar || botBar; // I
 
-          return step(0.42, pixelHash);
+          if (rnd > 0.88 && (x == 2.0 || y == 3.0)) on = !on;
+
+          return on ? 1.0 : 0.0;
         }
 
         // Calcule le flux d'une couche de code rain
-        vec4 renderCodeLayer(vec2 uv, float numCols, float layerSpeed, float layerDepth, float layerAlpha) {
+        vec4 renderCodeLayer(vec2 uv, float baseCols, float layerSpeed, float layerDepth, float layerAlpha, float charScale) {
           float aspect = uResolution.x / max(1.0, uResolution.y);
           vec2 st = vec2(uv.x * aspect, uv.y);
 
           // Parallaxe souris sur la couche
-          st.x += uMouse.x * uDepth * layerDepth * 0.15;
-          st.y += uMouse.y * uDepth * layerDepth * 0.08;
+          st.x += uMouse.x * uDepth * layerDepth * 0.12;
+          st.y += uMouse.y * uDepth * layerDepth * 0.06;
 
-          // Répulsion / déflexion magnétique souris
+          // Déflexion magnétique souris
           vec2 mouseScreen = vec2(uMouse.x * 0.5 + 0.5, uMouse.y * 0.5 + 0.5);
-          float mouseDist = length(vec2((uv.x - mouseScreen.x) * aspect, uv.y - mouseScreen.y));
-          float mouseDistort = smoothstep(0.28, 0.0, mouseDist) * uMouseGlow * 0.12;
-          st.x += (uv.x - mouseScreen.x) * mouseDistort;
+          vec2 mouseDelta = vec2((uv.x - mouseScreen.x) * aspect, uv.y - mouseScreen.y);
+          float mouseDist = length(mouseDelta);
+          if (mouseDist < 0.28) {
+            float repel = smoothstep(0.28, 0.0, mouseDist) * uMouseGlow * 0.06;
+            st.x += (mouseDelta.x / max(0.01, mouseDist)) * repel;
+          }
 
-          // Découpage en colonnes
-          float colW = 1.0 / (numCols * uDensity);
-          float colIndex = floor(st.x / colW);
+          // Découpage en colonnes avec marge
+          float colW = 1.0 / (baseCols * max(0.2, uDensity));
+          float colIdx = floor(st.x / colW);
           float colUvX = fract(st.x / colW);
 
-          // Grain aléatoire par colonne
-          float colSeed = hash12(vec2(colIndex, 19.37));
-          float colSpeedMult = 0.65 + 0.7 * hash12(vec2(colIndex, 51.13));
+          // Grain aléatoire et vitesse différentielle par colonne
+          float colSeed1 = hash12(vec2(colIdx, 17.37 + layerDepth * 31.0));
+          float colSeed2 = hash12(vec2(colIdx, 73.19 + layerDepth * 59.0));
+          float colSpeedMult = 0.70 + 0.60 * colSeed1;
 
-          // Échelle verticale des caractères (proportions hautes monospace 1.7x)
-          float rowH = colW * (1.7 / max(0.2, uCharSize));
-          float rowCoord = st.y / rowH;
-          float rowIndex = floor(rowCoord);
-          float cellUvY = fract(rowCoord);
+          // Hauteur de ligne (monospace proportion haute 1.6)
+          float rowH = colW * (1.6 / max(0.25, uCharSize * charScale));
+          float numRows = ceil(1.0 / rowH);
+          float rowIdx = floor(st.y / rowH);
+          float cellUvY = fract(st.y / rowH);
 
-          // Défilement vertical du flux
-          float t = uTime * uSpeed * layerSpeed * colSpeedMult * 4.0;
-          float streamPos = (1.0 - uv.y) * (18.0 / max(0.2, uTailLength)) + t + colSeed * 50.0;
-          float dropCycle = fract(streamPos * 0.12);
+          // Cycle de chute : la tête part au-dessus de l'écran et tombe vers le bas
+          float trailRows = max(4.0, floor(18.0 * max(0.2, uTailLength)));
+          float gapRows = floor(10.0 + 22.0 * colSeed2);
+          float cycleTotalRows = numRows + trailRows + gapRows;
 
-          // La tête de goutte est au point 1.0 du cycle
-          float distFromHead = 1.0 - dropCycle;
-          // Intensité de la traînée phosphorescente avec chute exponentielle
-          float tailIntensity = exp(-distFromHead * (6.0 / max(0.2, uTailLength)));
-          // Tête de goutte incandescente avec halo volumétrique
-          float isHead = smoothstep(0.05, 0.0, distFromHead);
-          float headBloom = exp(-distFromHead * 28.0) * 1.5;
+          float rowsPerSec = (10.0 + 15.0 * uSpeed) * layerSpeed * colSpeedMult;
+          float totalRowsTraveled = uTime * rowsPerSec + colSeed1 * cycleTotalRows;
+          float cycleRow = mod(totalRowsTraveled, cycleTotalRows);
 
-          // Taux de rafraîchissement des caractères (mutation organique)
-          float mutateRate = 1.0 + 8.0 * uRandomness;
-          float charSeed = floor(uTime * mutateRate + colSeed * 20.0 + rowIndex * 0.35);
-          float charId = floor(hash12(vec2(colIndex * 3.7 + rowIndex, charSeed)) * 64.0);
+          // Position de la tête en indices de lignes (décroissant avec le temps = chute vers le bas)
+          float headRow = numRows - cycleRow;
+          float dRow = rowIdx - headRow;
 
-          // Rendu du glyphe matriciel
-          vec2 localCellUv = vec2(colUvX, cellUvY);
-          float charMask = proceduralChar(localCellUv, charId, charSeed);
+          // Seuls les caractères derrière la tête (au-dessus) et dans la traînée sont visibles
+          if (dRow < 0.0 || dRow > trailRows) {
+            return vec4(0.0);
+          }
 
-          // Halo d'ambiance entourant les caractères
-          float glowMask = smoothstep(0.5, 0.0, length(localCellUv - 0.5)) * 0.28;
+          // Décroissance exponentielle le long de la traînée
+          float trailRatio = dRow / trailRows;
+          float tailIntensity = exp(-trailRatio * 3.2);
+          bool isHead = (dRow < 1.0);
 
-          // Combinaison
-          float totalGlyph = (charMask * 0.85 + glowMask) * tailIntensity;
+          // Mutation des caractères
+          float mutateRate = 1.0 + 9.0 * uRandomness;
+          float cellTimeOffset = hash12(vec2(colIdx * 13.1, rowIdx * 19.7)) * 8.0;
+          float charSeed = floor((uTime + cellTimeOffset) * mutateRate);
+          float glyphHash = hash12(vec2(colIdx * 31.7 + rowIdx * 7.9, charSeed));
+          int gid = int(floor(glyphHash * 24.0));
+          float glyphRnd = hash12(vec2(colIdx * 11.1 + rowIdx * 23.3, charSeed + 3.0));
+
+          // Marges nettes autour de chaque caractère pour des colonnes bien séparées
+          float charUvX = (colUvX - 0.14) / 0.72;
+          float charUvY = (cellUvY - 0.11) / 0.78;
+
+          float charMask = 0.0;
+          if (charUvX >= 0.0 && charUvX <= 1.0 && charUvY >= 0.0 && charUvY <= 1.0) {
+            vec2 p = vec2(charUvX * 5.0, charUvY * 7.0);
+            vec2 ip = floor(p);
+            vec2 fp = fract(p);
+            if (fp.x >= 0.10 && fp.x <= 0.90 && fp.y >= 0.10 && fp.y <= 0.90) {
+              charMask = getGlyphPixel(ip, gid, glyphRnd);
+            }
+          }
 
           // Couleurs
           vec3 primary = uUseCustomColors ? uPrimaryColor : uPalettePrimary;
           vec3 head = uUseCustomColors ? uHeadColor : uPaletteAccent;
           vec3 glow = uUseCustomColors ? uGlowColor : uPaletteSecondary;
 
-          vec3 color = mix(primary, glow, 0.35) * totalGlyph;
-          // Injection de la tête incandescente et de son halo
-          color = mix(color, head, clamp((isHead * 1.4 + headBloom * 0.8) * (charMask * 0.8 + 0.5), 0.0, 2.0));
+          // Halo d'ambiance phosphorescent discret
+          float cellDist = length(vec2(colUvX - 0.5, cellUvY - 0.5));
+          float cellGlow = smoothstep(0.65, 0.0, cellDist) * 0.18 * tailIntensity;
 
-          // Amplification sous le pointeur souris
-          if (mouseDist < 0.22) {
-            float boost = smoothstep(0.22, 0.0, mouseDist) * uMouseGlow;
-            color += head * (boost * charMask * 0.8);
+          vec3 color = vec3(0.0);
+          float alpha = 0.0;
+
+          if (isHead) {
+            float headBloom = smoothstep(0.75, 0.0, cellDist) * 0.45;
+            color = mix(head, vec3(1.0), 0.35) * (charMask * 1.8 + headBloom);
+            alpha = clamp((charMask * 0.95 + headBloom * 0.6) * layerAlpha, 0.0, 1.0);
+          } else {
+            vec3 trailCol = mix(glow, primary, clamp(tailIntensity * 1.3, 0.0, 1.0));
+            color = trailCol * (charMask * tailIntensity * 1.4 + cellGlow);
+            alpha = clamp((charMask * tailIntensity + cellGlow) * layerAlpha, 0.0, 1.0);
           }
 
-          float alpha = clamp((totalGlyph + isHead) * layerAlpha, 0.0, 1.0);
+          // Boost de réactivité au passage du curseur
+          if (mouseDist < 0.22) {
+            float boost = smoothstep(0.22, 0.0, mouseDist) * uMouseGlow;
+            color += head * (boost * charMask * 0.7);
+            alpha = min(1.0, alpha + boost * 0.3);
+          }
+
           return vec4(color, alpha);
         }
 
@@ -234,21 +293,21 @@ export class CodeRainInstance implements IBrickInstance {
           vec2 uv = vUv;
           vec4 col = vec4(0.0);
 
-          // 1. Couche de Fond (Lointaine, dense et douce) - HIGH uniquement
+          // 1. Couche de Fond (Lointaine, dense, douce) - HIGH uniquement
           if (uQualityLevel >= 2) {
-            vec4 bgLayer = renderCodeLayer(uv, 55.0, 0.55, 0.15, 0.35);
-            col = bgLayer;
+            vec4 bg = renderCodeLayer(uv, 48.0, 0.50, 0.15, 0.35, 0.75);
+            col = bg;
           }
 
           // 2. Couche Médiane (Équilibrée, nette) - HIGH & MEDIUM
           if (uQualityLevel >= 1) {
-            vec4 midLayer = renderCodeLayer(uv, 34.0, 1.0, 0.45, 0.75);
-            col = vec4(col.rgb * (1.0 - midLayer.a) + midLayer.rgb, max(col.a, midLayer.a));
+            vec4 mid = renderCodeLayer(uv, 32.0, 0.75, 0.40, 0.70, 0.90);
+            col = vec4(col.rgb * (1.0 - mid.a) + mid.rgb, max(col.a, mid.a));
           }
 
           // 3. Couche Premier Plan (Rapide, percutante, caractères imposants) - TOUS PALIERS
-          vec4 fgLayer = renderCodeLayer(uv, 22.0, 1.35, 0.85, 0.95);
-          col = vec4(col.rgb * (1.0 - fgLayer.a) + fgLayer.rgb, max(col.a, fgLayer.a));
+          vec4 fg = renderCodeLayer(uv, 20.0, 1.15, 0.75, 1.0, 1.10);
+          col = vec4(col.rgb * (1.0 - fg.a) + fg.rgb, max(col.a, fg.a));
 
           // Application de l'intensité globale
           col.rgb *= uIntensity;
@@ -293,11 +352,15 @@ export class CodeRainInstance implements IBrickInstance {
     if (newProps.density !== undefined) this.material.uniforms.uDensity.value = newProps.density
     if (newProps.speed !== undefined) this.material.uniforms.uSpeed.value = newProps.speed
     if (newProps.depth !== undefined) this.material.uniforms.uDepth.value = newProps.depth
-    if (newProps.intensity !== undefined) this.material.uniforms.uIntensity.value = newProps.intensity
-    if (newProps.randomness !== undefined) this.material.uniforms.uRandomness.value = newProps.randomness
+    if (newProps.intensity !== undefined)
+      this.material.uniforms.uIntensity.value = newProps.intensity
+    if (newProps.randomness !== undefined)
+      this.material.uniforms.uRandomness.value = newProps.randomness
     if (newProps.charSize !== undefined) this.material.uniforms.uCharSize.value = newProps.charSize
-    if (newProps.tailLength !== undefined) this.material.uniforms.uTailLength.value = newProps.tailLength
-    if (newProps.mouseGlow !== undefined) this.material.uniforms.uMouseGlow.value = newProps.mouseGlow
+    if (newProps.tailLength !== undefined)
+      this.material.uniforms.uTailLength.value = newProps.tailLength
+    if (newProps.mouseGlow !== undefined)
+      this.material.uniforms.uMouseGlow.value = newProps.mouseGlow
   }
 
   public onQualityChange(quality: QualityTier): void {
