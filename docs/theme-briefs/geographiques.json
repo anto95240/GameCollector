@@ -78,7 +78,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#78350f",
           "bottomColor": "#1c1917",
@@ -90,7 +90,7 @@
         }
       },
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
           "sandColor": "#d4a853",
           "shadowColor": "#78350f",
@@ -103,7 +103,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fde68a",
           "density": 0.7,
@@ -116,7 +116,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#d4a853",
           "density": 0.6,
@@ -127,7 +127,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fde68a",
           "density": 0.4,
@@ -137,7 +137,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1c1917",
           "intensity": 0.42,
@@ -226,7 +226,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f172a",
           "bottomColor": "#1e293b",
@@ -238,7 +238,7 @@
         }
       },
       {
-        "brick": "aurora",
+        "brickType": "aurora",
         "params": {
           "topColor": "#991b1b",
           "bottomColor": "#10b981",
@@ -250,7 +250,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#0f172a",
           "sunColor": "#334155",
@@ -263,7 +263,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#1e293b",
           "density": 0.65,
@@ -274,7 +274,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#991b1b",
           "hotColor": "#f59e0b",
@@ -285,7 +285,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "intensity": 0.48,
@@ -294,7 +294,11 @@
       }
     ],
     "missingBricks": [
-      "glowing_runes (particules ou stèle de glyphes runiques nordiques rougeoyants pulsant en lévitation)"
+      {
+        "name": "runic_circle",
+        "category": "special",
+        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
+      }
     ]
   },
   {
@@ -376,7 +380,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0284c7",
           "bottomColor": "#0f172a",
@@ -388,7 +392,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#0f172a",
           "sunColor": "#0284c7",
@@ -401,7 +405,7 @@
         }
       },
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
           "sandColor": "#e0f2fe",
           "shadowColor": "#0369a1",
@@ -414,7 +418,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#e0f2fe",
           "density": 0.7,
@@ -425,7 +429,7 @@
         }
       },
       {
-        "brick": "snow",
+        "brickType": "snow",
         "params": {
           "snowColor": "#f8fafc",
           "density": 0.45,
@@ -436,7 +440,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "intensity": 0.4,
@@ -525,7 +529,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#ea580c",
           "bottomColor": "#1c1917",
@@ -537,7 +541,7 @@
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#1c1917",
           "torchColor": "#ea580c",
@@ -550,7 +554,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fed7aa",
           "density": 0.8,
@@ -563,7 +567,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#fb923c",
           "density": 0.5,
@@ -574,7 +578,7 @@
         }
       },
       {
-        "brick": "petals",
+        "brickType": "petals",
         "params": {
           "petalColor": "#fff7ed",
           "accentColor": "#fed7aa",
@@ -586,7 +590,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1c1917",
           "intensity": 0.38,
@@ -595,7 +599,11 @@
       }
     ],
     "missingBricks": [
-      "azulejos_tiles (trame géométrique céramique hispano-mauresque en filigrane discret)"
+      {
+        "name": "runic_circle",
+        "category": "special",
+        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
+      }
     ]
   },
   {
@@ -605,7 +613,7 @@
     "intensity": 1,
     "universe": "route-de-la-soie",
     "evocation": "L'antique route commerciale millénaire traversant les déserts d'Asie centrale, les oasis de Samarcande et de Dunhuang, et les cols du Pamir (Marco Polo, Civilizations, récits de caravanes marchandes). Le voyage des caravanes de chameaux chargées d'étoffes de soie damassée, de rouleaux précieux, de safran et de cannelle, sous un ciel de crépuscule d'ambre et d'or où la poussière du désert brille comme des paillettes précieuses.",
-    "signature": "Une brume ambrée et des poussières d'épices dorées s'élevant lentement au-dessus des crêtes d'un désert de caravanes balayé par les vents d'Asie centrale sous une lueur de crépuscule soyeuse.",
+    "signature": "Une passe caravanière d'Asie centrale encadrée de hauts sommets enneigés lointains derrière des dunes de lœss doré, baignée d'une douce brume ambrée d'épices.",
     "scene": [
       {
         "plan": 1,
@@ -677,7 +685,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#78350f",
           "bottomColor": "#451a03",
@@ -689,7 +697,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#451a03",
           "sunColor": "#78350f",
@@ -702,7 +710,7 @@
         }
       },
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
           "sandColor": "#fcd34d",
           "shadowColor": "#78350f",
@@ -715,7 +723,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#fcd34d",
           "density": 0.6,
@@ -726,7 +734,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fcd34d",
           "density": 0.4,
@@ -736,7 +744,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#451a03",
           "intensity": 0.42,
@@ -825,7 +833,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0284c7",
           "bottomColor": "#0c4a6e",
@@ -837,7 +845,7 @@
         }
       },
       {
-        "brick": "waves",
+        "brickType": "waves",
         "params": {
           "crestColor": "#e0f2fe",
           "deepColor": "#0c4a6e",
@@ -849,7 +857,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#0c4a6e",
           "sunColor": "#e0f2fe",
@@ -862,7 +870,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#bae6fd",
           "density": 0.75,
@@ -875,7 +883,7 @@
         }
       },
       {
-        "brick": "leaves",
+        "brickType": "leaves",
         "params": {
           "leafColor": "#e0f2fe",
           "altColor": "#38bdf8",
@@ -887,7 +895,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0c4a6e",
           "intensity": 0.38,
@@ -895,9 +903,7 @@
         }
       }
     ],
-    "missingBricks": [
-      "greek_colonnade (silhouette procédurale de colonnes doriques ou fronton de marbre blanc)"
-    ]
+    "missingBricks": []
   },
   {
     "id": "middle_kingdom",
@@ -978,7 +984,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#7f1d1d",
           "bottomColor": "#1c1917",
@@ -990,7 +996,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#1c1917",
           "sunColor": "#7f1d1d",
@@ -1003,7 +1009,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#1c1917",
           "fogColor": "#991b1b",
@@ -1015,7 +1021,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#fef08a",
           "density": 0.65,
@@ -1026,7 +1032,7 @@
         }
       },
       {
-        "brick": "petals",
+        "brickType": "petals",
         "params": {
           "petalColor": "#fef08a",
           "accentColor": "#b91c1c",
@@ -1038,7 +1044,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1c1917",
           "intensity": 0.44,
@@ -1127,7 +1133,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#064e3b",
           "bottomColor": "#022c22",
@@ -1139,7 +1145,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#022c22",
           "sunColor": "#047857",
@@ -1152,7 +1158,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#022c22",
           "fogColor": "#065f46",
@@ -1164,7 +1170,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#67e8f9",
           "density": 0.65,
@@ -1175,7 +1181,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#67e8f9",
           "density": 0.7,
@@ -1188,7 +1194,7 @@
         }
       },
       {
-        "brick": "fireflies",
+        "brickType": "fireflies",
         "params": {
           "glowColor": "#67e8f9",
           "coreColor": "#10b981",
@@ -1199,7 +1205,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#022c22",
           "intensity": 0.45,
@@ -1216,7 +1222,7 @@
     "intensity": 1,
     "universe": "terra-incognita-cartographie",
     "evocation": "Les cartes marines anciennes et l'inconnu insondable des Grandes Découvertes (portulans de la Renaissance, monstres marins 'Hic Sunt Dracones', roses des vents et lignes de rhumb). La traversée solitaire d'un océan d'encre noire sous un dôme d'étoiles de navigation guidant la caravelle vers des terres mystérieuses et inexplorées, baignées dans un brouillard de fin du monde et le roulis berçant des flots.",
-    "signature": "Une houle océanique nocturne d'encre sombre couronnée d'écume blanche phosphorescente roulant sous une voûte d'étoiles de navigation guidant l'explorateur vers l'horizon inconnu.",
+    "signature": "Une mer houleuse gris ardoise et blanc écume d'océan inexploré sous un ciel constellé d'étoiles de navigation, enveloppée de brumes salines et de grain d'ancien portulan.",
     "scene": [
       {
         "plan": 1,
@@ -1288,7 +1294,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f172a",
           "bottomColor": "#1e293b",
@@ -1300,7 +1306,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#f8fafc",
           "density": 0.6,
@@ -1311,7 +1317,7 @@
         }
       },
       {
-        "brick": "waves",
+        "brickType": "waves",
         "params": {
           "crestColor": "#f8fafc",
           "deepColor": "#0f172a",
@@ -1323,7 +1329,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#1e293b",
           "density": 0.6,
@@ -1334,7 +1340,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#f8fafc",
           "density": 0.35,
@@ -1344,7 +1350,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.0,
@@ -1355,7 +1361,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "intensity": 0.45,
@@ -1363,9 +1369,6 @@
         }
       }
     ],
-    "missingBricks": [
-      "compass_rose (rose des vents et lignes de rhumb vectorielles en filigrane cartographique)"
-    ]
+    "missingBricks": []
   }
 ]
-

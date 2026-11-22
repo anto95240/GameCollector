@@ -90,7 +90,7 @@
     },
     "bricks": [
       {
-        "brick": "nebula",
+        "brickType": "nebula",
         "params": {
           "primaryColor": "#9333ea",
           "secondaryColor": "#450a0a",
@@ -104,7 +104,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 1.1,
@@ -116,7 +116,7 @@
         }
       },
       {
-        "brick": "line_constellation",
+        "brickType": "line_constellation",
         "params": {
           "nodeColor": "#facc15",
           "lineColor": "#eab308",
@@ -132,7 +132,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#facc15",
@@ -147,7 +147,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fde047",
           "density": 0.8,
@@ -159,7 +159,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#facc15",
           "coreColor": "#ffffff",
@@ -173,7 +173,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#facc15",
           "density": 1.1,
@@ -188,7 +188,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#facc15",
@@ -203,7 +203,7 @@
         }
       },
       {
-        "brick": "lens_flare",
+        "brickType": "lens_flare",
         "params": {
           "flareColor": "#fef08a",
           "accentColor": "#9333ea",
@@ -218,7 +218,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#facc15",
           "density": 1.0,
@@ -231,7 +231,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.1,
@@ -251,42 +251,42 @@
     "name": "Web-Slinger",
     "family": "Super-héros & comics",
     "intensity": 3,
-    "universe": "spiedr-man",
+    "universe": "spider-man",
     "evocation": "Spider-Man / Peter Parker & Miles Morales (Marvel Comics, Into the Spider-Verse) : le vertige aérien du balancement au sommet des gratte-ciels de Manhattan au crépuscule. Les courants d'air vifs qui s'engouffrent entre les tours de verre et de brique rouge, le smog urbain bleuté ponctué de néons clignotants et de balises aériennes, et l'esthétique pop-art iconique des comics avec ses trames de demi-teintes Ben-Day, ses traits de dynamisme et ses vibrations élastiques de toiles en tension.",
-    "signature": "Un réseau géométrique de câbles de toile argentée translucide sous tension oscillant élastiquement au gré du vent d'altitude, tandis que la ville s'étend à perte de vue sous un filtre halftone comics vibrant.",
+    "signature": "Une métropole verticale embrasée par un crépuscule rouge et cobalt, traversée par un réseau élastique de câbles géométriques argentés et filtrée par une trame de points comics dynamique.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel crépusculaire New-Yorkais violet-bleu dégradé percé des dernières lueurs orangées du couchant à l'ouest."
+        "description": "Ciel crépusculaire violet-bleu perçant d'ultimes lueurs orangées à l'horizon ouest."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Skyline monumental de Manhattan étagé sur 3 plans avec fenêtres illuminées, balises aéronautiques clignotantes et halo de smog nocturne."
+        "description": "Gratte-ciels urbains étagés sur 3 plans avec fenêtres éclairées et smog léger."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Corniches d'immeubles et structures de poutrelles métalliques d'où partent les câbles de toile argentée sous tension élastique."
+        "description": "Lignes tendues argentées reliant les corniches d'acier dans un réseau dynamique."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Bourrasques d'air comprimé balayant des poussières urbaines dorées et micro-débris de toile polymère flottant entre les tours."
+        "description": "Bourrasques d'air chaud d'altitude soulevant des poussières dorées entre les tours."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Trame de points comics Ben-Day inclinée à 45° évanescente au centre, aberration chromatique stylisée Spider-Verse et vignettage chaud."
+        "description": "Trame de demi-teintes comics (halftone), aberration chromatique vive et vignettage chaud."
       }
     ],
     "particles": {
-      "type": "Micro-fragments de fluide de toile polymère argenté et poussières urbaines dorées (dust)",
-      "size": "1.0 à 2.4 px pour les particules",
-      "speed": "0.32 avec poussées sous les rafales de vent",
-      "density": "115 motes urbaines instanciées GPU",
-      "behavior": "Dérive horizontale vive canalisée par les couloirs d'air entre les gratte-ciels, avec vortex et turbulences au passage des rafales."
+      "type": "Poussières urbaines dorées et reflets argentés (dust)",
+      "size": "1.0 à 2.4 px",
+      "speed": "0.32 poussées sous rafales d'altitude",
+      "density": "115 motes urbaines",
+      "behavior": "Dérive horizontale vive dans les couloirs d'air entre les tours."
     },
     "atmosphere": {
       "mist": "Smog urbain bleu nuit montant des avenues encombrées et brume crépusculaire d'horizon.",
@@ -296,22 +296,22 @@
     },
     "rareEvents": [
       {
-        "name": "Bourrasque d'Aspiration Aérienne",
+        "name": "Aspiration aérienne entre les tours",
         "type": "wind_gust",
         "frequency": "Intervalle moyen de 14.0 secondes",
-        "description": "Une puissante rafale d'air d'altitude traverse la scène, courbant les lignes de courant et soulevant un tourbillon de particules de toile."
+        "description": "Rafale d'altitude soulevant un tourbillon de particules d'or et d'argent."
       },
       {
-        "name": "Impulsion du Sens d'Araignée",
+        "name": "Onde d'alerte chromatique",
         "type": "shockwave",
         "frequency": "Intervalle moyen de 19.0 secondes",
-        "description": "Une onde concentrique rouge et bleue jaillit furtivement avec dispersion spectrale, évoquant l'éclair intuitif du Spider-Sense."
+        "description": "Impulsion concentrique rouge et bleue fugace avec séparation prismatique."
       },
       {
-        "name": "Flash d'Illumination Urbaine",
+        "name": "Flash électrique urbain",
         "type": "lightning",
         "frequency": "Intervalle moyen de 26.0 secondes",
-        "description": "Un éclat d'arc électrique ou de néon haute tension illumine brièvement les silhouettes des gratte-ciels dans la nuit."
+        "description": "Éclat de néon haute tension illuminant brièvement les silhouettes des tours."
       }
     ],
     "interaction": {
@@ -332,153 +332,86 @@
       "CodePen comic halftone urban wind threejs"
     ],
     "risks": {
-      "pitfall": "Un motif de toile statique d'Halloween collé en 2D ou un mélange criard rouge et bleu fatiguant la vue.",
-      "solution": "Skyline architectural étagé avec smog volumétrique, trame Ben-Day raffinée atténuée au centre pour garantir la lisibilité WCAG AA, et dynamique physique d'air d'altitude."
+      "pitfall": "Motif de toile d'araignée figé ou reproduction de noms de super-héros protégés.",
+      "solution": "Réseaux de lignes tendues géométriques (`line_constellation`), trame halftone subtile et dynamique de vent urbain."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
-          "topColor": "#1e1b4b",
-          "bottomColor": "#0f172a",
-          "horizonColor": "#ef4444",
-          "density": 1.2,
-          "speed": 0.15,
-          "depth": 0.1,
-          "intensity": 0.95,
-          "randomness": 0.15,
-          "noiseScale": 1.1
+          "topColor": "#0f172a",
+          "bottomColor": "#1e3a8a"
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
-          "cloudColor": "#475569",
-          "skyColor": "#0f172a",
-          "density": 0.45,
-          "speed": 0.18,
-          "depth": 0.2,
-          "intensity": 0.8,
-          "randomness": 0.35,
-          "windAngle": 0.15
+          "color": "#94a3b8",
+          "density": 0.35
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
-          "buildingColor": "#080d1a",
-          "windowColor": "#fef08a",
-          "beaconColor": "#ef4444",
-          "density": 1.1,
-          "speed": 0.25,
-          "depth": 0.4,
-          "intensity": 1.05,
-          "randomness": 0.5,
-          "smogIntensity": 0.65
+          "color": "#090d16",
+          "layers": 3
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "line_constellation",
         "params": {
-          "windColor": "#e2e8f0",
-          "density": 0.9,
-          "speed": 1.35,
-          "depth": 0.3,
-          "intensity": 0.9,
-          "randomness": 0.45,
-          "gustAngle": 0.15,
-          "gustInterval": 14.0,
-          "swirlScale": 1.1
+          "color": "#f8fafc",
+          "opacity": 0.32
         }
       },
       {
-        "brick": "dust",
+        "brickType": "wind_gust",
         "params": {
-          "dustColor": "#e2e8f0",
-          "density": 0.8,
-          "speed": 0.32,
-          "depth": 0.45,
-          "intensity": 0.9,
-          "randomness": 0.4,
-          "twinkleSpeed": 1.1
+          "frequency": 14.0
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "dust",
         "params": {
-          "ringColor": "#ef4444",
-          "density": 0.85,
-          "speed": 1.4,
-          "depth": 0.3,
-          "intensity": 1.0,
-          "randomness": 0.3,
-          "epicenterX": 0.0,
-          "epicenterY": 0.2,
-          "waveInterval": 19.0,
-          "chromaticAberration": 0.025
+          "color": "#ef4444",
+          "secondaryColor": "#3b82f6",
+          "count": 115
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "shockwave",
         "params": {
-          "lightningColor": "#38bdf8",
-          "flashColor": "#ffffff",
-          "density": 0.7,
-          "speed": 1.3,
-          "depth": 0.35,
-          "intensity": 1.1,
-          "randomness": 0.5,
-          "strikeInterval": 26.0,
-          "forkSpread": 0.5
+          "frequency": 19.0,
+          "color": "#ef4444"
         }
       },
       {
-        "brick": "halftone",
+        "brickType": "lightning",
         "params": {
-          "dotColor": "#ef4444",
-          "density": 1.3,
-          "speed": 0.18,
-          "depth": 0.3,
-          "intensity": 0.25,
-          "randomness": 0.25,
-          "patternAngle": 0.79,
-          "dotRadius": 0.4
+          "frequency": 26.0
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "halftone",
         "params": {
-          "aberrationColor": "#38bdf8",
-          "density": 1.0,
-          "speed": 0.25,
-          "depth": 0.35,
-          "intensity": 0.5,
-          "randomness": 0.25,
-          "spread": 0.02,
-          "radialFalloff": 1.7
+          "scale": 1.0,
+          "opacity": 0.14
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "chromatic_aberration",
         "params": {
-          "vignetteColor": "#080d1a",
-          "density": 1.05,
-          "speed": 0.12,
-          "depth": 0.3,
-          "intensity": 0.65,
-          "randomness": 0.2,
-          "roundness": 0.7,
-          "smoothness": 0.85
+          "intensity": 0.15
+        }
+      },
+      {
+        "brickType": "vignette",
+        "params": {
+          "darkness": 0.55
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "tensile_web_strands",
-        "category": "intermediate",
-        "reason": "Câbles de toile polymère argentée en tension élastique ancrés aux bordures de l'écran, oscillant procéduralement sous les rafales de vent et le passage de la souris pour matérialiser fidèlement l'ancrage aérien de Spider-Man."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "stark_tech",
@@ -487,70 +420,70 @@
     "intensity": 3,
     "universe": "iron-man",
     "evocation": "Iron Man / Tony Stark (MCU & Marvel Comics) : l'atelier d'ingénierie robotique de pointe de la villa de Malibu et l'interface tête haute (HUD) holographique de l'armure Mark. La fusion luxueuse entre le titane brossé rouge hot rod et or champion, le cœur battant du Réacteur Arc en fusion froide émettant une pure énergie cyan électrique (#00f0ff), et le réseau de micro-alvéoles nanotechnologiques pulsant au gré des calculs télémétriques de l'intelligence artificielle.",
-    "signature": "Un cœur de réacteur Arc holographique à focalisation nanotechnologique qui palpite en anneaux concentriques cyan et or, propageant des pulsations d'énergie à travers un maillage hexagonal de blindage.",
+    "signature": "Une matrice nanotechnologique en alvéoles hexagonales carmin et or parcourue d'ondes énergétiques cyan électrique, où jaillissent des gerbes d'étincelles de propulsion sur une grille holographique.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel nocturne technologique au-dessus de la baie de Malibu, dégradé bleu nuit vers cyan sombre sous une lueur industrielle."
+        "description": "Nuit côtière bleu nuit et cyan sombre illuminée par les reflets d'un laboratoire de haute ingénierie."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Grille perspective 3D d'atelier cybernétique avec impulsions d'énergie circulant le long des axes de calibration."
+        "description": "Grille perspective 3D de télémétrie parcourue d'impulsions d'énergie dorées et cyan."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Matrice nanotechnologique en alvéoles hexagonales biseautées, s'activant et s'illuminant au rythme du réacteur central."
+        "description": "Maillage hexagonal de blindage carmin et or s'illuminant progressivement sous les vagues de puissance."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Dôme de lueur volumétrique cyan du réacteur Arc et gerbes d'étincelles thermiques balistiques jaillissant des propulseurs à répulsion."
+        "description": "Dôme lumineux cyan central intense (#00f0ff) et étincelles thermiques dorées jaillissant en paraboles rapides."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Scanlines subtiles de moniteur HUD militaire, aberration chromatique optique de visière et micro-glitchs de télémétrie."
+        "description": "Scanlines fines de visière holographique, aberration chromatique subtile et micro-glitchs de calibration."
       }
     ],
     "particles": {
-      "type": "Étincelles thermiques balistiques de répulsion et motes nanotechnologiques (sparks & dust)",
-      "size": "1.2 à 2.8 px pour les étincelles, 1.0 à 2.2 px pour les motes",
-      "speed": "1.35 pour les jaillissements balistiques, 0.25 pour les motes en lévitation",
-      "density": "110 étincelles de propulsion + 60 motes de nanomatériaux",
-      "behavior": "Jaillissements radiaux vifs avec courbure balistique rapide depuis les foyers de répulseurs et lévitation magnétique ordonnée."
+      "type": "Étincelles thermiques de propulsion et motes nanotechnologiques (sparks & dust)",
+      "size": "1.0 à 2.8 px",
+      "speed": "1.35 pour les étincelles, 0.25 pour les motes",
+      "density": "110 étincelles + 60 motes",
+      "behavior": "Jaillissements radiaux rapides équilibrés par une lévitation magnétique ordonnée."
     },
     "atmosphere": {
-      "mist": "Vapeurs de plasma ionisé et convection thermique ascensionnelle au-dessus des tuyères d'armure.",
-      "light": "Radiance aveuglante cyan électrique (#00f0ff) au cœur du réacteur, caressant les plaques d'armure rouge carmin et or.",
-      "airColor": "Carmin profond (#b91c1c), or titane (#facc15), cyan réacteur Arc (#00f0ff).",
-      "mainLightSource": "Le tore circulaire du Réacteur Arc situé au centre inférieur de la scène."
+      "mist": "Vapeur de plasma ionisé et convection thermique discrète.",
+      "light": "Radiance cyan électrique (#00f0ff) tranchant sur les reflets carmin (#b91c1c) et or titane (#facc15).",
+      "airColor": "Carmin profond (#b91c1c), or (#facc15) et cyan optique (#00f0ff).",
+      "mainLightSource": "Noyau énergétique cyan focalisé au bas de la grille nanotechnologique."
     },
     "rareEvents": [
       {
-        "name": "Décharge du Faisceau Répulseur Unibeam",
+        "name": "Décharge d'impulsion cyan",
         "type": "shockwave",
         "frequency": "Intervalle moyen de 13.0 secondes",
-        "description": "Une onde de choc circulaire hyper-énergétique cyan balaye le maillage hexagonal avec compression optique et dispersion spectrale."
+        "description": "Une onde énergétique circulaire cyan balaie les alvéoles hexagonales avec dispersion spectrale."
       },
       {
-        "name": "Réétalonnage du Diagnostic HUD",
+        "name": "Réétalonnage télémétrique",
         "type": "glitch",
         "frequency": "Intervalle moyen de 17.0 secondes",
-        "description": "Brève saute holographique de trame télémétrique avec découpage de blocs horizontaux simulant une mise à jour d'armure."
+        "description": "Brève saute de trame numérique découpant les lignes de visée."
       },
       {
-        "name": "Survoltage des Condensateurs",
+        "name": "Survoltage des condensateurs",
         "type": "lightning",
         "frequency": "Intervalle moyen de 25.0 secondes",
-        "description": "Un arc de plasma haute tension zébre brièvement les bordures de la structure nanotechnologique."
+        "description": "Un arc de plasma haute tension zèbre les bordures hexagonales."
       }
     ],
     "interaction": {
-      "mouse": "Le curseur agit comme le réticule de ciblage du HUD : il attire les flux d'énergie, illumine les alvéoles hexagonales survolées et oriente la perspective de la grille néon.",
-      "scroll": "Modifie la focale de perspective HUD en dilatant les cercles de télémétrie et en accentuant le contraste des dalles d'interface."
+      "mouse": "Illumine les hexagones survolés et oriente la grille perspective en attisant les étincelles dorées.",
+      "scroll": "Dilate la perspective de visée tout en préservant un contraste élevé sous les cartes."
     },
     "palette": [
       "#b91c1c",
@@ -566,152 +499,82 @@
       "CodePen nanotech hexagon shield threejs"
     ],
     "risks": {
-      "pitfall": "Un écran surchargé de widgets néon illisibles gênant l'accès aux boutons de l'application ou un rouge/or kitsch sans élégance.",
-      "solution": "Maillage alvéolaire en transparence subtile (innerGlow 0.35), concentration de la lueur cyan sur un point focal équilibré et scanlines légères respectant le standard WCAG AA."
+      "pitfall": "Widgets néon encombrants ou reproduction exacte du réacteur circulaire / armure déposée.",
+      "solution": "Alvéoles hexagonales translucides et lueur cyan pure sans logo circulaire de réacteur protégé."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
-          "topColor": "#030712",
-          "bottomColor": "#0f172a",
-          "horizonColor": "#0284c7",
-          "density": 1.1,
-          "speed": 0.15,
-          "depth": 0.1,
-          "intensity": 0.9,
-          "randomness": 0.15,
-          "noiseScale": 1.2
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b"
         }
       },
       {
-        "brick": "neon_grid",
+        "brickType": "neon_grid",
         "params": {
-          "gridColor": "#0284c7",
-          "horizonColor": "#b91c1c",
-          "pulseColor": "#00f0ff",
-          "density": 0.9,
-          "speed": 0.25,
-          "depth": 0.35,
-          "intensity": 0.85,
-          "randomness": 0.25,
-          "horizonHeight": 0.4,
-          "lineWidth": 0.035,
-          "waveHeight": 0.15
+          "color": "#00f0ff",
+          "accentColor": "#facc15"
         }
       },
       {
-        "brick": "hex_grid",
+        "brickType": "hex_grid",
         "params": {
-          "borderColor": "#00f0ff",
-          "fillColor": "#021224",
-          "pulseColor": "#facc15",
-          "density": 1.1,
-          "speed": 0.28,
-          "depth": 0.35,
-          "intensity": 0.95,
-          "randomness": 0.3,
-          "borderWidth": 0.05,
-          "innerGlow": 0.35,
-          "waveSpread": 1.3
-        }
-      },
-      {
-        "brick": "volumetric_glow",
-        "params": {
-          "coreColor": "#ffffff",
+          "color": "#b91c1c",
           "glowColor": "#00f0ff",
-          "outerColor": "#082f49",
-          "density": 1.0,
-          "speed": 0.2,
-          "depth": 0.3,
-          "intensity": 1.2,
-          "randomness": 0.2,
-          "glowX": 0.0,
-          "glowY": -0.15
+          "intensity": 0.4
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "volumetric_glow",
         "params": {
-          "sparkColor": "#facc15",
-          "coreColor": "#00f0ff",
-          "density": 0.75,
-          "speed": 1.35,
-          "depth": 0.35,
-          "intensity": 1.25,
-          "randomness": 0.45,
-          "gravity": 0.9,
-          "burstInterval": 2.2
+          "color": "#00f0ff",
+          "intensity": 0.55
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "sparks",
         "params": {
-          "ringColor": "#00f0ff",
-          "density": 1.0,
-          "speed": 1.3,
-          "depth": 0.3,
-          "intensity": 1.15,
-          "randomness": 0.25,
-          "epicenterX": 0.0,
-          "epicenterY": -0.15,
-          "waveInterval": 13.0,
-          "chromaticAberration": 0.02
+          "color": "#facc15",
+          "count": 110
         }
       },
       {
-        "brick": "glitch",
+        "brickType": "dust",
         "params": {
-          "glitchColor": "#00f0ff",
-          "density": 0.85,
-          "speed": 1.4,
-          "depth": 0.25,
-          "intensity": 1.0,
-          "randomness": 0.5,
-          "sliceHeight": 0.06,
-          "glitchInterval": 17.0,
-          "chromaticShift": 0.03
+          "color": "#e2e8f0",
+          "count": 60
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "shockwave",
         "params": {
-          "lightningColor": "#00f0ff",
-          "flashColor": "#ffffff",
-          "density": 0.65,
-          "speed": 1.4,
-          "depth": 0.3,
-          "intensity": 1.1,
-          "randomness": 0.5,
-          "strikeInterval": 25.0,
-          "forkSpread": 0.5
+          "frequency": 13.0,
+          "color": "#00f0ff"
         }
       },
       {
-        "brick": "crt_scanlines",
+        "brickType": "glitch",
         "params": {
-          "scanlineColor": "#000000",
-          "density": 1.1,
-          "speed": 0.2,
-          "depth": 0.2,
-          "intensity": 0.25,
-          "randomness": 0.15,
-          "curvature": 0.05,
-          "rollIntensity": 0.1
+          "frequency": 17.0
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "lightning",
         "params": {
-          "aberrationColor": "#00f0ff",
-          "density": 1.0,
-          "speed": 0.25,
-          "depth": 0.35,
-          "intensity": 0.5,
-          "randomness": 0.25,
-          "spread": 0.018,
-          "radialFalloff": 1.8
+          "frequency": 25.0
+        }
+      },
+      {
+        "brickType": "crt_scanlines",
+        "params": {
+          "intensity": 0.22
+        }
+      },
+      {
+        "brickType": "chromatic_aberration",
+        "params": {
+          "intensity": 0.14
         }
       }
     ],
@@ -724,70 +587,70 @@
     "intensity": 3,
     "universe": "captain-america",
     "evocation": "Captain America / Steve Rogers (Marvel Comics & MCU) : l'héroïsme inébranlable et le sens du devoir militaire né pendant la Seconde Guerre mondiale. Le bouclier circulaire en alliage proto-adamantium et vibranium, chef-d'œuvre de balistique défensive aux bandes concentriques rouge vermillon et argent d'Uru ceignant l'étoile immaculée. Les champs de bataille historiques et les affrontements urbains contemporains : fumées de déflagration, poussière de béton calciné, éclats d'étincelles de ricochets cinétiques et ondes de choc absorbées sans faillir.",
-    "signature": "Un disque concentrique en vibranium brossé aux reflets spéculaires rotatifs qui vibre et dissipe les impacts cinétiques en ondes concentriques argentées et écarlates à chaque coup.",
+    "signature": "Des remparts de forteresse battus par un orage nocturne bleu nuit et carmin, où de violentes ondes de choc argentées projettent des gerbes d'étincelles de ricochet au cœur de la brume.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel de tempête héroïque d'un bleu nuit d'encre zébré d'orages lointains et de lueurs d'artillerie d'un rouge sourd."
+        "description": "Ciel de tempête d'acier bleu nuit zébré d'orages et de lueurs d'artillerie rouge sourd."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouettes de bastions fortifiés et d'arches de béton armé déchiquetées par les combats, estompées dans la brume de vallée."
+        "description": "Silhouettes de bastions fortifiés et arches de béton armé érodées baignées dans la brume de vallée."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Structure d'anneaux concentriques en métal brossé à reflets de lumière rasante, simulant la géométrie protectrice du bouclier."
+        "description": "Ondes cinétiques concentriques argent et bleu acier irradiant périodiquement à travers le champ brumeux."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Nappe de fumée lourde de détonation, poussières minérales en suspension et gerbes d'étincelles de ricochets balistiques."
+        "description": "Nappe de fumée lourde, poussières minérales et étincelles balistiques de ricochets dorés et blancs."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Grain argentique de pellicule d'archives d'époque 35mm, vignettage d'objectif militaire et trame comics rétro discrète."
+        "description": "Grain d'archives 35mm d'époque et vignettage d'acier sombre protégeant la netteté de lecture."
       }
     ],
     "particles": {
-      "type": "Étincelles de ricochets cinétiques, poussières minérales et volutes de fumée (sparks, dust & smoke)",
-      "size": "1.0 à 2.8 px pour étincelles et poussières, 20 à 45 px pour la fumée",
-      "speed": "1.45 pour les projections balistiques, 0.22 pour la dérive des débris",
-      "density": "90 étincelles + 100 motes de poussière + 25 volutes de fumée",
-      "behavior": "Projections paraboliques vives lors des impacts, retombant au sol tandis que la fumée monte lentement en convection tourbillonnante."
+      "type": "Étincelles de ricochet, poussières minérales et fumée (sparks, dust & smoke)",
+      "size": "1.0 à 2.8 px pour étincelles/poussières, volutes denses pour la fumée",
+      "speed": "1.45 pour les ricochets, 0.22 pour la fumée",
+      "density": "90 étincelles + 100 poussières + 25 volutes de fumée",
+      "behavior": "Projections paraboliques vives retombant au sol dans les volutes ascendantes de fumée."
     },
     "atmosphere": {
-      "mist": "Brume de poudre à canon et fumée de combat rampant sur le sol rocheux.",
-      "light": "Éclairage d'acier et de projecteurs d'assaut perçant les nuages d'orage, avec reflets spéculaires sur l'argent du vibranium.",
-      "airColor": "Bleu bannière patriotique (#1e3a8a), rouge écarlate (#ef4444), gris fumée d'armement (#64748b).",
-      "mainLightSource": "Faisceaux de projecteurs militaires et éclairs d'orage zébrant le ciel."
+      "mist": "Brume et fumée minérale rampant au pied des bastions.",
+      "light": "Éclairage d'acier froid et projecteurs d'assaut tranchant sur la nuit bleue et rouge.",
+      "airColor": "Bleu nuit (#1e3a8a), rouge écarlate (#ef4444) et gris acier (#94a3b8).",
+      "mainLightSource": "Projecteurs d'altitude et éclairs d'orage illuminant la vallée."
     },
     "rareEvents": [
       {
-        "name": "Onde d'Impact Cinétique Absorbée",
+        "name": "Onde de choc cinétique",
         "type": "shockwave",
         "frequency": "Intervalle moyen de 15.0 secondes",
-        "description": "Un impact violent frappe le centre, instantanément absorbé par le vibranium qui renvoie une onde annulaire argentée et bleue."
+        "description": "Une onde annulaire argentée et bleue se propage du centre en dissipant brièvement la fumée."
       },
       {
-        "name": "Trépidation Tellurique d'Explosion",
+        "name": "Secousse sismique d'impact",
         "type": "screen_shake",
         "frequency": "Intervalle moyen de 21.0 secondes",
-        "description": "Une lourde secousse tellurique amortie ébranle le champ visuel, décrochant une pluie de poussière minérale."
+        "description": "Une lourde vibration tellurique ébranle la scène et soulève la poussière minérale."
       },
       {
-        "name": "Éclair d'Artillerie au Zénith",
+        "name": "Éclair d'artillerie",
         "type": "lightning",
         "frequency": "Intervalle moyen de 27.0 secondes",
-        "description": "Un éclair blanc bleuté illumine brièvement les silhouettes des remparts fortifiés à l'arrière-plan."
+        "description": "Un éclair blanc bleuté découpe les remparts fortifiés en contre-jour."
       }
     ],
     "interaction": {
-      "mouse": "Le déplacement du curseur fait tourner le reflet spéculaire annulaire sur le métal brossé et génère des micro-ricochets d'étincelles ;",
-      "scroll": "Modifie l'angle de la brume volumétrique et intensifie le contraste patriotique bleu et rouge."
+      "mouse": "Déplace les plans de forteresse en parallaxe et déclenche de légers ricochets d'étincelles argentées.",
+      "scroll": "Accentue l'angle de la brume et approfondit le contraste bleu nuit/cramoisi."
     },
     "palette": [
       "#1e3a8a",
@@ -803,167 +666,85 @@
       "CodePen military battlefield dust smoke threejs"
     ],
     "risks": {
-      "pitfall": "Un simple dessin vectoriel de cible ou d'étoile collé au centre qui viole les droits d'auteur et fige la page.",
-      "solution": "Évocation du bouclier par des anneaux de réflexion spéculaire sur métal brossé anisotrope, physique de ricochet balistique et ambiance de bravoure militaire d'époque."
+      "pitfall": "Dessin d'étoile ou anneaux de bouclier tricolore protégés.",
+      "solution": "Traduire l'esprit héroïque par des ondes cinétiques abstraites, des ricochets sur métal brossé et une ambiance militaire d'époque sans bouclier ni étoile."
     },
     "bricks": [
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
-          "cloudColor": "#334155",
-          "skyColor": "#0f172a",
-          "density": 0.55,
-          "speed": 0.14,
-          "depth": 0.2,
-          "intensity": 0.85,
-          "randomness": 0.4,
-          "windAngle": 0.2
+          "color": "#1e3a8a",
+          "density": 0.6
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
-          "castleColor": "#080d1a",
-          "torchColor": "#ef4444",
-          "rockColor": "#0f172a",
-          "density": 0.9,
-          "speed": 0.2,
-          "depth": 0.35,
-          "intensity": 0.9,
-          "randomness": 0.4,
-          "ruinDecay": 0.45,
-          "torchGlow": 0.8
+          "color": "#0f172a",
+          "layers": 3
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
-          "fogColor": "#64748b",
-          "density": 0.8,
-          "speed": 0.16,
-          "depth": 0.3,
-          "intensity": 0.8,
-          "randomness": 0.35,
-          "heightFalloff": 1.6,
-          "windAngle": 0.15
+          "color": "#475569",
+          "density": 0.45
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
-          "smokeColor": "#475569",
-          "tintColor": "#1e293b",
-          "density": 0.7,
-          "speed": 0.28,
-          "depth": 0.4,
-          "intensity": 0.75,
-          "randomness": 0.45,
-          "expansionRate": 1.3,
-          "dissipationSpeed": 1.1
+          "color": "#64748b",
+          "count": 25
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
-          "dustColor": "#cbd5e1",
-          "density": 0.75,
-          "speed": 0.22,
-          "depth": 0.45,
-          "intensity": 0.85,
-          "randomness": 0.4,
-          "twinkleSpeed": 1.0
+          "color": "#e2e8f0",
+          "count": 100
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
-          "sparkColor": "#ffffff",
-          "coreColor": "#ef4444",
-          "density": 0.75,
-          "speed": 1.45,
-          "depth": 0.35,
-          "intensity": 1.3,
-          "randomness": 0.45,
-          "gravity": 1.2,
-          "burstInterval": 2.4
+          "color": "#f8fafc",
+          "count": 90
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
-          "ringColor": "#e2e8f0",
-          "density": 1.0,
-          "speed": 1.35,
-          "depth": 0.3,
-          "intensity": 1.15,
-          "randomness": 0.3,
-          "epicenterX": 0.0,
-          "epicenterY": 0.0,
-          "waveInterval": 15.0,
-          "chromaticAberration": 0.02
+          "frequency": 15.0,
+          "color": "#94a3b8"
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
-          "shakeColor": "#94a3b8",
-          "density": 0.9,
-          "speed": 1.2,
-          "depth": 0.3,
-          "intensity": 0.85,
-          "randomness": 0.45,
-          "shakeInterval": 21.0,
-          "decayRate": 3.8
+          "frequency": 21.0
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
-          "lightningColor": "#93c5fd",
-          "flashColor": "#ffffff",
-          "density": 0.7,
-          "speed": 1.3,
-          "depth": 0.3,
-          "intensity": 1.1,
-          "randomness": 0.5,
-          "strikeInterval": 27.0,
-          "forkSpread": 0.5
+          "frequency": 27.0
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
-          "grainColor": "#ffffff",
-          "density": 1.2,
-          "speed": 0.7,
-          "depth": 0.15,
-          "intensity": 0.07,
-          "randomness": 0.45,
-          "monochrome": true,
-          "clumpSize": 1.1
+          "intensity": 0.2
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
-          "vignetteColor": "#0f172a",
-          "density": 1.05,
-          "speed": 0.12,
-          "depth": 0.3,
-          "intensity": 0.65,
-          "randomness": 0.2,
-          "roundness": 0.7,
-          "smoothness": 0.85
+          "darkness": 0.68
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "vibranium_specular_rings",
-        "category": "intermediate",
-        "reason": "Système d'anneaux concentriques en métal brossé anisotrope à reflets spéculaires dynamiques réagissant à la lumière et dissipant des ondes d'énergie à chaque interaction."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "god_of_thunder",
@@ -1039,7 +820,7 @@
     },
     "bricks": [
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#334155",
           "skyColor": "#0b1329",
@@ -1052,7 +833,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#0b1329",
           "sunColor": "#475569",
@@ -1067,7 +848,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#38bdf8",
           "density": 0.85,
@@ -1081,7 +862,7 @@
         }
       },
       {
-        "brick": "rain",
+        "brickType": "rain",
         "params": {
           "rainColor": "#93c5fd",
           "density": 0.95,
@@ -1094,7 +875,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#38bdf8",
           "coreColor": "#ffffff",
@@ -1108,7 +889,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#38bdf8",
           "flashColor": "#ffffff",
@@ -1122,7 +903,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0b1329",
           "density": 1.0,
@@ -1135,7 +916,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.1,
@@ -1157,7 +938,7 @@
     "intensity": 2,
     "universe": "hulk",
     "evocation": "L'Incroyable Hulk / Bruce Banner (Marvel Comics & MCU) : l'énergie atomique gamma incontrôlable et la fureur colossale d'un titan vert. Un site d'essais désertique de roches concassées et de laboratoires souterrains éventrés, sous un ciel nocturne irradié d'un vert radioactif étourdissant. Des failles géologiques incandescentes d'où sourd un magma d'énergie gamma vert émeraude et jaune toxique, ébranlées par des secousses sismiques titanesques.",
-    "signature": "Des failles tectoniques au sol qui pulsent d'une luminescence gamma vert émeraude toxique sous des secousses sismiques brutales projetant des fragments rocheux.",
+    "signature": "Des failles telluriques incandescentes pulsant d'une luminescence vert émeraude radioactive au milieu d'un canyon nocturne secoué par des ondes sismiques brutales.",
     "scene": [
       {
         "plan": 1,
@@ -1195,10 +976,10 @@
     },
     "rareEvents": [
       {
-        "name": "Secousse Sismique - Hulk Smash",
+        "name": "Secousse sismique cataclysmique",
         "type": "screen_shake",
         "frequency": "Intervalle moyen de 12.0 secondes",
-        "description": "Une onde de choc tellurique violente ébranle brutalement les axes X, Y et Z avec répliques sismiques et flash d'intensité gamma."
+        "description": "Onde sismique violente ébranlant les parois rocheuses avec un bref flash vert émeraude."
       }
     ],
     "interaction": {
@@ -1219,12 +1000,12 @@
       "CodePen earthquake screen shake rocks threejs"
     ],
     "risks": {
-      "pitfall": "Un vert criard fluo monochrome saturant l'écran qui fait mal aux yeux et donne une allure de bug graphique.",
-      "solution": "Vert sombre minéral (#052e16) en teinte dominante, contrasté par des ombres violettes sourdes (#581c87) et réservant le vert fluo uniquement au cœur des failles géologiques."
+      "pitfall": "Vert fluo fatigant ou nom de personnage protégé.",
+      "solution": "Vert minéral sombre (#052e16) et ombres violettes en fond, cantonnant le vert éclatant au cœur des crevasses."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#1e1035",
           "bottomColor": "#052e16",
@@ -1238,7 +1019,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#09090b",
           "sunColor": "#14532d",
@@ -1253,7 +1034,7 @@
         }
       },
       {
-        "brick": "lava_flow",
+        "brickType": "lava_flow",
         "params": {
           "crustColor": "#09090b",
           "magmaColor": "#14532d",
@@ -1267,7 +1048,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#22c55e",
           "density": 0.9,
@@ -1280,7 +1061,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#86efac",
           "density": 0.75,
@@ -1292,7 +1073,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeColor": "#22c55e",
           "density": 1.0,
@@ -1305,7 +1086,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#09090b",
           "density": 1.05,
@@ -1327,7 +1108,7 @@
     "intensity": 2,
     "universe": "black-widow",
     "evocation": "Black Widow / Natasha Romanoff (Marvel Studios & Marvel Comics) : l'académie d'entraînement soviétique clandestine de la Chambre Rouge. Une esthétique d'espionnage d'élite et de surveillance militaire de la Guerre Froide : couloirs de béton brut stérile, pénombre chirurgicale silencieuse, lignes de balayage CRT d'écrans de contrôle et mire de visée laser rouge sang traquant sa cible avec une précision millimétrique.",
-    "signature": "Un faisceau laser rouge sang ultra-fin balayant la pénombre industrielle en traçant une mire de visée holographique qui se verrouille silencieusement au passage du curseur.",
+    "signature": "Un centre d'entraînement tactique souterrain froid tracé d'une grille néon rouge sombre et d'alvéoles noires, surveillé par un laser optique chirurgical derrière de fines scanlines CCTV.",
     "scene": [
       {
         "plan": 1,
@@ -1394,7 +1175,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#0b0f19",
@@ -1408,7 +1189,7 @@
         }
       },
       {
-        "brick": "neon_grid",
+        "brickType": "neon_grid",
         "params": {
           "gridColor": "#991b1b",
           "horizonColor": "#000000",
@@ -1424,7 +1205,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#ef4444",
           "density": 0.7,
@@ -1438,7 +1219,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#f87171",
           "density": 0.65,
@@ -1450,7 +1231,7 @@
         }
       },
       {
-        "brick": "glitch",
+        "brickType": "glitch",
         "params": {
           "glitchColor": "#ef4444",
           "density": 0.8,
@@ -1464,7 +1245,7 @@
         }
       },
       {
-        "brick": "crt_scanlines",
+        "brickType": "crt_scanlines",
         "params": {
           "scanlineColor": "#000000",
           "density": 1.05,
@@ -1477,7 +1258,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.1,
@@ -1490,7 +1271,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.15,
@@ -1505,9 +1286,9 @@
     ],
     "missingBricks": [
       {
-        "name": "tactical_laser_crosshair",
+        "name": "laser_beam",
         "category": "atmosphere",
-        "reason": "Collimateur laser optique ultra-fin rouge carmin avec mire micrométrique et traînée de visée suivant le curseur en temps réel pour matérialiser la précision de tireur d'élite de Black Widow."
+        "reason": "Rayon ou faisceau optique collimaté à haute intensité directionnelle."
       }
     ]
   },
@@ -1518,53 +1299,64 @@
     "intensity": 2,
     "universe": "wolverine",
     "evocation": "Wolverine / Logan (Marvel Comics & X-Men) : le laboratoire expérimental secret du complexe d'Alkali Lake où Logan s'est vu greffer son squelette d'adamantium indestructible. Une cuve cryogénique cylindrique en verre blindé remplie d'un liquide sous pression bleu cyan traversé de bulles montantes, d'électrodes d'adamantium en fusion, de reflets d'acier chirurgical trempé et d'entailles griffées étincelantes sous une rage animale.",
-    "signature": "Trois entailles parallèles de griffes en adamantium qui déchirent l'acier dans un éclat d'étincelles balistiques aveuglantes, révélant une luminescence jaune-or ardente.",
+    "signature": "Une cuve cryogénique cylindrique profonde traversée par des caustiques bleu cobalt et des bulles ascendantes, soudainement déchirée par des arcs d'étincelles jaune-or incandescentes sur de l'acier trempé.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Cuve cryogénique cylindrique profonde illuminée de caustiques de réfraction aquatiques bleu cobalt."
+        "description": "Parois de cuve cryogénique cylindrique baignées de caustiques aquatiques bleu cobalt profond."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Parois de bunker industriel en béton armé et canalisations d'adamantium liquide sous pression."
+        "description": "Conduits d'acier trempé industriel et poutrelles de bunker souterrain plongés dans la pénombre."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Bulles d'immersion cryogénique oscillant vers le haut à travers des rais de lumière froids."
+        "description": "Colonnes de bulles d'oxygène cryogénique montant en zigzag à travers des rais de lumière froide."
       },
       {
         "plan": 4,
-        "type": "Avant-plan et overlay",
-        "description": "Gerbes d'étincelles métalliques balistiques vives, aberration chromatique de lentille de laboratoire et grain argentique."
+        "type": "Avant-plan volumétrique",
+        "description": "Gerbes explosives d'étincelles métalliques jaune-or (#facc15) jaillissant lors des décharges."
+      },
+      {
+        "plan": 5,
+        "type": "Premier plan immédiat",
+        "description": "Aberration chromatique de hublot pressurisé, vignettage d'acier sombre et grain argentique brut."
       }
     ],
     "particles": {
-      "type": "Bulles d'immersion cryogénique ascendantes et étincelles d'adamantium (bubbles & sparks)",
-      "size": "1.5 à 3.8 px pour les bulles, 1.2 à 2.8 px pour les étincelles",
-      "speed": "0.45 pour l'ascension des bulles, 1.4 pour les étincelles d'impact",
-      "density": "65 bulles + 50 étincelles instanciées GPU",
-      "behavior": "Bulles montant en zigzag sinueux avec dilatation continue, étincelles projetées lors des impacts de griffes."
+      "type": "Bulles cryogéniques (bubbles) et étincelles d'acier en fusion (sparks)",
+      "size": "1.2 à 3.8 px",
+      "speed": "0.45 pour les bulles, 1.4 pour les étincelles",
+      "density": "65 bulles + 50 étincelles",
+      "behavior": "Bulles montantes régulières brisées par des projections paraboliques vives d'étincelles dorées."
     },
     "atmosphere": {
-      "mist": "Condensation cryogénique glaciale s'échappant de la cuve sous pression.",
-      "light": "Contraste saisissant entre la lumière bleu cobalt clinique de la cuve et les éclats jaune ambré des entailles métalliques.",
-      "airColor": "Bleu profond de cuve (#1e3a8a), jaune adamantium (#facc15), acier froid (#64748b).",
-      "mainLightSource": "L'illumination interne de la cuve cryogénique d'Alkali Lake."
+      "mist": "Condensation cryogénique glacée enveloppant le laboratoire.",
+      "light": "Contraste tranché entre bleu cryogénique (#1e3a8a) et métal chauffé au jaune ardent (#facc15).",
+      "airColor": "Bleu nuit profond (#0f172a), bleu cobalt (#3b82f6) et or incandescence (#facc15).",
+      "mainLightSource": "Éclairage interne de cuve sous pression et arcs d'étincelles métalliques."
     },
     "rareEvents": [
       {
-        "name": "Lacération Triple de Griffes",
+        "name": "Rupture sous pression",
         "type": "shockwave",
         "frequency": "Intervalle moyen de 14.0 secondes",
-        "description": "Un éclat fulgurant zébre l'écran le long de trois axes parallèles avec jaillissement d'étincelles balistiques et onde sonore étouffée."
+        "description": "Une onde de choc hydraulique traverse la cuve avec une salve d'étincelles dorées."
+      },
+      {
+        "name": "Surtension électrique de laboratoire",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 23.0 secondes",
+        "description": "Un arc électrique jaune-blanc claque le long des conduits métalliques en illuminant les bulles."
       }
     ],
     "interaction": {
-      "mouse": "Le curseur agite le liquide cryogénique en repoussant les bulles d'oxygène et projette des micro-arcs d'étincelles au survol rapide ;",
-      "scroll": "Fait descendre le regard dans la profondeur de la cuve en intensifiant les reflets de caustiques aquatiques."
+      "mouse": "Agite le liquide de cuve en repoussant les bulles et projette des micro-étincelles dorées au mouvement vif.",
+      "scroll": "Fait descendre la caméra dans les profondeurs de la cuve tout en intensifiant les reflets caustiques."
     },
     "palette": [
       "#facc15",
@@ -1580,126 +1372,65 @@
       "CodePen metal claw slash spark burst threejs"
     ],
     "risks": {
-      "pitfall": "Une association jaune/bleu criarde sans la noirceur organique et chirurgicale de l'univers de Wolverine.",
-      "solution": "Nuances d'acier trempé (#64748b) et de bleu cryogénique sombre (#0f172a), jaune traité comme un métal incandescent réchauffé au rouge-or et gerbes d'étincelles balistiques vives."
+      "pitfall": "Jaune/bleu criard ou reproduction des trois entailles de griffes protégées.",
+      "solution": "Acier sombre (#0f172a) et bleu profond dominant, jaune traité comme étincelles de métal en fusion sans entaille signature."
     },
     "bricks": [
       {
-        "brick": "water_caustics",
+        "brickType": "water_caustics",
         "params": {
-          "waterColor": "#021a2f",
-          "causticColor": "#38bdf8",
-          "density": 0.95,
-          "speed": 0.22,
-          "depth": 0.25,
-          "intensity": 1.1,
-          "randomness": 0.35,
-          "causticScale": 3.2
+          "color": "#3b82f6",
+          "speed": 0.35
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
-          "bubbleColor": "#38bdf8",
-          "density": 0.8,
-          "speed": 0.45,
-          "depth": 0.45,
-          "intensity": 0.95,
-          "randomness": 0.4,
-          "wobbleAmount": 0.35,
-          "expansionRate": 1.2
+          "color": "#e2e8f0",
+          "count": 65
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
-          "rayColor": "#38bdf8",
-          "density": 0.8,
-          "speed": 0.2,
-          "depth": 0.35,
-          "intensity": 0.85,
-          "randomness": 0.35,
-          "lightSourceX": 0.0,
-          "lightSourceY": 0.9,
-          "decay": 0.92
+          "color": "#60a5fa",
+          "intensity": 0.4
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
-          "sparkColor": "#facc15",
-          "coreColor": "#ffffff",
-          "density": 0.7,
-          "speed": 1.4,
-          "depth": 0.35,
-          "intensity": 1.25,
-          "randomness": 0.45,
-          "gravity": 1.1,
-          "burstInterval": 2.3
+          "color": "#facc15",
+          "count": 50
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
-          "ringColor": "#facc15",
-          "density": 0.95,
-          "speed": 1.35,
-          "depth": 0.3,
-          "intensity": 1.1,
-          "randomness": 0.3,
-          "epicenterX": 0.0,
-          "epicenterY": 0.0,
-          "waveInterval": 14.0,
-          "chromaticAberration": 0.02
+          "frequency": 14.0,
+          "color": "#facc15"
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
-          "aberrationColor": "#38bdf8",
-          "density": 1.0,
-          "speed": 0.25,
-          "depth": 0.35,
-          "intensity": 0.5,
-          "randomness": 0.25,
-          "spread": 0.02,
-          "radialFalloff": 1.7
+          "intensity": 0.14
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
-          "vignetteColor": "#021a2f",
-          "density": 1.05,
-          "speed": 0.12,
-          "depth": 0.3,
-          "intensity": 0.65,
-          "randomness": 0.2,
-          "roundness": 0.7,
-          "smoothness": 0.85
+          "darkness": 0.65
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
-          "grainColor": "#ffffff",
-          "density": 1.1,
-          "speed": 0.65,
-          "depth": 0.15,
-          "intensity": 0.06,
-          "randomness": 0.4,
-          "monochrome": true,
-          "clumpSize": 1.0
+          "intensity": 0.18
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "adamantium_claw_slashes",
-        "category": "events",
-        "reason": "Triple trait de lacération tranchant en biseau d'adamantium avec lueur incandescente résiduelle et dispersion de particules de métal lors des impacts de Wolverine."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "wakanda_forever",
@@ -1708,53 +1439,53 @@
     "intensity": 2,
     "universe": "black-panther",
     "evocation": "Black Panther / T'Challa & Shuri (Marvel Studios & Marvel Comics) : les mines sacrées de vibranium sous le mont Bashenga et la technologie afrofuturiste de Birnin Zana au Wakanda. Un maillage nanotechnologique de micro-fibres de vibranium noir absorbant l'énergie cinétique des impacts pour la redistribuer sous forme d'ondes d'énergie luminescente pourpre et améthyste phosphorescente. Des glyphes wakandais étincelants, des reflets d'argent liquide et la noblesse royale de la panthère.",
-    "signature": "Des motifs géométriques tissés en vibranium noir qui s'illuminent d'ondes d'énergie cinétique pourpre et améthyste, pulsant en rythme avec les battements de cœur de la panthère.",
+    "signature": "Un maillage nanotechnologique hexagonal d'obsidienne sombre traversé par des ondes d'énergie cinétique violette et améthyste au-dessus d'une métropole afrofuturiste nocturne.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel crépusculaire africain au-dessus de la canopée wakandaise, dégradé violet-nuit profond avec brume pourpre."
+        "description": "Crépuscule pourpre profond sur une canopée sombre et lointaine."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Mégalopole afrofuturiste de Birnin Zana aux tours élancées illuminées de néons violets et or."
+        "description": "Silhouette de tours élancées d'une cité futuriste illuminées de lueurs violettes et d'argent."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Matrice nanotechnologique en chevrons et alvéoles hexagonales de vibranium noir aux arêtes d'argent et lueurs améthyste."
+        "description": "Matrice hexagonale noire aux arêtes argentées s'allumant séquentiellement d'énergie améthyste."
       },
       {
         "plan": 4,
         "type": "Avant-plan et overlay",
-        "description": "Poussières de vibranium bioluminescentes en apesanteur, onde d'énergie cinétique rayonnante et vignettage noir profond."
+        "description": "Poussières bioluminescentes violettes en apesanteur, onde cinétique rayonnante et vignettage noir."
       }
     ],
     "particles": {
-      "type": "Motes de poussière de minerai de vibranium bioluminescentes (dust)",
-      "size": "1.0 à 2.5 px pour les motes",
-      "speed": "0.22 en flottaison douce",
-      "density": "90 motes violettes instanciées GPU",
-      "behavior": "Flottaison en apesanteur avec micro-impulsions de luminosité synchronisées aux vagues d'énergie cinétique."
+      "type": "Motes bioluminescentes de minerai pourpre (dust)",
+      "size": "1.0 à 2.5 px",
+      "speed": "0.22 flottaison douce",
+      "density": "90 motes violettes",
+      "behavior": "Lévitation calme s'illuminant au passage des ondes cinétiques."
     },
     "atmosphere": {
-      "mist": "Nappe de brume mystique violette s'élevant des filons de vibranium souterrains.",
-      "light": "Phosphorescence pourpre et améthyste intense se propageant le long des chevrons textiles sur fond noir d'obsidienne.",
-      "airColor": "Noir absolu (#000000), pourpre cinétique (#8b5cf6), améthyste royale (#6d28d9).",
-      "mainLightSource": "Le rayonnement cinétique émis par les micro-fibres de vibranium de la panthère."
+      "mist": "Brume nocturne violette montant entre les tours futuristes.",
+      "light": "Phosphorescence améthyste se propageant le long des facettes sur fond noir mat.",
+      "airColor": "Noir absolu (#000000), pourpre cinétique (#8b5cf6) et améthyste (#6d28d9).",
+      "mainLightSource": "Pulsation cinétique irradiant du réseau hexagonal."
     },
     "rareEvents": [
       {
-        "name": "Décharge Cinétique de l'Armure",
+        "name": "Décharge cinétique d'armure",
         "type": "shockwave",
         "frequency": "Intervalle moyen de 15.0 secondes",
-        "description": "Libération de l'énergie cinétique accumulée dans une violente onde annulaire pourpre s'étendant à travers tout l'écran."
+        "description": "Libération d'une onde annulaire violette lumineuse traversant tout le maillage hexagonal."
       }
     ],
     "interaction": {
-      "mouse": "Le passage du curseur charge les alvéoles de vibranium qui s'allument en violet néon et réémettent une pulsation d'énergie locale ;",
-      "scroll": "Modifie la saturation de l'énergie cinétique et accentue la profondeur de champ vers le panorama urbain."
+      "mouse": "Charge localement les alvéoles hexagonales survolées d'une lueur néon violette.",
+      "scroll": "Accentue la saturation pourpre du réseau sur le panorama urbain."
     },
     "palette": [
       "#000000",
@@ -1770,12 +1501,12 @@
       "CodePen afrofuturistic purple neon glow threejs"
     ],
     "risks": {
-      "pitfall": "Un écran trop sombre avec de simples lignes violettes plates ressemblant à une boîte de nuit rétro.",
-      "solution": "Nuances riches entre le noir mat des nanomatériaux, les reflets argentés de bordure et le dégradé d'énergie cinétique pourpre/bleuté, enrichi de motifs géométriques vibrants."
+      "pitfall": "Écran trop sombre ou référence directe à des noms géographiques/héros déposés.",
+      "solution": "Contraste noble entre noir mat, arêtes argentées et énergie améthyste sans marque déposée."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#090514",
           "bottomColor": "#000000",
@@ -1789,7 +1520,7 @@
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#05020a",
           "windowColor": "#8b5cf6",
@@ -1803,7 +1534,7 @@
         }
       },
       {
-        "brick": "hex_grid",
+        "brickType": "hex_grid",
         "params": {
           "borderColor": "#8b5cf6",
           "fillColor": "#0a0518",
@@ -1819,7 +1550,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#c084fc",
           "density": 0.7,
@@ -1831,7 +1562,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#8b5cf6",
           "density": 1.05,
@@ -1846,7 +1577,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.1,
@@ -1859,7 +1590,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.1,
@@ -1872,13 +1603,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "kinetic_weave_pulse",
-        "category": "intermediate",
-        "reason": "Tissage textile de chevrons triangulaires wakandais s'illuminant séquentiellement d'améthyste sous l'accumulation d'énergie cinétique."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "sorcerer_supreme",
@@ -1887,53 +1612,53 @@
     "intensity": 2,
     "universe": "doctor-strange",
     "evocation": "Doctor Strange / Stephen Strange (Marvel Comics & MCU) : les dimensions mystiques de Kamar-Taj, la dimension miroir kaléidoscopique et la verrière arcanique du Sanctum Sanctorum de New York. L'anneau étincelant d'un portail Sling Ring crachant des gerbes de feu sacré et d'étincelles dorées incandescentes, les mandalas runiques de Vishanti qui pivotent dans les airs et l'œil d'Agamotto manipulant les flux temporels dans une aura vert émeraude.",
-    "signature": "Un portail circulaire d'étincelles dorées incandescentes qui tourbillonne vivement sur lui-même, révélant au travers de son anneau la distorsion kaléidoscopique d'une dimension miroir.",
+    "signature": "Un mandala géométrique de runes incandescentes dorées tournant dans un cosmos astral bleu nuit, projetant des étincelles tangentielles d'or pur et des ondes d'émeraude.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Voûte céleste mystique de nuit astrale aux constellations géométriques étagées en profondeur."
+        "description": "Voûte céleste mystique étoilée sur plusieurs couches de profondeur."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Réseau géométrique de mandalas arcaniques sacrés reliant des nœuds de lumière astrale dorée."
+        "description": "Réseau géométrique sacré de lignes stellaires reliant des nœuds dorés en rotation lente."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Anneau circulaire de portail Sling Ring crachant des gerbes d'étincelles incandescentes avec lueur volumétrique centrale."
+        "description": "Anneau runique incandescent d'étincelles d'or pur tourbillonnant en cercle rapide."
       },
       {
         "plan": 4,
         "type": "Avant-plan et overlay",
-        "description": "Poussières astrales dorées en suspension, distorsion optique prismatique et vignettage chaud arcanique."
+        "description": "Poussières astrales dorées, distorsion optique prismatique et vignettage sombre."
       }
     ],
     "particles": {
-      "type": "Étincelles magiques de portail et poussières d'or arcanique (sparks & dust)",
-      "size": "1.2 à 3.0 px pour les étincelles, 1.0 à 2.2 px pour les poussières",
-      "speed": "1.4 pour la rotation du vortex d'étincelles, 0.22 pour les poussières",
-      "density": "120 étincelles incandescentes + 60 motes de poussière",
-      "behavior": "Rotation circulaire rapide le long du tore du portail avec projection balistique tangentielle et flottaison feutrée des motes."
+      "type": "Étincelles tangentielles d'or et poussières astrales (sparks & dust)",
+      "size": "1.0 à 3.0 px",
+      "speed": "1.4 rotation d'anneau, 0.22 dérive des poussières",
+      "density": "120 étincelles + 60 poussières",
+      "behavior": "Projection tangentielle le long de la rosace runique et flottaison feutrée."
     },
     "atmosphere": {
-      "mist": "Voile d'énergie astrale orange-or scintillant dans la pénombre mystique.",
-      "light": "Incandescence or et ambre du portail Sling Ring illuminant les drapés bleu nuit et rouge sang de la Cape de Lévitation.",
-      "airColor": "Bleu mystique (#1e3a8a), rouge cape (#ef4444), or incandescent (#f59e0b).",
-      "mainLightSource": "L'anneau tourbillonnant d'étincelles dorées du portail Sling Ring."
+      "mist": "Voile astral orange-or scintillant dans la nuit mystique.",
+      "light": "Incandescence dorée contrastant sur des drapés de lumière bleu nuit et rouge rubis.",
+      "airColor": "Bleu mystique (#1e3a8a), rouge rubis (#ef4444) et or incandescent (#f59e0b).",
+      "mainLightSource": "Anneau runique central tourbillonnant."
     },
     "rareEvents": [
       {
-        "name": "Onde Temporelle de l'Œil d'Agamotto",
+        "name": "Onde temporelle émeraude",
         "type": "shockwave",
         "frequency": "Intervalle moyen de 16.0 secondes",
-        "description": "Pulsation annulaire vert émeraude du temps se dilatant depuis le cœur du portail avec ralentissement temporel feutré des étincelles."
+        "description": "Pulsation concentrique vert émeraude se dilatant depuis le cœur de la rosace avec ralentissement passager."
       }
     ],
     "interaction": {
-      "mouse": "Le centre du portail Sling Ring suit le curseur avec une dérive fluide et projette un jet tangentiel d'étincelles vers la direction du déplacement ;",
-      "scroll": "Modifie le diamètre d'ouverture du portail dimensionnel et fait tourner les mandalas runiques en arrière-plan."
+      "mouse": "Déplace l'anneau d'étincelles au rythme du curseur et fait pivoter les constellations arcaniques.",
+      "scroll": "Dilate le diamètre du cercle runique en arrière-plan."
     },
     "palette": [
       "#1e3a8a",
@@ -1949,12 +1674,12 @@
       "CodePen rotating spark portal threejs"
     ],
     "risks": {
-      "pitfall": "Un simple anneau jaune statique sans texture pyrotechnique ni profondeur dimensionnelle.",
-      "solution": "Instanciation GPU d'étincelles sur tore 3D avec traînée balistique étirée alignée sur la vélocité angulaire, lueur volumétrique chaude et mandalas sacrés en arrière-plan."
+      "pitfall": "Simple cercle jaune figé ou reproduction de noms d'artefacts protégés.",
+      "solution": "Rosace runique animée instanciée GPU avec étincelles tangentielles et constellations astrales."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0b0f19",
           "bottomColor": "#1e3a8a",
@@ -1968,7 +1693,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 0.9,
@@ -1980,7 +1705,7 @@
         }
       },
       {
-        "brick": "line_constellation",
+        "brickType": "line_constellation",
         "params": {
           "nodeColor": "#f59e0b",
           "lineColor": "#d97706",
@@ -1996,7 +1721,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#f59e0b",
@@ -2011,7 +1736,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#f59e0b",
           "coreColor": "#ffffff",
@@ -2025,7 +1750,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.65,
@@ -2037,7 +1762,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#10b981",
           "density": 0.95,
@@ -2052,7 +1777,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#f59e0b",
           "density": 1.0,
@@ -2065,7 +1790,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0b0f19",
           "density": 1.05,
@@ -2078,7 +1803,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.1,
@@ -2093,9 +1818,9 @@
     ],
     "missingBricks": [
       {
-        "name": "sling_ring_portal_emitter",
+        "name": "runic_circle",
         "category": "special",
-        "reason": "Émetteur annulaire instancié GPU projetant des flammèches d'or incandescentes tangentielles le long d'une circonférence en rotation non-linéaire pour matérialiser le portail mystique de Doctor Strange."
+        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
       }
     ]
   },
@@ -2106,53 +1831,53 @@
     "intensity": 2,
     "universe": "venom",
     "evocation": "Venom / Eddie Brock (Marvel Comics & Sony/MCU) : la biomasse extraterrestre amorphe et vorace du symbiote Klyntar. Une nappe de liquide organique noir d'encre visqueuse aux reflets spéculaires pétrolifères tranchants, projetant des vrilles tentaculaires péristaltiques qui rampent et s'étirent le long des parois. Le contraste violent et viscéral entre le noir de jais absolu, l'ivoire acéré des crocs béants et les jaillissements de vrilles sous tension superficielle.",
-    "signature": "Des vrilles et filaments de liquide organique noir d'encre qui s'étirent et ondulent le long des bordures de l'écran avec une tension superficielle visqueuse, projetant des gouttelettes d'huile brillante.",
+    "signature": "Des vrilles de ferrofluide noir d'encre aux reflets spéculaires blancs tranchants qui ondulent le long des bordures d'écran avec tension visqueuse et projection de gouttes huileuses.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Pénombre urbaine d'une ruelle poisseuse et couloir sombre baigné d'une humidité froide et de néons lointains éteints."
+        "description": "Pénombre humide d'une allée sombre baignée de reflets froids."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Nappe de liquide visqueux noir à reflets spéculaires blancs froids ondulant comme un ferrofluide vivant."
+        "description": "Nappe de ferrofluide noir brillant ondulant lentement aux reflets blancs nets."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Filaments et vrilles symbiotiques tentaculaires en mouvement péristaltique s'étirant le long des bordures du cadre."
+        "description": "Filaments visqueux noirs (organic_tendrils) s'étirant en bordure du cadre."
       },
       {
         "plan": 4,
         "type": "Avant-plan et overlay",
-        "description": "Gouttelettes d'encre sombre en flottaison lente, aberration chromatique périphérique, vignettage viscéral et grain 35mm."
+        "description": "Gouttelettes sombres en chute lente, aberration chromatique périphérique et grain 35mm."
       }
     ],
     "particles": {
-      "type": "Gouttelettes visqueuses de symbiote noir d'encre et spores organiques (ash)",
-      "size": "1.5 à 3.8 px pour les gouttelettes",
-      "speed": "0.25 en chute et agglutination lente",
-      "density": "80 gouttelettes organiques instanciées GPU",
-      "behavior": "Gouttelettes tombant avec déformation d'élongation visqueuse et fusion élastique à l'impact avec les masses de bordure."
+      "type": "Gouttelettes visqueuses sombres (ash)",
+      "size": "1.5 à 3.8 px",
+      "speed": "0.25 chute et fusion lente",
+      "density": "80 gouttelettes organiques",
+      "behavior": "Chute avec élongation visqueuse le long des bords extérieurs."
     },
     "atmosphere": {
-      "mist": "Vapeur froide et suintement biologique rampant dans les coins de l'écran.",
-      "light": "Reflets spéculaires tranchants blanc pur sur la surface huileuse noire du symbiote, contrastant avec des ombres d'encre absolue.",
-      "airColor": "Noir de jais profond (#000000), blanc d'ivoire spéculaire (#ffffff), carmin viscéral subtil (#991b1b).",
-      "mainLightSource": "Les reflets de néons blancs tranchant sur le vernis pétrolifère du symbiote."
+      "mist": "Vapeur froide et suintement sombre dans les coins.",
+      "light": "Reflets spéculaires blancs purs tranchant sur la masse d'encre noire.",
+      "airColor": "Noir absolu (#000000), blanc spéculaire (#ffffff) et pointe carmin (#991b1b).",
+      "mainLightSource": "Reflets blancs tranchants sur la texture liquide noire."
     },
     "rareEvents": [
       {
-        "name": "Éruption Tentaculaire / Rugissement Viscéral",
+        "name": "Poussée tentaculaire viscérale",
         "type": "screen_shake",
         "frequency": "Intervalle moyen de 16.0 secondes",
-        "description": "Secousse tellurique brusque accompagnée d'une extension rapide des vrilles symbiotiques sur les bordures du cadre avant rétraction."
+        "description": "Secousse brusque accompagnée d'une extension rapide des vrilles sombres en lisière."
       }
     ],
     "interaction": {
-      "mouse": "Les filaments de symbiote sont attirés magnétiquement par le pointeur, étirant des ponts liquides gluants vers le curseur lorsqu'il s'approche des bordures ;",
-      "scroll": "Fait onduler la nappe de biomasse en modifiant la tension de surface et l'épaisseur du vignettage organique."
+      "mouse": "Les filaments organiques s'étirent légèrement vers le curseur près des bordures sans couvrir le centre.",
+      "scroll": "Modifie la tension de surface de la nappe sombre et renforce le vignettage."
     },
     "palette": [
       "#000000",
@@ -2168,12 +1893,12 @@
       "CodePen organic slime tentacle physics threejs"
     ],
     "risks": {
-      "pitfall": "Un simple fond noir et blanc inerte ou une masse informe confuse qui cache l'interface utilisateur.",
-      "solution": "Confinement strict des tentacules sur les bordures extérieures en pointer-events: none, reflets spéculaires blancs très définis donnant une matière vivante de ferrofluide, sans jamais empiéter sur la lisibilité des cartes."
+      "pitfall": "Fond noir inerte ou nom de personnage/créature protégé.",
+      "solution": "Vrilles en lisière uniquement (`pointer-events: none`), reflets ferrofluide nets et zéro nom de marque."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#020617",
@@ -2187,7 +1912,7 @@
         }
       },
       {
-        "brick": "waves",
+        "brickType": "waves",
         "params": {
           "crestColor": "#ffffff",
           "deepColor": "#000000",
@@ -2200,7 +1925,7 @@
         }
       },
       {
-        "brick": "ash",
+        "brickType": "ash",
         "params": {
           "ashColor": "#000000",
           "darkColor": "#1e293b",
@@ -2213,7 +1938,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeColor": "#ffffff",
           "density": 0.85,
@@ -2226,7 +1951,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#991b1b",
           "density": 1.0,
@@ -2239,7 +1964,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.15,
@@ -2252,7 +1977,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.1,
@@ -2267,11 +1992,10 @@
     ],
     "missingBricks": [
       {
-        "name": "symbiote_tendrils_organic",
+        "name": "organic_tendrils",
         "category": "intermediate",
-        "reason": "Système de vrilles tentaculaires procédurales en ferrofluide noir à dynamique péristaltique et tension superficielle s'étirant vers le curseur pour simuler la matière vivante du symbiote Venom."
+        "reason": "Vrilles et filaments organiques animés par bruit sinueux en lisière d'écran."
       }
     ]
   }
 ]
-

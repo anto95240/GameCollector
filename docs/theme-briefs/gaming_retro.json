@@ -6,7 +6,7 @@
     "intensity": 1,
     "universe": null,
     "evocation": "L'aube de l'ère vidéoludique et des moniteurs informatiques monochromes de la fin des années 70 et début 80 (Apple II, VT100, Space Invaders). Une arrière-salle plongée dans le noir absolu, où seule luit la lueur verte phosphorescente P1 d'un écran cathodique monochrome. Des colonnes matricielles et des blocs de pixels carrés épurés flottent dans un vide d'encre noire, rythmés par la pulsation douce d'une rémanence analogique phosphorescente.",
-    "signature": "Une matrice de blocs de pixels carrés vert phosphore flottant en apesanteur sur fond d'encre noire, dont la luminance ondule avec une douce rémanence cathodique.",
+    "signature": "Des colonnes abstraites et épurées de tuiles carrées vert phosphore P1 montant avec lenteur sur un fond d'encre noire sans distorsion bombée ni barre cathodique.",
     "scene": [
       {
         "plan": 1,
@@ -44,10 +44,10 @@
     },
     "rareEvents": [
       {
-        "name": "Pulsation de rémanence phosphore",
-        "type": "flickering_light",
+        "name": "Pulsation de rémanence matricielle",
+        "type": "glitch",
         "frequency": "Intervalle moyen de 30.0 secondes",
-        "description": "Une onde d'intensité lumineuse traverse doucement la matrice de pixels de bas en haut, ravivant temporairement l'éclat des blocs avant de laisser une traînée phosphorescente persistante."
+        "description": "Onde claire verticale ravivant l'éclat des blocs carrés sans secousse."
       }
     ],
     "interaction": {
@@ -73,7 +73,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#001407",
@@ -85,7 +85,7 @@
         }
       },
       {
-        "brick": "parallax_pixel_tiles",
+        "brickType": "parallax_pixel_tiles",
         "params": {
           "tileColor": "#002a0e",
           "topFringeColor": "#00aa3c",
@@ -98,7 +98,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#00ff00",
           "glowColor": "#00aa3c",
@@ -112,7 +112,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#4ade80",
           "density": 0.35,
@@ -122,7 +122,7 @@
         }
       },
       {
-        "brick": "crt_scanlines",
+        "brickType": "crt_scanlines",
         "params": {
           "scanlineColor": "#000000",
           "density": 1.2,
@@ -134,7 +134,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.55,
@@ -151,7 +151,7 @@
     "intensity": 1,
     "universe": "playstation-2",
     "evocation": "L'écran de démarrage mythique de la Sony PlayStation 2 (lancée en 2000) et son atmosphère sonore et visuelle légendaire. Un abîme spatial infini teinté de bleu nuit profond et de bleu cobalt, au sein duquel s'élèvent majestueusement de gigantesques monolithes et piliers de données rectangulaires translucides (qui matérialisaient l'historique des sauvegardes de la carte mémoire), baignés dans une brume céleste éthérée et escortés par des orbes de lumière en apesanteur.",
-    "signature": "Des monolithes de données translucides aux reflets bleu cobalt qui s'élèvent majestueusement dans une brume spatiale infinie, entourés de lucioles de données en apesanteur.",
+    "signature": "D'élégantes colonnes prismatiques bleu cobalt translucides flottant dans une brume sidérale profonde du début des années 2000, peuplées d'orbes lumineux en dérive lente.",
     "scene": [
       {
         "plan": 1,
@@ -189,10 +189,10 @@
     },
     "rareEvents": [
       {
-        "name": "Accord harmonique de démarrage",
-        "type": "volumetric_glow",
+        "name": "Accord lumineux d'initialisation",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 35.0 secondes",
-        "description": "Une lueur blanche et bleu électrique monte du fond de l'abîme et traverse les monolithes de données, illuminant brièvement les arrêtes de verre avant de se dissiper dans la brume nocturne."
+        "description": "Onde douce bleu électrique montant des profondeurs à travers les colonnes prismatiques."
       }
     ],
     "interaction": {
@@ -213,12 +213,12 @@
       "CodePen PlayStation 2 intro pillars"
     ],
     "risks": {
-      "pitfall": "Créer un fond trop sombre ou au contraire un bleu électrique trop saturé qui fatiguerait la lecture des cartes de jeux.",
-      "solution": "Adopter un bleu cobalt feutré d'intensité 1, confiner les reflets lumineux aux arêtes des colonnes de données et utiliser un voile sombre protecteur sous l'interface."
+      "pitfall": "Fond trop sombre ou référence directe au BIOS protégé d'une console.",
+      "solution": "Colonnes bleu saphir feutrées d'intensité 1 et poussières orbitales douces sans mention de marque."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#00030a",
           "bottomColor": "#000d24",
@@ -230,7 +230,7 @@
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#00102e",
           "windowColor": "#38bdf8",
@@ -243,7 +243,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#002052",
           "density": 0.45,
@@ -253,7 +253,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#93c5fd",
           "density": 0.4,
@@ -263,7 +263,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#60a5fa",
           "glowColor": "#00439c",
@@ -277,7 +277,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#00030a",
           "intensity": 0.5,
@@ -285,13 +285,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "ps2_data_towers",
-        "category": "intermediate",
-        "reason": "Génération procédurale de monolithes et colonnes de données 3D prismatiques semi-transparentes avec réfraction interne de lumière et facettes cristallines, spécifiques à l'ambiance du BIOS PS2."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "game_boy",
@@ -300,7 +294,7 @@
     "intensity": 1,
     "universe": "nintendo-gameboy",
     "evocation": "La sensation nostalgique et tactile de la toute première console portable Game Boy de Nintendo (1989, modèle DMG-01 conçue par Gunpei Yokoi). L'écran LCD STN à matrice passive non rétroéclairé, teinté des 4 nuances légendaires de vert olive et kaki. La persistance rétinienne et la rémanence lente (ghosting) des cristaux liquides lors des mouvements, la séparation géométrique des sous-pixels carrés, la texture du plastique gris ardoise biseauté et les reflets du soleil sur la dalle réfléchissante.",
-    "signature": "Une matrice de pixels LCD vert olive aux cristaux liquides animés d'un lent balancement, laissant une traînée de rémanence (ghosting) caractéristique à chaque micro-mouvement.",
+    "signature": "Une dalle matricielle LCD vert olive à quatre nuances rétroéclairée passivement, animée par des tuiles géométriques lentes et une discrète rémanence sous une vitre de verre optique.",
     "scene": [
       {
         "plan": 1,
@@ -338,10 +332,10 @@
     },
     "rareEvents": [
       {
-        "name": "Faiblesse de pile (Battery indicator dip)",
-        "type": "flickering_light",
+        "name": "Baisse passagère de contraste LCD",
+        "type": "glitch",
         "frequency": "Intervalle moyen de 40.0 secondes",
-        "description": "Une micro-chute de contraste globale de l'écran LCD pendant une demi-seconde rappelle le voyant LED rouge qui faiblit avant de retrouver sa tension normale."
+        "description": "Micro-chute de contraste pendant une demi-seconde avant stabilisation nette de l'affichage."
       }
     ],
     "interaction": {
@@ -362,12 +356,12 @@
       "CodePen Game Boy dot matrix LCD"
     ],
     "risks": {
-      "pitfall": "Donner une teinte jaune-vert criarde ou un contraste agressif fatiguant pour les yeux.",
-      "solution": "Adopter rigoureusement les teintes olive et kaki authentiques de la dalle DMG-01, calibrer la luminance pour le confort de lecture et maintenir l'intensité à 1."
+      "pitfall": "Teinte jaune-vert agressive ou citation de modèles déposés.",
+      "solution": "Nuances olive et kaki historiques calibrées, intensité 1 sobre et optique de verre matriciel."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#8bac0f",
           "bottomColor": "#306230",
@@ -379,7 +373,7 @@
         }
       },
       {
-        "brick": "parallax_pixel_tiles",
+        "brickType": "parallax_pixel_tiles",
         "params": {
           "tileColor": "#0f380f",
           "topFringeColor": "#306230",
@@ -392,7 +386,7 @@
         }
       },
       {
-        "brick": "pixelation",
+        "brickType": "pixelation",
         "params": {
           "tintColor": "#0f380f",
           "density": 1.4,
@@ -404,7 +398,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#0f380f",
           "density": 0.3,
@@ -414,7 +408,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#0f380f",
           "density": 1.2,
@@ -424,7 +418,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#4b5563",
           "intensity": 0.45,
@@ -434,9 +428,9 @@
     ],
     "missingBricks": [
       {
-        "name": "lcd_ghosting",
-        "category": "postprocess",
-        "reason": "Simulation de la rémanence temporelle et de la traînée de persistance (ghosting) des cristaux liquides STN de la Game Boy originale lors du mouvement."
+        "name": "crt_glass_optics",
+        "category": "overlay",
+        "reason": "Distorsion de courbure cathodique et masque de phosphore sous-pixel."
       }
     ]
   },
@@ -486,7 +480,7 @@
     "rareEvents": [
       {
         "name": "Flash 'Insert Coin' de la marquise",
-        "type": "flickering_light",
+        "type": "glitch",
         "frequency": "Intervalle moyen de 25.0 secondes",
         "description": "Un double éclat lumineux jaune or et rouge vermillon traverse la base de l'écran, synchronisé avec une micro-accélération du champ stellaire défilant."
       }
@@ -514,7 +508,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#0d0901",
@@ -526,7 +520,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 0.85,
@@ -538,7 +532,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#facc15",
           "glowColor": "#d97706",
@@ -552,7 +546,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#fde047",
           "secondaryColor": "#ef4444",
@@ -563,7 +557,7 @@
         }
       },
       {
-        "brick": "crt_scanlines",
+        "brickType": "crt_scanlines",
         "params": {
           "scanlineColor": "#000000",
           "density": 1.1,
@@ -575,7 +569,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.55,
@@ -659,7 +653,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f172a",
           "bottomColor": "#1e3a8a",
@@ -671,7 +665,7 @@
         }
       },
       {
-        "brick": "parallax_pixel_tiles",
+        "brickType": "parallax_pixel_tiles",
         "params": {
           "tileColor": "#1e293b",
           "topFringeColor": "#22c55e",
@@ -684,7 +678,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "mountainColor": "#1e1b4b",
           "highlightColor": "#3b82f6",
@@ -695,7 +689,7 @@
         }
       },
       {
-        "brick": "pixelation",
+        "brickType": "pixelation",
         "params": {
           "tintColor": "#000000",
           "density": 1.2,
@@ -707,7 +701,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#cbd5e1",
           "density": 0.3,
@@ -717,7 +711,7 @@
         }
       },
       {
-        "brick": "crt_scanlines",
+        "brickType": "crt_scanlines",
         "params": {
           "scanlineColor": "#000000",
           "density": 1.0,
@@ -729,7 +723,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "intensity": 0.45,
@@ -746,32 +740,32 @@
     "intensity": 1,
     "universe": "snes-super-famicom",
     "evocation": "L'apogée triomphale des consoles de salon 16-bit au début des années 90 : la Super Nintendo (SNES / Super Famicom) et la Sega Mega Drive. Une débauche de couleurs et de fluidité graphique (palette étendue de 32 768 couleurs, défilements parallaxes fluides sur 4 couches indépendantes dans Donkey Kong Country ou Chrono Trigger) et la révolution visuelle du Mode 7 (projection affine et perspective trapézoïdale simulant un sol 3D infini dans F-Zero et Super Mario Kart). Des paysages crépusculaires luxuriants où se mêlent pourpres impériaux, lilas mystiques et vertes collines.",
-    "signature": "Un crépuscule 16-bit aux dégradés lilas et améthyste sur lequel glissent 4 couches de collines verdoyantes en parallaxe fluide au-dessus d'un damier en perspective Mode 7.",
+    "signature": "Un crépuscule 16-bit lilas et améthyste sur lequel glissent quatre strates de montagnes et forêts pixelisées au-dessus d'un damier fuyant en perspective affine rétro.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel crépusculaire dégradé du violet nuit au rose lilas avec brume d'horizon dorée."
+        "description": "Ciel crépusculaire violet nuit vers rose lilas avec brume d'horizon dorée."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Chaîne de crêtes et montagnes lointaines en silhouettes améthystes étagées."
+        "description": "Chaîne de crêtes montagneuses en silhouettes améthystes étagées."
       },
       {
         "plan": 3,
         "type": "Plan médian intermédiaire",
-        "description": "Forêt et collines intermédiaires verdoyantes aux détails pixelisés riches défilant en parallaxe fluide."
+        "description": "Collines verdoyantes aux détails pixelisés défilant en parallaxe 16-bit fluide."
       },
       {
         "plan": 4,
         "type": "Avant-plan dynamique",
-        "description": "Trame de sol en perspective fuyante trapézoïdale simulant la rotation et l'échelle d'un plan Mode 7."
+        "description": "Plan de sol trapézoïdal en perspective fuyante rétro simulant la rotation d'horizon 16-bit."
       },
       {
         "plan": 5,
         "type": "Premier plan atmosphérique",
-        "description": "Feuilles et spores végétales pixelisées dérivant sous une brise douce, scanlines fines et vignettage velouté."
+        "description": "Feuilles pixelisées légères sous scanlines fines et vignettage velouté."
       }
     ],
     "particles": {
@@ -789,10 +783,10 @@
     },
     "rareEvents": [
       {
-        "name": "Ondulation thermique Mode 7",
-        "type": "heat_distortion",
+        "name": "Ondulation thermique de trame",
+        "type": "wind_gust",
         "frequency": "Intervalle moyen de 35.0 secondes",
-        "description": "Une ondulation thermique subtile traverse la ligne d'horizon et fait danser les crêtes montagneuses, clin d'œil aux effets spéciaux de chaleur et de bosses aquatiques de la SNES."
+        "description": "Légère vague de déformation horizontale rappelant les effets aquatiques des consoles 16-bit."
       }
     ],
     "interaction": {
@@ -813,12 +807,12 @@
       "CodePen Super Nintendo perspective grid"
     ],
     "risks": {
-      "pitfall": "Surcharger la scène de détails ou confondre la fluidité 16-bit avec un style vectoriel moderne sans grain d'époque.",
-      "solution": "Conserver une quantification de pixels subtile, superposer des couches de parallaxe bien étagées et préserver un grand confort de lecture au centre de l'interface."
+      "pitfall": "Surcharge de détails ou mentions hardware déposées.",
+      "solution": "Quantification pixelisée subtile, belle parallaxe multicouche 16-bit et bon contraste."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#1e1135",
           "bottomColor": "#4c1d95",
@@ -830,7 +824,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "mountainColor": "#2e1065",
           "highlightColor": "#8b5cf6",
@@ -841,7 +835,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "treeColor": "#064e3b",
           "backColor": "#022c22",
@@ -852,7 +846,7 @@
         }
       },
       {
-        "brick": "neon_grid",
+        "brickType": "neon_grid",
         "params": {
           "gridColor": "#8b5cf6",
           "horizonColor": "#fbbf24",
@@ -866,7 +860,7 @@
         }
       },
       {
-        "brick": "leaves",
+        "brickType": "leaves",
         "params": {
           "leafColor": "#10b981",
           "secondaryColor": "#8b5cf6",
@@ -877,7 +871,7 @@
         }
       },
       {
-        "brick": "crt_scanlines",
+        "brickType": "crt_scanlines",
         "params": {
           "scanlineColor": "#000000",
           "density": 1.0,
@@ -889,7 +883,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1e1135",
           "intensity": 0.45,
@@ -897,13 +891,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "mode7_plane",
-        "category": "intermediate",
-        "reason": "Projection perspective affine 2D au sol simulant le composant hardware PPU Mode 7 de la SNES avec horizon fuyant, rotation et mise à l'échelle continue."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "crt_scanline",
@@ -912,7 +900,7 @@
     "intensity": 1,
     "universe": "crt-monitors",
     "evocation": "La matérialité optique, physique et électrostatique du moniteur à tube cathodique (Cathode Ray Tube) des salles d'arcade et des studios de télévision vintage (Sony Trinitron, PVM broadcast, Philips pro). L'écran de verre lourd, épais et bombé (barrel distortion), la grille de phosphore RVB (aperture grille / shadow mask), le balayage continu à 60 Hz des lignes de balayage horizontales (scanlines), la rémanence verte et persistante du phosphore sous l'impact du faisceau d'électrons, et la séparation chromatique naturelle sur les bords du tube.",
-    "signature": "Une trame dense de scanlines cathodiques horizontales vibrant à 60 Hz sur un écran en verre bombé, traversée d'une barre de balayage lent (rolling bar) et d'un halo de phosphore vert émeraude.",
+    "signature": "La surface en verre sphérique bombée d'un moniteur cathodique vert émeraude, parcourue de fines lignes de balayage, d'une barre de rafraîchissement lente et de rares secousses Degauss.",
     "scene": [
       {
         "plan": 1,
@@ -979,7 +967,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#021208",
@@ -991,7 +979,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#22c55e",
           "glowColor": "#15803d",
@@ -1005,7 +993,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#22c55e",
           "secondaryColor": "#15803d",
@@ -1017,7 +1005,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#86efac",
           "density": 0.35,
@@ -1027,7 +1015,7 @@
         }
       },
       {
-        "brick": "crt_scanlines",
+        "brickType": "crt_scanlines",
         "params": {
           "scanlineColor": "#000000",
           "density": 1.4,
@@ -1039,7 +1027,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#22c55e",
           "density": 1.0,
@@ -1051,7 +1039,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#22c55e",
           "density": 1.0,
@@ -1061,7 +1049,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.6,
@@ -1071,11 +1059,10 @@
     ],
     "missingBricks": [
       {
-        "name": "crt_barrel_distortion",
-        "category": "postprocess",
-        "reason": "Simulation géométrique de la courbure sphérique du verre (effet barillet / fisheye) et réfraction des coins d'un tube cathodique vintage."
+        "name": "crt_glass_optics",
+        "category": "overlay",
+        "reason": "Distorsion de courbure cathodique et masque de phosphore sous-pixel."
       }
     ]
   }
 ]
-

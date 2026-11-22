@@ -6,27 +6,27 @@
     "intensity": 1,
     "universe": "ford-mustang",
     "evocation": "L'esprit originel de la pony car américaine incarné par la Ford Mustang : une virée crépusculaire sur une ligne droite infinie du désert de Mojave, le grondement sourd d'un gros V8 atmosphérique, deux bandes de course blanches longitudinales fendant un bleu nuit profond, et la poussière dorée soulevée par les rafales chaudes de l'ouest.",
-    "signature": "Le reflet fuyant d'une double bande de course blanche et de feux à triple barre verticale rouge se découpant sur une ligne d'asphalte désertique baignée d'un crépuscule ambré.",
+    "signature": "Le reflet fuyant de feux arrière rubis diffus et de sillons lumineux sur une route désertique rectiligne baignée d'un crépuscule ambré californien.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Ciel crépusculaire désertique californien dégradé du bleu nuit profond au zénith vers un horizon ambré et pourpre."
+        "description": "Ciel crépusculaire désertique du bleu nuit zénithal vers un horizon ambre et pourpre."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette feutrée de crêtes rocheuses et mesas arides du canyon de Mojave se découpant sur la lueur d'horizon."
+        "description": "Mesas arides et crêtes rocheuses du désert en ombres douces sur la ligne d'horizon."
       },
       {
         "plan": 3,
         "type": "Plan médian cinétique",
-        "description": "Lignes de fuite de la route rectiligne avec fine distorsion thermique résiduelle montant de l'asphalte chaud et halo rouge des feux arrière."
+        "description": "Lignes de fuite routières avec fine distorsion thermique et halo rouge diffus sur le bitume."
       },
       {
         "plan": 4,
         "type": "Premier plan & overlay",
-        "description": "Motes de poussière dorée flottant lentement dans l'air tiède sous un vignettage chaud préservant la lisibilité de l'interface."
+        "description": "Poussière dorée dérivant dans l'air tiède sous un vignettage chaud protégeant les cartes."
       }
     ],
     "particles": {
@@ -73,7 +73,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#0f172a",
@@ -85,7 +85,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#0b1222",
           "sunColor": "#7c2d12",
@@ -99,7 +99,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#d97706",
           "density": 0.6,
@@ -111,7 +111,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#f59e0b",
           "density": 0.35,
@@ -122,7 +122,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
           "density": 1.0,
@@ -132,7 +132,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#d97706",
           "density": 0.4,
@@ -153,53 +153,53 @@
     "intensity": 1,
     "universe": "bmw-m",
     "evocation": "La division sportive BMW M et le mythique circuit du Nürburgring Nordschleife lové dans les forêts de l'Eifel : rigueur d'ingénierie germanique, livrée blanche alpine ornée des trois bandes obliques bleu ciel, bleu foncé et rouge vermillon, et brume matinale d'automne s'étirant au ras des vibreurs d'asphalte humide.",
-    "signature": "Trois faisceaux lumineux parallèles et inclinés — bleu ciel, bleu marine et rouge vermillon — fendant avec une précision chirurgicale la brume matinale de conifères au ras des vibreurs d'un virage en dévers.",
+    "signature": "Une aube froide dans les sapins de montagne baignée d'un brouillard laiteux rasant, tranchée par deux faisceaux clairs blanc-azur et des lueurs diffuses carmin et marine à l'horizon.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Ciel d'aube bavaroise froid et brumeux, dégradé subtil du bleu ardoise foncé vers un blanc laiteux à l'horizon."
+        "description": "Ciel d'aube alpine froid, dégradé bleu marine nuit vers un gris perle brumeux à l'horizon."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette sombre et étagée de massifs de conifères de l'Eifel baignée d'une brume stagnante."
+        "description": "Massifs étagés de sapins sombres noyés dans une nappe de brouillard matinal immobile."
       },
       {
         "plan": 3,
         "type": "Plan médian cinétique",
-        "description": "Nappe de brouillard matinal rampant sur l'asphalte humide, traversée par des rais de phares blancs et des reflets tricolores M."
+        "description": "Brouillard rasant traversé par des faisceaux blancs clairs d'optiques et de subtils reflets bleu ciel et rouge carmin."
       },
       {
         "plan": 4,
         "type": "Premier plan & overlay",
-        "description": "Micro-gouttelettes d'humidité en lévitation froide et grain argentique fin évoquant les archives photographiques des courses d'endurance."
+        "description": "Fine bruine suspendue dans l'air froid et grain argentique évoquant les clichés d'endurance sur circuit forestier."
       }
     ],
     "particles": {
       "type": "Micro-bruine matinale en suspension (dust)",
       "size": "0.8 à 1.6 px",
-      "speed": "0.08 (chute presque imperceptible)",
-      "density": "20 particules froides",
-      "behavior": "Lévitation douce et stable dans l'air saturé d'humidité, frémissement subtil sous les courants d'air."
+      "speed": "0.08 (flottaison presque immobile)",
+      "density": "22 particules froides",
+      "behavior": "Lévitation stable dans l'air humide avec frémissement discret sous les courants d'air."
     },
     "atmosphere": {
-      "mist": "Brouillard de sous-bois épais et froid rampant entre les sapins et les bordures de piste.",
-      "light": "Clinique, diffuse et pure, rythmée par l'éclat blanc des optiques modernes et les trois teintes M-Sport.",
-      "airColor": "Blanc laiteux (#ffffff), bleu clair (#38bdf8), bleu marine (#1e3a8a) et rouge (#dc2626).",
-      "mainLightSource": "Lueur diurne montante à travers la brume combinée aux faisceaux directionnels des phares."
+      "mist": "Brouillard de sous-bois froid rampant entre les sapins.",
+      "light": "Clinique, pure et matinale, mariant l'éclat blanc froid aux touches bleu ciel, marine et rouge profond.",
+      "airColor": "Blanc laiteux (#ffffff), bleu clair (#38bdf8), bleu marine (#1e3a8a) et rouge carmin (#dc2626).",
+      "mainLightSource": "Clarté d'aube diffuse combinée aux faisceaux blancs obliques."
     },
     "rareEvents": [
       {
-        "name": "Flash de phares longue portée",
-        "type": "flickering_light",
-        "frequency": "Intervalle moyen de 50 secondes",
-        "description": "Un appel de phares blanc pur à LED illumine brièvement les cimes des sapins et la nappe de brume pendant une demi-seconde."
+        "name": "Brise glacée entre les sapins",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 48.0 secondes",
+        "description": "Un léger courant d'air étire la nappe de brume matinale et anime brièvement les cimes de conifères."
       }
     ],
     "interaction": {
-      "mouse": "Parallaxe directionnelle décalant la profondeur des conifères et modifiant l'angle de réfraction des faisceaux lumineux.",
-      "scroll": "Densifie légèrement la nappe de brume basse tout en conservant un noir d'asphalte profond pour la lisibilité."
+      "mouse": "Parallaxe directionnelle décalant les rangées de conifères et l'angle des faisceaux clairs.",
+      "scroll": "Densifie légèrement le brouillard bas sur fond ardoise profond."
     },
     "palette": [
       "#ffffff",
@@ -215,85 +215,59 @@
       "Endurance racing dawn fog headlights"
     ],
     "risks": {
-      "pitfall": "Donner un aspect aseptisé ou copier le logo rond à hélice protégé.",
-      "solution": "Évoquer la légende par le trio chromatique emblématique (bleu ciel, marine, rouge), la forêt de l'Eifel brumeuse et une pureté technique feutrée."
+      "pitfall": "Copier un logo à hélice ou des bandes tricolores déposées de constructeur.",
+      "solution": "Évoquer la compétition d'endurance alpine uniquement par les couleurs d'aube, la forêt brumeuse et des faisceaux lumineux naturels."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
-          "topColor": "#0b0f19",
-          "bottomColor": "#1e293b",
-          "horizonColor": "#94a3b8",
-          "density": 1.2,
-          "speed": 0.08,
-          "depth": 0.1,
-          "intensity": 0.8
+          "topColor": "#020617",
+          "bottomColor": "#1e3a8a"
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
-          "forestColor": "#050d18",
-          "fogColor": "#1e293b",
-          "density": 0.85,
-          "speed": 0.06,
-          "depth": 0.35,
-          "intensity": 0.85,
-          "windStrength": 0.2
+          "color": "#0b0f19",
+          "layers": 3
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
-          "fogColor": "#64748b",
-          "density": 0.6,
-          "speed": 0.12,
-          "depth": 0.3,
-          "intensity": 0.75,
-          "heightFalloff": 1.8
+          "color": "#cbd5e1",
+          "density": 0.35
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
-          "rayColor": "#ffffff",
-          "density": 0.7,
-          "speed": 0.12,
-          "depth": 0.4,
-          "intensity": 0.7,
-          "lightSourceX": -0.3,
-          "lightSourceY": 0.8,
-          "decay": 0.94
+          "color": "#f8fafc",
+          "intensity": 0.35
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
-          "dustColor": "#f8fafc",
-          "density": 0.3,
-          "speed": 0.08,
-          "depth": 0.5,
-          "intensity": 0.65
+          "color": "#e2e8f0",
+          "count": 22
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
-          "grainColor": "#ffffff",
-          "density": 1.1,
-          "intensity": 0.05,
-          "monochrome": true
+          "intensity": 0.14
+        }
+      },
+      {
+        "brickType": "vignette",
+        "params": {
+          "darkness": 0.5
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "tri_color_beam_stripes",
-        "category": "atmosphere",
-        "reason": "Projection vectorielle de trois bandes lumineuses parallèles obliques (cyan, bleu foncé, rouge) fendant la brume de piste."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "quattro",
@@ -369,7 +343,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#0b1120",
@@ -381,7 +355,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#070b14",
           "sunColor": "#334155",
@@ -395,7 +369,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fef08a",
           "density": 0.8,
@@ -408,7 +382,7 @@
         }
       },
       {
-        "brick": "snow",
+        "brickType": "snow",
         "params": {
           "snowColor": "#f8fafc",
           "density": 0.4,
@@ -420,7 +394,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
           "density": 1.0,
@@ -430,7 +404,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#f8fafc",
           "density": 0.35,
@@ -490,7 +464,7 @@
     "rareEvents": [
       {
         "name": "Éclat spéculaire argenté",
-        "type": "lens_flare",
+        "type": "shooting_star",
         "frequency": "Intervalle moyen de 50 secondes",
         "description": "Un faisceau de lumière zénithal frappe une arête d'aluminium brossé, générant un bref trait anamorphique argenté horizontal."
       }
@@ -518,7 +492,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#090d16",
@@ -530,7 +504,7 @@
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#050912",
           "windowColor": "#94a3b8",
@@ -543,7 +517,7 @@
         }
       },
       {
-        "brick": "lens_flare",
+        "brickType": "lens_flare",
         "params": {
           "flareColor": "#ffffff",
           "accentColor": "#94a3b8",
@@ -557,7 +531,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#e2e8f0",
           "density": 0.3,
@@ -568,7 +542,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.2,
@@ -577,7 +551,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
           "density": 1.0,
@@ -587,13 +561,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "metallic_sheen",
-        "category": "atmosphere",
-        "reason": "Voile de reflets métalliques liquides et brossés en balayage lent évoquant une carrosserie en aluminium poli."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "shark_bite",
@@ -602,7 +570,7 @@
     "intensity": 1,
     "universe": "chevrolet-corvette",
     "evocation": "La Chevrolet Corvette Stingray et le concept originel Mako Shark : le capot plongeant effilé en gueule de requin, les ouïes latérales acérées, l'agressivité nocturne d'un run sur les grands boulevards de Miami ou le long de la côte de Floride, la moiteur de l'air marin et les doubles optiques rouges perçantes.",
-    "signature": "Deux feux arrière jumelés rouge sang perçant un nuage d'asphalte chaud et de buée nocturne, esquissant la silhouette basse et féline d'un capot en museau de requin.",
+    "signature": "Une silhouette nocturne très basse fendant un air côtier saturé de chaleur thermique, signalée par deux halos jumelés rouge sang et de rares braises sur l'asphalte noir.",
     "scene": [
       {
         "plan": 1,
@@ -633,10 +601,10 @@
       "behavior": "Convection thermique ascendante douce, refroidissement progressif du rouge vif au rubis sombre."
     },
     "atmosphere": {
-      "mist": "Air moite et chaud saturé d'odeur de bitume et d'ozone maritime.",
-      "light": "Nocturne et intimidante, dominée par les faisceaux rouge sang et la silhouette noire carbone.",
-      "airColor": "Rouge carmin (#ef4444), noir asphalte (#000000), rouge sombre (#991b1b) et braise (#f97316).",
-      "mainLightSource": "Double rangée de feux ronds rouge sang à l'arrière projetant un halo rasant."
+      "mist": "Air moite côtier vibrant au ras du bitume nocturne.",
+      "light": "Nocturne et basse, dominée par deux foyers rubis et la chaleur sombre.",
+      "airColor": "Rouge carmin (#ef4444), noir asphalte (#000000) et braise (#f97316).",
+      "mainLightSource": "Halos rouges rasants et réverbération chaude du tarmac."
     },
     "rareEvents": [
       {
@@ -669,7 +637,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#09090b",
@@ -681,7 +649,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#ef4444",
           "density": 0.7,
@@ -693,7 +661,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#ef4444",
           "hotColor": "#f97316",
@@ -705,7 +673,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.1,
@@ -715,7 +683,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#991b1b",
           "flashColor": "#450a0a",
@@ -736,7 +704,7 @@
     "intensity": 1,
     "universe": "porsche",
     "evocation": "La quintessence de la Porsche 911 Carrera : de la course Panamericana historique aux longues traversées nocturnes sur l'Autobahn sans limitation de vitesse. La ligne fastback intemporelle, le bandeau lumineux arrière transversal à LED rouge rubis filant dans l'obscurité et la pluie fine miroitant sur l'asphalte.",
-    "signature": "Un mince bandeau continu rouge rubis horizontal flottant dans la pénombre, dont le sillage lumineux se reflète avec une netteté de miroir sur un asphalte frais balayé par une bruine nocturne.",
+    "signature": "Un ruban continu rouge rubis minimaliste traversant l'obscurité pluvieuse d'une forêt allemande, réfléchi net sur un asphalte humide sous une fine bruine oblique.",
     "scene": [
       {
         "plan": 1,
@@ -774,10 +742,10 @@
     },
     "rareEvents": [
       {
-        "name": "Balayage d'optique matricielle à LED",
-        "type": "god_rays",
-        "frequency": "Intervalle moyen de 45 secondes",
-        "description": "Un faisceau de lumière blanche haute précision balaie brièvement la bruine nocturne avec un éclat anamorphique."
+        "name": "Éclair d'optique blanche dans la bruine",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 45.0 secondes",
+        "description": "Faisceau blanc pur haute précision fendant brièvement la bruine nocturne."
       }
     ],
     "interaction": {
@@ -798,12 +766,12 @@
       "Porsche Carrera chalk gray aesthetic minimalist"
     ],
     "risks": {
-      "pitfall": "Tomber dans le cliché tuning criard ou reproduire le logo armorié de Stuttgart.",
-      "solution": "Célébrer la sobriété du design industriel allemand : ligne lumineuse ultra-pure, asphalte miroir mouillé et gris craie distingué."
+      "pitfall": "Tuning criard ou reproduction d'un blason automobile protégé.",
+      "solution": "Sobriété industrielle allemande : bandeau continu rubis pur, asphalte mouillé et gris craie sans blason."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#080c14",
@@ -815,7 +783,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#050912",
           "sunColor": "#1e293b",
@@ -828,7 +796,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#334155",
           "density": 0.5,
@@ -839,7 +807,7 @@
         }
       },
       {
-        "brick": "rain",
+        "brickType": "rain",
         "params": {
           "rainColor": "#94a3b8",
           "density": 0.35,
@@ -851,7 +819,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
           "density": 1.0,
@@ -861,7 +829,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#ffffff",
           "density": 0.6,
@@ -876,9 +844,9 @@
     ],
     "missingBricks": [
       {
-        "name": "light_trail_ribbon",
-        "category": "special",
-        "reason": "Ruban rectiligne horizontal ultra-fin rouge rubis simulant la signature lumineuse continue d'un bandeau à LED arrière."
+        "name": "wet_cobblestone",
+        "category": "background",
+        "reason": "Sol pavé humide à réflexions spéculaires et flaques irrégulières."
       }
     ]
   },
@@ -928,7 +896,7 @@
     "rareEvents": [
       {
         "name": "Gerbe d'étincelles de fond plat",
-        "type": "sparks",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 40 secondes",
         "description": "Une brève rafale d'étincelles dorées étincelle au centre-bas de l'écran avant de disparaître dans la distorsion thermique."
       }
@@ -956,7 +924,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#050505",
           "bottomColor": "#18181b",
@@ -968,7 +936,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#0c0a09",
           "fogColor": "#292524",
@@ -980,7 +948,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#dc2626",
           "density": 0.8,
@@ -992,7 +960,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#facc15",
           "coreColor": "#ffffff",
@@ -1005,7 +973,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#050505",
           "density": 1.05,
@@ -1091,7 +1059,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#050907",
@@ -1103,7 +1071,7 @@
         }
       },
       {
-        "brick": "neon_grid",
+        "brickType": "neon_grid",
         "params": {
           "gridColor": "#bef264",
           "horizonColor": "#064e3b",
@@ -1117,7 +1085,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#bef264",
           "glowColor": "#22c55e",
@@ -1131,7 +1099,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#38bdf8",
           "coreColor": "#ffffff",
@@ -1144,7 +1112,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#bef264",
           "density": 1.0,
@@ -1154,7 +1122,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.1,
@@ -1173,7 +1141,7 @@
     "intensity": 2,
     "universe": "aston-martin",
     "evocation": "La mythique lignée Aston Martin DB (de la DB5 de Sean Connery à la DB12 contemporaine) et l'élégance de l'agent secret britannique au service de Sa Majesté : col alpin du Furka embrumé au crépuscule, carrosserie British Racing Green et Silver Birch, calandre en trapèze chromée et distinction feutrée sans ostentation.",
-    "signature": "Une silhouette d'Aston Martin vert anglais glissant avec une distinction feutrée sur une route alpine embrumée au crépuscule, ses optiques rondes sculptant deux longs cônes d'or dans la brume du col.",
+    "signature": "La ligne effilée d'un coupé grand tourisme vert anglais glissant sur une route de col embrumée au crépuscule, dont deux phares ronds sculptent des cônes d'or chaud à travers les mélèzes.",
     "scene": [
       {
         "plan": 1,
@@ -1240,12 +1208,12 @@
       "James Bond Aston Martin Furka Pass mist"
     ],
     "risks": {
-      "pitfall": "Rendre la scène trop sombre ou austère, ou faire une allusion explicite non autorisée à la franchise 007.",
-      "solution": "Évoquer le mythe par l'ambiance : la route de montagne embrumée, le vert anglais intemporel, les feuilles dorées et des phares nobles."
+      "pitfall": "Rendre la scène trop sombre ou citer explicitement des franchises cinématographiques ou constructeurs protégés.",
+      "solution": "Évoquer l'élégance britannique intemporelle par la route alpine embrumée, le vert anglais profond, les feuilles dorées et des faisceaux dorés nobles."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#064e3b",
@@ -1257,7 +1225,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#031c15",
           "sunColor": "#064e3b",
@@ -1270,7 +1238,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fef08a",
           "density": 0.85,
@@ -1283,7 +1251,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#64748b",
           "density": 0.65,
@@ -1294,7 +1262,7 @@
         }
       },
       {
-        "brick": "leaves",
+        "brickType": "leaves",
         "params": {
           "leafColor": "#ea580c",
           "altColor": "#ca8a04",
@@ -1306,7 +1274,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.15,
@@ -1315,7 +1283,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#fef08a",
           "density": 0.4,
@@ -1336,7 +1304,7 @@
     "intensity": 2,
     "universe": "bentley",
     "evocation": "L'aristocratie automobile de Bentley Motors et l'héritage de la manufacture de Crewe (Cheshire) : les 'Bentley Boys' vainqueurs au Mans, le grand tourisme de luxe (Continental GT), le cuir Connolly pleine fleur vanillé, les boiseries en ronce de noyer cirée, la calandre grillagée matricielle chromée et le prestigieux 'Flying B' ailé.",
-    "signature": "Un halo d'or chaud et d'ivoire caressant une calandre grillagée chromée, tandis que des volutes de brume matinale se dissipent sur l'allée gravillonnée d'un manoir victorien.",
+    "signature": "Une lueur d'or chaud et d'ivoire caressant la silhouette d'une calandre chromée intemporelle dans une allée gravillonnée de manoir anglais nimbée de brume matinale.",
     "scene": [
       {
         "plan": 1,
@@ -1379,10 +1347,10 @@
     },
     "rareEvents": [
       {
-        "name": "Éclat spéculaire sur le Flying B",
-        "type": "lens_flare",
-        "frequency": "Intervalle moyen de 35 secondes",
-        "description": "Un rai de soleil frappe la proue chromée, créant un éclat doré et une aigrette lumineuse scintillante pendant 2 secondes."
+        "name": "Éclat de lumière matinale sur chrome",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 35.0 secondes",
+        "description": "Une brise douce soulève une poussière d'or feutrée à travers les rais du soleil d'aube dans les grands chênes."
       }
     ],
     "interaction": {
@@ -1408,7 +1376,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#052e16",
@@ -1420,7 +1388,7 @@
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#031c0e",
           "torchColor": "#d4af37",
@@ -1434,7 +1402,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fef3c7",
           "density": 0.8,
@@ -1447,7 +1415,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#d4af37",
           "density": 0.5,
@@ -1458,7 +1426,7 @@
         }
       },
       {
-        "brick": "lens_flare",
+        "brickType": "lens_flare",
         "params": {
           "flareColor": "#ffffff",
           "accentColor": "#d4af37",
@@ -1472,7 +1440,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.1,
@@ -1481,7 +1449,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
           "density": 1.0,
@@ -1500,7 +1468,7 @@
     "intensity": 2,
     "universe": "bugatti",
     "evocation": "La suprématie de Bugatti (Atelier de Molsheim en Alsace) et le record de la vitesse absolue : de la mythique Type 35 Bleu de France aux hypercars Chiron et Tourbillon franchissant les 400 km/h, la calandre iconique en fer à cheval, la signature latérale en C ('Bugatti Line') et la fureur aérodynamique d'un W16 quadri-turbo sur l'anneau d'Ehra-Lessien.",
-    "signature": "L'arc d'un C-line Bugatti en aluminium poli s'illuminant dans un cyclone aérodynamique bleu de France, au milieu de rubans de vitesse supersoniques fendant l'asphalte infini.",
+    "signature": "Un sillage aérodynamique d'aluminium poli et de Bleu de France royal fendant l'obscurité en un tunnel de vitesse radiale sur un asphalte infini vibrant sous la chaleur.",
     "scene": [
       {
         "plan": 1,
@@ -1567,12 +1535,12 @@
       "Hypercar supersonic speed lines night track"
     ],
     "risks": {
-      "pitfall": "Vitesse trop chaotique perturbant l'ergonomie ou reproduction du logo EB déposé.",
-      "solution": "Canaliser l'intensité 2 sur la fluidité cinématique : étincelles nettes, Bleu de France noble et onde de choc rare et majestueuse."
+      "pitfall": "Vitesse chaotique perturbant la lecture ou reproduction de sigles de constructeurs déposés.",
+      "solution": "Fluidité cinématique intense : étincelles pures, Bleu de France profond et tunnel radial sans emblème commercial."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#000000",
@@ -1584,7 +1552,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#0284c7",
           "density": 0.8,
@@ -1596,7 +1564,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#38bdf8",
           "coreColor": "#ffffff",
@@ -1609,7 +1577,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#38bdf8",
           "density": 1.0,
@@ -1621,7 +1589,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#0284c7",
           "density": 1.0,
@@ -1631,7 +1599,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.1,
@@ -1643,9 +1611,9 @@
     ],
     "missingBricks": [
       {
-        "name": "speed_lines",
+        "name": "radial_speed_tunnel",
         "category": "special",
-        "reason": "Filaments de vitesse aérodynamique radiaux convergeant vers le point de fuite central pour simuler l'accélération à 400+ km/h."
+        "reason": "Tunnel cinétique d'étirement radial et lignes de vitesse en perspective."
       }
     ]
   },
@@ -1656,58 +1624,58 @@
     "intensity": 2,
     "universe": "rolls-royce",
     "evocation": "Le sanctuaire de Rolls-Royce Motor Cars (Goodwood, West Sussex) : l'opulence silencieuse absolue, le 'Magic Carpet Ride' effaçant toute imperfection de la route, la proue ornée de la calandre Panthéon monumentale et de la statuette Spirit of Ecstasy, et l'iconique pavillon étoilé 'Starlight Headliner' constellé de milliers de fibres optiques scintillantes.",
-    "signature": "Un plafond céleste Starlight constellé de centaines de micro-étoiles de fibre optique qui scintillent doucement au nombre d'or au-dessus de la silhouette immaculée du Spirit of Ecstasy flottant en apesanteur dans un silence souverain.",
+    "signature": "Une voûte noir piano laqué constellée de centaines de points lumineux en fibre optique qui palpitent silencieusement au nombre d'or au-dessus d'un faisceau d'opéra argenté.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Nuit cosmique noire laquée avec champ d'étoiles multi-couches simulant le pavillon intérieur Starlight Headliner."
+        "description": "Nuit noir laqué d'ébène piquée d'un champ stellaire multicouche aux scintillements feutrés."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Voile nébuleux diaphane bleu nuit et argenté flottant au zénith avec une lenteur de velours."
+        "description": "Voile nébuleux diaphane bleu nuit et améthyste glacée glissant avec une lenteur de velours."
       },
       {
         "plan": 3,
         "type": "Plan intermédiaire volumétrique",
-        "description": "Faisceau vertical délicat blanc-argenté descendant sur la proue comme un projecteur d'opéra silencieux."
+        "description": "Faisceau vertical délicat blanc-argenté descendant doucement comme un projecteur d'opéra silencieux."
       },
       {
         "plan": 4,
         "type": "Plan médian cinétique",
-        "description": "Poussières de diamant et motes lumineuses étincelant en quasi-apesanteur dans la pénombre feutrée."
+        "description": "Poussières de diamant et micro-points lumineux en quasi-apesanteur dans une pénombre feutrée."
       },
       {
         "plan": 5,
         "type": "Premier plan & overlay",
-        "description": "Vignettage noir piano laqué souverain et micro-aberration chromatique opalescente sur les pourtours."
+        "description": "Vignettage noir satiné souverain et micro-grain velours préservant une lisibilité irréprochable."
       }
     ],
     "particles": {
-      "type": "Poussières de diamant et micro-étoiles (dust)",
+      "type": "Micro-étoiles optiques et poussières de diamant (dust)",
       "size": "0.8 à 1.8 px",
       "speed": "0.07 (apesanteur presque absolue)",
       "density": "50 micro-points étincelants",
-      "behavior": "Lévitation calme au mouvement brownien infinitésimal, scintillement déphasé évoquant des fibres optiques artisanales."
+      "behavior": "Lévitation infinitésimale à scintillements déphasés évoquant une voûte lumineuse de haute horlogerie."
     },
     "atmosphere": {
-      "mist": "Silence acoustique total, air purifié et tempéré, absence de toute vibration mécanique.",
-      "light": "Céleste, feutrée et nocturne, contrastant le noir piano le plus pur avec des éclats blancs et argentés.",
-      "airColor": "Noir piano laqué (#000000), blanc constellation (#f8fafc), argent (#94a3b8) et bleu nuit (#09090b).",
-      "mainLightSource": "Voûte céleste Starlight au zénith et halo délicat sur la mascotte proue."
+      "mist": "Air calme et tempéré traversé par un léger halo opalescent.",
+      "light": "Céleste, feutrée et nocturne, opposant le noir piano pur à des éclats blanc argenté.",
+      "airColor": "Noir piano (#000000), blanc étoile (#f8fafc), argent (#94a3b8) et bleu nuit (#09090b).",
+      "mainLightSource": "Voûte étoilée zénithale et fin rai de lumière argenté vertical."
     },
     "rareEvents": [
       {
-        "name": "Étoile filante dans le pavillon Starlight",
+        "name": "Étoile filante argentée",
         "type": "shooting_star",
-        "frequency": "Intervalle moyen de 30 secondes",
-        "description": "Une fine étoile filante argentée traverse le champ stellaire zénithal avec une traînée de plasma soyeuse avant de disparaître."
+        "frequency": "Intervalle moyen de 30.0 secondes",
+        "description": "Un fin trait lumineux argenté glisse silencieusement à travers le champ stellaire zénithal."
       }
     ],
     "interaction": {
-      "mouse": "Parallaxe tridimensionnelle feutrée étirant le champ stellaire Starlight et créant un halo doux autour du curseur.",
-      "scroll": "Maintient une profondeur de noir absolu inaltérée pour magnifier la typographie et les bordures de cartes."
+      "mouse": "Parallaxe tridimensionnelle soyeuse étirant les strates d'étoiles avec halo discret autour du curseur.",
+      "scroll": "Maintient un noir absolu profond pour détacher la typographie et les bordures."
     },
     "palette": [
       "#000000",
@@ -1723,78 +1691,56 @@
       "Black badge Rolls Royce piano lacquer luxury"
     ],
     "risks": {
-      "pitfall": "Rendre la scène glaciale ou semblable à un thème spatial générique sans lien avec l'automobile de prestige.",
-      "solution": "Ancrer la scène dans l'esprit Rolls-Royce : noir piano laqué, faisceau théâtral sur la proue, éclat blanc argenté et silence feutré."
+      "pitfall": "Scène spatiale banale ou reproduction de mascotte/marque automobile protégée.",
+      "solution": "Noir laqué de salon nocturne, faisceau théâtral épuré et scintillement lent d'étoiles sans emblème commercial."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
-          "bottomColor": "#09090b",
-          "horizonColor": "#1e1b4b",
-          "density": 1.2,
-          "speed": 0.05,
-          "depth": 0.1,
-          "intensity": 0.75
+          "bottomColor": "#09090b"
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
-          "starColor": "#ffffff",
-          "density": 0.8,
-          "speed": 0.05,
-          "depth": 1.0,
-          "intensity": 0.9,
-          "twinkleSpeed": 1.4
+          "count": 320,
+          "color": "#f8fafc",
+          "accentColor": "#c084fc"
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
-          "rayColor": "#f8fafc",
-          "density": 0.7,
-          "speed": 0.08,
-          "depth": 0.4,
-          "intensity": 0.65,
-          "lightSourceX": 0.0,
-          "lightSourceY": 0.85,
-          "decay": 0.94
+          "color": "#e2e8f0",
+          "intensity": 0.28,
+          "angle": 0.05
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
-          "dustColor": "#f8fafc",
-          "density": 0.5,
-          "speed": 0.07,
-          "depth": 0.5,
-          "intensity": 0.85,
-          "twinkleSpeed": 1.5
+          "color": "#f8fafc",
+          "count": 50
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
-          "starColor": "#ffffff",
-          "trailColor": "#94a3b8",
-          "density": 0.5,
-          "speed": 1.2,
-          "depth": 0.4,
-          "intensity": 1.0,
-          "starInterval": 30.0,
-          "trailLength": 1.0
+          "frequency": 30.0
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
-          "vignetteColor": "#000000",
-          "density": 1.15,
-          "intensity": 0.65,
-          "roundness": 0.65,
-          "smoothness": 0.9
+          "darkness": 0.68
+        }
+      },
+      {
+        "brickType": "film_grain",
+        "params": {
+          "intensity": 0.08
         }
       }
     ],
@@ -1879,7 +1825,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#0f172a",
@@ -1891,7 +1837,7 @@
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#030712",
           "windowColor": "#0ea5e9",
@@ -1904,7 +1850,7 @@
         }
       },
       {
-        "brick": "neon_grid",
+        "brickType": "neon_grid",
         "params": {
           "gridColor": "#0ea5e9",
           "horizonColor": "#0284c7",
@@ -1918,7 +1864,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#334155",
           "tintColor": "#0ea5e9",
@@ -1931,7 +1877,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#38bdf8",
           "coreColor": "#ffffff",
@@ -1944,7 +1890,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#0ea5e9",
           "density": 1.0,
@@ -1956,7 +1902,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#0ea5e9",
           "density": 1.0,
@@ -1966,7 +1912,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.1,
@@ -1978,11 +1924,10 @@
     ],
     "missingBricks": [
       {
-        "name": "underglow_neon",
-        "category": "special",
+        "name": "wet_cobblestone",
+        "category": "background",
         "reason": "Projection au sol d'un halo lumineux diffus de néon sous châssis (tubes néon ou LED) illuminant l'asphalte avec reflet mouillé."
       }
     ]
   }
 ]
-

@@ -1611,7 +1611,7 @@ export const THEME_REGISTRY: ThemeCategoryEntry[] = [
         id: 'web_slinger',
         name: 'Web-Slinger',
         colors: ['#ef4444', '#3b82f6'],
-        universe: 'spiedr-man',
+        universe: 'spider-man',
         categoryId: 'marvel',
         categoryTitle: 'Univers Marvel',
         rule: byTrophy('spider_web'),

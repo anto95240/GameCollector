@@ -6,59 +6,59 @@
     "intensity": 3,
     "universe": "le-seigneur-des-anneaux",
     "evocation": "Le Seigneur des Anneaux et l'univers de la Terre du Milieu de J.R.R. Tolkien : l'affrontement mythique entre la beauté pastorale d'Arda (la Comté, les clairières de Fondcombe) et l'ombre grandissante des terres sauvages. Au couchant, des collines ondoyantes et de vieux chênes centenaires se découpent devant la silhouette majestueuse et embrumée des Monts Brumeux. Les rayons dorés d'un soleil crépusculaire percent la canopée, tandis que des volutes paresseuses d'herbe à pipe s'élèvent d'un âtre invisible et que des lucioles dorées et des poussières runiques elfiques lévitent sous la brise, rappelant l'éclat mystique de l'Anneau Unique.",
-    "signature": "Une silhouette de chêne ancestral dominant des collines embrumées sous une pluie d'orbes dorés féeriques et de volutes de fumée d'herbe à pipe qui s'enroulent dans des rayons crépusculaires.",
+    "signature": "Des chênes ancestraux dominant des collines embrumées devant une chaîne de monts enneigés au crépuscule, baignés de rayons dorés, de lucioles et d'anneaux de fumée claire.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel crépusculaire d'Arda dégradé d'ambre cuivré vers un vert mousse céleste profond, traversé de cirrus FBM rougeoyants dérivant au vent d'ouest."
+        "description": "Ciel crépusculaire cuivré et vert mousse traversé de cirrus légers dérivant à l'ouest."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Chaîne monumentale des Monts Brumeux aux arêtes alpines acérées estompées dans une brume vespérale bleu-ardoise."
+        "description": "Haute chaîne montagneuse alpine estompée dans une brume vespérale ardoise."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Forêt ancestrale aux houppiers de chênes et de hêtres séculaires ondulant doucement sous les rafales de la brise des terres libres."
+        "description": "Forêt ancestrale de chênes et hêtres séculaires ondulant doucement sous la brise."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Nappe de brume rasante de vallée dorée transpercée de rayons crépusculaires éclatants (god rays) et volutes de fumée d'âtre/pipe en lente ascension."
+        "description": "Brume dorée de vallée percée de rayons obliques et lentes volutes de fumée d'âtre."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Nuée d'orbes de lumière féerique dorée et de lucioles nocturnes en lévitation brownienne, encadrée d'un vignettage feutré et d'un grain cinéma 35mm."
+        "description": "Lucioles dorées en lévitation brownienne devant un vignettage feutré 35mm."
       }
     ],
     "particles": {
-      "type": "Lucioles nocturnes bioluminescentes dorées (fireflies) et poussières runiques solaires en suspension (dust)",
-      "size": "1.2 à 2.8 px pour les poussières, 2.5 à 5.0 px pour les orbes dorés",
-      "speed": "0.15 pour la lévitation brownienne des poussières, 0.22 pour la trajectoire ondulante des lucioles",
-      "density": "95 poussières dorées + 40 lucioles bioluminescentes (instanciation GPU ultra-fluide)",
-      "behavior": "Flottaison brownienne 3D par bruit de Simplex, dérive lente au fil de la brise et attraction feutrée vers le curseur."
+      "type": "Lucioles dorées (fireflies) et poussières solaires (dust)",
+      "size": "1.2 à 5.0 px",
+      "speed": "0.18 dérive organique douce",
+      "density": "95 poussières + 40 lucioles",
+      "behavior": "Flottaison brownienne attirée avec douceur vers le curseur."
     },
     "atmosphere": {
-      "mist": "Nappe de brume vespérale dorée et vaporeuse flottant entre les troncs et sur les vallons.",
-      "light": "Chaleureuse, nostalgique et crépusculaire, zébrée de rayons solaires volumétriques dorés perçant les cimes.",
-      "airColor": "Or patiné (#d4a853), ambre crépusculaire (#78350f) et vert mousse nocturne (#14532d).",
-      "mainLightSource": "Soleil couchant rasant dissimulé derrière les contreforts montagneux lointains."
+      "mist": "Brume vespérale dorée flottant sur les vallons boisés.",
+      "light": "Chaleureuse et crépusculaire, zébrée de rais dorés perçant les feuillages.",
+      "airColor": "Or patiné (#d4a853), ambre (#78350f) et vert mousse (#14532d).",
+      "mainLightSource": "Soleil couchant dissimulé derrière les crêtes montagneuses."
     },
     "rareEvents": [
       {
-        "name": "Bourrasque des Terres Libres",
+        "name": "Bourrasque des terres libres",
         "type": "wind_gust",
         "frequency": "Intervalle moyen de 28.0 secondes",
-        "description": "Une rafale de vent balaye les collines, faisant tournoyer vivement les poussières dorées et courbant les cimes des chênes centenaires."
+        "description": "Une brise ample courbe les cimes de chênes et fait tourbillonner les poussières d'or."
       },
       {
-        "name": "Étoile d'Eärendil",
+        "name": "Étoile du soir filante",
         "type": "shooting_star",
         "frequency": "Intervalle moyen de 42.0 secondes",
-        "description": "Une étoile filante d'un éclat blanc argenté traverse le ciel crépusculaire au-dessus des Monts Brumeux, laissant une traînée de plasma scintillante."
+        "description": "Un météore blanc argenté traverse le ciel crépusculaire au-dessus des montagnes."
       }
     ],
     "interaction": {
@@ -79,12 +79,12 @@
       "CodePen golden enchanted forest particles"
     ],
     "risks": {
-      "pitfall": "Un simple fond de forêt verte générique sans l'âme épique et féerique de Tolkien, ou un Mordor trop sombre et agressif.",
-      "solution": "Allier la ligne d'horizon grandiose des Monts Brumeux, les rayons crépusculaires perçants, la fumée lente d'herbe à pipe et les orbes dorés runiques réactifs pour saisir la poésie d'Arda."
+      "pitfall": "Forêt générique ou mention d'œuvres/personnages protégés.",
+      "solution": "Grandiose chaîne alpine, rayons dorés obliques, fumée d'âtre lente et lucioles poétiques sans nom protégé."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#052e16",
           "bottomColor": "#78350f",
@@ -98,7 +98,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#d4a853",
           "skyColor": "#052e16",
@@ -111,7 +111,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#0f172a",
           "sunColor": "#78350f",
@@ -126,7 +126,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#052e16",
           "fogColor": "#14532d",
@@ -139,7 +139,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#78350f",
           "density": 0.65,
@@ -152,7 +152,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fef08a",
           "density": 1.1,
@@ -166,7 +166,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#d4a853",
           "density": 0.5,
@@ -177,7 +177,7 @@
         }
       },
       {
-        "brick": "fireflies",
+        "brickType": "fireflies",
         "params": {
           "fireflyColor": "#fef08a",
           "density": 0.8,
@@ -188,7 +188,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#d4a853",
           "density": 0.85,
@@ -200,7 +200,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#fef08a",
           "density": 0.75,
@@ -214,7 +214,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "density": 0.6,
@@ -227,7 +227,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#052e16",
           "density": 1.05,
@@ -239,7 +239,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.0,
@@ -251,13 +251,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "pipe_smoke_rings",
-        "category": "particles",
-        "reason": "Anneaux de fumée toriques translucides d'herbe à pipe s'élevant en se dilatant et se déformant sous la brise, signature poétique de Gandalf et de la Comté."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "narnia",
@@ -266,32 +260,32 @@
     "intensity": 3,
     "universe": "le-monde-de-narnia",
     "evocation": "Le Monde de Narnia de C.S. Lewis : la clairière mystique de Lantern Waste (« Le Réverbère au milieu des bois »), au cœur de l'hiver centenaire jeté par la Sorcière Blanche (« Always winter, never Christmas »). En traversant l'armoire magique, on débouche sur une taïga de sapins pétrifiés chargés de givre sous un ciel arctique bleuté où dansent les voiles évanescents d'une aurore boréale turquoise. Au centre, un réverbère victorien en fer forgé vacille d'une flamme d'ambre solitaire et chaleureuse, résistant au blizzard de flocons scintillants.",
-    "signature": "Un réverbère victorien solitaire vacillant d'une flamme d'ambre chaleureuse au milieu d'une clairière de conifères pétrifiés sous un blizzard de flocons scintillants et une aurore polaire cyan.",
+    "signature": "Un réverbère ancien isolé diffusant une flamme d'ambre chaleureuse au cœur d'une forêt de conifères enneigés sous un blizzard doux et une aurore boréale cyan.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel polaire bleu glacier profond illuminé par des draperies d'aurore boréale cyan et lilas ondulant lentement au zénith."
+        "description": "Ciel polaire bleu glacier éclairé par des draperies d'aurore boréale cyan et lilas."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Sommets alpins gelés et falaises de glace de Narnia, voilés par des brumes froides et des tourbillons de poudrerie."
+        "description": "Sommets alpins gelés et falaises blanches voilées par la poudrerie froide."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Forêt de sapins majestueux chargés de lourdes congères de neige étincelante, fléchissant subtilement sous les rafales de bise."
+        "description": "Forêt de grands sapins chargés de neige épaisse pliant doucement sous la bise."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Foyer incandescent ambré d'un réverbère victorien créant un halo de chaleur réconfortant dans une nappe de brume glaciale rampante."
+        "description": "Halo ambré chaleureux d'un vieux lampadaire hivernal au milieu d'une brume glacée."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Blizzard de flocons de neige légers et cristaux de givre en tourbillons pendulaires, bordé d'un vignettage givré et grain argentique fin."
+        "description": "Blizzard doux de flocons pendulaires et cristaux de givre sous vignettage argentique."
       }
     ],
     "particles": {
@@ -309,16 +303,16 @@
     },
     "rareEvents": [
       {
-        "name": "Bourrasque de bise sibérienne",
+        "name": "Bourrasque de bise glaciale",
         "type": "wind_gust",
         "frequency": "Intervalle moyen de 24.0 secondes",
-        "description": "Une rafale de blizzard glacial traverse la clairière, étirant les flocons de neige presque à l'horizontale et faisant tressauter la flamme du réverbère."
+        "description": "Rafale hivernale étirant les flocons blancs et faisant trembler la flamme ambrée."
       },
       {
-        "name": "Comète polaire d'Aslan",
+        "name": "Comète boréale dorée",
         "type": "shooting_star",
         "frequency": "Intervalle moyen de 40.0 secondes",
-        "description": "Une étoile filante d'un éclat d'or chaud perce l'aurore boréale, présageant la fonte des glaces et le retour du printemps."
+        "description": "Étoile filante d'or chaud traversant les draperies polaires cyan."
       }
     ],
     "interaction": {
@@ -339,12 +333,12 @@
       "CodePen aurora borealis winter pine forest"
     ],
     "risks": {
-      "pitfall": "Un paysage de neige plat, froid et monochrome provoquant un éblouissement désagréable et illisible.",
-      "solution": "Contraste thermique affirmé entre la lueur ambrée chaleureuse du réverbère au cœur du cadre et les nuances bleu glacier de l'aurore, adouci par la profondeur des conifères sombres."
+      "pitfall": "Paysage neigeux monochrome ou mentions littéraires protégées.",
+      "solution": "Chaleur d'ambre localisée au centre contre aurore polaire cyan et conifères profonds sans référence explicite."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f172a",
           "bottomColor": "#0369a1",
@@ -358,7 +352,7 @@
         }
       },
       {
-        "brick": "aurora",
+        "brickType": "aurora",
         "params": {
           "topColor": "#a855f7",
           "bottomColor": "#0ea5e9",
@@ -371,7 +365,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#0f172a",
           "sunColor": "#0ea5e9",
@@ -386,7 +380,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#081326",
           "fogColor": "#0284c7",
@@ -399,7 +393,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#fef08a",
           "secondaryColor": "#f59e0b",
@@ -414,7 +408,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#0ea5e9",
           "density": 0.65,
@@ -427,7 +421,7 @@
         }
       },
       {
-        "brick": "snow",
+        "brickType": "snow",
         "params": {
           "snowColor": "#f8fafc",
           "density": 1.1,
@@ -440,7 +434,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#e0f2fe",
           "density": 0.7,
@@ -452,7 +446,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#f8fafc",
           "density": 0.85,
@@ -466,7 +460,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#fef08a",
           "density": 0.5,
@@ -479,7 +473,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#081326",
           "density": 1.1,
@@ -491,7 +485,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.0,
@@ -503,13 +497,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "victorian_lamp_post",
-        "category": "intermediate",
-        "reason": "Silhouette en fer forgé victorien ouvragé d'un lampadaire surmonté d'une lanterne de verre hexagonale illuminée, symbole canonique de Lantern Waste dans Narnia."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "westeros",
@@ -602,7 +590,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f172a",
           "bottomColor": "#450a0a",
@@ -616,7 +604,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#450a0a",
           "skyColor": "#1c1917",
@@ -629,7 +617,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#1c1917",
           "sunColor": "#94a3b8",
@@ -644,7 +632,7 @@
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#0f111a",
           "torchColor": "#f97316",
@@ -659,7 +647,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#f97316",
           "secondaryColor": "#b91c1c",
@@ -674,7 +662,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#1c1917",
           "density": 0.7,
@@ -687,7 +675,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#1c1917",
           "density": 0.5,
@@ -698,7 +686,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#f97316",
           "coreColor": "#fef08a",
@@ -711,7 +699,7 @@
         }
       },
       {
-        "brick": "snow",
+        "brickType": "snow",
         "params": {
           "snowColor": "#94a3b8",
           "density": 0.8,
@@ -724,7 +712,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#e2e8f0",
           "density": 0.6,
@@ -737,7 +725,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeColor": "#450a0a",
           "density": 0.75,
@@ -750,7 +738,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#e2e8f0",
           "density": 0.8,
@@ -764,7 +752,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f111a",
           "density": 1.15,
@@ -776,7 +764,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.0,
@@ -875,7 +863,7 @@
     },
     "bricks": [
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 1.2,
@@ -887,7 +875,7 @@
         }
       },
       {
-        "brick": "nebula",
+        "brickType": "nebula",
         "params": {
           "primaryColor": "#8b5cf6",
           "secondaryColor": "#030712",
@@ -901,7 +889,7 @@
         }
       },
       {
-        "brick": "aurora",
+        "brickType": "aurora",
         "params": {
           "topColor": "#facc15",
           "bottomColor": "#10b981",
@@ -914,7 +902,7 @@
         }
       },
       {
-        "brick": "water_caustics",
+        "brickType": "water_caustics",
         "params": {
           "waterColor": "#030712",
           "causticColor": "#67e8f9",
@@ -927,7 +915,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#67e8f9",
           "density": 0.6,
@@ -940,7 +928,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#10b981",
@@ -954,7 +942,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#facc15",
           "density": 0.85,
@@ -966,7 +954,7 @@
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
           "bubbleColor": "#67e8f9",
           "density": 0.6,
@@ -978,7 +966,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#10b981",
           "density": 0.65,
@@ -991,7 +979,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "shockColor": "#facc15",
           "density": 0.6,
@@ -1004,7 +992,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#030712",
           "density": 1.1,
@@ -1016,7 +1004,7 @@
         }
       },
       {
-        "brick": "lens_flare",
+        "brickType": "lens_flare",
         "params": {
           "flareColor": "#facc15",
           "secondaryColor": "#67e8f9",
@@ -1031,8 +1019,8 @@
     ],
     "missingBricks": [
       {
-        "name": "cosmic_rimfall",
-        "category": "intermediate",
+        "name": "waterfall_curtain",
+        "category": "special",
         "reason": "Rideau continu de chutes d'eau s'écoulant le long de l'arc de courbure d'un monde plat vers l'abîme cosmique avec diffusion volumétrique."
       }
     ]
@@ -1044,7 +1032,7 @@
     "intensity": 2,
     "universe": "alice-au-pays-des-merveilles",
     "evocation": "Les Aventures d'Alice au pays des merveilles de Lewis Carroll : la descente onirique et psychédélique dans le terrier du lapin blanc vers le jardin merveilleux de la Reine de Cœur. Clairière enchantée de champignons géants aux chapeaux pourpres luminescents, roses écarlates peintes à la hâte, volutes de fumée lilas soufflées par la Chenille et bulles irisées dérivant en apesanteur sous un ciel vespéral pastel poudré d'étoiles scintillantes.",
-    "signature": "Des champignons géants bioluminescents aux chapeaux pourpres pulsant sous une brise enchantée où tourbillonnent des pétales de roses peintes et des volutes de fumée pastel.",
+    "signature": "Un sous-bois féerique irréel peuplé de silhouettes de champignons géants fuchsia et indigo, où tourbillonnent des pétales de rose peints et des bulles de savon irisées.",
     "scene": [
       {
         "plan": 1,
@@ -1068,24 +1056,24 @@
       }
     ],
     "particles": {
-      "type": "Pétales de roses de la Reine (petals) et bulles de savon irisées en flottaison lente (bubbles)",
-      "size": "2.0 à 4.8 px pour les pétales, 3.0 à 6.5 px pour les bulles",
-      "speed": "0.22 pour la chute en spirale des pétales, 0.16 pour l'ascension des bulles",
-      "density": "45 pétales virevoltants + 25 bulles irisées (GPU instanced)",
-      "behavior": "Chute hélicoïdale 3D ondulante pour les pétales sous turbulence douce Simplex, et balancement oscillant pour les bulles."
+      "type": "Pétales de roses et bulles de savon irisées (petals & bubbles)",
+      "size": "2.0 à 6.5 px",
+      "speed": "0.22 pétales, 0.16 bulles",
+      "density": "45 pétales + 25 bulles",
+      "behavior": "Chute hélicoïdale douce croisée par l'ascension oscillante de bulles irisées."
     },
     "atmosphere": {
-      "mist": "Brume poudrée rose et mauve flottant entre les tiges géantes et les buissons.",
-      "light": "Onirique, douce et fantastique, dominée par les lueurs bioluminescentes roses et les teintes pastel du couchant.",
-      "airColor": "Rose fuchsia (#ec4899), blanc laiteux (#f8fafc) et pourpre reine de cœur (#831843).",
-      "mainLightSource": "Lueur bioluminescente émanant des chapeaux de champignons et halo pastel de l'horizon."
+      "mist": "Brume poudrée rose et mauve flottant entre les tiges colossales.",
+      "light": "Onirique et fantastique dominée par la bioluminescence rose et pourpre.",
+      "airColor": "Rose fuchsia (#ec4899), blanc laiteux (#f8fafc) et pourpre (#831843).",
+      "mainLightSource": "Lueur bioluminescente des grands chapeaux fongiques."
     },
     "rareEvents": [
       {
-        "name": "Tourbillon de pétales du Chapelier",
+        "name": "Tourbillon de pétales enchanté",
         "type": "wind_gust",
         "frequency": "Intervalle moyen de 26.0 secondes",
-        "description": "Une brise féerique emporte les pétales de rose dans un tourbillon en spirale ascendant, faisant scintiller les bulles environnantes."
+        "description": "Une brise onirique enlève les pétales de rose en spirale ascendante."
       }
     ],
     "interaction": {
@@ -1111,7 +1099,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#1e1b4b",
           "bottomColor": "#831843",
@@ -1125,7 +1113,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#ec4899",
           "skyColor": "#1e1b4b",
@@ -1138,7 +1126,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#1e1b4b",
           "fogColor": "#831843",
@@ -1151,7 +1139,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#ec4899",
           "density": 0.6,
@@ -1164,7 +1152,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#a855f7",
           "density": 0.45,
@@ -1175,7 +1163,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#f8fafc",
           "glowColor": "#ec4899",
@@ -1189,7 +1177,7 @@
         }
       },
       {
-        "brick": "petals",
+        "brickType": "petals",
         "params": {
           "petalColor": "#ec4899",
           "altColor": "#831843",
@@ -1201,7 +1189,7 @@
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
           "bubbleColor": "#38bdf8",
           "density": 0.5,
@@ -1213,7 +1201,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#f8fafc",
           "density": 0.75,
@@ -1227,7 +1215,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1e1b4b",
           "density": 1.05,
@@ -1241,9 +1229,9 @@
     ],
     "missingBricks": [
       {
-        "name": "bioluminescent_mushrooms",
+        "name": "giant_flora_silhouette",
         "category": "intermediate",
-        "reason": "Silhouettes fantastiques de champignons géants aux chapeaux coniques et ronds dont les lamelles et les pois pulsent d'une bioluminescence douce."
+        "reason": "Silhouettes végétales monumentales de premier plan à balancement souple."
       }
     ]
   },
@@ -1321,7 +1309,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f172a",
           "bottomColor": "#334155",
@@ -1335,7 +1323,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#d4a853",
           "skyColor": "#1e293b",
@@ -1348,7 +1336,7 @@
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#1e293b",
           "torchColor": "#d4a853",
@@ -1363,7 +1351,7 @@
         }
       },
       {
-        "brick": "water_caustics",
+        "brickType": "water_caustics",
         "params": {
           "waterColor": "#0f172a",
           "causticColor": "#d4a853",
@@ -1376,7 +1364,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#94a3b8",
           "density": 0.65,
@@ -1389,7 +1377,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fef08a",
           "density": 1.0,
@@ -1403,7 +1391,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#d4a853",
           "density": 0.8,
@@ -1415,7 +1403,7 @@
         }
       },
       {
-        "brick": "leaves",
+        "brickType": "leaves",
         "params": {
           "leafColor": "#d4a853",
           "altColor": "#334155",
@@ -1427,7 +1415,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "density": 1.05,
@@ -1448,7 +1436,7 @@
     "intensity": 2,
     "universe": "mythologie-nordique",
     "evocation": "Le Valhalla de la mythologie nordique : le palais d'Odin à Ásgard, dont le toit est tapissé de boucliers d'or étincelants et les poutres formées de lances acérées. Perché au sommet d'un fjord vertigineux cerné de cimes enneigées et d'abîmes célestes, surplombé par les branches colossales du frêne cosmique Yggdrasil. Draperies d'aurore boréale émeraude et pourpre (lueur des Valkyries traversant les cieux), tourbillons de neige et étincelles de forge et de combat héroïque.",
-    "signature": "Des cimes de fjords enneigés surplombées par une aurore boréale émeraude majestueuse et une pluie d'étincelles dorées évoquant le choc des boucliers d'Ásgard.",
+    "signature": "Des fjords orageux couronnés d'aurores vert émeraude éclatantes où s'entrechoquent des éclairs blancs bleutés et une montée vigoureuse d'étincelles de forge dorées.",
     "scene": [
       {
         "plan": 1,
@@ -1510,12 +1498,12 @@
       "CodePen nordic aurora mountains particles"
     ],
     "risks": {
-      "pitfall": "Une scène hivernale banale identique à Narnia sans l'énergie martiale scandinave.",
-      "solution": "Affirmer la domination de l'aurore émeraude vibrante d'Ásgard et le jaillissement d'étincelles de forge et d'acier héroïques au lieu de douces motes féeriques."
+      "pitfall": "Scène hivernale douce identique à un décor enneigé féerique sans énergie martiale scandinave.",
+      "solution": "Domination de l'aurore émeraude vibrante nordique et jaillissement d'étincelles de forge et d'acier héroïques."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f172a",
           "bottomColor": "#1e293b",
@@ -1529,7 +1517,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 1.0,
@@ -1541,7 +1529,7 @@
         }
       },
       {
-        "brick": "aurora",
+        "brickType": "aurora",
         "params": {
           "topColor": "#a855f7",
           "bottomColor": "#10b981",
@@ -1554,7 +1542,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#0f172a",
           "sunColor": "#e2e8f0",
@@ -1569,7 +1557,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#1e293b",
           "density": 0.65,
@@ -1582,7 +1570,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#d4a853",
           "secondaryColor": "#f97316",
@@ -1597,7 +1585,7 @@
         }
       },
       {
-        "brick": "snow",
+        "brickType": "snow",
         "params": {
           "snowColor": "#e2e8f0",
           "density": 0.8,
@@ -1610,7 +1598,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#d4a853",
           "coreColor": "#ffffff",
@@ -1622,7 +1610,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#38bdf8",
           "density": 0.55,
@@ -1635,7 +1623,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "density": 1.1,
@@ -1656,27 +1644,27 @@
     "intensity": 2,
     "universe": "dune",
     "evocation": "L'Épice Mélange de Frank Herbert dans l'univers de Dune : la substance la plus précieuse de l'Imperium, récoltée sur la planète des sables Arrakis. Source de longévité, d'expansion de conscience et de prescience pour les Navigateurs de la Guilde et le Bene Gesserit. Des tourbillons de poussière d'Épice précieuse à l'odeur âpre de cannelle et aux paillettes bleu indigo (évoquant les yeux d'Ibad) s'élèvent au-dessus de dunes ondoyantes écrasées par un soleil féroce et une distorsion thermique suffocante.",
-    "signature": "Une tempête de poussière d'Épice ambrée et de paillettes bleu indigo phosphorescentes tourbillonnant au-dessus de crêtes de dunes ondulant dans une distorsion thermique écrasante.",
+    "signature": "Un désert brûlant en plein midi safran écrasé par des colonnes de distorsion thermique verticale, où flottent des tourbillons d'ambre cannelle piqués d'éclats bleu indigo.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel safran et cuivre d'Arrakis écrasé par la chaleur d'un soleil lourd et laiteux à l'horizon lointain."
+        "description": "Ciel safran et cuivre écrasé par un soleil laiteux lourd dans la poussière."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Crêtes sinueuses de dunes désertiques sculptées par le sirocco, contrastant versants ensoleillés dorés et ombres pourpres."
+        "description": "Crêtes sinueuses de dunes ocres opposant ombre pourpre et lumière brûlante."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Colonne d'air brûlant en ascension convective générant une distorsion thermique et des mirages optiques chatoyants."
+        "description": "Colonne ascendante d'air brûlant générant mirages et distorsion thermique."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique & particules",
-        "description": "Nuée de poussière d'Épice ambrée scintillante mêlée de micro-paillettes bleu indigo en lévitation, avec vignettage thermique chaud."
+        "description": "Tourbillon de poussières ambrées et micro-éclats bleu indigo sous vignettage chaud."
       }
     ],
     "particles": {
@@ -1687,17 +1675,17 @@
       "behavior": "Flottaison brownienne en apesanteur apparente, soulevée par les courants d'air chaud et brillant d'un scintillement asynchrone."
     },
     "atmosphere": {
-      "mist": "Brume de poussière de sable et de cannelle en suspension dans un air surchauffé.",
-      "light": "Écrasante, solaire rasant et mordorée, trouée de reflets chatoyants d'Épice pure.",
-      "airColor": "Ambre cannelle (#b45309), or impérial (#d4af37) et bleu indigo d'Ibad (#0284c7).",
-      "mainLightSource": "Soleil d'Arrakis perçant le voile de poussière atmosphérique."
+      "mist": "Brume chaude ambrée de cannelle et silice en suspension.",
+      "light": "Solaire rasante mordorée à reflets irisés ambre et indigo.",
+      "airColor": "Ambre (#b45309), or impérial (#d4af37) et bleu indigo (#0284c7).",
+      "mainLightSource": "Soleil zénithal perçant le voile de poussière brûlante."
     },
     "rareEvents": [
       {
-        "name": "Bouffée de sirocco d'Arrakis",
+        "name": "Bouffée brûlante de sirocco",
         "type": "wind_gust",
         "frequency": "Intervalle moyen de 22.0 secondes",
-        "description": "Une rafale de vent du désert soulève une vague dense de poussière d'Épice dorée qui traverse l'écran en un tourbillon étincelant."
+        "description": "Rafale sèche soulevant un tourbillon dense de paillettes d'or et d'indigo."
       }
     ],
     "interaction": {
@@ -1723,7 +1711,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#451a03",
           "bottomColor": "#78350f",
@@ -1737,7 +1725,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#d4af37",
@@ -1751,7 +1739,7 @@
         }
       },
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
           "sandColor": "#d4af37",
           "shadowColor": "#451a03",
@@ -1765,7 +1753,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#f59e0b",
           "density": 1.0,
@@ -1778,7 +1766,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#d4af37",
           "density": 0.95,
@@ -1790,7 +1778,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#d4af37",
           "density": 0.85,
@@ -1804,7 +1792,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#451a03",
           "density": 1.1,
@@ -1816,7 +1804,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.1,
@@ -1837,7 +1825,7 @@
     "intensity": 3,
     "universe": "harry-potter",
     "evocation": "L'Ordre de Merlin dans l'univers de Harry Potter : la distinction suprême récompensant les actes d'héroïsme et de prouesse magique exceptionnelle. Évoquant la grandeur solennelle du Grand Tribunal du Magenmagot et du Ministère de la Magie, avec ses voûtes de marbre noir d'obsidienne veinées d'or, ses colonnades austères, ses draperies émeraude de Première Classe et ses faisceaux de lumière sacrée descendants. Les runes d'or des décrets magiques lévitent dans l'air sous des étincelles arcaniques raffinées.",
-    "signature": "Une voûte de marbre noir solennelle zébrée de rayons célestes dorés où lévitent des runes arcaniques d'or pur et des rubans d'énergie émeraude scintillants.",
+    "signature": "Une nef solennelle en marbre d'obsidienne noir découpée par des colonnes dorées de lumière divine, où lévite une rosace runique dorée entourée d'étincelles émeraude et or.",
     "scene": [
       {
         "plan": 1,
@@ -1880,16 +1868,16 @@
     },
     "rareEvents": [
       {
-        "name": "Impulsion du Magenmagot",
+        "name": "Impulsion du tribunal arcanique",
         "type": "shockwave",
         "frequency": "Intervalle moyen de 25.0 secondes",
-        "description": "Une onde de choc magique silencieuse émane du centre, faisant vibrer les glyphes dorés gravés dans le marbre."
+        "description": "Onde magique dorée silencieuse faisant vibrer le sceau circulaire gravé."
       },
       {
         "name": "Sortilège d'honneur filant",
         "type": "shooting_star",
         "frequency": "Intervalle moyen de 36.0 secondes",
-        "description": "Un rai de magie dorée traverse les hauteurs de la voûte avec un crépitement d'étincelles arcaniques."
+        "description": "Trait de lumière d'or traversant les hautes voûtes avec une pluie d'étincelles."
       }
     ],
     "interaction": {
@@ -1910,12 +1898,12 @@
       "CodePen golden sparks mystical sanctuary"
     ],
     "risks": {
-      "pitfall": "Reproduire Hogwarts et la Grande Salle (déjà présents dans le registre) avec des bougies flottantes ordinaires.",
-      "solution": "Centrer l'identité visuelle sur la solennité judiciaire et arcanique : marbre noir d'obsidienne, rubans d'honneur émeraude, colonnades austères et rayons dorés impériaux."
+      "pitfall": "Reproduire une nef académique à bougies flottantes déjà traitée ailleurs.",
+      "solution": "Solennité arcanique et judiciaire : marbre noir d'obsidienne, lueur émeraude, colonnades austères et rais d'or."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#1c1917",
@@ -1929,7 +1917,7 @@
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#000000",
           "torchColor": "#d4af37",
@@ -1944,7 +1932,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fef08a",
           "density": 1.15,
@@ -1958,7 +1946,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#d4af37",
@@ -1972,7 +1960,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#064e3b",
           "density": 0.6,
@@ -1985,7 +1973,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#d4af37",
           "secondaryColor": "#78350f",
@@ -2000,7 +1988,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#d4af37",
           "density": 0.85,
@@ -2012,7 +2000,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#d4af37",
           "coreColor": "#fef08a",
@@ -2024,7 +2012,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "shockColor": "#d4af37",
           "density": 0.6,
@@ -2037,7 +2025,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#fef08a",
           "density": 0.5,
@@ -2050,7 +2038,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.2,
@@ -2062,7 +2050,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.0,
@@ -2076,9 +2064,9 @@
     ],
     "missingBricks": [
       {
-        "name": "runic_magical_seal",
-        "category": "intermediate",
-        "reason": "Sceau arcanique circulaire gravé dans le marbre d'obsidienne dont les anneaux concentriques et les glyphes d'or pivotent lentement avec pulsation lumineuse."
+        "name": "runic_circle",
+        "category": "special",
+        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
       }
     ]
   },
@@ -2156,7 +2144,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#0f172a",
@@ -2170,7 +2158,7 @@
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#020617",
           "windowColor": "#00f0ff",
@@ -2184,7 +2172,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#0f172a",
           "density": 0.7,
@@ -2197,7 +2185,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#00f0ff",
           "secondaryColor": "#ec4899",
@@ -2212,7 +2200,7 @@
         }
       },
       {
-        "brick": "rain",
+        "brickType": "rain",
         "params": {
           "rainColor": "#00f0ff",
           "density": 1.15,
@@ -2225,7 +2213,7 @@
         }
       },
       {
-        "brick": "glitch",
+        "brickType": "glitch",
         "params": {
           "glitchColor": "#00f0ff",
           "density": 0.7,
@@ -2239,7 +2227,7 @@
         }
       },
       {
-        "brick": "crt_scanlines",
+        "brickType": "crt_scanlines",
         "params": {
           "scanlineColor": "#000000",
           "density": 1.0,
@@ -2252,7 +2240,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "tintColor": "#00f0ff",
           "density": 1.0,
@@ -2265,7 +2253,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
           "density": 1.1,
@@ -2353,7 +2341,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#022c22",
@@ -2367,7 +2355,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#022c22",
           "skyColor": "#000000",
@@ -2380,7 +2368,7 @@
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#000000",
           "torchColor": "#065f46",
@@ -2395,7 +2383,7 @@
         }
       },
       {
-        "brick": "waves",
+        "brickType": "waves",
         "params": {
           "crestColor": "#065f46",
           "deepColor": "#000000",
@@ -2408,7 +2396,7 @@
         }
       },
       {
-        "brick": "water_caustics",
+        "brickType": "water_caustics",
         "params": {
           "waterColor": "#000000",
           "causticColor": "#064e3b",
@@ -2421,7 +2409,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#022c22",
           "density": 0.7,
@@ -2434,7 +2422,7 @@
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
           "bubbleColor": "#064e3b",
           "density": 0.6,
@@ -2446,7 +2434,7 @@
         }
       },
       {
-        "brick": "ash",
+        "brickType": "ash",
         "params": {
           "ashColor": "#022c22",
           "density": 0.6,
@@ -2457,7 +2445,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#10b981",
           "density": 0.55,
@@ -2470,7 +2458,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.25,
@@ -2482,7 +2470,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.1,
@@ -2494,13 +2482,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "cyclopean_monoliths",
-        "category": "intermediate",
-        "reason": "Silhouettes monolithiques de piliers et pans de murailles titanesques inclinés selon des angles non-euclidiens défiant la perspective classique."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "foundation",
@@ -2509,27 +2491,27 @@
     "intensity": 2,
     "universe": "fondation",
     "evocation": "Le Cycle de Fondation d'Isaac Asimov : la psychohistoire de Hari Seldon capable de prédire l'effondrement et la renaissance de l'Empire Galactique à travers des équations statistiques universelles. La vue s'ouvre sur l'immensité de la Galaxie depuis Trantor ou Terminus : un maillage 3D synaptique et stellaire d'équations mathématiques dorées et argentées reliant les mondes, sur fond de nébuleuse spirale impériale et d'océan d'étoiles infini.",
-    "signature": "Un réseau synaptique 3D d'équations de psychohistoire aux nœuds d'or et filaments d'argent pulsant lentement devant la voûte d'étoiles de l'Empire Galactique.",
+    "signature": "Un réseau synaptique 3D d'équations stellaires aux nœuds d'or et filaments d'argent pulsant lentement devant la voûte étoilée d'un vaste empire stellaire millénaire.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Voûte céleste galactique dense peuplée de myriades d'étoiles multi-profondeurs 3D et vide spatial bleuté."
+        "description": "Voûte galactique dense peuplée d'étoiles multi-profondeurs 3D et vide spatial bleuté."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Nébuleuse spirale d'or pâle et d'argent évoquant le cœur de l'Empire galactique en lente rotation."
+        "description": "Nébuleuse spirale d'or pâle et d'argent évoquant un empire stellaire millénaire en lente rotation."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Graphe synaptique tridimensionnel (line constellation) reliant les systèmes planétaires par des filaments de probabilités mathématiques."
+        "description": "Graphe synaptique tridimensionnel reliant les systèmes par des filaments de probabilités mathématiques."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique & particules",
-        "description": "Poussières quantiques scintillantes et paquets de calcul voyageant le long des segments, avec vignettage spatial discret."
+        "description": "Poussières quantiques scintillantes voyageant le long des segments sous vignettage discret."
       }
     ],
     "particles": {
@@ -2576,7 +2558,7 @@
     },
     "bricks": [
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 1.2,
@@ -2588,7 +2570,7 @@
         }
       },
       {
-        "brick": "nebula",
+        "brickType": "nebula",
         "params": {
           "primaryColor": "#d4af37",
           "secondaryColor": "#0f172a",
@@ -2602,7 +2584,7 @@
         }
       },
       {
-        "brick": "line_constellation",
+        "brickType": "line_constellation",
         "params": {
           "nodeColor": "#d4af37",
           "lineColor": "#e2e8f0",
@@ -2618,7 +2600,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#e2e8f0",
           "glowColor": "#d4af37",
@@ -2632,7 +2614,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#e2e8f0",
           "density": 0.8,
@@ -2644,7 +2626,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#e2e8f0",
           "density": 0.55,
@@ -2657,7 +2639,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "density": 1.05,
@@ -2669,7 +2651,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.0,
@@ -2690,7 +2672,7 @@
     "intensity": 2,
     "universe": "fahrenheit-451",
     "evocation": "Fahrenheit 451 de Ray Bradbury : « C'était un plaisir de brûler ». La nuit dystopique illuminée par les brasiers de livres interdits embrasés au kérosène sous l'action des pompiers au casque frappé de la Salamandre. Ciel crépusculaire cramoisi et suie, distorsion thermique ascendante étouffante au-dessus des bûchers, et nuées de pages de papier calciné s'envolant comme des ailes de papillons noirs au milieu d'un rideau de braises rougeoyantes.",
-    "signature": "Des nuées de pages de livres noircies et de cendres incandescentes virevoltant au-dessus d'un brasier de kérosène projetant des distorsions thermiques violentes sur un ciel de suie.",
+    "signature": "Un ciel nocturne rougeoyant de suie surplombant une ville sombre d'acier, où tourbillonnent des lambeaux de cendre noire calcinée et des braises au-dessus d'une distorsion de chaleur intense.",
     "scene": [
       {
         "plan": 1,
@@ -2714,11 +2696,11 @@
       }
     ],
     "particles": {
-      "type": "Braises incandescentes ascendantes (embers) et fragments de papier calciné / cendres noires (ash)",
-      "size": "1.2 à 2.8 px pour les braises, 3.0 à 6.5 px pour les fragments calcinés",
-      "speed": "0.38 pour l'ascension convective des braises, 0.18 pour le tumbling des cendres",
-      "density": "80 braises ardentes + 45 lambeaux de cendre calcinée (instanciation Three.js)",
-      "behavior": "Ascension rapide thermique des flammèches contrastant avec la descente en feuille morte oscillante des cendres de papier."
+      "type": "Braises ascendantes (embers) et lambeaux de papier calciné (ash)",
+      "size": "1.2 à 6.5 px",
+      "speed": "0.38 ascension des braises, 0.18 tumbling des cendres",
+      "density": "80 braises + 45 lambeaux de cendre",
+      "behavior": "Contraste entre montée thermique vive des flammèches et chute oscillante lente des cendres."
     },
     "atmosphere": {
       "mist": "Volutes de fumée noire étouffante et voile de suie masquant les étoiles.",
@@ -2752,12 +2734,12 @@
       "CodePen burning fire particles heat distortion"
     ],
     "risks": {
-      "pitfall": "Un simple feu de camp banal sans la violence symbolique des livres brûlés de Bradbury.",
-      "solution": "Associer les braises incandescentes ultra-rapides aux larges lambeaux de cendre de papier calciné (`ash`) en basculement 3D, combinés à la distorsion thermique (`heat_distortion`)."
+      "pitfall": "Feu de camp banal ou citation littéraire protégée.",
+      "solution": "Associer braises vives, cendres plates tombant au ralenti (`ash`) et distorsion thermique forte sur silhouette urbaine sombre."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#1c1917",
           "bottomColor": "#450a0a",
@@ -2771,7 +2753,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#1c1917",
           "density": 0.65,
@@ -2782,7 +2764,7 @@
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#1c1917",
           "windowColor": "#ea580c",
@@ -2796,7 +2778,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#ea580c",
           "secondaryColor": "#7f1d1d",
@@ -2811,7 +2793,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#ea580c",
           "density": 1.1,
@@ -2824,7 +2806,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#ea580c",
           "coreColor": "#fef08a",
@@ -2837,7 +2819,7 @@
         }
       },
       {
-        "brick": "ash",
+        "brickType": "ash",
         "params": {
           "ashColor": "#1c1917",
           "density": 0.75,
@@ -2848,7 +2830,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#ea580c",
           "density": 0.85,
@@ -2862,7 +2844,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1c1917",
           "density": 1.15,
@@ -2874,13 +2856,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "burning_book_pages",
-        "category": "particles",
-        "reason": "Particules rectangulaires plates de feuilles de papier calciné s'effritant et tourbillonnant en 3D sous l'effet du vent thermique du brasier."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "brave_new_world",
@@ -2956,7 +2932,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f172a",
           "bottomColor": "#3b82f6",
@@ -2970,7 +2946,7 @@
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#0f172a",
           "windowColor": "#3b82f6",
@@ -2984,7 +2960,7 @@
         }
       },
       {
-        "brick": "hex_grid",
+        "brickType": "hex_grid",
         "params": {
           "gridColor": "#3b82f6",
           "cellColor": "#0284c7",
@@ -2999,7 +2975,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#f8fafc",
           "glowColor": "#3b82f6",
@@ -3013,7 +2989,7 @@
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
           "bubbleColor": "#60a5fa",
           "density": 0.45,
@@ -3025,7 +3001,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#f8fafc",
           "density": 0.65,
@@ -3037,7 +3013,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "shockColor": "#60a5fa",
           "density": 0.55,
@@ -3050,7 +3026,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "density": 1.05,
@@ -3071,7 +3047,7 @@
     "intensity": 2,
     "universe": "solaris",
     "evocation": "Solaris de Stanisław Lem : la planète vivante entièrement recouverte d'un océan protoplasmique géant, doué d'une intelligence incompréhensible capable de sonder l'esprit humain et de matérialiser ses souvenirs intimes en formations colloïdales titanesques. Vue depuis la baie d'observation de la station orbitale : la surface mouvante de l'océan vivant oscillant de caustiques cyan et indigo, des vagues gélatineuses d'une densité non-terrestre et des nappes de vapeur bioluminescente s'élevant dans le néant noir de l'espace.",
-    "signature": "La surface d'un océan protoplasmique pensant cyan et indigo ondulant de caustiques lumineuses et de structures colloïdales sous le vide noir de l'espace.",
+    "signature": "La surface d'un océan vivant cyan et indigo ondulant de caustiques lumineuses et d'ondes liquides monumentales sous le vide noir de l'espace.",
     "scene": [
       {
         "plan": 1,
@@ -3138,7 +3114,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#0e7490",
@@ -3152,7 +3128,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 0.9,
@@ -3164,7 +3140,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#22d3ee",
           "glowColor": "#06b6d4",
@@ -3178,7 +3154,7 @@
         }
       },
       {
-        "brick": "water_caustics",
+        "brickType": "water_caustics",
         "params": {
           "waterColor": "#000000",
           "causticColor": "#22d3ee",
@@ -3191,7 +3167,7 @@
         }
       },
       {
-        "brick": "waves",
+        "brickType": "waves",
         "params": {
           "crestColor": "#22d3ee",
           "deepColor": "#0891b2",
@@ -3204,7 +3180,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#0e7490",
           "density": 0.6,
@@ -3217,7 +3193,7 @@
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
           "bubbleColor": "#06b6d4",
           "density": 0.55,
@@ -3229,7 +3205,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#22d3ee",
           "density": 0.75,
@@ -3241,7 +3217,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "shockColor": "#22d3ee",
           "density": 0.6,
@@ -3254,7 +3230,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "tintColor": "#06b6d4",
           "density": 1.0,
@@ -3267,7 +3243,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.15,
@@ -3279,13 +3255,6 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "colloidal_plasma_spires",
-        "category": "intermediate",
-        "reason": "Structures liquides symétriades colossales émergeant lentement de l'océan protoplasmique avant de se résorber de manière fluide et visqueuse."
-      }
-    ]
+    "missingBricks": []
   }
 ]
-

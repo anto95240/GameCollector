@@ -6,32 +6,32 @@
     "intensity": 3,
     "universe": "harry-potter",
     "evocation": "Le château de Poudlard et la majesté de la Grande Salle lors d'une nuit de banquet enchanté : arches de pierre gothique millénaire, vitraux illuminés de l'intérieur, voûte céleste vivante reproduisant le firmament nocturne et chandelles flottantes en apesanteur.",
-    "signature": "Des dizaines de chandelles flottantes en suspension qui oscillent doucement à des hauteurs décalées sous une voûte céleste étoilée, diffusant une chaude lueur dorée sur des arches gothiques.",
+    "signature": "Des dizaines de chandelles flottantes en apesanteur oscillant doucement sous une voûte nocturne étoilée, projetant une lueur dorée sur des arches gothiques millénaires.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Voûte céleste nocturne bleu nuit profond constellée d'étoiles scintillantes asynchrones et d'une lueur d'horizon atmosphérique bleutée."
+        "description": "Voûte céleste nocturne bleu nuit constellée d'étoiles scintillantes asynchrones."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette monumentale des remparts, contreforts rocheux et tourelles crénelées de Poudlard découpées en contre-jour avec meurtrières aux torches vacillantes."
+        "description": "Silhouettes de remparts médiévaux et tourelles crénelées découpées sur le ciel."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Nuée étagée de chandelles enchantées flottant en lévitation à des altitudes variables sous la voûte, avec flammes vacillantes et gouttes de cire translucide."
+        "description": "Myriade de points et flammes dorées oscillantes flottant à hauteurs variées sous la voûte."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Halo volumétrique doré et reflets chauds projetés sur les ogives et nervures de pierre gothique bordant l'écran."
+        "description": "Halo chaleureux ambré caressant les ogives de pierre sombre."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Motes de poussière magique dorée dérivant en quasi-apesanteur et vignettage cinématographique de pierre ancienne préservant la lisibilité centrale."
+        "description": "Poussière d'or magique en suspension lente devant un vignettage de pierre ancienne."
       }
     ],
     "particles": {
@@ -49,21 +49,21 @@
     },
     "rareEvents": [
       {
-        "name": "Étoile filante magique",
+        "name": "Étoile filante sous la voûte",
         "type": "shooting_star",
-        "frequency": "Intervalle moyen de 14 secondes",
-        "description": "Un météore hypersonique traverse furtivement le plafond enchanté avec une traînée d'or et de plasma ionisé argenté."
+        "frequency": "Intervalle moyen de 14.0 secondes",
+        "description": "Un météore argenté et or fend le plafond céleste au-dessus des flammes."
       },
       {
-        "name": "Rafale de brise enchantée",
+        "name": "Brise enchantée d'altitude",
         "type": "wind_gust",
-        "frequency": "Intervalle moyen de 25 secondes",
-        "description": "Un souffle mystique balaie la Grande Salle, inclinant momentanément l'ensemble des flammes de chandelles avec une douce ondulation déphasée."
+        "frequency": "Intervalle moyen de 25.0 secondes",
+        "description": "Un souffle invisible incline doucement les flammèches dorées en onde déphasée."
       }
     ],
     "interaction": {
-      "mouse": "La parallaxe 3D étagée déplace la perspective des tours lointaines et des arches ; les chandelles proches réagissent au curseur avec un mouvement d'évitement doux et un vacillement thermique accru ; les poussières dorées sont délicatement soufflées.",
-      "scroll": "Modifie la perspective verticale de la voûte : les chandelles supérieures montent légèrement tandis que le fond céleste s'assombrit subtilement pour maximiser le contraste et la lisibilité des listes de jeux."
+      "mouse": "Déplace les arches et tourelles en parallaxe tout en soufflant les poussières dorées.",
+      "scroll": "Élève le regard vers la voûte étoilée tout en assombrissant la base pour la lisibilité."
     },
     "palette": [
       "#7f1d1d",
@@ -84,7 +84,7 @@
     },
     "bricks": [
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "density": 0.85,
           "speed": 0.08,
@@ -94,7 +94,7 @@
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#080d1a",
           "torchColor": "#f59e0b",
@@ -105,7 +105,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#f59e0b",
           "secondaryColor": "#7f1d1d",
@@ -116,7 +116,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.95,
@@ -126,7 +126,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#d4a853",
@@ -136,7 +136,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#fef08a",
           "gustInterval": 25.0,
@@ -145,7 +145,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#05070e",
           "intensity": 0.55,
@@ -154,7 +154,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.05,
           "speed": 0.6,
@@ -163,13 +163,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "floating_candles",
-        "category": "special",
-        "reason": "La signature iconique de Poudlard repose sur un maillage instancié 3D de chandelles cylindriques suspendues en apesanteur avec flammes à shader vacillant procédural, balancement pendulaire organique et diffusion d'un halo chaud individuel."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "diagon_alley",
@@ -178,7 +172,7 @@
     "intensity": 3,
     "universe": "harry-potter",
     "evocation": "La rue marchande secrète des sorciers cachée au cœur de Londres : façades médiévales et victoriennes biscornues aux enseignes ouvragées (Ollivanders, Fleury et Bott, Chaudrons), vitrines ambrées chaleureuses, pavés mouillés par une pluie nocturne récente et fumerolles d'apothicaire.",
-    "signature": "Des façades victoriennes biscornues aux vitrines bombées rougeoyantes d'ambre qui se reflètent sur des pavés mouillés par une brume nocturne balayée d'étincelles magiques.",
+    "signature": "Une ruelle pavée étroite aux façades médiévales penchées d'où rayonne une chaude lumière de vitrines ambrées sur les pavés mouillés, traversée d'étincelles d'apothicaire.",
     "scene": [
       {
         "plan": 1,
@@ -221,16 +215,16 @@
     },
     "rareEvents": [
       {
-        "name": "Jaillissement d'étincelles d'apothicaire",
-        "type": "sparks",
-        "frequency": "Intervalle moyen de 12 secondes",
-        "description": "Une gerbe soudaine d'étincelles dorées et incandescentes s'échappe d'une cheminée d'artisan ou du pas d'une porte d'atelier."
+        "name": "Éclat doré de vitrine d'apothicaire",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 12.0 secondes",
+        "description": "Bouffée lumineuse dorée s'échappant d'une boutique et projetant une pluie d'étincelles."
       },
       {
-        "name": "Bourrasque de vent de ruelle",
+        "name": "Bourrasque entre les façades penchées",
         "type": "wind_gust",
-        "frequency": "Intervalle moyen de 20 secondes",
-        "description": "Une rafale d'air nocturne s'engouffre entre les façades, étirant les volutes de fumée et faisant frémir la brume au sol."
+        "frequency": "Intervalle moyen de 20.0 secondes",
+        "description": "Courant d'air nocturne étirant les fumées de cheminée et troublant les flaques."
       }
     ],
     "interaction": {
@@ -251,12 +245,12 @@
       "CodePen victorian alley parallax atmosphere"
     ],
     "risks": {
-      "pitfall": "Ruelle trop plate ou symétrique ressemblant à une rue haussmannienne standard, ou sol noir opaque sans réfraction liquide.",
-      "solution": "Accentuer la dissymétrie des façades victoriennes avec avancées d'étages en surplomb, injecter des caustiques spéculaires sur les pavés et opposer ambre chaud intérieur et nuit froide extérieure."
+      "pitfall": "Rue haussmannienne symétrique banale ou citations de noms protégés.",
+      "solution": "Dissymétrie pittoresque médiévale, reflets spéculaires sur pavés mouillés et dualité ambre chaud / nuit bleue sans nom déposé."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f172a",
           "bottomColor": "#1c1917",
@@ -266,7 +260,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#78350f",
           "density": 0.85,
@@ -276,7 +270,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#f59e0b",
           "secondaryColor": "#b45309",
@@ -287,7 +281,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#475569",
           "tintColor": "#1c1917",
@@ -297,7 +291,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#fef08a",
           "coreColor": "#f59e0b",
@@ -307,7 +301,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#cbd5e1",
           "gustInterval": 20.0,
@@ -316,7 +310,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0c0a09",
           "intensity": 0.6,
@@ -325,7 +319,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.06,
           "speed": 0.7,
@@ -336,9 +330,9 @@
     ],
     "missingBricks": [
       {
-        "name": "cobblestone_street",
-        "category": "special",
-        "reason": "Un sol de pavés anciens texturés en perspective rasant avec shader de réflectance spéculaire d'eau de pluie et diffusion des sources lumineuses ambiantes pour créer les reflets mouillés typiques du Chemin de Traverse."
+        "name": "wet_cobblestone",
+        "category": "background",
+        "reason": "Sol pavé humide à réflexions spéculaires et flaques irrégulières."
       }
     ]
   },
@@ -349,64 +343,64 @@
     "intensity": 3,
     "universe": "harry-potter",
     "evocation": "La mythologie obscure du Conte des Trois Frères et l'angoisse de la Forêt Interdite par une nuit glaciale : clair de lune spectral zébrant la canopée décharnée, présence invisible de la Mort, ombres de la Baguette de Sureau, de la Pierre de Résurrection et de la Cape d'Invisibilité.",
-    "signature": "Un rai de clair de lune spectral zébrant la brume d'une forêt pétrifiée où tourbillonnent des cendres calcinées et des volutes ectoplasmiques argentées.",
+    "signature": "Un clair de lune blafard perçant la brume d'une forêt pétrifiée nocturne où tourbillonnent des cendres argentées et des volutes spectrales sous des éclairs glacés.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Voûte céleste d'un noir d'encre obsidienne percée d'un orbe lunaire spectral blafard cerclé d'un halo diffus bleuté."
+        "description": "Voûte céleste noir d'obsidienne percée d'un halo lunaire blafard cerclé d'une lueur bleutée froide."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouettes torturées et cimes pétrifiées d'arbres centenaires de la Forêt Interdite se découpant sur la brume d'horizon."
+        "description": "Silhouettes torturées et cimes pétrifiées de vieux arbres décharnés étagées dans la brume."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Faisceaux volumétriques de rayons lunaires froids (god rays) transperçant la brume rampante et les troncs décharnés."
+        "description": "Faisceaux volumétriques de rayons lunaires froids (god rays) transperçant la brume rampante entre les troncs."
       },
       {
         "plan": 4,
         "type": "Avant-plan cinétique",
-        "description": "Flocons de cendres et suie calcinée en flottaison lente, tournoyant au gré de micro-courants d'air froids ascendants."
+        "description": "Flocons de cendres pâles et suie noire en lévitation lente, brassés par des courants d'air glacés."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Pénombre périphérique ténébreuse, vignettage accusé et subtile aberration chromatique optique sur les marges."
+        "description": "Pénombre périphérique accusée, aberration chromatique glaciale discrète et grain argentique sombre."
       }
     ],
     "particles": {
-      "type": "Cendres calcinées et flocons de suie sombre (ash)",
-      "size": "1.0 à 3.5 px, forme asymétrique avec basculement 3D",
-      "speed": "0.22 (chute et flottaison ralentie en apesanteur)",
-      "density": "130 particules actives (panachage argent et suie noire)",
-      "behavior": "Chute hésitante avec portance par Simplex 3D, micro-remontées sous courants d'air froid, basculement continu sur 3 axes et sillage d'évitement au pointeur."
+      "type": "Cendres calcinées et suie argentée (ash)",
+      "size": "1.0 à 3.5 px avec basculement 3D",
+      "speed": "0.22 (flottaison ralentie)",
+      "density": "130 particules actives",
+      "behavior": "Chute hésitante guidée par Simplex 3D, micro-remontées glacées et évitement fluide au pointeur."
     },
     "atmosphere": {
-      "mist": "Brume volumétrique spectrale argentée et rampante avec volutes sinueuses étagées.",
+      "mist": "Brume volumétrique spectrale argentée rampant entre les troncs.",
       "light": "Froide, blafarde, sculptée par un clair de lune austère et tranchant.",
-      "airColor": "Noir obsidienne profond (#000000) et bleu ardoise glacial (#0f172a), traversé d'argent diaphane (#e2e8f0).",
-      "mainLightSource": "Lune zénithale décentrée projetant des rayons crépusculaires directionnels (god rays) perçant la forêt."
+      "airColor": "Noir obsidienne (#000000), bleu ardoise glacial (#0f172a) et argent diaphane (#e2e8f0).",
+      "mainLightSource": "Lune zénithale décentrée projetant des rais froids perçant la forêt."
     },
     "rareEvents": [
       {
-        "name": "Flash spectral d'apparition",
+        "name": "Flash spectral nocturne",
         "type": "lightning",
-        "frequency": "Intervalle moyen de 18 secondes",
-        "description": "Une lueur spectrale froide bleutée illumine fugacement les arbres de la forêt comme le passage silencieux d'un souvenir ressuscité."
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Une lueur bleutée glaciale illumine brièvement les arbres pétrifiés et les bancs de brume."
       },
       {
-        "name": "Souffle glacial d'outre-tombe",
+        "name": "Souffle glacial des cimes",
         "type": "wind_gust",
-        "frequency": "Intervalle moyen de 28 secondes",
-        "description": "Une bourrasque glaciale ondule dans les nappes de brume et soulève les cendres calcinées dans un vortex tournoyant."
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Une bourrasque d'hiver soulève les cendres argentées et courbe la brume spectrale."
       }
     ],
     "interaction": {
-      "mouse": "Le pivotement de la source des god rays suit subtilement la direction du pointeur ; les nappes de brume s'écartent en créant un sillage fluide (mouse wake) et les particules de suie sont doucement repoussées.",
-      "scroll": "Intensifie la densité de la brume au bas de l'écran et resserre la pénombre du vignettage pour renforcer le sentiment de recueillement et d'isolement sombre."
+      "mouse": "L'angle des rayons lunaires suit subtilement le pointeur ; la souris creuse un sillage dans la brume rampante.",
+      "scroll": "Densifie la brume basse et resserre le vignettage sombre pour accentuer l'isolement nocturne."
     },
     "palette": [
       "#000000",
@@ -422,117 +416,84 @@
       "CodePen spectral ash particles dark fantasy"
     ],
     "risks": {
-      "pitfall": "Rendu purement monochrome terne, plat et morbide, ou texte blanc illisible sur fond bruité.",
-      "solution": "Travailler la clarté des contrastes avec des reflets argentés soignés et une touche de cyan spectral, tout en assurant un masque central épuré préservant la netteté absolue des textes."
+      "pitfall": "Rendu monochrome morne ou présence de symboles géométriques protégés.",
+      "solution": "Contraste soigné argent/cyan spectral sur noir profond, voile central dégagé et ambiance purement forestière."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
-          "bottomColor": "#0f172a",
-          "horizonColor": "#1e293b",
-          "density": 1.5,
-          "speed": 0.1
+          "bottomColor": "#0f172a"
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
-          "coreColor": "#ffffff",
-          "glowColor": "#e2e8f0",
-          "outerColor": "#0f172a",
-          "glowX": 0.3,
-          "glowY": 0.7,
-          "intensity": 1.3,
-          "density": 1.1
+          "color": "#94a3b8",
+          "intensity": 0.45
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
-          "forestColor": "#050811",
-          "fogColor": "#1e293b",
-          "density": 1.1,
-          "speed": 0.15,
-          "windStrength": 0.3
+          "color": "#05080f",
+          "layers": 4
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
-          "rayColor": "#e2e8f0",
-          "lightSourceX": 0.3,
-          "lightSourceY": 0.85,
-          "decay": 0.94,
-          "intensity": 1.25,
-          "density": 1.1
+          "color": "#e2e8f0",
+          "intensity": 0.45
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
-          "fogColor": "#94a3b8",
-          "density": 1.0,
-          "speed": 0.16,
-          "heightFalloff": 1.8,
-          "intensity": 0.9
+          "color": "#475569",
+          "density": 0.42
         }
       },
       {
-        "brick": "ash",
+        "brickType": "ash",
         "params": {
-          "ashColor": "#e2e8f0",
-          "darkColor": "#0f172a",
-          "density": 0.85,
-          "speed": 0.22,
-          "randomness": 0.6
+          "color": "#e2e8f0",
+          "count": 130
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
-          "windColor": "#94a3b8",
-          "gustInterval": 28.0,
-          "speed": 0.9,
-          "intensity": 0.7
+          "frequency": 28.0
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "lightning",
         "params": {
-          "vignetteColor": "#000000",
-          "intensity": 0.75,
-          "smoothness": 0.85,
-          "roundness": 0.65
+          "frequency": 18.0
         }
       },
       {
-        "brick": "grain",
+        "brickType": "vignette",
         "params": {
-          "intensity": 0.08,
-          "speed": 0.8,
-          "density": 1.3,
-          "monochrome": true
+          "darkness": 0.72
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "film_grain",
         "params": {
-          "spread": 0.015,
-          "radialFalloff": 2.0,
-          "intensity": 0.5,
-          "aberrationColor": "#38bdf8"
+          "intensity": 0.2
+        }
+      },
+      {
+        "brickType": "chromatic_aberration",
+        "params": {
+          "intensity": 0.12
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "spectral_hallows_symbol",
-        "category": "special",
-        "reason": "Glyphe géométrique flottant procédural en filigrane de plasma argenté (triangle, cercle, trait vertical) apparaissant et se dissolvant sporadiquement dans la brume lointaine pour signer l'allégeance aux Reliques."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "the_mys_terious_hp",
@@ -619,7 +580,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#090314",
           "bottomColor": "#1e1b4b",
@@ -629,7 +590,7 @@
         }
       },
       {
-        "brick": "line_constellation",
+        "brickType": "line_constellation",
         "params": {
           "nodeColor": "#38bdf8",
           "lineColor": "#7c3aed",
@@ -640,7 +601,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#facc15",
@@ -651,7 +612,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#facc15",
           "secondaryColor": "#ea580c",
@@ -661,7 +622,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#ea580c",
           "hotColor": "#fef08a",
@@ -672,7 +633,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#facc15",
           "coreColor": "#ffffff",
@@ -682,7 +643,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#facc15",
           "epicenterY": -0.2,
@@ -692,7 +653,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#fde047",
           "gustInterval": 24.0,
@@ -701,7 +662,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#090314",
           "intensity": 0.7,
@@ -710,7 +671,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.05,
           "speed": 0.6,
@@ -719,13 +680,6 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "phoenix_fire_wings",
-        "category": "special",
-        "reason": "Émanation procédurale GPU de voiles de flammes en battement organique ascendant (domain-warped FBM) simulant la silhouette évanescente d'un grand oiseau de feu qui s'élève avant de se dissoudre en nuée d'étincelles dorées."
-      }
-    ]
+    "missingBricks": []
   }
 ]
-

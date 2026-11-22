@@ -6,27 +6,27 @@
     "intensity": 1,
     "universe": "psg",
     "evocation": "Paris Saint-Germain et le Parc des Princes lors d'un grand soir européen : l'architecture en béton nervuré de Roger Taillibert découpée sur la nuit parisienne, le balayage lent et panoramique du faisceau lumineux doré de la Tour Eiffel à travers la brume fluviale de la Seine, et une fine nappe de brume pyrotechnique bleu roi et rouge carmin montant avec lenteur au-dessus des gradins.",
-    "signature": "Le balayage lent et majestueux d'un faisceau lumineux doré type phare de la Tour Eiffel fendant le ciel bleu nuit au-dessus de la crête dentelée du Parc des Princes, traversé par de rares volutes de fumée bleu roi et carmin.",
+    "signature": "Le balayage lent d'un faisceau de projecteur doré fendant un ciel nocturne bleu marine au-dessus de toits parisiens, enveloppé de rares volutes de brume fluviale bleu roi et carmin.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Ciel nocturne parisien bleu marine profond vers bleu nuit d'encre avec diffusion lumineuse urbaine à l'horizon."
+        "description": "Ciel parisien bleu marine profond vers noir d'encre avec douce lueur urbaine à l'horizon."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette nocturne des toits parisiens et des nervures de béton du Parc des Princes balayée par un faisceau lumineux doré en rotation lente."
+        "description": "Silhouettes nocturnes des toits en zinc et cheminées de la capitale balayées par un phare doré lent."
       },
       {
         "plan": 3,
         "type": "Plan médian atmosphérique",
-        "description": "Nappe vaporeuse de brume fluviale et volutes ultra-lentes de fumée bleu nuit et carmin dérivant au ras des tribunes."
+        "description": "Brume fluviale vaporeuse et lentes volutes de fumée bleu nuit et carmin dérivant sans heurt."
       },
       {
         "plan": 4,
         "type": "Premier plan cinétique & overlay",
-        "description": "Rares motes de poussière lumineuse flottant au ralenti dans l'air froid nocturne et vignettage bleu marine feutré préservant la lisibilité."
+        "description": "Motes dorées en suspension lente dans l'air frais nocturne et vignettage bleu marine raffiné."
       }
     ],
     "particles": {
@@ -37,17 +37,17 @@
       "behavior": "Ascension thermique douce sans à-coups, dispersion vaporeuse continue et frémissement subtil au passage de la souris."
     },
     "atmosphere": {
-      "mist": "Voile d'air frais d'automne au-dessus des toits parisiens et de la Seine.",
-      "light": "Feutrée et élégante, rythmée par le passage lent du faisceau lumineux doré et les teintes bleu nuit et carmin.",
-      "airColor": "Bleu marine profond (#1e3a8a), bleu nuit d'encre (#0a1128) et rouge carmin diffus (#ef4444).",
-      "mainLightSource": "Faisceau rotatif lointain au zénith-gauche combiné au halo tamisé des projecteurs du stade."
+      "mist": "Voile d'air frais nocturne flottant au-dessus de la Seine.",
+      "light": "Feutrée et élégante, rythmée par le balayage lent du faisceau doré et les nuances carmin.",
+      "airColor": "Bleu marine profond (#1e3a8a), noir d'encre (#0a1128) et rouge carmin diffus (#ef4444).",
+      "mainLightSource": "Projecteur rotatif lointain combiné au halo urbain tamisé."
     },
     "rareEvents": [
       {
-        "name": "Scintillement de la tour lointaine",
-        "type": "flickering_light",
-        "frequency": "Intervalle moyen de 40 secondes",
-        "description": "Une douce pulsation scintillante blanc-or traverse la brume d'arrière-plan pendant 3 secondes avant de s'estomper avec élégance."
+        "name": "Scintillement doré à l'horizon",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 40.0 secondes",
+        "description": "Une brise douce traverse la brume et fait scintiller une traînée de motes d'or dans le faisceau."
       }
     ],
     "interaction": {
@@ -73,73 +73,53 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
-          "topColor": "#020617",
-          "bottomColor": "#0a1128",
-          "horizonColor": "#1e3a8a",
-          "density": 1.1,
-          "speed": 0.1,
-          "depth": 0.1,
-          "intensity": 0.85
+          "topColor": "#0a1128",
+          "bottomColor": "#1e3a8a"
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
-          "cityColor": "#040915",
-          "windowGlowColor": "#d4af37",
-          "density": 0.65,
-          "speed": 0.05,
-          "depth": 0.35,
-          "lightActivity": 0.2
+          "color": "#020617",
+          "layers": 3
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
-          "lightSourceX": 0.2,
-          "lightSourceY": 0.9,
-          "rayColor": "#fef08a",
-          "density": 0.8,
-          "intensity": 0.75,
-          "speed": 0.15,
-          "decay": 0.94
+          "color": "#d4af37",
+          "intensity": 0.35
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
-          "smokeColor": "#1e3a8a",
-          "density": 0.3,
-          "speed": 0.12,
-          "dissipation": 0.9,
-          "swirlStrength": 0.25
+          "color": "#ef4444",
+          "secondaryColor": "#1e3a8a",
+          "count": 14
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
-          "dustColor": "#d4af37",
-          "density": 0.3,
-          "speed": 0.12,
-          "intensity": 0.7
+          "color": "#d4af37",
+          "count": 28
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
-          "vignetteColor": "#020617",
-          "intensity": 0.65,
-          "smoothness": 0.9
+          "darkness": 0.58
         }
       }
     ],
     "missingBricks": [
       {
-        "name": "rotating_beacon_beam",
-        "category": "lighting",
-        "reason": "Simulation d'un pinceau lumineux conique en rotation continue 360° évoquant le phare de la Tour Eiffel à travers la brume nocturne."
+        "name": "volumetric_spotlight",
+        "category": "atmosphere",
+        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
       }
     ]
   },
@@ -150,27 +130,27 @@
     "intensity": 1,
     "universe": "manchester_city",
     "evocation": "Manchester City et l'Etihad Stadium au cœur de l'Etihad Campus : l'ingénierie contemporaine des mâts cylindriques et haubans en acier blanc baignés d'un halo bleu ciel limpide, la fine bruine mancunienne transformée en une rosée de lumière argentée sous les projecteurs, et la modernité épurée d'une arène technologique.",
-    "signature": "Un anneau d'effluves volumétriques bleu ciel et blanc glacier palpitant doucement autour des silhouettes de mâts suspendus, traversé par une fine bruine argentée en apesanteur.",
+    "signature": "Un anneau lumineux bleu ciel et blanc glacier palpitant doucement autour de fins haubans architecturaux d'arène nocturne, traversé par une bruine cristalline argentée en apesanteur.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Ciel nocturne ardoise et bleu acier très sombre avec lueur d'horizon bleu ciel évanescente."
+        "description": "Ciel nocturne ardoise et bleu acier sombre avec douce lueur bleu ciel à l'horizon."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouettes élancées de câbles de tension et de mâts de suspension circulaires de l'Etihad Stadium enveloppées d'un halo zénithal cyan et blanc."
+        "description": "Silhouettes élancées de mâts architecturaux circulaires enveloppées d'un halo zénithal cyan et blanc."
       },
       {
         "plan": 3,
         "type": "Plan médian atmosphérique",
-        "description": "Nappe de bruine atmosphérique fine et vaporeuse dérivant sous une brise constante, teintée de bleu ciel."
+        "description": "Nappe de bruine atmosphérique fine et propre dérivant sous une brise fraîche continue."
       },
       {
         "plan": 4,
         "type": "Premier plan cinétique & overlay",
-        "description": "Micro-gouttelettes d'eau argentées et particules cristallines étincelant discrètement au ralenti, bordées d'un vignettage ardoise soyeux."
+        "description": "Micro-gouttelettes argentées scintillantes bordées d'un vignettage ardoise soyeux."
       }
     ],
     "particles": {
@@ -217,64 +197,49 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#030712",
-          "bottomColor": "#0b1726",
-          "horizonColor": "#0284c7",
-          "density": 1.15,
-          "speed": 0.1,
-          "depth": 0.1,
-          "intensity": 0.8
+          "bottomColor": "#0b1726"
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "parallax_city",
         "params": {
-          "coreColor": "#ffffff",
-          "glowColor": "#38bdf8",
-          "outerColor": "#0b1726",
-          "glowX": 0.5,
-          "glowY": 0.7,
-          "density": 0.8,
-          "intensity": 0.9
+          "color": "#1e293b",
+          "layers": 2
         }
       },
       {
-        "brick": "rain",
+        "brickType": "volumetric_glow",
         "params": {
-          "rainColor": "#e0f2fe",
-          "density": 0.35,
-          "speed": 0.25,
-          "angle": 0.2,
-          "splashIntensity": 0.1
+          "color": "#38bdf8",
+          "intensity": 0.45
         }
       },
       {
-        "brick": "dust",
+        "brickType": "rain",
         "params": {
-          "dustColor": "#38bdf8",
-          "density": 0.25,
-          "speed": 0.12,
-          "intensity": 0.7
+          "color": "#ffffff",
+          "count": 40,
+          "speed": 0.25
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "dust",
         "params": {
-          "vignetteColor": "#030712",
-          "intensity": 0.6,
-          "smoothness": 0.9
+          "color": "#e0f2fe",
+          "count": 35
+        }
+      },
+      {
+        "brickType": "vignette",
+        "params": {
+          "darkness": 0.55
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "tensile_cable_silhouettes",
-        "category": "scenery",
-        "reason": "Réseau filaire 3D de câbles de tension et pylônes coniques blancs caractéristiques de l'architecture moderne de l'Etihad Stadium."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "red_devils",
@@ -283,27 +248,27 @@
     "intensity": 1,
     "universe": "manchester_united",
     "evocation": "Manchester United et le Théâtre des Rêves d'Old Trafford : les imposantes structures de briques victoriennes et verrières de la tribune Sir Alex Ferguson sous un crépuscule ouvrier, une lueur carmin incandescente filtrant à travers la brume des anciens canaux industriels, et de très rares flammèches montant comme le souvenir des forges de Newton Heath.",
-    "signature": "Une silhouette de tribune monumentale en briques sombres et verre rétroéclairée par un halo cramoisi profond, d'où s'élèvent de rares flammèches incandescentes dérivant au ralenti dans une brume charbonneuse.",
+    "signature": "Des façades de briques sombres et charpentes d'acier rétro-éclairées par un halo rubis profond dans une brume industrielle ouvrière, d'où s'élèvent de lentes micro-braises rougeoyantes.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Ciel crépusculaire d'un noir charbon vers pourpre ténébreux, strié d'une lueur carmin étouffée à l'horizon."
+        "description": "Crépuscule charbonneux dégradé vers pourpre sombre avec lueur carmin étouffée."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette massive des portiques métalliques d'Old Trafford et des cheminées industrielles estompées dans la pénombre."
+        "description": "Silhouettes de charpentes d'acier historiques et hautes cheminées en brique dans la brume."
       },
       {
         "plan": 3,
         "type": "Plan médian atmosphérique",
-        "description": "Lueur volumétrique rouge carmin irradiant doucement depuis le cœur de l'arène à travers une brume industrielle vaporeuse."
+        "description": "Lueur volumétrique rouge rubis irradiant doucement à travers la vapeur industrielle."
       },
       {
         "plan": 4,
         "type": "Premier plan cinétique & overlay",
-        "description": "Une trentaine de micro-braises rougeoyantes montant en lévitation thermique lente avec vignettage noir charbon appuyé."
+        "description": "Trente micro-braises lentes en lévitation thermique sous un vignettage anthracite appuyé."
       }
     ],
     "particles": {
@@ -345,70 +310,54 @@
       "industrial Manchester embers glow"
     ],
     "risks": {
-      "pitfall": "Rendu agressif, diabolique ou criard, inapproprié pour un club de football historique.",
-      "solution": "Ancrage dans l'héritage ouvrier noble de Manchester (briques, suie, brume de canal), rouge carmin profond et braises très espacées à vitesse ralentie."
+      "pitfall": "Rendu agressif ou criard, ou confusion avec d'autres scènes urbaines rouges.",
+      "solution": "Ancrage dans l'héritage ouvrier de briques rouges, suie et brume de canal industrielle, avec braises très lentes."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
-          "bottomColor": "#180404",
-          "horizonColor": "#7f1d1d",
-          "density": 1.2,
-          "speed": 0.08,
-          "depth": 0.1,
-          "intensity": 0.8
+          "bottomColor": "#450a0a"
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "parallax_city",
         "params": {
-          "coreColor": "#dc2626",
-          "glowColor": "#7f1d1d",
-          "outerColor": "#000000",
-          "glowX": 0.5,
-          "glowY": 0.85,
-          "density": 0.9,
-          "intensity": 0.85
+          "color": "#18181b",
+          "layers": 2
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "volumetric_glow",
         "params": {
-          "fogColor": "#1c0404",
-          "density": 0.55,
-          "speed": 0.1,
-          "heightFalloff": 1.8,
-          "depth": 0.3
+          "color": "#dc2626",
+          "intensity": 0.48
         }
       },
       {
-        "brick": "embers",
+        "brickType": "noisy_fog",
         "params": {
-          "emberColor": "#dc2626",
-          "sparkColor": "#f59e0b",
-          "density": 0.3,
-          "speed": 0.16,
-          "intensity": 0.85
+          "color": "#7f1d1d",
+          "density": 0.35
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "embers",
         "params": {
-          "vignetteColor": "#000000",
-          "intensity": 0.75,
-          "smoothness": 0.9
+          "color": "#dc2626",
+          "accentColor": "#f59e0b",
+          "count": 28
+        }
+      },
+      {
+        "brickType": "vignette",
+        "params": {
+          "darkness": 0.65
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "industrial_truss_silhouettes",
-        "category": "scenery",
-        "reason": "Silhouettes géométriques des fermes métalliques en treillis blanc et rouge typiques des tribunes d'Old Trafford."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "the_reds",
@@ -417,27 +366,27 @@
     "intensity": 1,
     "universe": "liverpool",
     "evocation": "Liverpool FC et l'émotion légendaire d'Anfield Road : la tribune du Kop baignée par la lueur dorée et carmin du crépuscule sur l'estuaire de la Mersey, une houle fraternelle d'étoffes rouges vibrant sous de chauds projecteurs à incandescence, et la ferveur solennelle de 'You'll Never Walk Alone' flottant dans une brume maritime dorée.",
-    "signature": "Une houle douce et vaporeuse de tissu carmin et de brume du couchant sur la Mersey ondulant lentement sous des projecteurs dorés chaleureux, laissant flotter de rares grains de lumière dorée.",
+    "signature": "Une brume fluviale chaleureuse aux reflets cuivre et carmin qui glisse sous les projecteurs incandescents d'une rive portuaire de briques rouges au crépuscule.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Crépuscule maritime sur l'estuaire de la Mersey, reliant un pourpre sombre à une douce lueur ambre cuivré à l'horizon."
+        "description": "Crépuscule maritime d'estuaire mêlant pourpre sombre et ambre cuivré."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette du Kop et des toitures en brique rouge d'Anfield découpée sous la lumière chaude des projecteurs vintage."
+        "description": "Silhouettes de toitures en brique et entrepôts portuaires baignés de projecteurs dorés vintage."
       },
       {
         "plan": 3,
         "type": "Plan médian atmosphérique",
-        "description": "Drapés carmin et brume fluviale ondulant en vagues amples et régulières comme une marée d'écharpes tendues."
+        "description": "Vagues brumeuses carmin et cuivre ondulant doucement au ras des quais."
       },
       {
         "plan": 4,
         "type": "Premier plan cinétique & overlay",
-        "description": "Poussières d'or et micro-fibres en apesanteur dans les rais de lumière chaleureuse, bordées d'un vignettage grenat soyeux."
+        "description": "Poussières d'or en suspension calme dans les faisceaux chauds avec vignettage grenat soyeux."
       }
     ],
     "particles": {
@@ -479,69 +428,53 @@
       "warm football stadium golden dust"
     ],
     "risks": {
-      "pitfall": "Confondre avec les autres clubs rouges (Manchester United, Arsenal) ou créer un fond uni rouge vif agressif.",
-      "solution": "Dominante chaleureuse dorée/cuivrée (brume de la Mersey, esprit YNWA), texture d'étoffe ondulante et éclairage vintage à incandescence."
+      "pitfall": "Confondre avec les autres ambiances cramoisies ou saturer l'écran en rouge vif.",
+      "solution": "Dominante cuivrée dorée de crépuscule maritime d'estuaire et éclairage vintage à incandescence."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#180308",
-          "bottomColor": "#450a0a",
-          "horizonColor": "#d97706",
-          "density": 1.1,
-          "speed": 0.08,
-          "depth": 0.1,
-          "intensity": 0.85
+          "bottomColor": "#991b1b"
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "parallax_city",
         "params": {
-          "lightSourceX": 0.15,
-          "lightSourceY": 0.85,
-          "rayColor": "#fef08a",
-          "density": 0.9,
-          "intensity": 0.8,
-          "speed": 0.12,
-          "decay": 0.93
+          "color": "#450a0a",
+          "layers": 2
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "god_rays",
         "params": {
-          "fogColor": "#991b1b",
-          "density": 0.5,
-          "speed": 0.1,
-          "heightFalloff": 2.0,
-          "depth": 0.25
+          "color": "#d97706",
+          "intensity": 0.42
         }
       },
       {
-        "brick": "dust",
+        "brickType": "noisy_fog",
         "params": {
-          "dustColor": "#fef08a",
-          "density": 0.32,
-          "speed": 0.14,
-          "intensity": 0.75
+          "color": "#ef4444",
+          "density": 0.32
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "dust",
         "params": {
-          "vignetteColor": "#180308",
-          "intensity": 0.65,
-          "smoothness": 0.9
+          "color": "#fef3c7",
+          "count": 32
+        }
+      },
+      {
+        "brickType": "vignette",
+        "params": {
+          "darkness": 0.58
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "undulating_tifo_wave",
-        "category": "particles",
-        "reason": "Simulation shader d'une marée d'étoffes carmin et d'écharpes ondulant au ralenti sous l'effet du vent des gradins."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "gunners",
@@ -550,27 +483,27 @@
     "intensity": 1,
     "universe": "arsenal",
     "evocation": "Arsenal FC et le patrimoine de North London, entre la façade art déco classée d'Highbury et les arches graciles de l'Emirates Stadium : l'héritage d'orfèvrerie de l'Arsenal royal de Woolwich, un panache vaporeux de fumée de canon blanche et cuivrée se dissipant dans l'air froid londonien, et de très rares étincelles de laiton doré.",
-    "signature": "Une volute de fumée blanche et bronze évoquant un tir de canon cérémonial qui s'estompe lentement sous l'arc architectural immaculé du stade, ponctuée de très rares étincelles de laiton doré.",
+    "signature": "Une volute cérémonielle de fumée blanche et bronze qui s'étire lentement sous l'arche d'acier claire d'un boulevard londonien nocturne, ponctuée de rares étincelles de laiton doré.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Nuit londonienne bleu ardoise foncé avec lueur de réverbération urbaine carmin à l'horizon."
+        "description": "Nuit londonienne bleu ardoise foncé avec lueur urbaine carmin à l'horizon."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette de l'horloge d'Highbury et arches de suspension blanches de l'Emirates Stadium découpées dans la fraîcheur nocturne."
+        "description": "Silhouettes géométriques art déco de façades et grandes arches blanches découpées dans la nuit."
       },
       {
         "plan": 3,
         "type": "Plan médian atmosphérique",
-        "description": "Panache vaporeux et diaphane de fumée blanche et bronze s'étirant horizontalement au ralenti."
+        "description": "Panache vaporeux blanc et bronze s'étirant lentement à l'horizontale."
       },
       {
         "plan": 4,
         "type": "Premier plan cinétique & overlay",
-        "description": "Micro-étincelles dorées et poussières métalliques scintillantes retombant très doucement avec vignettage ardoise raffiné."
+        "description": "Micro-étincelles de laiton doré retombant avec noblesse dans un vignettage ardoise."
       }
     ],
     "particles": {
@@ -581,17 +514,17 @@
       "behavior": "Dérive balistique douce amortie par une brise d'hiver, vacillement doré éphémère avant extinction dans le froid nocturne."
     },
     "atmosphere": {
-      "mist": "Fumée légère de poudre d'artillerie et brume londonienne feutrée.",
-      "light": "Contrastée, noble et claire, alliant le rouge cardinal d'Arsenal, le blanc pur et des reflets de laiton ancien.",
-      "airColor": "Bleu ardoise profond (#0f172a), rouge cardinal (#dc2626) et or patiné (#eab308).",
-      "mainLightSource": "Projecteurs blancs zénithaux illuminant la toiture suspendue et le panache de fumée."
+      "mist": "Fumée cérémonielle blanche légère et brume londonienne feutrée.",
+      "light": "Contrastée et noble, mariant rouge cardinal, blanc pur et reflets de laiton.",
+      "airColor": "Bleu ardoise profond (#0f172a), rouge cardinal (#dc2626) et laiton patiné (#eab308).",
+      "mainLightSource": "Projecteurs blancs zénithaux illuminant les arches architecturales et la volute blanche."
     },
     "rareEvents": [
       {
-        "name": "Éclat de salve cérémoniale",
-        "type": "flickering_light",
-        "frequency": "Intervalle moyen de 42 secondes",
-        "description": "Une brève lueur dorée fugitive à l'horizon illumine la base des fumées avec un scintillement noble et feutré."
+        "name": "Brise cérémonielle dans la fumée",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 42.0 secondes",
+        "description": "Une bouffée d'air hiver étire doucement la volute blanche en ravivant quelques étincelles dorées."
       }
     ],
     "interaction": {
@@ -617,65 +550,48 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
-          "topColor": "#090d16",
-          "bottomColor": "#111827",
-          "horizonColor": "#7f1d1d",
-          "density": 1.1,
-          "speed": 0.08,
-          "depth": 0.1,
-          "intensity": 0.8
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b"
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "parallax_city",
         "params": {
-          "smokeColor": "#f8fafc",
-          "density": 0.25,
-          "speed": 0.12,
-          "dissipation": 0.92,
-          "swirlStrength": 0.2
+          "color": "#0f172a",
+          "layers": 2
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "smoke",
         "params": {
-          "sparkColor": "#eab308",
-          "density": 0.22,
-          "speed": 0.15,
-          "gravity": 0.3,
-          "lifeSpan": 2.5
+          "color": "#f8fafc",
+          "count": 16
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "sparks",
         "params": {
-          "coreColor": "#ffffff",
-          "glowColor": "#dc2626",
-          "outerColor": "#0f172a",
-          "glowX": 0.5,
-          "glowY": 0.8,
-          "density": 0.75,
-          "intensity": 0.8
+          "color": "#eab308",
+          "count": 22
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "volumetric_glow",
         "params": {
-          "vignetteColor": "#090d16",
-          "intensity": 0.65,
-          "smoothness": 0.9
+          "color": "#dc2626",
+          "intensity": 0.35
+        }
+      },
+      {
+        "brickType": "vignette",
+        "params": {
+          "darkness": 0.56
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "art_deco_facade_lines",
-        "category": "scenery",
-        "reason": "Lignes géométriques art déco en filigrane discret inspirées de la façade historique de la tribune Est d'Highbury."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "los_merengues",
@@ -684,27 +600,27 @@
     "intensity": 1,
     "universe": "real_madrid",
     "evocation": "Real Madrid et la majesté futuriste du nouveau Santiago Bernabéu sur le Paseo de la Castellana : l'enveloppe sculpturale de lames d'acier inoxydable incurvées réfléchissant la nuit de Madrid, la pureté immaculée du blanc merengue sublimé de reflets or royaux, et une voûte céleste castillane piquée de micropoussières de diamant comme les étoiles d'un palmarès éternel.",
-    "signature": "Une onde de clarté blanc opale et or royal glissant doucement le long des lames d'acier sculpturales du Bernabéu, sous un ciel nocturne constellé de micropoussières de diamant en apesanteur.",
+    "signature": "Une onde de clarté blanc opale et or royal glissant sur des arcs architecturaux nocturnes d'acier clair, sous un ciel saphir piqué de micro-paillettes de cristal.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Ciel nocturne madrilène d'un bleu nuit saphir profond, limpide et piqué de discrètes étoiles étincelantes."
+        "description": "Ciel madrilène bleu saphir profond piqué de fines étoiles nocturnes."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Courbure monumentale des lamelles d'acier de la façade du Bernabéu striée de reflets spéculaires blanc argent et or doux."
+        "description": "Courbes architecturales blanches et métalliques étagées aux reflets spéculaires d'or et platine."
       },
       {
         "plan": 3,
         "type": "Plan médian atmosphérique",
-        "description": "Halo volumétrique blanc platine et lueur dorée zénithale diffusant une ambiance royale et aérienne."
+        "description": "Halo volumétrique blanc platine et or doux diffusant une lumière royale et aérienne."
       },
       {
         "plan": 4,
         "type": "Premier plan cinétique & overlay",
-        "description": "Pluie ralentie de micro-paillettes d'or et de cristal dérivant comme des confettis microscopiques de victoire."
+        "description": "Pluie ralentie de micro-paillettes d'or et cristal en apesanteur sous vignettage saphir."
       }
     ],
     "particles": {
@@ -751,63 +667,47 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
-          "bottomColor": "#0b1329",
-          "horizonColor": "#1e293b",
-          "density": 1.1,
-          "speed": 0.08,
-          "depth": 0.1,
-          "intensity": 0.8
+          "bottomColor": "#0b1329"
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "parallax_city",
         "params": {
-          "coreColor": "#ffffff",
-          "glowColor": "#d4a853",
-          "outerColor": "#0b1329",
-          "glowX": 0.5,
-          "glowY": 0.75,
-          "density": 0.85,
-          "intensity": 0.85
+          "color": "#1e293b",
+          "layers": 2
         }
       },
       {
-        "brick": "dust",
+        "brickType": "volumetric_glow",
         "params": {
-          "dustColor": "#d4a853",
-          "density": 0.35,
-          "speed": 0.14,
-          "intensity": 0.85
+          "color": "#f8fafc",
+          "intensity": 0.38
         }
       },
       {
-        "brick": "lens_flare",
+        "brickType": "dust",
         "params": {
-          "flareColor": "#fef08a",
-          "intensity": 0.6,
-          "speed": 0.1,
-          "scale": 0.7
+          "color": "#d4a853",
+          "count": 35
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "shooting_star",
         "params": {
-          "vignetteColor": "#020617",
-          "intensity": 0.6,
-          "smoothness": 0.9
+          "frequency": 40.0
+        }
+      },
+      {
+        "brickType": "vignette",
+        "params": {
+          "darkness": 0.55
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "curved_metallic_louvers",
-        "category": "scenery",
-        "reason": "Lames d'acier incurvées à reflets spéculaires interactifs évoquant la façade moderne enveloppante du Santiago Bernabéu."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "blaugrana",
@@ -816,27 +716,27 @@
     "intensity": 1,
     "universe": "barcelona",
     "evocation": "FC Barcelone et la douceur d'une soirée catalane au Spotify Camp Nou : le bol ouvert de l'arène baigné par le couchant méditerranéen sur Montjuïc, de larges rubans d'étoffe bleu profond et grenat pourpre ondulant lentement comme les tentures d'un tifo infini, et une brise tiède portant de rares grains de lumière dorée sous les projecteurs.",
-    "signature": "De larges ondes lumineuses verticales bleu roi et grenat profond ondulant comme un tifo de soie géant sous la brise marine tiède d'une fin de soirée catalane.",
+    "signature": "De larges nappes soyeuses bleu outremer et grenat profond ondulant comme un drapé de soie sous une brise marine méditerranéenne crépusculaire.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Crépuscule méditerranéen lilas et pourpre sombre avec lueur ambrée chaude à la ligne d'horizon."
+        "description": "Crépuscule méditerranéen lilas et pourpre avec lueur ambrée douce sur la mer."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette de la cuvette géante du Camp Nou et collines barcelonaises se découpant en aplats sombres sous le ciel d'été."
+        "description": "Collines côtières et silhouettes architecturales catalanes découpées en ombre sombre."
       },
       {
         "plan": 3,
         "type": "Plan médian atmosphérique",
-        "description": "Voiles verticaux alternés bleu roi et grenat noble ondulant selon des vagues de simplex douces et translucides."
+        "description": "Draperies verticales alternées bleu roi et grenat ondulant sous la brise marine."
       },
       {
         "plan": 4,
         "type": "Premier plan cinétique & overlay",
-        "description": "Particules dorées microscopiques flottant dans les contre-jours et vignettage indigo profond feutré."
+        "description": "Poussières dorées flottant en contre-jour avec vignettage indigo feutré."
       }
     ],
     "particles": {
@@ -883,7 +783,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0b0c1e",
           "bottomColor": "#1e1b4b",
@@ -895,7 +795,7 @@
         }
       },
       {
-        "brick": "waves",
+        "brickType": "waves",
         "params": {
           "waterColor": "#1d4ed8",
           "foamColor": "#991b1b",
@@ -905,7 +805,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#f59e0b",
           "density": 0.32,
@@ -914,7 +814,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#1e1b4b",
           "density": 0.45,
@@ -924,7 +824,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0b0c1e",
           "intensity": 0.65,
@@ -934,9 +834,9 @@
     ],
     "missingBricks": [
       {
-        "name": "vertical_fabric_banners",
-        "category": "particles",
-        "reason": "Tentures verticales suspendues avec transparence et dynamique de tissu fluide ondulant sous la brise marine."
+        "name": "fabric_wave",
+        "category": "intermediate",
+        "reason": "Nappe textile souple ondulant organiquement sous l'effet du vent."
       }
     ]
   },
@@ -947,27 +847,27 @@
     "intensity": 1,
     "universe": "atletico_madrid",
     "evocation": "Atlético de Madrid et la ferveur populaire du Civitas Metropolitano et des berges du Manzanares : la tradition des rayures matelassées blanches et rouges réinterprétées en toiles tendues sous un ciel orageux castillan, la brume lourde montant du fleuve, et l'éclair lointain d'une combativité collective indomptable.",
-    "signature": "Des bandes de toile brute rouge carmin et blanc lin ondulant sous un ciel d'orage castillan grondant, traversées par la lueur diffuse d'éclairs intranuageux lointains.",
+    "signature": "Des étendards de toile brute carmin et lin fouettés par un vent d'orage sur le plateau castillan, éclairés par de lointains éclairs intranuageux.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Ciel orageux d'ardoise et de suie tourmenté par des bancs de nuages bas dérivant au-dessus du plateau madrilène."
+        "description": "Ciel d'orage ardoise et suie chargé de nuages bas filant au-dessus du plateau."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Profil robuste de la toiture tendue du Metropolitano découpé en contre-jour sous des projecteurs rasant la pelouse."
+        "description": "Silhouette sobre de charpente monumentale découpée sous des projecteurs lointains."
       },
       {
         "plan": 3,
         "type": "Plan médian atmosphérique",
-        "description": "Alternance rythmée de bandes textiles rouge carmin et blanc cassé vibrant comme de la toile de bâche sous le vent."
+        "description": "Nappes textiles alternées rouge carmin et blanc lin ondulant sous les rafales."
       },
       {
         "plan": 4,
         "type": "Premier plan cinétique & overlay",
-        "description": "Poussière d'orage et micro-gouttes d'averse descendant au ralenti avec vignettage ardoise orageux."
+        "description": "Poussières d'orage descendant doucement avec vignettage ardoise sombre."
       }
     ],
     "particles": {
@@ -1014,7 +914,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#0f172a",
@@ -1026,7 +926,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#1e293b",
           "skyColor": "#0f172a",
@@ -1037,7 +937,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "flashColor": "#e2e8f0",
           "flashInterval": 35.0,
@@ -1046,7 +946,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#f1f5f9",
           "density": 0.32,
@@ -1055,7 +955,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
           "intensity": 0.65,
@@ -1065,9 +965,9 @@
     ],
     "missingBricks": [
       {
-        "name": "striped_canvas_relief",
-        "category": "scenery",
-        "reason": "Shader de toile texturée à rayures rouge et blanc avec relief de tissage et déformation mécanique sous le vent."
+        "name": "fabric_wave",
+        "category": "intermediate",
+        "reason": "Nappe textile souple ondulant organiquement sous l'effet du vent."
       }
     ]
   },
@@ -1078,27 +978,27 @@
     "intensity": 1,
     "universe": "bayern_munich",
     "evocation": "FC Bayern München et la féerie géométrique de l'Allianz Arena à Fröttmaning : l'enveloppe iconique en coussins ETFE gonflables en losanges illuminée d'un rouge rubis étincelant, les cimes des Alpes bavaroises enneigées se découpant au loin dans l'air nocturne limpide, et une pulsation lumineuse à la précision chirurgicale.",
-    "signature": "Une mosaïque de coussins losangiques translucides pulsant d'une lueur rouge rubis et blanc neige, se détachant sur la nuit froide des contreforts alpins bavarois.",
+    "signature": "Un dôme lumineux rouge rubis et blanc neige pulsant avec retenue devant des sommets alpins glacés, poudré de fins cristaux de givre en suspension.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Nuit alpine bleu nuit et acier glacial piquée d'étoiles scintillantes par un froid sec."
+        "description": "Nuit alpine bleu nuit piquée d'étoiles nettes dans un air hivernal pur."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette acérée des cimes des Alpes bavaroises saupoudrées de neige bleutée en arrière-plan."
+        "description": "Cimes acérées des Alpes bavaroises couvertes de névés bleutés."
       },
       {
         "plan": 3,
         "type": "Plan médian atmosphérique",
-        "description": "Courbure de la façade de l'arène composée de losanges géométriques rétroéclairés d'une pulsation rouge rubis et blanc givre."
+        "description": "Halo volumétrique rouge rubis et blanc cristal respirant lentement au pied des monts."
       },
       {
         "plan": 4,
         "type": "Premier plan cinétique & overlay",
-        "description": "Poussières de givre cristallines microscopiques dérivant dans l'air glacé avec vignettage feutré soigné."
+        "description": "Micro-cristaux de givre étincelants dérivant calmement avec vignettage froid."
       }
     ],
     "particles": {
@@ -1109,22 +1009,22 @@
       "behavior": "Scintillement ponctuel facetté, suspension laminaire et dispersion délicate au mouvement de la souris."
     },
     "atmosphere": {
-      "mist": "Brume de givre très fine au ras du sol munichois.",
-      "light": "Cristalline, pure, rythmée par la douce luminescence des coussins d'air pneumatiques.",
-      "airColor": "Rouge rubis bavarois (#dc2626), blanc givre (#ffffff), bleu nuit alpin (#0f172a) et azur glacial (#38bdf8).",
-      "mainLightSource": "Façade translucide rétroéclairée de l'Allianz Arena."
+      "mist": "Brume de givre très fine au ras du sol alpin.",
+      "light": "Cristalline et pure, rythmée par une douce lueur d'enceinte rouge rubis et blanc givre.",
+      "airColor": "Rouge rubis (#dc2626), blanc givre (#ffffff), bleu nuit alpin (#0f172a) et azur glacial (#38bdf8).",
+      "mainLightSource": "Halo lumineux translucide au pied des cimes enneigées."
     },
     "rareEvents": [
       {
-        "name": "Respiration de diamant",
-        "type": "volumetric_glow",
-        "frequency": "Intervalle moyen de 40 secondes",
-        "description": "Une onde lumineuse blanche parcourt les losanges de la façade de haut en bas comme une vague d'énergie pure."
+        "name": "Souffle cristallin des Alpes",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 40.0 secondes",
+        "description": "Une risée d'air froid balaie les flocons scintillants à travers la lueur rubis."
       }
     ],
     "interaction": {
-      "mouse": "Déplace subtilement le point focal d'intensité lumineuse des losanges les plus proches du curseur.",
-      "scroll": "Atténue l'éclat des losanges pour garantir une totale discrétion visuelle derrière le contenu actif."
+      "mouse": "Déplace subtilement les sommets alpins en parallaxe et infléchit les reflets rouges et blancs.",
+      "scroll": "Atténue l'éclat lumineux bas pour assurer une lisibilité cristalline du texte."
     },
     "palette": [
       "#dc2626",
@@ -1140,69 +1040,48 @@
       "geometric ETFE cushion illumination"
     ],
     "risks": {
-      "pitfall": "Ressembler à un pneu rouge ou à une grille de carrelage 2D mécanique et répétitive.",
-      "solution": "Courbure 3D élégante de l'arène, diffusion volumétrique douce à travers la matière plastique translucide, et respiration lumineuse ultra-lente."
+      "pitfall": "Motif répétitif de grille géométrique ou reproduction d'une façade de stade déposée.",
+      "solution": "Halo volumétrique diffus au pied des sommets alpins sans coussins pneumatiques déposés."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#030712",
-          "bottomColor": "#0f172a",
-          "horizonColor": "#1e293b",
-          "density": 1.1,
-          "speed": 0.08,
-          "depth": 0.1,
-          "intensity": 0.8
+          "bottomColor": "#0f172a"
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
-          "mountainColor": "#060b14",
-          "fogColor": "#0f172a",
-          "density": 0.5,
-          "speed": 0.05,
-          "depth": 0.4
+          "color": "#1e293b",
+          "snowColor": "#f8fafc",
+          "layers": 3
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
-          "coreColor": "#dc2626",
-          "glowColor": "#7f1d1d",
-          "outerColor": "#0f172a",
-          "glowX": 0.5,
-          "glowY": 0.8,
-          "density": 0.85,
-          "intensity": 0.85
+          "color": "#dc2626",
+          "intensity": 0.42
         }
       },
       {
-        "brick": "dust",
+        "brickType": "snow",
         "params": {
-          "dustColor": "#e0f2fe",
-          "density": 0.28,
-          "speed": 0.12,
-          "intensity": 0.75
+          "color": "#ffffff",
+          "count": 30,
+          "speed": 0.14
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
-          "vignetteColor": "#030712",
-          "intensity": 0.65,
-          "smoothness": 0.9
+          "darkness": 0.58
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "lozenge_etfe_facade",
-        "category": "scenery",
-        "reason": "Grille losangique paramétrique avec pulsation lumineuse interne simulant les coussins ETFE de l'Allianz Arena."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "bianconeri",
@@ -1211,27 +1090,27 @@
     "intensity": 1,
     "universe": "juventus",
     "evocation": "Juventus FC et l'Allianz Stadium de Turin : l'élégance absolue du chiaroscuro italien et de la haute couture piémontaise, les rayures zébrées noires et blanches réinterprétées en lames architecturales sculpturales de verre fumé et d'acier brossé, le vent frais des Alpes italiennes et la solennité d'un prestige centenaire discret.",
-    "signature": "Des lames verticales cinématiques en alternance de noir obsidienne et de blanc albâtre découpant un clair-obscur sculptural, d'où s'élèvent de rares micro-paillettes d'or et de givre piémontais.",
+    "signature": "Un clair-obscur sculptural noir obsidienne et blanc albâtre devant des cimes alpines acérées, animé par de rares éclats d'or et poussières cristallines piémontaises.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Ciel nocturne piémontais monochrome en dégradé noir d'encre vers gris anthracite métallique."
+        "description": "Ciel nocturne piémontais monochrome noir d'encre vers gris anthracite poli."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Ligne acérée des cimes des Alpes italiennes en ombre chinoise sombre sous un éclat argenté."
+        "description": "Ligne acérée des Alpes en ombre chinoise tranchée sous un éclat lunaire argenté."
       },
       {
         "plan": 3,
         "type": "Plan médian atmosphérique",
-        "description": "Lames architecturales verticales zébrées alternant noir mat, blanc albâtre et reflets d'acier poli avec jeu d'ombres portées."
+        "description": "Faisceaux architecturaux rasants opposant ombres noires nettes et reflets blanc albâtre."
       },
       {
         "plan": 4,
         "type": "Premier plan cinétique & overlay",
-        "description": "Poussière cristalline et très rares éclats d'or stellaire flottant dans le clair-obscur avec vignettage noir absolu."
+        "description": "Micro-cristaux et touches d'or discret flottant sous un vignettage noir absolu."
       }
     ],
     "particles": {
@@ -1249,10 +1128,10 @@
     },
     "rareEvents": [
       {
-        "name": "Reflet doré stellaire",
-        "type": "lens_flare",
-        "frequency": "Intervalle moyen de 45 secondes",
-        "description": "Un glissement de reflet or étincelle discrètement sur l'arête d'une lame verticale comme le scintillement d'une étoile de titre."
+        "name": "Étoile filante dorée",
+        "type": "shooting_star",
+        "frequency": "Intervalle moyen de 45.0 secondes",
+        "description": "Un fin trait lumineux or pur glisse avec distinction au-dessus des cimes blanches."
       }
     ],
     "interaction": {
@@ -1278,61 +1157,42 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
-          "bottomColor": "#18181b",
-          "horizonColor": "#27272a",
-          "density": 1.2,
-          "speed": 0.08,
-          "depth": 0.1,
-          "intensity": 0.8
+          "bottomColor": "#27272a"
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
-          "mountainColor": "#09090b",
-          "fogColor": "#18181b",
-          "density": 0.5,
-          "speed": 0.05,
-          "depth": 0.4
+          "color": "#18181b",
+          "snowColor": "#ffffff",
+          "layers": 2
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
-          "dustColor": "#eab308",
-          "density": 0.26,
-          "speed": 0.13,
-          "intensity": 0.75
+          "color": "#eab308",
+          "secondaryColor": "#ffffff",
+          "count": 26
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
-          "intensity": 0.06,
-          "speed": 0.6,
-          "density": 1.1,
-          "monochrome": true
+          "intensity": 0.14
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
-          "vignetteColor": "#000000",
-          "intensity": 0.7,
-          "smoothness": 0.9
+          "darkness": 0.68
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "chiaroscuro_vertical_slats",
-        "category": "scenery",
-        "reason": "Lames architecturales 3D à ombres rasantes et alternance noir/blanc avec texture marbre et acier poli."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "rossoneri",
@@ -1341,27 +1201,27 @@
     "intensity": 1,
     "universe": "ac_milan",
     "evocation": "AC Milan et la majesté brute du mythique Stadio San Siro (Giuseppe Meazza) : les emblématiques tours cylindriques hélicoïdales en béton brut s'élevant dans la brume nocturne milanaise ('la nebbia'), les gigantesques poutres rouges de la toiture découpées dans la nuit, et des ombres théâtrales rouge sang et noir suie portées par des projecteurs dramatiques.",
-    "signature": "Les silhouettes monumentales des tours cylindriques hélicoïdales de San Siro émergeant de la brume milanaise, enveloppées dans un halo rouge sang profond et des ombres portées gothiques.",
+    "signature": "D'imposants monolithes brutalistes en béton gris émergeant de la brume hivernale milanaise sous un halo rouge sang profond et une chute lente de cendres urbaines.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan céleste lointain",
-        "description": "Nuit lombarde d'un noir de suie profond voilée par des nuages d'hiver bas et lourds."
+        "description": "Nuit lombarde noir de suie couverte de nuages bas d'hiver."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouettes imposantes des tours spirales en béton et des immenses poutres métalliques rouges de la toiture de San Siro."
+        "description": "Silhouettes géométriques massives de tours de béton brut et charpentes d'acier rouge sombre."
       },
       {
         "plan": 3,
         "type": "Plan médian atmosphérique",
-        "description": "Nappe vaporeuse de brume milanaise ('nebbia') teintée de reflets rouge sombre et noir onyx."
+        "description": "Épaisse brume grise hivernale teintée d'éclats sang de bœuf et d'onyx."
       },
       {
         "plan": 4,
         "type": "Premier plan cinétique & overlay",
-        "description": "Grains de suie et micro-volutes de brume dérivant lentement avec vignettage noir charbonneux enveloppant."
+        "description": "Fines cendres sombres dérivant dans l'air froid sous un vignettage charbonneux."
       }
     ],
     "particles": {
@@ -1372,10 +1232,10 @@
       "behavior": "Mouvement brownien alourdi par l'humidité, dispersion sous les courants d'air froids et contournement doux de la souris."
     },
     "atmosphere": {
-      "mist": "Épaisse brume milanaise légendaire (nebbia) filtrant la lumière en un dégradé vaporeux dramatique.",
-      "light": "Théâtrale, contrastée et intimidante, alliant la noirceur gothique à un rouge sang de bœuf profond.",
-      "airColor": "Noir charbon (#000000), rouge diabolique (#dc2626), rouille industrielle (#7f1d1d) et gris béton humide (#334155).",
-      "mainLightSource": "Projecteurs nichés dans la charpente métallique rouge éclairant la brume du sol."
+      "mist": "Épaisse brume hivernale grise filtrant la lumière rouge en dégradé dramatique.",
+      "light": "Théâtrale et contrastée, mêlant noir charbon et rouge sang de bœuf profond.",
+      "airColor": "Noir charbon (#000000), rouge profond (#dc2626), rouille (#7f1d1d) et béton humide (#334155).",
+      "mainLightSource": "Projecteurs hauts éclairant la brume à travers la charpente métallique."
     },
     "rareEvents": [
       {
@@ -1386,8 +1246,8 @@
       }
     ],
     "interaction": {
-      "mouse": "Fait pivoter l'angle de projection de la lueur rouge à travers les silhouettes de béton de San Siro.",
-      "scroll": "Renforce le vignettage et la profondeur de la brume au bas de l'écran pour garder les listes de jeux impeccablement lisibles."
+      "mouse": "Fait pivoter l'angle de projection de la lueur rouge à travers les tours de béton brutaliste.",
+      "scroll": "Renforce le vignettage et la profondeur de la brume pour garder les listes lisibles."
     },
     "palette": [
       "#dc2626",
@@ -1403,68 +1263,52 @@
       "brutalist concrete stadium red floodlights"
     ],
     "risks": {
-      "pitfall": "Confondre avec Red Devils (Manchester United) car tous deux partagent le rouge et le noir.",
-      "solution": "Différenciation architecturale et stylistique absolue : San Siro se caractérise par son béton brut brutaliste, ses tours cylindriques hélicoïdales uniques au monde, et la brume milanaise vaporeuse plutôt que les briques industrielles anglaises et les cheminées de Manchester."
+      "pitfall": "Confondre avec les autres clubs rouges et noirs ou reproduire des tours de stade protégées.",
+      "solution": "Architecture brutaliste en béton gris et brume hivernale milanaise vaporeuse distincte des briques industrielles anglaises."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
-          "bottomColor": "#140505",
-          "horizonColor": "#450a0a",
-          "density": 1.2,
-          "speed": 0.08,
-          "depth": 0.1,
-          "intensity": 0.8
+          "bottomColor": "#18181b"
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "parallax_city",
         "params": {
-          "fogColor": "#334155",
-          "density": 0.55,
-          "speed": 0.1,
-          "heightFalloff": 1.8,
-          "depth": 0.3
+          "color": "#334155",
+          "layers": 2
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "noisy_fog",
         "params": {
-          "coreColor": "#dc2626",
-          "glowColor": "#7f1d1d",
-          "outerColor": "#000000",
-          "glowX": 0.5,
-          "glowY": 0.85,
-          "density": 0.85,
-          "intensity": 0.85
+          "color": "#7f1d1d",
+          "density": 0.45
         }
       },
       {
-        "brick": "ash",
+        "brickType": "volumetric_glow",
         "params": {
-          "ashColor": "#71717a",
-          "density": 0.28,
-          "speed": 0.14,
-          "turbulence": 0.25
+          "color": "#dc2626",
+          "intensity": 0.45
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "ash",
         "params": {
-          "vignetteColor": "#000000",
-          "intensity": 0.75,
-          "smoothness": 0.9
+          "color": "#475569",
+          "count": 28
+        }
+      },
+      {
+        "brickType": "vignette",
+        "params": {
+          "darkness": 0.7
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "helical_tower_silhouettes",
-        "category": "scenery",
-        "reason": "Silhouettes 3D des tours cylindriques à rampes hélicoïdales emblématiques de l'architecture brutaliste du Stadio San Siro."
-      }
-    ]
+    "missingBricks": []
   }
 ]

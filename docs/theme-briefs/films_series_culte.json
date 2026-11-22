@@ -50,7 +50,7 @@
     "rareEvents": [
       {
         "name": "Panne d'éclairage et sursaut dimensionnel",
-        "type": "flickering_light",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 18.0 secondes",
         "description": "Les néons s'éteignent brutalement une demi-seconde avant de grésiller en stroboscope intense, révélant la silhouette de la faille."
       },
@@ -90,7 +90,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#0f172a",
@@ -104,7 +104,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#f8fafc",
           "secondaryColor": "#3b82f6",
@@ -119,7 +119,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#1e293b",
           "density": 0.85,
@@ -132,7 +132,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#e2e8f0",
           "density": 0.9,
@@ -144,7 +144,7 @@
         }
       },
       {
-        "brick": "glitch",
+        "brickType": "glitch",
         "params": {
           "glitchColor": "#ef4444",
           "density": 0.7,
@@ -158,7 +158,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "waveColor": "#ef4444",
           "density": 0.8,
@@ -172,7 +172,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.2,
@@ -185,7 +185,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.1,
@@ -200,8 +200,8 @@
     ],
     "missingBricks": [
       {
-        "name": "organic_rift_crevice",
-        "category": "special",
+        "name": "organic_tendrils",
+        "category": "intermediate",
         "reason": "Brèche dimensionnelle procédurale bioluminescente pulsante, avec tentacules d'ombres d'où s'échappent des filaments d'énergie écarlate réactifs."
       }
     ]
@@ -291,7 +291,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#090d16",
           "bottomColor": "#1e3a8a",
@@ -305,7 +305,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#f59e0b",
           "secondaryColor": "#ea580c",
@@ -320,7 +320,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#e2e8f0",
           "density": 0.75,
@@ -332,7 +332,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#94a3b8",
           "density": 0.7,
@@ -346,7 +346,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeColor": "#334155",
           "density": 0.6,
@@ -359,7 +359,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#090d16",
           "density": 1.15,
@@ -372,7 +372,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.0,
@@ -387,9 +387,9 @@
     ],
     "missingBricks": [
       {
-        "name": "police_strobe_rotator",
+        "name": "volumetric_spotlight",
         "category": "atmosphere",
-        "reason": "Double projecteur rotatif stroboscopique simulant la rotation des gyrophares de patrouille (bleu roi et blanc éclatant) avec ombres portées de stores."
+        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
       }
     ]
   },
@@ -450,7 +450,7 @@
       },
       {
         "name": "Éblouissement solaire anamorphique",
-        "type": "lens_flare",
+        "type": "lightning",
         "frequency": "Intervalle moyen de 30.0 secondes",
         "description": "Un flash horizontal doré et cyan balaie la verrière lors d'un virage serré du chasseur."
       }
@@ -478,7 +478,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#1e3a8a",
           "bottomColor": "#ea580c",
@@ -492,7 +492,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#1e1b4b",
           "sunColor": "#ea580c",
@@ -507,7 +507,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#f59e0b",
           "density": 1.2,
@@ -520,7 +520,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fcd34d",
           "density": 0.85,
@@ -532,7 +532,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "waveColor": "#fef08a",
           "density": 0.85,
@@ -546,7 +546,7 @@
         }
       },
       {
-        "brick": "lens_flare",
+        "brickType": "lens_flare",
         "params": {
           "flareColor": "#f59e0b",
           "density": 0.9,
@@ -561,7 +561,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "density": 1.1,
@@ -574,7 +574,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.0,
@@ -587,13 +587,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "jet_afterburner_nozzles",
-        "category": "special",
-        "reason": "Double tuyère de chasseur avec disques de Mach bleus et cônes de flammes orangées supersoniques expulsant des gaz ionisés."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "lisan_al_gaib",
@@ -602,64 +596,64 @@
     "intensity": 2,
     "universe": "dune",
     "evocation": "Dune de Denis Villeneuve : la prophétie du Messie d'Arrakis (« La Voix d'Outre-Monde »). Silhouette solitaire émergeant d'une crête de dune géante face au soleil voilé, enveloppée dans un grand manteau Fremen flottant au sirocco. Lueurs d'épice bleue scintillantes et rayonnement solaire doré créant une atmosphère mystique d'épopée cosmique.",
-    "signature": "Une silhouette drapée en haut d'une crête de dune monumentale, cernée d'un tourbillon de poussière d'épice scintillante aux reflets bleu saphir et or impérial.",
+    "signature": "Une crête de dune sculptée au crépuscule bleu saphir, fendue par des rais de lumière céleste azurée qui embrasent un tourbillon de cristaux bleus scintillants dans l'or du désert.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel d'Arrakis safran et ocre, écrasé par un soleil lourd et laiteux diffusé dans la poussière atmosphérique."
+        "description": "Ciel crépusculaire bleu cobalt profond (#1e3a8a) virant à l'ambre doré chaud (#d97706) près de l'horizon."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Océan de dunes titanesques étagées en vagues successives d'ombres violettes et de crêtes illuminées au soleil rasant."
+        "description": "Dunes monumentales étagées en vagues d'ombres indigo et de crêtes dorées sous un éclairage rasant."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Crête acérée d'avant-plan où se découpe la silhouette hiératique d'un pèlerin Fremen dont la cape ondule au vent."
+        "description": "Faisceaux volumétriques verticaux d'un bleu saphir éclatant (god rays) traversant la brume de sable."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Voiles de sable soufflé glissant sur les versants de dunes, mêlés à des étincelles d'épice bleu cobalt iridescent."
+        "description": "Voiles de sable doré glissant sur les pentes, mêlés à une nuée ascendante de cristaux saphir lumineux."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Nuée de cristaux de Mélange scintillant au passage de la lumière, avec grain cinéma chaud et vignettage ambré."
+        "description": "Grain cinéma minéral et vignettage ambré chaleureux équilibrant le contraste."
       }
     ],
     "particles": {
-      "type": "Cristaux d'épice bleu cobalt et poussière de sable doré (dust)",
+      "type": "Cristaux bleu cobalt luminescents et sable fin doré (dust)",
       "size": "1.0 à 2.6 px",
       "speed": "0.22 dérive latérale majestueuse",
       "density": "120 particules",
-      "behavior": "Balancement fluide en spirale le long des lignes de courant du vent avec étincelles lumineuses asynchrones."
+      "behavior": "Ascension spiralée le long des filets d'air avec micro-scintillements bleus et or."
     },
     "atmosphere": {
-      "mist": "Brume de sable fin doré et voiles de chaleur s'élevant des versants brûlants.",
-      "light": "Lumière mystique dorée (#facc15) transpercée de rayons volumétriques azurés (#3b82f6) évoquant les Yeux d'Ibad.",
-      "airColor": "Ambre profond (#78350f) et ocre chaud (#d97706).",
-      "mainLightSource": "Soleil zénithal voilé par les tempêtes de sable."
+      "mist": "Brume de sable doré et voile bleu céleste au ras des crêtes.",
+      "light": "Rayons mystiques azurés (#3b82f6) perçant une lumière ambrée dorée (#facc15).",
+      "airColor": "Ambre profond (#78350f), ocre chaud (#d97706) et bleu saphir (#1e3a8a).",
+      "mainLightSource": "Faisceau céleste crépusculaire illuminant la crête des dunes."
     },
     "rareEvents": [
       {
-        "name": "Rayonnement de prophétie azurée",
-        "type": "god_rays",
+        "name": "Éclat de prophétie azurée",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 25.0 secondes",
-        "description": "Un faisceau de lumière bleu saphir intense fend les nuées de poussière, faisant scintiller les cristaux d'épice."
+        "description": "Une onde lumineuse bleu saphir traverse les crêtes, faisant scintiller tous les cristaux en suspension."
       },
       {
         "name": "Rafale sacrée du désert",
         "type": "wind_gust",
         "frequency": "Intervalle moyen de 32.0 secondes",
-        "description": "Une bourrasque de sirocco soulève un panache doré de sable qui tourbillonne en spirale ascendante."
+        "description": "Une bourrasque chaude soulève un panache doré de sable qui tourbillonne sur les pentes."
       }
     ],
     "interaction": {
-      "mouse": "Oriente la dérive du vent de sable et fait miroiter l'éclat des particules d'épice bleue selon l'angle d'incidence.",
-      "scroll": "Élève le point de vue au-dessus de la ligne de crête des dunes en étirant les ombres portées."
+      "mouse": "Oriente les rais de lumière bleue et fait scintiller les cristaux selon l'angle du curseur.",
+      "scroll": "Élève la ligne de vue au-dessus de la mer de dunes en accentuant le bleu du crépuscule."
     },
     "palette": [
       "#3b82f6",
@@ -675,112 +669,60 @@
       "CodePen mystical desert blue spice particles"
     ],
     "risks": {
-      "pitfall": "Un simple désert jaune monotone sans dimension sacrée ni lien narratif fort avec l'épice.",
-      "solution": "Contraste puissant entre le sable chaud et les particules d'épice bleu profond scintillantes, rayons divins et ondulation majestueuse des dunes."
+      "pitfall": "Désert monotone similaire aux autres thèmes arides ou silhouette de prophète protégée.",
+      "solution": "Dualité chromatique saphir/or unique, faisceaux verticaux perçants et zéro silhouette humaine."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
-          "topColor": "#78350f",
-          "bottomColor": "#d97706",
-          "horizonColor": "#facc15",
-          "density": 1.2,
-          "speed": 0.15,
-          "depth": 0.1,
-          "intensity": 1.0,
-          "randomness": 0.2,
-          "noiseScale": 1.1
+          "topColor": "#1e3a8a",
+          "bottomColor": "#78350f"
         }
       },
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
-          "sandColor": "#f59e0b",
-          "shadowColor": "#451a03",
-          "skyColor": "#78350f",
-          "density": 1.0,
-          "speed": 0.15,
-          "depth": 0.35,
-          "intensity": 1.1,
-          "randomness": 0.4,
-          "sunAngle": 0.75
+          "color": "#d97706",
+          "shadowColor": "#1e3a8a",
+          "speed": 0.18
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
-          "rayColor": "#3b82f6",
-          "density": 0.85,
-          "speed": 0.18,
-          "depth": 0.3,
-          "intensity": 0.9,
-          "randomness": 0.35,
-          "lightSourceX": 0.3,
-          "lightY": 0.9,
-          "decay": 0.9
+          "color": "#3b82f6",
+          "intensity": 0.5
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
-          "dustColor": "#60a5fa",
-          "density": 0.95,
-          "speed": 0.22,
-          "depth": 0.4,
-          "intensity": 1.0,
-          "randomness": 0.45,
-          "twinkleSpeed": 1.6
+          "color": "#3b82f6",
+          "secondaryColor": "#facc15",
+          "count": 120
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
-          "windColor": "#fde047",
-          "density": 0.75,
-          "speed": 1.2,
-          "depth": 0.35,
-          "intensity": 0.8,
-          "randomness": 0.4,
-          "gustAngle": 0.15,
-          "gustInterval": 32.0,
-          "swirlScale": 1.2
+          "frequency": 32.0
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
-          "vignetteColor": "#451a03",
-          "density": 1.1,
-          "speed": 0.1,
-          "depth": 0.25,
-          "intensity": 0.65,
-          "randomness": 0.15,
-          "roundness": 0.7,
-          "smoothness": 0.85
+          "darkness": 0.5
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
-          "grainColor": "#ffffff",
-          "density": 1.0,
-          "speed": 0.65,
-          "depth": 0.15,
-          "intensity": 0.05,
-          "randomness": 0.35,
-          "monochrome": true,
-          "clumpSize": 1.0
+          "intensity": 0.16
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "draped_prophet_silhouette",
-        "category": "intermediate",
-        "reason": "Silhouette procédurale d'un personnage drapé debout au sommet d'une crête avec étoffe flottant sous la brise du désert."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "hellfire_club",
@@ -789,32 +731,32 @@
     "intensity": 3,
     "universe": "stranger-things",
     "evocation": "Stranger Things saison 4 : la confrérie rôliste d'Eddie Munson dans la cave réaménagée des Wheeler. Tables en bois brut encombrées de manuels D&D écornés, chandeliers de cire fondue vacillant, tentures occultes aux motifs démoniaques 80s, fumée de cigarettes et lévitation menaçante d'un dé à 20 faces rouge sang au-dessus du plateau.",
-    "signature": "Un dé à 20 faces géant (D20) rouge écarlate et gravé de runes dorées en lévitation lente au-dessus d'une table aux chandelles vacillantes et volutes d'encens.",
+    "signature": "Un sous-sol rétro en briques sombres éclairé par la flamme vacillante de chandelles, où lévite une rosace polyédrique rouge rubis gravée de glyphes d'or au milieu de volutes d'encens.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Murs en briques sombres d'un sous-sol des années 80, tapissés de tentures illustrées de dragons et crânes démoniaques."
+        "description": "Murs en briques sombres d'une salle de jeu rétro des années 80 dans la pénombre."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Étagères en bois chargées de figurines d'étain peintes à la main, fiches de personnages jaunies et grimoires médiévaux."
+        "description": "Pénombre boisée réchauffée par la lueur ambrée de chandelles en fer forgé."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Chandeliers en fer forgé aux multiples bougies suintantes de cire dont les flammes dansent de manière asynchrone."
+        "description": "Cercle runique d'or et rubis tournant lentement au-dessus des flammes oscillantes."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Nappe de fumée vaporeuse et volutes d'encens s'élevant en spirales paresseuses autour de la table de jeu."
+        "description": "Volutes d'encens et fumée vaporeuse en spirales paresseuses."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Braises incandescentes et poussières dorées dansant dans la lueur des bougies, rehaussées d'un vignettage gothique ténébreux."
+        "description": "Braises dorées de bougies dansantes et vignettage rouge sombre velouté."
       }
     ],
     "particles": {
@@ -825,34 +767,34 @@
       "behavior": "Montée convective en spirale sinueuse sous l'effet de la chaleur des flammes de bougies."
     },
     "atmosphere": {
-      "mist": "Volutes de fumée d'encens et brume feutrée de sous-sol tamisé.",
-      "light": "Chaleureuse, vacillante et occulte, dominée par le rouge carmin profond (#7f1d1d) et l'or ambré des bougies (#f59e0b).",
-      "airColor": "Rouge sombre velouté (#450a0a) et noir suie (#000000).",
-      "mainLightSource": "Bougies de cire d'abeille et aura magique du D20."
+      "mist": "Volutes d'encens et fumée feutrée de salle tamisée.",
+      "light": "Chaleureuse, vacillante et occulte, mêlant rouge carmin (#7f1d1d) et or d'ambre (#f59e0b).",
+      "airColor": "Rouge velouté (#450a0a), carmin (#7f1d1d) et noir suie (#000000).",
+      "mainLightSource": "Bougies de cire et aura dorée du sceau central."
     },
     "rareEvents": [
       {
-        "name": "Lancer critique (Natural 20)",
+        "name": "Impulsion critique écarlate",
         "type": "shockwave",
         "frequency": "Intervalle moyen de 20.0 secondes",
-        "description": "Le D20 pivote brusquement sur son axe, irradiant un flash doré et écarlate qui fait vaciller toutes les flammes de bougies."
+        "description": "La rosace centrale irradie un flash doré et écarlate faisant tressaillir toutes les chandelles."
       },
       {
-        "name": "Courant d'air glacial de l'Upside Down",
-        "type": "flickering_light",
+        "name": "Souffle glacial dans les chandelles",
+        "type": "wind_gust",
         "frequency": "Intervalle moyen de 28.0 secondes",
-        "description": "Une brise invisible étouffe presque les chandelles, plongeant la pièce dans un rouge sombre angoissant avant leur reprise."
+        "description": "Un courant d'air soudain couche les flammes et fait tourbillonner l'encens."
       },
       {
         "name": "Glitch d'illusion arcanique",
         "type": "glitch",
         "frequency": "Intervalle moyen de 40.0 secondes",
-        "description": "Les contours du plateau de jeu et des chandeliers vibrent en triple frange rougeoyante."
+        "description": "Les reflets des chandeliers vibrent fugitivement en triple frange rougeoyante."
       }
     ],
     "interaction": {
-      "mouse": "Fait pivoter le D20 flottant en direct selon les coordonnées de la souris et attire doucement les braises ascendantes.",
-      "scroll": "Modifie l'intensité d'éclairage des bougies et renforce le vignettage ténébreux sur les contours de la page."
+      "mouse": "Fait pivoter la rosace runique centrale et attire doucement les braises dorées.",
+      "scroll": "Tamise la clarté des chandelles tout en conservant le relief chaleureux des cartes."
     },
     "palette": [
       "#7f1d1d",
@@ -873,7 +815,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#450a0a",
@@ -887,7 +829,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#f59e0b",
           "secondaryColor": "#ea580c",
@@ -902,7 +844,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#450a0a",
           "density": 0.75,
@@ -915,7 +857,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#ea580c",
           "density": 0.85,
@@ -927,7 +869,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "waveColor": "#fef08a",
           "density": 0.8,
@@ -941,7 +883,7 @@
         }
       },
       {
-        "brick": "glitch",
+        "brickType": "glitch",
         "params": {
           "glitchColor": "#7f1d1d",
           "density": 0.6,
@@ -955,7 +897,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.25,
@@ -968,7 +910,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.1,
@@ -983,9 +925,9 @@
     ],
     "missingBricks": [
       {
-        "name": "floating_runic_d20",
+        "name": "runic_circle",
         "category": "special",
-        "reason": "Icosaèdre 3D texturé rouge rubis gravé de chiffres runiques dorés, flottant et oscillant en apesanteur avec réfraction spéculaire."
+        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
       }
     ]
   },
@@ -1074,7 +1016,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#450a0a",
@@ -1088,7 +1030,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#1c1917",
           "density": 0.85,
@@ -1101,7 +1043,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#fef08a",
           "altColor": "#ea580c",
@@ -1114,7 +1056,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "waveColor": "#ef4444",
           "density": 0.9,
@@ -1128,7 +1070,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeColor": "#ef4444",
           "density": 0.8,
@@ -1141,7 +1083,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.2,
@@ -1154,7 +1096,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.05,
@@ -1167,13 +1109,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "procedural_fireball_core",
-        "category": "special",
-        "reason": "Cœur d'explosion volumétrique expansif avec plasma ardent jaune-blanc dégradé en suie noire tourbillonnante."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "mach_10",
@@ -1182,32 +1118,32 @@
     "intensity": 2,
     "universe": "top-gun",
     "evocation": "Top Gun Maverick : le vol expérimental de l'avion furtif hypersonique Darkstar aux frontières de la stratosphère. À 100 000 pieds d'altitude, la courbure bleue phosphorescente de la Terre se détache contre le noir absolu du cosmos ; l'appareil fendant l'air raréfié à Mach 10 génère une incandescence de frottement thermique dorée et des étoiles figées dans le silence sidéral.",
-    "signature": "Une silhouette furtive fendant la haute stratosphère à Mach 10, laissant une traînée de plasma thermique doré le long de la courbure lumineuse de la Terre.",
+    "signature": "La courbure lumineuse de la planète vue depuis la très haute stratosphère noire d'encre, fendue par des ondes de plasma doré supersonique et une pluie horizontale de cristaux de glace.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Noir profond de l'espace zénithal constellé d'étoiles froides et immobiles, dénué de toute turbulence d'air."
+        "description": "Vide noir de la haute stratosphère piqué d'étoiles froides fixes."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Arc monumental de la courbure terrestre souligné par une frange atmosphérique bleu cyan lumineux (Rayleigh scattering)."
+        "description": "Arc monumental du limbe terrestre souligné d'une frange atmosphérique bleu cyan éclatant."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Onde de choc de Mach et sillage de plasma ionisé blanc-jaune ardent étiré sur toute la largeur de l'écran."
+        "description": "Onde de compression atmosphérique et sillage doré incandescent étiré horizontalement."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Micro-cristaux de glace de haute altitude et traînées de condensation ultra-rapides étirées en flèche."
+        "description": "Cristaux stratosphériques et traînées supersoniques filant vers l'arrière à grande vélocité."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Reflet spéculaire doré sur le cockpit et micro-aberration chromatique due à la compression atmosphérique extrême."
+        "description": "Aberration chromatique de compression d'air et vignettage spatial net."
       }
     ],
     "particles": {
@@ -1255,12 +1191,12 @@
       "CodePen space edge supersonic flight particles"
     ],
     "risks": {
-      "pitfall": "Un simple fond noir avec une ligne jaune sans sensation d'altitude stratosphérique ni de vitesse extrême.",
-      "solution": "Courbure de la Terre majestueuse avec halo Rayleigh bleuté, étirement supersonique des particules et distorsion de choc thermique."
+      "pitfall": "Fond noir vide ou reproduction de la silhouette d'un prototype aéronautique protégé.",
+      "solution": "Rendu purement atmosphérique et orbital : limbe bleu Rayleigh, sillage thermique doré et étirement de vitesse sans aéronef déposé."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#020617",
@@ -1274,7 +1210,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 0.9,
@@ -1286,7 +1222,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#facc15",
           "density": 1.1,
@@ -1299,7 +1235,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#e0f2fe",
           "density": 0.75,
@@ -1311,7 +1247,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "waveColor": "#fef08a",
           "density": 0.85,
@@ -1325,7 +1261,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "density": 0.6,
@@ -1338,7 +1274,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.2,
@@ -1351,7 +1287,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "density": 0.8,
           "speed": 0.2,
@@ -1362,13 +1298,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "darkstar_hypersonic_silhouette",
-        "category": "intermediate",
-        "reason": "Silhouette acérée de l'avion expérimental noir mat avec arêtes thermiques ionisées dorées et verrière cockpit réfléchissante."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "shai_hulud",
@@ -1377,64 +1307,64 @@
     "intensity": 2,
     "universe": "dune",
     "evocation": "Dune : le Ver Géant des Sables du désert profond d'Arrakis, incarnation divine de la force tellurique du désert. Émergence titanesque d'une gueule annelée colossale soulevant un tsunami de sable de plusieurs centaines de mètres, zébré d'arcs électriques statiques créés par la friction des grains d'épice.",
-    "signature": "L'émergence titanesque de la gueule annelée du ver des sables soulevant un tsunami de sable doré, crépitant d'arcs électriques statiques écarlates.",
+    "signature": "Un cataclysme minéral dans un désert crépusculaire où d'énormes vagues de sable rouille se soulèvent sous des secousses telluriques et des éclairs statiques écarlates.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel d'orage de sable tourmenté brun rouille et cuivre, déchiré par des décharges électriques atmosphériques."
+        "description": "Ciel de tempête de sable brun rouille et cuivre sombre déchiré par l'électricité statique."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Muraille colossale de sable soulevée sur des kilomètres par le déplacement souterrain du Léviathan."
+        "description": "Murailles colossales de sable brassées par une onde souterraine déformant l'horizon désertique."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Arche béante et annelée de la gueule du Ver, tapissée de dents cristallines et exhalant une brume de chaleur."
+        "description": "Failles rougeoyantes de friction électrique jaillissant entre deux houles de dunes fracturées."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Cascades de sable en chute libre et tourbillons de poussière d'épice rougeoyante balayés par le souffle."
+        "description": "Cascades de sable lourd, nuages de poussière rousse et tourbillons de cendres ocre."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Grêlons de roche et grains de sable sifflant à l'écran, avec secousse tellurique sourde et grain cinéma d'Arrakis."
+        "description": "Grains abrasifs fouettant l'écran avec secousses telluriques sourdes et grain argentique brutal."
       }
     ],
     "particles": {
-      "type": "Cascades de grains de sable lourds et micro-éclats de roche (dust & ash)",
+      "type": "Sable lourd et éclats de roche ocre (dust & ash)",
       "size": "1.2 à 3.2 px",
       "speed": "0.38 chute et dérive turbulente",
       "density": "130 particules",
-      "behavior": "Chute parabolique dense et rideaux de sable oscillant sous l'effet du souffle tellurique."
+      "behavior": "Rideaux de poussière balayés par un souffle tellurique ascendant."
     },
     "atmosphere": {
-      "mist": "Tempête de poussière dense et nappe d'électricité statique rougeoyante.",
-      "light": "Éclairage d'apocalypse minérale, brun chocolat sombre (#451a03) transpercé d'éclats de foudre orange ardent (#ea580c).",
-      "airColor": "Rouille sombre (#78350f) et cuivre incandescent (#ea580c).",
-      "mainLightSource": "Décharges d'électricité statique et fournaise interne de la gueule du ver."
+      "mist": "Tempête de poussière rouille chargée d'électricité statique.",
+      "light": "Apocalypse minérale : brun chocolat sombre (#451a03) zébré de foudre orange-rouge (#ea580c).",
+      "airColor": "Rouille sombre (#78350f), cuivre ardent (#ea580c) et or pâle (#fef08a).",
+      "mainLightSource": "Décharges électriques atmosphériques au cœur de la tempête de sable."
     },
     "rareEvents": [
       {
         "name": "Éclair statique de sable",
         "type": "lightning",
         "frequency": "Intervalle moyen de 18.0 secondes",
-        "description": "Un arc électrique foudroyant orange et cramoisi jaillit du rideau de sable, illuminant brièvement les anneaux du monstre."
+        "description": "Un arc électrique orange et cramoisi fend le mur de poussière en illuminant les crêtes de sable."
       },
       {
-        "name": "Fracas tellurique d'émergence",
+        "name": "Fracas tellurique souterrain",
         "type": "screen_shake",
         "frequency": "Intervalle moyen de 25.0 secondes",
-        "description": "Une secousse sismique massive et continue ébranle l'interface, simulant le passage des millions de tonnes du ver."
+        "description": "Une secousse sismique massive fait trembler la scène comme le passage d'un colosse invisible sous le sol."
       }
     ],
     "interaction": {
-      "mouse": "Fait varier l'intensité et l'orientation des rafales de poussière en suspension en réponse au pointeur.",
-      "scroll": "Plonge la caméra vers la base du gouffre de sable ou remonte vers le sommet vertigineux de la gueule annelée."
+      "mouse": "Modifie l'orientation et la virulence des bourrasques de sable autour du curseur.",
+      "scroll": "Accentue l'angle plongeant dans la tempête tout en assombrissant la base pour préserver le texte."
     },
     "palette": [
       "#451a03",
@@ -1450,110 +1380,66 @@
       "CodePen massive desert worm dust avalanche"
     ],
     "risks": {
-      "pitfall": "Un simple cône brun statique sans sentiment de terreur sacrée ni masse géologique titanesque.",
-      "solution": "Tsunami de sable dynamique en cascade continue, éclairs statiques foudroyants et secousses telluriques percutantes."
+      "pitfall": "Simple désert calme ou représentation directe d'une créature protégée.",
+      "solution": "Évoquer la terreur colossale par le soulèvement tellurique, la foudre sèche et les secousses sismiques sans monstre dessiné."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#291102",
-          "bottomColor": "#451a03",
-          "horizonColor": "#ea580c",
-          "density": 1.3,
-          "speed": 0.15,
-          "depth": 0.1,
-          "intensity": 1.0,
-          "randomness": 0.25,
-          "noiseScale": 1.1
+          "bottomColor": "#78350f"
         }
       },
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
-          "sandColor": "#ea580c",
-          "shadowColor": "#291102",
-          "skyColor": "#451a03",
-          "density": 1.2,
-          "speed": 0.2,
-          "depth": 0.35,
-          "intensity": 1.2,
-          "randomness": 0.45,
-          "sunAngle": 0.6
+          "color": "#ea580c",
+          "shadowColor": "#451a03",
+          "speed": 0.45
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
-          "dustColor": "#f59e0b",
-          "density": 1.0,
-          "speed": 0.35,
-          "depth": 0.4,
-          "intensity": 0.95,
-          "randomness": 0.5,
-          "twinkleSpeed": 1.4
+          "color": "#f59e0b",
+          "count": 90
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "ash",
         "params": {
-          "boltColor": "#fef08a",
-          "density": 0.8,
-          "speed": 1.5,
-          "depth": 0.3,
-          "intensity": 1.2,
-          "randomness": 0.45,
-          "strikeInterval": 18.0,
-          "forking": 0.8
+          "color": "#78350f",
+          "count": 40
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "lightning",
         "params": {
-          "shakeColor": "#ea580c",
-          "density": 0.85,
-          "speed": 1.3,
-          "depth": 0.25,
-          "intensity": 0.7,
-          "randomness": 0.4,
-          "shakeInterval": 25.0,
-          "decayRate": 3.8
+          "frequency": 18.0,
+          "color": "#ea580c"
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "screen_shake",
         "params": {
-          "vignetteColor": "#291102",
-          "density": 1.2,
-          "speed": 0.1,
-          "depth": 0.25,
-          "intensity": 0.75,
-          "randomness": 0.15,
-          "roundness": 0.65,
-          "smoothness": 0.85
+          "frequency": 25.0
         }
       },
       {
-        "brick": "grain",
+        "brickType": "vignette",
         "params": {
-          "grainColor": "#ffffff",
-          "density": 1.1,
-          "speed": 0.7,
-          "depth": 0.15,
-          "intensity": 0.07,
-          "randomness": 0.4,
-          "monochrome": true,
-          "clumpSize": 1.1
+          "darkness": 0.65
+        }
+      },
+      {
+        "brickType": "film_grain",
+        "params": {
+          "intensity": 0.22
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "sandworm_maw_emergence",
-        "category": "special",
-        "reason": "Gueule annelée monumentale procédurale émergeant des dunes avec cascade de sable et dents cristallines étincelantes."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "upside_down",
@@ -1646,7 +1532,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#0f172a",
@@ -1660,7 +1546,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#020617",
           "fogColor": "#1e1b4b",
@@ -1673,7 +1559,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#0f172a",
           "density": 0.9,
@@ -1686,7 +1572,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#cbd5e1",
           "density": 1.1,
@@ -1698,7 +1584,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "boltColor": "#ef4444",
           "density": 0.85,
@@ -1711,7 +1597,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "waveColor": "#7f1d1d",
           "density": 0.8,
@@ -1725,7 +1611,7 @@
         }
       },
       {
-        "brick": "glitch",
+        "brickType": "glitch",
         "params": {
           "glitchColor": "#ef4444",
           "density": 0.65,
@@ -1739,7 +1625,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.3,
@@ -1752,7 +1638,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.15,
@@ -1767,9 +1653,9 @@
     ],
     "missingBricks": [
       {
-        "name": "organic_tendril_mesh",
-        "category": "special",
-        "reason": "Réseau de lianes et tentacules sombres procédurales rampant sur les parois avec pulsation bio-mécanique et membranes suintantes."
+        "name": "organic_tendrils",
+        "category": "intermediate",
+        "reason": "Vrilles et filaments organiques animés par bruit sinueux en lisière d'écran."
       }
     ]
   },
@@ -1780,32 +1666,32 @@
     "intensity": 2,
     "universe": "die-hard",
     "evocation": "Die Hard (Piège de Cristal) : la tour de verre et d'acier Nakatomi Plaza de 34 étages à Century City, Los Angeles, la nuit de Noël 1988. Gratte-ciel illuminé de bureaux en contre-plongée vertigineuse, projecteurs d'hélicoptères de police balayant la façade vitrée et rideaux de verre pulvérisé tombant dans le vide urbain.",
-    "signature": "La silhouette vertigineuse de la tour de verre dans la nuit de Los Angeles, balayée par le projecteur blanc d'un hélicoptère et une pluie de tessons de verre étincelants.",
+    "signature": "La façade monolithique de verre sombre d'un gratte-ciel californien nocturne balayée par un projecteur d'hélicoptère xénon, avec étincelles orange d'étage et pluie de tessons brillants.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Skyline nocturne de Los Angeles brumeux, avec smog urbain bleuté et mer de lumières de la ville au sol."
+        "description": "Ciel californien nocturne brumeux et horizon urbain constellé de lumières."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Façade monumentale en verre teinté et montants d'acier de la tour Nakatomi, avec fenêtres de bureaux allumées par damier irrégulier."
+        "description": "Gratte-ciel d'acier et verre teinté étagé aux fenêtres allumées irrégulièrement."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Faisceau conique d'un projecteur de recherche d'hélicoptère balayant lentement la façade vitrée en générant des reflets spéculaires."
+        "description": "Faisceau xénon blanc d'hélicoptère balayant la tour et créant des éclats spéculaires."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Nuage de fumée d'incendie s'échappant d'une baie vitrée brisée au 30e étage et dérivant le long de la structure."
+        "description": "Fumée chaude et rougeoiement d'incendie s'échappant d'un étage élevé."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Pluie de micro-fragments de verre brisé scintillants sous les lumières de la ville, avec grain cinéma 80s."
+        "description": "Pluie d'éclats scintillants de verre brisé sous un grain cinéma années 80."
       }
     ],
     "particles": {
@@ -1823,16 +1709,16 @@
     },
     "rareEvents": [
       {
-        "name": "Balayage de projecteur de poursuite",
-        "type": "god_rays",
+        "name": "Passée de projecteur de poursuite",
+        "type": "wind_gust",
         "frequency": "Intervalle moyen de 22.0 secondes",
-        "description": "Un puissant cône de lumière xénon blanche traverse rapidement l'écran, éblouissant la façade et faisant flamboyer les éclats de verre."
+        "description": "Souffle d'hélicoptère chassant la fumée le long du faisceau blanc xénon."
       },
       {
-        "name": "Explosion de baie vitrée",
+        "name": "Souffle d'explosion d'étage",
         "type": "shockwave",
         "frequency": "Intervalle moyen de 32.0 secondes",
-        "description": "Une onde de choc fait trembler les vitres avec une pluie accrue de tessons scintillants."
+        "description": "Onde de choc lumineuse faisant frémir les vitres et scintiller les tessons."
       }
     ],
     "interaction": {
@@ -1858,7 +1744,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f172a",
           "bottomColor": "#1e293b",
@@ -1872,7 +1758,7 @@
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#0a1120",
           "windowColor": "#fef08a",
@@ -1886,7 +1772,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#ffffff",
           "density": 0.9,
@@ -1900,7 +1786,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#f8fafc",
           "density": 0.85,
@@ -1912,7 +1798,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "waveColor": "#ea580c",
           "density": 0.8,
@@ -1926,7 +1812,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "density": 1.15,
@@ -1939,7 +1825,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.0,
@@ -1954,9 +1840,9 @@
     ],
     "missingBricks": [
       {
-        "name": "monolithic_glass_facade",
-        "category": "intermediate",
-        "reason": "Façade monumentale de gratte-ciel en perspective 3D avec damier de bureaux allumés, montants métalliques et reflets xénon spéculaires."
+        "name": "volumetric_spotlight",
+        "category": "atmosphere",
+        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
       }
     ]
   },
@@ -2017,7 +1903,7 @@
       },
       {
         "name": "Éblouissement solaire optique",
-        "type": "lens_flare",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 28.0 secondes",
         "description": "Un flare horizontal anamorphique balaye le pont d'envol lors d'une embardée de navigation du navire."
       }
@@ -2045,7 +1931,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0c4a6e",
           "bottomColor": "#ea580c",
@@ -2059,7 +1945,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#f8fafc",
           "density": 0.85,
@@ -2072,7 +1958,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fed7aa",
           "density": 0.85,
@@ -2084,7 +1970,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "waveColor": "#fef08a",
           "density": 0.85,
@@ -2098,7 +1984,7 @@
         }
       },
       {
-        "brick": "lens_flare",
+        "brickType": "lens_flare",
         "params": {
           "flareColor": "#ea580c",
           "density": 0.95,
@@ -2113,7 +1999,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0c4a6e",
           "density": 1.1,
@@ -2126,7 +2012,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.0,
@@ -2139,13 +2025,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "carrier_deck_catapult_rails",
-        "category": "intermediate",
-        "reason": "Pont d'envol en perspective avec rails de catapultes gravés, feux de bord de piste pulsants et déflecteur de jet blast levé."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "arrakis",
@@ -2154,59 +2034,59 @@
     "intensity": 2,
     "universe": "dune",
     "evocation": "Dune de Frank Herbert : la planète des sables, monde désertique infini sous les deux lunes. Vastes étendues de crêtes de dunes balayées par un vent régulier, sables d'orichalque miroitant sous la chaleur écrasante et bruine d'épice scintillante flottant dans l'atmosphère sous un ciel bleu-nuit naissant.",
-    "signature": "Un océan infini de dunes dorées ondulant sous deux lunes pâles, d'où s'élèvent des voiles de sable chaud et des scintillements d'épice.",
+    "signature": "Un océan nocturne infini de dunes sculptées par les vents, baigné par la clarté argentée de deux lunes pâles au-dessus d'un voile laminaire de sable doré.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel vespéral d'Arrakis, dégradé bleu nuit vers ambre cuivré où se détachent les disques pâles des deux lunes."
+        "description": "Ciel vespéral désertique bleu nuit vers ambre cuivré sous deux disques lunaires pâles."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Chaînes de dunes monumentales s'étendant à l'infini, alternant versants illuminés dorés et ombres bleu cobalt profondes."
+        "description": "Chaînes de dunes monumentales alternant versants dorés et ombres bleu cobalt."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Crêtes sinueuses d'avant-plan sculptées par le sirocco, avec micro-rides de sable (sand ripples) haute fréquence."
+        "description": "Crêtes sinueuses finement ridées sculptées par le vent sec nocturne."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Voiles de poussière de silice dorée dérivant en nappes fluides au ras des crêtes de sable."
+        "description": "Voiles de poussière siliceuse dorée dérivant en nappes laminaires au ras des crêtes."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Cristaux d'épice scintillants dans la brise avec distorsion thermique douce et grain cinéma minéral."
+        "description": "Paillettes minérales scintillant sous la lune avec grain minéral doux."
       }
     ],
     "particles": {
-      "type": "Poussière de sable fin d'Arrakis et paillettes d'épice scintillantes (dust)",
+      "type": "Sable fin et cristaux dorés scintillants (dust)",
       "size": "0.9 à 2.4 px",
       "speed": "0.2 dérive continue et soyeuse",
       "density": "115 particules",
-      "behavior": "Écoulement laminaire fluide le long des crêtes de dunes avec scintillements asynchrones sous l'incidence lunaire."
+      "behavior": "Écoulement laminaire fluide le long des crêtes sous incidence lunaire."
     },
     "atmosphere": {
-      "mist": "Brume de chaleur douce et suspension de poussière minérale dorée.",
-      "light": "Contraste majestueux entre la chaleur ambrée du sable (#d97706) et la fraîcheur crépusculaire bleue (#3b82f6).",
+      "mist": "Brume de chaleur résiduelle et suspension fine de silice dorée.",
+      "light": "Contraste entre chaleur ambrée (#d97706) et crépuscule bleu (#3b82f6).",
       "airColor": "Ambre chaud (#b45309) et bleu nuit céleste (#1e3a8a).",
-      "mainLightSource": "Double lune céleste d'Arrakis et soleil couchant lointain."
+      "mainLightSource": "Double halo lunaire zénithal et lueur de couchant."
     },
     "rareEvents": [
       {
         "name": "Bourrasque de sirocco",
         "type": "wind_gust",
         "frequency": "Intervalle moyen de 24.0 secondes",
-        "description": "Une vague d'air chaud balaie les dunes, soulevant une nappe dorée de poussière qui ondule à travers l'écran."
+        "description": "Vague d'air chaud soulevant une nappe dorée de poussière sur les dunes."
       },
       {
-        "name": "Étoile filante sur Arrakis",
+        "name": "Étoile filante sur les dunes",
         "type": "shooting_star",
         "frequency": "Intervalle moyen de 36.0 secondes",
-        "description": "Un bolide lumineux traverse le ciel nocturne au-dessus des deux lunes pâles."
+        "description": "Bolide lumineux traversant le ciel nocturne au-dessus des deux lunes."
       }
     ],
     "interaction": {
@@ -2232,7 +2112,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#1e3a8a",
           "bottomColor": "#78350f",
@@ -2246,7 +2126,7 @@
         }
       },
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
           "sandColor": "#f59e0b",
           "shadowColor": "#1e293b",
@@ -2260,7 +2140,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.9,
@@ -2272,7 +2152,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#fed7aa",
           "density": 0.75,
@@ -2286,7 +2166,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#93c5fd",
           "density": 0.6,
@@ -2299,7 +2179,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1e1b4b",
           "density": 1.1,
@@ -2312,7 +2192,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.0,
@@ -2325,13 +2205,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "twin_moons_celestial",
-        "category": "background",
-        "reason": "Deux disques lunaires procéduraux étagés dans le ciel avec texture de cratères douce et lueur de diffusion atmosphérique."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "delorean",
@@ -2340,32 +2214,32 @@
     "intensity": 2,
     "universe": "retour-vers-le-futur",
     "evocation": "Retour vers le Futur (Back to the Future) : le saut temporel à 88 miles à l'heure sur l'asphalte mouillé du parking du Twin Pines Mall en pleine nuit. Double traînée de pneus enflammés brûlant le bitume, arcs électriques bleu cyan jaillissant du convecteur temporel et gerbes d'étincelles chrono-cinétiques illuminant la carrosserie en acier inoxydable brossé.",
-    "signature": "Une double trace de pneus en flammes vives zébrant l'asphalte mouillé, accompagnée d'arcs électriques temporels bleu cyan crépitants.",
+    "signature": "Deux sillons parallèles de flammes orange vives embrasant une chaussée mouillée nocturne à reflets spéculaires, zébrés d'arcs de foudre temporelle bleu cyan crépitants.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Nuit sombre de 1985 sur le parking désert, éclairée par les projecteurs sodium lointains et un ciel d'encre."
+        "description": "Nuit urbaine sombre de 1985 éclairée par des réverbères sodium lointains sur un ciel d'encre."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette brossée de la carrosserie en inox de la DeLorean, ornée des serpentins de flux temporel bleus."
+        "description": "Silhouettes géométriques d'acier inoxydable brossé et halos électriques bleus filant vers l'horizon."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Deux sillons parallèles de feu incandescent brûlant le bitume avec reflets spéculaires dans les flaques d'eau."
+        "description": "Deux traces parallèles d'incandescence enflammée miroitant sur un sol humide et fissuré."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Volutes de fumée bleutée et décharges électriques arborescentes cyan crépitant dans l'air ionisé."
+        "description": "Volutes de fumée d'ozone et décharges arborescentes cyan crépitant dans l'air ionisé."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Pluie d'étincelles temporelles dorées et cyan retombant au sol, avec léger grain cinéma et aberration chromatique 80s."
+        "description": "Pluie d'étincelles dorées et cyan retombant sur l'asphalte avec grain rétro et aberration optique."
       }
     ],
     "particles": {
@@ -2376,23 +2250,23 @@
       "behavior": "Jaillissement parabolique depuis les rails de feu avec crépitement haute fréquence."
     },
     "atmosphere": {
-      "mist": "Fumée d'ozone bleutée et vapeur d'eau d'asphalte brûlé.",
-      "light": "Éclatant contraste entre le feu orange flamboyant (#ea580c) et l'énergie temporelle bleu cyan (#0ea5e9).",
-      "airColor": "Gris acier bleuté (#94a3b8) et noir bitume (#0f172a).",
-      "mainLightSource": "Traces de pneus enflammées et convecteur temporel ionisé."
+      "mist": "Fumée d'ozone bleutée et vapeur de chaussée brûlée.",
+      "light": "Contraste saisissant entre flammes orange (#ea580c) et arcs électriques cyan (#0ea5e9).",
+      "airColor": "Gris acier (#94a3b8) et bitume noir (#0f172a).",
+      "mainLightSource": "Sillons enflammés au sol et décharges électriques temporelles."
     },
     "rareEvents": [
       {
-        "name": "Décharge temporelle à 88 mph",
+        "name": "Décharge électrique temporelle",
         "type": "lightning",
         "frequency": "Intervalle moyen de 18.0 secondes",
-        "description": "Trois arcs de foudre cyan vif parcourent l'écran avec un flash lumineux intense, simulant le saut temporel."
+        "description": "Trois arcs de foudre cyan foudroient l'espace avec un flash lumineux vif."
       },
       {
         "name": "Onde de choc chrono-spatiale",
         "type": "shockwave",
         "frequency": "Intervalle moyen de 26.0 secondes",
-        "description": "Une onde de distorsion temporelle se propage depuis les traces de pneus, courbant brièvement l'asphalte."
+        "description": "Une onde de distorsion annulaire courbant les reflets sur le bitume mouillé."
       }
     ],
     "interaction": {
@@ -2418,7 +2292,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f172a",
           "bottomColor": "#1e293b",
@@ -2432,7 +2306,7 @@
         }
       },
       {
-        "brick": "lava_flow",
+        "brickType": "lava_flow",
         "params": {
           "crustColor": "#0f172a",
           "magmaColor": "#ea580c",
@@ -2446,7 +2320,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "boltColor": "#38bdf8",
           "density": 0.85,
@@ -2459,7 +2333,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#facc15",
           "altColor": "#38bdf8",
@@ -2472,7 +2346,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "waveColor": "#0ea5e9",
           "density": 0.8,
@@ -2486,7 +2360,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "density": 1.15,
@@ -2499,7 +2373,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.05,
@@ -2514,9 +2388,9 @@
     ],
     "missingBricks": [
       {
-        "name": "twin_tire_fire_trails",
-        "category": "special",
-        "reason": "Double traînée parallèle de flammes vives en perspective fuyante sur bitume mouillé avec reflets spéculaires et braises."
+        "name": "wet_cobblestone",
+        "category": "background",
+        "reason": "Sol pavé humide à réflexions spéculaires et flaques irrégulières."
       }
     ]
   },
@@ -2571,7 +2445,7 @@
     "rareEvents": [
       {
         "name": "Bouffée de rayonnement relativiste",
-        "type": "lens_flare",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 22.0 secondes",
         "description": "Une poussée d'énergie thermique dans le disque d'accrétion projette un faisceau anamorphique doré et blanc traversant l'écran."
       },
@@ -2600,12 +2474,12 @@
       "CodePen procedural relativistic accretion disk"
     ],
     "risks": {
-      "pitfall": "Un simple anneau jaune plat ressemblant aux anneaux de Saturne sans l'effet de lentille gravitationnelle unique de Gargantua.",
-      "solution": "Double halo de courbure d'Einstein supérieur et inférieur, asymétrie Doppler de luminosité et déformation optique d'étoiles."
+      "pitfall": "Simple anneau plat ordinaire sans effet de lentille gravitationnelle relativiste.",
+      "solution": "Double halo de courbure supérieur et inférieur du trou noir relativiste, asymétrie Doppler et distorsion d'étoiles."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#020617",
@@ -2619,7 +2493,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 1.1,
@@ -2631,7 +2505,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#eab308",
           "density": 1.15,
@@ -2644,7 +2518,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.9,
@@ -2656,7 +2530,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "waveColor": "#ca8a04",
           "density": 0.8,
@@ -2670,7 +2544,7 @@
         }
       },
       {
-        "brick": "lens_flare",
+        "brickType": "lens_flare",
         "params": {
           "flareColor": "#eab308",
           "density": 0.9,
@@ -2685,7 +2559,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "density": 1.25,
@@ -2700,9 +2574,9 @@
     ],
     "missingBricks": [
       {
-        "name": "gravitational_lensing_black_hole",
+        "name": "gravitational_lensing",
         "category": "special",
-        "reason": "Shader volumétrique de trou noir relativiste avec horizon des événements opaque, disque d'accrétion doublement courbé par gravité et distorsion d'étoiles."
+        "reason": "Shader de réfraction et lentille gravitationnelle incurvant l'arrière-plan."
       }
     ]
   },
@@ -2791,7 +2665,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#082f49",
@@ -2805,7 +2679,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 1.2,
@@ -2817,7 +2691,7 @@
         }
       },
       {
-        "brick": "waves",
+        "brickType": "waves",
         "params": {
           "crestColor": "#e0f2fe",
           "deepColor": "#082f49",
@@ -2830,7 +2704,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#0f172a",
           "density": 0.75,
@@ -2843,7 +2717,7 @@
         }
       },
       {
-        "brick": "snow",
+        "brickType": "snow",
         "params": {
           "snowColor": "#f8fafc",
           "density": 0.75,
@@ -2856,7 +2730,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "density": 0.65,
@@ -2869,7 +2743,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
           "density": 1.2,
@@ -2882,7 +2756,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.0,
@@ -2895,13 +2769,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "titanic_bow_iceberg_silhouette",
-        "category": "intermediate",
-        "reason": "Silhouette procédurale de la proue monumentale du paquebot en acier riveté et masse d'iceberg aux flancs cristallins bleu froid."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "phone_home",
@@ -2910,64 +2778,64 @@
     "intensity": 2,
     "universe": "e-t-l-extra-terrestre",
     "evocation": "E.T. l'extra-terrestre de Steven Spielberg : l'envolée mythique à bicyclette dans la nuit de Californie. Forêt de grands pins balayée par la brume nocturne, faisceaux de lampes torches des scientifiques perçant les sous-bois, et la silhouette noire d'un panier de vélo avec capuchon traversant le disque monumental d'une pleine lune dorée et argentée.",
-    "signature": "La silhouette d'un vélo volant traversant une pleine lune argentée colossale, au-dessus d'une forêt de conifères zébrée de faisceaux de lampes torches.",
+    "signature": "Une forêt nocturne de séquoias californiens baignée par le disque argenté d'une pleine lune monumentale, traversée par des faisceaux de lampes torches et des lucioles dorées s'élevant vers les étoiles.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel de nuit bleu saphir profond dominé par un disque monumental de pleine lune d'un blanc-or lumineux."
+        "description": "Ciel de nuit bleu saphir profond dominé par un large disque lunaire lumineux blanc-or nimbé d'un halo stellaire."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette noire et délicate du vélo volant avec son passager dans le panier, se détachant exactement au centre du disque lunaire."
+        "description": "Strates lointaines de crêtes montagneuses et vallées boisées estompées dans une brume bleutée."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Cimes effilées d'une forêt de sapins et pins de Californie ondulant lentement sous une brise feutrée."
+        "description": "Cimes effilées d'une forêt de sapins et séquoias ondulant lentement sous une brise feutrée."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Nappe de brume argentée dérivant entre les troncs et zébrée par les faisceaux coniques de lampes torches au sol."
+        "description": "Nappe de brume argentée dérivant entre les troncs et zébrée par des faisceaux lumineux obliques balayant la clairière."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Lucioles dorées féeriques et micro-particules d'or magique flottant dans l'air, avec grain pellicule 35mm Spielberg 80s."
+        "description": "Lucioles dorées et écarlates féeriques flottant en apesanteur, adoucies par un grain pellicule 35mm nostalgique et un vignettage sombre."
       }
     ],
     "particles": {
-      "type": "Lucioles féeriques nocturnes et poussières d'étoiles dorées (fireflies & dust)",
+      "type": "Lucioles nocturnes féeriques dorées et rouge rubis doux (fireflies & dust)",
       "size": "1.2 à 3.0 px",
       "speed": "0.18 vol organique doux",
       "density": "85 particules",
-      "behavior": "Trajectoires sinueuses avec pulsation biologique de bioluminescence dorée et rouge douce."
+      "behavior": "Trajectoires sinueuses ascendantes avec pulsation biologique chaleureuse dorée et carmin très doux."
     },
     "atmosphere": {
       "mist": "Brume forestière argentée baignée dans la lumière lunaire.",
-      "light": "Magique, nostalgique et chaleureuse, opposant le bleu nuit profond (#0f172a) à l'éclat argenté (#f8fafc) et au rouge réconfortant du doigt d'E.T. (#ef4444).",
+      "light": "Magique, nostalgique et chaleureuse, opposant le bleu nuit profond (#0f172a) à l'éclat argenté (#f8fafc) et à une lueur rouge cœur (#ef4444).",
       "airColor": "Bleu nuit sylvestre (#1e293b) et halo argenté (#cbd5e1).",
-      "mainLightSource": "Pleine lune monumentale et faisceaux de lampes torches."
+      "mainLightSource": "Pleine lune monumentale et faisceaux obliques traversant la canopée."
     },
     "rareEvents": [
       {
-        "name": "Pulsation du cœur et doigt lumineux",
-        "type": "volumetric_glow",
+        "name": "Étoile filante nocturne",
+        "type": "shooting_star",
         "frequency": "Intervalle moyen de 18.0 secondes",
-        "description": "Un halo rouge écarlate doux pulse doucement au premier plan, évoquant la connexion télépathique d'E.T."
+        "description": "Un météore étincelant blanc-or traverse silencieusement le ciel au-dessus du disque lunaire."
       },
       {
-        "name": "Balayage de lampe torche à travers les pins",
-        "type": "god_rays",
+        "name": "Souffle lunaire à travers les pins",
+        "type": "wind_gust",
         "frequency": "Intervalle moyen de 28.0 secondes",
-        "description": "Un faisceau volumétrique de lampe de poche traverse les branchages en direction du ciel avant de s'estomper."
+        "description": "Une brise tiède fait onduler la brume forestière et emporte un tourbillon de lucioles vers la cime des conifères."
       }
     ],
     "interaction": {
-      "mouse": "Déplace subtilement la parallaxe de la silhouette du vélo par rapport au disque de lune et attire les lucioles dorées.",
-      "scroll": "Modifie la taille apparente de la lune et la densité de la brume entre les sapins."
+      "mouse": "Déplace subtilement la parallaxe de la clairière et des rayons lunaires tout en attirant délicatement les lucioles dorées.",
+      "scroll": "Ajuste la profondeur focale de la lune et la densité de la brume entre les sapins."
     },
     "palette": [
       "#0f172a",
@@ -2983,110 +2851,77 @@
       "CodePen atmospheric night forest moon fireflies"
     ],
     "risks": {
-      "pitfall": "Un simple dessin de vélo sans poésie cinématographique ni féerie nocturne.",
-      "solution": "Disque lunaire texturé à lueur volumétrique douce, faisceaux de torches perçant la brume et lucioles vivantes réactives."
+      "pitfall": "Une nuit forestière banale sans émerveillement cinématographique ni féerie nocturne.",
+      "solution": "Halo lunaire massif en contre-jour, faisceaux volumétriques perçant la brume et lucioles chaudes dorées/rubis réactives."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
-          "topColor": "#020617",
-          "bottomColor": "#0f172a",
-          "horizonColor": "#1e293b",
-          "density": 1.3,
-          "speed": 0.1,
-          "depth": 0.08,
-          "intensity": 0.95,
-          "randomness": 0.15,
-          "noiseScale": 1.0
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b"
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
-          "coreColor": "#f8fafc",
-          "glowColor": "#93c5fd",
-          "outerColor": "#0f172a",
-          "density": 1.2,
-          "speed": 0.15,
-          "depth": 0.2,
-          "intensity": 1.15,
-          "randomness": 0.2
+          "color": "#f8fafc",
+          "intensity": 0.45,
+          "radius": 0.42
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
-          "forestColor": "#020617",
-          "fogColor": "#1e293b",
-          "density": 1.15,
-          "speed": 0.15,
-          "depth": 0.35,
-          "intensity": 1.0,
-          "randomness": 0.45,
-          "windStrength": 0.3
+          "color": "#09111e",
+          "layers": 3,
+          "treeHeight": 0.38
         }
       },
       {
-        "brick": "fireflies",
+        "brickType": "noisy_fog",
         "params": {
-          "flyColor": "#facc15",
-          "density": 0.85,
-          "speed": 0.2,
-          "depth": 0.4,
-          "intensity": 1.1,
-          "randomness": 0.5,
-          "pulseSpeed": 1.4
+          "color": "#cbd5e1",
+          "density": 0.3,
+          "speed": 0.14
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
-          "rayColor": "#f8fafc",
-          "density": 0.75,
-          "speed": 0.2,
-          "depth": 0.3,
-          "intensity": 0.85,
-          "randomness": 0.35,
-          "lightSourceX": -0.3,
-          "lightY": -0.2,
-          "decay": 0.9
+          "color": "#fef08a",
+          "intensity": 0.4,
+          "angle": -0.4
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "fireflies",
         "params": {
-          "vignetteColor": "#020617",
-          "density": 1.15,
-          "speed": 0.1,
-          "depth": 0.25,
-          "intensity": 0.7,
-          "randomness": 0.1,
-          "roundness": 0.65,
-          "smoothness": 0.85
+          "color": "#facc15",
+          "secondaryColor": "#ef4444",
+          "count": 85
         }
       },
       {
-        "brick": "grain",
+        "brickType": "shooting_star",
         "params": {
-          "grainColor": "#ffffff",
-          "density": 1.0,
-          "speed": 0.7,
-          "depth": 0.15,
-          "intensity": 0.05,
-          "randomness": 0.35,
-          "monochrome": true,
-          "clumpSize": 1.0
+          "frequency": 18.0
+        }
+      },
+      {
+        "brickType": "vignette",
+        "params": {
+          "darkness": 0.55
+        }
+      },
+      {
+        "brickType": "film_grain",
+        "params": {
+          "intensity": 0.18
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "flying_bicycle_moon_silhouette",
-        "category": "special",
-        "reason": "Silhouette vectorielle d'un vélo avec panier et cape flottante traversant le disque texturé d'une pleine lune géante."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "kevin",
@@ -3095,32 +2930,32 @@
     "intensity": 2,
     "universe": "maman-jai-rate-lavion",
     "evocation": "Maman, j'ai raté l'avion (Home Alone) de Chris Columbus : la demeure cossue des McCallister sous une tempête de neige feutrée le soir de Noël dans la banlieue de Chicago. Façade en briques rouges illuminée de guirlandes de Noël multicolores qui clignotent chaleureusement, silhouettes de découpes de pièges aux fenêtres éclairées, et doux flocons de neige cotonneux tournoyant dans la nuit étoilée.",
-    "signature": "Une façade chaleureuse de maison sous la neige de Noël, où scintillent des guirlandes lumineuses multicolores pendant que tombent de doux flocons cotonneux.",
+    "signature": "Une demeure hivernale en briques rouges blottie sous la neige de Noël, illuminée de l'intérieur par un foyer ambré tandis que des guirlandes féeriques et flocons cotonneux dansent dans la nuit.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel de nuit de Noël bleu marine profond, parsemé d'étoiles douces et de nuées neigeuses floues."
+        "description": "Ciel de nuit de décembre bleu marine profond semé d'étoiles douces."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette cossue de la maison en briques rouges avec toiture couverte d'un épais manteau de neige immaculée."
+        "description": "Silhouettes de maisons en briques et conifères coiffés d'un épais manteau neigeux."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Baies vitrées illuminées d'un or ambré chaleureux avec silhouettes en carton dansantes (le mannequin et le train électrique)."
+        "description": "Fenêtres rayonnantes d'une douce chaleur ambrée de cheminée dans la nuit hivernale."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Guirlandes lumineuses de Noël multicolores (rouge, vert, or) clignotant doucement le long des avant-toits et des sapins."
+        "description": "Éclats lumineux festifs rouge, vert et or scintillant doucement en suspension."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Averse de flocons de neige cotonneux descendant en tourbillons lents et feutrés, avec vignettage chaleureux."
+        "description": "Flocons cotonneux en chute pendulaire lente avec vignettage chaleureux."
       }
     ],
     "particles": {
@@ -3138,16 +2973,16 @@
     },
     "rareEvents": [
       {
-        "name": "Scintillement festif des guirlandes",
-        "type": "flickering_light",
+        "name": "Scintillement chaleureux du foyer",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 16.0 secondes",
-        "description": "Les guirlandes multicolores changent de rythme de clignotement en cascade festive le long de la toiture."
+        "description": "Une douce pulsation d'ambre chaud rayonne des fenêtres et fait briller les flocons proches."
       },
       {
         "name": "Bourrasque de neige féerique",
         "type": "wind_gust",
         "frequency": "Intervalle moyen de 26.0 secondes",
-        "description": "Une douce brise hivernale fait tourbillonner une nuée de flocons blancs devant la fenêtre illuminée."
+        "description": "Une brise d'hiver fait tournoyer les flocons blancs devant les lueurs de fête."
       }
     ],
     "interaction": {
@@ -3173,7 +3008,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f172a",
           "bottomColor": "#1e293b",
@@ -3187,7 +3022,7 @@
         }
       },
       {
-        "brick": "snow",
+        "brickType": "snow",
         "params": {
           "snowColor": "#f8fafc",
           "density": 1.1,
@@ -3200,7 +3035,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#facc15",
           "secondaryColor": "#ef4444",
@@ -3215,7 +3050,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#f8fafc",
           "density": 0.7,
@@ -3229,7 +3064,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "density": 1.1,
@@ -3242,7 +3077,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 0.95,
@@ -3255,13 +3090,6 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "christmas_house_facade_lights",
-        "category": "intermediate",
-        "reason": "Façade de maison en briques sous la neige avec guirlandes festives multicolores clignotantes et fenêtres éclairées chaleureuses."
-      }
-    ]
+    "missingBricks": []
   }
 ]
-

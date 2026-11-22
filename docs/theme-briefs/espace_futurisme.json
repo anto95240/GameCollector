@@ -50,7 +50,7 @@
     "rareEvents": [
       {
         "name": "Éruption proto-stellaire",
-        "type": "volumetric_glow",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 14.0 secondes",
         "description": "Sursaut de radiance d'une étoile en formation au cœur du vortex, projetant un halo cyan étincelant qui illumine les voiles gazeux périphériques."
       },
@@ -84,7 +84,7 @@
     },
     "bricks": [
       {
-        "brick": "nebula",
+        "brickType": "nebula",
         "params": {
           "primaryColor": "#7c3aed",
           "secondaryColor": "#020617",
@@ -96,7 +96,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 0.85,
@@ -106,7 +106,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#38bdf8",
           "glowColor": "#aa7ef3",
@@ -118,7 +118,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#aa7ef3",
           "density": 0.75,
@@ -128,7 +128,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#f8fafc",
           "trailColor": "#38bdf8",
@@ -138,7 +138,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.55,
@@ -146,7 +146,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.06,
           "speed": 0.7,
@@ -214,7 +214,7 @@
       },
       {
         "name": "Micro-éruption de nodule de matière",
-        "type": "volumetric_glow",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 22.0 secondes",
         "description": "Un grumeau de matière disloqué franchit l'horizon dans un éclair d'émission synchrotron doré aveuglant."
       }
@@ -242,7 +242,7 @@
     },
     "bricks": [
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 0.9,
@@ -252,7 +252,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#ea580c",
@@ -264,7 +264,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#ea580c",
           "coreColor": "#fef08a",
@@ -275,7 +275,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#f97316",
           "density": 0.7,
@@ -284,7 +284,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#ea580c",
           "speed": 1.1,
@@ -293,7 +293,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "intensity": 0.5,
           "spread": 0.02,
@@ -301,7 +301,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.75,
@@ -309,7 +309,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.07,
           "speed": 0.8,
@@ -320,9 +320,9 @@
     ],
     "missingBricks": [
       {
-        "name": "black_hole_lensing",
+        "name": "gravitational_lensing",
         "category": "special",
-        "reason": "Shader analytique de trou noir de Schwarzschild/Kerr calculant la lentille gravitationnelle d'Einstein 360°, l'ombre centrale et le disque d'accrétion à double courbure avec décalage Doppler-Fizeau."
+        "reason": "Shader de réfraction et lentille gravitationnelle incurvant l'arrière-plan."
       }
     ]
   },
@@ -411,7 +411,7 @@
     },
     "bricks": [
       {
-        "brick": "hex_grid",
+        "brickType": "hex_grid",
         "params": {
           "borderColor": "#0ea5e9",
           "fillColor": "#f8fafc",
@@ -423,7 +423,7 @@
         }
       },
       {
-        "brick": "line_constellation",
+        "brickType": "line_constellation",
         "params": {
           "nodeColor": "#0ea5e9",
           "lineColor": "#0d95d2",
@@ -436,7 +436,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#ffffff",
           "glowColor": "#0ea5e9",
@@ -448,7 +448,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#0284c7",
           "density": 0.8,
@@ -458,7 +458,7 @@
         }
       },
       {
-        "brick": "glitch",
+        "brickType": "glitch",
         "params": {
           "glitchColor": "#0ea5e9",
           "intensity": 0.45,
@@ -467,7 +467,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#0ea5e9",
           "speed": 1.4,
@@ -476,20 +476,14 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "intensity": 0.3,
           "spread": 0.015
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "quantum_orbitals",
-        "category": "special",
-        "reason": "Modélisation procédurale 3D d'orbitales atomiques de Schrödinger en harmoniques sphériques avec nuage de probabilités d'électrons semi-transparents."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "mars_colony",
@@ -548,7 +542,7 @@
       },
       {
         "name": "Pulsation de balise de la colonie",
-        "type": "flickering_light",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 18.0 secondes",
         "description": "Un faisceau de signalisation au sommet d'une tour de forage clignote de façon saccadée à travers les volutes de sable."
       }
@@ -576,7 +570,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#450a0a",
           "bottomColor": "#7f1d1d",
@@ -586,7 +580,7 @@
         }
       },
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
           "sandColor": "#ea580c",
           "shadowColor": "#450a0a",
@@ -598,7 +592,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#450a0a",
           "sunColor": "#c2410c",
@@ -609,7 +603,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#f8c5aa",
           "density": 1.1,
@@ -619,7 +613,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#ea580c",
           "density": 0.9,
@@ -629,7 +623,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#ea580c",
           "density": 0.7,
@@ -639,7 +633,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#2b0505",
           "intensity": 0.65,
@@ -647,7 +641,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.08,
           "speed": 0.7,
@@ -655,13 +649,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "colony_structures",
-        "category": "intermediate",
-        "reason": "Silhouettes vectorielles procédurales de dômes géodésiques pressurisés, antennes paraboliques et pylônes d'antennes de communication martienne."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "stargate",
@@ -670,64 +658,64 @@
     "intensity": 2,
     "universe": "stargate sg-1 / stargate atlantis",
     "evocation": "La porte des étoiles en Naquadah créée par les Anciens (film Stargate de Roland Emmerich et série Stargate SG-1). Un immense anneau circulaire alien gravé de symboles de constellations et verrouillé par 9 chevrons, à l'intérieur duquel ondule un vortex d'horizon d'événements fluide comme un miroir d'eau vertical baigné d'un rayonnement Cherenkov bleu électrique (#0f172a, #3b82f6).",
-    "signature": "Un grand anneau alien de Naquadah dont l'horizon d'événements intérieur miroite comme une surface d'eau verticale bleu Cherenkov traversée d'ondes d'énergie pulsantes.",
+    "signature": "Un rideau vertical d'énergie aquatique bleu Cherenkov qui ondule en caustiques miroitantes au cœur d'une chambre souterraine d'acier, pulsant d'ondes spatio-temporelles et d'étincelles ionisées.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Obscurité minérale de la salle d'embarquement souterraine du SGC, percée des reflets bleutés du trou de ver sub-spatial."
+        "description": "Obscurité minérale d'une chambre souterraine en béton et acier brossé baignée de reflets azur."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette monumentale de l'anneau circulaire en alliage sombre avec chevrons gravés et glyphes de constellations en rétro-éclairage."
+        "description": "Structures d'arche cyclopéenne en alliage sombre gravées de lignes géométriques rétro-éclairées."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "L'horizon d'événements liquide vertical : nappe fluide bleu électrique (#3b82f6) ondulant de caustiques en interférence constructive."
+        "description": "Surface verticale fluide bleu électrique (#3b82f6) agitée par des caustiques lumineuses en interférence continue."
       },
       {
         "plan": 4,
         "type": "Avant-plan atmosphérique",
-        "description": "Rayonnement volumétrique Cherenkov bleuté projetant des cônes de lumière et étincelles de décharge plasma aux points de verrouillage."
+        "description": "Rayonnement volumétrique Cherenkov bleuté et gerbes d'étincelles ioniques jaillissant par salves."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Réfraction prismatique annulaire en périphérie du cadre et vignetage bleu nuit cinématographique."
+        "description": "Réfraction périphérique prismatique et vignettage bleu nuit profond."
       }
     ],
     "particles": {
-      "type": "Étincelles ionisées et décharges de Naquadah (sparks)",
+      "type": "Étincelles ionisées bleues et blanches (sparks)",
       "size": "1.2 à 2.4 px",
-      "speed": "0.75 retombée balistique et éclats sporadiques",
+      "speed": "0.75 éclats vifs",
       "density": "80 particules actives",
-      "behavior": "Jaillissements vifs par salves depuis les chevrons de la porte, se dissipant rapidement dans l'air ionisé."
+      "behavior": "Salves intermittentes autour du miroir liquide énergétique, se dissipant rapidement dans l'air chargé d'ozone."
     },
     "atmosphere": {
-      "mist": "Volutes d'ozone et de vapeur ionisée flottant au pied de la rampe d'accès du vortex.",
-      "light": "Luminescence aquatique pulsante bleu azur (#3b82f6, #71a4f9) éclairant violemment les parois métalliques.",
-      "airColor": "Bleu nuit sombre (#0f172a) saturé d'énergie électromagnétique Cherenkov.",
-      "mainLightSource": "La surface liquide miroitante de l'horizon d'événements."
+      "mist": "Vapeur d'ozone froide ionisée stagnant au bas de la salle.",
+      "light": "Luminescence aquatique pulsante bleu Cherenkov (#3b82f6, #71a4f9).",
+      "airColor": "Bleu nuit abyssal (#080d1a) saturé d'éclats électriques azur (#e0f2fe).",
+      "mainLightSource": "Le miroir vertical d'énergie liquide et son cœur de lentille gravitationnelle."
     },
     "rareEvents": [
       {
-        "name": "Onde d'établissement de vortex (Kawoosh résiduel)",
+        "name": "Onde de distorsion de vortex",
         "type": "shockwave",
         "frequency": "Intervalle moyen de 12.0 secondes",
-        "description": "Pulsation d'énergie concentrique bleue jaillissant du centre du portail vers l'observateur avec dispersion chromatique."
+        "description": "Une pulsation concentrique bleue jaillit du cœur du rideau fluide avec une légère dispersion chromatique."
       },
       {
-        "name": "Verrouillage de chevron énergétique",
-        "type": "sparks",
+        "name": "Décharge ionique haute tension",
+        "type": "lightning",
         "frequency": "Intervalle moyen de 17.0 secondes",
-        "description": "Un chevron supérieur s'allume brièvement d'une incandescence orange/or vive avant de libérer une salve d'étincelles."
+        "description": "Un arc bleuté illumine brièvement l'arche métallique avant de libérer une salve d'étincelles."
       }
     ],
     "interaction": {
-      "mouse": "La perspective parallaxe fait pivoter l'anneau en 3D et perturbe la vitesse des caustiques liquides du trou de ver au survol.",
-      "scroll": "Accentue la réfraction centrale en donnant l'impression de franchir l'horizon d'événements pour voyager dans le réseau."
+      "mouse": "Crée une parallaxe profonde sur l'arche et perturbe la fréquence des caustiques liquides au survol.",
+      "scroll": "Accentue la courbure de réfraction centrale comme un plongeon vers le point de fuite."
     },
     "palette": [
       "#080d1a",
@@ -743,91 +731,69 @@
       "Three.js circular ring portal shader volumetric"
     ],
     "risks": {
-      "pitfall": "Une texture d'eau 2D banale collée dans un cercle gris sans l'énergie de vortex ni le rayonnement Cherenkov caractéristique de Stargate.",
-      "solution": "Caustiques Voronoi doubles en interférence constructive, halo volumétrique bleu froid, salves d'étincelles de chevrons et onde de choc kawoosh."
+      "pitfall": "Texture d'eau banale ou reproduction de l'anneau à chevrons protégé.",
+      "solution": "Double caustique Voronoi lumineuse combinée à un effet de lentille gravitationnelle et des décharges Cherenkov sans anneau à chevrons."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#080d1a",
-          "bottomColor": "#0f172a",
-          "horizonColor": "#1e3a8a",
-          "density": 1,
-          "speed": 0.15
+          "bottomColor": "#1e3a8a"
         }
       },
       {
-        "brick": "water_caustics",
+        "brickType": "water_caustics",
         "params": {
-          "waterColor": "#0f172a",
-          "causticColor": "#71a4f9",
-          "density": 1.1,
-          "speed": 0.28,
-          "intensity": 1.3,
-          "depth": 0.25
+          "color": "#3b82f6",
+          "speed": 0.45
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
-          "coreColor": "#e0f2fe",
-          "glowColor": "#3b82f6",
-          "outerColor": "#0f172a",
-          "density": 1.2,
-          "intensity": 1.25,
-          "glowX": 0,
-          "glowY": 0
+          "color": "#71a4f9",
+          "intensity": 0.55
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
-          "sparkColor": "#71a4f9",
-          "coreColor": "#ffffff",
-          "density": 0.7,
-          "speed": 0.8,
-          "burstInterval": 3
+          "color": "#e0f2fe",
+          "count": 80
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
-          "ringColor": "#71a4f9",
-          "speed": 1.3,
-          "waveInterval": 12,
-          "chromaticAberration": 0.025
+          "frequency": 12.0,
+          "color": "#60a5fa"
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
-          "intensity": 0.45,
-          "spread": 0.02
+          "intensity": 0.14
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
-          "vignetteColor": "#000000",
-          "intensity": 0.65,
-          "roundness": 0.7
+          "darkness": 0.6
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
-          "intensity": 0.06,
-          "speed": 0.6,
-          "monochrome": true
+          "intensity": 0.12
         }
       }
     ],
     "missingBricks": [
       {
-        "name": "stargate_ring",
+        "name": "gravitational_lensing",
         "category": "special",
-        "reason": "Modélisation de l'anneau mécanique en Naquadah avec 9 chevrons biseautés à rétro-éclairage orange et couronne intérieure de symboles rotatifs."
+        "reason": "Shader de réfraction et lentille gravitationnelle incurvant l'arrière-plan."
       }
     ]
   },
@@ -838,7 +804,7 @@
     "intensity": 2,
     "universe": "espace profond / sondes voyager / 2001 l'odyssée de l'espace",
     "evocation": "Le vide interstellaire insondable au-delà de l'héliosphère parcouru par les sondes Voyager 1 et 2, le silence infini et la majesté cosmique (2001: L'Odyssée de l'espace). Une obscurité noire absolue (#000000) piquée d'un champ multi-couches de milliers d'étoiles scintillantes violettes et blanches (#a855f7), traversée par la fugacité d'étoiles filantes et le passage silencieux d'un vaisseau d'exploration solitaire.",
-    "signature": "Une voûte stellaire d'une profondeur abyssale où mille étoiles de magnitude variable scintillent lentement, fendant le silence par la traversée fugace de météores argentés.",
+    "signature": "Un espace profond améthyste et noir constellé de trois strates d'étoiles à aigrettes, traversé par de lointains vaisseaux en dérive et de fréquents météores lumineux.",
     "scene": [
       {
         "plan": 1,
@@ -884,13 +850,13 @@
         "name": "Bolide hypersonique étincelant",
         "type": "shooting_star",
         "frequency": "Intervalle moyen de 8.0 secondes",
-        "description": "Une étoile filante brillante traverse rapidement le cadre d'un angle oblique avec traînée de plasma à décroissance exponentielle."
+        "description": "Étoile filante brillante traversant rapidement le cadre avec traînée décroissante."
       },
       {
-        "name": "Sursaut de supernova lointaine",
-        "type": "volumetric_glow",
+        "name": "Onde de supernova lointaine",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 25.0 secondes",
-        "description": "Un point lumineux lointain pulse soudainement d'un éclat blanc-violet x3 avant de s'éteindre lentement dans l'obscurité."
+        "description": "Onde lumineuse violette et blanche irradiant doucement d'une étoile lointaine."
       }
     ],
     "interaction": {
@@ -916,7 +882,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#090514",
@@ -926,7 +892,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 1.4,
@@ -936,7 +902,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#b975f9",
           "density": 0.65,
@@ -945,7 +911,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#a855f7",
@@ -956,7 +922,7 @@
         }
       },
       {
-        "brick": "parallax_fleet",
+        "brickType": "parallax_fleet",
         "params": {
           "hullColor": "#05020a",
           "engineColor": "#a855f7",
@@ -967,7 +933,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.7,
@@ -975,7 +941,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.06,
           "speed": 0.5,
@@ -1070,7 +1036,7 @@
     },
     "bricks": [
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#fca5a5",
           "density": 0.8,
@@ -1080,7 +1046,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#dc2626",
           "glowColor": "#7f1d1d",
@@ -1092,7 +1058,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#dc2626",
           "hotColor": "#fca5a5",
@@ -1103,7 +1069,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#e66262",
           "density": 0.6,
@@ -1112,7 +1078,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#dc2626",
           "speed": 1.1,
@@ -1121,7 +1087,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "intensity": 0.5,
           "speed": 1.4,
@@ -1129,14 +1095,14 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "intensity": 0.65,
           "spread": 0.03
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.8,
@@ -1146,9 +1112,9 @@
     ],
     "missingBricks": [
       {
-        "name": "gravitational_redshift",
+        "name": "gravitational_lensing",
         "category": "special",
-        "reason": "Shader d'aspiration optique centripète non-linéaire simulant le décalage gravitationnel vers le rouge (gravitational redshift) et la courbure de marée critique."
+        "reason": "Shader de réfraction et lentille gravitationnelle incurvant l'arrière-plan."
       }
     ]
   },
@@ -1237,7 +1203,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#010309",
           "bottomColor": "#020617",
@@ -1247,7 +1213,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 0.4,
@@ -1257,7 +1223,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#cbd5e1",
           "density": 0.4,
@@ -1266,7 +1232,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#94a3b8",
@@ -1277,7 +1243,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.85,
@@ -1285,7 +1251,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.08,
           "speed": 0.4,
@@ -1346,7 +1312,7 @@
     "rareEvents": [
       {
         "name": "Pulsation du jet synchrotron polaire",
-        "type": "god_rays",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 10.0 secondes",
         "description": "Montée en puissance éclatante des faisceaux verticaux qui illuminent majestueusement l'ensemble du bulbe galactique."
       },
@@ -1380,7 +1346,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#2e1065",
           "bottomColor": "#4c1d95",
@@ -1390,7 +1356,7 @@
         }
       },
       {
-        "brick": "nebula",
+        "brickType": "nebula",
         "params": {
           "primaryColor": "#6d28d9",
           "secondaryColor": "#2e1065",
@@ -1401,7 +1367,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#fef08a",
           "density": 1.6,
@@ -1411,7 +1377,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#facc15",
           "density": 1.2,
@@ -1422,7 +1388,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#facc15",
@@ -1434,7 +1400,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#facc15",
           "coreColor": "#ffffff",
@@ -1444,7 +1410,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#facc15",
           "speed": 1.2,
@@ -1453,7 +1419,7 @@
         }
       },
       {
-        "brick": "lens_flare",
+        "brickType": "lens_flare",
         "params": {
           "flareColor": "#fef08a",
           "accentColor": "#facc15",
@@ -1464,7 +1430,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1e0b3c",
           "intensity": 0.55,
@@ -1472,7 +1438,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.06,
           "speed": 0.8,
@@ -1567,7 +1533,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#0c0a2a",
@@ -1577,7 +1543,7 @@
         }
       },
       {
-        "brick": "line_constellation",
+        "brickType": "line_constellation",
         "params": {
           "nodeColor": "#8c86ee",
           "lineColor": "#4f46e5",
@@ -1591,7 +1557,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#312e81",
           "density": 0.75,
@@ -1601,7 +1567,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#8c86ee",
           "density": 0.75,
@@ -1610,7 +1576,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#8c86ee",
           "speed": 0.9,
@@ -1619,14 +1585,14 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "intensity": 0.5,
           "spread": 0.025
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.7,
@@ -1634,7 +1600,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.07,
           "speed": 0.6,
@@ -1644,7 +1610,7 @@
     ],
     "missingBricks": [
       {
-        "name": "gravitational_lensing_web",
+        "name": "gravitational_lensing",
         "category": "special",
         "reason": "Shader d'effet de lentille gravitationnelle faible (weak lensing) déformant continuellement le champ stellaire de fond en arcs d'Einstein au passage de la souris."
       }
@@ -1707,7 +1673,7 @@
       },
       {
         "name": "Sursaut de convergence d'amas",
-        "type": "volumetric_glow",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 20.0 secondes",
         "description": "Embrasement ambré diffus au foyer invisible de l'attracteur, révélant fugitivement la structure des lignes de champ gravitationnel."
       }
@@ -1735,7 +1701,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f0d2e",
           "bottomColor": "#1e1b4b",
@@ -1745,7 +1711,7 @@
         }
       },
       {
-        "brick": "nebula",
+        "brickType": "nebula",
         "params": {
           "primaryColor": "#3730a3",
           "secondaryColor": "#0f0d2e",
@@ -1757,7 +1723,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#fde047",
           "density": 1.3,
@@ -1767,7 +1733,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fde047",
           "glowColor": "#eab308",
@@ -1779,7 +1745,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#eab308",
           "density": 1,
@@ -1789,7 +1755,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#eab308",
           "speed": 1.1,
@@ -1798,14 +1764,14 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "intensity": 0.5,
           "spread": 0.02
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#08071a",
           "intensity": 0.75,
@@ -1813,7 +1779,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.06,
           "speed": 0.7,
@@ -1823,7 +1789,7 @@
     ],
     "missingBricks": [
       {
-        "name": "gravitational_inflow",
+        "name": "gravitational_lensing",
         "category": "special",
         "reason": "Champ vectoriel d'aspiration gravitationnelle centripète 3D simulant le flux cinétique des galaxies du superamas de Laniakea convergeant vers un foyer attracteur."
       }

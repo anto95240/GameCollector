@@ -6,64 +6,64 @@
     "intensity": 3,
     "universe": "toy-story",
     "evocation": "Toy Story (1995) : la chambre d'Andy, sanctuaire d'enfance et d'imagination où les jouets s'animent en secret. Le célèbre papier peint bleu ciel parsemé de nuages blancs vaporeux, le parquet de chêne blond patiné, la fenêtre à petits carreaux laissant entrer une douce lumière d'après-midi, le coffre à jouets et la sensation d'échelle démesurée perçue à hauteur de figurine.",
-    "signature": "Les nuages blancs vaporeux du papier peint bleu ciel d'Andy qui se détachent du mur et dérivent en apesanteur dans la chambre, ondulant sous une douce brise ensoleillée.",
+    "signature": "Un ciel bleu d'après-midi estival éclatant traversé par des cumulus blancs sculptés en nappes vaporeuses, réchauffé par un faisceau solaire oblique où flottent des grains de poussière dorée.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel bleu éclatant parsemé de cumulus vaporeux visible à travers la fenêtre de la chambre avec lueur zénithale chaude."
+        "description": "Ciel d'azur vibrant dégradé du bleu roi clair vers un bleu ciel lumineux et chaleureux."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Paroi de la chambre tapissée du légendaire papier peint bleu azur à motifs de nuages blancs stylisés dérivant avec une très légère distorsion organique."
+        "description": "Nappes de nuages blancs cotonneux FBM dérivant paisiblement sur deux hauteurs parallaxes."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Contre-plongée sur les plinthes en bois blanc, le coffre à jouets et l'ombre chinoise d'une étagère à cubes de construction."
+        "description": "Silhouettes basses et épurées de toitures boisées baignées par la lumière dorée de fin d'après-midi."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Faisceau solaire doré oblique traversant la pièce en cône volumétrique avec poussières flottantes en suspension."
+        "description": "Faisceau solaire doré oblique (god rays) réchauffant l'espace et illuminant les grains de poussière."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Grain de film d'animation chaleureux 35mm et vignettage doux de perspective enfantine concentrant le regard sur l'interface."
+        "description": "Grain photochimique doux de film d'animation chaleureux et vignettage subtil préservant le contraste des textes."
       }
     ],
     "particles": {
-      "type": "Poussières de chambre d'enfant dorées (dust motes)",
-      "size": "0.8 à 2.0 px",
+      "type": "Motes de poussière dorée ensoleillées (dust)",
+      "size": "0.9 à 2.2 px",
       "speed": "0.15 (dérive brownienne feutrée)",
-      "density": "130 motes instanciées en 1 draw call GPU",
-      "behavior": "Flottaison brownienne lente en quasi-apesanteur par Simplex 3D, scintillement doux non-périodique en traversant les rayons de lumière solaire et dispersion interactive feutrée au passage du curseur."
+      "density": "130 motes instanciées GPU",
+      "behavior": "Flottaison douce en apesanteur par Simplex 3D, scintillant en traversant les rais solaires."
     },
     "atmosphere": {
-      "mist": "Atmosphère limpide et ensoleillée, ponctuée d'un léger voile de chaleur d'été près de la fenêtre.",
-      "light": "Chaleureuse, nostalgique et dorée, simulant une fin d'après-midi estivale illuminant la chambre.",
-      "airColor": "Bleu ciel éclatant (#38bdf8) et or solaire (#fde047) dans les rais de lumière, adouci de blanc cotonneux.",
-      "mainLightSource": "Grande fenêtre latérale droite projetant un cône de soleil oblique sur le plancher."
+      "mist": "Air limpide d'été légèrement adouci par une brume chaude dorée.",
+      "light": "Chaleureuse, nostalgique et ensoleillée, opposant l'azur vif aux reflets d'ambre solaire.",
+      "airColor": "Bleu ciel éclatant (#38bdf8), or solaire (#facc15) et blanc nuage (#f8fafc).",
+      "mainLightSource": "Soleil oblique descendant d'en haut à droite en large cône doré."
     },
     "rareEvents": [
       {
-        "name": "Rafale de vent à la fenêtre",
+        "name": "Brise lumineuse d'après-midi",
         "type": "wind_gust",
-        "frequency": "Intervalle moyen de 18 secondes",
-        "description": "Un souffle d'air extérieur fait voleter les rideaux et accélère la dérive des nuages du papier peint en soulevant un tourbillon de poussières dorées."
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Un souffle d'air tiède accélère la dérive des nuages cotonneux et fait tourbillonner les motes dorées."
       },
       {
-        "name": "Ombre furtive d'avion jouet",
+        "name": "Éclat de poussière filante",
         "type": "shooting_star",
-        "frequency": "Intervalle moyen de 28 secondes",
-        "description": "La silhouette projetée d'un biplan en bois traverse rapidement la fenêtre oblique avec une traînée de lumière dorée."
+        "frequency": "Intervalle moyen de 28.0 secondes",
+        "description": "Un trait de lumière dorée fugace traverse la voûte azurée en laissant une fine traînée solaire."
       }
     ],
     "interaction": {
-      "mouse": "La parallaxe déplace la perspective de la pièce créant une immersion à hauteur de jouet ; les poussières dorées s'écartent avec souplesse sous le curseur ; les nuages flottants oscillent doucement.",
-      "scroll": "Bascule la vue vers le plancher blond de la chambre en accentuant la lueur dorée basse pour préserver la lisibilité parfaite des listes."
+      "mouse": "Déplace en parallaxe les couches de cumulus et écarte doucement les grains de poussière dorée.",
+      "scroll": "Assombrit légèrement le bas en bleu roi (#1e3a8a) pour maintenir une lisibilité impeccable des cartes."
     },
     "palette": [
       "#38bdf8",
@@ -79,83 +79,59 @@
       "CodePen sunny bedroom dust motes godrays"
     ],
     "risks": {
-      "pitfall": "Papier peint statique ressemblant à un simple JPEG plat sans profondeur ni vie.",
-      "solution": "Séparation du ciel en double nappe FBM avec dérive différentielle, nuages procéduraux ondulant au vent et rais volumétriques de soleil rasant."
+      "pitfall": "Fond bleu plat ou copie du motif exact du papier peint protégé.",
+      "solution": "Double nappe FBM organique vivante, faisceau solaire chaleureux et contrastes calibrés pour le texte blanc/sombre."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
-          "topColor": "#0284c7",
-          "bottomColor": "#38bdf8",
-          "horizonColor": "#fef08a",
-          "density": 1.1,
-          "speed": 0.15
+          "topColor": "#1e3a8a",
+          "bottomColor": "#38bdf8"
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
-          "cloudColor": "#ffffff",
-          "skyColor": "#38bdf8",
-          "density": 0.45,
-          "speed": 0.12,
-          "randomness": 0.3
+          "color": "#f8fafc",
+          "density": 0.5,
+          "speed": 0.14
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
-          "rayColor": "#fef08a",
-          "density": 1.1,
-          "intensity": 1.15,
-          "lightSourceX": 0.65,
-          "lightSourceY": 0.85,
-          "decay": 0.9
+          "color": "#facc15",
+          "intensity": 0.45
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
-          "dustColor": "#fef08a",
-          "density": 0.85,
-          "speed": 0.15,
-          "intensity": 1.1
+          "color": "#fef08a",
+          "count": 130
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
-          "windColor": "#ffffff",
-          "gustInterval": 18.0,
-          "speed": 1.1,
-          "intensity": 0.7
+          "frequency": 18.0
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
-          "vignetteColor": "#0f172a",
-          "intensity": 0.4,
-          "smoothness": 0.9
+          "darkness": 0.42
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
-          "intensity": 0.04,
-          "speed": 0.6,
-          "monochrome": true
+          "intensity": 0.14
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "cloud_wallpaper_stencil",
-        "category": "special",
-        "reason": "Shader procédural reproduisant les formes vectorielles spécifiques des nuages joufflus du papier peint de Toy Story avec décalage de parallaxe entre le motif et le mur."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "motunui",
@@ -242,7 +218,7 @@
     },
     "bricks": [
       {
-        "brick": "waves",
+        "brickType": "waves",
         "params": {
           "crestColor": "#f8fafc",
           "deepColor": "#0369a1",
@@ -253,7 +229,7 @@
         }
       },
       {
-        "brick": "water_caustics",
+        "brickType": "water_caustics",
         "params": {
           "waterColor": "#0284c7",
           "causticColor": "#7dd3fc",
@@ -263,7 +239,7 @@
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
           "bubbleColor": "#38bdf8",
           "density": 0.95,
@@ -273,7 +249,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fef08a",
           "density": 0.8,
@@ -283,7 +259,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#e0f2fe",
           "gustInterval": 16.0,
@@ -292,7 +268,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#042f2e",
           "intensity": 0.35,
@@ -309,32 +285,32 @@
     "intensity": 3,
     "universe": "monsters-inc",
     "evocation": "Monstres & Cie (Monsters, Inc., 2001) : l'étage de la terreur de la centrale d'énergie de Monstropolis. Le plafond métallique infini parcouru d'un réseau tentaculaire de rails automatisés convoyant des milliers de portes d'enfants aux cadres colorés, les stations de travail aux voyants lumineux, les bonbonnes de cris cylindriques métalliques jaunes et les sirènes d'alarme 2319.",
-    "signature": "Un réseau aérien de rails industriels où défilent à toute allure des portes de chambres d'enfants multicolores suspendues, rythmées par les lueurs stroboscopiques de balises de sécurité et des décharges de vapeur pneumatique.",
+    "signature": "Un vaste atelier industriel nocturne aux charpentes d'acier sombres, animé par des jets de vapeur pressurisée, des étincelles dorées et des faisceaux stroboscopiques cobalt, lime et améthyste.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Plafond monumental de l'usine perdu dans la pénombre industrielle avec poutres métalliques et faisceaux de rails en perspective."
+        "description": "Charpentes d'usine monumentales perdues dans une pénombre bleu acier (#1e293b)."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Convoi aérien continu de portes de placards multicolores suspendues défilant à des cadences étagées selon la profondeur."
+        "description": "Passerelles industrielles et rails aériens rythmés par des voyants colorés en profondeur."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Stations de récolte d'énergie avec bonbonnes de cris métalliques jaunes à jauges luminescentes oscillantes."
+        "description": "Faisceaux colorés bleu, vert lime et jaune ambre balayant les structures métalliques."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Échappements de vapeur blanche pneumatique et étincelles de frottement sur les aiguillages de rails métalliques."
+        "description": "Échappements de vapeur blanche pressurisée et gerbes d'étincelles d'entretien."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Balises de signalisation rouge d'urgence clignotantes et vignettage industriel sombre préservant le contraste UI."
+        "description": "Vignettage d'acier industriel protégeant la netteté des titres et boutons."
       }
     ],
     "particles": {
@@ -345,23 +321,23 @@
       "behavior": "Éjection balistique ultra-vive depuis les chariots de rails suspendus avec courbure de gravité et refroidissement fulgurant du jaune-or au rouge sombre."
     },
     "atmosphere": {
-      "mist": "Jets de vapeur blanche comprimée s'échappant par saccades des tuyaux pneumatiques industriels.",
-      "light": "Contraste industriel marqué entre l'ombre de l'usine, les néons blancs froids et la lueur ambrée/jaune des bonbonnes de cris.",
-      "airColor": "Gris acier bleuté (#1e293b) transpercé de flashes vert Bob (#84cc16) et bleu Sully (#3b82f6).",
-      "mainLightSource": "Rampe de néons industriels suspendus et voyants des terminaux de portes."
+      "mist": "Jets de vapeur blanche comprimée jaillissant des conduits.",
+      "light": "Contraste industriel animé par des néons froids et flashs vert lime, cobalt et jaune.",
+      "airColor": "Gris acier bleuté (#1e293b), vert lime (#84cc16), bleu cobalt (#3b82f6) et améthyste (#a855f7).",
+      "mainLightSource": "Néons industriels zénithaux et voyants d'alerte colorés."
     },
     "rareEvents": [
       {
-        "name": "Alerte de sécurité d'usine (Code 2319)",
-        "type": "flickering_light",
-        "frequency": "Intervalle moyen de 15 secondes",
-        "description": "Une alarme rougeoyante pulse à travers l'usine, faisant clignoter les néons au plafond dans une cadence saccadée."
+        "name": "Alerte de maintenance industrielle",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 15.0 secondes",
+        "description": "Les néons et balises d'atelier grésillent brièvement dans une séquence saccadée."
       },
       {
-        "name": "Tremblement tellurique de rugissement",
+        "name": "Secousse de presse pneumatique",
         "type": "screen_shake",
-        "frequency": "Intervalle moyen de 22 secondes",
-        "description": "Un rugissement d'entraînement de terreur fait trembler les structures de l'étage, faisant vaciller les jauges des bonbonnes jaunes."
+        "frequency": "Intervalle moyen de 22.0 secondes",
+        "description": "Une vibration lourde de machinerie ébranle le sol métallique avec un jet de vapeur."
       }
     ],
     "interaction": {
@@ -382,12 +358,12 @@
       "CodePen mechanical factory sparks fog"
     ],
     "risks": {
-      "pitfall": "Décor d'usine terne et grisâtre sans l'énergie cartoon et la fantaisie colorée des portes de Pixar.",
-      "solution": "Panachage chromatique vibrant des portes suspendues (bleu, rose, jaune, vert pastel) contrastant sur la charpente sombre et étincelles dorées."
+      "pitfall": "Usine grise triste ou reproduction directe d'éléments protégés du studio d'animation.",
+      "solution": "Jeu vibrant d'éclairages colorés (cobalt, lime, améthyste, or) sur acier nocturne sans convoyeur de portes déposé."
     },
     "bricks": [
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#0b1220",
           "windowColor": "#84cc16",
@@ -398,7 +374,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#eab308",
           "secondaryColor": "#3b82f6",
@@ -408,7 +384,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#fef08a",
           "coreColor": "#ffffff",
@@ -418,7 +394,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#94a3b8",
           "tintColor": "#475569",
@@ -428,7 +404,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeColor": "#eab308",
           "shakeInterval": 22.0,
@@ -437,7 +413,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#05070f",
           "intensity": 0.55,
@@ -445,13 +421,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "hanging_doors_conveyor",
-        "category": "special",
-        "reason": "Réseau de rails instanciés 3D au plafond acheminant des panneaux de portes suspendus avec cliquetis de poulies et rotation sous l'inertie."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "route_66",
@@ -460,32 +430,32 @@
     "intensity": 3,
     "universe": "cars",
     "evocation": "Cars (2006) : la mythique Route 66 serpentant à travers Radiator Springs dans le comté de Carburator. Les buttes rocheuses en grès rouge sculptées comme des calandres de berlines des années 50 (Willy's Butte), l'asphalte brûlant étincelant au soleil couchant d'Arizona, les mirages d'air chaud, les enseignes lumineuses au néon vintage de Flo's V8 Café et la poussière du désert soulevée par les bolides.",
-    "signature": "Un ruban d'asphalte infini fendant un canyon de roches rouges sous un mirage thermique vibrant, tandis que des enseignes néon vintage s'illuminent au crépuscule sous une envolée de poussières dorées.",
+    "signature": "Une route désertique filant vers des mesas de grès rouge au crépuscule cuivré, animée par une forte distorsion de chaleur, des néons de motel vacillants et des tourbillons d'ocre.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel crépusculaire embrasé passant du pourpre au cuivre doré avec premiers astres d'Arizona."
+        "description": "Ciel crépusculaire flamboyant passant du pourpre profond au cuivre doré."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette grandiose des mesas et buttes rocheuses ocres d'Ornament Valley sculptées en formes d'ailerons rétro."
+        "description": "Silhouette grandiose de mesas et buttes rocheuses rouges d'un canyon du Sud-Ouest."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Ligne d'asphalte zébrée d'une double ligne jaune centrale fuyant vers l'horizon avec mirage thermique d'air chaud."
+        "description": "Chaussée infinie vibrant sous une vague de mirage thermique d'asphalte chaud."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Enseigne néon clignotante de motel rétro (Cozy Cone) et pompes à essence vintage projetant une lueur turquoise et rouge."
+        "description": "Lueurs clignotantes d'enseignes néon rétro rouge et turquoise en bord de piste."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Tourbillons de poussière de grès rouge au ras de la piste, distorsion thermique et grain argentique d'americana."
+        "description": "Poussière de grès ocre en dérive rasante et vignettage chaud d'americana."
       }
     ],
     "particles": {
@@ -533,12 +503,12 @@
       "CodePen vintage route 66 neon glow"
     ],
     "risks": {
-      "pitfall": "Désert monotone et aride sans le charme chaleureux des néons et la stylisation rétro de Cars.",
-      "solution": "Alliance d'un coucher de soleil flamboyant sur les dunes rocheuses avec distorsion thermique active et foyers de néons vacillants rouge/jaune."
+      "pitfall": "Désert terne sans chaleur rétro ni noms protégés.",
+      "solution": "Mirages thermiques actifs, mesas cuivrées et néons rétro sans citation de film."
     },
     "bricks": [
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
           "sandColor": "#ea580c",
           "shadowColor": "#7c2d12",
@@ -549,7 +519,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#fb923c",
           "density": 1.2,
@@ -559,7 +529,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#ef4444",
           "secondaryColor": "#facc15",
@@ -569,7 +539,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#facc15",
           "density": 0.9,
@@ -578,7 +548,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ef4444",
           "trailColor": "#facc15",
@@ -588,7 +558,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#18181b",
           "intensity": 0.5,
@@ -605,32 +575,32 @@
     "intensity": 3,
     "universe": "frozen",
     "evocation": "La Reine des Neiges (Frozen, 2013) : le royaume scandinave d'Arendelle et les sommets immaculés de la Montagne du Nord. Les fjords aux eaux bleu glacier enserrés de falaises rocheuses couvertes de sapins enneigés, la voûte céleste polaire traversée d'aurores boréales cyan et violettes, les flèches de cristal du palais de glace d'Elsa et le blizzard magique de fractales de givre.",
-    "signature": "Une aurore boréale chatoyante violette et cyan ondulant au-dessus des pics glacés des fjords, illuminant une tempête de cristaux de givre et de fractales de glace magiques en lévitation.",
+    "signature": "Une aurore boréale violette et cyan ondulant au-dessus de fjords escarpés pris dans les glaces, animant un tourbillon cristallin de flocons et de givre sur les bordures.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Voûte céleste polaire bleu nuit profond où se déploient les draperies ondulantes d'une aurore boréale cyan et lilas."
+        "description": "Ciel polaire nocturne éclairé par des draperies boréales cyan et améthyste."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Chaîne de montagnes scandinaves acérées couvertes de névés étincelants et de séracs glaciaires en perspective."
+        "description": "Chaîne de fjords scandinaves acérés couverts de névés et glaciers."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Silhouette des conifères de la taïga courbés sous le poids de la neige et toitures enneigées du château d'Arendelle."
+        "description": "Forêt alpine enneigée et silhouette lointaine de flèches glacées au pied des cimes."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Tempête de neige féerique avec cristaux de givre translucides, flocons cotonneux et fractales scintillantes."
+        "description": "Neige cristalline tourbillonnante et poussières de givre scintillantes."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Vignettage de givre cristallin translucide sur les pourtours du cadre et étincelles de magie glaciale."
+        "description": "Bordures givrées translucides et vignettage froid préservant la lisibilité."
       }
     ],
     "particles": {
@@ -683,7 +653,7 @@
     },
     "bricks": [
       {
-        "brick": "aurora",
+        "brickType": "aurora",
         "params": {
           "topColor": "#a855f7",
           "bottomColor": "#38bdf8",
@@ -694,7 +664,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#0b192e",
           "sunColor": "#38bdf8",
@@ -705,7 +675,7 @@
         }
       },
       {
-        "brick": "snow",
+        "brickType": "snow",
         "params": {
           "snowColor": "#f0f9ff",
           "density": 1.1,
@@ -716,7 +686,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#e0f2fe",
           "glowColor": "#38bdf8",
@@ -726,7 +696,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#e0f2fe",
           "gustInterval": 15.0,
@@ -735,7 +705,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#031124",
           "intensity": 0.5,
@@ -830,7 +800,7 @@
     },
     "bricks": [
       {
-        "brick": "water_caustics",
+        "brickType": "water_caustics",
         "params": {
           "waterColor": "#082f49",
           "causticColor": "#38bdf8",
@@ -840,7 +810,7 @@
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
           "bubbleColor": "#7dd3fc",
           "density": 1.1,
@@ -850,7 +820,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#7dd3fc",
           "density": 1.2,
@@ -861,7 +831,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#38bdf8",
           "waveInterval": 16.0,
@@ -871,7 +841,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#38bdf8",
           "intensity": 0.5,
@@ -879,7 +849,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#021626",
           "intensity": 0.5,
@@ -896,46 +866,46 @@
     "intensity": 3,
     "universe": "aladdin",
     "evocation": "Aladdin (1992) : la cité légendaire d'Agrabah au cœur de l'Orient des Mille et Une Nuits. Les minarets élancés et les dômes d'or du palais du Sultan se découpant sur un ciel nocturne violet constellé d'étoiles, les dunes de sable fin balayées par le vent tiède du désert, les volutes de fumée magique indigo et turquoise jaillissant de la lampe merveilleuse et la féerie du tapis volant.",
-    "signature": "Des volutes de fumée magique indigo et cyan qui s'élèvent en arabesques envoûtantes devant la silhouette d'or des dômes d'Agrabah sous une pluie d'étoiles filantes d'Orient.",
+    "signature": "Des arabesques de fumée magique indigo et turquoise montant devant la silhouette dorée de palais aux dômes en bulbe, sous une pluie d'étoiles filantes dans le désert nocturne.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Nuit d'Arabie d'un violet profond constellée d'astres étincelants et d'un croissant de lune argenté."
+        "description": "Nuit d'Orient pourpre sombre constellée d'étoiles et d'un croissant lunaire argenté."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Dunes de sable soyeux du désert ondulant sous la lueur lunaire avec crêtes d'ombres mauves."
+        "description": "Dunes de sable soyeux ondulant sous la lune avec crêtes d'ombres mauves."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Silhouette majestueuse du palais d'Agrabah aux dômes en bulbe dorés, arches mauresques et torches vacillantes."
+        "description": "Silhouette de palais oriental aux coupoles dorées et arches éclairées de torches."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Volutes vaporeuses de fumée magique bleue et turquoise du Génie s'enroulant en spirales fluides."
+        "description": "Volutes bleues et turquoise s'enroulant avec fluidité dans l'air tiède."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Poussières d'or magique en suspension brownienne et vignettage feutré de conte oriental."
+        "description": "Poussière d'or scintillante et vignettage velouté de conte nocturne."
       }
     ],
     "particles": {
-      "type": "Poussière d'or magique et étincelles de la lampe enchantée (magic gold dust)",
+      "type": "Poussière d'or enchantée (dust)",
       "size": "1.0 à 2.6 px",
-      "speed": "0.22 (dérive ascendante en spirale)",
+      "speed": "0.22 dérive ascendante en spirale",
       "density": "150 motes scintillantes",
-      "behavior": "Mouvement brownien ascendant fluide, pulsation lumineuse dorée intermittente et réaction d'attraction douce au survol de la souris."
+      "behavior": "Mouvement brownien ascendant attiré doucement vers le pointeur."
     },
     "atmosphere": {
-      "mist": "Volutes d'encens et brume magique indigo se diffusant au pied des remparts de la cité.",
-      "light": "Mystique, chaude et contrastée, mêlant la lueur d'or des torches aux reflets bleutés surnaturels du Génie.",
-      "airColor": "Violet royal nocturne (#4c1d95) et pourpre d'Orient (#6d28d9), illuminés d'or ambré (#d4a853) et de cyan (#06b6d4).",
-      "mainLightSource": "Croissant de lune oriental au zénith et aura magique de la lampe du Génie."
+      "mist": "Encens et brume indigo flottant au pied des remparts orientaux.",
+      "light": "Chaude et mystique, mariant or ambré des coupoles et reflets turquoise.",
+      "airColor": "Violet royal (#4c1d95), pourpre (#6d28d9), or (#d4a853) et cyan (#06b6d4).",
+      "mainLightSource": "Croissant lunaire zénithal et lueur turquoise montante."
     },
     "rareEvents": [
       {
@@ -952,8 +922,8 @@
       }
     ],
     "interaction": {
-      "mouse": "La parallaxe oriente la vue sur les dômes du palais et les dunes lointaines ; la fumée magique du Génie tourbillonne et s'enroule autour du curseur.",
-      "scroll": "Fait monter les volutes magiques vers le haut de l'écran tout en rehaussant l'or des dômes pour un contraste de lecture idéal."
+      "mouse": "Fait tourbillonner la fumée turquoise autour du curseur et décale les dômes en parallaxe.",
+      "scroll": "Élève les volutes magiques tout en rehaussant le contraste sous les cartes."
     },
     "palette": [
       "#4c1d95",
@@ -974,7 +944,7 @@
     },
     "bricks": [
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
           "sandColor": "#6d28d9",
           "shadowColor": "#2e1065",
@@ -985,7 +955,7 @@
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#1e1b4b",
           "torchColor": "#facc15",
@@ -996,7 +966,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#06b6d4",
           "tintColor": "#4c1d95",
@@ -1007,7 +977,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 1.0,
@@ -1017,7 +987,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#d4a853",
@@ -1027,7 +997,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f0728",
           "intensity": 0.55,
@@ -1044,32 +1014,32 @@
     "intensity": 3,
     "universe": "le-roi-lion",
     "evocation": "Le Roi Lion (The Lion King, 1994) : l'aube mythique sur la Terre des Lions et le Rocher de la Fierté (Pride Rock). Le soleil d'Afrique colossal s'élevant à l'horizon en embrasant la savane d'un dégradé de pourpre, d'orange ardent et d'or liquide, les acacias parasols découpés en contre-jour, les vapeurs de chaleur matinale et les poussières de terre rouge portées par le vent du Cycle de la Vie.",
-    "signature": "Un disque solaire titanesque embrasant l'horizon de la savane en un brasier d'or et d'ocre, projetant de majestueux rayons crépusculaires à travers les brumes de la Terre des Lions.",
+    "signature": "Un disque solaire colossal embrasant l'horizon de la savane d'un or liquide ardent, projetant de longs faisceaux lumineux au-dessus d'un promontoire rocheux d'acacias.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel d'aube africaine grandiose avec dégradé d'ambre incandescent, d'orange brûlant et de pourpre zénithal."
+        "description": "Ciel d'aube africaine dégradé d'ambre incandescent vers pourpre zénithal."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Disque solaire colossal montant lentement sur la savane avec halo volumétrique de Mie écrasant l'horizon."
+        "description": "Disque solaire géant montant sur la savane dans un halo doré majestueux."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Silhouette angulaire iconique de l'éperon rocheux de Pride Rock dominant les plaines infinies d'acacias."
+        "description": "Promontoire rocheux angulaire surplombant la plaine et les brumes matinales."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Nappes de brume matinale dorée et ondulations thermiques s'élevant des herbes hautes de la savane."
+        "description": "Brume dorée et ondulations thermiques s'élevant des hautes herbes."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Nuée de poussière de latérite rouge et étincelles de chaleur en flottaison lente sous un vignettage chaud."
+        "description": "Poussière de latérite rouge en suspension sous un vignettage ambré chaud."
       }
     ],
     "particles": {
@@ -1100,8 +1070,8 @@
       }
     ],
     "interaction": {
-      "mouse": "La parallaxe déplace la silhouette du promontoire de Pride Rock par rapport au soleil géant ; le curseur dissipe doucement la brume dorée de surface.",
-      "scroll": "Fait monter le soleil dans le ciel, renforçant la chaleur de la palette tout en assombrissant la base pour garder un contraste UI parfait."
+      "mouse": "Déplace l'éperon rocheux devant le soleil géant et dissipe doucement la brume dorée.",
+      "scroll": "Fait monter la lueur solaire tout en protégeant le bas de l'écran pour la lecture."
     },
     "palette": [
       "#7c2d12",
@@ -1122,7 +1092,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#7c2d12",
           "bottomColor": "#ea580c",
@@ -1132,7 +1102,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#451a03",
           "sunColor": "#f97316",
@@ -1143,7 +1113,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fef08a",
           "density": 1.3,
@@ -1154,7 +1124,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#f97316",
           "density": 1.0,
@@ -1164,7 +1134,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 1.0,
@@ -1173,7 +1143,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#fef08a",
           "gustInterval": 17.0,
@@ -1182,7 +1152,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#2d0f04",
           "intensity": 0.5,
@@ -1199,32 +1169,32 @@
     "intensity": 2,
     "universe": "vice-versa",
     "evocation": "Vice-Versa (Inside Out, 2015) : le Quartier Général de l'esprit de Riley. La baie vitrée panoramique ouverte sur les Îles de la Personnalité flottant dans la brume mentale, la console de contrôle incurvée rétro-éclairée, les rails tubulaires en spirale acheminant des orbes de souvenirs aux cinq couleurs des émotions fondamentales (jaune Joie, bleu Tristesse, rouge Colère, vert Dégoût, violet Peur) et les étagères infinies de mémoire à long terme.",
-    "signature": "Des orbes de mémoires émotionnelles translucides aux lueurs jaune, cyan et pourpre qui circulent le long de rails tubulaires transparents et pulsent au rythme des pensées.",
+    "signature": "Un paysage mental nocturne indigo traversé par des constellations synaptiques et des orbes de pensée translucides jaune, cyan, pourpre et émeraude flottant en harmonie.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Immensité de l'esprit baignée d'un dégradé indigo et violet doux avec les Îles de la Personnalité au loin."
+        "description": "Espace intérieur apaisant indigo et violet nuit au dégradé soyeux."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Étagères courbes monumentales de la mémoire à long terme chargées de milliers de sphères irisées miniatures."
+        "description": "Constellations synaptiques courbes reliant des milliers de micro-étoiles lumineuses."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Conduits tubulaires transparents où transitent des orbes de souvenirs fondamentaux éclatants."
+        "description": "Orbes lumineux translucides aux teintes émotionnelles circulant lentement le long des filaments."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Halo volumétrique chaleureux et étincelles d'idées neuves pulsant au centre de la console de contrôle."
+        "description": "Halo chaleureux central pulsant au rythme d'étincelles de pensée dorées."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Vignettage doux et particules de poussière mémorielle scintillantes préservant la netteté de l'interface."
+        "description": "Vignettage doux et poussières scintillantes préservant la clarté UI."
       }
     ],
     "particles": {
@@ -1235,10 +1205,10 @@
       "behavior": "Flottaison brownienne rythmée par de douces pulsations de clarté et dispersion élastique sous le curseur de la souris."
     },
     "atmosphere": {
-      "mist": "Brume mentale vaporeuse et lumineuse teintée de reflets pastel multicolores.",
-      "light": "Douce, vibrante et multicolore, rayonnant depuis le cœur des orbes de souvenirs fondamentaux.",
-      "airColor": "Bleu nuit indigo (#1e1b4b) rehaussé d'éclats jaune Joie (#facc15) et bleu Tristesse (#3b82f6).",
-      "mainLightSource": "Console de commande centrale et orbes de souvenirs fondamentaux zénithaux."
+      "mist": "Brume mentale vaporeuse aux reflets pastel apaisants.",
+      "light": "Douce et polychrome, rayonnant depuis les orbes de lumière colorés.",
+      "airColor": "Indigo profond (#1e1b4b), or (#facc15), cyan (#3b82f6) et améthyste (#a855f7).",
+      "mainLightSource": "Orbes lumineux centraux et réseau synaptique zénithal."
     },
     "rareEvents": [
       {
@@ -1266,12 +1236,12 @@
       "CodePen colorful glowing orbs network"
     ],
     "risks": {
-      "pitfall": "Arlequin de couleurs trop criardes ou désordonnées distrayant l'attention de l'utilisateur.",
-      "solution": "Fond bleu nuit unifié apaisant et sphères de couleur en lueurs feutrées avec opacités douces."
+      "pitfall": "Couleurs criardes fatigantes ou étagères reconnaissables du film d'animation.",
+      "solution": "Fond indigo unifié et constellations organiques d'orbes flottants à opacité maîtrisée."
     },
     "bricks": [
       {
-        "brick": "line_constellation",
+        "brickType": "line_constellation",
         "params": {
           "nodeColor": "#facc15",
           "lineColor": "#3b82f6",
@@ -1282,7 +1252,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#3b82f6",
@@ -1292,7 +1262,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.7,
@@ -1301,7 +1271,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#facc15",
           "waveInterval": 18.0,
@@ -1310,7 +1280,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f0e26",
           "intensity": 0.45,
@@ -1318,13 +1288,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "memory_orbs_shelves",
-        "category": "special",
-        "reason": "Rayonnages courbes 3D instanciés de sphères de verre translucides illuminées de l'intérieur par des teintes émotionnelles variables."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "enchanted_rose",
@@ -1377,7 +1341,7 @@
     "rareEvents": [
       {
         "name": "Détachement d'un pétale enchanté",
-        "type": "flickering_light",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 16 secondes",
         "description": "La lueur de la rose pulse soudainement tandis qu'un pétale se détache avec une gerbe de micro-étincelles dorées."
       }
@@ -1405,7 +1369,7 @@
     },
     "bricks": [
       {
-        "brick": "petals",
+        "brickType": "petals",
         "params": {
           "petalColor": "#991b1b",
           "accentColor": "#dc2626",
@@ -1416,7 +1380,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#38bdf8",
@@ -1426,7 +1390,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#d4a853",
           "secondaryColor": "#991b1b",
@@ -1436,7 +1400,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.7,
@@ -1445,7 +1409,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#060b18",
           "intensity": 0.55,
@@ -1506,7 +1470,7 @@
     "rareEvents": [
       {
         "name": "Grand bouquet de feux d'artifice impériaux",
-        "type": "sparks",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 15 secondes",
         "description": "Une salve majeure de feux d'artifice illumine l'ensemble des toitures du palais d'un flash doré et vermillon majestueux."
       }
@@ -1534,7 +1498,7 @@
     },
     "bricks": [
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#1c1917",
           "torchColor": "#dc2626",
@@ -1545,7 +1509,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#fef08a",
           "coreColor": "#ffffff",
@@ -1556,7 +1520,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#78716c",
           "tintColor": "#991b1b",
@@ -1566,7 +1530,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#dc2626",
           "secondaryColor": "#facc15",
@@ -1576,7 +1540,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0c0a09",
           "intensity": 0.5,
@@ -1593,40 +1557,40 @@
     "intensity": 2,
     "universe": "la-haute",
     "evocation": "Là-Haut (Up, 2009) : l'extraordinaire voyage de Carl et Russell vers les Chutes du Paradis (Paradise Falls) en Amérique du Sud. La maison volante soulevée dans les cieux par une gigantesque grappe multicolore de milliers de ballons d'hélium, survolant une mer infinie de cumulus immaculés baignée de soleil et les falaises vertigineuses des tepuis rocheux de la jungle sauvage.",
-    "signature": "Une myriade de ballons multicolores gonflés à l'hélium qui oscillent et tressautent sous le vent tout en tractant une ombre volante au-dessus d'une mer de nuages immaculés.",
+    "signature": "Une mer infinie de nuages blancs cotonneux baignée d'un azur d'altitude limpide, d'où s'élèvent des nuées joyeuses de points pastel multicolores au-dessus de hauts plateaux rocheux.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Azur céleste lumineux et infini d'altitude avec éclat solaire zénithal éclatant."
+        "description": "Azur céleste d'altitude radieux sous une clarté solaire pure."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette imposante des tepuis rocheux vertigineux et des chutes d'eau lointaines de Paradise Falls perçant la brume."
+        "description": "Silhouettes imposantes de hauts plateaux tabulaires et cascades lointaines perçant la brume."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Mer infinie de nuages cotonneux FBM s'étendant à perte de vue sous la maison flottante."
+        "description": "Mer infinie de nuages FBM blancs cotonneux ondulant sous les vents d'altitude."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Grappe dense de ballons multicolores (rouge, jaune, bleu, vert, violet) tanguant au vent sous les courants ascendants."
+        "description": "Essaim joyeux d'orbes et confettis aériens multicolores montant au gré des courants thermiques."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Micro-poussières de nuages scintillantes, vignettage pastel doux d'album d'explorateur et grain chaleureux."
+        "description": "Micro-poussières lumineuses et vignettage pastel léger préservant le contraste."
       }
     ],
     "particles": {
-      "type": "Micro-ballons de sillage et particules de nuages d'altitude (mini balloons & cloud motes)",
+      "type": "Confettis pastel légers et gouttelettes de nuage (confetti & dust)",
       "size": "1.2 à 2.8 px",
-      "speed": "0.35 (dérive ascensionnelle douce)",
+      "speed": "0.35 dérive ascensionnelle douce",
       "density": "80 particules multicolores",
-      "behavior": "Flottaison légère dans le sillage de la maison, oscillation sinueuse sous les courants d'air et réaction feutrée au passage de la souris."
+      "behavior": "Flottaison ascendante sinueuse portée par les thermiques chauds."
     },
     "atmosphere": {
       "mist": "Brume d'altitude immaculée et vaporeuse enveloppant la base des tepuis lointains.",
@@ -1660,12 +1624,12 @@
       "CodePen helium balloons floating sky"
     ],
     "risks": {
-      "pitfall": "Accumulation de ballons multicolores trop saturés qui dévorent l'attention et parasitent les données des jeux.",
-      "solution": "Grappe de ballons concentrée en hauteur et sur les marges, nuages cotonneux doux et contrastes équilibrés."
+      "pitfall": "Surcharge de couleurs criardes ou maison suspendue à des ballons protégée.",
+      "solution": "Mer de nuages apaisante, plateaux majestueux et ascension douce de confettis colorés sans maison volante."
     },
     "bricks": [
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#ffffff",
           "skyColor": "#38bdf8",
@@ -1676,7 +1640,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#1e293b",
           "sunColor": "#475569",
@@ -1687,7 +1651,7 @@
         }
       },
       {
-        "brick": "confetti",
+        "brickType": "confetti",
         "params": {
           "colorMode": "multi",
           "density": 0.45,
@@ -1698,7 +1662,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#ffffff",
           "gustInterval": 17.0,
@@ -1707,7 +1671,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "intensity": 0.35,
@@ -1715,13 +1679,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "helium_balloons_cluster",
-        "category": "special",
-        "reason": "Grappe instanciée volumétrique 3D de ballons sphériques multicolores translucides reliés par des filins tressautant au vent d'altitude."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "gusteau_s",
@@ -1730,32 +1688,32 @@
     "intensity": 2,
     "universe": "ratatouille",
     "evocation": "Ratatouille (2007) : les cuisines gastronomiques étoilées du restaurant Chez Gusteau à Paris. Les fourneaux en fonte rougeoyants, les rangées de casseroles en cuivre rutilant suspendues, les volutes de vapeur parfumée s'échappant d'un bouillon mijoté avec amour, les baies vitrées mansardées ouvertes sur les toits parisiens de nuit et la devise culinaire 'Tout le monde peut cuisiner'.",
-    "signature": "Des volutes de vapeur dorée et parfumée s'élevant avec légèreté d'une casserole en cuivre rutilante devant la silhouette bleutée des toits de Paris nocturne.",
+    "signature": "Des volutes de vapeur dorée parfumée s'élevant avec légèreté de chaudrons de cuivre luisants devant la silhouette bleutée de toits en zinc étoilés.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Nuit parisienne d'un bleu nuit velouté avec silhouette stylisée de la Tour Eiffel et lueurs de la ville lumière."
+        "description": "Nuit urbaine bleu nuit velouté piquée d'étoiles douces au-dessus des toits."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Toits en zinc et lucarnes mansardées aux cheminées en terre cuite se découpant en contre-jour sous les étoiles."
+        "description": "Toits en zinc et cheminées en terre cuite découpés en contre-jour nocturne."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Rangée de casseroles et poêles en cuivre martelé rutilant suspendues aux crochets d'acier de la cuisine."
+        "description": "Reflets chauds et martelés de casseroles de cuivre suspendues dans la pénombre cosy."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Volutes de vapeur chaude et dorée montant d'une casserole mijotante avec étincelles gourmandes."
+        "description": "Volutes de vapeur dorée ascendantes mêlées de micro-pépites d'épices lumineuses."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Vignettage chaleureux bistrot et grain de film d'animation Pixar cosy et feutré."
+        "description": "Vignettage bistrot ambré chaleureux et grain photochimique de cinéma d'animation douillet."
       }
     ],
     "particles": {
@@ -1773,10 +1731,10 @@
     },
     "rareEvents": [
       {
-        "name": "Ébullition et sursaut de vapeur gourmande",
-        "type": "smoke",
-        "frequency": "Intervalle moyen de 18 secondes",
-        "description": "Un bouillonnement d'arômes libère un panache de vapeur dorée ascendante qui tourbillonne délicatement vers le haut de l'écran."
+        "name": "Bouffée de vapeur aromatique",
+        "type": "wind_gust",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Un courant d'air tiède entraîne une volute de vapeur dorée parfumée en arabesque ascendante."
       }
     ],
     "interaction": {
@@ -1802,7 +1760,7 @@
     },
     "bricks": [
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#0f172a",
           "windowColor": "#fef08a",
@@ -1813,7 +1771,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#fef08a",
           "tintColor": "#b45309",
@@ -1824,7 +1782,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#d97706",
           "secondaryColor": "#b45309",
@@ -1834,7 +1792,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.65,
@@ -1843,7 +1801,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0a0f1d",
           "intensity": 0.45,
@@ -1851,7 +1809,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.05,
           "speed": 0.5,
@@ -1935,12 +1893,12 @@
       "CodePen futuristic spaceship cockpit stars"
     ],
     "risks": {
-      "pitfall": "Vaisseau trop froid, agressif ou stérile ressemblant à un thème d'horreur spatiale.",
-      "solution": "Palette lumineuse chaleureuse avec touches de vert plante végétal, d'or et de cyan optimiste fidèle au ton Pixar."
+      "pitfall": "Vaisseau trop froid, stérile ou proche d'un thème d'horreur spatiale.",
+      "solution": "Palette lumineuse chaleureuse avec touches de vert végétal, d'or et de cyan optimiste fidèle à un ton d'animation familiale."
     },
     "bricks": [
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 1.1,
@@ -1950,7 +1908,7 @@
         }
       },
       {
-        "brick": "parallax_fleet",
+        "brickType": "parallax_fleet",
         "params": {
           "hullColor": "#1e293b",
           "engineColor": "#22d3ee",
@@ -1960,7 +1918,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#f8fafc",
           "glowColor": "#4ade80",
@@ -1970,7 +1928,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#22d3ee",
           "density": 0.75,
@@ -1979,7 +1937,7 @@
         }
       },
       {
-        "brick": "glitch",
+        "brickType": "glitch",
         "params": {
           "glitchColor": "#4ade80",
           "glitchInterval": 18.0,
@@ -1988,7 +1946,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#050811",
           "intensity": 0.5,
@@ -2005,32 +1963,32 @@
     "intensity": 2,
     "universe": "hercule",
     "evocation": "Hercule (1997) : le domaine sacré des dieux au sommet du Mont Olympe. La cité divine juchée au-dessus d'une mer de nuages cotonneux aux nuances dorées, lilas et pêche, les colonnades de marbre blanc immaculé aux chapiteaux grecs stylisés, les fontaines d'ambroisie chatoyante et les éclairs bienveillants de Zeus qui zèbrent la voûte céleste.",
-    "signature": "Des nuages cotonneux aux teintes dorées et pastel qui moutonnent au pied de colonnes grecques de marbre blanc, traversés de lueurs d'éclairs divins lointains.",
+    "signature": "Des colonnades célestes de marbre blanc perçant une mer de nuages pastel pêche et lilas, traversées par des éclairs dorés de foudre olympienne et des motes d'ambroisie.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Azur divin radieux baigné d'un soleil zénithal éclatant et d'arches célestes dorées."
+        "description": "Azur divin radieux illuminé d'or et d'arches célestes pastel."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Arcs d'éclairs stylisés de Zeus illuminant doucement le ciel au-dessus des cimes mythiques."
+        "description": "Éclairs stylisés or et cyan traversant le ciel mythique en altitude."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Colonnades de temple grec en marbre blanc immaculé et frontons antiques sculptés d'or."
+        "description": "Colonnades antiques de marbre blanc ornées d'or sculpté."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Mer de nuages cotonneux FBM aux reflets pêche et or liquide roulant doucement au pied des colonnes."
+        "description": "Nuages FBM pêche et or roulant avec lenteur au pied des colonnes."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Motes d'ambroisie dorée en suspension et pénombre lumineuse chaude préservant la lisibilité des textes."
+        "description": "Motes dorées célestes en suspension sous un vignettage chaud."
       }
     ],
     "particles": {
@@ -2041,17 +1999,17 @@
       "behavior": "Flottaison brownienne lente, pulsation lumineuse au passage des rais divins et dispersion interactive sous le curseur."
     },
     "atmosphere": {
-      "mist": "Mer de nuages sacrés vaporeuse et dense moutonnant au sommet du mont mythologique.",
-      "light": "Lumière divine dorée et éclatante, tempérée par des nuances pastel pêche, lilas et blanc pur.",
-      "airColor": "Crème d'ambroisie (#fef3c7) et or solaire (#d4a853), soulignés de bleu céleste (#38bdf8) et de lilas (#c084fc).",
-      "mainLightSource": "Trône de Zeus au zénith projetant des faisceaux de lumière sacrée et d'éclairs stylisés."
+      "mist": "Mer de nuages vaporeux moutonnant au sommet de la montagne.",
+      "light": "Divine dorée tempérée de nuances pastel pêche et lilas.",
+      "airColor": "Crème (#fef3c7), or solaire (#d4a853), ciel (#38bdf8) et lilas (#c084fc).",
+      "mainLightSource": "Soleil zénithal filtrant par éclairs et faisceaux obliques."
     },
     "rareEvents": [
       {
-        "name": "Éclair de foudre olympienne de Zeus",
+        "name": "Éclair d'orage olympien",
         "type": "lightning",
-        "frequency": "Intervalle moyen de 18 secondes",
-        "description": "Un arc de foudre stylisé doré et cyan zèbre majestueusement la voûte céleste, illuminant les nuages d'un flash noble."
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Arc de foudre stylisé doré et cyan zébrant la voûte pastel."
       }
     ],
     "interaction": {
@@ -2077,7 +2035,7 @@
     },
     "bricks": [
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#fef3c7",
           "skyColor": "#38bdf8",
@@ -2088,7 +2046,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fef08a",
           "density": 1.1,
@@ -2099,7 +2057,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#facc15",
           "flashColor": "#fef3c7",
@@ -2110,7 +2068,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.75,
@@ -2119,7 +2077,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#381804",
           "intensity": 0.4,
@@ -2208,7 +2166,7 @@
     },
     "bricks": [
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#fef08a",
           "density": 1.0,
@@ -2218,7 +2176,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#051f14",
           "fogColor": "#0d3b2b",
@@ -2229,7 +2187,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.95,
@@ -2239,7 +2197,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#d4a853",
@@ -2249,7 +2207,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#050d18",
           "intensity": 0.5,
@@ -2338,7 +2296,7 @@
     },
     "bricks": [
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#fef08a",
           "density": 0.7,
@@ -2348,7 +2306,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#f59e0b",
           "secondaryColor": "#991b1b",
@@ -2358,7 +2316,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#f59e0b",
@@ -2368,7 +2326,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.65,
@@ -2377,7 +2335,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#fef08a",
           "gustInterval": 18.0,
@@ -2386,7 +2344,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#080c16",
           "intensity": 0.55,
@@ -2475,7 +2433,7 @@
     },
     "bricks": [
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#0f172a",
           "fogColor": "#3b82f6",
@@ -2486,7 +2444,7 @@
         }
       },
       {
-        "brick": "petals",
+        "brickType": "petals",
         "params": {
           "petalColor": "#fbcfe8",
           "accentColor": "#60a5fa",
@@ -2497,7 +2455,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#ec4899",
@@ -2507,7 +2465,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fef08a",
           "density": 0.9,
@@ -2517,7 +2475,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#fbcfe8",
           "trailColor": "#60a5fa",
@@ -2527,7 +2485,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0e0d24",
           "intensity": 0.45,
@@ -2544,58 +2502,64 @@
     "intensity": 2,
     "universe": "pixar",
     "evocation": "Luxo Jr. (1986) : le premier court-métrage révolutionnaire de Pixar réalisé par John Lasseter et devenu la signature de marque du studio. La petite lampe de bureau articulée en métal blanc qui sautille sur le plancher de studio sombre, son cône de lumière net braqué sur le sol, et la fameuse balle jaune ornée d'une bande bleue et d'une étoile rouge qui rebondit avec élasticité avant d'être écrasée.",
-    "signature": "Le cône de lumière net d'une lampe de bureau qui balaie le sol dans la pénombre, illuminant une balle jaune à étoile rouge qui rebondit avec souplesse avant de s'immobiliser.",
+    "signature": "Un faisceau conique net de projecteur d'atelier qui balaie doucement la pénombre d'une table d'architecte sombre, illuminant des grains de poussière dorés et des reflets primaires bleu, jaune et rouge.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Studio d'animation obscurci dans une pénombre grise et bleue feutrée rappelant les premières images de synthèse 3D."
+        "description": "Atelier de création obscurci dans une pénombre bleu ardoise et grise feutrée rappelant les débuts de l'animation 3D."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Arête d'une table d'architecte ou lattes d'un plancher de bois sombre découpées sous l'éclairage rasant."
+        "description": "Arête épurée d'un plancher de bois sombre et d'une table de travail découpées sous l'éclairage rasant."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Silhouette d'une lampe de bureau articulée en métal blanc pivotant de façon expressive au-dessus du sol."
+        "description": "Cône lumineux directionnel net (volumetric spotlight) pivotant lentement au-dessus de la surface de travail avec ombre portée circulaire."
       },
       {
         "plan": 4,
         "type": "Avant-plan volumétrique",
-        "description": "Cône de lumière directionnel franc (god ray) illuminant la zone centrale du sol avec un halo circulaire éclatant."
+        "description": "Rais de lumière diffus (god rays) illuminant des poussières d'atelier aux micro-éclats chauds et primaires."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Poussières de studio flottant dans le projecteur, grain de pellicule 35mm d'époque et vignettage fort."
+        "description": "Grain photochimique doux et vignettage feutré préservant la lisibilité au cœur du bureau."
       }
     ],
     "particles": {
-      "type": "Poussières de studio d'animation en suspension (studio dust motes)",
-      "size": "0.8 à 2.2 px",
+      "type": "Poussières d'atelier d'animation en suspension (dust)",
+      "size": "0.9 à 2.3 px",
       "speed": "0.18 (dérive brownienne feutrée)",
       "density": "80 motes éclairées",
-      "behavior": "Flottaison brownienne visible quasi uniquement dans le cône lumineux du projecteur de la lampe, avec répulsion douce au curseur."
+      "behavior": "Flottaison brownienne principalement révélée à l'intérieur du faisceau conique orientable, avec répulsion douce au curseur."
     },
     "atmosphere": {
-      "mist": "Pénombre épurée de studio de cinéma avec légère dispersion de faisceau lumineux dans l'air calme.",
-      "light": "Vive, directionnelle et théâtrale, issue du réflecteur conique de la lampe de bureau.",
-      "airColor": "Noir studio (#0f172a) tranchant avec le blanc incandescent de l'ampoule (#f8fafc) et les accents primaires Pixar (#3b82f6, #facc15, #ef4444).",
-      "mainLightSource": "Ampoule incandescente de la lampe Luxo Jr. projetant un cône de lumière oblique vers le bas."
+      "mist": "Pénombre épurée d'atelier avec légère dispersion de lumière dans l'air calme.",
+      "light": "Vive, directionnelle et théâtrale, issue du projecteur conique orienté vers le bas.",
+      "airColor": "Bleu nuit studio (#0f172a) tranchant avec le blanc incandescent (#f8fafc) et de subtiles touches primaires (#3b82f6, #facc15, #ef4444).",
+      "mainLightSource": "Projecteur zénithal conique balayant la scène en oblique vers le bas."
     },
     "rareEvents": [
       {
-        "name": "Allumage / oscillation de la lampe de bureau",
-        "type": "flickering_light",
-        "frequency": "Intervalle moyen de 18 secondes",
-        "description": "L'ampoule électrique de la lampe sautille et vacille d'un coup avec un micro-rebond cinématique de son faisceau conique."
+        "name": "Saut électrique du projecteur",
+        "type": "glitch",
+        "frequency": "Intervalle moyen de 18.0 secondes",
+        "description": "Le faisceau d'atelier clignote brièvement avec une micro-variation d'intensité avant de se recentrer."
+      },
+      {
+        "name": "Impulsion de lueur chaude",
+        "type": "shockwave",
+        "frequency": "Intervalle moyen de 26.0 secondes",
+        "description": "Une onde circulaire douce blanche et or se dilate au point focal de la table avant de s'estomper."
       }
     ],
     "interaction": {
-      "mouse": "Le faisceau de la lampe de bureau Luxo Jr. suit doucement la position du curseur sur le sol, illuminant les éléments de l'interface survolés.",
-      "scroll": "Fait reculer légèrement le point focal de la lampe tout en maintenant l'éclairage de lecture sur la grille de jeux."
+      "mouse": "Le cône du projecteur suit doucement la position du curseur sur la table d'atelier, illuminant les zones survolées.",
+      "scroll": "Modifie l'ouverture focale du projecteur tout en maintenant la lisibilité du contenu."
     },
     "palette": [
       "#3b82f6",
@@ -2611,64 +2575,58 @@
       "CodePen bouncing ball desk lamp spotlight"
     ],
     "risks": {
-      "pitfall": "Écran trop sombre avec un simple rond blanc cru façon lampe torche désagréable.",
-      "solution": "Décroissance exponentielle douce du cône de lumière (god_rays), poussières flottantes et reflets métalliques doux."
+      "pitfall": "Écran trop sombre avec un rond blanc cru monotone ou reproduction de mascotte protégée.",
+      "solution": "Décroissance exponentielle douce du faisceau volumétrique, poussières flottantes illuminées et évocation purement géométrique de l'ambiance studio."
     },
     "bricks": [
       {
-        "brick": "god_rays",
+        "brickType": "gradient_sky",
         "params": {
-          "rayColor": "#fef08a",
-          "density": 1.2,
-          "intensity": 1.35,
-          "lightSourceX": 0.0,
-          "lightSourceY": 1.1,
-          "decay": 0.88
+          "topColor": "#0f172a",
+          "bottomColor": "#1e293b"
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "god_rays",
         "params": {
-          "lightColor": "#fef08a",
-          "secondaryColor": "#3b82f6",
-          "flickerType": 2,
-          "intensity": 1.1,
-          "speed": 0.3
+          "color": "#f8fafc",
+          "intensity": 0.55,
+          "angle": 0.25
         }
       },
       {
-        "brick": "dust",
+        "brickType": "flickering_light",
         "params": {
-          "dustColor": "#fef08a",
-          "density": 0.75,
-          "speed": 0.16,
-          "intensity": 1.15
+          "color": "#facc15",
+          "intensity": 0.25
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "dust",
         "params": {
-          "vignetteColor": "#05070e",
-          "intensity": 0.65,
-          "smoothness": 0.85
+          "color": "#f8fafc",
+          "count": 80
         }
       },
       {
-        "brick": "grain",
+        "brickType": "vignette",
         "params": {
-          "intensity": 0.06,
-          "speed": 0.5,
-          "monochrome": true
+          "darkness": 0.6
+        }
+      },
+      {
+        "brickType": "film_grain",
+        "params": {
+          "intensity": 0.15
         }
       }
     ],
     "missingBricks": [
       {
-        "name": "bouncing_luxo_ball",
-        "category": "special",
-        "reason": "Modèle 3D procédural d'une balle sphérique instanciée avec texture jaune à bande bleue et étoile rouge, animée par des rebonds physiques amortis et une déformation d'écrasement élastique (squash & stretch)."
+        "name": "volumetric_spotlight",
+        "category": "atmosphere",
+        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
       }
     ]
   }
 ]
-

@@ -84,7 +84,7 @@
     },
     "bricks": [
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "lightSourceX": 0.25,
           "lightSourceY": 0.95,
@@ -96,7 +96,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#451a03",
           "density": 0.8,
@@ -106,7 +106,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 1.2,
@@ -116,7 +116,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeInterval": 18.0,
           "intensity": 0.85,
@@ -125,7 +125,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#d4a853",
           "gustInterval": 28.0,
@@ -134,7 +134,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1c1917",
           "intensity": 0.65,
@@ -143,7 +143,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.07,
           "speed": 0.7,
@@ -152,13 +152,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "dappled_canopy_shadows",
-        "category": "special",
-        "reason": "Projection d'ombres portées mouvantes de feuillage végétal et lianes oscillant doucement à travers le faisceau lumineux."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "temple_of_doom",
@@ -167,7 +161,7 @@
     "intensity": 3,
     "universe": "indiana-jones",
     "evocation": "Indiana Jones et le Temple Maudit (Indiana Jones and the Temple of Doom, 1984) : les catacombes infernales sous le palais de Pankot. Un gouffre volcanique souterrain baigné de brasiers sacrificiels, de coulées de magma incandescent, de chaînes suspendues au-dessus du vide et de fumée suffocante.",
-    "signature": "Une coulée de lave magmatique rougeoyante qui serpente au fond d'une faille de basalte noir, illuminant par en-dessous des panaches de fumée sombre et projetant des gerbes de braises incandescentes ascendantes.",
+    "signature": "Une chambre souterraine close soutenue par des piliers de basalte sculptés, éclairée uniquement par le bas par une fosse de lave rouge et les flammes vacillantes de vasques cérémonielles.",
     "scene": [
       {
         "plan": 1,
@@ -210,16 +204,16 @@
     },
     "rareEvents": [
       {
-        "name": "Onde de choc volcanique",
+        "name": "Onde thermique souterraine",
         "type": "shockwave",
-        "frequency": "Intervalle moyen de 15 secondes",
-        "description": "Une détonation de gaz souterrain libère une onde de surpression radiale circulaire qui déchire le magma et disloque momentanément la fumée."
+        "frequency": "Intervalle moyen de 15.0 secondes",
+        "description": "Détonation sourde de gaz dans la fosse propageant une onde de chaleur rougeoyante."
       },
       {
-        "name": "Gerbe d'étincelles balistiques",
-        "type": "sparks",
-        "frequency": "Intervalle moyen de 11 secondes",
-        "description": "Une fissure magmatique projette une salve explosive d'étincelles blanches et dorées à courbure parabolique vers le haut."
+        "name": "Crépitement violent des brasiers",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 11.0 secondes",
+        "description": "Flambée dorée éclairant brutalement les bas-reliefs de pierre sombre."
       }
     ],
     "interaction": {
@@ -245,7 +239,7 @@
     },
     "bricks": [
       {
-        "brick": "lava_flow",
+        "brickType": "lava_flow",
         "params": {
           "magmaColor": "#ea580c",
           "coreColor": "#fef08a",
@@ -257,7 +251,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#ea580c",
           "density": 1.15,
@@ -268,7 +262,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#dc2626",
           "secondaryColor": "#ea580c",
@@ -279,7 +273,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#ea580c",
           "hotColor": "#fef08a",
@@ -290,7 +284,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#334155",
           "tintColor": "#0f172a",
@@ -301,7 +295,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#ea580c",
           "waveInterval": 15.0,
@@ -311,7 +305,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#fef08a",
           "coreColor": "#ffffff",
@@ -321,7 +315,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0a0708",
           "intensity": 0.7,
@@ -330,7 +324,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.06,
           "speed": 0.8,
@@ -426,7 +420,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#1e3a8a",
           "bottomColor": "#78350f",
@@ -437,7 +431,7 @@
         }
       },
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
           "sandColor": "#d4a853",
           "shadowColor": "#78350f",
@@ -448,7 +442,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "lightSourceX": 0.0,
           "lightSourceY": 1.1,
@@ -459,7 +453,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#ffffff",
           "glowColor": "#fef08a",
@@ -471,7 +465,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 1.1,
@@ -481,7 +475,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#d4a853",
           "gustInterval": 16.0,
@@ -490,7 +484,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#fef08a",
@@ -500,7 +494,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#2d1810",
           "intensity": 0.55,
@@ -509,7 +503,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.05,
           "speed": 0.6,
@@ -518,13 +512,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "canyon_rock_face",
-        "category": "intermediate",
-        "reason": "Parois rocheuses verticales de défilé géologique sculptées dans le grès avec strates géologiques en parallaxe."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "sic_parvis_magna",
@@ -600,7 +588,7 @@
     },
     "bricks": [
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "skyColor": "#1e1b4b",
           "cloudColor": "#d4a853",
@@ -610,7 +598,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "lightSourceX": 0.45,
           "lightSourceY": 0.7,
@@ -621,7 +609,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.85,
@@ -631,7 +619,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#fef3c7",
           "gustInterval": 20.0,
@@ -640,7 +628,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1c1917",
           "intensity": 0.6,
@@ -649,7 +637,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.05,
           "speed": 0.5,
@@ -660,9 +648,9 @@
     ],
     "missingBricks": [
       {
-        "name": "nautical_compass_rose",
+        "name": "runic_circle",
         "category": "special",
-        "reason": "Rose des vents et aiguille de boussole en laiton à shader vectoriel avec balancement inertiel magnétique sous la souris."
+        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
       }
     ]
   },
@@ -740,7 +728,7 @@
     },
     "bricks": [
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#064e3b",
           "sunColor": "#d4a853",
@@ -751,7 +739,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#064e3b",
           "fogColor": "#065f46",
@@ -761,7 +749,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#065f46",
           "density": 0.75,
@@ -771,7 +759,7 @@
         }
       },
       {
-        "brick": "leaves",
+        "brickType": "leaves",
         "params": {
           "leafColor": "#d4a853",
           "altColor": "#34d399",
@@ -781,7 +769,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#34d399",
           "gustInterval": 18.0,
@@ -790,7 +778,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#022c22",
           "intensity": 0.55,
@@ -801,9 +789,9 @@
     ],
     "missingBricks": [
       {
-        "name": "waterfall_cascade",
+        "name": "waterfall_curtain",
         "category": "special",
-        "reason": "Rideau d'eau vive vertical procédural avec texture d'écoulement rapide et nappe d'embruns écumants à la base."
+        "reason": "Chute d'eau multicouche verticale avec embruns et halo d'écume à la base."
       }
     ]
   },
@@ -881,7 +869,7 @@
     },
     "bricks": [
       {
-        "brick": "water_caustics",
+        "brickType": "water_caustics",
         "params": {
           "waterColor": "#451a03",
           "causticColor": "#14b8a6",
@@ -892,7 +880,7 @@
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
           "bubbleColor": "#2dd4bf",
           "density": 0.75,
@@ -902,7 +890,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#14b8a6",
           "secondaryColor": "#0f766e",
@@ -912,7 +900,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#2dd4bf",
           "waveInterval": 17.0,
@@ -922,7 +910,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#180c05",
           "intensity": 0.62,
@@ -931,7 +919,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.05,
           "speed": 0.5,
@@ -1016,7 +1004,7 @@
     },
     "bricks": [
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#0f172a",
           "fogColor": "#475569",
@@ -1026,7 +1014,7 @@
         }
       },
       {
-        "brick": "rain",
+        "brickType": "rain",
         "params": {
           "rainColor": "#94a3b8",
           "density": 0.85,
@@ -1037,7 +1025,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#d4a853",
           "secondaryColor": "#b45309",
@@ -1049,7 +1037,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.7,
@@ -1059,7 +1047,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#93c5fd",
           "flashColor": "#f8fafc",
@@ -1069,7 +1057,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0b101b",
           "intensity": 0.58,
@@ -1078,7 +1066,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.05,
           "speed": 0.6,
@@ -1089,9 +1077,9 @@
     ],
     "missingBricks": [
       {
-        "name": "rain_on_window_panes",
-        "category": "special",
-        "reason": "Gouttes d'eau condensées et traînées de ruissellement gravitaire sur carreaux de verre à shader de réfraction."
+        "name": "window_rain",
+        "category": "overlay",
+        "reason": "Gouttelettes réfractives et ruissellement glissant sur une vitre en premier plan."
       }
     ]
   },
@@ -1169,7 +1157,7 @@
     },
     "bricks": [
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "skyColor": "#0f172a",
           "cloudColor": "#334155",
@@ -1180,7 +1168,7 @@
         }
       },
       {
-        "brick": "waves",
+        "brickType": "waves",
         "params": {
           "deepColor": "#0f172a",
           "crestColor": "#94a3b8",
@@ -1191,7 +1179,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#0a1120",
           "sunColor": "#14532d",
@@ -1201,7 +1189,7 @@
         }
       },
       {
-        "brick": "rain",
+        "brickType": "rain",
         "params": {
           "rainColor": "#93c5fd",
           "density": 1.1,
@@ -1212,7 +1200,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#dc2626",
           "secondaryColor": "#ea580c",
@@ -1224,7 +1212,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#dc2626",
           "hotColor": "#ea580c",
@@ -1235,7 +1223,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#c4b5fd",
           "flashColor": "#f8fafc",
@@ -1245,7 +1233,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#050811",
           "intensity": 0.68,
@@ -1254,7 +1242,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.08,
           "speed": 0.8,
@@ -1266,4 +1254,3 @@
     "missingBricks": []
   }
 ]
-

@@ -84,7 +84,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#44403c",
           "bottomColor": "#78716c",
@@ -98,7 +98,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#a8a29e",
           "skyColor": "#292524",
@@ -111,7 +111,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#78716c",
           "density": 0.75,
@@ -124,7 +124,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#d6d3d1",
           "density": 0.9,
@@ -138,7 +138,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#e7e5e4",
           "density": 0.85,
@@ -150,7 +150,7 @@
         }
       },
       {
-        "brick": "leaves",
+        "brickType": "leaves",
         "params": {
           "leafColor": "#4d7c0f",
           "altColor": "#78716c",
@@ -162,7 +162,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeColor": "#78716c",
           "density": 0.8,
@@ -175,7 +175,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#e2e8f0",
           "density": 0.8,
@@ -189,7 +189,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1c1917",
           "density": 1.05,
@@ -201,7 +201,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.0,
@@ -213,13 +213,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "sliding_monolith_gates",
-        "category": "intermediate",
-        "reason": "Deux dalles monolithiques colossales de béton armé et roche calcaire se faisant face, coulissant horizontalement avec inertie asynchrone, texture de rainures de friction et rideau de lierre pour matérialiser fidèlement l'entrée du Labyrinthe."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "panem",
@@ -306,7 +300,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#18181b",
           "bottomColor": "#3f3f46",
@@ -320,7 +314,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#52525b",
           "skyColor": "#18181b",
@@ -333,7 +327,7 @@
         }
       },
       {
-        "brick": "hex_grid",
+        "brickType": "hex_grid",
         "params": {
           "borderColor": "#ca8a04",
           "fillColor": "#18181b",
@@ -348,7 +342,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#27272a",
           "sunColor": "#ca8a04",
@@ -360,7 +354,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#ca8a04",
           "hotColor": "#fef08a",
@@ -372,7 +366,7 @@
         }
       },
       {
-        "brick": "ash",
+        "brickType": "ash",
         "params": {
           "ashColor": "#71717a",
           "darkColor": "#18181b",
@@ -384,7 +378,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#67e8f9",
           "flashColor": "#ca8a04",
@@ -398,7 +392,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#fef08a",
           "density": 0.85,
@@ -413,7 +407,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#09090b",
           "density": 1.0,
@@ -425,7 +419,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "density": 1.1,
@@ -439,11 +433,10 @@
     ],
     "missingBricks": [
       {
-        "name": "force_field_dome_distortion",
+        "name": "gravitational_lensing",
         "category": "special",
-        "reason": "Shader de distorsion optique sphérique courbée simulant la voûte électromagnétique du dôme de l'arène déformant le ciel et les nuages lors des ondes de choc."
+        "reason": "Shader de réfraction et lentille gravitationnelle incurvant l'arrière-plan."
       }
     ]
   }
 ]
-

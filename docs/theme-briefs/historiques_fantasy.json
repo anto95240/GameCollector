@@ -73,7 +73,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#450a0a",
           "bottomColor": "#0f172a",
@@ -85,7 +85,7 @@
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#0f172a",
           "torchColor": "#d97706",
@@ -99,7 +99,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#eab308",
           "density": 0.25,
@@ -109,7 +109,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f172a",
           "intensity": 0.35,
@@ -193,7 +193,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#7f1d1d",
           "bottomColor": "#1e1b4b",
@@ -205,7 +205,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fef3c7",
           "density": 0.65,
@@ -218,7 +218,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#d4a853",
           "density": 0.25,
@@ -228,7 +228,7 @@
         }
       },
       {
-        "brick": "leaves",
+        "brickType": "leaves",
         "params": {
           "leafColor": "#78350f",
           "density": 0.15,
@@ -238,7 +238,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#451a03",
           "intensity": 0.35,
@@ -246,9 +246,7 @@
         }
       }
     ],
-    "missingBricks": [
-      "parallax_colonnade"
-    ]
+    "missingBricks": []
   },
   {
     "id": "age_of_sail",
@@ -324,7 +322,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#082f49",
@@ -336,7 +334,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#f8fafc",
           "density": 0.6,
@@ -347,7 +345,7 @@
         }
       },
       {
-        "brick": "waves",
+        "brickType": "waves",
         "params": {
           "deepColor": "#082f49",
           "crestColor": "#f8fafc",
@@ -359,7 +357,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#d97706",
           "secondaryColor": "#8b4513",
@@ -373,7 +371,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
           "intensity": 0.4,
@@ -381,9 +379,7 @@
         }
       }
     ],
-    "missingBricks": [
-      "parallax_sailing_ship"
-    ]
+    "missingBricks": []
   },
   {
     "id": "aztec",
@@ -470,7 +466,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#022c22",
           "bottomColor": "#0f766e",
@@ -482,7 +478,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#022c22",
           "fogColor": "#0f766e",
@@ -494,7 +490,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#d4a853",
           "density": 0.8,
@@ -507,7 +503,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#d4a853",
           "density": 0.35,
@@ -517,7 +513,7 @@
         }
       },
       {
-        "brick": "fireflies",
+        "brickType": "fireflies",
         "params": {
           "glowColor": "#14b8a6",
           "density": 0.4,
@@ -527,7 +523,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#022c22",
           "intensity": 0.45,
@@ -535,9 +531,7 @@
         }
       }
     ],
-    "missingBricks": [
-      "mesoamerican_pyramid"
-    ]
+    "missingBricks": []
   },
   {
     "id": "taverne",
@@ -546,7 +540,7 @@
     "intensity": 2,
     "universe": "auberge-medievale-fantasy",
     "evocation": "Le refuge chaleureux et réconfortant de tout grand aventurier de RPG (The Witcher 3, Baldur's Gate, Hearthstone, Dungeons & Dragons). Une auberge aux poutres massives de chêne enfumé après une longue quête : le grand âtre d'une cheminée de granit où crépitent des braises ardentes, projetant des ombres dansantes sur les tables rustiques, des choppes de bière moussantes, de la poussière dorée flottant dans l'air tiède et des étincelles de chêne montant vers la hotte.",
-    "signature": "La lueur chaleureuse d'un grand foyer de cheminée faisant vaciller des ombres ambrées sur des poutres de chêne tandis qu'un essaim de braises incandescentes tourbillonne dans l'air tiède.",
+    "signature": "Un grand foyer de pierre sous poutres de chêne patinées projetant des ombres chaleureuses vacillantes au milieu d'un essaim de braises d'âtre et de grain pictural ancien.",
     "scene": [
       {
         "plan": 1,
@@ -589,10 +583,10 @@
     },
     "rareEvents": [
       {
-        "name": "Flambée de Bûche",
-        "type": "sparks",
+        "name": "Craquement de bûche de chêne",
+        "type": "lightning",
         "frequency": "Intervalle moyen de 25.0 secondes",
-        "description": "Une étincelle éclate brusquement dans la cheminée, projetant une gerbe vive qui s'estompe rapidement dans l'air chaud."
+        "description": "Un éclat doré bref crépite dans la cheminée, projetant des étincelles sous les poutres."
       }
     ],
     "interaction": {
@@ -618,7 +612,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#1c1917",
           "bottomColor": "#451a03",
@@ -630,7 +624,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#fcd34d",
           "secondaryColor": "#f97316",
@@ -644,7 +638,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#f97316",
           "density": 0.6,
@@ -655,7 +649,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#f97316",
           "density": 0.55,
@@ -665,7 +659,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fcd34d",
           "density": 0.3,
@@ -675,7 +669,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.06,
           "speed": 0.6,
@@ -683,7 +677,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1c1917",
           "intensity": 0.5,
@@ -700,7 +694,7 @@
     "intensity": 2,
     "universe": "foret-elfique-fantasy",
     "evocation": "Le sanctuaire sylvestre immémorial des elfes (Lothlórien de J.R.R. Tolkien, Quel'Thalas et Teldrassil de Warcraft, Forêt Noire féerique). De gigantesques troncs d'arbres millénaires aux frondaisons argentées formant des cathédrales végétales, des nappes de brume opaline ondulant entre les racines moussues, des rais de clair de lune doré perçant la canopée et une danse gracieuse de lucioles enchantées baignant les sous-bois de magie pure.",
-    "signature": "Une nuée de lucioles dorées pulsant en essaim autour d'arches végétales d'arbres ancestraux traversées par des rayons de clarté lunaire émeraude.",
+    "signature": "Une forêt ancestrale baignée d'un clair de lune émeraude et menthe nacrée, où une nuée de lucioles dorées danse autour d'arches sylvestres sous les rayons nocturnes.",
     "scene": [
       {
         "plan": 1,
@@ -743,16 +737,16 @@
     },
     "rareEvents": [
       {
-        "name": "Étoile d'Eärendil",
+        "name": "Étoile filante argentée du soir",
         "type": "shooting_star",
         "frequency": "Intervalle moyen de 40.0 secondes",
-        "description": "Une étoile filante d'argent pur traverse une brèche de la canopée en laissant une fine traînée lumineuse."
+        "description": "Une étoile filante d'argent pur fend la trouée de la canopée dans une fine traînée."
       },
       {
-        "name": "Brise Sylvestre",
+        "name": "Brise sylvestre",
         "type": "wind_gust",
         "frequency": "Intervalle moyen de 30.0 secondes",
-        "description": "Un souffle de vent frais fait frémir les cimes d'arbres et accélère la danse des lucioles dorées."
+        "description": "Un souffle frais fait frémir les feuillages et tourbillonner les lucioles d'or."
       }
     ],
     "interaction": {
@@ -778,7 +772,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#022c22",
           "bottomColor": "#064e3b",
@@ -790,7 +784,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#022c22",
           "fogColor": "#064e3b",
@@ -802,7 +796,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#a7f3d0",
           "density": 0.75,
@@ -813,7 +807,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fef08a",
           "density": 0.75,
@@ -826,7 +820,7 @@
         }
       },
       {
-        "brick": "fireflies",
+        "brickType": "fireflies",
         "params": {
           "glowColor": "#fef08a",
           "density": 0.55,
@@ -836,7 +830,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#022c22",
           "intensity": 0.42,
@@ -925,7 +919,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#082f49",
@@ -937,7 +931,7 @@
         }
       },
       {
-        "brick": "water_caustics",
+        "brickType": "water_caustics",
         "params": {
           "waterColor": "#020617",
           "causticColor": "#06b6d4",
@@ -949,7 +943,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#06b6d4",
           "glowColor": "#0284c7",
@@ -961,7 +955,7 @@
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
           "bubbleColor": "#38bdf8",
           "density": 0.45,
@@ -971,7 +965,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#06b6d4",
           "density": 0.3,
@@ -981,14 +975,14 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "intensity": 0.08,
           "radius": 0.75
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
           "intensity": 0.55,
@@ -1077,7 +1071,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0c0a09",
           "bottomColor": "#1c1917",
@@ -1089,7 +1083,7 @@
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#0c0a09",
           "torchColor": "#ef4444",
@@ -1103,7 +1097,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#ef4444",
           "secondaryColor": "#f97316",
@@ -1115,7 +1109,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#292524",
           "density": 0.85,
@@ -1126,7 +1120,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#ef4444",
           "density": 0.35,
@@ -1136,7 +1130,7 @@
         }
       },
       {
-        "brick": "ash",
+        "brickType": "ash",
         "params": {
           "ashColor": "#292524",
           "density": 0.25,
@@ -1146,7 +1140,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.08,
           "speed": 0.7,
@@ -1154,7 +1148,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0c0a09",
           "intensity": 0.65,
@@ -1249,7 +1243,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f0d24",
           "bottomColor": "#1e1b4b",
@@ -1261,7 +1255,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#c084fc",
           "density": 0.8,
@@ -1272,7 +1266,7 @@
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#0f0d24",
           "torchColor": "#8b5cf6",
@@ -1286,7 +1280,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#c084fc",
           "glowColor": "#8b5cf6",
@@ -1298,7 +1292,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#c084fc",
           "density": 0.45,
@@ -1308,7 +1302,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#8b5cf6",
           "density": 0.3,
@@ -1318,14 +1312,14 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "intensity": 0.07,
           "radius": 0.75
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0f0d24",
           "intensity": 0.45,
@@ -1334,7 +1328,11 @@
       }
     ],
     "missingBricks": [
-      "arcane_circle"
+      {
+        "name": "runic_circle",
+        "category": "special",
+        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
+      }
     ]
   },
   {
@@ -1416,7 +1414,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#78350f",
           "bottomColor": "#1e293b",
@@ -1428,7 +1426,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#f8fafc",
           "skyColor": "#b45309",
@@ -1440,7 +1438,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#1e293b",
           "sunColor": "#d97706",
@@ -1454,7 +1452,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#f8fafc",
           "density": 0.85,
@@ -1467,7 +1465,7 @@
         }
       },
       {
-        "brick": "leaves",
+        "brickType": "leaves",
         "params": {
           "leafColor": "#d97706",
           "density": 0.45,
@@ -1477,7 +1475,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#f8fafc",
           "density": 0.25,
@@ -1487,7 +1485,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1e293b",
           "intensity": 0.38,
@@ -1495,9 +1493,7 @@
         }
       }
     ],
-    "missingBricks": [
-      "heroic_blade"
-    ]
+    "missingBricks": []
   },
   {
     "id": "dragon_lair",
@@ -1578,7 +1574,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#09090b",
           "bottomColor": "#7f1d1d",
@@ -1590,7 +1586,7 @@
         }
       },
       {
-        "brick": "lava_flow",
+        "brickType": "lava_flow",
         "params": {
           "crustColor": "#18181b",
           "magmaColor": "#ea580c",
@@ -1603,7 +1599,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#ea580c",
           "density": 0.75,
@@ -1614,7 +1610,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#facc15",
           "secondaryColor": "#ea580c",
@@ -1628,7 +1624,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#facc15",
           "density": 0.65,
@@ -1638,7 +1634,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#18181b",
           "density": 0.4,
@@ -1648,7 +1644,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#09090b",
           "intensity": 0.55,
@@ -1732,7 +1728,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#022c22",
           "bottomColor": "#065f46",
@@ -1744,7 +1740,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#a7f3d0",
           "density": 0.7,
@@ -1755,7 +1751,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#f0fdf4",
           "glowColor": "#6ee7b7",
@@ -1767,7 +1763,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#a7f3d0",
           "density": 0.25,
@@ -1777,7 +1773,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#022c22",
           "intensity": 0.35,
@@ -1794,27 +1790,27 @@
     "intensity": 1,
     "universe": "saga-epique-nordique-legendes",
     "evocation": "Les grandes sagas héroïques nordiques et chroniques des anciens âges (Beowulf, les chants de l'Edda poétique, Skyrim, The Banner Saga). Une chaîne de montagnes majestueuses sous un ciel nocturne bleu ardoise, où les draperies lumineuses d'une aurore boréale discrète ondulent au zénith en mémoire des exploits des rois et guerriers oubliés, tandis que de rares flocons de neige voltigent dans l'air vif.",
-    "signature": "Des sommets montagneux acérés nimbés d'une brume d'azur glacial sous un ciel nocturne balayé par les draperies spectrales d'une aurore boréale feutrée.",
+    "signature": "De hautes crêtes alpins bleu glacier et ardoise sculptées dans une brume crépusculaire argentée, sous un saupoudrage calme de neige portée par la bise des sommets.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan arctique céleste",
-        "description": "Nuit arctique profonde zébrée par les rideaux ondulants d'une aurore boréale azur et saphir."
+        "description": "Crépuscule polaire ardoise et bleu acier serein sans draperies boréales vertes."
       },
       {
         "plan": 2,
         "type": "Reliefs nordiques",
-        "description": "Silhouette de pics alpins aux arêtes vives et névés d'argent étagés sur les contreforts."
+        "description": "Pics alpins abrupts couverts de névés argentés étagés sur trois plans."
       },
       {
         "plan": 3,
-        "type": "Particules de givre",
-        "description": "Flocons de neige délicats dérivant avec lenteur et noblesse dans l'atmosphère cristalline."
+        "type": "Brume de vallée",
+        "description": "Brume argentée froide flottant silencieusement entre les vallons glaciaires."
       },
       {
         "plan": 4,
-        "type": "Finition nordique",
-        "description": "Grain photochimique sobre et vignettage ardoise focalisant le regard sur les cimes."
+        "type": "Particules et finition",
+        "description": "Flocons fins et grain photochimique sobre préservant une netteté d'acier."
       }
     ],
     "particles": {
@@ -1861,66 +1857,45 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
-          "topColor": "#020617",
-          "bottomColor": "#0f172a",
-          "horizonColor": "#0284c7",
-          "density": 1.0,
-          "speed": 0.05,
-          "depth": 0.05,
-          "intensity": 0.85
+          "topColor": "#0f172a",
+          "bottomColor": "#38bdf8"
         }
       },
       {
-        "brick": "aurora",
+        "brickType": "parallax_mountains",
         "params": {
-          "topColor": "#38bdf8",
-          "bottomColor": "#0284c7",
-          "density": 0.5,
-          "speed": 0.12,
-          "depth": 0.25,
-          "intensity": 0.8,
-          "waveFrequency": 2.0
-        }
-      },
-      {
-        "brick": "parallax_mountains",
-        "params": {
-          "rockColor": "#0f172a",
-          "sunColor": "#38bdf8",
-          "mistColor": "#1e293b",
-          "density": 0.9,
-          "speed": 0.1,
-          "depth": 0.35,
-          "intensity": 0.9,
-          "snowLevel": 0.65
-        }
-      },
-      {
-        "brick": "snow",
-        "params": {
+          "color": "#1e293b",
           "snowColor": "#f8fafc",
-          "density": 0.25,
-          "speed": 0.14,
-          "depth": 0.35,
-          "intensity": 0.8
+          "layers": 3
         }
       },
       {
-        "brick": "grain",
+        "brickType": "noisy_fog",
         "params": {
-          "intensity": 0.05,
-          "speed": 0.5,
-          "clumpSize": 1.0
+          "color": "#7dd3fc",
+          "density": 0.3
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "snow",
         "params": {
-          "vignetteColor": "#020617",
-          "intensity": 0.4,
-          "smoothness": 0.9
+          "color": "#f8fafc",
+          "count": 24,
+          "speed": 0.14
+        }
+      },
+      {
+        "brickType": "film_grain",
+        "params": {
+          "intensity": 0.14
+        }
+      },
+      {
+        "brickType": "vignette",
+        "params": {
+          "darkness": 0.55
         }
       }
     ],
@@ -1933,7 +1908,7 @@
     "intensity": 1,
     "universe": "hauts-cieux-royaume-divin-olympe",
     "evocation": "Les hauts cieux et sphères divines au-dessus du monde des mortels (Mont Olympe, Asgard de la mythologie scandinave, Hauts Cieux de Diablo, Élysée). Une mer infinie de nuées immaculées baignée d'une gloire solaire zénithale éblouissante, des colonnes de lumière divine descendant à travers l'éther, et des poussières d'or céleste flottant dans une harmonie parfaite et paisible.",
-    "signature": "Des nuées dorées et vaporeuses en lévitation sous des rayons de gloire solaire descendants, enveloppées d'une lueur volumétrique ambrée d'une pureté majestueuse.",
+    "signature": "Un pur éther d'albâtre et d'or au-dessus des nuages sans architecture terrestre, traversé de colonnes immobiles de lumière solaire ascendante et descendante d'une paix souveraine.",
     "scene": [
       {
         "plan": 1,
@@ -2000,7 +1975,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#fef3c7",
           "bottomColor": "#d4a853",
@@ -2012,7 +1987,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#ffffff",
           "skyColor": "#fef08a",
@@ -2023,7 +1998,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#ffffff",
           "density": 0.7,
@@ -2036,7 +2011,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#ffffff",
           "glowColor": "#fef08a",
@@ -2048,7 +2023,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#d4a853",
           "density": 0.25,
@@ -2058,7 +2033,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#451a03",
           "intensity": 0.3,
@@ -2114,7 +2089,7 @@
     "rareEvents": [
       {
         "name": "Alignement Solaire",
-        "type": "lens_flare",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 45.0 secondes",
         "description": "Un éclat optique discret traverse le centre de l'oculus, produisant un chatoiement nacré éphémère."
       }
@@ -2142,7 +2117,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#ffffff",
           "bottomColor": "#f59e0b",
@@ -2154,7 +2129,7 @@
         }
       },
       {
-        "brick": "line_constellation",
+        "brickType": "line_constellation",
         "params": {
           "nodeColor": "#f59e0b",
           "lineColor": "#fef3c7",
@@ -2166,7 +2141,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#ffffff",
           "density": 0.8,
@@ -2179,7 +2154,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#ffffff",
           "glowColor": "#fef3c7",
@@ -2191,7 +2166,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#f59e0b",
           "density": 0.25,
@@ -2201,7 +2176,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1e293b",
           "intensity": 0.38,
@@ -2210,8 +2185,11 @@
       }
     ],
     "missingBricks": [
-      "pantheon_oculus"
+      {
+        "name": "runic_circle",
+        "category": "special",
+        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
+      }
     ]
   }
 ]
-

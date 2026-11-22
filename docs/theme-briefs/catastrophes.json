@@ -6,32 +6,32 @@
     "intensity": 3,
     "universe": null,
     "evocation": "Éruption volcanique cataclysmique (Vésuve, Krakatoa, Mont Saint Helens, cinéma catastrophe volcanique type Dante's Peak et Volcano). Une nuit d'encre déchirée par une caldeira en furie : rivière de lave magmatique rougeoyante à 1 200 °C serpentant entre des plaques de basalte craquelées, colonnes d'air brûlant faisant miroiter l'espace, panaches de cendres lourdes et gerbes de braises ardentes illuminées par des décharges électriques volcaniques sales.",
-    "signature": "Une coulée de lave magmatique rougeoyante qui serpente entre des plaques de basalte fracturées, propulsant des geysers de braises ardentes et des panaches de cendres sous des éclairs volcaniques zébrant la pénombre.",
+    "signature": "Un volcan nocturne éventrant la nuit sous un panache gigantesque de cendres tombantes, zébré par des éclairs volcaniques bleu-violet et d'intenses grondements telluriques.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel nocturne obscurci par un nuage pyroclastique lourd illuminé par le bas d'un rougeoiement magmatique sourd."
+        "description": "Ciel de nuit submergé d'un nuage éruptif noir éclairé d'orange par en dessous."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Pentes volcaniques abruptes en silhouette noire de basalte avec contreforts rocheux et cheminées secondaires actives crachant de la fumée."
+        "description": "Cône volcanique abrupt en basalte noir et bouches secondaires fumantes en plein air."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Rivière de magma en fusion profonde avec torsion visqueuse dans une gorge béante, lézardée de failles incandescentes blanches et orange."
+        "description": "Coulées de lave visqueuse descendant les pentes rocheuses dans des failles blanches et orange."
       },
       {
         "plan": 4,
         "type": "Avant-plan atmosphérique",
-        "description": "Colonnes de distorsion thermique ascensionnelle faisant onduler la vision et rideau de cendres volcaniques calcinées tournoyant dans les courants d'air."
+        "description": "Neige grise épaisse de cendres volcaniques tombant du ciel et distorsion de chaleur."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Nuée dense de braises ardentes en convection turbulente projetées vers le haut de l'écran, avec vignettage suie et micro-grain photochimique 35mm."
+        "description": "Braises jaillissantes, secousses sismiques et grain photochimique brutal."
       }
     ],
     "particles": {
@@ -84,7 +84,7 @@
     },
     "bricks": [
       {
-        "brick": "lava_flow",
+        "brickType": "lava_flow",
         "params": {
           "magmaColor": "#ea580c",
           "crustColor": "#000000",
@@ -96,7 +96,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#000000",
           "sunColor": "#451a03",
@@ -108,7 +108,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#ea580c",
           "density": 1.2,
@@ -119,7 +119,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#451a03",
           "density": 0.9,
@@ -129,7 +129,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#ea580c",
           "hotColor": "#fef08a",
@@ -140,7 +140,7 @@
         }
       },
       {
-        "brick": "ash",
+        "brickType": "ash",
         "params": {
           "ashColor": "#64748b",
           "darkColor": "#1e293b",
@@ -151,7 +151,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#c4b5fd",
           "flashColor": "#ea580c",
@@ -161,7 +161,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeInterval": 14.0,
           "intensity": 0.9,
@@ -170,7 +170,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.7,
@@ -179,7 +179,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.08,
           "speed": 0.75,
@@ -188,13 +188,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "pyroclastic_plume",
-        "category": "special",
-        "reason": "Panache pyroclastique volumétrique en colonne ascendante formant un champignon éruptif de cendres et de blocs volcaniques illuminé de l'intérieur."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "tsunami",
@@ -281,7 +275,7 @@
     },
     "bricks": [
       {
-        "brick": "waves",
+        "brickType": "waves",
         "params": {
           "deepColor": "#082f49",
           "crestColor": "#f8fafc",
@@ -294,7 +288,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "skyColor": "#021a2f",
           "cloudColor": "#082f49",
@@ -306,7 +300,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#082f49",
           "density": 1.1,
@@ -316,7 +310,7 @@
         }
       },
       {
-        "brick": "rain",
+        "brickType": "rain",
         "params": {
           "rainColor": "#38bdf8",
           "density": 1.2,
@@ -328,7 +322,7 @@
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
           "bubbleColor": "#0ea5e9",
           "density": 0.8,
@@ -338,7 +332,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#38bdf8",
           "flashColor": "#f8fafc",
@@ -348,7 +342,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeInterval": 16.0,
           "intensity": 0.95,
@@ -357,7 +351,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#0ea5e9",
           "intensity": 0.7,
@@ -366,7 +360,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#021a2f",
           "intensity": 0.75,
@@ -375,13 +369,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "breaking_wave_crest",
-        "category": "special",
-        "reason": "Lèvre d'eau géante en rouleau concave de mégatsunami avec rideau d'écume déferlant et turbulences d'aspiration hydraulique."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "twister",
@@ -474,7 +462,7 @@
     },
     "bricks": [
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "skyColor": "#000000",
           "cloudColor": "#334155",
@@ -486,7 +474,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#cbd5e1",
           "gustInterval": 5.0,
@@ -497,7 +485,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#94a3b8",
           "density": 1.2,
@@ -507,7 +495,7 @@
         }
       },
       {
-        "brick": "leaves",
+        "brickType": "leaves",
         "params": {
           "leafColor": "#475569",
           "altColor": "#334155",
@@ -518,7 +506,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#c4b5fd",
           "flashColor": "#ffffff",
@@ -528,7 +516,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeInterval": 12.0,
           "intensity": 0.85,
@@ -537,7 +525,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#334155",
           "density": 0.95,
@@ -547,7 +535,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#94a3b8",
           "intensity": 0.65,
@@ -556,7 +544,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.75,
@@ -565,13 +553,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "tornado_vortex",
-        "category": "special",
-        "reason": "Colonne conique volumétrique en vortex tourbillonnant descendant de la base nuageuse avec pied d'aspiration au sol et débris en rotation concentrique."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "whiteout",
@@ -658,7 +640,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#e2e8f0",
           "bottomColor": "#f8fafc",
@@ -670,7 +652,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#64748b",
           "sunColor": "#f8fafc",
@@ -682,7 +664,7 @@
         }
       },
       {
-        "brick": "snow",
+        "brickType": "snow",
         "params": {
           "snowColor": "#ffffff",
           "density": 1.3,
@@ -694,7 +676,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#f8fafc",
           "density": 1.2,
@@ -704,7 +686,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#ffffff",
           "gustInterval": 6.0,
@@ -714,7 +696,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeInterval": 18.0,
           "intensity": 0.7,
@@ -723,7 +705,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "intensity": 0.09,
@@ -733,7 +715,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0ea5e9",
           "intensity": 0.45,
@@ -746,7 +728,7 @@
       {
         "name": "frost_vignette",
         "category": "overlay",
-        "reason": "Cristallisation procédurale d'aiguilles de glace et dendrites de givre sur les bordures de l'écran avec croissance et fonte thermique."
+        "reason": "Cristallisation progressive de givre translucide en périphérie d'écran."
       }
     ]
   },
@@ -841,7 +823,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#1c1917",
           "bottomColor": "#b91c1c",
@@ -853,7 +835,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#facc15",
           "density": 0.7,
@@ -864,7 +846,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#1c1917",
           "sunColor": "#ef4444",
@@ -876,7 +858,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#ffffff",
           "glowColor": "#facc15",
@@ -888,7 +870,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#f97316",
@@ -900,7 +882,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#facc15",
           "waveInterval": 7.0,
@@ -911,7 +893,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeInterval": 7.0,
           "intensity": 1.15,
@@ -920,7 +902,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#facc15",
           "coreColor": "#ffffff",
@@ -932,7 +914,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#ef4444",
           "hotColor": "#facc15",
@@ -943,7 +925,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#ef4444",
           "intensity": 0.65,
@@ -952,7 +934,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1c1917",
           "intensity": 0.7,
@@ -961,13 +943,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "meteor_crater_glow",
-        "category": "special",
-        "reason": "Cœur de cratère incandescent en fusion résiduelle au sol avec failles de plasma et respiration thermique post-impact."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "sinkhole",
@@ -1054,7 +1030,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#78350f",
           "bottomColor": "#000000",
@@ -1066,7 +1042,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#000000",
           "sunColor": "#451a03",
@@ -1079,7 +1055,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#a16207",
           "density": 1.25,
@@ -1089,7 +1065,7 @@
         }
       },
       {
-        "brick": "ash",
+        "brickType": "ash",
         "params": {
           "ashColor": "#78350f",
           "darkColor": "#1c1917",
@@ -1100,7 +1076,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#451a03",
           "density": 0.9,
@@ -1110,7 +1086,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeInterval": 11.0,
           "intensity": 0.9,
@@ -1119,7 +1095,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#78350f",
           "gustInterval": 15.0,
@@ -1129,7 +1105,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
           "intensity": 0.08,
@@ -1139,7 +1115,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.8,
@@ -1148,12 +1124,6 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "sinkhole_abyss",
-        "category": "special",
-        "reason": "Gouffre circulaire procédural en coupe géologique avec failles concentriques d'effondrement et gravitation centripète aspirant particules et roche vers le centre."
-      }
-    ]
+    "missingBricks": []
   }
 ]

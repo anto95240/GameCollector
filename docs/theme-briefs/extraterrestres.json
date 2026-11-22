@@ -6,32 +6,32 @@
     "intensity": 2,
     "universe": "x-files",
     "evocation": "The X-Files (Aux frontières du réel, Chris Carter) et le célèbre poster culte épinglé dans le bureau au sous-sol de Fox Mulder au FBI. Une nuit brumeuse dans une forêt isolée de conifères du Nord-Ouest américain : une trouée entre les grands pins où stationne une silhouette discoïdale mystérieuse projetant un cône de lumière d'abduction vers le sol à travers des nappes de brume mouvantes, baignant la scène d'une lueur vert spectral, de volutes vaporeuses et d'une nuée de poussières féeriques en lévitation.",
-    "signature": "Un disque volant stationnaire au-dessus de la cime des pins qui projette un cône de lumière d'abduction vert pâle palpitant à travers des volutes de brume nocturne.",
+    "signature": "Une forêt sombre de conifères nordiques noyée dans une brume nocturne rampante, transpercée depuis les nuages par un large cône de lumière vert pâle mystérieux.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Ciel nocturne bleu d'encre percé de quelques étoiles lointaines voilées par des cirrus vaporeux sombres dérivant sous le vent."
+        "description": "Ciel d'encre nocturne étoilé voilé par des cirrus sombres dérivant lentement."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette de conifères denses et sombres étagée sur 3 plans de parallaxe, avec houppiers ondulant subtilement sous une brise feutrée."
+        "description": "Conifères sombres étagés sur 3 plans de parallaxe aux cimes frémissantes."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Cône volumétrique d'abduction descendant d'une source discoïdale diffuse, avec variations de luminance organique Simplex et respiration lumineuse."
+        "description": "Cône volumétrique vert pâle descendant verticalement d'une source zénithale diffuse invisible."
       },
       {
         "plan": 4,
         "type": "Avant-plan atmosphérique",
-        "description": "Nappe de brume volumétrique basse dérivant entre les troncs et diffusant la lueur verte au sol, peuplée de micro-poussières en lévitation."
+        "description": "Brume basse dérivant entre les troncs et poussières illuminées aspirées vers le haut."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Vignettage cinématographique ténébreux et grain argentique 35mm évoquant la pellicule des séries télévisées de mystère des années 90."
+        "description": "Vignettage ténébreux et grain argentique 35mm de série mystère des années 90."
       }
     ],
     "particles": {
@@ -42,28 +42,28 @@
       "behavior": "Dérive lente ascensionnelle et latérale aspirée vers le haut dans le cône lumineux, avec répulsion douce au survol de la souris."
     },
     "atmosphere": {
-      "mist": "Nappe de brume volumétrique vaporeuse dérivant entre les troncs et diffusant la lueur verte au ras du sol.",
-      "light": "Faisceau conique d'abduction descendant, froid et spectral (#86efac et #22c55e), modulé par une pulsation d'intensité organique.",
-      "airColor": "Bleu-noir d'encre (#020617) virant au vert émeraude mystique (#14532d, #22c55e) dans le halo du faisceau.",
-      "mainLightSource": "Le disque céleste en sustentation projetant son faisceau de capture vers le sol."
+      "mist": "Brume forestière vaporeuse diffusant la lueur verte au ras du sol.",
+      "light": "Faisceau conique descendant vert pâle (#86efac, #22c55e) modulé organiquement.",
+      "airColor": "Bleu-noir d'encre (#020617) et vert émeraude mystique (#14532d).",
+      "mainLightSource": "Source zénithale diffuse perçant les nuages en faisceau vertical."
     },
     "rareEvents": [
       {
-        "name": "Pulsation d'abduction & sursaut de faisceau",
-        "type": "volumetric_glow",
+        "name": "Sursaut du faisceau céleste",
+        "type": "lightning",
         "frequency": "Intervalle moyen de 12.0 secondes",
-        "description": "Le faisceau lumineux s'intensifie soudainement avec une onde de radiance verte aveuglante avant de redescendre doucement à son intensité de veille."
+        "description": "Le faisceau vertical pulse d'une vive clarté verte spectrale avant de retrouver sa veille."
       },
       {
-        "name": "Furtive traînée météoritique",
+        "name": "Traînée lumineuse supersonique",
         "type": "shooting_star",
         "frequency": "Intervalle moyen de 18.0 secondes",
-        "description": "Un éclat supersonique fugace traverse le ciel nocturne derrière la cime des arbres."
+        "description": "Un point fulgurant traverse furtivement le ciel au-dessus de la cime des pins."
       }
     ],
     "interaction": {
-      "mouse": "La parallaxe déplace la perspective des pins par rapport au disque volant ; le passage du curseur disperse doucement la brume et fait dévier les motes lumineuses.",
-      "scroll": "Accentue la perspective en plongeant le regard dans la clairière, resserrant le faisceau conique tout en préservant le contraste de l'UI."
+      "mouse": "Déplace les conifères en parallaxe et écarte les volutes de brume sous le faisceau.",
+      "scroll": "Enfonce le regard dans la clairière sombre tout en préservant la netteté UI."
     },
     "palette": [
       "#020617",
@@ -84,7 +84,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#0f172a",
@@ -94,7 +94,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#020617",
           "fogColor": "#14532d",
@@ -105,7 +105,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#22c55e",
           "density": 1.1,
@@ -118,7 +118,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#14532d",
           "density": 0.85,
@@ -128,7 +128,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#86efac",
           "density": 0.85,
@@ -138,7 +138,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#f8fafc",
           "trailColor": "#22c55e",
@@ -148,7 +148,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.65,
@@ -156,7 +156,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.08,
           "speed": 0.7,
@@ -167,9 +167,9 @@
     ],
     "missingBricks": [
       {
-        "name": "ufo_saucer",
-        "category": "special",
-        "reason": "Silhouette de soucoupe volante discoïdale en sustentation magnétique avec anneau de hublots clignotants et oscillation gyroscopique discrète."
+        "name": "volumetric_spotlight",
+        "category": "atmosphere",
+        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
       }
     ]
   },
@@ -180,7 +180,7 @@
     "intensity": 2,
     "universe": "alien",
     "evocation": "Alien (Ridley Scott, James Cameron, H.R. Giger) : les coursives métalliques suintantes du cargo Nostromo et du complexe colonial LV-426. Pénombre claustrophobique industrielle déchirée par le clignotement vert phosphore d'un détecteur de mouvements analogique, vapeur cryogénique sifflant des conduits de ventilation, et gouttelettes corrosives de salive acide brillant dans l'obscurité métallique.",
-    "signature": "Un couloir industriel claustrophobique en noir d'encre baigné de vapeur toxique, strié par le balayage vert cathodique d'un radar CRT et les étincelles d'un circuit électrique en perdition.",
+    "signature": "Un couloir industriel noir d'encre saturé de vapeur froide, strié par le balayage vert cathodique d'un radar circulaire et les étincelles d'un circuit électrique défaillant.",
     "scene": [
       {
         "plan": 1,
@@ -253,12 +253,12 @@
       "Three.js dark industrial steam pipes sparks"
     ],
     "risks": {
-      "pitfall": "Un écran tout noir illisible sans profondeur ou un vert Matrix monochrome répétitif.",
-      "solution": "Découpage subtil de la profondeur par contrastes de spécularité métallique, clignotement stochastique à rythmes biologiques asynchrones et trame CRT texturée."
+      "pitfall": "Écran tout noir illisible ou vert Matrix répétitif.",
+      "solution": "Spécularités métalliques sombres, balayage radar sectoriel vert phosphore et vapeur froide."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#0a0f0d",
@@ -268,7 +268,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#22c55e",
           "secondaryColor": "#166534",
@@ -279,7 +279,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#0a0f0d",
           "density": 1.1,
@@ -289,7 +289,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#4ade80",
           "coreColor": "#ffffff",
@@ -300,7 +300,7 @@
         }
       },
       {
-        "brick": "glitch",
+        "brickType": "glitch",
         "params": {
           "glitchColor": "#4ade80",
           "density": 0.8,
@@ -310,7 +310,7 @@
         }
       },
       {
-        "brick": "crt_scanlines",
+        "brickType": "crt_scanlines",
         "params": {
           "scanlineColor": "#000000",
           "density": 1.1,
@@ -321,7 +321,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.75,
@@ -329,7 +329,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.09,
           "speed": 0.8,
@@ -340,14 +340,9 @@
     ],
     "missingBricks": [
       {
-        "name": "acid_drips",
-        "category": "particles",
-        "reason": "Chute verticale de gouttes visqueuses d'acide bioluminescent avec impact corrosif fumant au sol."
-      },
-      {
-        "name": "motion_tracker_radar",
+        "name": "radar_sweep",
         "category": "special",
-        "reason": "Balayage radar radial à secteur conique vert affichant des échos de cibles pulsants avec onde sonore visuelle."
+        "reason": "Balayage sonar ou radar circulaire à rémanence lumineuse discrète."
       }
     ]
   },
@@ -358,32 +353,32 @@
     "intensity": 2,
     "universe": "alien-mythology",
     "evocation": "Le gigantisme cinématographique des vaisseaux-mères extraterrestres (Independence Day, District 9, V, Close Encounters). Une mégastructure extraterrestre colossale et silencieuse planant au sommet de la troposphère, dont la masse d'alliage titane obscurcit la moitié du firmament, creusée de canaux énergétiques azur et de propulseurs antigravitationnels pulsant au-dessus d'un océan de nuages vaporeux.",
-    "signature": "La coque cyclopéenne d'un vaisseau-mère en titane sombre surplombant une mer de nuages nocturnes, animée par la pulsation lente de ses réacteurs antigravité bleus et le balayage régulier d'un bouclier de force alvéolaire.",
+    "signature": "Une voûte stratosphérique surplombant une mer de nuages nocturnes, illuminée par une trame alvéolaire azur et des ondes antigravitationnelles bleues descendant des hautes altitudes.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Voûte céleste d'altitude stratosphérique bleu nuit avec champ d'étoiles froides scintillantes."
+        "description": "Ciel stratosphérique bleu nuit abyssal semé d'étoiles froides scintillantes."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Mer de nuages FBM denses et cotonneux déroulant leurs volutes argentées sous la lueur lunaire."
+        "description": "Mer dense de nuages FBM déroulant leurs volutes argentées sous la lune."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Masse titanesque de la sous-face du vaisseau-mère avec réacteurs antigravité pulsants et motifs géométriques alvéolaires."
+        "description": "Grille géométrique hexagonale zénithale pulsant en rythme sourd bleu azur (#3b82f6)."
       },
       {
         "plan": 4,
         "type": "Avant-plan atmosphérique",
-        "description": "Faisceaux volumétriques de scan azur descendant des baies du vaisseau et poussières de condensation glacée en suspension."
+        "description": "Dôme de lueur volumétrique bleutée et poussières glacées stratosphériques en suspension."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Vignettage anamorphique froid, subtile aberration chromatique prismatique et micro-grain cinéma."
+        "description": "Aberration chromatique anamorphique froide et vignettage nocturne."
       }
     ],
     "particles": {
@@ -414,8 +409,8 @@
       }
     ],
     "interaction": {
-      "mouse": "La parallaxe déplace la perspective de la coque colossale par rapport à l'horizon nuageux, créant une impression de vertige et d'échelle monumentale.",
-      "scroll": "Rapproche ou éloigne la caméra de la sous-face du vaisseau, accentuant la brillance des circuits énergétiques bleus."
+      "mouse": "Incline la perspective sur les couches de nuages et les alvéoles azur.",
+      "scroll": "Intensifie l'éclat des ondes de champ bleu azur tout en gardant un haut d'écran lisible."
     },
     "palette": [
       "#090d16",
@@ -431,12 +426,12 @@
       "Three.js volumetric clouds sci-fi scale"
     ],
     "risks": {
-      "pitfall": "Bloc grisâtre uniforme au plafond sans échelle tangible, ressemblant à une dalle de béton statique.",
-      "solution": "Superposition d'une texture alvéolaire Hex Grid pulsante, traînées différentielles de nuages FBM en contrebas et onde de souffle de réacteur périodique."
+      "pitfall": "Dalle grise inerte au plafond ou reproduction d'un vaisseau cinématographique déposé.",
+      "solution": "Trame alvéolaire Hex Grid pulsante, nuages FBM stratosphériques et ondes bleues périodiques sans soucoupe protégée."
     },
     "bricks": [
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 0.8,
@@ -445,7 +440,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#1e3a8a",
           "skyColor": "#090d16",
@@ -455,7 +450,7 @@
         }
       },
       {
-        "brick": "hex_grid",
+        "brickType": "hex_grid",
         "params": {
           "borderColor": "#3b82f6",
           "fillColor": "#090d16",
@@ -467,7 +462,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#e0f2fe",
           "glowColor": "#3b82f6",
@@ -479,7 +474,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#60a5fa",
           "density": 0.8,
@@ -489,7 +484,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#60a5fa",
           "density": 0.9,
@@ -500,7 +495,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#3b82f6",
           "spread": 0.02,
@@ -509,7 +504,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.6,
@@ -517,13 +512,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "mothership_silhouette",
-        "category": "intermediate",
-        "reason": "Mégastructure monolithique extraterrestre colossale en perspective plongeante avec canalisations d'énergie ventrales et motifs géométriques asymétriques."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "roswell",
@@ -610,7 +599,7 @@
     },
     "bricks": [
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 1.1,
@@ -619,7 +608,7 @@
         }
       },
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
           "sandColor": "#78350f",
           "shadowColor": "#1c1917",
@@ -630,7 +619,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#bbf7d0",
           "glowColor": "#4ade80",
@@ -642,7 +631,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#292524",
           "tintColor": "#1c1917",
@@ -652,7 +641,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#bbf7d0",
           "density": 0.9,
@@ -662,7 +651,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#78350f",
           "density": 0.9,
@@ -672,7 +661,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#bbf7d0",
           "trailColor": "#4ade80",
@@ -681,7 +670,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.65,
@@ -689,7 +678,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.1,
           "speed": 0.8,
@@ -698,13 +687,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "crash_trench",
-        "category": "intermediate",
-        "reason": "Tranchée d'impact allongée balafrant le sol désertique avec fragments de tôle froissée à mémoire de forme aux reflets irisés."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "area_51",
@@ -757,7 +740,7 @@
     "rareEvents": [
       {
         "name": "Alerte intrusion & balayage d'urgence",
-        "type": "flickering_light",
+        "type": "lightning",
         "frequency": "Intervalle moyen de 13.0 secondes",
         "description": "Les projecteurs accélèrent leur balayage et un gyrophare de mirador clignote vivement en stroboscope ambré."
       },
@@ -791,7 +774,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#0f172a",
@@ -801,7 +784,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#020617",
           "sunColor": "#0f172a",
@@ -812,7 +795,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#eab308",
           "density": 1.0,
@@ -825,7 +808,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#eab308",
           "secondaryColor": "#ca8a04",
@@ -836,7 +819,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.8,
@@ -846,7 +829,7 @@
         }
       },
       {
-        "brick": "sparks",
+        "brickType": "sparks",
         "params": {
           "sparkColor": "#fef08a",
           "coreColor": "#ffffff",
@@ -857,7 +840,7 @@
         }
       },
       {
-        "brick": "crt_scanlines",
+        "brickType": "crt_scanlines",
         "params": {
           "scanlineColor": "#000000",
           "density": 0.95,
@@ -868,7 +851,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.7,
@@ -876,13 +859,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "security_fence_silhouette",
-        "category": "intermediate",
-        "reason": "Silhouette vectorielle de grillage de haute sécurité avec rouleaux de barbelés concertina, miradors armés et panneaux d'avertissement militaires."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "third_kind",
@@ -891,32 +868,32 @@
     "intensity": 2,
     "universe": "close-encounters",
     "evocation": "Rencontres du troisième type (Steven Spielberg, 1977) : le site de contact au sommet de Devils Tower dans le Wyoming. Une communion pacifique grandiose entre humanité et visiteurs stellaires : la silhouette majestueuse du monolithe rocheux se découpant sur une nuit bleu pétrole, nimbée d'un orgue symphonique de faisceaux célestes d'un blanc pur et de lueurs prismatiques harmonieuses, dans une atmosphère de pure merveille cinématographique.",
-    "signature": "La silhouette monumentale de Devils Tower illuminée par un orgue céleste de faisceaux volumétriques blanc pur et une lueur de contact prismatique perçant la brume nocturne.",
+    "signature": "Un haut plateau basaltique désertique illuminé la nuit par cinq colonnes de faisceaux lumineux blanc-or qui pulsent en cadence harmonique vers un ciel étoilé.",
     "scene": [
       {
         "plan": 1,
         "type": "Arrière-plan lointain",
-        "description": "Voûte céleste nocturne bleu pétrole profonde parsemée d'étoiles scintillantes et d'une douce brume interstellaire."
+        "description": "Voûte céleste nocturne bleu pétrole profonde semée d'étoiles et d'une douce brume cosmique."
       },
       {
         "plan": 2,
         "type": "Lointain intermédiaire",
-        "description": "Silhouette colossale en plateau basaltique strié de Devils Tower se découpant contre le ciel."
+        "description": "Silhouettes monumentales de mesas basaltiques striées découpées sur le ciel nocturne."
       },
       {
         "plan": 3,
         "type": "Plan médian focal",
-        "description": "Faisceaux volumétriques majestueux d'un blanc éblouissant rayonnant vers le zénith et la plaine, pulsant au rythme des accords harmoniques."
+        "description": "Orgues de faisceaux volumétriques blanc pur et ambre rayonnant vers le zénith en cadence rythmée."
       },
       {
         "plan": 4,
         "type": "Avant-plan atmosphérique",
-        "description": "Dôme de lueur de Mie et Rayleigh aux reflets chauds ambrés et orbes de poussières dorées flottant en lévitation."
+        "description": "Dôme de lueur chaleureuse ambrée et motes dorées en lévitation sereine."
       },
       {
         "plan": 5,
         "type": "Premier plan immédiat",
-        "description": "Lens flare anamorphique cinématographique avec trait horizontal cyan caractéristique des objectifs Panavision des années 70, grain photochimique 35mm."
+        "description": "Lueur optique anamorphique cinéma des années 70 et grain argentique 35mm."
       }
     ],
     "particles": {
@@ -927,28 +904,28 @@
       "behavior": "Lévitation brownienne sereine pulsant doucement en synchronie avec les faisceaux lumineux."
     },
     "atmosphere": {
-      "mist": "Brume de montagne légère et luminescente baignée d'une diffusion atmosphérique bienveillante.",
-      "light": "Lumière éclatante, majestueuse et chaleureuse, dominée par le blanc pur immaculé (#f8fafc) et l'or solaire (#fef08a, #f59e0b).",
-      "airColor": "Bleu pétrole abyssal (#031726, #082f49) irradié de cyan céleste (#0284c7) et d'ambre chaleureux.",
-      "mainLightSource": "L'orgue de lumière stellaire et le vaisseau de contact juché derrière le plateau rocheux."
+      "mist": "Brume de plateau légère baignée d'une diffusion lumineuse bienveillante.",
+      "light": "Éclatante et harmonique, dominée par le blanc pur (#f8fafc) et l'or (#f59e0b).",
+      "airColor": "Bleu pétrole abyssal (#031726, #082f49) irradié de cyan céleste (#0284c7).",
+      "mainLightSource": "Faisceaux lumineux harmoniques surgissant derrière le plateau rocheux."
     },
     "rareEvents": [
       {
-        "name": "Accord symphonique lumineux (Penta-tonique)",
-        "type": "lens_flare",
+        "name": "Accord lumineux en cinq tons",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 11.5 secondes",
-        "description": "Les faisceaux de lumière s'unissent en une salve de cinq tonalités lumineuses synchronisées, générant un lens flare anamorphique horizontal éclatant."
+        "description": "Les faisceaux pulsent en cadence harmonique et propagent une onde optique horizontale azur et or."
       },
       {
-        "name": "Étoile filante de contact",
+        "name": "Étoile filante de haute altitude",
         "type": "shooting_star",
         "frequency": "Intervalle moyen de 16.0 secondes",
-        "description": "Un météore d'un blanc étincelant traverse le zénith juste au-dessus du sommet de la tour de pierre."
+        "description": "Un météore blanc pur traverse le zénith juste au-dessus du haut plateau."
       }
     ],
     "interaction": {
-      "mouse": "La parallaxe déplace la perspective de Devils Tower et fait pivoter l'axe des reflets anamorphiques de la lentille cinéma ; les poussières dorées réagissent par de douces ondulations au passage du curseur.",
-      "scroll": "Accentue l'épanouissement des faisceaux de lumière radiaux, amplifiant la sensation d'émerveillement sans masquer le texte de l'interface."
+      "mouse": "Déplace les mesas rocheuses en parallaxe et oriente doucement l'axe des faisceaux anamorphiques.",
+      "scroll": "Accentue l'ouverture des faisceaux radiaux sans jamais éblouir les textes."
     },
     "palette": [
       "#031726",
@@ -969,7 +946,7 @@
     },
     "bricks": [
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#ffffff",
           "density": 1.0,
@@ -978,7 +955,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#031726",
           "sunColor": "#082f49",
@@ -990,7 +967,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#f8fafc",
           "density": 1.2,
@@ -1003,7 +980,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#0284c7",
@@ -1014,7 +991,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.85,
@@ -1024,7 +1001,7 @@
         }
       },
       {
-        "brick": "lens_flare",
+        "brickType": "lens_flare",
         "params": {
           "flareColor": "#f8fafc",
           "accentColor": "#0284c7",
@@ -1036,7 +1013,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#0284c7",
@@ -1045,7 +1022,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#031726",
           "intensity": 0.55,
@@ -1053,7 +1030,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.07,
           "speed": 0.75,
@@ -1062,13 +1039,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "devils_tower_silhouette",
-        "category": "intermediate",
-        "reason": "Silhouette vectorielle spécifique du monolithe géologique de Devils Tower (orgues volcaniques verticaux et sommet tronqué en plateau)."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "the_invasion",
@@ -1155,7 +1126,7 @@
     },
     "bricks": [
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#7f1d1d",
           "skyColor": "#000000",
@@ -1165,7 +1136,7 @@
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#000000",
           "windowColor": "#ef4444",
@@ -1176,7 +1147,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#ef4444",
           "density": 1.1,
@@ -1187,7 +1158,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#ef4444",
           "hotColor": "#fee2e2",
@@ -1198,7 +1169,7 @@
         }
       },
       {
-        "brick": "ash",
+        "brickType": "ash",
         "params": {
           "ashColor": "#7f1d1d",
           "darkColor": "#000000",
@@ -1208,7 +1179,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#ef4444",
           "density": 1.1,
@@ -1219,7 +1190,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#f87171",
           "flashColor": "#450a0a",
@@ -1228,7 +1199,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#ef4444",
           "spread": 0.025,
@@ -1237,7 +1208,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.7,
@@ -1247,9 +1218,9 @@
     ],
     "missingBricks": [
       {
-        "name": "orbital_death_ray",
-        "category": "special",
-        "reason": "Faisceau d'énergie plasmique rouge vertical continu reliant le ciel nuageux au sol avec distorsion d'onde de surpression et colonne luminescente."
+        "name": "laser_beam",
+        "category": "atmosphere",
+        "reason": "Rayon ou faisceau optique collimaté à haute intensité directionnelle."
       }
     ]
   },
@@ -1260,7 +1231,7 @@
     "intensity": 2,
     "universe": "men-in-black",
     "evocation": "Men in Black (Barry Sonnenfeld, 1997) : le quartier général secret du MIB à New York, dissimulé sous un bâtiment de ventilation du tunnel Brooklyn-Battery. Architecture moderniste épurée des années 60 en marbre noir et blanc poli, terminaux holographiques de surveillance galactique affichant les corridors d'immigration extraterrestre, costumes noirs stricts, lunettes de soleil opaques et l'emblématique Neuralyzer prêt à effacer la mémoire des témoins.",
-    "signature": "Un hall ultra-design en marbre noir et chrome balayé par un réseau synaptique de surveillance galactique cyan, soudainement réinitialisé par le flash blanc aveuglant d'un neuralyzer.",
+    "signature": "Un hall futuriste minimaliste de marbre noir et chrome parcouru par une constellation holographique cyan, régulièrement réinitialisé par une fulgurante onde de flash blanc pur.",
     "scene": [
       {
         "plan": 1,
@@ -1303,16 +1274,16 @@
     },
     "rareEvents": [
       {
-        "name": "Flash de Neuralyzer mnésique",
+        "name": "Flash blanc d'amnésie optique",
         "type": "shockwave",
         "frequency": "Intervalle moyen de 12.0 secondes",
-        "description": "Un flash blanc pur étincelant submerge brutalement l'écran avant de se dissiper en onde lumineuse avec une fine frange prismatique, réinitialisant l'atmosphère visuelle."
+        "description": "Flash blanc aveuglant suivi d'une onde lumineuse prismatique nettoyant la scène."
       },
       {
-        "name": "Impulsion de transit galactique",
-        "type": "line_constellation",
-        "frequency": "Intervalle moyen de 7.0 secondes",
-        "description": "Une onde de données traverse le réseau stellaire holographique, allumant brièvement une série de nœuds galactiques."
+        "name": "Impulsion sur le réseau galactique",
+        "type": "lightning",
+        "frequency": "Intervalle moyen de 19.0 secondes",
+        "description": "Éclair cyan rapide illuminant une chaîne de nœuds dans la constellation holographique."
       }
     ],
     "interaction": {
@@ -1333,12 +1304,12 @@
       "Three.js monochrome sleek holographic network"
     ],
     "risks": {
-      "pitfall": "Un décor noir et blanc austère et clinique ressemblant à un thème d'entreprise froid ou un bureau vide.",
-      "solution": "Rythmer l'espace avec le réseau holographique cyan interactif, les contrastes de spécularité de marbre noir/chrome et le flash mémorable du Neuralyzer."
+      "pitfall": "Noir et blanc austère ou mention d'objets/agences protégés.",
+      "solution": "Réseau stellaire cyan interactif, spécularités chrome/marbre et flash optique blanc pur."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#000000",
           "bottomColor": "#0f172a",
@@ -1348,7 +1319,7 @@
         }
       },
       {
-        "brick": "line_constellation",
+        "brickType": "line_constellation",
         "params": {
           "nodeColor": "#38bdf8",
           "lineColor": "#0f172a",
@@ -1360,7 +1331,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#ffffff",
           "glowColor": "#38bdf8",
@@ -1371,7 +1342,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#ffffff",
           "density": 0.7,
@@ -1381,7 +1352,7 @@
         }
       },
       {
-        "brick": "shockwave",
+        "brickType": "shockwave",
         "params": {
           "ringColor": "#ffffff",
           "density": 1.2,
@@ -1392,7 +1363,7 @@
         }
       },
       {
-        "brick": "chromatic_aberration",
+        "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#38bdf8",
           "spread": 0.02,
@@ -1401,7 +1372,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000000",
           "intensity": 0.65,
@@ -1409,7 +1380,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.06,
           "speed": 0.7,
@@ -1418,12 +1389,6 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "neuralyzer_flash",
-        "category": "special",
-        "reason": "Flash optique plein écran blanc pur aveuglant à extinction exponentielle ultra-rapide avec dispersion spectrale prismatique en bordure."
-      }
-    ]
+    "missingBricks": []
   }
 ]

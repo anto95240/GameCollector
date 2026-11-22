@@ -84,7 +84,7 @@
     },
     "bricks": [
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#1e1035",
           "skyColor": "#0c0603",
@@ -95,7 +95,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fed7aa",
           "glowColor": "#ea580c",
@@ -107,7 +107,7 @@
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#050308",
           "torchColor": "#f97316",
@@ -118,7 +118,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#3b0764",
           "density": 1.2,
@@ -128,7 +128,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#f97316",
           "secondaryColor": "#c026d3",
@@ -140,7 +140,7 @@
         }
       },
       {
-        "brick": "embers",
+        "brickType": "embers",
         "params": {
           "emberColor": "#ea580c",
           "hotColor": "#fed7aa",
@@ -151,7 +151,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#c084fc",
           "flashColor": "#3b0764",
@@ -161,7 +161,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#a855f7",
           "gustInterval": 24.0,
@@ -170,7 +170,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#050204",
           "intensity": 0.75,
@@ -179,7 +179,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.07,
           "speed": 0.7,
@@ -188,13 +188,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "bat_swarm",
-        "category": "special",
-        "reason": "La signature iconique d'Halloween requiert une volée instanciée 3D de chauves-souris en boids erratiques tournoyant dans la brume et se dispersant au passage du curseur."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "christmas",
@@ -281,7 +275,7 @@
     },
     "bricks": [
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#fef08a",
           "density": 1.1,
@@ -291,7 +285,7 @@
         }
       },
       {
-        "brick": "aurora",
+        "brickType": "aurora",
         "params": {
           "topColor": "#15803d",
           "bottomColor": "#fef08a",
@@ -302,7 +296,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#010e06",
           "sunColor": "#1e3a8a",
@@ -313,7 +307,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#011408",
           "fogColor": "#064e3b",
@@ -323,7 +317,7 @@
         }
       },
       {
-        "brick": "snow",
+        "brickType": "snow",
         "params": {
           "snowColor": "#f8fafc",
           "density": 1.25,
@@ -334,7 +328,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#ffd700",
           "secondaryColor": "#cc1818",
@@ -346,7 +340,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#ffd700",
@@ -356,7 +350,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#e2e8f0",
           "gustInterval": 26.0,
@@ -365,7 +359,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#000803",
           "intensity": 0.6,
@@ -374,7 +368,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.04,
           "speed": 0.5,
@@ -383,13 +377,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "instanced_holiday_lights",
-        "category": "special",
-        "reason": "La signature visuelle de Noël repose sur un maillage de micro-ampoules instanciées 3D drapées entre les conifères avec pulsation thermique déphasée rouge/vert/or et halo festif."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "spring",
@@ -460,7 +448,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#bae6fd",
           "bottomColor": "#dcfce7",
@@ -471,7 +459,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#86efac",
           "fogColor": "#dcfce7",
@@ -481,7 +469,7 @@
         }
       },
       {
-        "brick": "petals",
+        "brickType": "petals",
         "params": {
           "petalColor": "#fbcfe8",
           "accentColor": "#f472b6",
@@ -493,7 +481,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#ffffff",
           "gustInterval": 35.0,
@@ -502,7 +490,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#064e3b",
           "intensity": 0.15,
@@ -582,7 +570,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#fef9c3",
           "bottomColor": "#fef08a",
@@ -593,7 +581,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#ca8a04",
           "fogColor": "#fef08a",
@@ -603,7 +591,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#ca8a04",
           "density": 0.4,
@@ -613,7 +601,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#ca8a04",
@@ -623,7 +611,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#451a03",
           "intensity": 0.12,
@@ -703,7 +691,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#38bdf8",
           "bottomColor": "#a8d8f0",
@@ -714,7 +702,7 @@
         }
       },
       {
-        "brick": "waves",
+        "brickType": "waves",
         "params": {
           "deepColor": "#0369a1",
           "crestColor": "#bae6fd",
@@ -725,7 +713,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.45,
@@ -735,7 +723,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#f0f9ff",
           "gustInterval": 28.0,
@@ -744,7 +732,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#0c4a6e",
           "intensity": 0.18,
@@ -824,7 +812,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#021a2e",
           "bottomColor": "#04223a",
@@ -835,7 +823,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#021324",
           "sunColor": "#38bdf8",
@@ -846,7 +834,7 @@
         }
       },
       {
-        "brick": "snow",
+        "brickType": "snow",
         "params": {
           "snowColor": "#e0f2fe",
           "density": 0.6,
@@ -857,7 +845,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#60c8f0",
@@ -867,7 +855,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#010e1a",
           "intensity": 0.4,
@@ -947,7 +935,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#1c0b00",
           "bottomColor": "#3b1200",
@@ -958,7 +946,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#230e03",
           "fogColor": "#6e2d05",
@@ -968,7 +956,7 @@
         }
       },
       {
-        "brick": "leaves",
+        "brickType": "leaves",
         "params": {
           "leafColor": "#e07020",
           "altColor": "#ffcc00",
@@ -980,7 +968,7 @@
         }
       },
       {
-        "brick": "wind_gust",
+        "brickType": "wind_gust",
         "params": {
           "windColor": "#d97706",
           "gustInterval": 28.0,
@@ -989,7 +977,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#140600",
           "intensity": 0.5,
@@ -1069,7 +1057,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#fffbeb",
           "bottomColor": "#fef08a",
@@ -1080,7 +1068,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#f59e0b",
           "secondaryColor": "#d97706",
@@ -1092,7 +1080,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#ca8a04",
           "density": 0.35,
@@ -1102,7 +1090,7 @@
         }
       },
       {
-        "brick": "smoke",
+        "brickType": "smoke",
         "params": {
           "smokeColor": "#fffbeb",
           "tintColor": "#fef08a",
@@ -1113,7 +1101,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#451a03",
           "intensity": 0.12,
@@ -1193,7 +1181,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#0f172a",
@@ -1204,7 +1192,7 @@
         }
       },
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#fef08a",
           "density": 0.8,
@@ -1213,7 +1201,7 @@
         }
       },
       {
-        "brick": "parallax_castle",
+        "brickType": "parallax_castle",
         "params": {
           "castleColor": "#070b14",
           "torchColor": "#eab308",
@@ -1224,7 +1212,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#fef08a",
           "lightSourceX": 0.0,
@@ -1236,7 +1224,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fde047",
           "density": 0.45,
@@ -1246,7 +1234,7 @@
         }
       },
       {
-        "brick": "shooting_star",
+        "brickType": "shooting_star",
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#eab308",
@@ -1256,7 +1244,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
           "intensity": 0.5,
@@ -1268,4 +1256,3 @@
     "missingBricks": []
   }
 ]
-

@@ -6,7 +6,7 @@
     "intensity": 1,
     "universe": "stardew-valley",
     "evocation": "Les jeux de ferme pastoraux et réconfortants (Stardew Valley, Story of Seasons, Animal Crossing). Une fin d'après-midi dorée d'été au cœur d'une vallée verdoyante et paisible : le vent tiède fait frissonner les vergers fruitiers, les champs de céréales ondulent doucement et de petites feuilles dorées dérivent avec paresse dans une lumière d'or réconfortante.",
-    "signature": "Des feuilles d'arbres fruitiers dorées et des pétales qui dérivent doucement dans une brise vespérale au-dessus d'une prairie ensoleillée aux collines ondoyantes.",
+    "signature": "Des vergers champêtres baignés d'une lueur crème et paille d'été finissant, où flottent lentement de délicats pétales roses et dorés au-dessus des collines tendres.",
     "scene": [
       {
         "plan": 1,
@@ -73,61 +73,38 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
-          "topColor": "#1e293b",
-          "bottomColor": "#15803d",
-          "horizonColor": "#fde68a",
-          "density": 1.1,
-          "speed": 0.08,
-          "depth": 0.05,
-          "intensity": 0.8
+          "topColor": "#fef3c7",
+          "bottomColor": "#86efac"
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
-          "forestColor": "#14532d",
-          "fogColor": "#86efac",
-          "density": 0.7,
-          "speed": 0.12,
-          "depth": 0.25,
-          "intensity": 0.75,
-          "windStrength": 0.25
+          "color": "#15803d",
+          "layers": 3
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
-          "coreColor": "#fef3c7",
-          "glowColor": "#fde68a",
-          "outerColor": "#15803d",
-          "density": 1.0,
-          "speed": 0.1,
-          "depth": 0.2,
-          "intensity": 0.7,
-          "glowX": -0.35,
-          "glowY": 0.2
+          "color": "#fde68a",
+          "intensity": 0.4
         }
       },
       {
-        "brick": "leaves",
+        "brickType": "petals",
         "params": {
-          "leafColor": "#fde68a",
-          "altColor": "#86efac",
-          "density": 0.45,
-          "speed": 0.18,
-          "depth": 0.4,
-          "intensity": 0.85,
-          "windDrift": 0.25
+          "color": "#fde68a",
+          "secondaryColor": "#fef3c7",
+          "count": 35
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
-          "vignetteColor": "#0f172a",
-          "intensity": 0.4,
-          "smoothness": 0.9
+          "darkness": 0.35
         }
       }
     ],
@@ -179,7 +156,7 @@
     "rareEvents": [
       {
         "name": "Afflux de rentabilité du parc",
-        "type": "flickering_light",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 28.0 secondes",
         "description": "Une onde de lumière dorée traverse subtilement les lignes de la grille technique, simulant un afflux soudain de recettes et d'investissements réussis."
       }
@@ -207,7 +184,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0a192f",
           "bottomColor": "#1e3a8a",
@@ -219,7 +196,7 @@
         }
       },
       {
-        "brick": "neon_grid",
+        "brickType": "neon_grid",
         "params": {
           "gridColor": "#3b82f6",
           "horizonColor": "#1d4ed8",
@@ -233,7 +210,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#facc15",
           "glowColor": "#2563eb",
@@ -247,7 +224,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#facc15",
           "density": 0.4,
@@ -257,7 +234,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#050b14",
           "intensity": 0.5,
@@ -274,7 +251,7 @@
     "intensity": 1,
     "universe": "megaquarium",
     "evocation": "Les jeux de gestion d'aquarium public (Megaquarium, Zoo Tycoon Marine Mania) et les bassins monumentaux de Monterey Bay ou Okinawa. Le visiteur contemple une immense baie vitrée acrylique : la lumière zénithale traverse l'eau turquoise limpide, projetant un réseau ondoyant de caustiques vivantes sur le fond marin sablonneux, tandis que de fines colonnes de bulles d'aérateur montent en oscillant doucement.",
-    "signature": "Des rais de lumière azur et des caustiques mouvantes qui projettent leurs reflets liquides sur un fond marin baigné de fines colonnes de bulles d'air translucides qui oscillent vers la surface.",
+    "signature": "Une vitre d'aquarium profond bleu saphir et nocturne éclairée d'en haut par des rampes zénithales, où montent des rideaux réguliers de fines bulles d'aération irisées.",
     "scene": [
       {
         "plan": 1,
@@ -336,12 +313,12 @@
       "Peaceful blue water light rays and bubbles"
     ],
     "risks": {
-      "pitfall": "Rappeler un économiseur d'écran d'aquarium kitsch des années 90.",
-      "solution": "Éviter les poissons synthétiques en 2D, se concentrer sur l'élégance optique des caustiques, la pureté de la couleur de l'eau et des bulles physiques fines."
+      "pitfall": "Économiseur d'écran kitsch ou confusion avec Coral Reef.",
+      "solution": "Aquarium est sobre, nocturne et architectural (colonnes verticales de bulles sans coraux colorés), tandis que Coral Reef est solaire avec flore corail rose."
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0369a1",
           "bottomColor": "#041527",
@@ -353,7 +330,7 @@
         }
       },
       {
-        "brick": "water_caustics",
+        "brickType": "water_caustics",
         "params": {
           "waterColor": "#082f49",
           "causticColor": "#06b6d4",
@@ -365,7 +342,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#67e8f9",
           "density": 0.7,
@@ -378,7 +355,7 @@
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
           "bubbleColor": "#38bdf8",
           "density": 0.55,
@@ -389,7 +366,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#020a14",
           "intensity": 0.55,
@@ -473,7 +450,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#270e02",
           "bottomColor": "#451a03",
@@ -485,7 +462,7 @@
         }
       },
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
           "sandColor": "#d97706",
           "shadowColor": "#451a03",
@@ -498,7 +475,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef3c7",
           "glowColor": "#f59e0b",
@@ -512,7 +489,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#f59e0b",
           "density": 0.45,
@@ -522,7 +499,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1a0601",
           "intensity": 0.55,
@@ -539,7 +516,7 @@
     "intensity": 1,
     "universe": "cities-skylines",
     "evocation": "Les jeux de gestion urbaine et d'urbanisme (Cities: Skylines, SimCity). L'heure bleue sur une métropole vivante observée depuis les hauteurs : le crépuscule tombe sur les avenues, les balises de grues de construction clignotent en rouge au sommet des immeubles en chantier, et les fenêtres des tours résidentielles s'allument peu à peu comme des lucioles urbaines.",
-    "signature": "Une rangée de gratte-ciels et de grues de chantier découpée contre un ciel d'heure bleue crépusculaire où s'allument tour à tour des fenêtres jaune doré et des balises de sécurité aérienne.",
+    "signature": "Des grues de chantier et immeubles contemporains découpés à l'heure bleue matinale, animés par l'allumage progressif de fenêtres ambre doré et la brise d'aube.",
     "scene": [
       {
         "plan": 1,
@@ -577,10 +554,10 @@
     },
     "rareEvents": [
       {
-        "name": "Balayage de projecteur de chantier",
-        "type": "god_rays",
+        "name": "Souffle frais de l'aube",
+        "type": "wind_gust",
         "frequency": "Intervalle moyen de 25.0 secondes",
-        "description": "Un faisceau de lumière volumétrique balaye doucement le ciel au-dessus des grues, soulignant la verticalité de la métropole en essor."
+        "description": "Une brise matinale dissipe doucement le halo lumineux entre les grues de construction."
       }
     ],
     "interaction": {
@@ -606,7 +583,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0f172a",
           "bottomColor": "#1e293b",
@@ -618,7 +595,7 @@
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#0b1220",
           "windowColor": "#facc15",
@@ -631,7 +608,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#475569",
           "density": 0.6,
@@ -642,7 +619,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.35,
@@ -652,7 +629,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#080e1a",
           "intensity": 0.5,
@@ -747,7 +724,7 @@
     },
     "bricks": [
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#052e16",
           "skyColor": "#02120a",
@@ -759,7 +736,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#072b15",
           "fogColor": "#14532d",
@@ -771,7 +748,7 @@
         }
       },
       {
-        "brick": "flickering_light",
+        "brickType": "flickering_light",
         "params": {
           "lightColor": "#d97706",
           "secondaryColor": "#b45309",
@@ -784,7 +761,7 @@
         }
       },
       {
-        "brick": "rain",
+        "brickType": "rain",
         "params": {
           "rainColor": "#6ee7b7",
           "density": 1.2,
@@ -796,7 +773,7 @@
         }
       },
       {
-        "brick": "lightning",
+        "brickType": "lightning",
         "params": {
           "lightningColor": "#99f6e4",
           "flashColor": "#ffffff",
@@ -808,7 +785,7 @@
         }
       },
       {
-        "brick": "screen_shake",
+        "brickType": "screen_shake",
         "params": {
           "shakeColor": "#14532d",
           "density": 1.1,
@@ -820,7 +797,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#020d07",
           "intensity": 0.65,
@@ -909,7 +886,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#062413",
           "bottomColor": "#14532d",
@@ -921,7 +898,7 @@
         }
       },
       {
-        "brick": "hex_grid",
+        "brickType": "hex_grid",
         "params": {
           "borderColor": "#166534",
           "fillColor": "#041b0d",
@@ -934,7 +911,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef08a",
           "glowColor": "#d97706",
@@ -948,7 +925,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#f59e0b",
           "density": 0.8,
@@ -961,7 +938,7 @@
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
           "bubbleColor": "#fef08a",
           "density": 0.6,
@@ -972,7 +949,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#f59e0b",
           "density": 0.35,
@@ -982,7 +959,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#03140a",
           "intensity": 0.6,
@@ -1077,7 +1054,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#022c22",
           "bottomColor": "#064e3b",
@@ -1089,7 +1066,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#064e3b",
           "skyColor": "#9a3412",
@@ -1101,7 +1078,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#032018",
           "sunColor": "#ea580c",
@@ -1114,7 +1091,7 @@
         }
       },
       {
-        "brick": "waves",
+        "brickType": "waves",
         "params": {
           "crestColor": "#f8fafc",
           "deepColor": "#022c22",
@@ -1126,7 +1103,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#047857",
           "density": 0.7,
@@ -1137,7 +1114,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fb923c",
           "density": 0.45,
@@ -1147,7 +1124,7 @@
         }
       },
       {
-        "brick": "grain",
+        "brickType": "film_grain",
         "params": {
           "intensity": 0.06,
           "speed": 0.8,
@@ -1155,7 +1132,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#011611",
           "intensity": 0.6,
@@ -1172,7 +1149,7 @@
     "intensity": 1,
     "universe": "wildlife-park",
     "evocation": "Un sanctuaire naturel et écologique préservé au cœur d'une forêt primaire protégée (Bornéo ou Costa Rica). Une canopée luxuriante au petit matin, où les premiers rayons dorés percent la brume humide du sous-bois pour éveiller une myriade de lucioles et d'insectes bioluminescents dans une quiétude totale exempte de toute trace humaine.",
-    "signature": "Des faisceaux de lumière matinale perçant une canopée tropicale moussue pour illuminer des lucioles et micro-spores bioluminescentes dérivant au-dessus d'une brume sylvestre.",
+    "signature": "Un sous-bois forestier verdoyant réchauffé de rais solaires vert lime zénithaux sans relief montagneux, animé par la danse calme de lucioles dorées au ras de la mousse.",
     "scene": [
       {
         "plan": 1,
@@ -1239,7 +1216,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#022c22",
           "bottomColor": "#064e3b",
@@ -1251,7 +1228,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#022c22",
           "fogColor": "#064e3b",
@@ -1263,7 +1240,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#a3e635",
           "density": 0.8,
@@ -1276,7 +1253,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#064e3b",
           "density": 0.7,
@@ -1287,7 +1264,7 @@
         }
       },
       {
-        "brick": "fireflies",
+        "brickType": "fireflies",
         "params": {
           "glowColor": "#a3e635",
           "coreColor": "#ecfccb",
@@ -1298,7 +1275,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#011a14",
           "intensity": 0.55,
@@ -1382,7 +1359,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#14532d",
           "bottomColor": "#78350f",
@@ -1394,7 +1371,7 @@
         }
       },
       {
-        "brick": "dunes",
+        "brickType": "dunes",
         "params": {
           "sandColor": "#f59e0b",
           "shadowColor": "#78350f",
@@ -1407,7 +1384,7 @@
         }
       },
       {
-        "brick": "heat_distortion",
+        "brickType": "heat_distortion",
         "params": {
           "tintColor": "#fef3c7",
           "density": 0.7,
@@ -1418,7 +1395,7 @@
         }
       },
       {
-        "brick": "leaves",
+        "brickType": "leaves",
         "params": {
           "leafColor": "#f59e0b",
           "altColor": "#d97706",
@@ -1430,7 +1407,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#1c0b02",
           "intensity": 0.45,
@@ -1514,7 +1491,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#831843",
           "bottomColor": "#be185d",
@@ -1526,7 +1503,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#fef3c7",
           "glowColor": "#f472b6",
@@ -1540,7 +1517,7 @@
         }
       },
       {
-        "brick": "bubbles",
+        "brickType": "bubbles",
         "params": {
           "bubbleColor": "#fbcfe8",
           "density": 0.45,
@@ -1551,7 +1528,7 @@
         }
       },
       {
-        "brick": "petals",
+        "brickType": "petals",
         "params": {
           "petalColor": "#fbcfe8",
           "accentColor": "#f472b6",
@@ -1563,7 +1540,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#4c0519",
           "intensity": 0.45,
@@ -1652,7 +1629,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#1e3a5f",
           "bottomColor": "#14532d",
@@ -1664,7 +1641,7 @@
         }
       },
       {
-        "brick": "parallax_mountains",
+        "brickType": "parallax_mountains",
         "params": {
           "rockColor": "#0b192c",
           "sunColor": "#64748b",
@@ -1677,7 +1654,7 @@
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
           "forestColor": "#052e16",
           "fogColor": "#14532d",
@@ -1689,7 +1666,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#cbd5e1",
           "density": 0.6,
@@ -1700,7 +1677,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.4,
@@ -1710,7 +1687,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#03140b",
           "intensity": 0.5,
@@ -1766,7 +1743,7 @@
     "rareEvents": [
       {
         "name": "Battement de signal vital apaisant",
-        "type": "flickering_light",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 24.0 secondes",
         "description": "Une onde de pulsation médicale verte et rouge traverse subtilement la scène, symbolisant la guérison et le rétablissement de l'animal."
       }
@@ -1794,7 +1771,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#cbd5e1",
           "bottomColor": "#f8fafc",
@@ -1806,7 +1783,7 @@
         }
       },
       {
-        "brick": "neon_grid",
+        "brickType": "neon_grid",
         "params": {
           "gridColor": "#94a3b8",
           "horizonColor": "#e2e8f0",
@@ -1820,7 +1797,7 @@
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "volumetric_glow",
         "params": {
           "coreColor": "#ffffff",
           "glowColor": "#e2e8f0",
@@ -1834,7 +1811,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#ef4444",
           "density": 0.3,
@@ -1844,7 +1821,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#64748b",
           "intensity": 0.3,
@@ -1928,7 +1905,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#0b1329",
           "bottomColor": "#1e293b",
@@ -1940,7 +1917,7 @@
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#070e1e",
           "windowColor": "#38bdf8",
@@ -1953,7 +1930,7 @@
         }
       },
       {
-        "brick": "line_constellation",
+        "brickType": "line_constellation",
         "params": {
           "nodeColor": "#38bdf8",
           "lineColor": "#0284c7",
@@ -1966,7 +1943,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#38bdf8",
           "density": 0.35,
@@ -1976,7 +1953,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#050a14",
           "intensity": 0.55,
@@ -2037,7 +2014,7 @@
     "rareEvents": [
       {
         "name": "Flash de photographes au bord du terrain",
-        "type": "flickering_light",
+        "type": "lightning",
         "frequency": "Intervalle moyen de 26.0 secondes",
         "description": "Une salve de flashs blancs éclate brièvement en bas de scène, rappelant les journalistes et la pression du grand match."
       }
@@ -2065,7 +2042,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#021d1c",
           "bottomColor": "#042f2e",
@@ -2077,7 +2054,7 @@
         }
       },
       {
-        "brick": "god_rays",
+        "brickType": "god_rays",
         "params": {
           "rayColor": "#10b981",
           "density": 0.9,
@@ -2090,7 +2067,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#065f46",
           "density": 0.7,
@@ -2101,7 +2078,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#34d399",
           "density": 0.4,
@@ -2111,7 +2088,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#011211",
           "intensity": 0.55,
@@ -2128,7 +2105,7 @@
     "intensity": 1,
     "universe": "zoo-tycoon",
     "evocation": "La direction d'un parc zoologique paysager moderne et respectueux de la faune (Zoo Tycoon, Wildlife Park). Des allées arborées bordées de palmiers et de bambous, des pavillons en bois noble et verre, une atmosphère de balade familiale sereine au printemps sous une douce pluie de pétales et de feuilles d'arbres exotiques.",
-    "signature": "Des allées paysagères arborées où dérivent paisiblement des feuilles exotiques dorées sous un soleil d'après-midi filtré par des verrières botaniques.",
+    "signature": "Une serre botanique baignée d'un soleil miel d'après-midi filtré par des bambous et verrières, d'où tombent lentement des feuilles exotiques ambrées et dorées.",
     "scene": [
       {
         "plan": 1,
@@ -2195,61 +2172,38 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
-          "topColor": "#200c02",
-          "bottomColor": "#451a03",
-          "horizonColor": "#ca8a04",
-          "density": 1.1,
-          "speed": 0.07,
-          "depth": 0.05,
-          "intensity": 0.8
+          "topColor": "#451a03",
+          "bottomColor": "#ca8a04"
         }
       },
       {
-        "brick": "parallax_forest",
+        "brickType": "parallax_forest",
         "params": {
-          "forestColor": "#301203",
-          "fogColor": "#78350f",
-          "density": 0.85,
-          "speed": 0.12,
-          "depth": 0.3,
-          "intensity": 0.75,
-          "windStrength": 0.3
+          "color": "#200c02",
+          "layers": 2
         }
       },
       {
-        "brick": "volumetric_glow",
+        "brickType": "god_rays",
         "params": {
-          "coreColor": "#fef08a",
-          "glowColor": "#facc15",
-          "outerColor": "#451a03",
-          "density": 1.0,
-          "speed": 0.1,
-          "depth": 0.2,
-          "intensity": 0.7,
-          "glowX": 0.1,
-          "glowY": 0.2
+          "color": "#fef08a",
+          "intensity": 0.45
         }
       },
       {
-        "brick": "leaves",
+        "brickType": "leaves",
         "params": {
-          "leafColor": "#facc15",
-          "altColor": "#ca8a04",
-          "density": 0.45,
-          "speed": 0.2,
-          "depth": 0.4,
-          "intensity": 0.85,
-          "windDrift": 0.25
+          "color": "#facc15",
+          "accentColor": "#78350f",
+          "count": 35
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
-          "vignetteColor": "#140601",
-          "intensity": 0.5,
-          "smoothness": 0.85
+          "darkness": 0.48
         }
       }
     ],
@@ -2329,7 +2283,7 @@
     },
     "bricks": [
       {
-        "brick": "multilayer_starfield",
+        "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#e0f2fe",
           "density": 0.8,
@@ -2340,7 +2294,7 @@
         }
       },
       {
-        "brick": "fbm_clouds",
+        "brickType": "fbm_clouds",
         "params": {
           "cloudColor": "#38bdf8",
           "skyColor": "#082f49",
@@ -2352,7 +2306,7 @@
         }
       },
       {
-        "brick": "line_constellation",
+        "brickType": "line_constellation",
         "params": {
           "nodeColor": "#38bdf8",
           "lineColor": "#0284c7",
@@ -2365,7 +2319,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#38bdf8",
           "density": 0.4,
@@ -2375,7 +2329,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#010a12",
           "intensity": 0.55,
@@ -2392,7 +2346,7 @@
     "intensity": 1,
     "universe": "simcity-2000",
     "evocation": "La métropole colossale à son apogée technologique, une cité-monde verticale dense de 50 millions d'habitants la nuit (SimCity 2000, Judge Dredd, Blade Runner). Des gratte-ciels monumentaux de plusieurs kilomètres de hauteur qui percent une mer de smog illuminée d'or et d'ambre, des balises de circulation aérienne et des millions de fenêtres lumineuses formant un tableau vivant de l'activité humaine.",
-    "signature": "Une forêt infinie de mégastructures kilométriques découpée dans une nuit d'encre où brille un smog doré et une myriade de fenêtres et balises aériennes palpitant sans fin.",
+    "signature": "Des canyons vertigineux de tours kilométriques plongés dans une nuit d'encre, embrasés par le bas d'un épais smog industriel or et soufre pulsant lentement.",
     "scene": [
       {
         "plan": 1,
@@ -2430,10 +2384,10 @@
     },
     "rareEvents": [
       {
-        "name": "Projecteur de surveillance aérienne",
-        "type": "god_rays",
+        "name": "Pulsation de réseau urbain",
+        "type": "shockwave",
         "frequency": "Intervalle moyen de 28.0 secondes",
-        "description": "Un faisceau de projecteur vertical perce brièvement le smog au sommet des plus hautes tours."
+        "description": "Une onde douce d'énergie dorée illumine les strates basses du smog sans agresser les yeux."
       }
     ],
     "interaction": {
@@ -2459,7 +2413,7 @@
     },
     "bricks": [
       {
-        "brick": "gradient_sky",
+        "brickType": "gradient_sky",
         "params": {
           "topColor": "#020617",
           "bottomColor": "#0f172a",
@@ -2471,7 +2425,7 @@
         }
       },
       {
-        "brick": "parallax_city",
+        "brickType": "parallax_city",
         "params": {
           "buildingColor": "#030816",
           "windowColor": "#eab308",
@@ -2484,7 +2438,7 @@
         }
       },
       {
-        "brick": "noisy_fog",
+        "brickType": "noisy_fog",
         "params": {
           "fogColor": "#854d0e",
           "density": 0.8,
@@ -2495,7 +2449,7 @@
         }
       },
       {
-        "brick": "dust",
+        "brickType": "dust",
         "params": {
           "dustColor": "#fef08a",
           "density": 0.45,
@@ -2505,7 +2459,7 @@
         }
       },
       {
-        "brick": "vignette",
+        "brickType": "vignette",
         "params": {
           "vignetteColor": "#01030a",
           "intensity": 0.6,
@@ -2516,4 +2470,3 @@
     "missingBricks": []
   }
 ]
-
