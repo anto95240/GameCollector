@@ -130,7 +130,7 @@
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#d4a853",
-          "starInterval": 14.0,
+          "starInterval": 14,
           "speed": 1.2,
           "intensity": 1.2
         }
@@ -139,7 +139,7 @@
         "brickType": "wind_gust",
         "params": {
           "windColor": "#fef08a",
-          "gustInterval": 25.0,
+          "gustInterval": 25,
           "speed": 0.9,
           "intensity": 0.6
         }
@@ -296,7 +296,7 @@
           "sparkColor": "#fef08a",
           "coreColor": "#f59e0b",
           "density": 0.5,
-          "burstInterval": 12.0,
+          "burstInterval": 12,
           "gravity": 1.3
         }
       },
@@ -304,7 +304,7 @@
         "brickType": "wind_gust",
         "params": {
           "windColor": "#cbd5e1",
-          "gustInterval": 20.0,
+          "gustInterval": 20,
           "speed": 1.1,
           "intensity": 0.75
         }
@@ -326,15 +326,19 @@
           "density": 1.2,
           "monochrome": true
         }
+      },
+      {
+        "brickType": "wet_surface",
+        "params": {
+          "surfaceType": "cobblestone",
+          "reflectionStyle": "shop_windows",
+          "baseColor": "#1c1917",
+          "reflectionColor": "#f59e0b",
+          "puddleCoverage": 0.65
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "wet_cobblestone",
-        "category": "background",
-        "reason": "Sol pavé humide à réflexions spéculaires et flaques irrégulières."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "deathly_hallows",
@@ -465,13 +469,13 @@
       {
         "brickType": "wind_gust",
         "params": {
-          "frequency": 28.0
+          "frequency": 28
         }
       },
       {
         "brickType": "lightning",
         "params": {
-          "frequency": 18.0
+          "frequency": 18
         }
       },
       {
@@ -626,7 +630,7 @@
         "params": {
           "emberColor": "#ea580c",
           "hotColor": "#fef08a",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.65,
           "coolingRate": 1.1,
           "intensity": 1.3
@@ -638,7 +642,7 @@
           "sparkColor": "#facc15",
           "coreColor": "#ffffff",
           "density": 0.6,
-          "burstInterval": 14.0,
+          "burstInterval": 14,
           "speed": 1.3
         }
       },
@@ -647,7 +651,7 @@
         "params": {
           "ringColor": "#facc15",
           "epicenterY": -0.2,
-          "waveInterval": 16.0,
+          "waveInterval": 16,
           "intensity": 1.3,
           "chromaticAberration": 0.025
         }
@@ -656,7 +660,7 @@
         "brickType": "wind_gust",
         "params": {
           "windColor": "#fde047",
-          "gustInterval": 24.0,
+          "gustInterval": 24,
           "speed": 1.2,
           "intensity": 0.8
         }

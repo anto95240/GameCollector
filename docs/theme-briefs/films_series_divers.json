@@ -385,15 +385,19 @@
           "monochrome": true,
           "clumpSize": 1.1
         }
+      },
+      {
+        "brickType": "wet_surface",
+        "params": {
+          "surfaceType": "cobblestone",
+          "reflectionStyle": "lantern",
+          "baseColor": "#18181b",
+          "reflectionColor": "#d97706",
+          "puddleCoverage": 0.7
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "wet_cobblestone",
-        "category": "background",
-        "reason": "Sol pavé humide à réflexions spéculaires et flaques irrégulières."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "the_couch",
@@ -532,15 +536,19 @@
         "params": {
           "intensity": 0.14
         }
+      },
+      {
+        "brickType": "window_rain",
+        "params": {
+          "dropDensity": 0.8,
+          "trailSpeed": 0.3,
+          "condensation": 0.4,
+          "tintColor": "#f59e0b",
+          "edgeBias": 0.65
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "window_rain",
-        "category": "overlay",
-        "reason": "Gouttelettes réfractives et ruissellement glissant sur une vitre en premier plan."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "winter_is_coming",
@@ -733,15 +741,19 @@
           "roundness": 0.65,
           "smoothness": 0.9
         }
+      },
+      {
+        "brickType": "frost_vignette",
+        "params": {
+          "crystalStyle": "frost",
+          "edgeMask": "perimeter",
+          "crystalColor": "#bae6fd",
+          "spread": 0.3,
+          "intensity": 0.7
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "frost_vignette",
-        "category": "overlay",
-        "reason": "Cristallisation progressive de givre translucide en périphérie d'écran."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "tardis",
@@ -934,15 +946,19 @@
           "roundness": 0.7,
           "smoothness": 0.85
         }
+      },
+      {
+        "brickType": "gravitational_lensing",
+        "params": {
+          "lensMode": "wormhole",
+          "diskColor": "#2563eb",
+          "secondaryColor": "#facc15",
+          "coreRadius": 0.08,
+          "spiralTwist": 1.4
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "gravitational_lensing",
-        "category": "special",
-        "reason": "Shader de réfraction et lentille gravitationnelle incurvant l'arrière-plan."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "walkers",
@@ -1326,15 +1342,20 @@
           "monochrome": true,
           "clumpSize": 1.1
         }
+      },
+      {
+        "brickType": "frost_vignette",
+        "params": {
+          "crystalStyle": "mineral_shards",
+          "edgeMask": "bottom",
+          "crystalColor": "#22d3ee",
+          "spread": 0.28,
+          "facetSharpness": 0.9,
+          "intensity": 0.75
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "frost_vignette",
-        "category": "overlay",
-        "reason": "Croissance fractale procédurale de cristaux translucides bleu cyan le long des arêtes inférieures de l'écran."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "starfleet",
@@ -1869,13 +1890,13 @@
       {
         "brickType": "screen_shake",
         "params": {
-          "frequency": 18.0
+          "frequency": 18
         }
       },
       {
         "brickType": "shockwave",
         "params": {
-          "frequency": 30.0,
+          "frequency": 30,
           "color": "#d4a853"
         }
       },
@@ -2092,15 +2113,20 @@
           "monochrome": true,
           "clumpSize": 1.1
         }
+      },
+      {
+        "brickType": "volumetric_spotlight",
+        "params": {
+          "beamCount": 1,
+          "originMode": "top",
+          "beamColor": "#bae6fd",
+          "coneAngle": 0.28,
+          "sweepSpeed": 0.38,
+          "volumetricNoise": 0.7
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "volumetric_spotlight",
-        "category": "atmosphere",
-        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "judgment_day",
@@ -2308,15 +2334,20 @@
           "roundness": 0.65,
           "smoothness": 0.85
         }
+      },
+      {
+        "brickType": "laser_beam",
+        "params": {
+          "beamMode": "tactical",
+          "beamCount": 1,
+          "coreColor": "#ef4444",
+          "beamWidth": 0.012,
+          "sweepSpeed": 0.35,
+          "impactSparks": 0.6
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "laser_beam",
-        "category": "atmosphere",
-        "reason": "Rayon ou faisceau optique collimaté à haute intensité directionnelle."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "proton_pack",
@@ -2510,15 +2541,20 @@
           "roundness": 0.65,
           "smoothness": 0.85
         }
+      },
+      {
+        "brickType": "laser_beam",
+        "params": {
+          "beamMode": "plasma_stream",
+          "beamCount": 2,
+          "coreColor": "#f97316",
+          "secondaryColor": "#38bdf8",
+          "beamWidth": 0.018,
+          "wobble": 0.75
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "laser_beam",
-        "category": "atmosphere",
-        "reason": "Rayon ou faisceau optique collimaté à haute intensité directionnelle."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "gentleman_burglar",
@@ -2658,15 +2694,20 @@
         "params": {
           "intensity": 0.14
         }
+      },
+      {
+        "brickType": "volumetric_spotlight",
+        "params": {
+          "beamCount": 1,
+          "originMode": "bottom",
+          "beamColor": "#fef3c7",
+          "coneAngle": 0.18,
+          "sweepSpeed": 0.22,
+          "intensity": 0.8
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "volumetric_spotlight",
-        "category": "atmosphere",
-        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "sic_mundus",
@@ -2990,7 +3031,7 @@
       {
         "brickType": "lightning",
         "params": {
-          "frequency": 16.0
+          "frequency": 16
         }
       },
       {
@@ -3024,7 +3065,7 @@
       {
         "brickType": "screen_shake",
         "params": {
-          "frequency": 17.0
+          "frequency": 17
         }
       },
       {

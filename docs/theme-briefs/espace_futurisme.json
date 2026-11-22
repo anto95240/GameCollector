@@ -316,15 +316,19 @@
           "density": 1.2,
           "monochrome": true
         }
+      },
+      {
+        "brickType": "gravitational_lensing",
+        "params": {
+          "lensMode": "black_hole",
+          "diskColor": "#fb923c",
+          "coreRadius": 0.14,
+          "diskTilt": 0.22,
+          "einsteinRing": 0.9
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "gravitational_lensing",
-        "category": "special",
-        "reason": "Shader de réfraction et lentille gravitationnelle incurvant l'arrière-plan."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "quantum",
@@ -766,7 +770,7 @@
       {
         "brickType": "shockwave",
         "params": {
-          "frequency": 12.0,
+          "frequency": 12,
           "color": "#60a5fa"
         }
       },
@@ -787,15 +791,19 @@
         "params": {
           "intensity": 0.12
         }
+      },
+      {
+        "brickType": "gravitational_lensing",
+        "params": {
+          "lensMode": "portal",
+          "diskColor": "#38bdf8",
+          "coreRadius": 0.26,
+          "rippleStrength": 0.8,
+          "einsteinRing": 0.6
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "gravitational_lensing",
-        "category": "special",
-        "reason": "Shader de réfraction et lentille gravitationnelle incurvant l'arrière-plan."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "deep_space",
@@ -1108,15 +1116,19 @@
           "intensity": 0.8,
           "roundness": 0.65
         }
+      },
+      {
+        "brickType": "gravitational_lensing",
+        "params": {
+          "lensMode": "black_hole",
+          "diskColor": "#dc2626",
+          "coreRadius": 0.13,
+          "redshift": 0.85,
+          "einsteinRing": 0.85
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "gravitational_lensing",
-        "category": "special",
-        "reason": "Shader de réfraction et lentille gravitationnelle incurvant l'arrière-plan."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "cosmic_void",
@@ -1606,15 +1618,19 @@
           "speed": 0.6,
           "monochrome": true
         }
+      },
+      {
+        "brickType": "gravitational_lensing",
+        "params": {
+          "lensMode": "weak_lensing",
+          "diskColor": "#6366f1",
+          "coreRadius": 0,
+          "arcCount": 12,
+          "depth": 0.75
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "gravitational_lensing",
-        "category": "special",
-        "reason": "Shader d'effet de lentille gravitationnelle faible (weak lensing) déformant continuellement le champ stellaire de fond en arcs d'Einstein au passage de la souris."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "great_attractor",
@@ -1785,14 +1801,18 @@
           "speed": 0.7,
           "monochrome": true
         }
+      },
+      {
+        "brickType": "gravitational_lensing",
+        "params": {
+          "lensMode": "attractor",
+          "diskColor": "#f59e0b",
+          "coreRadius": 0.06,
+          "inflowSpeed": 0.65,
+          "arcCount": 16
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "gravitational_lensing",
-        "category": "special",
-        "reason": "Champ vectoriel d'aspiration gravitationnelle centripète 3D simulant le flux cinétique des galaxies du superamas de Laniakea convergeant vers un foyer attracteur."
-      }
-    ]
+    "missingBricks": []
   }
 ]

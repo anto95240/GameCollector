@@ -170,8 +170,8 @@
           "depth": 0.25,
           "intensity": 0.65,
           "randomness": 0.45,
-          "shakeInterval": 25.0,
-          "decayRate": 4.0
+          "shakeInterval": 25,
+          "decayRate": 4
         }
       },
       {
@@ -184,8 +184,8 @@
           "intensity": 0.75,
           "randomness": 0.4,
           "gustAngle": 0.1,
-          "gustInterval": 32.0,
-          "swirlScale": 1.0
+          "gustInterval": 32,
+          "swirlScale": 1
         }
       },
       {
@@ -204,7 +204,7 @@
         "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.6,
           "depth": 0.15,
           "intensity": 0.05,
@@ -308,7 +308,7 @@
           "density": 1.2,
           "speed": 0.18,
           "depth": 0.1,
-          "intensity": 1.0,
+          "intensity": 1,
           "randomness": 0.15,
           "noiseScale": 1.2
         }
@@ -335,10 +335,11 @@
           "density": 1.1,
           "speed": 0.2,
           "depth": 0.35,
-          "intensity": 0.75,
+          "intensity": 0.9,
           "randomness": 0.3,
           "borderWidth": 0.05,
-          "innerGlow": 0.35
+          "innerGlow": 0.55,
+          "waveSpread": 1.8
         }
       },
       {
@@ -347,7 +348,7 @@
           "rockColor": "#27272a",
           "sunColor": "#ca8a04",
           "mistColor": "#52525b",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.15,
           "depth": 0.35,
           "intensity": 0.85
@@ -387,7 +388,7 @@
           "depth": 0.3,
           "intensity": 1.1,
           "randomness": 0.5,
-          "strikeInterval": 18.0,
+          "strikeInterval": 18,
           "forkSpread": 0.6
         }
       },
@@ -400,9 +401,9 @@
           "depth": 0.3,
           "intensity": 1.1,
           "randomness": 0.3,
-          "epicenterX": 0.0,
+          "epicenterX": 0,
           "epicenterY": 0.1,
-          "waveInterval": 30.0,
+          "waveInterval": 30,
           "chromaticAberration": 0.02
         }
       },
@@ -410,7 +411,7 @@
         "brickType": "vignette",
         "params": {
           "vignetteColor": "#09090b",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.15,
           "depth": 0.35,
           "intensity": 0.7,
@@ -429,14 +430,15 @@
           "randomness": 0.4,
           "monochrome": true
         }
+      },
+      {
+        "brickType": "volumetric_glow",
+        "params": {
+          "density": 1.6,
+          "intensity": 0.45
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "gravitational_lensing",
-        "category": "special",
-        "reason": "Shader de réfraction et lentille gravitationnelle incurvant l'arrière-plan."
-      }
-    ]
+    "missingBricks": []
   }
 ]

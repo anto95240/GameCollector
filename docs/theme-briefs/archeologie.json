@@ -118,7 +118,7 @@
       {
         "brickType": "screen_shake",
         "params": {
-          "shakeInterval": 18.0,
+          "shakeInterval": 18,
           "intensity": 0.85,
           "speed": 1.4,
           "decayRate": 3.8
@@ -128,7 +128,7 @@
         "brickType": "wind_gust",
         "params": {
           "windColor": "#d4a853",
-          "gustInterval": 28.0,
+          "gustInterval": 28,
           "speed": 1.1,
           "intensity": 0.7
         }
@@ -298,7 +298,7 @@
         "brickType": "shockwave",
         "params": {
           "ringColor": "#ea580c",
-          "waveInterval": 15.0,
+          "waveInterval": 15,
           "speed": 1.3,
           "intensity": 1.1,
           "chromaticAberration": 0.025
@@ -309,9 +309,9 @@
         "params": {
           "sparkColor": "#fef08a",
           "coreColor": "#ffffff",
-          "burstInterval": 11.0,
+          "burstInterval": 11,
           "speed": 1.3,
-          "density": 1.0
+          "density": 1
         }
       },
       {
@@ -328,7 +328,7 @@
         "params": {
           "intensity": 0.06,
           "speed": 0.8,
-          "density": 1.0,
+          "density": 1,
           "monochrome": true
         }
       }
@@ -444,7 +444,7 @@
       {
         "brickType": "god_rays",
         "params": {
-          "lightSourceX": 0.0,
+          "lightSourceX": 0,
           "lightSourceY": 1.1,
           "rayColor": "#f8fafc",
           "density": 1.3,
@@ -458,7 +458,7 @@
           "coreColor": "#ffffff",
           "glowColor": "#fef08a",
           "outerColor": "#78350f",
-          "glowX": 0.0,
+          "glowX": 0,
           "glowY": 0.2,
           "density": 1.2,
           "intensity": 1.3
@@ -478,7 +478,7 @@
         "brickType": "wind_gust",
         "params": {
           "windColor": "#d4a853",
-          "gustInterval": 16.0,
+          "gustInterval": 16,
           "speed": 1.2,
           "intensity": 0.75
         }
@@ -488,7 +488,7 @@
         "params": {
           "starColor": "#ffffff",
           "trailColor": "#fef08a",
-          "starInterval": 22.0,
+          "starInterval": 22,
           "speed": 1.5,
           "intensity": 1.3
         }
@@ -622,7 +622,7 @@
         "brickType": "wind_gust",
         "params": {
           "windColor": "#fef3c7",
-          "gustInterval": 20.0,
+          "gustInterval": 20,
           "speed": 0.9,
           "intensity": 0.6
         }
@@ -644,15 +644,20 @@
           "density": 1.1,
           "monochrome": true
         }
+      },
+      {
+        "brickType": "runic_circle",
+        "params": {
+          "patternStyle": "compass",
+          "primaryColor": "#d97706",
+          "secondaryColor": "#fef3c7",
+          "ringCount": 2,
+          "symmetry": 8,
+          "needleOscillation": 0.6
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "runic_circle",
-        "category": "special",
-        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "drakes_fortune",
@@ -735,7 +740,7 @@
           "mistColor": "#065f46",
           "density": 0.9,
           "depth": 0.35,
-          "intensity": 1.0
+          "intensity": 1
         }
       },
       {
@@ -772,7 +777,7 @@
         "brickType": "wind_gust",
         "params": {
           "windColor": "#34d399",
-          "gustInterval": 18.0,
+          "gustInterval": 18,
           "speed": 1.2,
           "intensity": 0.7
         }
@@ -785,15 +790,19 @@
           "smoothness": 0.9,
           "roundness": 0.65
         }
+      },
+      {
+        "brickType": "waterfall_curtain",
+        "params": {
+          "waterColor": "#14b8a6",
+          "foamColor": "#ecfeff",
+          "arcCurvature": 0,
+          "mistHeight": 0.4,
+          "flowSpeed": 0.8
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "waterfall_curtain",
-        "category": "special",
-        "reason": "Chute d'eau multicouche verticale avec embruns et halo d'écume à la base."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "tomb_raider",
@@ -903,7 +912,7 @@
         "brickType": "shockwave",
         "params": {
           "ringColor": "#2dd4bf",
-          "waveInterval": 17.0,
+          "waveInterval": 17,
           "speed": 0.9,
           "intensity": 0.8,
           "chromaticAberration": 0.015
@@ -923,7 +932,7 @@
         "params": {
           "intensity": 0.05,
           "speed": 0.5,
-          "density": 1.0,
+          "density": 1,
           "monochrome": true
         }
       }
@@ -1043,7 +1052,7 @@
           "density": 0.7,
           "speed": 0.14,
           "intensity": 1.05,
-          "twinkleSpeed": 1.0
+          "twinkleSpeed": 1
         }
       },
       {
@@ -1051,7 +1060,7 @@
         "params": {
           "lightningColor": "#93c5fd",
           "flashColor": "#f8fafc",
-          "strikeInterval": 19.0,
+          "strikeInterval": 19,
           "speed": 1.3,
           "intensity": 1.1
         }
@@ -1073,15 +1082,19 @@
           "density": 1.1,
           "monochrome": true
         }
+      },
+      {
+        "brickType": "window_rain",
+        "params": {
+          "dropDensity": 1.1,
+          "trailSpeed": 0.45,
+          "condensation": 0.35,
+          "tintColor": "#94a3b8",
+          "edgeBias": 0.65
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "window_rain",
-        "category": "overlay",
-        "reason": "Gouttelettes réfractives et ruissellement glissant sur une vitre en premier plan."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "the_survivor",
@@ -1184,7 +1197,7 @@
           "rockColor": "#0a1120",
           "sunColor": "#14532d",
           "mistColor": "#1e293b",
-          "density": 1.0,
+          "density": 1,
           "depth": 0.35
         }
       },
@@ -1227,7 +1240,7 @@
         "params": {
           "lightningColor": "#c4b5fd",
           "flashColor": "#f8fafc",
-          "strikeInterval": 13.0,
+          "strikeInterval": 13,
           "speed": 1.4,
           "intensity": 1.35
         }

@@ -232,15 +232,19 @@
           "monochrome": true,
           "clumpSize": 1
         }
+      },
+      {
+        "brickType": "gravitational_lensing",
+        "params": {
+          "lensMode": "multilens",
+          "diskColor": "#f59e0b",
+          "secondaryColor": "#3b82f6",
+          "coreRadius": 0.1,
+          "chromaticSplit": 0.7
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "gravitational_lensing",
-        "category": "special",
-        "reason": "Shader de réfraction et lentille gravitationnelle incurvant l'arrière-plan."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "the_dark_knight",
@@ -471,15 +475,20 @@
           "monochrome": true,
           "clumpSize": 1
         }
+      },
+      {
+        "brickType": "volumetric_spotlight",
+        "params": {
+          "beamCount": 1,
+          "originMode": "bottom",
+          "beamColor": "#facc15",
+          "coneAngle": 0.26,
+          "sweepSpeed": 0.18,
+          "intensity": 1.25
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "volumetric_spotlight",
-        "category": "atmosphere",
-        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "man_of_steel",
@@ -907,15 +916,20 @@
           "monochrome": true,
           "clumpSize": 1
         }
+      },
+      {
+        "brickType": "radial_speed_tunnel",
+        "params": {
+          "tunnelMode": "speed_lines",
+          "primaryColor": "#ef4444",
+          "secondaryColor": "#facc15",
+          "speed": 1.6,
+          "streakLength": 1,
+          "twist": 0.15
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "radial_speed_tunnel",
-        "category": "special",
-        "reason": "Tunnel cinétique d'étirement radial et lignes de vitesse en perspective."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "clown_prince",
@@ -1141,15 +1155,19 @@
           "monochrome": true,
           "clumpSize": 1
         }
+      },
+      {
+        "brickType": "bubbling_liquid_surface",
+        "params": {
+          "liquidColor": "#3b0764",
+          "bubbleColor": "#84cc16",
+          "coreGlowColor": "#bef264",
+          "viscosity": 0.75,
+          "boilSpeed": 0.6
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "bubbling_liquid_surface",
-        "category": "background",
-        "reason": "Surface liquide visqueuse ou effervescente à bulles éclatant par convection."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "arkham_city",
@@ -1372,20 +1390,29 @@
           "monochrome": true,
           "clumpSize": 1
         }
-      }
-    ],
-    "missingBricks": [
-      {
-        "name": "volumetric_spotlight",
-        "category": "atmosphere",
-        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
       },
       {
-        "name": "frost_vignette",
-        "category": "overlay",
-        "reason": "Cristallisation progressive de givre translucide en périphérie d'écran."
+        "brickType": "volumetric_spotlight",
+        "params": {
+          "beamCount": 2,
+          "originMode": "top",
+          "beamColor": "#93c5fd",
+          "coneAngle": 0.22,
+          "sweepSpeed": 0.32
+        }
+      },
+      {
+        "brickType": "frost_vignette",
+        "params": {
+          "crystalStyle": "frost",
+          "edgeMask": "corners",
+          "crystalColor": "#93c5fd",
+          "spread": 0.24,
+          "intensity": 0.55
+        }
       }
-    ]
+    ],
+    "missingBricks": []
   },
   {
     "id": "league_of_assassins",
@@ -1638,15 +1665,19 @@
           "monochrome": true,
           "clumpSize": 1
         }
+      },
+      {
+        "brickType": "bubbling_liquid_surface",
+        "params": {
+          "liquidColor": "#022c22",
+          "bubbleColor": "#10b981",
+          "coreGlowColor": "#6ee7b7",
+          "viscosity": 0.4,
+          "boilSpeed": 0.35
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "bubbling_liquid_surface",
-        "category": "background",
-        "reason": "Surface liquide visqueuse ou effervescente à bulles éclatant par convection."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "krypton_falls",

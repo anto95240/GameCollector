@@ -114,7 +114,7 @@
       {
         "brickType": "shockwave",
         "params": {
-          "frequency": 28.0,
+          "frequency": 28,
           "color": "#dc2626"
         }
       },
@@ -129,15 +129,19 @@
         "params": {
           "intensity": 0.18
         }
+      },
+      {
+        "brickType": "volumetric_spotlight",
+        "params": {
+          "beamCount": 1,
+          "originMode": "front_spot",
+          "beamColor": "#f8fafc",
+          "coneAngle": 0.38,
+          "sweepSpeed": 0.15
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "volumetric_spotlight",
-        "category": "atmosphere",
-        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "shadow_agent",
@@ -255,7 +259,7 @@
       {
         "brickType": "wind_gust",
         "params": {
-          "frequency": 34.0
+          "frequency": 34
         }
       },
       {
@@ -269,15 +273,20 @@
         "params": {
           "darkness": 0.72
         }
+      },
+      {
+        "brickType": "laser_beam",
+        "params": {
+          "beamMode": "tactical",
+          "beamCount": 1,
+          "coreColor": "#ff0033",
+          "beamWidth": 0.008,
+          "angle": -0.45,
+          "sweepSpeed": 0.18
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "laser_beam",
-        "category": "atmosphere",
-        "reason": "Rayon ou faisceau optique collimaté à haute intensité directionnelle."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "spectre",
@@ -402,7 +411,7 @@
       {
         "brickType": "glitch",
         "params": {
-          "frequency": 24.0
+          "frequency": 24
         }
       },
       {
@@ -557,7 +566,7 @@
           "intensity": 0.7,
           "randomness": 0.5,
           "expansionRate": 1.4,
-          "dissipationSpeed": 1.0
+          "dissipationSpeed": 1
         }
       },
       {
@@ -570,8 +579,8 @@
           "depth": 0.3,
           "intensity": 1.2,
           "randomness": 0.5,
-          "lightX": 0.0,
-          "lightY": 0.0,
+          "lightX": 0,
+          "lightY": 0,
           "flickerType": 0
         }
       },
@@ -584,9 +593,9 @@
           "depth": 0.3,
           "intensity": 1.3,
           "randomness": 0.35,
-          "epicenterX": 0.0,
-          "epicenterY": 0.0,
-          "waveInterval": 26.0,
+          "epicenterX": 0,
+          "epicenterY": 0,
+          "waveInterval": 26,
           "chromaticAberration": 0.02
         }
       },
@@ -594,12 +603,12 @@
         "brickType": "screen_shake",
         "params": {
           "shakeColor": "#3b82f6",
-          "density": 1.0,
+          "density": 1,
           "speed": 1.4,
           "depth": 0.3,
           "intensity": 1.1,
           "randomness": 0.5,
-          "shakeInterval": 26.0,
+          "shakeInterval": 26,
           "decayRate": 3.8
         }
       },
@@ -751,7 +760,7 @@
           "density": 0.8,
           "speed": 0.16,
           "depth": 0.4,
-          "intensity": 1.0,
+          "intensity": 1,
           "randomness": 0.4,
           "twinkleSpeed": 1.1
         }
@@ -762,12 +771,12 @@
           "coreColor": "#fef08a",
           "glowColor": "#d4a853",
           "outerColor": "#451a03",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.15,
           "depth": 0.35,
           "intensity": 1.1,
           "randomness": 0.25,
-          "glowX": 0.0,
+          "glowX": 0,
           "glowY": 0.15
         }
       },
@@ -794,17 +803,21 @@
           "intensity": 0.06,
           "randomness": 0.4,
           "monochrome": true,
-          "clumpSize": 1.0
+          "clumpSize": 1
+        }
+      },
+      {
+        "brickType": "window_rain",
+        "params": {
+          "dropDensity": 0.9,
+          "trailSpeed": 0.4,
+          "condensation": 0.25,
+          "tintColor": "#fbbf24",
+          "edgeBias": 0.7
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "window_rain",
-        "category": "overlay",
-        "reason": "Gouttelettes réfractives et ruissellement glissant sur une vitre en premier plan."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "splinter",
@@ -914,14 +927,14 @@
       {
         "brickType": "shockwave",
         "params": {
-          "frequency": 20.0,
+          "frequency": 20,
           "color": "#22c55e"
         }
       },
       {
         "brickType": "glitch",
         "params": {
-          "frequency": 28.0
+          "frequency": 28
         }
       },
       {
@@ -936,15 +949,19 @@
         "params": {
           "darkness": 0.78
         }
+      },
+      {
+        "brickType": "radar_sweep",
+        "params": {
+          "radarStyle": "sonar",
+          "sweepColor": "#22c55e",
+          "sweepSpeed": 0.45,
+          "persistence": 0.75,
+          "blipCount": 6
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "radar_sweep",
-        "category": "special",
-        "reason": "Balayage sonar ou radar circulaire à rémanence lumineuse discrète."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "syndicate",
@@ -1080,7 +1097,7 @@
           "depth": 0.45,
           "intensity": 0.9,
           "randomness": 0.4,
-          "twinkleSpeed": 1.0
+          "twinkleSpeed": 1
         }
       },
       {
@@ -1093,8 +1110,8 @@
           "intensity": 0.85,
           "randomness": 0.4,
           "gustAngle": 0.15,
-          "gustInterval": 36.0,
-          "swirlScale": 1.0
+          "gustInterval": 36,
+          "swirlScale": 1
         }
       },
       {
@@ -1120,17 +1137,22 @@
           "intensity": 0.065,
           "randomness": 0.45,
           "monochrome": true,
-          "clumpSize": 1.0
+          "clumpSize": 1
+        }
+      },
+      {
+        "brickType": "fabric_wave",
+        "params": {
+          "fabricStyle": "velvet_curtain",
+          "primaryColor": "#7f1d1d",
+          "secondaryColor": "#450a0a",
+          "stripeCount": 0,
+          "sideCurtains": true,
+          "windStrength": 0.35
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "fabric_wave",
-        "category": "intermediate",
-        "reason": "Nappe textile souple ondulant organiquement sous l'effet du vent."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "echelon",
@@ -1242,7 +1264,7 @@
           "intensity": 1.1,
           "randomness": 0.35,
           "connectDistance": 2.8,
-          "nodeSize": 1.0,
+          "nodeSize": 1,
           "pulseSpeed": 1.6
         }
       },
@@ -1282,14 +1304,14 @@
         "brickType": "shockwave",
         "params": {
           "ringColor": "#38bdf8",
-          "density": 1.0,
+          "density": 1,
           "speed": 1.3,
           "depth": 0.3,
           "intensity": 1.2,
           "randomness": 0.3,
-          "epicenterX": 0.0,
-          "epicenterY": 0.0,
-          "waveInterval": 22.0,
+          "epicenterX": 0,
+          "epicenterY": 0,
+          "waveInterval": 22,
           "chromaticAberration": 0.015
         }
       },
@@ -1303,7 +1325,7 @@
           "intensity": 0.9,
           "randomness": 0.5,
           "sliceHeight": 0.06,
-          "glitchInterval": 27.0,
+          "glitchInterval": 27,
           "chromaticShift": 0.03
         }
       },
@@ -1332,15 +1354,19 @@
           "roundness": 0.7,
           "smoothness": 0.85
         }
+      },
+      {
+        "brickType": "radar_sweep",
+        "params": {
+          "radarStyle": "orbital_grid",
+          "sweepColor": "#06b6d4",
+          "sweepSpeed": 0.35,
+          "persistence": 0.55,
+          "blipCount": 8
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "radar_sweep",
-        "category": "special",
-        "reason": "Balayage sonar ou radar circulaire à rémanence lumineuse discrète."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "ghost_protocol",
@@ -1476,7 +1502,7 @@
           "intensity": 1.2,
           "randomness": 0.5,
           "gustAngle": 0.25,
-          "gustInterval": 19.0,
+          "gustInterval": 19,
           "swirlScale": 1.2
         }
       },
@@ -1503,7 +1529,7 @@
           "intensity": 0.95,
           "randomness": 0.5,
           "sliceHeight": 0.06,
-          "glitchInterval": 27.0,
+          "glitchInterval": 27,
           "chromaticShift": 0.035
         }
       },
@@ -1666,7 +1692,7 @@
           "depth": 0.45,
           "intensity": 0.8,
           "randomness": 0.35,
-          "twinkleSpeed": 1.0
+          "twinkleSpeed": 1
         }
       },
       {
@@ -1676,10 +1702,10 @@
           "density": 1.3,
           "speed": 0.3,
           "depth": 0.25,
-          "intensity": 0.45,
-          "randomness": 0.25,
-          "curvature": 0.14,
-          "rollIntensity": 0.15
+          "intensity": 0.55,
+          "randomness": 0.45,
+          "curvature": 0.24,
+          "rollIntensity": 0.22
         }
       },
       {
@@ -1687,12 +1713,12 @@
         "params": {
           "lightColor": "#ffffff",
           "secondaryColor": "#64748b",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.35,
           "depth": 0.3,
           "intensity": 1.1,
           "randomness": 0.55,
-          "lightX": 0.0,
+          "lightX": 0,
           "lightY": 0.3,
           "flickerType": 1
         }
@@ -1707,7 +1733,7 @@
           "intensity": 1.15,
           "randomness": 0.6,
           "sliceHeight": 0.07,
-          "glitchInterval": 18.0,
+          "glitchInterval": 18,
           "chromaticShift": 0.04
         }
       },
@@ -1715,12 +1741,12 @@
         "brickType": "screen_shake",
         "params": {
           "shakeColor": "#ffffff",
-          "density": 1.0,
+          "density": 1,
           "speed": 1.3,
           "depth": 0.3,
-          "intensity": 1.0,
+          "intensity": 1,
           "randomness": 0.5,
-          "shakeInterval": 34.0,
+          "shakeInterval": 34,
           "decayRate": 3.5
         }
       },
@@ -1751,12 +1777,6 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "crt_glass_optics",
-        "category": "overlay",
-        "reason": "Distorsion de courbure cathodique et masque de phosphore sous-pixel."
-      }
-    ]
+    "missingBricks": []
   }
 ]

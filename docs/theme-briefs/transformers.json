@@ -142,7 +142,7 @@
         "brickType": "flickering_light",
         "params": {
           "lightColor": "#3b82f6",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.8,
           "depth": 0.2,
           "intensity": 0.7,
@@ -167,9 +167,9 @@
         "brickType": "screen_shake",
         "params": {
           "intensity": 0.6,
-          "decayRate": 3.0,
+          "decayRate": 3,
           "speed": 1.2,
-          "depth": 0.0,
+          "depth": 0,
           "randomness": 0.4,
           "axes": "xy"
         }
@@ -178,9 +178,9 @@
         "brickType": "vignette",
         "params": {
           "vignetteColor": "#030712",
-          "density": 1.0,
-          "speed": 0.0,
-          "depth": 0.0,
+          "density": 1,
+          "speed": 0,
+          "depth": 0,
           "intensity": 0.75,
           "randomness": 0.1,
           "radius": 0.82,
@@ -193,7 +193,7 @@
           "grainColor": "#ffffff",
           "density": 0.8,
           "speed": 0.6,
-          "depth": 0.0,
+          "depth": 0,
           "intensity": 0.15,
           "randomness": 0.5,
           "monochrome": true,
@@ -326,14 +326,14 @@
       {
         "brickType": "lightning",
         "params": {
-          "frequency": 20.0,
+          "frequency": 20,
           "color": "#a855f7"
         }
       },
       {
         "brickType": "glitch",
         "params": {
-          "frequency": 28.0
+          "frequency": 28
         }
       },
       {
@@ -453,7 +453,7 @@
         "brickType": "multilayer_starfield",
         "params": {
           "starColor": "#e2e8f0",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.05,
           "depth": 0.15,
           "intensity": 0.85,
@@ -468,7 +468,7 @@
           "crustColor": "#0f172a",
           "magmaColor": "#0284c7",
           "coreColor": "#38bdf8",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.25,
           "depth": 0.4,
           "intensity": 1.2,
@@ -528,9 +528,9 @@
         "brickType": "vignette",
         "params": {
           "vignetteColor": "#050b14",
-          "density": 1.0,
-          "speed": 0.0,
-          "depth": 0.0,
+          "density": 1,
+          "speed": 0,
+          "depth": 0,
           "intensity": 0.7,
           "randomness": 0.1,
           "radius": 0.85,
@@ -543,7 +543,7 @@
           "grainColor": "#ffffff",
           "density": 0.7,
           "speed": 0.5,
-          "depth": 0.0,
+          "depth": 0,
           "intensity": 0.12,
           "randomness": 0.4,
           "monochrome": true,
@@ -695,7 +695,7 @@
           "waveColor": "#facc15",
           "speed": 0.9,
           "depth": 0.35,
-          "intensity": 1.0,
+          "intensity": 1,
           "randomness": 0.25,
           "ringThickness": 0.05
         }
@@ -716,9 +716,9 @@
         "brickType": "vignette",
         "params": {
           "vignetteColor": "#0c0a09",
-          "density": 1.0,
-          "speed": 0.0,
-          "depth": 0.0,
+          "density": 1,
+          "speed": 0,
+          "depth": 0,
           "intensity": 0.75,
           "randomness": 0.1,
           "radius": 0.8,
@@ -731,20 +731,25 @@
           "grainColor": "#ffffff",
           "density": 0.75,
           "speed": 0.5,
-          "depth": 0.0,
+          "depth": 0,
           "intensity": 0.14,
           "randomness": 0.4,
           "monochrome": true,
           "clumpSize": 0.9
         }
+      },
+      {
+        "brickType": "runic_circle",
+        "params": {
+          "patternStyle": "cyber_glyph",
+          "primaryColor": "#eab308",
+          "secondaryColor": "#dc2626",
+          "ringCount": 3,
+          "symmetry": 8,
+          "pulseSpeed": 0.8
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "runic_circle",
-        "category": "special",
-        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
-      }
-    ]
+    "missingBricks": []
   }
 ]

@@ -109,7 +109,7 @@
           "starColor": "#ffffff",
           "density": 1.3,
           "speed": 0.18,
-          "depth": 1.0,
+          "depth": 1,
           "intensity": 1.1,
           "randomness": 0.5,
           "twinkleSpeed": 1.6
@@ -144,14 +144,14 @@
         "brickType": "shockwave",
         "params": {
           "ringColor": "#38bdf8",
-          "density": 1.0,
+          "density": 1,
           "speed": 1.4,
           "depth": 0.3,
           "intensity": 1.2,
           "randomness": 0.3,
-          "epicenterX": 0.0,
-          "epicenterY": 0.0,
-          "waveInterval": 18.0,
+          "epicenterX": 0,
+          "epicenterY": 0,
+          "waveInterval": 18,
           "chromaticAberration": 0.025
         }
       },
@@ -167,7 +167,7 @@
           "randomness": 0.45,
           "angle": -0.55,
           "trailLength": 1.3,
-          "starInterval": 24.0
+          "starInterval": 24
         }
       },
       {
@@ -180,7 +180,7 @@
           "depth": 0.4,
           "intensity": 1.15,
           "randomness": 0.3,
-          "sourceX": 0.0,
+          "sourceX": 0,
           "sourceY": 0.05,
           "streakLength": 1.6
         }
@@ -208,17 +208,22 @@
           "intensity": 0.06,
           "randomness": 0.4,
           "monochrome": true,
-          "clumpSize": 1.0
+          "clumpSize": 1
+        }
+      },
+      {
+        "brickType": "radial_speed_tunnel",
+        "params": {
+          "tunnelMode": "hyperspace",
+          "primaryColor": "#e0f2fe",
+          "secondaryColor": "#38bdf8",
+          "speed": 1.4,
+          "streakLength": 1.2,
+          "twist": 0
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "radial_speed_tunnel",
-        "category": "special",
-        "reason": "Tunnel cinétique d'étirement radial et lignes de vitesse en perspective."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "jedi_order",
@@ -350,7 +355,7 @@
           "depth": 0.3,
           "intensity": 1.25,
           "randomness": 0.25,
-          "glowX": 0.0,
+          "glowX": 0,
           "glowY": 0.1
         }
       },
@@ -358,12 +363,12 @@
         "brickType": "god_rays",
         "params": {
           "rayColor": "#93c5fd",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.18,
           "depth": 0.35,
           "intensity": 1.15,
           "randomness": 0.35,
-          "lightSourceX": 0.0,
+          "lightSourceX": 0,
           "lightSourceY": 0.85,
           "decay": 0.94
         }
@@ -377,7 +382,7 @@
           "depth": 0.25,
           "intensity": 0.85,
           "randomness": 0.3,
-          "heightFalloff": 2.0,
+          "heightFalloff": 2,
           "windAngle": 0.05
         }
       },
@@ -411,13 +416,13 @@
         "params": {
           "ringColor": "#60a5fa",
           "density": 0.8,
-          "speed": 1.0,
+          "speed": 1,
           "depth": 0.25,
           "intensity": 0.95,
           "randomness": 0.25,
-          "epicenterX": 0.0,
+          "epicenterX": 0,
           "epicenterY": 0.1,
-          "waveInterval": 20.0,
+          "waveInterval": 20,
           "chromaticAberration": 0.012
         }
       },
@@ -425,7 +430,7 @@
         "brickType": "vignette",
         "params": {
           "vignetteColor": "#080c15",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.1,
           "depth": 0.3,
           "intensity": 0.65,
@@ -438,13 +443,13 @@
         "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.6,
           "depth": 0.15,
           "intensity": 0.05,
           "randomness": 0.35,
           "monochrome": true,
-          "clumpSize": 1.0
+          "clumpSize": 1
         }
       }
     ],
@@ -577,7 +582,7 @@
           "depth": 0.35,
           "intensity": 1.4,
           "randomness": 0.55,
-          "strikeInterval": 14.0,
+          "strikeInterval": 14,
           "forkSpread": 0.7
         }
       },
@@ -631,7 +636,7 @@
           "intensity": 0.75,
           "randomness": 0.55,
           "expansionRate": 1.5,
-          "dissipationSpeed": 1.0
+          "dissipationSpeed": 1
         }
       },
       {
@@ -643,7 +648,7 @@
           "depth": 0.3,
           "intensity": 0.85,
           "randomness": 0.5,
-          "shakeInterval": 26.0,
+          "shakeInterval": 26,
           "decayRate": 3.8
         }
       },
@@ -772,7 +777,7 @@
           "sandColor": "#b45309",
           "shadowColor": "#2a0a0a",
           "skyColor": "#451a03",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.14,
           "depth": 0.35,
           "intensity": 0.95,
@@ -832,7 +837,7 @@
           "depth": 0.45,
           "intensity": 0.95,
           "randomness": 0.45,
-          "twinkleSpeed": 1.0
+          "twinkleSpeed": 1
         }
       },
       {
@@ -845,7 +850,7 @@
           "intensity": 0.85,
           "randomness": 0.45,
           "gustAngle": 0.15,
-          "gustInterval": 22.0,
+          "gustInterval": 22,
           "swirlScale": 1.1
         }
       },
@@ -1029,13 +1034,13 @@
         "brickType": "glitch",
         "params": {
           "glitchColor": "#facc15",
-          "density": 1.0,
+          "density": 1,
           "speed": 1.5,
           "depth": 0.25,
           "intensity": 1.25,
           "randomness": 0.6,
           "sliceHeight": 0.07,
-          "glitchInterval": 15.0,
+          "glitchInterval": 15,
           "chromaticShift": 0.05
         }
       },
@@ -1060,7 +1065,7 @@
         "params": {
           "lightColor": "#facc15",
           "secondaryColor": "#7c3aed",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.45,
           "depth": 0.3,
           "intensity": 1.2,
@@ -1079,8 +1084,8 @@
           "depth": 0.25,
           "intensity": 0.75,
           "randomness": 0.45,
-          "shakeInterval": 27.0,
-          "decayRate": 4.0
+          "shakeInterval": 27,
+          "decayRate": 4
         }
       },
       {
@@ -1262,7 +1267,7 @@
       {
         "brickType": "shockwave",
         "params": {
-          "frequency": 20.0,
+          "frequency": 20,
           "color": "#3b82f6"
         }
       },
@@ -1424,7 +1429,7 @@
           "depth": 0.35,
           "intensity": 1.2,
           "randomness": 0.3,
-          "glowX": 0.0,
+          "glowX": 0,
           "glowY": 0.1
         }
       },
@@ -1449,9 +1454,9 @@
           "depth": 0.3,
           "intensity": 1.1,
           "randomness": 0.3,
-          "epicenterX": 0.0,
+          "epicenterX": 0,
           "epicenterY": 0.1,
-          "waveInterval": 18.0,
+          "waveInterval": 18,
           "chromaticAberration": 0.02
         }
       },
@@ -1467,14 +1472,14 @@
           "randomness": 0.45,
           "angle": -0.65,
           "trailLength": 1.25,
-          "starInterval": 25.0
+          "starInterval": 25
         }
       },
       {
         "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#facc15",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.25,
           "depth": 0.35,
           "intensity": 0.55,
@@ -1495,14 +1500,19 @@
           "roundness": 0.65,
           "smoothness": 0.85
         }
+      },
+      {
+        "brickType": "runic_circle",
+        "params": {
+          "patternStyle": "astrolabe",
+          "primaryColor": "#f59e0b",
+          "secondaryColor": "#a855f7",
+          "ringCount": 4,
+          "tilt3D": 0.55,
+          "rotationSpeed": 0.22
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "runic_circle",
-        "category": "special",
-        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
-      }
-    ]
+    "missingBricks": []
   }
 ]

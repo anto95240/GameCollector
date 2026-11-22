@@ -483,14 +483,14 @@
       {
         "brickType": "shockwave",
         "params": {
-          "frequency": 15.0,
+          "frequency": 15,
           "color": "#facc15"
         }
       },
       {
         "brickType": "screen_shake",
         "params": {
-          "frequency": 24.0
+          "frequency": 24
         }
       },
       {
@@ -899,15 +899,20 @@
           "randomness": 0.45,
           "monochrome": true
         }
+      },
+      {
+        "brickType": "volumetric_spotlight",
+        "params": {
+          "beamCount": 1,
+          "originMode": "mouse_follow",
+          "beamColor": "#fef08a",
+          "coneAngle": 0.3,
+          "flicker": 0.45,
+          "sweepSpeed": 0.4
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "volumetric_spotlight",
-        "category": "atmosphere",
-        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "yoshis_island",
@@ -1239,15 +1244,19 @@
           "randomness": 0.1,
           "roundness": 0.85
         }
+      },
+      {
+        "brickType": "parallax_flora",
+        "params": {
+          "floraType": "tall_grass",
+          "primaryColor": "#15803d",
+          "secondaryColor": "#86efac",
+          "swayStrength": 0.65,
+          "layers": 3
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "giant_flora_silhouette",
-        "category": "intermediate",
-        "reason": "Silhouettes végétales monumentales de premier plan à balancement souple."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "elite_four",
@@ -1912,14 +1921,14 @@
       {
         "brickType": "shockwave",
         "params": {
-          "frequency": 12.0,
+          "frequency": 12,
           "color": "#ffffff"
         }
       },
       {
         "brickType": "screen_shake",
         "params": {
-          "frequency": 20.0
+          "frequency": 20
         }
       },
       {
@@ -2503,15 +2512,19 @@
           "randomness": 0.1,
           "roundness": 0.8
         }
+      },
+      {
+        "brickType": "parallax_flora",
+        "params": {
+          "floraType": "palm_trees",
+          "primaryColor": "#1e1b4b",
+          "secondaryColor": "#7c2d12",
+          "swayStrength": 0.4,
+          "layers": 2
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "giant_flora_silhouette",
-        "category": "intermediate",
-        "reason": "Rangée de palmiers stylisés filiformes oscillant mollement sous la brise marine californienne en silhouette de contre-jour."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "vice_city",
@@ -3448,15 +3461,20 @@
           "randomness": 0.1,
           "roundness": 0.8
         }
+      },
+      {
+        "brickType": "parallax_flora",
+        "params": {
+          "floraType": "fantasy_ferns",
+          "primaryColor": "#065f46",
+          "secondaryColor": "#34d399",
+          "swayStrength": 0.5,
+          "glowTips": 0.4,
+          "layers": 3
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "giant_flora_silhouette",
-        "category": "intermediate",
-        "reason": "Silhouettes végétales monumentales de premier plan à balancement souple."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "pac_maze",
@@ -3608,12 +3626,14 @@
         "brickType": "crt_scanlines",
         "params": {
           "lineColor": "#000000",
-          "density": 0.85,
+          "density": 1.1,
           "speed": 0.08,
           "depth": 0.05,
-          "intensity": 0.25,
+          "intensity": 0.48,
           "randomness": 0.05,
-          "lineWidth": 1.2
+          "lineWidth": 1.2,
+          "curvature": 0.22,
+          "rollIntensity": 0.16
         }
       },
       {
@@ -3640,13 +3660,7 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "crt_glass_optics",
-        "category": "overlay",
-        "reason": "Distorsion de courbure cathodique et masque de phosphore sous-pixel."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "overworld",

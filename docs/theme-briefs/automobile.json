@@ -118,14 +118,14 @@
           "speed": 0.1,
           "depth": 0.45,
           "intensity": 0.8,
-          "twinkleSpeed": 1.0
+          "twinkleSpeed": 1
         }
       },
       {
         "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
-          "density": 1.0,
+          "density": 1,
           "intensity": 0.5,
           "roundness": 0.7,
           "smoothness": 0.85
@@ -140,7 +140,7 @@
           "depth": 0.35,
           "intensity": 0.6,
           "gustAngle": 0.1,
-          "gustInterval": 45.0
+          "gustInterval": 45
         }
       }
     ],
@@ -376,7 +376,7 @@
           "speed": 0.15,
           "depth": 0.4,
           "intensity": 0.85,
-          "lightSourceX": 0.0,
+          "lightSourceX": 0,
           "lightSourceY": -0.2,
           "decay": 0.92
         }
@@ -397,7 +397,7 @@
         "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
-          "density": 1.0,
+          "density": 1,
           "intensity": 0.55,
           "roundness": 0.65,
           "smoothness": 0.9
@@ -412,7 +412,7 @@
           "depth": 0.35,
           "intensity": 0.7,
           "gustAngle": 0.25,
-          "gustInterval": 40.0
+          "gustInterval": 40
         }
       }
     ],
@@ -554,7 +554,7 @@
         "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
-          "density": 1.0,
+          "density": 1,
           "intensity": 0.5,
           "roundness": 0.7,
           "smoothness": 0.9
@@ -691,7 +691,7 @@
           "speed": 0.9,
           "depth": 0.2,
           "intensity": 0.6,
-          "strikeInterval": 45.0
+          "strikeInterval": 45
         }
       }
     ],
@@ -822,7 +822,7 @@
         "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
-          "density": 1.0,
+          "density": 1,
           "intensity": 0.5,
           "roundness": 0.7,
           "smoothness": 0.9
@@ -840,15 +840,19 @@
           "lightSourceY": 0.8,
           "decay": 0.93
         }
+      },
+      {
+        "brickType": "wet_surface",
+        "params": {
+          "surfaceType": "asphalt",
+          "reflectionStyle": "tail_light",
+          "baseColor": "#0f172a",
+          "reflectionColor": "#e11d48",
+          "puddleCoverage": 0.5
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "wet_cobblestone",
-        "category": "background",
-        "reason": "Sol pavé humide à réflexions spéculaires et flaques irrégulières."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "scuderia_pride",
@@ -969,7 +973,7 @@
           "depth": 0.4,
           "intensity": 0.85,
           "gravity": 1.4,
-          "burstInterval": 40.0
+          "burstInterval": 40
         }
       },
       {
@@ -1094,7 +1098,7 @@
           "speed": 0.1,
           "depth": 0.3,
           "intensity": 0.6,
-          "glowX": 0.0,
+          "glowX": 0,
           "glowY": -0.2
         }
       },
@@ -1104,21 +1108,21 @@
           "sparkColor": "#38bdf8",
           "coreColor": "#ffffff",
           "density": 0.25,
-          "speed": 1.0,
+          "speed": 1,
           "depth": 0.4,
           "intensity": 0.8,
-          "gravity": 1.0,
-          "burstInterval": 45.0
+          "gravity": 1,
+          "burstInterval": 45
         }
       },
       {
         "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#bef264",
-          "density": 1.0,
+          "density": 1,
           "intensity": 0.45,
           "spread": 0.015,
-          "radialFalloff": 2.0
+          "radialFalloff": 2
         }
       },
       {
@@ -1291,7 +1295,7 @@
           "depth": 0.35,
           "intensity": 0.7,
           "gustAngle": 0.2,
-          "gustInterval": 35.0
+          "gustInterval": 35
         }
       }
     ],
@@ -1397,7 +1401,7 @@
           "speed": 0.05,
           "depth": 0.35,
           "intensity": 0.75,
-          "ruinDecay": 0.0,
+          "ruinDecay": 0,
           "torchGlow": 0.5
         }
       },
@@ -1422,7 +1426,7 @@
           "speed": 0.12,
           "depth": 0.5,
           "intensity": 0.8,
-          "twinkleSpeed": 1.0
+          "twinkleSpeed": 1
         }
       },
       {
@@ -1434,7 +1438,7 @@
           "speed": 0.1,
           "depth": 0.45,
           "intensity": 0.65,
-          "sourceX": 0.0,
+          "sourceX": 0,
           "sourceY": -0.1,
           "streakLength": 1.2
         }
@@ -1452,7 +1456,7 @@
         "brickType": "vignette",
         "params": {
           "vignetteColor": "#020617",
-          "density": 1.0,
+          "density": 1,
           "intensity": 0.5,
           "roundness": 0.7,
           "smoothness": 0.9
@@ -1573,18 +1577,18 @@
           "depth": 0.4,
           "intensity": 1.1,
           "gravity": 0.8,
-          "burstInterval": 3.0
+          "burstInterval": 3
         }
       },
       {
         "brickType": "shockwave",
         "params": {
           "ringColor": "#38bdf8",
-          "density": 1.0,
+          "density": 1,
           "speed": 1.4,
           "depth": 0.3,
           "intensity": 1.1,
-          "waveInterval": 30.0,
+          "waveInterval": 30,
           "chromaticAberration": 0.025
         }
       },
@@ -1592,7 +1596,7 @@
         "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#0284c7",
-          "density": 1.0,
+          "density": 1,
           "intensity": 0.55,
           "spread": 0.02,
           "radialFalloff": 1.7
@@ -1607,15 +1611,20 @@
           "roundness": 0.65,
           "smoothness": 0.85
         }
+      },
+      {
+        "brickType": "radial_speed_tunnel",
+        "params": {
+          "tunnelMode": "speed_lines",
+          "primaryColor": "#2563eb",
+          "secondaryColor": "#e2e8f0",
+          "speed": 1.2,
+          "streakLength": 0.9,
+          "twist": 0
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "radial_speed_tunnel",
-        "category": "special",
-        "reason": "Tunnel cinétique d'étirement radial et lignes de vitesse en perspective."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "phantom_luxury",
@@ -1728,7 +1737,7 @@
       {
         "brickType": "shooting_star",
         "params": {
-          "frequency": 30.0
+          "frequency": 30
         }
       },
       {
@@ -1886,18 +1895,18 @@
           "depth": 0.4,
           "intensity": 0.95,
           "gravity": 1.2,
-          "burstInterval": 25.0
+          "burstInterval": 25
         }
       },
       {
         "brickType": "shockwave",
         "params": {
           "ringColor": "#0ea5e9",
-          "density": 1.0,
+          "density": 1,
           "speed": 1.6,
           "depth": 0.3,
           "intensity": 1.2,
-          "waveInterval": 25.0,
+          "waveInterval": 25,
           "chromaticAberration": 0.02
         }
       },
@@ -1905,7 +1914,7 @@
         "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#0ea5e9",
-          "density": 1.0,
+          "density": 1,
           "intensity": 0.5,
           "spread": 0.02,
           "radialFalloff": 1.8
@@ -1920,14 +1929,18 @@
           "roundness": 0.65,
           "smoothness": 0.85
         }
+      },
+      {
+        "brickType": "wet_surface",
+        "params": {
+          "surfaceType": "asphalt",
+          "reflectionStyle": "underglow",
+          "baseColor": "#09090b",
+          "reflectionColor": "#0ea5e9",
+          "puddleCoverage": 0.6
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "wet_cobblestone",
-        "category": "background",
-        "reason": "Projection au sol d'un halo lumineux diffus de néon sous châssis (tubes néon ou LED) illuminant l'asphalte avec reflet mouillé."
-      }
-    ]
+    "missingBricks": []
   }
 ]

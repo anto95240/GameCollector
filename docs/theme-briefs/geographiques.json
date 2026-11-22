@@ -231,7 +231,7 @@
           "topColor": "#0f172a",
           "bottomColor": "#1e293b",
           "horizonColor": "#334155",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.08,
           "depth": 0.05,
           "intensity": 0.8
@@ -246,7 +246,7 @@
           "speed": 0.12,
           "depth": 0.2,
           "intensity": 0.65,
-          "waveFrequency": 2.0
+          "waveFrequency": 2
         }
       },
       {
@@ -297,7 +297,7 @@
       {
         "name": "runic_circle",
         "category": "special",
-        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
+        "reason": "abandonnée"
       }
     ]
   },
@@ -385,7 +385,7 @@
           "topColor": "#0284c7",
           "bottomColor": "#0f172a",
           "horizonColor": "#7dd3fc",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.08,
           "depth": 0.05,
           "intensity": 0.85
@@ -534,7 +534,7 @@
           "topColor": "#ea580c",
           "bottomColor": "#1c1917",
           "horizonColor": "#fed7aa",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.08,
           "depth": 0.05,
           "intensity": 0.8
@@ -602,7 +602,7 @@
       {
         "name": "runic_circle",
         "category": "special",
-        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
+        "reason": "abandonnée"
       }
     ]
   },
@@ -838,7 +838,7 @@
           "topColor": "#0284c7",
           "bottomColor": "#0c4a6e",
           "horizonColor": "#e0f2fe",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.08,
           "depth": 0.05,
           "intensity": 0.85
@@ -866,7 +866,7 @@
           "speed": 0.1,
           "depth": 0.3,
           "intensity": 0.8,
-          "snowLevel": 0.0
+          "snowLevel": 0
         }
       },
       {
@@ -1005,7 +1005,7 @@
           "speed": 0.1,
           "depth": 0.3,
           "intensity": 0.8,
-          "snowLevel": 0.0
+          "snowLevel": 0
         }
       },
       {
@@ -1138,7 +1138,7 @@
           "topColor": "#064e3b",
           "bottomColor": "#022c22",
           "horizonColor": "#67e8f9",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.08,
           "depth": 0.05,
           "intensity": 0.85
@@ -1154,7 +1154,7 @@
           "speed": 0.1,
           "depth": 0.25,
           "intensity": 0.75,
-          "snowLevel": 0.0
+          "snowLevel": 0
         }
       },
       {
@@ -1299,7 +1299,7 @@
           "topColor": "#0f172a",
           "bottomColor": "#1e293b",
           "horizonColor": "#334155",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.08,
           "depth": 0.05,
           "intensity": 0.8
@@ -1313,7 +1313,7 @@
           "speed": 0.06,
           "depth": 0.9,
           "intensity": 0.75,
-          "twinkleSpeed": 1.0
+          "twinkleSpeed": 1
         }
       },
       {
@@ -1353,7 +1353,7 @@
         "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.6,
           "depth": 0.1,
           "intensity": 0.06,

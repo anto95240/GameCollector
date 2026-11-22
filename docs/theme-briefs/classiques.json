@@ -489,15 +489,19 @@
           "intensity": 0.4,
           "smoothness": 0.9
         }
+      },
+      {
+        "brickType": "parallax_flora",
+        "params": {
+          "floraType": "coral",
+          "primaryColor": "#fb7185",
+          "secondaryColor": "#fdba74",
+          "swayStrength": 0.3,
+          "layers": 2
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "giant_flora_silhouette",
-        "category": "intermediate",
-        "reason": "Silhouettes végétales monumentales de premier plan à balancement souple."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "ember",

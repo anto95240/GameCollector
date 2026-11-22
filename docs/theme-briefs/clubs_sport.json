@@ -113,15 +113,20 @@
         "params": {
           "darkness": 0.58
         }
+      },
+      {
+        "brickType": "volumetric_spotlight",
+        "params": {
+          "beamCount": 1,
+          "originMode": "bottom",
+          "beamColor": "#fbbf24",
+          "coneAngle": 0.2,
+          "sweepSpeed": 0.12,
+          "intensity": 0.65
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "volumetric_spotlight",
-        "category": "atmosphere",
-        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "citizens",
@@ -697,7 +702,7 @@
       {
         "brickType": "shooting_star",
         "params": {
-          "frequency": 40.0
+          "frequency": 40
         }
       },
       {
@@ -819,7 +824,7 @@
           "fogColor": "#1e1b4b",
           "density": 0.45,
           "speed": 0.1,
-          "heightFalloff": 2.0,
+          "heightFalloff": 2,
           "depth": 0.25
         }
       },
@@ -830,15 +835,19 @@
           "intensity": 0.65,
           "smoothness": 0.9
         }
+      },
+      {
+        "brickType": "fabric_wave",
+        "params": {
+          "fabricStyle": "silk_banner",
+          "primaryColor": "#1d4ed8",
+          "secondaryColor": "#9f1239",
+          "stripeCount": 4,
+          "windStrength": 0.3
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "fabric_wave",
-        "category": "intermediate",
-        "reason": "Nappe textile souple ondulant organiquement sous l'effet du vent."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "colchoneros",
@@ -940,7 +949,7 @@
         "brickType": "lightning",
         "params": {
           "flashColor": "#e2e8f0",
-          "flashInterval": 35.0,
+          "flashInterval": 35,
           "intensity": 0.45,
           "branchCount": 2
         }
@@ -961,15 +970,19 @@
           "intensity": 0.65,
           "smoothness": 0.9
         }
+      },
+      {
+        "brickType": "fabric_wave",
+        "params": {
+          "fabricStyle": "canvas_banner",
+          "primaryColor": "#dc2626",
+          "secondaryColor": "#f5f5f4",
+          "stripeCount": 5,
+          "windStrength": 0.55
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "fabric_wave",
-        "category": "intermediate",
-        "reason": "Nappe textile souple ondulant organiquement sous l'effet du vent."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "les_bavarois",

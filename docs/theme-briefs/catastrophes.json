@@ -104,7 +104,7 @@
           "density": 1.1,
           "depth": 0.35,
           "intensity": 0.9,
-          "snowLevel": 0.0
+          "snowLevel": 0
         }
       },
       {
@@ -124,7 +124,7 @@
           "fogColor": "#451a03",
           "density": 0.9,
           "speed": 0.22,
-          "heightFalloff": 2.0,
+          "heightFalloff": 2,
           "depth": 0.3
         }
       },
@@ -144,7 +144,7 @@
         "params": {
           "ashColor": "#64748b",
           "darkColor": "#1e293b",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.32,
           "drift": 0.25,
           "intensity": 0.9
@@ -163,7 +163,7 @@
       {
         "brickType": "screen_shake",
         "params": {
-          "shakeInterval": 14.0,
+          "shakeInterval": 14,
           "intensity": 0.9,
           "speed": 1.3,
           "decayRate": 3.6
@@ -344,7 +344,7 @@
       {
         "brickType": "screen_shake",
         "params": {
-          "shakeInterval": 16.0,
+          "shakeInterval": 16,
           "intensity": 0.95,
           "speed": 1.2,
           "decayRate": 3.2
@@ -477,7 +477,7 @@
         "brickType": "wind_gust",
         "params": {
           "windColor": "#cbd5e1",
-          "gustInterval": 5.0,
+          "gustInterval": 5,
           "speed": 1.8,
           "intensity": 1.3,
           "density": 1.25,
@@ -490,7 +490,7 @@
           "dustColor": "#94a3b8",
           "density": 1.2,
           "speed": 0.45,
-          "intensity": 1.0,
+          "intensity": 1,
           "twinkleSpeed": 1.8
         }
       },
@@ -518,7 +518,7 @@
       {
         "brickType": "screen_shake",
         "params": {
-          "shakeInterval": 12.0,
+          "shakeInterval": 12,
           "intensity": 0.85,
           "speed": 1.4,
           "decayRate": 2.8
@@ -647,7 +647,7 @@
           "horizonColor": "#bae6fd",
           "density": 0.8,
           "speed": 0.15,
-          "intensity": 1.0,
+          "intensity": 1,
           "depth": 0.15
         }
       },
@@ -689,7 +689,7 @@
         "brickType": "wind_gust",
         "params": {
           "windColor": "#ffffff",
-          "gustInterval": 6.0,
+          "gustInterval": 6,
           "speed": 1.9,
           "intensity": 1.25,
           "density": 1.2
@@ -698,10 +698,10 @@
       {
         "brickType": "screen_shake",
         "params": {
-          "shakeInterval": 18.0,
+          "shakeInterval": 18,
           "intensity": 0.7,
           "speed": 1.5,
-          "decayRate": 4.0
+          "decayRate": 4
         }
       },
       {
@@ -722,15 +722,19 @@
           "smoothness": 0.95,
           "roundness": 0.75
         }
+      },
+      {
+        "brickType": "frost_vignette",
+        "params": {
+          "crystalStyle": "frost",
+          "edgeMask": "perimeter",
+          "crystalColor": "#e0f2fe",
+          "spread": 0.38,
+          "intensity": 0.85
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "frost_vignette",
-        "category": "overlay",
-        "reason": "Cristallisation progressive de givre translucide en périphérie d'écran."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "meteor_strike",
@@ -851,10 +855,10 @@
           "rockColor": "#1c1917",
           "sunColor": "#ef4444",
           "mistColor": "#b91c1c",
-          "density": 1.0,
+          "density": 1,
           "depth": 0.35,
-          "intensity": 1.0,
-          "snowLevel": 0.0
+          "intensity": 1,
+          "snowLevel": 0
         }
       },
       {
@@ -877,7 +881,7 @@
           "starInterval": 5.5,
           "speed": 2.2,
           "intensity": 1.45,
-          "trailLength": 2.0,
+          "trailLength": 2,
           "angle": -0.75
         }
       },
@@ -885,7 +889,7 @@
         "brickType": "shockwave",
         "params": {
           "ringColor": "#facc15",
-          "waveInterval": 7.0,
+          "waveInterval": 7,
           "speed": 1.6,
           "intensity": 1.35,
           "chromaticAberration": 0.028,
@@ -895,7 +899,7 @@
       {
         "brickType": "screen_shake",
         "params": {
-          "shakeInterval": 7.0,
+          "shakeInterval": 7,
           "intensity": 1.15,
           "speed": 1.6,
           "decayRate": 4.2
@@ -1050,7 +1054,7 @@
           "density": 1.25,
           "depth": 0.4,
           "intensity": 1.1,
-          "snowLevel": 0.0,
+          "snowLevel": 0,
           "sunAngle": 0.95
         }
       },
@@ -1072,7 +1076,7 @@
           "density": 1.1,
           "speed": 0.58,
           "drift": 0.15,
-          "intensity": 1.0
+          "intensity": 1
         }
       },
       {
@@ -1088,7 +1092,7 @@
       {
         "brickType": "screen_shake",
         "params": {
-          "shakeInterval": 11.0,
+          "shakeInterval": 11,
           "intensity": 0.9,
           "speed": 1.3,
           "decayRate": 3.5
@@ -1098,7 +1102,7 @@
         "brickType": "wind_gust",
         "params": {
           "windColor": "#78350f",
-          "gustInterval": 15.0,
+          "gustInterval": 15,
           "speed": 1.2,
           "intensity": 0.85,
           "gustAngle": -1.57

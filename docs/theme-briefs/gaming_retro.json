@@ -94,7 +94,7 @@
           "speed": 0.1,
           "depth": 0.25,
           "intensity": 0.7,
-          "pixelSize": 6.0
+          "pixelSize": 6
         }
       },
       {
@@ -107,7 +107,7 @@
           "speed": 0.12,
           "depth": 0.2,
           "intensity": 0.65,
-          "glowX": 0.0,
+          "glowX": 0,
           "glowY": 0.05
         }
       },
@@ -272,7 +272,7 @@
           "speed": 0.1,
           "depth": 0.2,
           "intensity": 0.6,
-          "glowX": 0.0,
+          "glowX": 0,
           "glowY": -0.1
         }
       },
@@ -382,7 +382,7 @@
           "speed": 0.08,
           "depth": 0.2,
           "intensity": 0.75,
-          "pixelSize": 4.0
+          "pixelSize": 4
         }
       },
       {
@@ -392,9 +392,9 @@
           "density": 1.4,
           "speed": 0.05,
           "depth": 0.15,
-          "intensity": 0.45,
-          "pixelSize": 4.0,
-          "ditherStrength": 0.3
+          "intensity": 0.55,
+          "pixelSize": 6,
+          "ditherStrength": 0.4
         }
       },
       {
@@ -424,15 +424,17 @@
           "intensity": 0.45,
           "smoothness": 0.9
         }
+      },
+      {
+        "brickType": "crt_scanlines",
+        "params": {
+          "curvature": 0.08,
+          "scanlineColor": "#0f380f",
+          "intensity": 0.18
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "crt_glass_optics",
-        "category": "overlay",
-        "reason": "Distorsion de courbure cathodique et masque de phosphore sous-pixel."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "retro_arcade",
@@ -525,7 +527,7 @@
           "starColor": "#ffffff",
           "density": 0.85,
           "speed": 0.22,
-          "depth": 1.0,
+          "depth": 1,
           "intensity": 0.9,
           "randomness": 0.5,
           "twinkleSpeed": 1.8
@@ -541,7 +543,7 @@
           "speed": 0.1,
           "depth": 0.15,
           "intensity": 0.65,
-          "glowX": 0.0,
+          "glowX": 0,
           "glowY": -0.5
         }
       },
@@ -674,7 +676,7 @@
           "speed": 0.12,
           "depth": 0.35,
           "intensity": 0.85,
-          "pixelSize": 6.0
+          "pixelSize": 6
         }
       },
       {
@@ -696,7 +698,7 @@
           "speed": 0.05,
           "depth": 0.15,
           "intensity": 0.4,
-          "pixelSize": 6.0,
+          "pixelSize": 6,
           "ditherStrength": 0.25
         }
       },
@@ -714,7 +716,7 @@
         "brickType": "crt_scanlines",
         "params": {
           "scanlineColor": "#000000",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.1,
           "depth": 0.1,
           "intensity": 0.3,
@@ -874,7 +876,7 @@
         "brickType": "crt_scanlines",
         "params": {
           "scanlineColor": "#000000",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.1,
           "depth": 0.1,
           "intensity": 0.25,
@@ -984,12 +986,12 @@
           "coreColor": "#22c55e",
           "glowColor": "#15803d",
           "outerColor": "#021208",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.1,
           "depth": 0.2,
           "intensity": 0.65,
-          "glowX": 0.0,
-          "glowY": 0.0
+          "glowX": 0,
+          "glowY": 0
         }
       },
       {
@@ -1017,20 +1019,20 @@
       {
         "brickType": "crt_scanlines",
         "params": {
-          "scanlineColor": "#000000",
+          "scanlineColor": "#022c22",
           "density": 1.4,
           "speed": 0.25,
           "depth": 0.2,
-          "intensity": 0.45,
-          "curvature": 0.12,
-          "rollIntensity": 0.12
+          "intensity": 0.55,
+          "curvature": 0.26,
+          "rollIntensity": 0.24
         }
       },
       {
         "brickType": "chromatic_aberration",
         "params": {
           "aberrationColor": "#22c55e",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.15,
           "depth": 0.2,
           "intensity": 0.5,
@@ -1042,7 +1044,7 @@
         "brickType": "film_grain",
         "params": {
           "grainColor": "#22c55e",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.2,
           "intensity": 0.15,
           "blendMode": 1
@@ -1057,12 +1059,6 @@
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "crt_glass_optics",
-        "category": "overlay",
-        "reason": "Distorsion de courbure cathodique et masque de phosphore sous-pixel."
-      }
-    ]
+    "missingBricks": []
   }
 ]

@@ -100,7 +100,7 @@
           "depth": 0.1,
           "intensity": 0.9,
           "randomness": 0.2,
-          "noiseScale": 1.0
+          "noiseScale": 1
         }
       },
       {
@@ -113,7 +113,7 @@
           "depth": 0.3,
           "intensity": 1.3,
           "randomness": 0.7,
-          "lightX": 0.0,
+          "lightX": 0,
           "lightY": 0.4,
           "flickerType": 1
         }
@@ -152,9 +152,9 @@
           "depth": 0.15,
           "intensity": 0.75,
           "randomness": 0.6,
-          "glitchInterval": 24.0,
+          "glitchInterval": 24,
           "duration": 0.35,
-          "sliceCount": 8.0
+          "sliceCount": 8
         }
       },
       {
@@ -166,7 +166,7 @@
           "depth": 0.3,
           "intensity": 0.7,
           "randomness": 0.2,
-          "waveInterval": 35.0,
+          "waveInterval": 35,
           "maxRadius": 1.8,
           "distortionStrength": 0.04
         }
@@ -194,17 +194,21 @@
           "intensity": 0.07,
           "randomness": 0.4,
           "monochrome": true,
-          "clumpSize": 1.0
+          "clumpSize": 1
+        }
+      },
+      {
+        "brickType": "organic_tendrils",
+        "params": {
+          "anchorMode": "vertical_rift",
+          "primaryColor": "#18181b",
+          "veinColor": "#ef4444",
+          "veinGlow": 0.9,
+          "pulseSpeed": 0.65
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "organic_tendrils",
-        "category": "intermediate",
-        "reason": "Brèche dimensionnelle procédurale bioluminescente pulsante, avec tentacules d'ombres d'où s'échappent des filaments d'énergie écarlate réactifs."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "nypd",
@@ -328,7 +332,7 @@
           "depth": 0.4,
           "intensity": 0.8,
           "randomness": 0.4,
-          "twinkleSpeed": 1.0
+          "twinkleSpeed": 1
         }
       },
       {
@@ -340,8 +344,8 @@
           "depth": 0.35,
           "intensity": 0.7,
           "randomness": 0.35,
-          "gustAngle": 0.0,
-          "gustInterval": 26.0,
+          "gustAngle": 0,
+          "gustInterval": 26,
           "swirlScale": 1.1
         }
       },
@@ -354,8 +358,8 @@
           "depth": 0.25,
           "intensity": 0.5,
           "randomness": 0.4,
-          "shakeInterval": 38.0,
-          "decayRate": 5.0
+          "shakeInterval": 38,
+          "decayRate": 5
         }
       },
       {
@@ -375,7 +379,7 @@
         "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.75,
           "depth": 0.15,
           "intensity": 0.06,
@@ -383,15 +387,20 @@
           "monochrome": true,
           "clumpSize": 0.9
         }
+      },
+      {
+        "brickType": "volumetric_spotlight",
+        "params": {
+          "beamCount": 2,
+          "originMode": "side",
+          "beamColor": "#3b82f6",
+          "secondaryColor": "#ef4444",
+          "sweepSpeed": 1.1,
+          "slatMask": 0.55
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "volumetric_spotlight",
-        "category": "atmosphere",
-        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "maverick",
@@ -488,7 +497,7 @@
           "depth": 0.1,
           "intensity": 1.1,
           "randomness": 0.15,
-          "noiseScale": 1.0
+          "noiseScale": 1
         }
       },
       {
@@ -502,7 +511,7 @@
           "depth": 0.4,
           "intensity": 1.15,
           "randomness": 0.5,
-          "snowLevel": 0.0,
+          "snowLevel": 0,
           "sunAngle": 0.4
         }
       },
@@ -540,8 +549,8 @@
           "depth": 0.3,
           "intensity": 0.8,
           "randomness": 0.2,
-          "waveInterval": 22.0,
-          "maxRadius": 2.0,
+          "waveInterval": 22,
+          "maxRadius": 2,
           "distortionStrength": 0.05
         }
       },
@@ -557,7 +566,7 @@
           "lightX": 0.4,
           "lightY": 0.3,
           "streakLength": 1.8,
-          "ghostCount": 4.0
+          "ghostCount": 4
         }
       },
       {
@@ -577,13 +586,13 @@
         "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.7,
           "depth": 0.15,
           "intensity": 0.05,
           "randomness": 0.3,
           "monochrome": true,
-          "clumpSize": 1.0
+          "clumpSize": 1
         }
       }
     ],
@@ -706,7 +715,7 @@
       {
         "brickType": "wind_gust",
         "params": {
-          "frequency": 32.0
+          "frequency": 32
         }
       },
       {
@@ -838,7 +847,7 @@
           "depth": 0.35,
           "intensity": 1.25,
           "randomness": 0.55,
-          "lightX": 0.0,
+          "lightX": 0,
           "lightY": -0.1,
           "flickerType": 2
         }
@@ -877,7 +886,7 @@
           "depth": 0.3,
           "intensity": 0.75,
           "randomness": 0.2,
-          "waveInterval": 20.0,
+          "waveInterval": 20,
           "maxRadius": 1.6,
           "distortionStrength": 0.04
         }
@@ -891,9 +900,9 @@
           "depth": 0.2,
           "intensity": 0.65,
           "randomness": 0.5,
-          "glitchInterval": 40.0,
+          "glitchInterval": 40,
           "duration": 0.25,
-          "sliceCount": 6.0
+          "sliceCount": 6
         }
       },
       {
@@ -921,15 +930,20 @@
           "monochrome": true,
           "clumpSize": 1.1
         }
+      },
+      {
+        "brickType": "runic_circle",
+        "params": {
+          "patternStyle": "polyhedron",
+          "primaryColor": "#ef4444",
+          "secondaryColor": "#f59e0b",
+          "ringCount": 3,
+          "symmetry": 6,
+          "rotationSpeed": 0.3
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "runic_circle",
-        "category": "special",
-        "reason": "Anneau géométrique ou rosace lumineuse rotative sans symbole protégé."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "yippee_ki_yay",
@@ -1064,7 +1078,7 @@
           "depth": 0.25,
           "intensity": 0.85,
           "randomness": 0.25,
-          "waveInterval": 18.0,
+          "waveInterval": 18,
           "maxRadius": 2.2,
           "distortionStrength": 0.06
         }
@@ -1078,7 +1092,7 @@
           "depth": 0.2,
           "intensity": 0.75,
           "randomness": 0.45,
-          "shakeInterval": 24.0,
+          "shakeInterval": 24,
           "decayRate": 4.5
         }
       },
@@ -1216,7 +1230,7 @@
           "density": 0.9,
           "speed": 0.05,
           "depth": 0.8,
-          "intensity": 1.0,
+          "intensity": 1,
           "randomness": 0.45,
           "twinkleSpeed": 1.2
         }
@@ -1228,7 +1242,7 @@
           "density": 1.1,
           "speed": 0.45,
           "depth": 0.25,
-          "intensity": 1.0,
+          "intensity": 1,
           "randomness": 0.35,
           "heatHeight": 0.4,
           "chromaticAberration": 0.02
@@ -1243,7 +1257,7 @@
           "depth": 0.35,
           "intensity": 0.85,
           "randomness": 0.3,
-          "twinkleSpeed": 2.0
+          "twinkleSpeed": 2
         }
       },
       {
@@ -1255,7 +1269,7 @@
           "depth": 0.25,
           "intensity": 0.8,
           "randomness": 0.2,
-          "waveInterval": 24.0,
+          "waveInterval": 24,
           "maxRadius": 2.4,
           "distortionStrength": 0.05
         }
@@ -1267,9 +1281,9 @@
           "density": 0.6,
           "speed": 1.8,
           "depth": 0.6,
-          "intensity": 1.0,
+          "intensity": 1,
           "randomness": 0.4,
-          "starInterval": 34.0,
+          "starInterval": 34,
           "trailLength": 1.2
         }
       },
@@ -1416,14 +1430,14 @@
       {
         "brickType": "lightning",
         "params": {
-          "frequency": 18.0,
+          "frequency": 18,
           "color": "#ea580c"
         }
       },
       {
         "brickType": "screen_shake",
         "params": {
-          "frequency": 25.0
+          "frequency": 25
         }
       },
       {
@@ -1553,7 +1567,7 @@
           "density": 1.2,
           "speed": 0.15,
           "depth": 0.4,
-          "intensity": 1.0,
+          "intensity": 1,
           "randomness": 0.5,
           "windStrength": 0.25
         }
@@ -1592,7 +1606,7 @@
           "depth": 0.25,
           "intensity": 1.25,
           "randomness": 0.5,
-          "strikeInterval": 16.0,
+          "strikeInterval": 16,
           "forking": 0.85
         }
       },
@@ -1605,7 +1619,7 @@
           "depth": 0.3,
           "intensity": 0.75,
           "randomness": 0.3,
-          "waveInterval": 28.0,
+          "waveInterval": 28,
           "maxRadius": 1.8,
           "distortionStrength": 0.045
         }
@@ -1619,9 +1633,9 @@
           "depth": 0.2,
           "intensity": 0.7,
           "randomness": 0.55,
-          "glitchInterval": 36.0,
+          "glitchInterval": 36,
           "duration": 0.3,
-          "sliceCount": 8.0
+          "sliceCount": 8
         }
       },
       {
@@ -1649,15 +1663,20 @@
           "monochrome": true,
           "clumpSize": 1.2
         }
+      },
+      {
+        "brickType": "organic_tendrils",
+        "params": {
+          "anchorMode": "edges",
+          "primaryColor": "#09090b",
+          "veinColor": "#991b1b",
+          "veinGlow": 0.45,
+          "reach": 0.32,
+          "pulseSpeed": 0.4
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "organic_tendrils",
-        "category": "intermediate",
-        "reason": "Vrilles et filaments organiques animés par bruit sinueux en lisière d'écran."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "nakatomi",
@@ -1754,7 +1773,7 @@
           "depth": 0.1,
           "intensity": 0.9,
           "randomness": 0.15,
-          "noiseScale": 1.0
+          "noiseScale": 1
         }
       },
       {
@@ -1806,7 +1825,7 @@
           "depth": 0.25,
           "intensity": 0.75,
           "randomness": 0.2,
-          "waveInterval": 32.0,
+          "waveInterval": 32,
           "maxRadius": 1.9,
           "distortionStrength": 0.04
         }
@@ -1828,23 +1847,27 @@
         "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.7,
           "depth": 0.15,
           "intensity": 0.06,
           "randomness": 0.35,
           "monochrome": true,
-          "clumpSize": 1.0
+          "clumpSize": 1
+        }
+      },
+      {
+        "brickType": "volumetric_spotlight",
+        "params": {
+          "beamCount": 1,
+          "originMode": "top_right",
+          "beamColor": "#e0f2fe",
+          "coneAngle": 0.24,
+          "sweepSpeed": 0.45
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "volumetric_spotlight",
-        "category": "atmosphere",
-        "reason": "Faisceau de projecteur volumétrique orientable balayant l'espace 3D."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "danger_zone",
@@ -1941,7 +1964,7 @@
           "depth": 0.1,
           "intensity": 1.1,
           "randomness": 0.15,
-          "noiseScale": 1.0
+          "noiseScale": 1
         }
       },
       {
@@ -1978,8 +2001,8 @@
           "depth": 0.25,
           "intensity": 0.8,
           "randomness": 0.2,
-          "waveInterval": 20.0,
-          "maxRadius": 2.0,
+          "waveInterval": 20,
+          "maxRadius": 2,
           "distortionStrength": 0.05
         }
       },
@@ -1995,7 +2018,7 @@
           "lightX": -0.4,
           "lightY": 0.25,
           "streakLength": 1.9,
-          "ghostCount": 4.0
+          "ghostCount": 4
         }
       },
       {
@@ -2015,13 +2038,13 @@
         "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.7,
           "depth": 0.15,
           "intensity": 0.05,
           "randomness": 0.35,
           "monochrome": true,
-          "clumpSize": 1.0
+          "clumpSize": 1
         }
       }
     ],
@@ -2120,7 +2143,7 @@
           "density": 1.2,
           "speed": 0.12,
           "depth": 0.1,
-          "intensity": 1.0,
+          "intensity": 1,
           "randomness": 0.15,
           "noiseScale": 1.1
         }
@@ -2161,7 +2184,7 @@
           "intensity": 0.75,
           "randomness": 0.35,
           "gustAngle": 0.1,
-          "gustInterval": 24.0,
+          "gustInterval": 24,
           "swirlScale": 1.1
         }
       },
@@ -2174,7 +2197,7 @@
           "depth": 0.5,
           "intensity": 0.95,
           "randomness": 0.4,
-          "starInterval": 36.0,
+          "starInterval": 36,
           "trailLength": 1.1
         }
       },
@@ -2195,13 +2218,13 @@
         "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.65,
           "depth": 0.15,
           "intensity": 0.05,
           "randomness": 0.35,
           "monochrome": true,
-          "clumpSize": 1.0
+          "clumpSize": 1
         }
       }
     ],
@@ -2302,7 +2325,7 @@
           "depth": 0.1,
           "intensity": 0.95,
           "randomness": 0.2,
-          "noiseScale": 1.0
+          "noiseScale": 1
         }
       },
       {
@@ -2328,7 +2351,7 @@
           "depth": 0.3,
           "intensity": 1.25,
           "randomness": 0.45,
-          "strikeInterval": 18.0,
+          "strikeInterval": 18,
           "forking": 0.75
         }
       },
@@ -2354,8 +2377,8 @@
           "depth": 0.25,
           "intensity": 0.8,
           "randomness": 0.2,
-          "waveInterval": 26.0,
-          "maxRadius": 2.0,
+          "waveInterval": 26,
+          "maxRadius": 2,
           "distortionStrength": 0.05
         }
       },
@@ -2382,17 +2405,22 @@
           "intensity": 0.06,
           "randomness": 0.35,
           "monochrome": true,
-          "clumpSize": 1.0
+          "clumpSize": 1
+        }
+      },
+      {
+        "brickType": "wet_surface",
+        "params": {
+          "surfaceType": "asphalt",
+          "reflectionStyle": "flame_tracks",
+          "baseColor": "#0f172a",
+          "reflectionColor": "#f97316",
+          "secondaryReflectionColor": "#38bdf8",
+          "puddleCoverage": 0.55
         }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "wet_cobblestone",
-        "category": "background",
-        "reason": "Sol pavé humide à réflexions spéculaires et flaques irrégulières."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "gargantua",
@@ -2489,7 +2517,7 @@
           "depth": 0.05,
           "intensity": 1.05,
           "randomness": 0.15,
-          "noiseScale": 1.0
+          "noiseScale": 1
         }
       },
       {
@@ -2538,7 +2566,7 @@
           "depth": 0.3,
           "intensity": 0.8,
           "randomness": 0.15,
-          "waveInterval": 34.0,
+          "waveInterval": 34,
           "maxRadius": 2.2,
           "distortionStrength": 0.06
         }
@@ -2552,10 +2580,10 @@
           "depth": 0.35,
           "intensity": 1.1,
           "randomness": 0.2,
-          "lightX": 0.0,
-          "lightY": 0.0,
-          "streakLength": 2.0,
-          "ghostCount": 4.0
+          "lightX": 0,
+          "lightY": 0,
+          "streakLength": 2,
+          "ghostCount": 4
         }
       },
       {
@@ -2570,15 +2598,19 @@
           "roundness": 0.7,
           "smoothness": 0.9
         }
+      },
+      {
+        "brickType": "gravitational_lensing",
+        "params": {
+          "lensMode": "black_hole",
+          "diskColor": "#fcd34d",
+          "coreRadius": 0.16,
+          "diskTilt": 0.15,
+          "einsteinRing": 1
+        }
       }
     ],
-    "missingBricks": [
-      {
-        "name": "gravitational_lensing",
-        "category": "special",
-        "reason": "Shader de réfraction et lentille gravitationnelle incurvant l'arrière-plan."
-      }
-    ]
+    "missingBricks": []
   },
   {
     "id": "unsinkable",
@@ -2675,7 +2707,7 @@
           "depth": 0.08,
           "intensity": 0.95,
           "randomness": 0.12,
-          "noiseScale": 1.0
+          "noiseScale": 1
         }
       },
       {
@@ -2736,9 +2768,9 @@
           "density": 0.65,
           "speed": 1.7,
           "depth": 0.6,
-          "intensity": 1.0,
+          "intensity": 1,
           "randomness": 0.4,
-          "starInterval": 22.0,
+          "starInterval": 22,
           "trailLength": 1.2
         }
       },
@@ -2759,7 +2791,7 @@
         "brickType": "film_grain",
         "params": {
           "grainColor": "#ffffff",
-          "density": 1.0,
+          "density": 1,
           "speed": 0.65,
           "depth": 0.15,
           "intensity": 0.05,
@@ -2905,7 +2937,7 @@
       {
         "brickType": "shooting_star",
         "params": {
-          "frequency": 18.0
+          "frequency": 18
         }
       },
       {
@@ -3018,7 +3050,7 @@
           "depth": 0.1,
           "intensity": 0.9,
           "randomness": 0.15,
-          "noiseScale": 1.0
+          "noiseScale": 1
         }
       },
       {
@@ -3044,7 +3076,7 @@
           "depth": 0.3,
           "intensity": 1.15,
           "randomness": 0.4,
-          "lightX": 0.0,
+          "lightX": 0,
           "lightY": -0.15,
           "flickerType": 2
         }
@@ -3059,7 +3091,7 @@
           "intensity": 0.7,
           "randomness": 0.35,
           "gustAngle": 0.1,
-          "gustInterval": 26.0,
+          "gustInterval": 26,
           "swirlScale": 1.1
         }
       },
