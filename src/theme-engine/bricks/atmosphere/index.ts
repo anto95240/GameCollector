@@ -9,6 +9,7 @@
  * - Distorsion de Chaleur (heat_distortion)
  * - Lueur Volumétrique (volumetric_glow)
  * - Lens Flare Cinéma (lens_flare)
+ * - Projecteur Volumétrique Orientable (volumetric_spotlight)
  */
 
 export * from './FlickeringLightBrick'
@@ -17,3 +18,4 @@ export * from './HeatDistortionBrick'
 export * from './LensFlareBrick'
 export * from './NoisyFogBrick'
 export * from './VolumetricGlowBrick'
+export * from './VolumetricSpotlightBrick'

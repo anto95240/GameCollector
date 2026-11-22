@@ -9,12 +9,14 @@
  * - Château & Ruines (parallax_castle)
  * - Vaisseaux Lointains (parallax_fleet)
  * - Tuiles Pixel 16-bit (parallax_pixel_tiles)
+ * - Flore & Silhouettes Organiques (parallax_flora)
  * - Plan Générique (parallax_plane)
  */
 
 export * from './ParallaxCastleBrick'
 export * from './ParallaxCityBrick'
 export * from './ParallaxFleetBrick'
+export * from './ParallaxFloraBrick'
 export * from './ParallaxForestBrick'
 export * from './ParallaxMountainsBrick'
 export * from './ParallaxPixelTilesBrick'

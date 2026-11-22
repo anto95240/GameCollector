@@ -31,6 +31,7 @@ export const BRICK_TYPE_TO_GROUP: Record<string, BrickGroup> = {
   waves: 'background',
   lava_flow: 'background',
   dunes: 'background',
+  wet_surface: 'background',
 
   // 2. Intermédiaires & Parallaxe (Parallax)
   parallax_plane: 'parallax',
@@ -40,6 +41,7 @@ export const BRICK_TYPE_TO_GROUP: Record<string, BrickGroup> = {
   parallax_castle: 'parallax',
   parallax_fleet: 'parallax',
   parallax_pixel_tiles: 'parallax',
+  parallax_flora: 'parallax',
 
   // 3. Atmosphère (Atmosphere)
   noisy_fog: 'atmosphere',
@@ -48,6 +50,7 @@ export const BRICK_TYPE_TO_GROUP: Record<string, BrickGroup> = {
   heat_distortion: 'atmosphere',
   volumetric_glow: 'atmosphere',
   lens_flare: 'atmosphere',
+  volumetric_spotlight: 'atmosphere',
 
   // 4. Particules (Particles)
   instanced_particles: 'particles',
@@ -92,6 +95,8 @@ export const BRICK_TYPE_TO_GROUP: Record<string, BrickGroup> = {
   code_rain: 'special',
   hex_grid: 'special',
   line_constellation: 'special',
+  runic_circle: 'special',
+  gravitational_lensing: 'special',
 }
 
 /**

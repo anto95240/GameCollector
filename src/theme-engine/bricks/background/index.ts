@@ -12,6 +12,7 @@
  * - Vagues & Houle (waves)
  * - Coulée de Lave (lava_flow)
  * - Dunes Désertiques (dunes)
+ * - Sol Humide & Reflets (wet_surface)
  */
 
 export * from './AuroraBrick'
@@ -23,3 +24,4 @@ export * from './MultiLayerStarfieldBrick'
 export * from './NebulaBrick'
 export * from './WaterCausticsBrick'
 export * from './WavesBrick'
+export * from './WetSurfaceBrick'

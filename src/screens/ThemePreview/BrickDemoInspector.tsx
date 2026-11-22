@@ -47,10 +47,11 @@ export interface BrickDescriptor {
   fields: {
     key: string
     label: string
-    type: 'color' | 'slider'
+    type: 'color' | 'slider' | 'select'
     min?: number
     max?: number
     step?: number
+    options?: { value: string; label: string }[]
   }[]
 }
 
@@ -528,6 +529,80 @@ export const BACKGROUND_BRICKS_CATALOG: BrickDescriptor[] = [
       },
     ],
   },
+  {
+    type: 'wet_surface',
+    name: 'Sol Humide & Reflets',
+    role: 'Chaussée mouillée en perspective 3D (pavés ou asphalte) avec flaques organiques, reflets spéculaires et rides de pluie',
+    category: 'background',
+    defaultProps: {
+      baseColor: '#141720',
+      reflectionColor: '#f59e0b',
+      secondaryReflectionColor: '#38bdf8',
+      surfaceType: 'cobblestone',
+      reflectionStyle: 'lantern',
+      horizonHeight: 0.36,
+      puddleCoverage: 0.65,
+      rainRipples: 0.45,
+      density: 1.0,
+      speed: 0.35,
+      depth: 0.35,
+      intensity: 1.15,
+      randomness: 0.45,
+    },
+    fields: [
+      { key: 'baseColor', label: 'Teinte Chaussée', type: 'color' },
+      { key: 'reflectionColor', label: 'Reflet Principal', type: 'color' },
+      { key: 'secondaryReflectionColor', label: 'Reflet Secondaire', type: 'color' },
+      {
+        key: 'surfaceType',
+        label: 'Revêtement',
+        type: 'select',
+        options: [
+          { value: 'cobblestone', label: 'Pavés humides' },
+          { value: 'asphalt', label: 'Asphalte mouillé' },
+        ],
+      },
+      {
+        key: 'reflectionStyle',
+        label: 'Style de Reflets',
+        type: 'select',
+        options: [
+          { value: 'lantern', label: 'Lanterne (Baker Street)' },
+          { value: 'shop_windows', label: 'Vitrines (Diagon Alley)' },
+          { value: 'underglow', label: 'Néon sous châssis' },
+          { value: 'tail_light', label: 'Ruban feux arrière' },
+          { value: 'flame_tracks', label: 'Sillons enflammés' },
+        ],
+      },
+      {
+        key: 'horizonHeight',
+        label: 'Hauteur Horizon',
+        type: 'slider',
+        min: 0.18,
+        max: 0.5,
+        step: 0.02,
+      },
+      {
+        key: 'puddleCoverage',
+        label: 'Couverture Flaques',
+        type: 'slider',
+        min: 0.15,
+        max: 0.95,
+        step: 0.05,
+      },
+      {
+        key: 'rainRipples',
+        label: 'Rides de Pluie',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      { key: 'density', label: 'Échelle Texture', type: 'slider', min: 0.4, max: 2.2, step: 0.1 },
+      { key: 'speed', label: 'Vitesse', type: 'slider', min: 0.0, max: 1.5, step: 0.05 },
+      { key: 'intensity', label: 'Éclat Reflets', type: 'slider', min: 0.3, max: 2.2, step: 0.1 },
+    ],
+  },
 ]
 
 export const PARALLAX_BRICKS_CATALOG: BrickDescriptor[] = [
@@ -865,6 +940,73 @@ export const PARALLAX_BRICKS_CATALOG: BrickDescriptor[] = [
         max: 8.0,
         step: 1.0,
       },
+    ],
+  },
+  {
+    type: 'parallax_flora',
+    name: 'Flore & Silhouettes (Parallaxe)',
+    role: 'Silhouettes végétales monumentales multi-strates paramétrables (herbes, feuilles, palmiers, corail, champignons, fougères)',
+    category: 'intermediate',
+    defaultProps: {
+      primaryColor: '#15803d',
+      secondaryColor: '#86efac',
+      fogColor: '#0f172a',
+      floraType: 'tall_grass',
+      layers: 3,
+      swayStrength: 0.55,
+      scaleMultiplier: 1.0,
+      glowTips: 0.2,
+      density: 1.0,
+      speed: 0.3,
+      depth: 0.4,
+      intensity: 1.0,
+      randomness: 0.45,
+    },
+    fields: [
+      { key: 'primaryColor', label: 'Couleur Premier Plan', type: 'color' },
+      { key: 'secondaryColor', label: 'Reflets / Pointes', type: 'color' },
+      { key: 'fogColor', label: 'Brume d’Horizon', type: 'color' },
+      {
+        key: 'floraType',
+        label: 'Morphologie Flore',
+        type: 'select',
+        options: [
+          { value: 'tall_grass', label: 'Herbes hautes (Kanto)' },
+          { value: 'giant_leaves', label: 'Feuilles géantes' },
+          { value: 'palm_trees', label: 'Palmiers (Los Santos)' },
+          { value: 'coral', label: 'Récif corallien' },
+          { value: 'giant_mushrooms', label: 'Champignons géants' },
+          { value: 'fantasy_ferns', label: 'Fougères féeriques' },
+        ],
+      },
+      { key: 'layers', label: 'Nombre Strates', type: 'slider', min: 1, max: 3, step: 1 },
+      {
+        key: 'swayStrength',
+        label: 'Flexion Vent/Courant',
+        type: 'slider',
+        min: 0.0,
+        max: 1.2,
+        step: 0.05,
+      },
+      {
+        key: 'scaleMultiplier',
+        label: 'Échelle Monumentale',
+        type: 'slider',
+        min: 0.5,
+        max: 1.8,
+        step: 0.05,
+      },
+      {
+        key: 'glowTips',
+        label: 'Bioluminescence Pointes',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      { key: 'density', label: 'Densité', type: 'slider', min: 0.4, max: 2.2, step: 0.1 },
+      { key: 'speed', label: 'Vitesse Vent', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Contraste', type: 'slider', min: 0.3, max: 2.0, step: 0.1 },
     ],
   },
 ]
@@ -1269,6 +1411,91 @@ export const ATMOSPHERE_BRICKS_CATALOG: BrickDescriptor[] = [
         max: 2.5,
         step: 0.1,
       },
+    ],
+  },
+  {
+    type: 'volumetric_spotlight',
+    name: 'Projecteur Volumétrique',
+    role: '1 ou 2 faisceaux coniques volumétriques orientables balayant la brume (projecteur anti-aérien, phares, lampe torche, gyrophare)',
+    category: 'atmosphere',
+    defaultProps: {
+      beamColor: '#facc15',
+      secondaryColor: '#ef4444',
+      beamCount: 1,
+      originMode: 'bottom',
+      coneAngle: 0.26,
+      sweepRange: 0.35,
+      sweepSpeed: 0.25,
+      edgeSoftness: 0.28,
+      volumetricNoise: 0.55,
+      flicker: 0.0,
+      slatMask: 0.0,
+      density: 1.0,
+      speed: 0.3,
+      depth: 0.4,
+      intensity: 1.15,
+      randomness: 0.4,
+    },
+    fields: [
+      { key: 'beamColor', label: 'Couleur Faisceau 1', type: 'color' },
+      { key: 'secondaryColor', label: 'Couleur Faisceau 2', type: 'color' },
+      { key: 'beamCount', label: 'Nombre Faisceaux', type: 'slider', min: 1, max: 2, step: 1 },
+      {
+        key: 'originMode',
+        label: 'Origine / Mode',
+        type: 'select',
+        options: [
+          { value: 'bottom', label: 'Sol (Anti-aérien / Gotham)' },
+          { value: 'top', label: 'Ciel (OVNI / Surveillance)' },
+          { value: 'top_left', label: 'Haut-gauche (Luxo)' },
+          { value: 'top_right', label: 'Haut-droit (Hélicoptère)' },
+          { value: 'side', label: 'Latéral (Phares / Gyrophare)' },
+          { value: 'front_spot', label: 'Projecteur circulaire (007)' },
+          { value: 'mouse_follow', label: 'Lampe torche (Souris)' },
+        ],
+      },
+      {
+        key: 'coneAngle',
+        label: 'Ouverture Cône (rad)',
+        type: 'slider',
+        min: 0.1,
+        max: 0.58,
+        step: 0.02,
+      },
+      {
+        key: 'sweepRange',
+        label: 'Amplitude Balayage',
+        type: 'slider',
+        min: 0.0,
+        max: 0.85,
+        step: 0.05,
+      },
+      {
+        key: 'sweepSpeed',
+        label: 'Cadence Balayage',
+        type: 'slider',
+        min: 0.0,
+        max: 1.5,
+        step: 0.05,
+      },
+      {
+        key: 'volumetricNoise',
+        label: 'Brume Volumétrique',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'flicker',
+        label: 'Vacillement Torche',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      { key: 'slatMask', label: 'Masque Stores', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Radiance', type: 'slider', min: 0.2, max: 2.2, step: 0.1 },
     ],
   },
 ]
@@ -2906,6 +3133,144 @@ export const SPECIAL_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'pulseSpeed', label: 'Vitesse Influx', type: 'slider', min: 0.5, max: 3.5, step: 0.1 },
     ],
   },
+  {
+    type: 'runic_circle',
+    name: 'Anneaux & Rosace Géométrique',
+    role: 'Anneaux concentriques contre-rotatifs, mandalas, astrolabe armillaire ou boussole antique 100 % procéduraux',
+    category: 'special',
+    defaultProps: {
+      primaryColor: '#fbbf24',
+      secondaryColor: '#f97316',
+      patternStyle: 'arcane',
+      ringCount: 4,
+      symmetry: 8,
+      tilt3D: 0.2,
+      rotationSpeed: 0.3,
+      pulseSpeed: 0.5,
+      needleOscillation: 0.6,
+      density: 1.0,
+      speed: 0.35,
+      depth: 0.35,
+      intensity: 1.05,
+      randomness: 0.4,
+    },
+    fields: [
+      { key: 'primaryColor', label: 'Couleur Anneaux', type: 'color' },
+      { key: 'secondaryColor', label: 'Couleur Accents/Cœur', type: 'color' },
+      {
+        key: 'patternStyle',
+        label: 'Style Géométrique',
+        type: 'select',
+        options: [
+          { value: 'arcane', label: 'Arcane (Merlin / Mage)' },
+          { value: 'mandala', label: 'Mandala (Sorcerer)' },
+          { value: 'polyhedron', label: 'Polyèdre (Hellfire)' },
+          { value: 'astrolabe', label: 'Astrolabe 3D (Whills)' },
+          { value: 'compass', label: 'Boussole antique' },
+          { value: 'cyber_glyph', label: 'Cyber-glyphes (AllSpark)' },
+        ],
+      },
+      { key: 'ringCount', label: 'Nombre Anneaux', type: 'slider', min: 2, max: 5, step: 1 },
+      { key: 'symmetry', label: 'Symétrie Radiale', type: 'slider', min: 4, max: 16, step: 2 },
+      { key: 'tilt3D', label: 'Inclinaison 3D', type: 'slider', min: 0.0, max: 0.7, step: 0.05 },
+      {
+        key: 'rotationSpeed',
+        label: 'Vitesse Rotation',
+        type: 'slider',
+        min: 0.0,
+        max: 1.5,
+        step: 0.05,
+      },
+      { key: 'density', label: 'Échelle', type: 'slider', min: 0.4, max: 1.8, step: 0.05 },
+      { key: 'intensity', label: 'Radiance', type: 'slider', min: 0.3, max: 2.2, step: 0.1 },
+    ],
+  },
+  {
+    type: 'gravitational_lensing',
+    name: 'Lentille Gravitationnelle & Vortex',
+    role: 'Shader analytique sans FBO : trou noir avec disque d’accrétion courbé, anneau d’Einstein, portail Cherenkov, vortex ou lentille faible',
+    category: 'special',
+    defaultProps: {
+      diskColor: '#fb923c',
+      secondaryColor: '#38bdf8',
+      coreColor: '#020308',
+      lensMode: 'black_hole',
+      coreRadius: 0.14,
+      diskTilt: 0.22,
+      einsteinRing: 0.95,
+      spiralTwist: 1.2,
+      rippleStrength: 0.75,
+      redshift: 0.25,
+      arcCount: 12,
+      inflowSpeed: 0.6,
+      chromaticSplit: 0.4,
+      density: 1.0,
+      speed: 0.35,
+      depth: 0.4,
+      intensity: 1.15,
+      randomness: 0.45,
+    },
+    fields: [
+      { key: 'diskColor', label: 'Plasma / Disque', type: 'color' },
+      { key: 'secondaryColor', label: 'Teinte Secondaire', type: 'color' },
+      {
+        key: 'lensMode',
+        label: 'Topologie Optique',
+        type: 'select',
+        options: [
+          { value: 'black_hole', label: 'Trou noir (Gargantua)' },
+          { value: 'portal', label: 'Portail Cherenkov (Stargate)' },
+          { value: 'wormhole', label: 'Vortex spirale (TARDIS)' },
+          { value: 'multilens', label: 'Multi-lentilles (Multiverse)' },
+          { value: 'weak_lensing', label: 'Lentille faible (Dark Matter)' },
+          { value: 'attractor', label: 'Attracteur centripète' },
+        ],
+      },
+      {
+        key: 'coreRadius',
+        label: 'Rayon Horizon',
+        type: 'slider',
+        min: 0.0,
+        max: 0.32,
+        step: 0.02,
+      },
+      {
+        key: 'diskTilt',
+        label: 'Inclinaison Disque',
+        type: 'slider',
+        min: 0.08,
+        max: 0.5,
+        step: 0.02,
+      },
+      {
+        key: 'einsteinRing',
+        label: 'Anneau d’Einstein',
+        type: 'slider',
+        min: 0.0,
+        max: 1.5,
+        step: 0.05,
+      },
+      {
+        key: 'redshift',
+        label: 'Redshift Doppler',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'chromaticSplit',
+        label: 'Dispersion RVB',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      { key: 'density', label: 'Échelle', type: 'slider', min: 0.5, max: 1.8, step: 0.05 },
+      { key: 'speed', label: 'Vitesse Rotation', type: 'slider', min: 0.0, max: 1.5, step: 0.05 },
+      { key: 'intensity', label: 'Radiance', type: 'slider', min: 0.3, max: 2.2, step: 0.1 },
+    ],
+  },
 ]
 
 export const ALL_BRICKS_CATALOG = [
@@ -2981,7 +3346,7 @@ export const BrickDemoInspector: React.FC<{
 
     if (isSpecial) {
       // Pour les effets spéciaux, décor cyberpunk / spatial adapté mettant en valeur chaque géométrie
-      const bgType = 'gradient_sky'
+      let bgType = 'gradient_sky'
       let bgProps: Record<string, any> = {
         topColor: '#080112',
         bottomColor: '#020005',
@@ -3033,6 +3398,22 @@ export const BrickDemoInspector: React.FC<{
         }
         interType = ''
         interProps = {}
+      } else if (type === 'runic_circle') {
+        bgProps = {
+          topColor: '#070514',
+          bottomColor: '#020108',
+          horizonColor: '#312e81',
+          density: 1.1,
+          speed: 0.08,
+        }
+      } else if (type === 'gravitational_lensing') {
+        bgType = 'multilayer_starfield'
+        bgProps = {
+          starColor: '#e2e8f0',
+          density: 1.1,
+          depth: 0.9,
+          speed: 0.05,
+        }
       }
 
       layersConfig.push({
@@ -3493,6 +3874,16 @@ export const BrickDemoInspector: React.FC<{
         bgProps = { topColor: '#1e1b4b', bottomColor: '#090d16', horizonColor: '#06b6d4' }
         interType = 'parallax_fleet'
         interProps = { hullColor: '#090e1a', engineColor: '#38bdf8', density: 0.8, depth: 0.35 }
+      } else if (type === 'volumetric_spotlight') {
+        bgProps = { topColor: '#070b14', bottomColor: '#02040a', horizonColor: '#1e293b' }
+        interType = 'parallax_city'
+        interProps = {
+          buildingColor: '#050912',
+          windowColor: '#fde68a',
+          beaconColor: '#ef4444',
+          density: 0.95,
+          depth: 0.3,
+        }
       }
 
       layersConfig.push({
@@ -3544,17 +3935,43 @@ export const BrickDemoInspector: React.FC<{
         ],
       })
     } else {
-      // Pour les fonds, tester la brique de fond seule
-      layersConfig.push({
-        category: 'background',
-        bricks: [
-          {
-            id: 'demo_brick',
-            brickType: type,
-            props: { ...propsToUse },
-          },
-        ],
-      })
+      // Pour les fonds, ajouter un ciel nocturne sous wet_surface (transparent au-dessus de l'horizon)
+      if (type === 'wet_surface') {
+        layersConfig.push({
+          category: 'background',
+          bricks: [
+            {
+              id: 'bg_companion_brick',
+              brickType: 'gradient_sky',
+              props: {
+                topColor: '#070b14',
+                bottomColor: '#111827',
+                horizonColor: propsToUse.reflectionColor || '#f59e0b',
+                density: 1.0,
+                speed: 0.08,
+                depth: 0.1,
+              },
+            },
+            {
+              id: 'demo_brick',
+              brickType: type,
+              props: { ...propsToUse },
+            },
+          ],
+        })
+      } else {
+        // Tester la brique de fond seule
+        layersConfig.push({
+          category: 'background',
+          bricks: [
+            {
+              id: 'demo_brick',
+              brickType: type,
+              props: { ...propsToUse },
+            },
+          ],
+        })
+      }
     }
 
     const config: ThemeEngineConfig = {
@@ -3742,43 +4159,50 @@ export const BrickDemoInspector: React.FC<{
           className={`brick-group-pill ${selectedGroup === 'special' ? 'active' : ''}`}
           onClick={() => handleSelectGroup('special')}
         >
-          <FontAwesomeIcon icon={faWandMagicSparkles} /> Groupe 7 : Spéciaux (4 briques)
+          <FontAwesomeIcon icon={faWandMagicSparkles} /> Groupe 7 : Spéciaux (
+          {SPECIAL_BRICKS_CATALOG.length} briques)
         </button>
         <button
           className={`brick-group-pill ${selectedGroup === 'overlay' ? 'active' : ''}`}
           onClick={() => handleSelectGroup('overlay')}
         >
-          <FontAwesomeIcon icon={faPalette} /> Groupe 6 : Overlays & Styles (7 briques)
+          <FontAwesomeIcon icon={faPalette} /> Groupe 6 : Overlays & Styles (
+          {OVERLAYS_BRICKS_CATALOG.length} briques)
         </button>
         <button
           className={`brick-group-pill ${selectedGroup === 'events' ? 'active' : ''}`}
           onClick={() => handleSelectGroup('events')}
         >
-          <FontAwesomeIcon icon={faBolt} /> Groupe 5 : Événements (6 briques)
+          <FontAwesomeIcon icon={faBolt} /> Groupe 5 : Événements ({EVENTS_BRICKS_CATALOG.length}{' '}
+          briques)
         </button>
         <button
           className={`brick-group-pill ${selectedGroup === 'particles' ? 'active' : ''}`}
           onClick={() => handleSelectGroup('particles')}
         >
-          <FontAwesomeIcon icon={faFire} /> Groupe 4 : Particules (12 briques)
+          <FontAwesomeIcon icon={faFire} /> Groupe 4 : Particules ({PARTICLES_BRICKS_CATALOG.length}{' '}
+          briques)
         </button>
         <button
           className={`brick-group-pill ${selectedGroup === 'atmosphere' ? 'active' : ''}`}
           onClick={() => handleSelectGroup('atmosphere')}
         >
-          <FontAwesomeIcon icon={faCloud} /> Groupe 3 : Atmosphère (6 briques)
+          <FontAwesomeIcon icon={faCloud} /> Groupe 3 : Atmosphère (
+          {ATMOSPHERE_BRICKS_CATALOG.length} briques)
         </button>
         <button
           className={`brick-group-pill ${selectedGroup === 'parallax' ? 'active' : ''}`}
           onClick={() => handleSelectGroup('parallax')}
         >
-          <FontAwesomeIcon icon={faMountain} /> Groupe 2 : Silhouettes (Parallaxe) — 6 briques
+          <FontAwesomeIcon icon={faMountain} /> Groupe 2 : Silhouettes (Parallaxe) —{' '}
+          {PARALLAX_BRICKS_CATALOG.length} briques
         </button>
         <button
           className={`brick-group-pill ${selectedGroup === 'background' ? 'active' : ''}`}
           onClick={() => handleSelectGroup('background')}
         >
-          <FontAwesomeIcon icon={faLayerGroup} /> Groupe 1 : Fonds (Background) — 9 shaders
+          <FontAwesomeIcon icon={faLayerGroup} /> Groupe 1 : Fonds (Background) —{' '}
+          {BACKGROUND_BRICKS_CATALOG.length} shaders
         </button>
       </div>
 
@@ -3858,6 +4282,18 @@ export const BrickDemoInspector: React.FC<{
                     className="prop-color-text"
                   />
                 </div>
+              ) : f.type === 'select' ? (
+                <select
+                  value={val ?? ''}
+                  onChange={(e) => handlePropChange(f.key, e.target.value)}
+                  className="prop-color-text"
+                >
+                  {(f.options ?? []).map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
               ) : (
                 <input
                   type="range"
