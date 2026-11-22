@@ -10,11 +10,13 @@
  * - Lueur Volumétrique (volumetric_glow)
  * - Lens Flare Cinéma (lens_flare)
  * - Projecteur Volumétrique Orientable (volumetric_spotlight)
+ * - Faisceaux Laser & Flux Plasma (laser_beam)
  */
 
 export * from './FlickeringLightBrick'
 export * from './GodRaysBrick'
 export * from './HeatDistortionBrick'
+export * from './LaserBeamBrick'
 export * from './LensFlareBrick'
 export * from './NoisyFogBrick'
 export * from './VolumetricGlowBrick'

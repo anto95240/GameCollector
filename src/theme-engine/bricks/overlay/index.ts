@@ -10,11 +10,13 @@
  * - Trame Comics Halftone (halftone / comic_halftone)
  * - Pixellisation rétro (pixelation / pixelisation)
  * - Aberration chromatique (chromatic_aberration / aberration_chromatique)
+ * - Givre & Cristaux Périphériques (frost_vignette)
  */
 
 export * from './ChromaticAberrationBrick'
 export * from './CrtScanlinesBrick'
 export * from './FilmGrainBrick'
+export * from './FrostVignetteBrick'
 export * from './HalftoneBrick'
 export * from './PixelationBrick'
 export * from './PostProcessingOverlayBrick'

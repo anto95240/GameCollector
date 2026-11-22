@@ -1009,6 +1009,69 @@ export const PARALLAX_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'intensity', label: 'Contraste', type: 'slider', min: 0.3, max: 2.0, step: 0.1 },
     ],
   },
+  {
+    type: 'organic_tendrils',
+    name: 'Vrilles Organiques & Faille',
+    role: 'Vrilles ramifiées domain-warped FBM avec reflets ferrofluide spéculaires, veines bioluminescentes ou brèche dimensionnelle',
+    category: 'intermediate',
+    defaultProps: {
+      primaryColor: '#09090b',
+      veinColor: '#ef4444',
+      specularColor: '#f8fafc',
+      anchorMode: 'edges',
+      reach: 0.3,
+      veinGlow: 0.65,
+      specularStrength: 0.6,
+      pulseSpeed: 0.5,
+      density: 1.0,
+      speed: 0.35,
+      depth: 0.4,
+      intensity: 1.0,
+      randomness: 0.5,
+    },
+    fields: [
+      { key: 'primaryColor', label: 'Matière Vrilles', type: 'color' },
+      { key: 'veinColor', label: 'Veines / Brèche', type: 'color' },
+      { key: 'specularColor', label: 'Reflet Visqueux', type: 'color' },
+      {
+        key: 'anchorMode',
+        label: 'Mode d’Ancrage',
+        type: 'select',
+        options: [
+          { value: 'edges', label: 'Bordures (Upside Down / Symbiote)' },
+          { value: 'vertical_rift', label: 'Brèche verticale (Hawkins Lab)' },
+        ],
+      },
+      {
+        key: 'reach',
+        label: 'Portée (UI Libre)',
+        type: 'slider',
+        min: 0.15,
+        max: 0.45,
+        step: 0.02,
+      },
+      { key: 'veinGlow', label: 'Lueur Veines', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      {
+        key: 'specularStrength',
+        label: 'Spéculaire Ferrofluide',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'pulseSpeed',
+        label: 'Battement Veines',
+        type: 'slider',
+        min: 0.0,
+        max: 1.5,
+        step: 0.05,
+      },
+      { key: 'density', label: 'Ramifications', type: 'slider', min: 0.4, max: 2.2, step: 0.1 },
+      { key: 'speed', label: 'Reptation', type: 'slider', min: 0.0, max: 1.5, step: 0.05 },
+      { key: 'intensity', label: 'Contraste', type: 'slider', min: 0.3, max: 2.0, step: 0.1 },
+    ],
+  },
 ]
 
 export const ATMOSPHERE_BRICKS_CATALOG: BrickDescriptor[] = [
@@ -1495,6 +1558,79 @@ export const ATMOSPHERE_BRICKS_CATALOG: BrickDescriptor[] = [
         step: 0.05,
       },
       { key: 'slatMask', label: 'Masque Stores', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+      { key: 'intensity', label: 'Radiance', type: 'slider', min: 0.2, max: 2.2, step: 0.1 },
+    ],
+  },
+  {
+    type: 'laser_beam',
+    name: 'Faisceaux Laser & Plasma',
+    role: '1 à 3 rayons collimatés (tactique, orbital ou flux plasma sinueux) à cœur incandescent, brume éclairée et point d’impact',
+    category: 'atmosphere',
+    defaultProps: {
+      coreColor: '#ef4444',
+      secondaryColor: '#38bdf8',
+      beamMode: 'tactical',
+      beamCount: 1,
+      beamWidth: 0.012,
+      angle: -0.45,
+      wobble: 0.0,
+      sweepSpeed: 0.25,
+      pulseIntensity: 0.35,
+      impactSparks: 0.5,
+      density: 1.0,
+      speed: 0.35,
+      depth: 0.35,
+      intensity: 1.15,
+      randomness: 0.4,
+    },
+    fields: [
+      { key: 'coreColor', label: 'Couleur Faisceau', type: 'color' },
+      { key: 'secondaryColor', label: 'Couleur Secondaire', type: 'color' },
+      {
+        key: 'beamMode',
+        label: 'Mode Rayon',
+        type: 'select',
+        options: [
+          { value: 'tactical', label: 'Tactique (Shadow Agent / Red Room)' },
+          { value: 'orbital', label: 'Orbital (The Invasion)' },
+          { value: 'plasma_stream', label: 'Flux Plasma (Proton Pack)' },
+        ],
+      },
+      { key: 'beamCount', label: 'Nombre Rayons', type: 'slider', min: 1, max: 3, step: 1 },
+      {
+        key: 'beamWidth',
+        label: 'Épaisseur',
+        type: 'slider',
+        min: 0.004,
+        max: 0.08,
+        step: 0.002,
+      },
+      { key: 'angle', label: 'Angle (rad)', type: 'slider', min: -1.6, max: 1.6, step: 0.05 },
+      {
+        key: 'wobble',
+        label: 'Instabilité / Wobble',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      { key: 'sweepSpeed', label: 'Balayage', type: 'slider', min: 0.0, max: 1.5, step: 0.05 },
+      {
+        key: 'pulseIntensity',
+        label: 'Pulsation',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'impactSparks',
+        label: 'Étincelles Impact',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
       { key: 'intensity', label: 'Radiance', type: 'slider', min: 0.2, max: 2.2, step: 0.1 },
     ],
   },
@@ -2876,6 +3012,82 @@ export const OVERLAYS_BRICKS_CATALOG: BrickDescriptor[] = [
       },
     ],
   },
+  {
+    type: 'frost_vignette',
+    name: 'Givre & Cristaux Périphériques',
+    role: 'Cristallisation Voronoi et dendrites de givre confinées aux bordures pour préserver 100 % la lisibilité centrale',
+    category: 'overlay',
+    defaultProps: {
+      crystalColor: '#e0f2fe',
+      tintColor: '#38bdf8',
+      crystalStyle: 'frost',
+      edgeMask: 'perimeter',
+      spread: 0.3,
+      facetSharpness: 0.65,
+      breathSpeed: 0.25,
+      density: 1.0,
+      speed: 0.25,
+      depth: 0.35,
+      intensity: 0.75,
+      randomness: 0.45,
+    },
+    fields: [
+      { key: 'crystalColor', label: 'Teinte Cristaux', type: 'color' },
+      { key: 'tintColor', label: 'Reflet Glacé', type: 'color' },
+      {
+        key: 'crystalStyle',
+        label: 'Style Cristallin',
+        type: 'select',
+        options: [
+          { value: 'frost', label: 'Givre dendritique (Whiteout / Winter)' },
+          { value: 'mineral_shards', label: 'Éclats minéraux (Heisenberg)' },
+        ],
+      },
+      {
+        key: 'edgeMask',
+        label: 'Zone d’Ancrage',
+        type: 'select',
+        options: [
+          { value: 'perimeter', label: 'Pourtour complet' },
+          { value: 'corners', label: 'Coins (Arkham City)' },
+          { value: 'bottom', label: 'Arête inférieure (Heisenberg)' },
+        ],
+      },
+      {
+        key: 'spread',
+        label: 'Avancée Bordure (UI Sûre)',
+        type: 'slider',
+        min: 0.15,
+        max: 0.45,
+        step: 0.02,
+      },
+      {
+        key: 'facetSharpness',
+        label: 'Acuité Facettes',
+        type: 'slider',
+        min: 0.2,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'breathSpeed',
+        label: 'Respiration',
+        type: 'slider',
+        min: 0.0,
+        max: 1.5,
+        step: 0.05,
+      },
+      { key: 'density', label: 'Échelle Cristaux', type: 'slider', min: 0.4, max: 2.2, step: 0.1 },
+      {
+        key: 'intensity',
+        label: 'Opacité / Éclat',
+        type: 'slider',
+        min: 0.2,
+        max: 1.5,
+        step: 0.05,
+      },
+    ],
+  },
 ]
 
 export const SPECIAL_BRICKS_CATALOG: BrickDescriptor[] = [
@@ -3271,6 +3483,119 @@ export const SPECIAL_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'intensity', label: 'Radiance', type: 'slider', min: 0.3, max: 2.2, step: 0.1 },
     ],
   },
+  {
+    type: 'radial_speed_tunnel',
+    name: 'Tunnel Radial & Hyperespace',
+    role: 'Étirement stellaire hyperespace, lignes de vitesse cinétiques ou ruban plasma hélicoïdal convergent vers un point de fuite interactif',
+    category: 'special',
+    defaultProps: {
+      primaryColor: '#38bdf8',
+      secondaryColor: '#e0f2fe',
+      tunnelMode: 'hyperspace',
+      streakLength: 1.0,
+      twist: 0.0,
+      centerClearRadius: 0.2,
+      vanishingOffsetX: 0.0,
+      vanishingOffsetY: 0.0,
+      density: 1.0,
+      speed: 1.2,
+      depth: 0.45,
+      intensity: 1.1,
+      randomness: 0.5,
+    },
+    fields: [
+      { key: 'primaryColor', label: 'Couleur Principale', type: 'color' },
+      { key: 'secondaryColor', label: 'Couleur Pointes', type: 'color' },
+      {
+        key: 'tunnelMode',
+        label: 'Mode Tunnel',
+        type: 'select',
+        options: [
+          { value: 'hyperspace', label: 'Hyperespace (Galaxy Far Away)' },
+          { value: 'speed_lines', label: 'Lignes de vitesse (Speed Force / French Blue)' },
+          { value: 'vortex_ribbon', label: 'Ruban vortex (Flux)' },
+        ],
+      },
+      {
+        key: 'streakLength',
+        label: 'Allongement Traits',
+        type: 'slider',
+        min: 0.3,
+        max: 1.8,
+        step: 0.05,
+      },
+      { key: 'twist', label: 'Vrille Hélicoïdale', type: 'slider', min: 0.0, max: 2.0, step: 0.05 },
+      {
+        key: 'centerClearRadius',
+        label: 'Dégagement Centre UI',
+        type: 'slider',
+        min: 0.12,
+        max: 0.35,
+        step: 0.01,
+      },
+      { key: 'density', label: 'Densité', type: 'slider', min: 0.4, max: 2.2, step: 0.1 },
+      { key: 'speed', label: 'Vitesse', type: 'slider', min: 0.1, max: 2.5, step: 0.05 },
+      { key: 'intensity', label: 'Radiance', type: 'slider', min: 0.3, max: 2.2, step: 0.1 },
+    ],
+  },
+  {
+    type: 'radar_sweep',
+    name: 'Balayage Radar & Sonar',
+    role: 'Balayage sonar 360°, détecteur de mouvement conique ou grille orbitale avec rémanence exponentielle et échos stochastiques',
+    category: 'special',
+    defaultProps: {
+      sweepColor: '#22c55e',
+      gridColor: '#15803d',
+      blipColor: '#86efac',
+      radarStyle: 'sonar',
+      sweepSpeed: 0.45,
+      persistence: 0.72,
+      ringCount: 4,
+      blipCount: 6,
+      arcSector: 1.8,
+      density: 1.0,
+      speed: 0.5,
+      depth: 0.3,
+      intensity: 1.0,
+      randomness: 0.45,
+    },
+    fields: [
+      { key: 'sweepColor', label: 'Couleur Faisceau', type: 'color' },
+      { key: 'gridColor', label: 'Couleur Grille', type: 'color' },
+      { key: 'blipColor', label: 'Couleur Échos', type: 'color' },
+      {
+        key: 'radarStyle',
+        label: 'Style Radar',
+        type: 'select',
+        options: [
+          { value: 'sonar', label: 'Sonar 360° (Splinter)' },
+          { value: 'motion_tracker', label: 'Détecteur mouvement (Xenomorph)' },
+          { value: 'orbital_grid', label: 'Grille orbitale (Echelon)' },
+        ],
+      },
+      {
+        key: 'sweepSpeed',
+        label: 'Cadence Balayage',
+        type: 'slider',
+        min: 0.05,
+        max: 1.5,
+        step: 0.05,
+      },
+      { key: 'persistence', label: 'Rémanence', type: 'slider', min: 0.2, max: 0.95, step: 0.05 },
+      { key: 'ringCount', label: 'Anneaux', type: 'slider', min: 3, max: 6, step: 1 },
+      { key: 'blipCount', label: 'Nombre Échos', type: 'slider', min: 0, max: 12, step: 1 },
+      {
+        key: 'arcSector',
+        label: 'Secteur Cône (rad)',
+        type: 'slider',
+        min: 0.6,
+        max: 3.14,
+        step: 0.05,
+      },
+      { key: 'density', label: 'Échelle', type: 'slider', min: 0.5, max: 2.0, step: 0.05 },
+      { key: 'intensity', label: 'Radiance', type: 'slider', min: 0.3, max: 2.2, step: 0.1 },
+    ],
+  },
 ]
 
 export const ALL_BRICKS_CATALOG = [
@@ -3414,6 +3739,22 @@ export const BrickDemoInspector: React.FC<{
           depth: 0.9,
           speed: 0.05,
         }
+      } else if (type === 'radial_speed_tunnel') {
+        bgType = 'multilayer_starfield'
+        bgProps = {
+          starColor: '#cbd5e1',
+          density: 0.9,
+          depth: 0.75,
+          speed: 0.04,
+        }
+      } else if (type === 'radar_sweep') {
+        bgProps = {
+          topColor: '#020906',
+          bottomColor: '#010302',
+          horizonColor: propsToUse.sweepColor || '#22c55e',
+          density: 1.0,
+          speed: 0.06,
+        }
       }
 
       layersConfig.push({
@@ -3547,6 +3888,23 @@ export const BrickDemoInspector: React.FC<{
           beaconColor: '#ec4899',
           density: 1.0,
           depth: 0.35,
+        }
+      } else if (type === 'frost_vignette') {
+        bgProps = {
+          topColor: '#0c1c36',
+          bottomColor: '#030816',
+          horizonColor: propsToUse.crystalColor || '#bae6fd',
+          density: 1.0,
+          speed: 0.1,
+        }
+        interType = 'parallax_mountains'
+        interProps = {
+          rockColor: '#091224',
+          sunColor: '#38bdf8',
+          mistColor: '#1e293b',
+          density: 1.0,
+          depth: 0.35,
+          snowLevel: 0.75,
         }
       }
 
@@ -3884,6 +4242,16 @@ export const BrickDemoInspector: React.FC<{
           density: 0.95,
           depth: 0.3,
         }
+      } else if (type === 'laser_beam') {
+        bgProps = { topColor: '#06080f', bottomColor: '#020307', horizonColor: '#1e293b' }
+        interType = 'parallax_city'
+        interProps = {
+          buildingColor: '#050811',
+          windowColor: '#334155',
+          beaconColor: '#ef4444',
+          density: 0.9,
+          depth: 0.3,
+        }
       }
 
       layersConfig.push({
@@ -3905,6 +4273,7 @@ export const BrickDemoInspector: React.FC<{
     } else if (isParallax) {
       // Pour les silhouettes, ajouter un ciel de fond adapté pour révéler la transparence et la parallaxe
       const isFleet = type === 'parallax_fleet'
+      const isTendrils = type === 'organic_tendrils'
       layersConfig.push({
         category: 'background',
         bricks: [
@@ -3913,14 +4282,23 @@ export const BrickDemoInspector: React.FC<{
             brickType: isFleet ? 'multilayer_starfield' : 'gradient_sky',
             props: isFleet
               ? { starColor: '#ffffff', density: 1.0, depth: 1.0, speed: 0.05 }
-              : {
-                  topColor: propsToUse.rockColor ? '#0f172a' : '#091522',
-                  bottomColor: '#000b14',
-                  horizonColor: propsToUse.torchColor || propsToUse.beaconColor || '#00f0ff',
-                  density: 1.0,
-                  speed: 0.1,
-                  depth: 0.1,
-                },
+              : isTendrils
+                ? {
+                    topColor: '#080510',
+                    bottomColor: '#020105',
+                    horizonColor: propsToUse.veinColor || '#ef4444',
+                    density: 1.0,
+                    speed: 0.1,
+                    depth: 0.1,
+                  }
+                : {
+                    topColor: propsToUse.rockColor ? '#0f172a' : '#091522',
+                    bottomColor: '#000b14',
+                    horizonColor: propsToUse.torchColor || propsToUse.beaconColor || '#00f0ff',
+                    density: 1.0,
+                    speed: 0.1,
+                    depth: 0.1,
+                  },
           },
         ],
       })
