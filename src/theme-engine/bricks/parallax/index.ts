@@ -11,9 +11,11 @@
  * - Tuiles Pixel 16-bit (parallax_pixel_tiles)
  * - Flore & Silhouettes Organiques (parallax_flora)
  * - Vrilles & Filaments Organiques (organic_tendrils)
+ * - Drapé & Ondulation Textile (fabric_wave)
  * - Plan Générique (parallax_plane)
  */
 
+export * from './FabricWaveBrick'
 export * from './OrganicTendrilsBrick'
 export * from './ParallaxCastleBrick'
 export * from './ParallaxCityBrick'

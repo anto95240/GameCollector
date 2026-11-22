@@ -11,6 +11,7 @@
  * - Lentille Gravitationnelle & Vortex (gravitational_lensing)
  * - Tunnel Cinétique & Hyperespace (radial_speed_tunnel)
  * - Balayage Radar & Sonar (radar_sweep)
+ * - Rideau de Cascade & Embruns (waterfall_curtain)
  */
 
 export * from './CodeRainBrick'
@@ -21,3 +22,4 @@ export * from './NeonGridBrick'
 export * from './RadarSweepBrick'
 export * from './RadialSpeedTunnelBrick'
 export * from './RunicCircleBrick'
+export * from './WaterfallCurtainBrick'

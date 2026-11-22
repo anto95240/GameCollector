@@ -11,6 +11,7 @@
  * - Pixellisation rétro (pixelation / pixelisation)
  * - Aberration chromatique (chromatic_aberration / aberration_chromatique)
  * - Givre & Cristaux Périphériques (frost_vignette)
+ * - Pluie & Ruissellement sur Vitre (window_rain)
  */
 
 export * from './ChromaticAberrationBrick'
@@ -21,3 +22,4 @@ export * from './HalftoneBrick'
 export * from './PixelationBrick'
 export * from './PostProcessingOverlayBrick'
 export * from './VignetteBrick'
+export * from './WindowRainBrick'

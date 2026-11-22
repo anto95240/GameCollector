@@ -603,6 +603,58 @@ export const BACKGROUND_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'intensity', label: 'Éclat Reflets', type: 'slider', min: 0.3, max: 2.2, step: 0.1 },
     ],
   },
+  {
+    type: 'bubbling_liquid_surface',
+    name: 'Surface Liquide Bouillonnante',
+    role: 'Fluide visqueux domain-warped FBM avec bulles convectives gonflantes, éclatement luminescent et anneaux concentriques',
+    category: 'background',
+    defaultProps: {
+      liquidColor: '#065f46',
+      bubbleColor: '#34d399',
+      coreGlowColor: '#fde047',
+      viscosity: 0.55,
+      boilSpeed: 0.5,
+      bubbleScale: 1.0,
+      density: 1.0,
+      speed: 0.35,
+      depth: 0.3,
+      intensity: 1.15,
+      randomness: 0.45,
+    },
+    fields: [
+      { key: 'liquidColor', label: 'Liquide Profond', type: 'color' },
+      { key: 'bubbleColor', label: 'Parois & Anneaux', type: 'color' },
+      { key: 'coreGlowColor', label: 'Cœur Luminescent', type: 'color' },
+      {
+        key: 'viscosity',
+        label: 'Viscosité Fluide',
+        type: 'slider',
+        min: 0.2,
+        max: 0.9,
+        step: 0.05,
+      },
+      {
+        key: 'boilSpeed',
+        label: 'Cadence Ébullition',
+        type: 'slider',
+        min: 0.2,
+        max: 1.2,
+        step: 0.05,
+      },
+      {
+        key: 'bubbleScale',
+        label: 'Calibre Bulles',
+        type: 'slider',
+        min: 0.5,
+        max: 2.0,
+        step: 0.05,
+      },
+      { key: 'density', label: 'Densité Cellules', type: 'slider', min: 0.4, max: 2.2, step: 0.1 },
+      { key: 'speed', label: 'Vitesse Courants', type: 'slider', min: 0.0, max: 1.5, step: 0.05 },
+      { key: 'intensity', label: 'Radiance', type: 'slider', min: 0.3, max: 2.2, step: 0.1 },
+      { key: 'randomness', label: 'Turbulence', type: 'slider', min: 0.0, max: 1.0, step: 0.05 },
+    ],
+  },
 ]
 
 export const PARALLAX_BRICKS_CATALOG: BrickDescriptor[] = [
@@ -1070,6 +1122,67 @@ export const PARALLAX_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'density', label: 'Ramifications', type: 'slider', min: 0.4, max: 2.2, step: 0.1 },
       { key: 'speed', label: 'Reptation', type: 'slider', min: 0.0, max: 1.5, step: 0.05 },
       { key: 'intensity', label: 'Contraste', type: 'slider', min: 0.3, max: 2.0, step: 0.1 },
+    ],
+  },
+  {
+    type: 'fabric_wave',
+    name: 'Drapé & Ondulation Textile',
+    role: 'Étoffe souple ondulant organiquement sous le vent (soie anisotrope, toile brute, velours d’opéra) avec bandes souples ou tentures latérales',
+    category: 'intermediate',
+    defaultProps: {
+      primaryColor: '#1d4ed8',
+      secondaryColor: '#9f1239',
+      fabricStyle: 'silk_banner',
+      stripeCount: 4,
+      sideCurtains: false,
+      windStrength: 0.4,
+      density: 1.0,
+      speed: 0.35,
+      depth: 0.35,
+      intensity: 0.9,
+      randomness: 0.45,
+    },
+    fields: [
+      { key: 'primaryColor', label: 'Teinte Principale', type: 'color' },
+      { key: 'secondaryColor', label: 'Teinte Bandes / Creux', type: 'color' },
+      {
+        key: 'fabricStyle',
+        label: 'Matière Textile',
+        type: 'select',
+        options: [
+          { value: 'silk_banner', label: 'Soie brillante (Blaugrana)' },
+          { value: 'canvas_banner', label: 'Toile brute (Colchoneros)' },
+          { value: 'velvet_curtain', label: 'Velours d’opéra (Syndicate)' },
+        ],
+      },
+      {
+        key: 'sideCurtains',
+        label: 'Disposition',
+        type: 'select',
+        options: [
+          { value: 'false', label: 'Nappe / Étendard complet' },
+          { value: 'true', label: 'Tentures latérales (Centre libre)' },
+        ],
+      },
+      { key: 'stripeCount', label: 'Nombre Bandes', type: 'slider', min: 0, max: 8, step: 1 },
+      {
+        key: 'windStrength',
+        label: 'Souffle du Vent',
+        type: 'slider',
+        min: 0.15,
+        max: 1.0,
+        step: 0.05,
+      },
+      { key: 'density', label: 'Finesse Plis', type: 'slider', min: 0.4, max: 2.2, step: 0.1 },
+      { key: 'speed', label: 'Vitesse Ondulation', type: 'slider', min: 0.0, max: 1.5, step: 0.05 },
+      {
+        key: 'intensity',
+        label: 'Opacité / Contraste',
+        type: 'slider',
+        min: 0.2,
+        max: 2.0,
+        step: 0.05,
+      },
     ],
   },
 ]
@@ -3088,6 +3201,64 @@ export const OVERLAYS_BRICKS_CATALOG: BrickDescriptor[] = [
       },
     ],
   },
+  {
+    type: 'window_rain',
+    name: 'Pluie sur Vitre (Verrière)',
+    role: 'Gouttes coulantes stick-slip multi-échelles, sillages humides, micro-gouttelettes statiques et buée périphérique sans FBO',
+    category: 'overlay',
+    defaultProps: {
+      tintColor: '#94a3b8',
+      highlightColor: '#f8fafc',
+      dropDensity: 1.05,
+      trailSpeed: 0.42,
+      condensation: 0.32,
+      edgeBias: 0.65,
+      density: 1.0,
+      speed: 0.45,
+      depth: 0.35,
+      intensity: 0.9,
+      randomness: 0.45,
+    },
+    fields: [
+      { key: 'tintColor', label: 'Teinte Buée / Verre', type: 'color' },
+      { key: 'highlightColor', label: 'Reflet Spéculaire', type: 'color' },
+      {
+        key: 'dropDensity',
+        label: 'Abondance Gouttes',
+        type: 'slider',
+        min: 0.4,
+        max: 1.8,
+        step: 0.05,
+      },
+      {
+        key: 'trailSpeed',
+        label: 'Vitesse Ruissellement',
+        type: 'slider',
+        min: 0.15,
+        max: 1.0,
+        step: 0.05,
+      },
+      {
+        key: 'condensation',
+        label: 'Buée Périphérique',
+        type: 'slider',
+        min: 0.0,
+        max: 0.6,
+        step: 0.02,
+      },
+      {
+        key: 'edgeBias',
+        label: 'Biais Bordures (UI Nette)',
+        type: 'slider',
+        min: 0.0,
+        max: 1.0,
+        step: 0.05,
+      },
+      { key: 'density', label: 'Échelle Grille', type: 'slider', min: 0.4, max: 2.0, step: 0.1 },
+      { key: 'speed', label: 'Cadence Globale', type: 'slider', min: 0.0, max: 1.5, step: 0.05 },
+      { key: 'intensity', label: 'Éclat Optique', type: 'slider', min: 0.2, max: 1.8, step: 0.05 },
+    ],
+  },
 ]
 
 export const SPECIAL_BRICKS_CATALOG: BrickDescriptor[] = [
@@ -3596,6 +3767,72 @@ export const SPECIAL_BRICKS_CATALOG: BrickDescriptor[] = [
       { key: 'intensity', label: 'Radiance', type: 'slider', min: 0.3, max: 2.2, step: 0.1 },
     ],
   },
+  {
+    type: 'waterfall_curtain',
+    name: 'Rideau de Cascade & Embruns',
+    role: 'Chute d’eau multi-strates à crête droite ou courbée (monde plat), filets d’écume accélérés et nappe d’embruns volumétriques',
+    category: 'special',
+    defaultProps: {
+      waterColor: '#14b8a6',
+      foamColor: '#ecfeff',
+      mistColor: '#cffafe',
+      arcCurvature: 0.0,
+      flowSpeed: 0.8,
+      mistHeight: 0.35,
+      curtainWidth: 0.78,
+      density: 1.0,
+      speed: 0.5,
+      depth: 0.35,
+      intensity: 1.05,
+      randomness: 0.45,
+    },
+    fields: [
+      { key: 'waterColor', label: 'Couleur Eau Vive', type: 'color' },
+      { key: 'foamColor', label: 'Écume & Crête', type: 'color' },
+      { key: 'mistColor', label: 'Halo d’Embruns', type: 'color' },
+      {
+        key: 'arcCurvature',
+        label: 'Courbure Crête (0=Falaise, 0.35=Disque)',
+        type: 'slider',
+        min: 0.0,
+        max: 0.5,
+        step: 0.02,
+      },
+      {
+        key: 'flowSpeed',
+        label: 'Vitesse de Chute',
+        type: 'slider',
+        min: 0.3,
+        max: 1.5,
+        step: 0.05,
+      },
+      {
+        key: 'mistHeight',
+        label: 'Hauteur Embruns',
+        type: 'slider',
+        min: 0.15,
+        max: 0.55,
+        step: 0.02,
+      },
+      {
+        key: 'curtainWidth',
+        label: 'Largeur Rideau',
+        type: 'slider',
+        min: 0.3,
+        max: 1.0,
+        step: 0.02,
+      },
+      { key: 'density', label: 'Finesse Filets', type: 'slider', min: 0.4, max: 2.2, step: 0.1 },
+      {
+        key: 'intensity',
+        label: 'Opacité / Éclat',
+        type: 'slider',
+        min: 0.2,
+        max: 2.0,
+        step: 0.05,
+      },
+    ],
+  },
 ]
 
 export const ALL_BRICKS_CATALOG = [
@@ -3755,6 +3992,34 @@ export const BrickDemoInspector: React.FC<{
           density: 1.0,
           speed: 0.06,
         }
+      } else if (type === 'waterfall_curtain') {
+        const isCurved = Number(propsToUse.arcCurvature ?? 0) > 0.15
+        if (isCurved) {
+          bgType = 'nebula'
+          bgProps = {
+            primaryColor: '#7e22ce',
+            secondaryColor: '#060818',
+            accentColor: '#38bdf8',
+            density: 0.65,
+            speed: 0.1,
+            depth: 0.2,
+          }
+        } else {
+          bgProps = {
+            topColor: '#052e2b',
+            bottomColor: '#021515',
+            horizonColor: propsToUse.waterColor || '#14b8a6',
+            density: 1.0,
+            speed: 0.08,
+          }
+          interType = 'parallax_forest'
+          interProps = {
+            forestColor: '#062018',
+            fogColor: '#0d3b32',
+            density: 0.9,
+            depth: 0.3,
+          }
+        }
       }
 
       layersConfig.push({
@@ -3905,6 +4170,23 @@ export const BrickDemoInspector: React.FC<{
           density: 1.0,
           depth: 0.35,
           snowLevel: 0.75,
+        }
+      } else if (type === 'window_rain') {
+        bgProps = {
+          topColor: '#131c2e',
+          bottomColor: '#070a12',
+          horizonColor: '#f59e0b',
+          density: 1.0,
+          speed: 0.08,
+        }
+        interType = 'parallax_city'
+        interProps = {
+          buildingColor: '#090d16',
+          windowColor: '#fbbf24',
+          beaconColor: '#f97316',
+          density: 0.95,
+          depth: 0.3,
+          smogIntensity: 0.75,
         }
       }
 
@@ -4274,6 +4556,7 @@ export const BrickDemoInspector: React.FC<{
       // Pour les silhouettes, ajouter un ciel de fond adapté pour révéler la transparence et la parallaxe
       const isFleet = type === 'parallax_fleet'
       const isTendrils = type === 'organic_tendrils'
+      const isFabric = type === 'fabric_wave'
       layersConfig.push({
         category: 'background',
         bricks: [
@@ -4291,14 +4574,23 @@ export const BrickDemoInspector: React.FC<{
                     speed: 0.1,
                     depth: 0.1,
                   }
-                : {
-                    topColor: propsToUse.rockColor ? '#0f172a' : '#091522',
-                    bottomColor: '#000b14',
-                    horizonColor: propsToUse.torchColor || propsToUse.beaconColor || '#00f0ff',
-                    density: 1.0,
-                    speed: 0.1,
-                    depth: 0.1,
-                  },
+                : isFabric
+                  ? {
+                      topColor: '#0b0c1e',
+                      bottomColor: '#1a1118',
+                      horizonColor: '#f59e0b',
+                      density: 1.1,
+                      speed: 0.08,
+                      depth: 0.1,
+                    }
+                  : {
+                      topColor: propsToUse.rockColor ? '#0f172a' : '#091522',
+                      bottomColor: '#000b14',
+                      horizonColor: propsToUse.torchColor || propsToUse.beaconColor || '#00f0ff',
+                      density: 1.0,
+                      speed: 0.1,
+                      depth: 0.1,
+                    },
           },
         ],
       })
@@ -4641,7 +4933,15 @@ export const BrickDemoInspector: React.FC<{
               <div className="prop-field-label">
                 <span>{f.label}</span>
                 <span className="prop-field-val">
-                  {f.type === 'slider' ? (typeof val === 'number' ? val.toFixed(2) : val) : val}
+                  {f.type === 'slider'
+                    ? typeof val === 'number'
+                      ? val.toFixed(2)
+                      : val
+                    : typeof val === 'boolean'
+                      ? val
+                        ? 'Oui'
+                        : 'Non'
+                      : val}
                 </span>
               </div>
 
@@ -4662,8 +4962,12 @@ export const BrickDemoInspector: React.FC<{
                 </div>
               ) : f.type === 'select' ? (
                 <select
-                  value={val ?? ''}
-                  onChange={(e) => handlePropChange(f.key, e.target.value)}
+                  value={String(val ?? '')}
+                  onChange={(e) => {
+                    const raw = e.target.value
+                    const parsed = raw === 'true' ? true : raw === 'false' ? false : raw
+                    handlePropChange(f.key, parsed)
+                  }}
                   className="prop-color-text"
                 >
                   {(f.options ?? []).map((opt) => (

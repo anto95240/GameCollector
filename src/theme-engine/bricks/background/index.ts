@@ -13,9 +13,11 @@
  * - Coulée de Lave (lava_flow)
  * - Dunes Désertiques (dunes)
  * - Sol Humide & Reflets (wet_surface)
+ * - Surface Liquide Bouillonnante (bubbling_liquid_surface)
  */
 
 export * from './AuroraBrick'
+export * from './BubblingLiquidSurfaceBrick'
 export * from './DunesBrick'
 export * from './FbmCloudsBrick'
 export * from './GradientSkyBrick'
