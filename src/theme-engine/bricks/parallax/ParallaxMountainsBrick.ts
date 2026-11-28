@@ -2,14 +2,13 @@
  * src/theme-engine/bricks/parallax/ParallaxMountainsBrick.ts
  *
  * Brique de silhouettes de Montagnes en Parallaxe (Couche 2 : Intermediate).
- * Massif alpin grandiose étagé sur 3 crêtes successives en profondeur :
- * - Chaîne lointaine estompée dans la diffusion atmosphérique
- * - Chaîne médiane acérée avec versants au soleil vs versants à l'ombre
- * - Contreforts rocheux d'avant-plan avec failles et névés scintillants
- *
- * Mer de brume ondulant dans les vallées, crêtes modélisées par multifractal ridgé,
- * et étagement de parallaxe réagissant avec réalisme à la souris et au scroll.
- * Paliers de qualité HIGH, MEDIUM et LOW.
+ * Massif alpin réaliste étagé sur jusqu'à 4 plans en profondeur :
+ * - Crêtes générées par bruit multifractal à crêtes (Ridged Multifractal) avec asymétrie géologique
+ * - Relief 2D d'arêtes descendantes et couloirs : face éclairée vs face dans l'ombre selon uSunAngle
+ * - Sommets enneigés et névés accumulés sur les pentes douces et couloirs (neige au soleil vs neige bleutée à l'ombre)
+ * - Nappes de brume d'altitude dérivant entre chaque plan de montagne
+ * - Perspective atmosphérique avec désaturation progressive des couleurs avec la distance
+ * - Adaptation aux 3 paliers de qualité (HIGH, MEDIUM, LOW)
  */
 
 import * as THREE from 'three'
@@ -22,26 +21,30 @@ import { BrickRegistry } from '../registry'
  * Paramètres typés et documentés pour la brique Silhouette Montagnes.
  */
 export interface ParallaxMountainsProps {
-  /** Teinte de la roche à l'ombre (défaut #0b1329 ou uPaletteSecondary * 0.45). */
+  /** Teinte de la roche à l'ombre (défaut #0b1329 ou uPaletteSecondary * 0.35). */
   rockColor?: string
-  /** Teinte des crêtes illuminées au soleil rasant (défaut #475569 ou uPalettePrimary * 0.6). */
+  /** Teinte des crêtes illuminées au soleil rasant (défaut #475569 ou uPalettePrimary * 0.55). */
   sunColor?: string
-  /** Teinte de la brume de vallée (défaut #1e293b ou uPaletteSecondary * 0.6). */
+  /** Teinte de la brume d'altitude et de vallée (défaut #1e293b ou uPaletteSecondary * 0.6). */
   mistColor?: string
-  /** Densité et acuité des sommets / pics (défaut 1.0). */
+  /** Densité et fréquence des sommets / pics (défaut 1.0). */
   density?: number
-  /** Vitesse de dérive lente des brumes de vallée (défaut 0.15). */
+  /** Vitesse de dérive lente des brumes d'altitude (défaut 0.15). */
   speed?: number
   /** Écartement en profondeur et parallaxe souris/scroll (défaut 0.35). */
   depth?: number
-  /** Contraste d'éclairage rasant et netteté des arêtes (défaut 1.0). */
+  /** Contraste d'éclairage rasant et opacité globale (défaut 1.0). */
   intensity?: number
   /** Variabilité géologique et asymétrie des pics (défaut 0.45). */
   randomness?: number
-  /** Seuil d'apparition des névés et glaciers sur les sommets (0.0 = aucun, 1.0 = sommets enneigés, défaut 0.6). */
+  /** Seuil d'apparition des sommets enneigés et névés (0.0 = aucun, 1.0 = forte neige, défaut 0.6). */
   snowLevel?: number
   /** Angle d'incidence de la lumière solaire en radians (défaut 0.75). */
   sunAngle?: number
+  /** Intensité de la brume d'altitude entre les plans et de la désaturation lointaine (0.0 à 1.3, défaut 0.65). */
+  hazeStrength?: number
+  /** Teinte de la neige au soleil (défaut #eef4ff). */
+  snowColor?: string
 }
 
 export class ParallaxMountainsInstance implements IBrickInstance {
@@ -55,6 +58,7 @@ export class ParallaxMountainsInstance implements IBrickInstance {
   private rockColorVec: THREE.Color
   private sunColorVec: THREE.Color
   private mistColorVec: THREE.Color
+  private snowColorVec: THREE.Color
 
   constructor(id: string, props: ParallaxMountainsProps = {}, context: BrickContext) {
     this.id = id
@@ -64,6 +68,7 @@ export class ParallaxMountainsInstance implements IBrickInstance {
     this.rockColorVec = new THREE.Color(props.rockColor ?? '#0b1329')
     this.sunColorVec = new THREE.Color(props.sunColor ?? '#475569')
     this.mistColorVec = new THREE.Color(props.mistColor ?? '#1e293b')
+    this.snowColorVec = new THREE.Color(props.snowColor ?? '#eef4ff')
 
     const density = props.density ?? 1.0
     const speed = props.speed ?? 0.15
@@ -72,6 +77,7 @@ export class ParallaxMountainsInstance implements IBrickInstance {
     const randomness = props.randomness ?? 0.45
     const snowLevel = props.snowLevel ?? 0.6
     const sunAngle = props.sunAngle ?? 0.75
+    const hazeStrength = props.hazeStrength ?? 0.65
 
     const geometry = new THREE.PlaneGeometry(2, 2)
 
@@ -87,6 +93,7 @@ export class ParallaxMountainsInstance implements IBrickInstance {
         uRockColor: { value: this.rockColorVec },
         uSunColor: { value: this.sunColorVec },
         uMistColor: { value: this.mistColorVec },
+        uSnowColor: { value: this.snowColorVec },
         uUseCustomColors: {
           value: Boolean(props.rockColor || props.sunColor || props.mistColor),
         },
@@ -97,6 +104,7 @@ export class ParallaxMountainsInstance implements IBrickInstance {
         uRandomness: { value: randomness },
         uSnowLevel: { value: snowLevel },
         uSunAngle: { value: sunAngle },
+        uHazeStrength: { value: hazeStrength },
         uQualityLevel: {
           value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
         },
@@ -119,6 +127,7 @@ export class ParallaxMountainsInstance implements IBrickInstance {
         uniform vec3 uRockColor;
         uniform vec3 uSunColor;
         uniform vec3 uMistColor;
+        uniform vec3 uSnowColor;
         uniform bool uUseCustomColors;
         uniform float uDensity;
         uniform float uSpeed;
@@ -127,152 +136,296 @@ export class ParallaxMountainsInstance implements IBrickInstance {
         uniform float uRandomness;
         uniform float uSnowLevel;
         uniform float uSunAngle;
+        uniform float uHazeStrength;
         uniform int uQualityLevel;
         varying vec2 vUv;
 
         ${GLSL_NOISE_2D}
         ${GLSL_HASH}
 
-        // Multi-octave continuous ridge profile using FBM with smooth abs folding.
-        // Produces a continuous, irregular crestline without the V-cusp artefact.
-        float mountainRidge(float x, float freq, float seed) {
+        // Désaturation perceptive (perspective atmosphérique sur les plans lointains)
+        vec3 desaturate(vec3 col, float amount) {
+          float lum = dot(col, vec3(0.299, 0.587, 0.114));
+          return mix(col, vec3(lum), clamp(amount, 0.0, 1.0));
+        }
+
+        // Multifractal à crêtes (Ridged Multifractal) à versants alpins larges et asymétrie géologique
+        float ridgedMountain(float x, float freq, float seed, int octaves) {
+          // Distorsion géologique douce pour casser la symétrie des pics
+          float warp = snoise(vec2(x * freq * 0.42 + seed, seed * 0.73)) * (0.12 + 0.22 * uRandomness);
+          float wx = x + warp / max(0.35, freq);
+
           float value = 0.0;
-          float amplitude = 0.55;
+          float amplitude = 0.56;
           float f = freq;
           float weight = 1.0;
-          for (int i = 0; i < 4; i++) {
-            // Folded noise with smooth abs to avoid sharp V cusps
-            float n = snoise(vec2(x * f + seed + float(i) * 7.3, float(i) * 2.7 + 1.2));
-            n = 1.0 - sqrt(n * n + 0.01);   // smooth abs → continuous ridgeline
-            n *= n;                           // sharpen peaks gently
-            n *= weight;                      // cascade: higher octaves only where previous was high
-            value += n * amplitude;
-            weight = clamp(n * 2.0, 0.0, 1.0);
-            f *= 2.1;
-            amplitude *= 0.48;
+
+          for (int i = 0; i < 5; i++) {
+            if (i >= octaves) break;
+            float n = snoise(vec2(wx * f + seed + float(i) * 9.7, float(i) * 3.1 + seed * 0.3));
+            // Profil alpin pyramidal naturel (crêtes nettes mais versants amples, sans pics en aiguilles)
+            float ridge = 1.0 - sqrt(n * n + 0.014);
+            ridge = mix(ridge, ridge * ridge, 0.46);
+            ridge *= weight;
+            value += ridge * amplitude;
+            weight = clamp(ridge * 1.65, 0.22, 1.0);
+            f *= 2.04;
+            amplitude *= 0.46;
           }
           return value;
         }
 
-        // Evaluate a single mountain range (ridgeline + vertical fill + lighting + snow)
-        vec4 evaluateMountainRidge(
+        // Champ 2D d'arêtes descendantes (éperons & couloirs) pour séparer nettement
+        // les faces éclairées et les faces à l'ombre sur le flanc des montagnes
+        float spurField(vec2 p, float freq, float seed) {
+          // Étirement diagonal suivant la pente des arêtes alpines
+          vec2 q = vec2(p.x * freq * 2.2 + seed, p.y * freq * 1.45 - p.x * freq * 0.55);
+          float n1 = snoise(q);
+          float r1 = 1.0 - sqrt(n1 * n1 + 0.015);
+          float n2 = snoise(q * 2.15 + vec2(4.7, -3.1));
+          float r2 = 1.0 - sqrt(n2 * n2 + 0.02);
+          return r1 * 0.68 + r2 * 0.32;
+        }
+
+        // Évalue un plan de chaîne montagneuse (crête multifractale + versant éclairé/ombre + neige + brume)
+        vec4 evaluateMountainPlane(
           vec2 uv,
+          float aspect,
           float baseAltitude,
           float ridgeHeight,
           float freq,
           float seed,
           float parallaxRatio,
-          float hazeAmount,        // 0 = near, 1 = fully faded into mist
+          float distanceFactor,   // 0 = avant-plan, 1 = horizon très lointain
           vec3 rockCol,
           vec3 litCol,
           vec3 mistCol,
+          vec3 snowColBase,
           float time,
-          vec2 mouse
+          vec2 mouse,
+          float aa
         ) {
-          // Parallax offset
-          float shiftX = mouse.x * uDepth * parallaxRatio * 1.6;
-          float shiftY = mouse.y * uDepth * parallaxRatio * 0.35 + uScroll * parallaxRatio * 0.18;
-          float px = uv.x + shiftX;
+          float shiftX = mouse.x * uDepth * parallaxRatio * 1.45;
+          float shiftY = mouse.y * uDepth * parallaxRatio * 0.32 + uScroll * parallaxRatio * 0.16;
+          float px = (uv.x - 0.5) * aspect + shiftX;
           float py = uv.y + shiftY;
 
-          // Ridgeline altitude at this horizontal position
-          float ridgeShape = mountainRidge(px, freq * uDensity, seed);
+          int octs = (uQualityLevel >= 2) ? 5 : (uQualityLevel == 1 ? 4 : 3);
+          float effFreq = freq * clamp(uDensity, 0.4, 2.2);
+          float ridgeShape = ridgedMountain(px, effFreq, seed, octs);
           float ridgeY = baseAltitude + ridgeShape * ridgeHeight;
 
-          // Above the ridge → transparent
-          if (py > ridgeY) {
+          // Anti-aliasing propre le long de la ligne de crête
+          float mask = 1.0 - smoothstep(ridgeY - aa, ridgeY + aa, py);
+          if (mask <= 0.004) {
             return vec4(0.0);
           }
 
-          // Normalised depth below the ridge (0 = at crest, 1 = far below)
-          float depthRatio = clamp((ridgeY - py) / max(0.01, ridgeHeight), 0.0, 1.0);
+          float depthBelow = max(0.0, ridgeY - py);
+          float depthRatio = clamp(depthBelow / max(0.01, ridgeHeight), 0.0, 1.0);
 
-          // Approximate horizontal derivative for slope / sun exposure
-          float eps = 0.004;
-          float ridgeLeft  = baseAltitude + mountainRidge(px - eps, freq * uDensity, seed) * ridgeHeight;
-          float ridgeRight = baseAltitude + mountainRidge(px + eps, freq * uDensity, seed) * ridgeHeight;
-          float slopeX = (ridgeRight - ridgeLeft) / (2.0 * eps);
+          // Dérivée de la ligne de crête pour l'orientation globale du versant
+          float eps = 0.0055 / max(0.6, effFreq);
+          float rL = ridgedMountain(px - eps, effFreq, seed, min(octs, 4)) * ridgeHeight;
+          float rR = ridgedMountain(px + eps, effFreq, seed, min(octs, 4)) * ridgeHeight;
+          float crestSlope = (rR - rL) / (2.0 * eps);
 
-          // Directional grazing light
-          float lightFactor = clamp(slopeX * cos(uSunAngle) + sin(uSunAngle) * 0.65, 0.0, 1.0);
-          vec3 surfaceCol = mix(rockCol, litCol, lightFactor);
+          // Direction horizontale et élévation du soleil depuis uSunAngle
+          // sunDirX > 0 : lumière venant de la droite ; < 0 : venant de la gauche
+          float sunDirX = cos(uSunAngle);
+          float sunElev = sin(uSunAngle);
 
-          // Smooth vertical gradient: darken toward base for depth
-          surfaceCol *= mix(1.0, 0.55, depthRatio * depthRatio);
+          // Relief 2D d'arêtes descendantes (MEDIUM & HIGH) : donne de vraies facettes pyramidales
+          float spurSlope = 0.0;
+          float gullyMask = 0.0;
+          float rockGrain = 0.0;
 
-          // Snow / glaciers on gentle slopes above threshold (MEDIUM + HIGH)
-          if (uQualityLevel >= 1 && uSnowLevel > 0.05) {
-            float snowThreshold = baseAltitude + ridgeHeight * (1.15 - uSnowLevel * 0.6);
-            if (py > snowThreshold) {
-              float snowPatch = smoothstep(snowThreshold, snowThreshold + 0.06, py);
-              snowPatch *= (1.0 - smoothstep(1.5, 3.5, abs(slopeX)));
-              vec3 snowCol = mix(litCol * 1.4, vec3(0.95, 0.98, 1.0), lightFactor);
-              surfaceCol = mix(surfaceCol, snowCol, snowPatch * 0.85);
+          if (uQualityLevel >= 1) {
+            // Les éperons divergent légèrement vers le bas depuis les pics
+            vec2 faceP = vec2(px, py - ridgeY * 0.35);
+            float e2 = 0.008;
+            float sC = spurField(faceP, effFreq, seed + 13.4);
+            float sR = spurField(faceP + vec2(e2, 0.0), effFreq, seed + 13.4);
+            spurSlope = (sR - sC) / e2;
+            // Couloirs/creux où la neige s'accumule plus bas
+            gullyMask = smoothstep(0.62, 0.22, sC);
+
+            if (uQualityLevel >= 2) {
+              // Strates rocheuses fines et éboulis visibles sur les plans proches/médians
+              float detailFade = 1.0 - distanceFactor * 0.72;
+              rockGrain = snoise(vec2(px * effFreq * 14.0 + py * 6.0, py * 32.0 + seed)) * 0.14 * detailFade;
             }
           }
 
-          // Valley mist at the base (subtle noise-driven)
-          float valleyMist = smoothstep(0.0, 0.8, depthRatio);
-          float mistNoise = snoise(vec2(px * 3.0 - time * uSpeed * 0.3, py * 4.0)) * 0.15;
-          valleyMist = clamp(valleyMist + mistNoise, 0.0, 1.0);
-          surfaceCol = mix(surfaceCol, mistCol, valleyMist * 0.35);
+          // Combinaison pente principale de crête + facette d'arête descendante
+          float combinedSlope = crestSlope * (0.82 + 0.18 * (1.0 - depthRatio)) + spurSlope * (0.22 + 0.48 * depthRatio) * 0.20;
+          // Normale 2.5D du versant face à la lumière directionnelle
+          vec3 normal = normalize(vec3(-combinedSlope * 1.35, 0.78, 0.55));
+          vec3 lightDir = normalize(vec3(sunDirX, max(0.18, sunElev), 0.36));
+          float ndl = dot(normal, lightDir);
 
-          // Atmospheric haze: distant ranges fade toward mist colour
-          surfaceCol = mix(surfaceCol, mistCol, hazeAmount);
+          // Transition franche entre face éclairée et face dans l'ombre (arête alpine marquée)
+          float litFactor = smoothstep(-0.10, 0.48, ndl);
+          // Rebond lumineux céleste froid dans les ombres vs roche chaude/claire sur la face exposée
+          vec3 coolShadow = mix(rockCol * 0.72, mix(rockCol, mistCol, 0.28), 0.42);
+          vec3 sunlitRock = mix(rockCol * 1.1, litCol * 1.38, 0.88) * (1.0 + rockGrain);
+          vec3 surfaceCol = mix(coolShadow * (1.0 + rockGrain * 0.55), sunlitRock, litFactor);
 
-          return vec4(surfaceCol, uIntensity);
+          // Liseré subtil de lumière rasante sur la crête exposée
+          float crestRim = exp(-depthBelow * 42.0) * smoothstep(0.15, 0.75, litFactor) * (1.0 - distanceFactor * 0.48);
+          surfaceCol += litCol * crestRim * 0.45;
+
+          // Sommets enneigés et névés dans les couloirs (tous paliers, plus détaillés en MEDIUM/HIGH)
+          if (uSnowLevel > 0.04) {
+            float snowLine = baseAltitude + ridgeHeight * (0.94 - uSnowLevel * 0.56);
+            // La neige descend un peu plus bas dans les couloirs et sur les faces à l'ombre
+            float localSnowLine = snowLine - gullyMask * 0.055 * uSnowLevel - (1.0 - litFactor) * 0.015 * uSnowLevel;
+            if (uQualityLevel >= 1) {
+              localSnowLine += snoise(vec2(px * effFreq * 4.5 + seed, py * 8.0)) * 0.032;
+            }
+            float altSnow = smoothstep(localSnowLine - 0.018, localSnowLine + 0.055, py);
+            // La neige adhère sur les crêtes et couloirs tout en laissant apparaître les parois très abruptes
+            float slopeHold = 1.0 - smoothstep(1.8, 3.8, abs(combinedSlope));
+            float snowMask = clamp(altSnow * max(slopeHold, gullyMask * 0.72), 0.0, 1.0);
+
+            if (snowMask > 0.01) {
+              // Neige lumineuse au soleil vs neige bleutée-grise dans l'ombre
+              vec3 snowLit = mix(litCol * 1.3, snowColBase, 0.84);
+              vec3 snowShadow = mix(mistCol * 0.88, snowColBase * vec3(0.56, 0.68, 0.86), 0.55);
+              vec3 snowCol = mix(snowShadow, snowLit, smoothstep(0.16, 0.62, litFactor));
+              surfaceCol = mix(surfaceCol, snowCol, snowMask * 0.92);
+            }
+          }
+
+          // Légère profondeur verticale vers le fond de la vallée
+          surfaceCol *= mix(1.0, 0.78, depthRatio * depthRatio * (1.0 - distanceFactor * 0.6));
+
+          // Perspective atmosphérique : désaturation des couleurs + fusion vers la brume selon la distance
+          float desatAmt = distanceFactor * (0.48 + 0.30 * uHazeStrength);
+          surfaceCol = desaturate(surfaceCol, desatAmt);
+          float aerialFade = clamp(distanceFactor * (0.58 * uHazeStrength + 0.14), 0.0, 0.82);
+          surfaceCol = mix(surfaceCol, mistCol, aerialFade);
+
+          // Brume de vallée douce au pied de chaque massif
+          float baseMistBand = smoothstep(0.32, 1.0, depthRatio);
+          float baseMistAmt = baseMistBand * (0.28 + 0.25 * distanceFactor) * clamp(uHazeStrength, 0.0, 1.3);
+          surfaceCol = mix(surfaceCol, mistCol, clamp(baseMistAmt, 0.0, 0.72));
+
+          return vec4(surfaceCol, mask);
+        }
+
+        // Nappe de brume d'altitude dérivant entre deux plans de montagne
+        float evalAltitudeMist(vec2 uv, float aspect, float centerY, float bandH, float speedMult, float seed, float time) {
+          float yEnv = exp(-pow((uv.y - centerY) / max(0.02, bandH), 2.0));
+          if (yEnv < 0.02) return 0.0;
+          float drift = time * max(0.03, uSpeed) * speedMult;
+          vec2 p = vec2(uv.x * aspect * 1.9 - drift + seed, uv.y * 5.2 + seed * 0.3);
+          float n = snoise(p) * 0.5 + 0.5;
+          if (uQualityLevel >= 2) {
+            float n2 = snoise(p * 2.15 + vec2(n * 0.75 - drift * 0.6, 2.4)) * 0.5 + 0.5;
+            n = n * 0.62 + n2 * 0.38;
+          }
+          return yEnv * (0.35 + 0.65 * n);
         }
 
         void main() {
+          float aspect = uResolution.x / max(1.0, uResolution.y);
+          float aa = 1.4 / max(1.0, uResolution.y);
           vec2 uv = vUv;
           float t = uTime;
 
-          vec3 baseRock = uUseCustomColors ? uRockColor : (uPaletteSecondary * 0.35);
-          vec3 baseLit  = uUseCustomColors ? uSunColor  : (uPalettePrimary * 0.55);
-          vec3 baseMist = uUseCustomColors ? uMistColor : (uPaletteSecondary * 0.6);
+          vec3 baseRock = uUseCustomColors ? uRockColor : (uPaletteSecondary * 0.34);
+          vec3 baseLit = uUseCustomColors ? uSunColor : (uPalettePrimary * 0.62);
+          vec3 baseMist = uUseCustomColors ? uMistColor : (uPaletteSecondary * 0.62);
+          // Brume atmosphérique d'altitude désaturée et légèrement lumineuse pour bien séparer les 4 plans
+          vec3 aerialMist = mix(baseMist * 1.45, desaturate(baseLit * 1.15 + vec3(0.18, 0.24, 0.32), 0.35), 0.45);
+          vec3 snowCol = uSnowColor;
+          float haze = clamp(uHazeStrength, 0.0, 1.3);
 
           vec4 result = vec4(0.0);
 
-          // Range 3: Far (heavy atmospheric haze, slow parallax, highest peaks)
-          if (uQualityLevel >= 1) {
-            vec3 farRock = mix(baseRock, baseMist, 0.45);
-            vec3 farLit  = mix(baseLit,  baseMist, 0.35);
-            vec4 r3 = evaluateMountainRidge(uv, 0.32, 0.28, 1.2, 12.4, 0.12, 0.55,
-                                            farRock, farLit, baseMist, t, uMouse);
-            if (r3.a > 0.0) {
-              result = r3;
+          // =========================================================================
+          // Plan 4 : Chaîne Alpine Très Lointaine (HIGH uniquement) — large, désaturée & brumeuse
+          // =========================================================================
+          if (uQualityLevel >= 2) {
+            vec4 r4 = evaluateMountainPlane(
+              uv, aspect, 0.36, 0.34, 0.58, 7.2, 0.06, 0.88,
+              baseRock, baseLit, aerialMist, snowCol, t, uMouse, aa * 1.6
+            );
+            if (r4.a > 0.004) {
+              result = r4;
             }
           }
 
-          // Range 2: Middle (moderate haze, sharper crests, snow)
-          vec3 midRock = mix(baseRock, baseMist, 0.15);
-          vec4 r2 = evaluateMountainRidge(uv, 0.16, 0.34, 1.9, 45.7, 0.28, 0.22,
-                                          midRock, baseLit, baseMist, t, uMouse);
-          if (r2.a > 0.0) {
-            // Paint over (nearer layer replaces farther)
-            result = r2;
+          // =========================================================================
+          // Plan 3 : Chaîne Lointaine (MEDIUM & HIGH)
+          // =========================================================================
+          if (uQualityLevel >= 1) {
+            vec4 r3 = evaluateMountainPlane(
+              uv, aspect, 0.24, 0.34, 0.82, 21.8, 0.14, 0.58,
+              baseRock, baseLit, aerialMist, snowCol, t, uMouse, aa * 1.25
+            );
+            if (r3.a > 0.004) {
+              result.rgb = mix(result.rgb, r3.rgb, r3.a);
+              result.a = max(result.a, r3.a);
+            }
+
+            // Brume d'altitude nichée entre Plan 3 et Plan 2
+            if (haze > 0.02 && result.a > 0.02) {
+              float mFar = evalAltitudeMist(uv, aspect, 0.31, 0.11, 0.14, 3.4, t) * haze * 0.55;
+              result.rgb = mix(result.rgb, aerialMist * 1.12, clamp(mFar, 0.0, 0.72));
+            }
           }
 
-          // Range 1: Foreground (dark, sharp, strong parallax, no haze)
-          vec4 r1 = evaluateMountainRidge(uv, -0.02, 0.36, 2.8, 89.1, 0.52, 0.0,
-                                          baseRock, baseLit * 0.9, baseMist * 0.8, t, uMouse);
-          if (r1.a > 0.0) {
-            result = r1;
+          // =========================================================================
+          // Plan 2 : Massif Médian (Tous paliers) — arêtes nettes, versants contrastés, névés
+          // =========================================================================
+          {
+            vec4 r2 = evaluateMountainPlane(
+              uv, aspect, 0.12, 0.34, 1.08, 48.3, 0.28, 0.28,
+              baseRock, baseLit, aerialMist, snowCol, t, uMouse, aa
+            );
+            if (r2.a > 0.004) {
+              result.rgb = mix(result.rgb, r2.rgb, r2.a);
+              result.a = max(result.a, r2.a);
+            }
+
+            // Brume d'altitude dérivant entre le massif médian et les contreforts d'avant-plan
+            if (uQualityLevel >= 1 && haze > 0.02 && result.a > 0.02) {
+              float mMid = evalAltitudeMist(uv, aspect, 0.19, 0.095, 0.22, 11.7, t) * haze * 0.48;
+              vec3 midMistCol = mix(aerialMist, baseLit * 0.95, 0.18);
+              result.rgb = mix(result.rgb, midMistCol, clamp(mMid, 0.0, 0.66));
+            }
           }
 
-          // Low-lying mist blanket at the very bottom (HIGH quality)
-          if (uQualityLevel >= 2) {
-            float lowMist = smoothstep(0.12, -0.05, uv.y);
-            float mistTurb = snoise(vec2(uv.x * 2.5 + t * uSpeed * 0.2, uv.y * 3.0)) * 0.5 + 0.5;
-            float mistAlpha = lowMist * mistTurb * 0.25 * uIntensity;
-            result.rgb = mix(result.rgb, baseMist, mistAlpha);
+          // =========================================================================
+          // Plan 1 : Contreforts d'Avant-Plan (Tous paliers) — sombres, saturés, parallaxe forte
+          // =========================================================================
+          {
+            vec4 r1 = evaluateMountainPlane(
+              uv, aspect, -0.04, 0.31, 1.42, 89.6, 0.50, 0.0,
+              baseRock * 0.82, baseLit * 0.92, baseMist * 0.95, snowCol, t, uMouse, aa
+            );
+            if (r1.a > 0.004) {
+              result.rgb = mix(result.rgb, r1.rgb, r1.a);
+              result.a = max(result.a, r1.a);
+            }
+          }
+
+          // Nappe de brume basse rasante en vallée (HIGH uniquement)
+          if (uQualityLevel >= 2 && haze > 0.02) {
+            float lowMist = evalAltitudeMist(uv, aspect, 0.05, 0.095, 0.30, 27.1, t) * haze * 0.42;
+            if (lowMist > 0.005) {
+              result.rgb = mix(result.rgb, aerialMist * 0.92, clamp(lowMist, 0.0, 0.58));
+              result.a = max(result.a, lowMist * 0.68);
+            }
           }
 
           if (result.a <= 0.005) {
             discard;
           }
 
-          gl_FragColor = vec4(result.rgb, clamp(result.a, 0.0, 1.0));
+          gl_FragColor = vec4(result.rgb, clamp(result.a * uIntensity, 0.0, 1.0));
         }
       `,
       transparent: true,
@@ -309,6 +462,10 @@ export class ParallaxMountainsInstance implements IBrickInstance {
       this.material.uniforms.uMistColor.value = this.mistColorVec
       this.material.uniforms.uUseCustomColors.value = true
     }
+    if (newProps.snowColor !== undefined) {
+      this.snowColorVec.set(newProps.snowColor)
+      this.material.uniforms.uSnowColor.value = this.snowColorVec
+    }
     if (newProps.density !== undefined) this.material.uniforms.uDensity.value = newProps.density
     if (newProps.speed !== undefined) this.material.uniforms.uSpeed.value = newProps.speed
     if (newProps.depth !== undefined) this.material.uniforms.uDepth.value = newProps.depth
@@ -319,6 +476,8 @@ export class ParallaxMountainsInstance implements IBrickInstance {
     if (newProps.snowLevel !== undefined)
       this.material.uniforms.uSnowLevel.value = newProps.snowLevel
     if (newProps.sunAngle !== undefined) this.material.uniforms.uSunAngle.value = newProps.sunAngle
+    if (newProps.hazeStrength !== undefined)
+      this.material.uniforms.uHazeStrength.value = newProps.hazeStrength
   }
 
   public onQualityChange(quality: QualityTier): void {
