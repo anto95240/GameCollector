@@ -1,10 +1,13 @@
 /**
  * src/theme-engine/bricks/particles/BubblesBrick.ts
  *
- * Brique de Particules : Bulles Aquatiques & Éclatement (Couche 3 : Particles).
- * Sphères sous-marines translucides avec reflets irisés spéculaires,
- * ascension oscillante en zig-zag sinueux, expansion graduelle due à la baisse
- * de pression hydrostatique, éclatement en surface et évitement de la souris.
+ * Brique de Particules : Bulles Aquatiques & Neige Marine (Couche 3 : Particles).
+ * Bulles translucides sous-marines à paroi fine Fresnel, irisation subtile et
+ * reflet spéculaire brillant orienté vers la source lumineuse.
+ * Vitesse proportionnelle à la taille (poussée d'Archimède), balancement latéral
+ * hydrodynamique sans rotation du reflet, dilatation hydrostatique en montée,
+ * et paramètre optionnel `buoyancy` (-1 à 1, défaut 1 = montée ; < 0 = neige marine
+ * ou particules abyssales descendant lentement).
  */
 
 import * as THREE from 'three'
@@ -19,14 +22,13 @@ import type {
 } from '../../types'
 import { simplex2D } from '../../utils/noise'
 import { BrickRegistry } from '../registry'
-import { getBubbleTexture } from './particleTextures'
 
 export interface BubblesProps {
-  /** Teinte du corps de la bulle (défaut: '#38bdf8'). */
+  /** Teinte du corps et du liseré irisé de la bulle (défaut: '#38bdf8'). */
   bubbleColor?: string
-  /** Multiplicateur de densité/nombre de bulles (0.2 à 2.5, défaut: 1.0 -> 90 bulles). */
+  /** Multiplicateur de densité/nombre de bulles (0.2 à 2.5, défaut: 1.0 -> 95 bulles). */
   density?: number
-  /** Vitesse d'ascension verticale (0.1 à 2.0, défaut: 0.5). */
+  /** Vitesse verticale de référence (0.1 à 2.0, défaut: 0.5). */
   speed?: number
   /** Étalement en profondeur Z et parallaxe (0.1 à 1.0, défaut: 0.5). */
   depth?: number
@@ -34,10 +36,12 @@ export interface BubblesProps {
   intensity?: number
   /** Variabilité des rayons et asymétrie (0.0 à 1.0, défaut: 0.4). */
   randomness?: number
-  /** Amplitude du balancement sinusoïdal latéral (0.1 à 1.5, défaut: 0.4). */
+  /** Amplitude du balancement latéral hydrodynamique (0.1 à 1.5, défaut: 0.4). */
   wobbleAmount?: number
   /** Taux de dilatation pendant l'ascension (0.5 à 2.0, défaut: 1.25). */
   expansionRate?: number
+  /** Flottabilité verticale (-1.0 à 1.0, défaut: 1.0 = montée ; < 0 = descente lente type neige marine). */
+  buoyancy?: number
 }
 
 export class BubblesInstance implements IBrickInstance {
@@ -45,16 +49,20 @@ export class BubblesInstance implements IBrickInstance {
   readonly type = 'bubbles'
 
   private mesh: THREE.InstancedMesh | null = null
+  private material: THREE.ShaderMaterial | null = null
   private scene: THREE.Scene
-  private totalCount: number
+  private capacity: number
   private activeCount: number
 
   private positions: Float32Array
-  private initialX: Float32Array
+  private anchorX: Float32Array
   private velocities: Float32Array
   private wobbleFrequencies: Float32Array
   private wobblePhases: Float32Array
+  private sizeNorms: Float32Array
   private baseScales: Float32Array
+  private seeds: Float32Array
+  private instanceData: Float32Array // [alpha, sizeNorm, wobbleTilt, seed]
 
   private bubbleColor: THREE.Color
   private density: number
@@ -64,6 +72,8 @@ export class BubblesInstance implements IBrickInstance {
   private randomness: number
   private wobbleAmount: number
   private expansionRate: number
+  private buoyancy: number
+  private currentQuality: QualityTier
 
   private dummy = new THREE.Object3D()
   private surgeMultiplier = 1.0
@@ -72,8 +82,7 @@ export class BubblesInstance implements IBrickInstance {
     this.id = id
     this.scene = context.scene
 
-    const rawColor = props.bubbleColor ?? '#38bdf8'
-    this.bubbleColor = new THREE.Color(rawColor)
+    this.bubbleColor = new THREE.Color(props.bubbleColor ?? '#38bdf8')
     this.density = props.density ?? 1.0
     this.speed = props.speed ?? 0.5
     this.depthFactor = props.depth ?? 0.5
@@ -81,58 +90,184 @@ export class BubblesInstance implements IBrickInstance {
     this.randomness = props.randomness ?? 0.4
     this.wobbleAmount = props.wobbleAmount ?? 0.4
     this.expansionRate = props.expansionRate ?? 1.25
+    this.buoyancy = THREE.MathUtils.clamp(props.buoyancy ?? 1.0, -1.0, 1.0)
+    this.currentQuality = context.quality ?? 'HIGH'
 
-    this.totalCount = Math.floor(90 * this.density)
-    const isMobile = window.innerWidth < 768
-    this.activeCount = isMobile ? Math.floor(this.totalCount * 0.35) : this.totalCount
+    this.capacity = Math.max(120, Math.floor(95 * Math.max(this.density, 2.5)))
+    this.activeCount = Math.min(this.capacity, Math.floor(95 * this.density))
 
-    this.positions = new Float32Array(this.totalCount * 3)
-    this.initialX = new Float32Array(this.totalCount)
-    this.velocities = new Float32Array(this.totalCount * 3)
-    this.wobbleFrequencies = new Float32Array(this.totalCount)
-    this.wobblePhases = new Float32Array(this.totalCount)
-    this.baseScales = new Float32Array(this.totalCount)
+    this.positions = new Float32Array(this.capacity * 3)
+    this.anchorX = new Float32Array(this.capacity)
+    this.velocities = new Float32Array(this.capacity * 3)
+    this.wobbleFrequencies = new Float32Array(this.capacity)
+    this.wobblePhases = new Float32Array(this.capacity)
+    this.sizeNorms = new Float32Array(this.capacity)
+    this.baseScales = new Float32Array(this.capacity)
+    this.seeds = new Float32Array(this.capacity)
+    this.instanceData = new Float32Array(this.capacity * 4)
 
     const geometry = new THREE.PlaneGeometry(1, 1)
-    const material = new THREE.MeshBasicMaterial({
-      map: getBubbleTexture(rawColor),
+    const dataAttr = new THREE.InstancedBufferAttribute(this.instanceData, 4)
+    dataAttr.setUsage(THREE.DynamicDrawUsage)
+    geometry.setAttribute('aData', dataAttr)
+
+    this.material = new THREE.ShaderMaterial({
+      uniforms: {
+        uBubbleColor: { value: this.bubbleColor },
+        uIntensity: { value: this.intensity },
+        uBuoyancy: { value: this.buoyancy },
+        uTime: context.sharedUniforms.uTime,
+        uQualityLevel: {
+          value: this.currentQuality === 'HIGH' ? 2 : this.currentQuality === 'MEDIUM' ? 1 : 0,
+        },
+      },
+      vertexShader: /* glsl */ `
+        attribute vec4 aData;
+        varying vec2 vUv;
+        varying vec4 vData;
+
+        void main() {
+          vUv = uv;
+          vData = aData;
+          vec4 mvPosition = modelViewMatrix * instanceMatrix * vec4(position, 1.0);
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `,
+      fragmentShader: /* glsl */ `
+        uniform vec3 uBubbleColor;
+        uniform float uIntensity;
+        uniform float uBuoyancy;
+        uniform float uTime;
+        uniform int uQualityLevel;
+
+        varying vec2 vUv;
+        varying vec4 vData;
+
+        void main() {
+          float alpha = vData.x;
+          if (alpha <= 0.004) discard;
+
+          float sizeNorm = vData.y;
+          float wobbleTilt = vData.z;
+          float seed = vData.w;
+
+          vec2 p = (vUv - 0.5) * 2.0;
+
+          // Légère déformation hydrodynamique aplatie sur les grosses bulles en montée (HIGH)
+          if (uQualityLevel >= 2 && uBuoyancy >= 0.0) {
+            float oblate = 1.0 + 0.085 * sizeNorm * clamp(uBuoyancy, 0.0, 1.0);
+            p.y *= oblate;
+            p.x += p.y * wobbleTilt * 0.06;
+          }
+
+          float r = length(p);
+          if (r > 1.0) discard;
+
+          float marineSnowFactor = smoothstep(0.0, -0.35, uBuoyancy);
+
+          // Paroi fine et nette par loi de Fresnel (centre quasi transparent)
+          float outerFade = 1.0 - smoothstep(0.90, 1.0, r);
+          float fresnel = pow(clamp(r, 0.0, 1.0), 3.6) * outerFade;
+          float innerGlow = smoothstep(0.42, 0.92, r) * outerFade * 0.22;
+
+          // En mode neige marine (buoyancy < 0), corps légèrement plus laiteux mais toujours nacré
+          float bodyFill = mix(0.035, 0.26, marineSnowFactor) * (1.0 - smoothstep(0.2, 0.96, r));
+
+          vec3 rimColor = mix(uBubbleColor, vec3(0.92, 0.98, 1.0), 0.55);
+
+          // Irisation chromatique discrète sur la paroi (HIGH)
+          if (uQualityLevel >= 2) {
+            float angle = atan(p.y, p.x);
+            float ripple = 1.0 + 0.018 * sin(angle * 2.0 + uTime * 3.5 + seed) * sizeNorm;
+            float rIri = r * ripple;
+            vec3 iridescent = 0.5 + 0.5 * cos(angle * 2.0 + rIri * 5.2 + seed + vec3(0.0, 2.09, 4.18));
+            rimColor = mix(rimColor, iridescent, 0.24 * (1.0 - marineSnowFactor));
+          }
+
+          // Reflet spéculaire brillant principal (haut-gauche) orienté sur la source de lumière
+          vec2 specCenter = vec2(-0.38, 0.44);
+          vec2 dSpec = p - specCenter;
+          // Reflet elliptique suivant la courbure sphérique
+          vec2 tangent = normalize(vec2(-specCenter.y, specCenter.x));
+          vec2 normalDir = normalize(specCenter);
+          float along = dot(dSpec, tangent);
+          float across = dot(dSpec, normalDir);
+          float specArc = exp(-(along * along * 11.0 + across * across * 64.0));
+          float specPinpoint = exp(-dot(p - vec2(-0.34, 0.42), p - vec2(-0.34, 0.42)) * 90.0);
+
+          // Reflet secondaire opposé (bas-droite, lumière réfractée) sur HIGH & MEDIUM
+          float specBounce = 0.0;
+          if (uQualityLevel >= 1) {
+            vec2 bouncePos = p - vec2(0.40, -0.44);
+            specBounce = exp(-dot(bouncePos, bouncePos) * 32.0) * 0.36;
+          }
+
+          float specStrength = clamp(0.65 + 0.55 * uIntensity, 0.2, 2.2);
+          float totalSpec = (specArc * 0.72 + specPinpoint * 0.95 + specBounce) * specStrength * outerFade;
+
+          vec3 col = rimColor * (fresnel * 1.15 + innerGlow + bodyFill) + vec3(1.0) * totalSpec;
+          float outAlpha = clamp((fresnel * 0.85 + innerGlow + bodyFill + totalSpec * 0.95) * alpha, 0.0, 1.0);
+
+          if (outAlpha <= 0.004) discard;
+          gl_FragColor = vec4(col, outAlpha);
+        }
+      `,
       transparent: true,
       depthWrite: false,
-      opacity: Math.min(1.0, 0.96 * this.intensity),
       side: THREE.DoubleSide,
     })
 
-    this.mesh = new THREE.InstancedMesh(geometry, material, this.totalCount)
+    this.mesh = new THREE.InstancedMesh(geometry, this.material, this.capacity)
     this.mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage)
+    this.mesh.frustumCulled = false
 
-    for (let i = 0; i < this.totalCount; i++) {
+    for (let i = 0; i < this.capacity; i++) {
+      this.seeds[i] = Math.random() * 500
       this.resetParticle(i, true)
     }
 
+    this.applyQuality(this.currentQuality)
     this.scene.add(this.mesh)
   }
 
   private resetParticle(i: number, randomY = false): void {
     const idx3 = i * 3
-    const startX = (Math.random() - 0.5) * 16
-    this.initialX[i] = startX
+    const startX = (Math.random() - 0.5) * 17.5
+    const rising = this.buoyancy >= 0
+
+    this.anchorX[i] = startX
     this.positions[idx3] = startX
-    this.positions[idx3 + 1] = randomY ? (Math.random() - 0.5) * 11 : -5.8 + Math.random() * 1.2
-    this.positions[idx3 + 2] = -10 * this.depthFactor + Math.random() * (4 * this.depthFactor)
+    if (randomY) {
+      this.positions[idx3 + 1] = (Math.random() - 0.5) * 12.4
+    } else if (rising) {
+      this.positions[idx3 + 1] = -6.2 - Math.random() * 1.4
+    } else {
+      this.positions[idx3 + 1] = 6.2 + Math.random() * 1.4
+    }
+    this.positions[idx3 + 2] = -10 * this.depthFactor + Math.random() * (4.5 * this.depthFactor)
 
-    // Tailles variées : distribution naturelle avec bulles fines, moyennes et quelques grandes
-    const sizeCurve = Math.pow(Math.random(), 1.6)
-    const minScale = 0.55
-    const maxScale = 1.75 + this.randomness * 0.8
-    const size = THREE.MathUtils.lerp(minScale, maxScale, sizeCurve)
+    // Distribution naturelle : beaucoup de micro-bulles, moins de grandes bulles
+    const sizeNorm = Math.pow(Math.random(), 1.85)
+    this.sizeNorms[i] = sizeNorm
+    const minScale = 0.11
+    const maxScale = 0.36 + this.randomness * 0.14
+    const size = THREE.MathUtils.lerp(minScale, maxScale, sizeNorm)
+    this.baseScales[i] = size
 
-    this.velocities[idx3] = 0
-    this.velocities[idx3 + 1] = (0.55 + Math.random() * 0.5) * this.speed
+    // Vitesse proportionnelle à la taille (poussée d'Archimède vs traînée)
+    const absBuoy = Math.abs(this.buoyancy)
+    const buoyancyScale = 0.12 + 0.88 * absBuoy
+    const sizeSpeedFactor = rising ? 0.42 + sizeNorm * 1.15 : 0.48 + sizeNorm * 0.62
+    const speedJitter = 0.85 + Math.random() * 0.3
+
+    this.velocities[idx3] = (Math.random() - 0.5) * 0.08 * this.randomness
+    this.velocities[idx3 + 1] = rising
+      ? 0.62 * this.speed * buoyancyScale * sizeSpeedFactor * speedJitter
+      : -0.32 * this.speed * buoyancyScale * sizeSpeedFactor * speedJitter
     this.velocities[idx3 + 2] = 0
 
-    this.wobbleFrequencies[i] = (1.5 + Math.random() * 1.5) * (1.0 + this.randomness)
+    this.wobbleFrequencies[i] = (1.1 + Math.random() * 1.3) * (0.85 + this.randomness * 0.45)
     this.wobblePhases[i] = Math.random() * Math.PI * 2
-    this.baseScales[i] = size * this.intensity
   }
 
   public init(): void {}
@@ -146,64 +281,96 @@ export class BubblesInstance implements IBrickInstance {
 
     const mouseWorldX = interaction.mouseX * 6.0
     const mouseWorldY = -interaction.mouseY * 4.0
+    const rising = this.buoyancy >= 0
+    const isLow = this.currentQuality === 'LOW'
+    const isHigh = this.currentQuality === 'HIGH'
 
     for (let i = 0; i < this.activeCount; i++) {
       const idx3 = i * 3
+      const idx4 = i * 4
+      const sizeNorm = this.sizeNorms[i]
 
-      // Balancement sinusoïdal latéral avec bruit Simplex pour casser la périodicité
       const py = this.positions[idx3 + 1]
-      const wobbleNoise = simplex2D(py * 0.35 + this.wobblePhases[i], time * 0.4)
-      const wobble =
-        Math.sin(time * this.wobbleFrequencies[i] + this.wobblePhases[i] + wobbleNoise * 1.5) *
-          this.wobbleAmount +
-        wobbleNoise * 0.25 * this.randomness
+      const wobbleNoise = isLow ? 0 : simplex2D(py * 0.35 + this.wobblePhases[i], time * 0.35)
 
-      // Répulsion interactive au passage de la souris
+      // Les grosses bulles oscillent davantage en montant ; les micro-bulles montent plus droit
+      const swayScale = (0.28 + 0.72 * sizeNorm) * this.wobbleAmount
+      const phaseAngle = time * this.wobbleFrequencies[i] + this.wobblePhases[i] + wobbleNoise * 1.3
+      const lateralOffset = Math.sin(phaseAngle) * swayScale * 0.65
+      const wobbleTilt = Math.cos(phaseAngle) * swayScale
+
+      // Dérive lente de l'ancre et répulsion interactive à la souris
       const dx = this.positions[idx3] - mouseWorldX
-      const dy = this.positions[idx3 + 1] - mouseWorldY
+      const dy = py - mouseWorldY
       const distSq = dx * dx + dy * dy
       let repulseX = 0
       let repulseY = 0
 
-      if (distSq < 6.0 && distSq > 0.01) {
+      if (distSq < 5.5 && distSq > 0.01) {
         const dist = Math.sqrt(distSq)
-        const force = (1.0 - dist / 2.45) * 1.0
+        const force = (1.0 - dist / 2.35) * 1.15
         repulseX = (dx / dist) * force
         repulseY = (dy / dist) * force
       }
 
-      this.positions[idx3] += (wobble * 0.4 + repulseX) * delta * 2.0 * this.surgeMultiplier
+      const driftNoise = isHigh ? wobbleNoise * 0.14 * this.randomness : 0
+      this.anchorX[i] +=
+        (this.velocities[idx3] + driftNoise + repulseX) * delta * 1.8 * this.surgeMultiplier
+      this.positions[idx3] = this.anchorX[i] + lateralOffset
       this.positions[idx3 + 1] +=
-        (this.velocities[idx3 + 1] + repulseY) * delta * 2.0 * this.surgeMultiplier
+        (this.velocities[idx3 + 1] + repulseY) * delta * 1.8 * this.surgeMultiplier
 
-      // Éclatement au sommet (surface de l'eau)
-      if (this.positions[idx3 + 1] > 5.8) {
+      // Recyclage aux bornes selon le sens de flottabilité
+      if (rising && this.positions[idx3 + 1] > 6.2) {
+        this.resetParticle(i, false)
+        continue
+      }
+      if (!rising && this.positions[idx3 + 1] < -6.2) {
         this.resetParticle(i, false)
         continue
       }
 
-      // Dilatation hydrostatique en s'élevant (-5.8 -> +5.8)
-      const heightNorm = THREE.MathUtils.clamp((this.positions[idx3 + 1] + 5.8) / 11.6, 0, 1)
-      const expansion = 1.0 + heightNorm * (this.expansionRate - 1.0)
+      if (this.anchorX[i] > 10.5) this.anchorX[i] = -10.5
+      if (this.anchorX[i] < -10.5) this.anchorX[i] = 10.5
+
+      // Dilatation hydrostatique uniquement en montée ; fondu doux aux bords haut/bas
+      const heightNorm = THREE.MathUtils.clamp((this.positions[idx3 + 1] + 6.2) / 12.4, 0, 1)
+      const expansion = rising ? 1.0 + heightNorm * (this.expansionRate - 1.0) : 1.0
+
+      const edgeFadeBottom = THREE.MathUtils.smoothstep(this.positions[idx3 + 1], -6.2, -4.8)
+      const edgeFadeTop = 1.0 - THREE.MathUtils.smoothstep(this.positions[idx3 + 1], 4.8, 6.2)
+      const boundaryAlpha = edgeFadeBottom * edgeFadeTop
 
       const pz = this.positions[idx3 + 2]
-      const depthFactor = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.65, 1.25)
-      const scale = this.baseScales[i] * expansion * depthFactor * this.surgeMultiplier
+      const depthFactor = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.58, 1.28)
+      const depthOpacity = THREE.MathUtils.mapLinear(pz, -10 * this.depthFactor, 2, 0.55, 1.0)
+
+      const scale =
+        this.baseScales[i] * expansion * depthFactor * (1.0 + (this.surgeMultiplier - 1.0) * 0.18)
+
+      this.instanceData[idx4] = Math.min(
+        1.0,
+        boundaryAlpha * depthOpacity * (0.72 + 0.28 * Math.min(this.intensity, 1.5))
+      )
+      this.instanceData[idx4 + 1] = sizeNorm
+      this.instanceData[idx4 + 2] = wobbleTilt
+      this.instanceData[idx4 + 3] = this.seeds[i]
 
       this.dummy.position.set(
         this.positions[idx3],
         this.positions[idx3 + 1],
         this.positions[idx3 + 2]
       )
+      // Aucune rotation du quad : le reflet spéculaire reste aligné sur la source de lumière
+      this.dummy.rotation.set(0, 0, 0)
       this.dummy.scale.set(scale, scale, scale)
-      // Légère oscillation d'angle
-      this.dummy.rotation.z = wobble * 0.5
       this.dummy.updateMatrix()
 
       this.mesh.setMatrixAt(i, this.dummy.matrix)
     }
 
-    for (let i = this.activeCount; i < this.totalCount; i++) {
+    for (let i = this.activeCount; i < this.capacity; i++) {
+      this.instanceData[i * 4] = 0
       this.dummy.position.set(0, -999, 0)
       this.dummy.scale.set(0, 0, 0)
       this.dummy.updateMatrix()
@@ -211,72 +378,96 @@ export class BubblesInstance implements IBrickInstance {
     }
 
     this.mesh.instanceMatrix.needsUpdate = true
+    const dataAttr = this.mesh.geometry.getAttribute('aData') as THREE.InstancedBufferAttribute
+    if (dataAttr) dataAttr.needsUpdate = true
   }
 
   public updateProps(newProps: Partial<BubblesProps>): void {
     if (newProps.bubbleColor !== undefined) {
       this.bubbleColor.set(newProps.bubbleColor)
-      if (this.mesh && this.mesh.material && !Array.isArray(this.mesh.material)) {
-        const mat = this.mesh.material as THREE.MeshBasicMaterial
-        mat.map = getBubbleTexture(newProps.bubbleColor)
-        mat.needsUpdate = true
+      if (this.material) {
+        this.material.uniforms.uBubbleColor.value.copy(this.bubbleColor)
       }
     }
-    if (newProps.speed !== undefined) this.speed = newProps.speed
+    if (newProps.speed !== undefined) {
+      const ratio = this.speed > 0.001 ? newProps.speed / this.speed : 1.0
+      this.speed = newProps.speed
+      for (let i = 0; i < this.capacity; i++) {
+        this.velocities[i * 3 + 1] *= ratio
+      }
+    }
     if (newProps.depth !== undefined) this.depthFactor = newProps.depth
     if (newProps.intensity !== undefined) {
       this.intensity = newProps.intensity
-      if (this.mesh && this.mesh.material && !Array.isArray(this.mesh.material)) {
-        ;(this.mesh.material as THREE.MeshBasicMaterial).opacity = Math.min(
-          1.0,
-          0.92 * this.intensity
-        )
+      if (this.material) {
+        this.material.uniforms.uIntensity.value = this.intensity
       }
     }
     if (newProps.randomness !== undefined) this.randomness = newProps.randomness
     if (newProps.wobbleAmount !== undefined) this.wobbleAmount = newProps.wobbleAmount
     if (newProps.expansionRate !== undefined) this.expansionRate = newProps.expansionRate
 
+    if (newProps.buoyancy !== undefined) {
+      const nextBuoyancy = THREE.MathUtils.clamp(newProps.buoyancy, -1.0, 1.0)
+      const nextRising = nextBuoyancy >= 0
+      this.buoyancy = nextBuoyancy
+      if (this.material) {
+        this.material.uniforms.uBuoyancy.value = this.buoyancy
+      }
+      const absBuoy = Math.abs(this.buoyancy)
+      const buoyancyScale = 0.12 + 0.88 * absBuoy
+      for (let i = 0; i < this.capacity; i++) {
+        const sizeNorm = this.sizeNorms[i]
+        const sizeSpeedFactor = nextRising ? 0.42 + sizeNorm * 1.15 : 0.48 + sizeNorm * 0.62
+        this.velocities[i * 3 + 1] =
+          (nextRising ? 0.62 : -0.32) * this.speed * buoyancyScale * sizeSpeedFactor
+      }
+    }
+
     if (newProps.density !== undefined) {
       this.density = newProps.density
-      const isMobile = window.innerWidth < 768
-      const mobileFactor = isMobile ? 0.35 : 1.0
-      this.activeCount = Math.min(this.totalCount, Math.floor(90 * this.density * mobileFactor))
+      this.applyQuality(this.currentQuality)
     }
   }
 
-  public onQualityChange(quality: QualityTier): void {
+  private applyQuality(quality: QualityTier): void {
     const isMobile = window.innerWidth < 768
     const mobileRatio = isMobile ? 0.35 : 1.0
 
     if (quality === 'HIGH') {
-      this.activeCount = Math.floor(this.totalCount * mobileRatio)
+      this.activeCount = Math.min(this.capacity, Math.floor(95 * this.density * mobileRatio))
     } else if (quality === 'MEDIUM') {
-      this.activeCount = Math.floor(this.totalCount * 0.55 * mobileRatio)
+      this.activeCount = Math.min(this.capacity, Math.floor(52 * this.density * mobileRatio))
     } else {
-      this.activeCount = Math.floor(this.totalCount * 0.25 * mobileRatio)
+      this.activeCount = Math.min(this.capacity, Math.floor(24 * this.density * mobileRatio))
+    }
+
+    if (this.material) {
+      this.material.uniforms.uQualityLevel.value =
+        quality === 'HIGH' ? 2 : quality === 'MEDIUM' ? 1 : 0
     }
   }
 
+  public onQualityChange(quality: QualityTier): void {
+    this.currentQuality = quality
+    this.applyQuality(quality)
+  }
+
   public triggerEvent(_event: RareEventTrigger): void {
-    // Éruption de bulles / geyser
-    this.surgeMultiplier = 2.4
+    this.surgeMultiplier = 2.2
   }
 
   public triggerIntro(_introType: string, _progress: number): void {
-    this.surgeMultiplier = 1.8
+    this.surgeMultiplier = 1.7
   }
 
   public dispose(): void {
     if (this.mesh) {
       this.scene.remove(this.mesh)
       if (this.mesh.geometry) this.mesh.geometry.dispose()
-      if (this.mesh.material) {
-        if (Array.isArray(this.mesh.material)) {
-          this.mesh.material.forEach((m) => m.dispose())
-        } else {
-          this.mesh.material.dispose()
-        }
+      if (this.material) {
+        this.material.dispose()
+        this.material = null
       }
       this.mesh = null
     }
