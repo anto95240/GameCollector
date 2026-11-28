@@ -2,11 +2,13 @@
  * src/theme-engine/bricks/overlay/ChromaticAberrationBrick.ts
  *
  * Brique de style et d'overlay : Aberration Chromatique & Dispersion Spectrale (Couche 5 : Overlay).
- * Rendu cinématographique de diffraction optique de lentille anamorphique et prisme RVB,
- * avec séparation directionnelle des canaux rouge/cyan et violet/vert vers les bords du cadre,
- * préservation absolue du centre optique (loi radiale r^2 pour lisibilité WCAG UI garantie),
- * réactivité directionnelle au curseur souris, micro-ondulation spectrale par Simplex 2D,
- * et adaptation stricte aux 3 paliers de qualité (HIGH, MEDIUM, LOW).
+ * Simulation optique réelle d'objectif grand-angle / anamorphique via FramebufferTexture :
+ * - Dispersion latérale radiale réelle des 3 canaux (Rouge, Vert, Bleu) croissant du centre
+ *   optique (strictement nul pour préserver 100 % la lisibilité UI) vers les bords et coins
+ * - Échantillonnage spectral multi-taps (HIGH) pour des franges continues sans dédoublement dur
+ * - Léger flou optique progressif des bords (coma / aberration sphérique périphérique)
+ * - Décentrement du centre optique réactif à la souris et micro-modulation Simplex organique
+ * - Palier LOW sans copie FBO (frange radiale légère) pour préserver les FPS mobiles.
  */
 
 import * as THREE from 'three'
@@ -19,22 +21,24 @@ import { BrickRegistry } from '../registry'
  * Paramètres typés et documentés pour la brique Aberration Chromatique.
  */
 export interface ChromaticAberrationProps {
-  /** Teinte dominante de la frange spectrale (défaut cyan électrique '#00f0ff'). */
+  /** Teinte subtile d'accentuation de frange prismatique (défaut cyan optique '#00f0ff'). */
   aberrationColor?: string
-  /** Densité et compression des franges spectrales (0.3 à 2.5, défaut 1.0). */
+  /** Densité de la micro-modulation spectrale Simplex (0.3 à 2.5, défaut 1.0). */
   density?: number
-  /** Vitesse de dérive et d'ondulation prismatique (0.0 à 2.0, défaut 0.3). */
+  /** Vitesse de respiration / dérive prismatique douce (0.0 à 2.0, défaut 0.3). */
   speed?: number
-  /** Profondeur et sensibilité directionnelle à la souris (0.0 à 1.0, défaut 0.4). */
+  /** Profondeur et sensibilité du centre optique à la souris (0.0 à 1.0, défaut 0.4). */
   depth?: number
-  /** Intensité et éclat de la séparation des canaux RVB (0.1 à 1.5, défaut 0.6). */
+  /** Intensité globale de la dispersion chromatique et de son éclat (0.1 à 1.5, défaut 0.6). */
   intensity?: number
   /** Asymétrie spectrale et perturbation organique Simplex (0.0 à 1.0, défaut 0.3). */
   randomness?: number
-  /** Écartement spectral maximal de dispersion aux bordures (0.005 à 0.08, défaut 0.025). */
+  /** Écartement spectral maximal de dispersion aux bordures en UV (0.005 à 0.08, défaut 0.025). */
   spread?: number
-  /** Facteur d'atténuation au centre pour lisibilité du contenu (0.5 à 3.0, défaut 1.6). */
+  /** Exposant d'atténuation au centre pour préserver la netteté UI (0.5 à 3.0, défaut 1.6). */
   radialFalloff?: number
+  /** Intensité du léger flou optique sur les bords et coins (0.0 à 1.0, défaut 0.35). */
+  edgeBlur?: number
 }
 
 export class ChromaticAberrationInstance implements IBrickInstance {
@@ -43,14 +47,18 @@ export class ChromaticAberrationInstance implements IBrickInstance {
 
   private mesh: THREE.Mesh | null = null
   private material: THREE.ShaderMaterial | null = null
+  private frameTex: THREE.FramebufferTexture | null = null
+  private dbSize = new THREE.Vector2()
   private scene: THREE.Scene
   private props: ChromaticAberrationProps
   private aberrationColorVec: THREE.Color
+  private currentQuality: QualityTier
 
   constructor(id: string, props: ChromaticAberrationProps = {}, context: BrickContext) {
     this.id = id
     this.props = { ...props }
     this.scene = context.scene
+    this.currentQuality = context.quality
 
     this.aberrationColorVec = new THREE.Color(props.aberrationColor ?? '#00f0ff')
 
@@ -61,6 +69,7 @@ export class ChromaticAberrationInstance implements IBrickInstance {
     const randomness = props.randomness ?? 0.3
     const spread = props.spread ?? 0.025
     const radialFalloff = props.radialFalloff ?? 1.6
+    const edgeBlur = props.edgeBlur ?? 0.35
 
     const geometry = new THREE.PlaneGeometry(2, 2)
 
@@ -79,6 +88,9 @@ export class ChromaticAberrationInstance implements IBrickInstance {
         uRandomness: { value: randomness },
         uSpread: { value: spread },
         uRadialFalloff: { value: radialFalloff },
+        uEdgeBlur: { value: edgeBlur },
+        uScreenTex: { value: null },
+        uHasScreenTex: { value: false },
         uQualityLevel: {
           value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
         },
@@ -105,88 +117,168 @@ export class ChromaticAberrationInstance implements IBrickInstance {
         uniform float uRandomness;
         uniform float uSpread;
         uniform float uRadialFalloff;
+        uniform float uEdgeBlur;
+        uniform sampler2D uScreenTex;
+        uniform bool uHasScreenTex;
         uniform int uQualityLevel;
         varying vec2 vUv;
 
         ${GLSL_NOISE_2D}
 
+        vec3 unpremultiply(vec4 s) {
+          return s.a > 0.002 ? s.rgb / s.a : vec3(0.0);
+        }
+
         void main() {
           vec2 uv = vUv;
-          float aspect = uResolution.x / max(1.0, uResolution.y);
+          vec2 res = max(uResolution, vec2(1.0));
+          float aspect = res.x / res.y;
 
-          // Centre optique influencé par la souris
-          vec2 center = vec2(0.5) + uMouse * (uDepth * 0.12);
-          vec2 dir = uv - center;
-          vec2 aspectDir = dir * vec2(min(aspect, 1.4), 1.0);
-          float dist = length(aspectDir);
+          // Centre optique influencé par la souris (légère déflexion de lentille)
+          vec2 center = vec2(0.5) + uMouse * (uDepth * 0.10);
+          vec2 delta = uv - center;
+          vec2 aspectDelta = delta * vec2(aspect, 1.0);
+          float cornerDist = length(vec2(aspect * 0.5, 0.5));
+          float normDist = length(aspectDelta) / max(0.001, cornerDist);
 
-          // Atténuation centrale : zéro effet au centre pour 100% de lisibilité du texte UI
-          // Montée très progressive vers les bords extrêmes du cadre
-          float edgeFactor = pow(smoothstep(0.45, 1.05, dist), uRadialFalloff);
+          // Croissance radiale progressive : zéro au centre optique, montée continue vers les bords
+          float falloffExp = clamp(uRadialFalloff, 0.5, 3.0);
+          float edgeFactor = pow(smoothstep(0.16, 1.02, normDist), falloffExp);
 
-          if (edgeFactor <= 0.002) {
-            discard;
+          if (uHasScreenTex && uQualityLevel >= 1) {
+            vec4 centerSample = texture2D(uScreenTex, uv);
+            if (edgeFactor <= 0.002) {
+              gl_FragColor = centerSample;
+              return;
+            }
+
+            // Direction radiale normalisée depuis le centre optique
+            float rawLen = length(delta);
+            vec2 radDir = rawLen > 0.0001 ? delta / rawLen : vec2(0.0);
+            vec2 tangDir = vec2(-radDir.y, radDir.x);
+
+            // Modulation optique organique subtile (imperfection de lentille + respiration)
+            float modFactor = 1.0;
+            if (uQualityLevel >= 2 && uRandomness > 0.005) {
+              vec2 noiseCoord = uv * (3.2 * uDensity) + vec2(sin(uTime * uSpeed * 0.45), cos(uTime * uSpeed * 0.38));
+              modFactor += snoise(noiseCoord) * (uRandomness * 0.25);
+            }
+
+            // Déplacement spectral radial croissant vers les bords (réglable via spread & intensity)
+            float dispMag = edgeFactor * clamp(uSpread, 0.001, 0.08) * clamp(uIntensity, 0.0, 1.5) * 0.85 * modFactor;
+            vec2 radShift = radDir * dispMag;
+
+            // Légère dérive de flou optique périphérique (coma radiale/tangentielle)
+            float blurRadius = edgeFactor * clamp(uEdgeBlur, 0.0, 1.0) * clamp(uIntensity, 0.2, 1.5);
+            vec2 texelBlur = (1.0 / res) * (blurRadius * (uQualityLevel >= 2 ? 3.8 : 2.2));
+
+            vec3 outCol;
+            if (uQualityLevel >= 2) {
+              // === PALIER HIGH : Dispersion spectrale 3 canaux multi-échantillons + flou doux des bords ===
+              // Chaque canal R, G, B est réfracté à une échelle radiale différente (+s, 0, -s)
+              // avec un léger étalement spectral le long du rayon + flou tangentiel optique.
+              vec2 uvR1 = clamp(uv + radShift * 1.05, vec2(0.001), vec2(0.999));
+              vec2 uvR2 = clamp(uv + radShift * 0.65 + tangDir * texelBlur.x, vec2(0.001), vec2(0.999));
+              vec2 uvR3 = clamp(uv + radShift * 0.65 - tangDir * texelBlur.x, vec2(0.001), vec2(0.999));
+
+              vec2 uvG1 = clamp(uv + radShift * 0.08, vec2(0.001), vec2(0.999));
+              vec2 uvG2 = clamp(uv - radShift * 0.08 + tangDir * texelBlur.y, vec2(0.001), vec2(0.999));
+              vec2 uvG3 = clamp(uv - radShift * 0.08 - tangDir * texelBlur.y, vec2(0.001), vec2(0.999));
+
+              vec2 uvB1 = clamp(uv - radShift * 1.05, vec2(0.001), vec2(0.999));
+              vec2 uvB2 = clamp(uv - radShift * 0.65 + tangDir * texelBlur.x, vec2(0.001), vec2(0.999));
+              vec2 uvB3 = clamp(uv - radShift * 0.65 - tangDir * texelBlur.x, vec2(0.001), vec2(0.999));
+
+              float rVal = (
+                unpremultiply(texture2D(uScreenTex, uvR1)).r * 0.50 +
+                unpremultiply(texture2D(uScreenTex, uvR2)).r * 0.25 +
+                unpremultiply(texture2D(uScreenTex, uvR3)).r * 0.25
+              );
+              float gVal = (
+                unpremultiply(texture2D(uScreenTex, uvG1)).g * 0.50 +
+                unpremultiply(texture2D(uScreenTex, uvG2)).g * 0.25 +
+                unpremultiply(texture2D(uScreenTex, uvG3)).g * 0.25
+              );
+              float bVal = (
+                unpremultiply(texture2D(uScreenTex, uvB1)).b * 0.50 +
+                unpremultiply(texture2D(uScreenTex, uvB2)).b * 0.25 +
+                unpremultiply(texture2D(uScreenTex, uvB3)).b * 0.25
+              );
+
+              outCol = vec3(rVal, gVal, bVal);
+
+              // Subtil halo prismatique sur les forts contrastes en bordure extrême
+              float edgeDiff = abs(rVal - bVal);
+              if (uUseCustomColor) {
+                outCol += uAberrationColor * edgeDiff * edgeFactor * 0.14 * uIntensity;
+              }
+            } else {
+              // === PALIER MEDIUM : Séparation radiale 3 canaux + léger flou de bord ===
+              vec2 uvR = clamp(uv + radShift + tangDir * texelBlur.x * 0.5, vec2(0.001), vec2(0.999));
+              vec2 uvB = clamp(uv - radShift - tangDir * texelBlur.x * 0.5, vec2(0.001), vec2(0.999));
+              vec2 uvG2 = clamp(uv + radDir * texelBlur.y, vec2(0.001), vec2(0.999));
+
+              float rVal = unpremultiply(texture2D(uScreenTex, uvR)).r;
+              float gVal = mix(unpremultiply(centerSample).g, unpremultiply(texture2D(uScreenTex, uvG2)).g, 0.35);
+              float bVal = unpremultiply(texture2D(uScreenTex, uvB)).b;
+
+              outCol = vec3(rVal, gVal, bVal);
+            }
+
+            float outAlpha = centerSample.a;
+            gl_FragColor = vec4(clamp(outCol, 0.0, 1.0) * outAlpha, outAlpha);
+            return;
           }
 
-          float angle = atan(dir.y, dir.x);
-
-          vec3 finalColor = vec3(0.0);
-          float alpha = 0.0;
-
-          if (uQualityLevel >= 2) {
-            // === PALIER HIGH : Dispersion spectrale 3 bandes + micro-ondulation Simplex fine ===
-            vec2 noiseCoord = uv * (4.0 * uDensity) + vec2(sin(uTime * uSpeed * 0.6), cos(uTime * uSpeed * 0.5));
-            float prismNoise = snoise(noiseCoord) * (uRandomness * 0.035);
-
-            float effDist = dist + prismNoise;
-            float shift = uSpread * 1.5;
-
-            // Franges spectrales RVB progressives
-            float redBand = smoothstep(0.55, 1.05, effDist + shift);
-            float greenBand = smoothstep(0.60, 1.10, effDist);
-            float blueBand = smoothstep(0.65, 1.15, effDist - shift);
-
-            vec3 spectralRGB = vec3(redBand * 0.9, greenBand * 0.5 + blueBand * 0.2, blueBand * 1.1);
-
-            vec3 customTone = uUseCustomColor ? uAberrationColor : vec3(0.0, 0.9, 1.0);
-            vec3 complementaryTone = vec3(1.0, 0.2, 0.5);
-            float angleMod = sin(angle * 2.0 + uTime * uSpeed) * 0.5 + 0.5;
-
-            finalColor = mix(spectralRGB, mix(customTone, complementaryTone, angleMod), 0.3);
-            alpha = edgeFactor * uIntensity * 0.45;
-
-          } else if (uQualityLevel >= 1) {
-            // === PALIER MEDIUM : Franges bicolores cyan/magenta radiale directes ===
-            float shift = uSpread * 1.2;
-            float rBand = smoothstep(0.60, 1.10, dist + shift);
-            float bBand = smoothstep(0.65, 1.15, dist - shift);
-
-            vec3 fringeColor = vec3(rBand * 0.8, 0.1, bBand * 0.9);
-            finalColor = fringeColor;
-            alpha = edgeFactor * uIntensity * 0.35;
-
-          } else {
-            // === PALIER LOW : Frange périphérique simple sans trigonométrie ===
-            float hDist = abs(uv.x - 0.5) * 2.0;
-            float lowEdge = pow(smoothstep(0.5, 1.0, hDist), uRadialFalloff);
-            finalColor = (uUseCustomColor ? uAberrationColor : vec3(0.0, 0.8, 1.0)) * lowEdge;
-            alpha = lowEdge * uIntensity * 0.3;
-          }
-
-          if (alpha <= 0.002) discard;
-
-          gl_FragColor = vec4(finalColor * alpha, 1.0);
+          // === PALIER LOW : Frange spectrale radiale directe sans copie FBO ===
+          if (edgeFactor <= 0.004) discard;
+          vec3 baseFringe = uUseCustomColor ? uAberrationColor : vec3(0.0, 0.85, 1.0);
+          vec3 dualFringe = mix(baseFringe, vec3(1.0, 0.18, 0.45), step(0.0, delta.x * delta.y) * 0.35);
+          float lowAlpha = clamp(edgeFactor * uIntensity * 0.24, 0.0, 0.55);
+          gl_FragColor = vec4(dualFringe * lowAlpha, lowAlpha);
         }
       `,
       transparent: true,
       depthWrite: false,
       depthTest: false,
-      blending: THREE.AdditiveBlending,
+      blending: THREE.NormalBlending,
     })
 
     this.mesh = new THREE.Mesh(geometry, this.material)
     this.mesh.frustumCulled = false
     this.mesh.renderOrder = 98 // Couche 5 (Overlay)
+
+    this.mesh.onBeforeRender = (renderer) => {
+      if (!this.material) return
+      if (this.currentQuality === 'LOW') {
+        this.material.uniforms.uHasScreenTex.value = false
+        this.material.blending = THREE.NormalBlending
+        return
+      }
+
+      renderer.getDrawingBufferSize(this.dbSize)
+      const w = Math.floor(this.dbSize.x)
+      const h = Math.floor(this.dbSize.y)
+      if (w <= 0 || h <= 0) return
+
+      if (!this.frameTex || this.frameTex.image.width !== w || this.frameTex.image.height !== h) {
+        if (this.frameTex) this.frameTex.dispose()
+        this.frameTex = new THREE.FramebufferTexture(w, h)
+        this.frameTex.magFilter = THREE.LinearFilter
+        this.frameTex.minFilter = THREE.LinearFilter
+        this.frameTex.wrapS = THREE.ClampToEdgeWrapping
+        this.frameTex.wrapT = THREE.ClampToEdgeWrapping
+      }
+
+      renderer.copyFramebufferToTexture(this.frameTex)
+      this.material.uniforms.uScreenTex.value = this.frameTex
+      this.material.uniforms.uHasScreenTex.value = true
+      this.material.blending = THREE.CustomBlending
+      this.material.blendSrc = THREE.OneFactor
+      this.material.blendDst = THREE.ZeroFactor
+      this.material.blendEquation = THREE.AddEquation
+    }
+
     this.scene.add(this.mesh)
   }
 
@@ -212,15 +304,31 @@ export class ChromaticAberrationInstance implements IBrickInstance {
     if (newProps.spread !== undefined) this.material.uniforms.uSpread.value = newProps.spread
     if (newProps.radialFalloff !== undefined)
       this.material.uniforms.uRadialFalloff.value = newProps.radialFalloff
+    if (newProps.edgeBlur !== undefined) this.material.uniforms.uEdgeBlur.value = newProps.edgeBlur
   }
 
   public onQualityChange(quality: QualityTier): void {
+    this.currentQuality = quality
     if (!this.material) return
     const tierVal = quality === 'HIGH' ? 2 : quality === 'MEDIUM' ? 1 : 0
     this.material.uniforms.uQualityLevel.value = tierVal
+
+    if (quality === 'LOW') {
+      this.material.uniforms.uHasScreenTex.value = false
+      this.material.uniforms.uScreenTex.value = null
+      this.material.blending = THREE.NormalBlending
+      if (this.frameTex) {
+        this.frameTex.dispose()
+        this.frameTex = null
+      }
+    }
   }
 
   public dispose(): void {
+    if (this.frameTex) {
+      this.frameTex.dispose()
+      this.frameTex = null
+    }
     if (this.mesh) {
       this.scene.remove(this.mesh)
       if (this.mesh.geometry) this.mesh.geometry.dispose()
