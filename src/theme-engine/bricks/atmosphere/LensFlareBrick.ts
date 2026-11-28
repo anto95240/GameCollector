@@ -38,6 +38,12 @@ export interface LensFlareProps {
   sourceY?: number
   /** Longueur de l'éclat anamorphique horizontal (0.2 à 2.5, défaut 1.2). */
   streakLength?: number
+  /** Intensité de la dispersion chromatique RVB sur les fantômes et l'anneau (0.0 à 1.5, défaut 0.65). */
+  chromaticDispersion?: number
+  /** Facteur d'anamorphose des reflets fantômes (0.25 à 1.0, défaut 0.65 ; < 1.0 = bokeh ovale cinéma). */
+  anamorphicRatio?: number
+  /** Nombre de lamelles du diaphragme pour le bokeh polygonal et les aigrettes (5 à 8, défaut 6). */
+  apertureBlades?: number
 }
 
 export class LensFlareInstance implements IBrickInstance {
@@ -67,6 +73,9 @@ export class LensFlareInstance implements IBrickInstance {
     const sourceX = props.sourceX ?? 0.4
     const sourceY = props.sourceY ?? 0.5
     const streakLength = props.streakLength ?? 1.2
+    const chromaticDispersion = props.chromaticDispersion ?? 0.65
+    const anamorphicRatio = props.anamorphicRatio ?? 0.65
+    const apertureBlades = Math.min(8, Math.max(5, Math.round(props.apertureBlades ?? 6)))
 
     const geometry = new THREE.PlaneGeometry(2, 2)
 
@@ -92,6 +101,9 @@ export class LensFlareInstance implements IBrickInstance {
         uSourceX: { value: sourceX },
         uSourceY: { value: sourceY },
         uStreakLength: { value: streakLength },
+        uChromaticDispersion: { value: chromaticDispersion },
+        uAnamorphicRatio: { value: anamorphicRatio },
+        uApertureBlades: { value: apertureBlades },
         uQualityLevel: {
           value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
         },
@@ -122,16 +134,65 @@ export class LensFlareInstance implements IBrickInstance {
         uniform float uSourceX;
         uniform float uSourceY;
         uniform float uStreakLength;
+        uniform float uChromaticDispersion;
+        uniform float uAnamorphicRatio;
+        uniform float uApertureBlades;
         uniform int uQualityLevel;
         varying vec2 vUv;
 
         ${GLSL_NOISE_2D}
         ${GLSL_HASH}
 
-        // Calcule un disque fantôme optique (ghost flare)
-        float ghostArtifact(vec2 p, vec2 center, float radius, float edge) {
-          float d = length(p - center);
-          return smoothstep(radius, radius * edge, d);
+        // SDF d'un polygone régulier à N lamelles d'ouverture (bokeh hexagonal / diaphragme)
+        float polygonDist(vec2 q, float r, float blades, float rot) {
+          float ca = cos(rot);
+          float sa = sin(rot);
+          q = vec2(ca * q.x - sa * q.y, sa * q.x + ca * q.y);
+          float a = atan(q.y, q.x) + 3.14159265;
+          float sector = 6.28318530 / blades;
+          float d = cos(floor(0.5 + a / sector) * sector - a) * length(q);
+          return d - r;
+        }
+
+        // Profil d'un bokeh d'ouverture avec bords doux et anneau caustique optionnel
+        float irisBokehScalar(vec2 q, float radius, float blades, float squeeze, float ringMix, float rot) {
+          q.x /= max(0.28, squeeze);
+          float d = polygonDist(q, radius, blades, rot);
+          float soft = max(0.004, radius * 0.22);
+          float fill = 1.0 - smoothstep(-soft, soft, d);
+          float rim = exp(-abs(d) / max(0.003, radius * 0.14)) * 0.78;
+          return mix(fill * 0.72 + rim * 0.34, rim * 1.15 + fill * 0.14, ringMix);
+        }
+
+        // Reflet fantôme aligné sur l'axe optique avec dispersion chromatique RVB
+        vec3 evalGhostRGB(
+          vec2 p,
+          vec2 sourcePos,
+          vec2 opticalAxis,
+          vec2 axisDir,
+          float tAxis,
+          float radius,
+          float blades,
+          float squeeze,
+          float ringMix,
+          float disp,
+          float rot
+        ) {
+          vec2 center = sourcePos + opticalAxis * tAxis;
+          // Rejet rapide hors du disque englobant
+          float maxR = radius * (1.45 / max(0.28, squeeze)) + 0.04;
+          if (length(p - center) > maxR) return vec3(0.0);
+
+          if (disp <= 0.01) {
+            float v = irisBokehScalar(p - center, radius, blades, squeeze, ringMix, rot);
+            return vec3(v);
+          }
+
+          vec2 shift = axisDir * (disp * (0.007 + 0.013 * abs(tAxis - 1.0)));
+          float rVal = irisBokehScalar(p - (center + shift), radius * (1.0 + disp * 0.04), blades, squeeze, ringMix, rot);
+          float gVal = irisBokehScalar(p - center, radius, blades, squeeze, ringMix, rot);
+          float bVal = irisBokehScalar(p - (center - shift), radius * (1.0 - disp * 0.04), blades, squeeze, ringMix, rot);
+          return vec3(rVal, gVal, bVal);
         }
 
         void main() {
@@ -141,89 +202,147 @@ export class LensFlareInstance implements IBrickInstance {
 
           float t = uTime * uSpeed;
 
-          // Position de la source lumineuse avec parallaxe dynamique à la souris
+          // Position de la source lumineuse avec parallaxe dynamique souris et scroll
           vec2 sourcePos = vec2(uSourceX * aspect * 0.5, uSourceY * 0.5);
-          vec2 mouseOffset = uMouse * (uDepth * 0.25);
-          sourcePos += mouseOffset;
+          sourcePos += uMouse * (uDepth * 0.25);
+          sourcePos.y -= uScroll * (uDepth * 0.10);
 
-          // Vecteur vers la source et axe optique passant par le centre optique (0, 0)
+          // Atténuation et réponse optique selon la position de la source à l'écran
+          float halfW = max(0.1, aspect * 0.5);
+          vec2 normSource = vec2(sourcePos.x / halfW, sourcePos.y / 0.5);
+          float ecc = length(normSource);
+
+          // Visibilité directe (chute douce quand la source sort du champ de la lentille)
+          float directVis = 1.0 - smoothstep(0.92, 1.58, ecc);
+          // Réflexions internes hors axe : plus faibles au centre exact, amplifiées vers les bords avant coupure
+          float offAxisGain = (0.48 + 0.52 * smoothstep(0.0, 0.35, ecc))
+            * (1.0 + 0.32 * smoothstep(0.25, 0.88, ecc))
+            * (1.0 - smoothstep(1.12, 1.78, ecc));
+          float streakGain = (0.85 + 0.28 * smoothstep(0.15, 0.85, ecc))
+            * (1.0 - smoothstep(1.02, 1.65, ecc));
+
           vec2 toSource = p - sourcePos;
           float distToSource = length(toSource);
+          float scale = max(0.25, uDensity);
 
-          // 1. Cœur d'éblouissement central (Sunburst bloom)
-          float coreBloom = exp(-distToSource * 7.0 / max(0.1, uDensity)) * 1.8;
-          float wideBloom = exp(-distToSource * 2.2 / max(0.1, uDensity)) * 0.5;
-          float bloom = coreBloom + wideBloom;
-
-          // 2. Éclat anamorphique horizontal (horizontal streak cinématographique)
-          float dY = abs(toSource.y);
-          float dX = abs(toSource.x);
-          float streakThickness = 0.015 * uDensity;
-          float streakH = exp(-dY / max(0.001, streakThickness));
-          float streakFalloff = exp(-dX * 1.5 / max(0.1, uStreakLength));
-          float anamorphicStreak = streakH * streakFalloff * 1.6;
-
-          // 3. Aigrettes de diffraction (Starburst 6 branches avec lente rotation optique)
-          float starburst = 0.0;
-          if (uQualityLevel >= 1) {
-            float angle = atan(toSource.y, toSource.x) + t * 0.04;
-            // 6 branches fines avec déphasage
-            float spike = pow(abs(cos(angle * 3.0 + 0.2)), 28.0);
-            float spikeCross = pow(abs(sin(angle * 3.0 + 0.2)), 28.0) * 0.5;
-            float shimmer = 1.0 + snoise(vec2(angle * 4.0, t * 1.5)) * (uRandomness * 0.3);
-            starburst = (spike + spikeCross) * exp(-distToSource * 3.5 / max(0.1, uDensity)) * shimmer * 0.85;
-          }
-
-          // 4. Anneau de diffraction spectral (Diffraction halo ring)
-          float ring = 0.0;
-          if (uQualityLevel >= 1) {
-            float ringRadius = 0.38 * uDensity;
-            float ringDist = abs(distToSource - ringRadius);
-            ring = exp(-ringDist * 22.0) * 0.45;
-          }
-
-          // 5. Fantômes optiques sur l'axe optique (Ghost artifacts)
-          float ghosts = 0.0;
-          vec2 opticalAxis = -sourcePos; // Vecteur de la source vers le centre opposé
-
-          if (uQualityLevel >= 2) {
-            // HIGH : 4 fantômes étagés
-            vec2 g1 = sourcePos + opticalAxis * 0.4;
-            vec2 g2 = sourcePos + opticalAxis * 0.75;
-            vec2 g3 = sourcePos + opticalAxis * 1.3;
-            vec2 g4 = sourcePos + opticalAxis * 1.75;
-
-            ghosts += ghostArtifact(p, g1, 0.12 * uDensity, 0.7) * 0.45;
-            ghosts += ghostArtifact(p, g2, 0.22 * uDensity, 0.85) * 0.35;
-            ghosts += ghostArtifact(p, g3, 0.07 * uDensity, 0.4) * 0.55;
-            ghosts += ghostArtifact(p, g4, 0.32 * uDensity, 0.9) * 0.25;
-          } else if (uQualityLevel >= 1) {
-            // MEDIUM : 2 fantômes
-            vec2 g1 = sourcePos + opticalAxis * 0.55;
-            vec2 g2 = sourcePos + opticalAxis * 1.2;
-            ghosts += ghostArtifact(p, g1, 0.15 * uDensity, 0.75) * 0.4;
-            ghosts += ghostArtifact(p, g2, 0.25 * uDensity, 0.85) * 0.3;
-          }
-
-          // Total de l'intensité optique
-          float totalFlare = (bloom + anamorphicStreak + starburst + ring + ghosts) * uIntensity;
-
-          if (totalFlare <= 0.005) {
-            discard;
-          }
+          // Axe optique passant par le centre de l'objectif (0, 0)
+          vec2 opticalAxis = -sourcePos;
+          float axisLen = length(opticalAxis);
+          vec2 axisDir = axisLen > 0.0001 ? (opticalAxis / axisLen) : vec2(1.0, 0.0);
 
           vec3 baseFlare = uUseCustomColors ? uFlareColor : uPalettePrimary;
           vec3 streakTint = uUseCustomColors ? uAccentColor : uPaletteAccent;
 
-          // Composition des couleurs cinéma : le trait horizontal et les fantômes prennent l'accent bleu/cyan
-          vec3 finalColor = baseFlare * (bloom + starburst);
-          finalColor += streakTint * (anamorphicStreak * 1.4 + ring * 1.1 + ghosts * 1.2);
+          // 1. Cœur spéculaire & bloom atmosphérique
+          float coreBloom = exp(-distToSource * 7.8 / scale) * 1.35;
+          float wideBloom = exp(-distToSource * 2.3 / scale) * 0.42;
+          float superCore = exp(-distToSource * 24.0 / sqrt(scale)) * 1.65;
+          float bloom = (coreBloom + wideBloom) * directVis;
 
-          // Cœur chaud étincelant blanc
-          float superCore = exp(-distToSource * 22.0) * 1.5;
-          finalColor += vec3(1.0, 0.98, 0.95) * superCore * uIntensity;
+          // 2. Traînée anamorphique horizontale multi-échelle
+          float dY = abs(toSource.y);
+          float dX = abs(toSource.x);
+          float streakLen = max(0.15, uStreakLength);
+          float streakCore = exp(-dY / max(0.0012, 0.0042 * scale)) * exp(-dX * 1.15 / streakLen);
+          float streakGlow = exp(-dY / max(0.003, 0.024 * scale)) * exp(-dX * 0.72 / streakLen) * 0.55;
 
-          gl_FragColor = vec4(finalColor, clamp(totalFlare * 0.85, 0.0, 1.0));
+          vec3 streakColor = streakTint * (streakCore * 1.45 + streakGlow);
+          if (uQualityLevel >= 1) {
+            // Légère dispersion chromatique verticale sur les lèvres de la traînée anamorphique
+            float dispY = 0.0035 * uChromaticDispersion * scale;
+            float sR = exp(-abs(toSource.y - dispY) / max(0.002, 0.011 * scale)) * exp(-dX * 0.95 / streakLen);
+            float sB = exp(-abs(toSource.y + dispY) / max(0.002, 0.011 * scale)) * exp(-dX * 0.95 / streakLen);
+            streakColor += vec3(sR * 0.35, 0.0, sB * 0.45) * streakTint * 0.9;
+          }
+          if (uQualityLevel >= 2 && uRandomness > 0.01) {
+            // Micro-perles optiques d'interférence horizontale le long de la traînée
+            float beading = 1.0 + snoise(vec2(toSource.x * 16.0, t * 0.35)) * (0.22 * uRandomness);
+            streakColor *= max(0.55, beading);
+          }
+          streakColor *= streakGain;
+
+          vec3 finalColor = baseFlare * bloom
+            + vec3(1.0, 0.98, 0.94) * (superCore * directVis)
+            + streakColor;
+
+          // 3. Aigrettes de diffraction du diaphragme (Starburst à N lamelles, sans rotation mécanique)
+          if (uQualityLevel >= 1 && directVis > 0.005) {
+            float blades = clamp(uApertureBlades, 5.0, 8.0);
+            float freq = mod(blades, 2.0) < 0.5 ? blades * 0.5 : blades;
+            float bladeTilt = 0.24 + uMouse.x * uDepth * 0.06;
+            float angle = atan(toSource.y, toSource.x) + bladeTilt;
+            float spike = pow(abs(cos(angle * freq)), 32.0);
+            float shimmer = 1.0;
+            if (uQualityLevel >= 2) {
+              shimmer = 1.0 + snoise(vec2(angle * 3.5, t * 1.4)) * (uRandomness * 0.28);
+            }
+            float starburst = spike * exp(-distToSource * 3.8 / scale) * shimmer * 0.92 * directVis;
+            vec3 spikeTint = mix(baseFlare, vec3(1.0, 0.97, 0.9), 0.35);
+            finalColor += spikeTint * starburst;
+          }
+
+          // 4. Anneau de diffraction spectral avec dispersion chromatique RVB
+          if (uQualityLevel >= 1 && offAxisGain > 0.005) {
+            float ringRadius = 0.36 * scale;
+            float dispR = 0.032 * uChromaticDispersion * ringRadius;
+            float azMod = 1.0;
+            if (uQualityLevel >= 2) {
+              float aRing = atan(toSource.y, toSource.x);
+              azMod = 0.72 + 0.28 * snoise(vec2(cos(aRing) * 2.2, sin(aRing) * 2.2 + t * 0.25));
+            }
+            float ringR = exp(-abs(distToSource - (ringRadius + dispR)) * 26.0);
+            float ringG = exp(-abs(distToSource - ringRadius) * 26.0);
+            float ringB = exp(-abs(distToSource - (ringRadius - dispR)) * 26.0);
+            vec3 spectralRing = vec3(ringR * 1.05, ringG * 0.95, ringB * 1.15) * mix(streakTint, vec3(0.85, 0.92, 1.0), 0.45);
+            finalColor += spectralRing * (0.36 * azMod * offAxisGain);
+          }
+
+          // 5. Reflets fantômes polygonaux (bokeh hexagonal d'ouverture) sur l'axe optique
+          if (uQualityLevel >= 1 && offAxisGain > 0.005) {
+            float blades = clamp(uApertureBlades, 5.0, 8.0);
+            float squeeze = clamp(uAnamorphicRatio, 0.28, 1.0);
+            float disp = clamp(uChromaticDispersion, 0.0, 1.5);
+            float irisRot = 0.24 + uMouse.x * uDepth * 0.05;
+            vec3 ghostAccum = vec3(0.0);
+
+            if (uQualityLevel >= 2) {
+              // HIGH : 6 reflets fantômes variés (iris pleins et anneaux caustiques)
+              ghostAccum += evalGhostRGB(p, sourcePos, opticalAxis, axisDir, 0.34, 0.075 * scale, blades, squeeze, 0.15, disp * 0.7, irisRot)
+                * mix(baseFlare, streakTint, 0.45) * 0.38;
+              ghostAccum += evalGhostRGB(p, sourcePos, opticalAxis, axisDir, 0.62, 0.135 * scale, blades, squeeze, 0.72, disp, irisRot)
+                * streakTint * 0.34;
+              ghostAccum += evalGhostRGB(p, sourcePos, opticalAxis, axisDir, 0.88, 0.048 * scale, blades, squeeze, 0.05, disp * 0.6, irisRot)
+                * mix(baseFlare, vec3(1.0, 0.95, 0.85), 0.35) * 0.52;
+              ghostAccum += evalGhostRGB(p, sourcePos, opticalAxis, axisDir, 1.24, 0.175 * scale, blades, squeeze, 0.85, disp * 1.15, irisRot)
+                * mix(streakTint, vec3(0.55, 0.85, 1.0), 0.35) * 0.28;
+              ghostAccum += evalGhostRGB(p, sourcePos, opticalAxis, axisDir, 1.56, 0.095 * scale, blades, squeeze, 0.35, disp * 0.9, irisRot)
+                * mix(streakTint, baseFlare, 0.3) * 0.36;
+              ghostAccum += evalGhostRGB(p, sourcePos, opticalAxis, axisDir, 1.92, 0.23 * scale, blades, squeeze, 0.90, disp * 1.25, irisRot)
+                * streakTint * 0.22;
+            } else {
+              // MEDIUM : 3 reflets fantômes polygonaux avec dispersion chromatique
+              ghostAccum += evalGhostRGB(p, sourcePos, opticalAxis, axisDir, 0.52, 0.11 * scale, blades, squeeze, 0.35, disp * 0.8, irisRot)
+                * mix(baseFlare, streakTint, 0.6) * 0.36;
+              ghostAccum += evalGhostRGB(p, sourcePos, opticalAxis, axisDir, 1.18, 0.15 * scale, blades, squeeze, 0.75, disp, irisRot)
+                * streakTint * 0.30;
+              ghostAccum += evalGhostRGB(p, sourcePos, opticalAxis, axisDir, 1.68, 0.07 * scale, blades, squeeze, 0.15, disp * 0.7, irisRot)
+                * mix(baseFlare, vec3(1.0, 0.95, 0.85), 0.3) * 0.38;
+            }
+
+            finalColor += ghostAccum * offAxisGain;
+          }
+
+          finalColor *= uIntensity;
+
+          // Compression douce HDR pour préserver les teintes chromatiques sans écrêtage brutal
+          finalColor = finalColor / (1.0 + finalColor * 0.22);
+
+          float maxLum = max(finalColor.r, max(finalColor.g, finalColor.b));
+          if (maxLum <= 0.002) {
+            discard;
+          }
+
+          gl_FragColor = vec4(finalColor, 1.0);
         }
       `,
       transparent: true,
@@ -266,6 +385,15 @@ export class LensFlareInstance implements IBrickInstance {
     if (newProps.sourceY !== undefined) this.material.uniforms.uSourceY.value = newProps.sourceY
     if (newProps.streakLength !== undefined)
       this.material.uniforms.uStreakLength.value = newProps.streakLength
+    if (newProps.chromaticDispersion !== undefined)
+      this.material.uniforms.uChromaticDispersion.value = newProps.chromaticDispersion
+    if (newProps.anamorphicRatio !== undefined)
+      this.material.uniforms.uAnamorphicRatio.value = newProps.anamorphicRatio
+    if (newProps.apertureBlades !== undefined)
+      this.material.uniforms.uApertureBlades.value = Math.min(
+        8,
+        Math.max(5, Math.round(newProps.apertureBlades))
+      )
   }
 
   public onQualityChange(quality: QualityTier): void {

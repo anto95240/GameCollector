@@ -59,6 +59,12 @@ export interface VolumetricSpotlightProps {
   intensity?: number
   /** Irrégularité et turbulence organique (0.0 à 1.0, défaut 0.4). */
   randomness?: number
+  /** Densité des grains de poussière illuminés en suspension dans le faisceau (0.0 à 1.5, défaut 0.65). */
+  dustDensity?: number
+  /** Intensité de la tache d'impact elliptique au sol cohérente avec le cône (0.0 à 1.5, défaut 0.85). */
+  groundSpot?: number
+  /** Hauteur relative du plan d'impact au sol pour les faisceaux descendants (-0.5 à 0.1, défaut -0.34). */
+  groundLevel?: number
 }
 
 const ORIGIN_MODE_MAP: Record<SpotlightOriginMode, number> = {
@@ -104,6 +110,9 @@ export class VolumetricSpotlightInstance implements IBrickInstance {
     const depth = props.depth ?? 0.4
     const intensity = props.intensity ?? 1.0
     const randomness = props.randomness ?? 0.4
+    const dustDensity = props.dustDensity ?? 0.65
+    const groundSpot = props.groundSpot ?? 0.85
+    const groundLevel = props.groundLevel ?? -0.34
 
     const geometry = new THREE.PlaneGeometry(2, 2)
 
@@ -132,6 +141,9 @@ export class VolumetricSpotlightInstance implements IBrickInstance {
         uDepth: { value: depth },
         uIntensity: { value: intensity },
         uRandomness: { value: randomness },
+        uDustDensity: { value: dustDensity },
+        uGroundSpot: { value: groundSpot },
+        uGroundLevel: { value: groundLevel },
         uQualityLevel: {
           value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
         },
@@ -167,65 +179,160 @@ export class VolumetricSpotlightInstance implements IBrickInstance {
         uniform float uDepth;
         uniform float uIntensity;
         uniform float uRandomness;
+        uniform float uDustDensity;
+        uniform float uGroundSpot;
+        uniform float uGroundLevel;
         uniform int uQualityLevel;
         varying vec2 vUv;
 
         ${GLSL_NOISE_2D}
         ${GLSL_HASH}
 
-        // Balayage organique non-linéaire sans boucle perceptible
+        // Balayage lent et fluide avec décélération aux extrêmes (inertie de projecteur)
         float organicSweep(float t, float seed) {
-          float w1 = sin(t * 1.0 + seed * 4.7);
-          float w2 = sin(t * 1.61803 + seed * 9.1) * 0.45;
-          float w3 = sin(t * 0.57735 - seed * 2.3) * 0.35;
-          float n = snoise(vec2(t * 0.22 + seed * 5.0, seed * 3.1)) * (0.5 * uRandomness);
-          return clamp((w1 + w2 + w3) * 0.55 + n, -1.2, 1.2);
+          float w1 = sin(t * 0.72 + seed * 4.7);
+          float w2 = sin(t * 1.1680 + seed * 9.1) * 0.42;
+          float w3 = sin(t * 0.4142 - seed * 2.3) * 0.34;
+          float n = snoise(vec2(t * 0.18 + seed * 5.0, seed * 3.1)) * (0.42 * uRandomness);
+          float raw = (w1 + w2 + w3) * 0.56 + n;
+          return clamp(raw - 0.14 * sin(raw * 1.85), -1.15, 1.15);
         }
 
-        // Évalue l'intensité volumétrique d'un faisceau conique unique
-        float evaluateBeam(vec2 p, vec2 origin, float targetAngle, float coneHalf, float t, float seed) {
-          vec2 delta = p - origin;
-          float dist = length(delta);
-          if (dist < 0.001) return 1.0;
+        // Grains de poussière en suspension strictement confinés dans les cellules (sans coupure de bord)
+        float dustMotes(vec2 coord, float cellScale, float tAir, float seed) {
+          vec2 g = coord * cellScale;
+          vec2 cell = floor(g);
+          vec2 f = fract(g);
+          vec2 rnd = hash22(cell + vec2(seed * 17.3, seed * 9.7));
+          float exists = step(0.40, rnd.x);
+          vec2 drift = vec2(
+            sin(tAir * (0.42 + rnd.y * 0.55) + rnd.x * 6.2831),
+            cos(tAir * (0.34 + rnd.x * 0.48) + rnd.y * 6.2831)
+          ) * 0.16;
+          vec2 pos = 0.28 + 0.44 * rnd + drift;
+          float d = length(f - pos);
+          float r = 0.036 + 0.056 * fract(rnd.x * 13.7);
+          float glint = 0.28 + 0.72 * pow(0.5 + 0.5 * sin(tAir * (1.1 + rnd.y * 2.1) + rnd.x * 21.0), 3.0);
+          return exists * smoothstep(r, r * 0.18, d) * glint;
+        }
 
-          vec2 dir = delta / dist;
+        // Évalue un faisceau conique (x = radiance volumétrique du cône, y = tache d'impact au sol)
+        vec2 evaluateBeam(
+          vec2 p,
+          vec2 origin,
+          float targetAngle,
+          float coneHalf,
+          float sweepT,
+          float airT,
+          float seed
+        ) {
           vec2 axis = vec2(cos(targetAngle), sin(targetAngle));
 
-          // Produit scalaire et écart angulaire par rapport à l'axe du cône
-          float cosDiff = clamp(dot(dir, axis), -1.0, 1.0);
-          float angDiff = acos(cosDiff);
+          // Ouverture physique non-nulle du projecteur (évite la singularité ponctuelle)
+          float aperture = 0.022 + coneHalf * 0.055;
+          float apexDist = aperture / max(0.05, tan(coneHalf));
+          vec2 virtualApex = origin - axis * apexDist;
 
-          // Profil angulaire : coeur lumineux + bordure adoucie
-          float softness = max(0.03, coneHalf * (0.35 + uEdgeSoftness * 1.2));
-          float coneMask = 1.0 - smoothstep(max(0.01, coneHalf - softness), coneHalf + softness * 0.85, angDiff);
-          if (coneMask <= 0.002) return 0.0;
+          vec2 delta = p - virtualApex;
+          float distFromApex = length(delta);
+          float forwardDist = dot(p - origin, axis);
 
-          // Coeur central plus dense
-          float core = exp(-pow(angDiff / max(0.03, coneHalf * 0.52), 2.0)) * 0.65 + 0.35;
+          // Masque devant l'optique
+          float emitterFront = smoothstep(-0.018, 0.045, forwardDist);
+          vec2 dir = delta / max(0.0001, distFromApex);
+          float angDiff = acos(clamp(dot(dir, axis), -1.0, 1.0));
 
-          // Atténuation radiale le long du faisceau (portée généreuse jusqu'en haut du ciel)
-          float reach = 0.72 / max(0.3, uDensity);
-          float distFade = exp(-dist * reach) * smoothstep(0.0, 0.07, dist);
+          // Bords doux qui s'élargissent progressivement avec la profondeur dans la brume
+          float clampedDist = max(0.0, forwardDist);
+          float distSpread = 1.0 + clamp(clampedDist, 0.0, 2.0) * 0.28;
+          float softness = max(0.032, coneHalf * (0.30 + uEdgeSoftness * 1.15) * distSpread);
+          float coneMask = 1.0 - smoothstep(max(0.005, coneHalf - softness * 0.85), coneHalf + softness, angDiff);
 
-          // Diffusion volumétrique interne (brume & micro-poussières éclairées)
-          float volHaze = 1.0;
-          if (uQualityLevel >= 1 && uVolumetricNoise > 0.01) {
-            vec2 flowUv = p * 2.4 + vec2(-t * 0.14 + seed * 3.0, t * 0.09);
-            float n1 = snoise(flowUv) * 0.5 + 0.5;
-            float haze = n1;
-            if (uQualityLevel >= 2) {
-              float n2 = snoise(p * 5.2 + vec2(t * 0.21, -t * 0.16 + seed)) * 0.5 + 0.5;
-              // Poussières subtiles illuminées dans le faisceau
-              float dust = pow(max(0.0, snoise(p * 18.0 + vec2(t * 0.35, -t * 0.25))), 4.0) * 0.55;
-              haze = n1 * 0.65 + n2 * 0.35 + dust;
+          // Profil radial doux sans plateau artificiel
+          float radialNorm = clamp(angDiff / max(0.015, coneHalf), 0.0, 1.5);
+          float coreSharpness = mix(2.4, 1.35, clamp(clampedDist * 0.65, 0.0, 1.0));
+          float core = exp(-radialNorm * radialNorm * coreSharpness) * 0.72
+            + (1.0 - smoothstep(0.0, 1.15, radialNorm)) * 0.28;
+
+          // Dégradé de profondeur : décroissance inverse-carré douce + atténuation atmosphérique
+          float reach = 0.62 / max(0.3, uDensity);
+          float invFalloff = 1.0 / (1.0 + clampedDist * clampedDist * (1.15 / max(0.25, uDensity)));
+          float distFade = exp(-clampedDist * reach * 0.68) * mix(1.0, invFalloff, 0.52) * emitterFront;
+
+          // Intersection géométrique cohérente avec le plan du sol (pour faisceaux descendants)
+          float groundSpotVal = 0.0;
+          float groundClip = 1.0;
+          if (uGroundSpot > 0.01 && axis.y < -0.06) {
+            float sHit = (uGroundLevel - origin.y) / axis.y;
+            if (sHit > 0.04 && sHit < 3.6) {
+              vec2 hitPos = origin + axis * sHit;
+              // Lissage doux sous la surface d'impact pour ne pas traverser le sol
+              groundClip = smoothstep(uGroundLevel - 0.11, uGroundLevel + 0.025, p.y);
+
+              float beamR = aperture + sHit * tan(coneHalf);
+              float rx = beamR / max(0.28, abs(axis.y));
+              float ry = beamR * (0.22 + 0.16 * abs(axis.y));
+              vec2 dG = vec2((p.x - hitPos.x) / max(0.045, rx), (p.y - hitPos.y) / max(0.024, ry));
+              float rG = length(dG);
+
+              float gSoft = 0.22 + uEdgeSoftness * 0.55;
+              float gPool = 1.0 - smoothstep(max(0.15, 0.68 - gSoft * 0.35), 1.12 + gSoft, rG);
+              float gHot = exp(-rG * rG * 2.8) * 0.78;
+              float gReach = exp(-sHit * (0.40 / max(0.3, uDensity)));
+              float gTex = 1.0;
+              if (uQualityLevel >= 2) {
+                gTex = 0.78 + 0.35 * (snoise(vec2(p.x * 7.5, p.y * 18.0)) * 0.5 + 0.5);
+              }
+              groundSpotVal = (gPool * 0.62 + gHot) * gReach * gTex * uGroundSpot;
             }
-            volHaze = mix(1.0, 0.55 + haze * 0.9, uVolumetricNoise);
+          } else if (uGroundSpot > 0.01 && axis.y > 0.10) {
+            // Faisceaux ascendants : halo d'impact doux sur la couche nuageuse haute + reflet à la base
+            float sSky = (0.44 - origin.y) / axis.y;
+            if (sSky > 0.1 && sSky < 2.8) {
+              vec2 skyHit = origin + axis * sSky;
+              float skyR = (aperture + sSky * tan(coneHalf)) * 1.15;
+              vec2 dS = vec2((p.x - skyHit.x) / max(0.08, skyR * 1.35), (p.y - skyHit.y) / max(0.04, skyR * 0.45));
+              float rS = length(dS);
+              groundSpotVal = exp(-rS * rS * 1.8) * 0.24 * uGroundSpot;
+            }
           }
 
-          // Halo d'éblouissement à la source du projecteur
-          float emitterGlow = exp(-dist * 7.5) * 0.9;
+          coneMask *= groundClip;
+          float coneEnergy = coneMask * core * distFade;
 
-          return (coneMask * core * distFade * volHaze + emitterGlow * coneMask);
+          // Diffusion volumétrique et grains de poussière illuminés dans le faisceau
+          float volHaze = 1.0;
+          float dustGlow = 0.0;
+          if (uQualityLevel >= 1 && coneEnergy > 0.002) {
+            if (uVolumetricNoise > 0.01) {
+              vec2 flowUv = p * 2.2 + vec2(-airT * 0.11 + seed * 3.0, airT * 0.07);
+              float n1 = snoise(flowUv) * 0.5 + 0.5;
+              float haze = n1;
+              if (uQualityLevel >= 2) {
+                float n2 = snoise(p * 4.8 + vec2(airT * 0.16, -airT * 0.12 + seed)) * 0.5 + 0.5;
+                haze = n1 * 0.65 + n2 * 0.35;
+              }
+              volHaze = mix(1.0, 0.58 + haze * 0.85, uVolumetricNoise);
+            }
+
+            if (uDustDensity > 0.01) {
+              float d1 = dustMotes(p + vec2(airT * 0.03, -airT * 0.02), 7.5, airT, seed + 1.0);
+              float dSum = d1;
+              if (uQualityLevel >= 2) {
+                float d2 = dustMotes(p + vec2(-airT * 0.045, airT * 0.025), 14.0, airT * 1.15, seed + 4.2);
+                dSum = d1 * 0.65 + d2 * 0.55;
+              }
+              // Poussière strictement révélée à l'intérieur du faisceau éclairé
+              dustGlow = dSum * uDustDensity * coneMask * distFade * 1.45;
+            }
+          }
+
+          // Halo d'éblouissement à la lentille du projecteur
+          float emitterDist = length(p - origin);
+          float emitterGlow = exp(-emitterDist * 8.5) * 0.72 * (0.35 + 0.65 * coneMask);
+
+          float totalCone = coneEnergy * volHaze + dustGlow + emitterGlow;
+          return vec2(totalCone, groundSpotVal);
         }
 
         void main() {
@@ -233,7 +340,8 @@ export class VolumetricSpotlightInstance implements IBrickInstance {
           float aspect = uResolution.x / max(1.0, uResolution.y);
           vec2 p = (uv - 0.5) * vec2(aspect, 1.0);
 
-          float t = uTime * max(0.01, uSpeed) * (0.4 + uSweepSpeed * 2.0);
+          float airTime = uTime * max(0.01, uSpeed);
+          float sweepTime = airTime * (0.14 + uSweepSpeed * 0.85);
           vec2 mouseShift = uMouse * (uDepth * 0.22);
 
           // Vacillement organique optionnel (lampe torche, projecteur ancien)
@@ -247,24 +355,27 @@ export class VolumetricSpotlightInstance implements IBrickInstance {
           vec3 col1 = uUseCustomColor ? uBeamColor : uPaletteAccent;
           vec3 col2 = uUseSecondaryColor ? uSecondaryColor : col1;
           vec3 accumColor = vec3(0.0);
-          float accumAlpha = 0.0;
 
           if (uOriginMode == 5) {
             // === MODE FRONT_SPOT (Projecteur circulaire frontal type 007) ===
-            float sx = organicSweep(t * 0.55, 1.1) * 0.32 * aspect;
-            float sy = organicSweep(t * 0.42, 4.3) * 0.18;
+            float sx = organicSweep(sweepTime * 0.55, 1.1) * 0.32 * aspect;
+            float sy = organicSweep(sweepTime * 0.42, 4.3) * 0.18;
             vec2 spotCenter = vec2(sx, sy) + mouseShift * 1.4;
             float r = length(p - spotCenter);
             float radius = uConeAngle * 1.15;
             float soft = max(0.04, radius * (0.25 + uEdgeSoftness * 0.75));
             float pool = 1.0 - smoothstep(radius - soft, radius + soft, r);
             float haze = 1.0;
+            float dust = 0.0;
             if (uQualityLevel >= 1) {
-              haze = 0.72 + 0.45 * (snoise(p * 3.0 + vec2(t * 0.15, -t * 0.1)) * 0.5 + 0.5);
+              haze = 0.74 + 0.42 * (snoise(p * 2.8 + vec2(airTime * 0.12, -airTime * 0.08)) * 0.5 + 0.5);
+              if (uDustDensity > 0.01) {
+                dust = dustMotes(p, 8.5, airTime, 2.7) * uDustDensity * pool * 0.45;
+              }
             }
-            float val = pool * haze * flickerMod * uIntensity * 0.78;
-            accumColor = col1 * val;
-            accumAlpha = clamp(val * 0.85, 0.0, 0.92);
+            float val = (pool * haze * 0.62 + dust) * flickerMod * uIntensity;
+            vec3 spotHot = mix(col1, vec3(1.0, 0.99, 0.94), clamp(pool * 0.35, 0.0, 0.55));
+            accumColor = spotHot * val;
           } else {
             // === MODES CONIQUES (1 ou 2 faisceaux) ===
             int count = (uQualityLevel == 0 && uBeamCount > 1 && uOriginMode != 4) ? 1 : uBeamCount;
@@ -294,7 +405,7 @@ export class VolumetricSpotlightInstance implements IBrickInstance {
                 origin = vec2(0.58 * aspect, 0.56);
                 baseAngle = -2.35;
               } else if (uOriginMode == 4) {
-                // side : phares jumeaux ou gyrophares latéraux (placés au-dessus des silhouettes basses)
+                // side : phares jumeaux ou gyrophares latéraux
                 if (uUseSecondaryColor && count == 2) {
                   origin = vec2(sideSign * 0.62 * aspect, 0.14 + fi * 0.08);
                   baseAngle = (i == 0) ? 0.18 : (3.14159 - 0.18);
@@ -309,23 +420,23 @@ export class VolumetricSpotlightInstance implements IBrickInstance {
                 baseAngle = atan(target.y - origin.y, target.x - origin.x);
               }
 
-              // Parallaxe souris sur l'origine et légère déflexion angulaire
+              // Parallaxe souris sur l'origine et balayage lent
               origin += mouseShift * (uOriginMode == 6 ? 0.35 : 0.8);
-              float sweepOffset = organicSweep(t, 1.3 + fi * 3.7) * uSweepRange;
+              float sweepOffset = organicSweep(sweepTime, 1.3 + fi * 3.7) * uSweepRange;
               if (uOriginMode == 6) {
-                sweepOffset *= 0.22; // Léger tremblement de main autour de la cible souris
+                sweepOffset *= 0.20;
               } else {
-                sweepOffset += uMouse.x * uDepth * 0.28 * (i == 0 ? 1.0 : -0.7);
+                sweepOffset += uMouse.x * uDepth * 0.26 * (i == 0 ? 1.0 : -0.7);
               }
 
-              float beamVal = evaluateBeam(p, origin, baseAngle + sweepOffset, uConeAngle, t, fi * 2.1);
-              beamVal *= flickerMod * uIntensity;
+              vec2 res = evaluateBeam(p, origin, baseAngle + sweepOffset, uConeAngle, sweepTime, airTime, fi * 2.1);
+              float beamVal = res.x * flickerMod * uIntensity;
+              float groundVal = res.y * flickerMod * uIntensity;
 
               vec3 bCol = (i == 0) ? col1 : col2;
-              // Coeur blanc chaud à forte intensité
-              vec3 hotCol = mix(bCol, vec3(1.0, 0.99, 0.94), clamp(beamVal * 0.42, 0.0, 0.65));
-              accumColor += hotCol * beamVal;
-              accumAlpha += beamVal * 0.68;
+              vec3 hotCol = mix(bCol, vec3(1.0, 0.99, 0.94), clamp(beamVal * 0.38, 0.0, 0.58));
+              vec3 groundCol = mix(bCol, vec3(1.0, 0.98, 0.90), clamp(groundVal * 0.42, 0.0, 0.62));
+              accumColor += hotCol * (beamVal * 0.62) + groundCol * (groundVal * 0.58);
             }
           }
 
@@ -335,15 +446,17 @@ export class VolumetricSpotlightInstance implements IBrickInstance {
             float slats = smoothstep(-0.35, 0.25, slatWave);
             float mask = mix(1.0, 0.18 + 0.82 * slats, uSlatMask);
             accumColor *= mask;
-            accumAlpha *= mask;
           }
 
-          accumAlpha = clamp(accumAlpha, 0.0, 0.88);
-          if (accumAlpha <= 0.004) {
+          // Compression douce HDR pour conserver la douceur des bords en fusion additive
+          accumColor = accumColor / (1.0 + accumColor * 0.25);
+
+          float maxLum = max(accumColor.r, max(accumColor.g, accumColor.b));
+          if (maxLum <= 0.002) {
             discard;
           }
 
-          gl_FragColor = vec4(accumColor, accumAlpha);
+          gl_FragColor = vec4(accumColor, 1.0);
         }
       `,
       transparent: true,
@@ -404,6 +517,12 @@ export class VolumetricSpotlightInstance implements IBrickInstance {
       this.material.uniforms.uIntensity.value = newProps.intensity
     if (newProps.randomness !== undefined)
       this.material.uniforms.uRandomness.value = newProps.randomness
+    if (newProps.dustDensity !== undefined)
+      this.material.uniforms.uDustDensity.value = newProps.dustDensity
+    if (newProps.groundSpot !== undefined)
+      this.material.uniforms.uGroundSpot.value = newProps.groundSpot
+    if (newProps.groundLevel !== undefined)
+      this.material.uniforms.uGroundLevel.value = newProps.groundLevel
   }
 
   public onQualityChange(quality: QualityTier): void {

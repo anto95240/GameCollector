@@ -51,6 +51,12 @@ export interface LaserBeamProps {
   intensity?: number
   /** Irrégularité organique des trajectoires et turbulence (0.0 à 1.0, défaut 0.4). */
   randomness?: number
+  /** Intensité du scintillement du plasma par bruit le long du faisceau (0.0 à 1.5, défaut 0.55). */
+  plasmaFlicker?: number
+  /** Envergure de la lueur additive et du halo coloré autour du cœur blanc (0.3 à 2.0, défaut 1.0). */
+  glowSpread?: number
+  /** Amplitude angulaire du balayage des faisceaux (0.0 à 1.0, défaut 0.35). */
+  sweepRange?: number
 }
 
 const BEAM_MODE_MAP: Record<LaserBeamMode, number> = {
@@ -91,6 +97,9 @@ export class LaserBeamInstance implements IBrickInstance {
     const depth = props.depth ?? 0.35
     const intensity = props.intensity ?? 1.15
     const randomness = props.randomness ?? 0.4
+    const plasmaFlicker = props.plasmaFlicker ?? 0.55
+    const glowSpread = props.glowSpread ?? 1.0
+    const sweepRange = props.sweepRange ?? 0.35
 
     const geometry = new THREE.PlaneGeometry(2, 2)
 
@@ -119,6 +128,9 @@ export class LaserBeamInstance implements IBrickInstance {
         uDepth: { value: depth },
         uIntensity: { value: intensity },
         uRandomness: { value: randomness },
+        uPlasmaFlicker: { value: plasmaFlicker },
+        uGlowSpread: { value: glowSpread },
+        uSweepRange: { value: sweepRange },
         uQualityLevel: {
           value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
         },
@@ -154,20 +166,22 @@ export class LaserBeamInstance implements IBrickInstance {
         uniform float uDepth;
         uniform float uIntensity;
         uniform float uRandomness;
+        uniform float uPlasmaFlicker;
+        uniform float uGlowSpread;
+        uniform float uSweepRange;
         uniform int uQualityLevel;
         varying vec2 vUv;
 
         ${GLSL_NOISE_2D}
         ${GLSL_HASH}
 
-        // Balayage non-linéaire avec pauses subtiles de visée tactique
+        // Balayage non-linéaire avec pauses subtiles de visée
         float tacticalSweep(float t, float seed) {
           float w1 = sin(t * 0.85 + seed * 4.1);
           float w2 = sin(t * 1.38196 + seed * 8.7) * 0.42;
           float w3 = sin(t * 0.5236 - seed * 2.9) * 0.30;
           float n = snoise(vec2(t * 0.28 + seed * 3.7, seed * 1.9)) * (0.45 * uRandomness);
           float raw = (w1 + w2 + w3) * 0.58 + n;
-          // Légère compression aux extrêmes pour simuler le verrouillage d'une cible
           return raw - 0.16 * sin(raw * 2.4);
         }
 
@@ -184,7 +198,7 @@ export class LaserBeamInstance implements IBrickInstance {
           float aspect = uResolution.x / max(1.0, uResolution.y);
           vec2 p = (uv - 0.5) * vec2(aspect, 1.0);
 
-          float t = uTime * max(0.02, uSpeed) * (0.45 + uSweepSpeed * 1.8);
+          float t = uTime * max(0.02, uSpeed) * (0.45 + uSweepSpeed * 1.65);
           vec2 mouseShift = uMouse * (uDepth * 0.22);
           float scrollShift = uScroll * (uDepth * 0.08);
 
@@ -198,9 +212,9 @@ export class LaserBeamInstance implements IBrickInstance {
             activeCount = (uBeamMode == 2) ? 2 : 1;
           }
 
-          float baseWidth = max(0.0025, uBeamWidth * (0.85 + 0.15 * uDensity));
+          float baseWidth = max(0.0022, uBeamWidth * (0.85 + 0.15 * uDensity));
+          float spread = max(0.3, uGlowSpread);
           vec3 accumColor = vec3(0.0);
-          float accumAlpha = 0.0;
 
           for (int i = 0; i < 3; i++) {
             if (i >= activeCount) break;
@@ -208,7 +222,7 @@ export class LaserBeamInstance implements IBrickInstance {
             float centerIdx = fi - 0.5 * float(activeCount - 1);
 
             float sweep = tacticalSweep(t, 1.7 + fi * 3.3);
-            float curAngle = uAngle + sweep * (uBeamMode == 1 ? 0.14 : 0.26) + centerIdx * 0.18;
+            float curAngle = uAngle + sweep * uSweepRange * (uBeamMode == 1 ? 0.45 : 0.95) + centerIdx * 0.22;
             vec2 dir = vec2(cos(curAngle), sin(curAngle));
 
             vec2 origin;
@@ -225,17 +239,15 @@ export class LaserBeamInstance implements IBrickInstance {
               float side = (mod(fi, 2.0) < 0.5) ? -1.0 : 1.0;
               origin = vec2(-0.56 * aspect, side * 0.22 + centerIdx * 0.12) + mouseShift * 0.25;
               target = vec2(0.32 * aspect, -0.05 + scrollShift * 0.4) + mouseShift * 1.25;
-              // Inclinaison globale modulable par uAngle
               vec2 baseSpan = target - origin;
               float angDelta = uAngle * 0.45;
               float ca = cos(angDelta), sa = sin(angDelta);
               target = origin + vec2(baseSpan.x * ca - baseSpan.y * sa, baseSpan.x * sa + baseSpan.y * ca);
             } else {
-              // === TACTICAL : rayon laser net traversant l'écran ===
-              vec2 pivot = vec2(centerIdx * 0.22 * aspect, -0.06 + scrollShift * 0.5) + mouseShift;
+              // === TACTICAL : faisceaux fins en balayage traversant ou frappant une cible ===
+              vec2 pivot = vec2(-0.06 * aspect + centerIdx * 0.20 * aspect, 0.22 + scrollShift * 0.5) + mouseShift;
               origin = pivot - dir * 1.35;
-              // Si impactSparks est actif, le rayon termine dans la scène sur une cible
-              float targetSpan = (uImpactSparks > 0.02) ? (0.48 + 0.14 * sin(t * 0.55 + fi * 2.7)) : 1.35;
+              float targetSpan = (uImpactSparks > 0.02) ? (0.34 + 0.09 * sin(t * 0.55 + fi * 2.7)) : 1.35;
               target = pivot + dir * targetSpan;
             }
 
@@ -243,29 +255,45 @@ export class LaserBeamInstance implements IBrickInstance {
             float dist = segInfo.x;
             float along = segInfo.y;
 
-            // Torsion sinueuse / électrique pour plasma_stream ou wobble > 0
+            vec2 segVec = normalize(target - origin);
+            vec2 perp = vec2(-segVec.y, segVec.x);
+            float signedPerp = dot(p - origin, perp);
+
+            // Torsion organique du flux plasma (ancrée proprement aux deux extrémités)
             float wobbleAmt = (uBeamMode == 2) ? max(0.24, uWobble) : uWobble;
             if (wobbleAmt > 0.01) {
-              vec2 segVec = normalize(target - origin);
-              vec2 perp = vec2(-segVec.y, segVec.x);
-              float signedPerp = dot(p - origin, perp);
-              float pinEnv = smoothstep(0.0, 0.15, along) * (uBeamMode == 2 ? smoothstep(1.0, 0.72, along) : 1.0);
-              float wave = sin(along * 16.0 - uTime * (6.0 + uSpeed * 8.0) + fi * 2.1) * 0.55
-                + sin(along * 29.0 + uTime * 11.3 + fi * 4.4) * 0.35;
+              float pinEnv = smoothstep(0.0, 0.14, along) * smoothstep(1.0, (uBeamMode == 2 ? 0.78 : 0.90), along);
+              float wave = sin(along * 15.0 - uTime * (5.5 + uSpeed * 7.5) + fi * 2.1) * 0.45
+                + sin(along * 27.0 + uTime * 10.7 + fi * 4.4) * 0.28;
               if (uQualityLevel >= 1) {
-                wave += snoise(vec2(along * 5.5 - uTime * (2.2 + uSpeed * 2.5), fi * 3.7 + uTime * 0.6)) * 0.85;
+                wave += snoise(vec2(along * 5.2 - uTime * (2.4 + uSpeed * 2.8), fi * 3.7 + uTime * 0.75)) * 0.95;
               }
-              float offset = wave * wobbleAmt * 0.075 * pinEnv;
+              if (uQualityLevel >= 2) {
+                wave += snoise(vec2(along * 12.5 + uTime * 4.1, fi * 7.1 - uTime * 1.6)) * 0.42;
+              }
+              float offset = wave * wobbleAmt * 0.068 * pinEnv;
               dist = abs(signedPerp - offset);
-              // Contrainte longitudinale au segment
               if (along <= 0.0 || along >= 1.0) {
                 dist = max(dist, segInfo.x);
               }
             }
 
-            // Pulsation organique irrégulière du faisceau
-            float pulseNoise = 0.5 + 0.5 * sin(uTime * (5.2 + fi * 1.9) + snoise(vec2(uTime * 2.4, fi * 4.1)) * 2.5);
-            float pulseMod = 1.0 - uPulseIntensity * 0.42 * (1.0 - pulseNoise);
+            // Scintillement du plasma par bruit le long du faisceau et dans le temps
+            float flickerField = 0.0;
+            if (uQualityLevel == 0) {
+              flickerField = 0.5 + 0.5 * sin(uTime * 7.3 + along * 8.0 + fi * 2.7) * cos(uTime * 11.1 - along * 5.0);
+            } else {
+              float nSlow = snoise(vec2(along * 5.8 - uTime * (2.6 + uSpeed * 3.2), uTime * 2.8 + fi * 4.1)) * 0.5 + 0.5;
+              flickerField = nSlow;
+              if (uQualityLevel >= 2) {
+                float nFast = snoise(vec2(along * 18.0 + uTime * 6.5, uTime * 7.8 + fi * 7.3)) * 0.5 + 0.5;
+                flickerField = nSlow * 0.62 + nFast * 0.38;
+              }
+            }
+
+            float pulseAmt = clamp(uPulseIntensity * 0.55 + uPlasmaFlicker * 0.75, 0.0, 1.4);
+            float coreFlicker = mix(1.0, 0.58 + 0.62 * flickerField, clamp(pulseAmt, 0.0, 1.0));
+            float haloFlicker = mix(1.0, 0.35 + 1.15 * flickerField, clamp(pulseAmt, 0.0, 1.0));
 
             // En mode orbital, ondes de compression descendantes le long de la colonne
             float orbitalWave = 1.0;
@@ -274,12 +302,12 @@ export class LaserBeamInstance implements IBrickInstance {
               orbitalWave = 0.78 + 0.38 * pow(shockRing, 3.0);
             }
 
-            float w = baseWidth * (uBeamMode == 1 ? orbitalWave : 1.0);
+            float w = baseWidth * (uBeamMode == 1 ? orbitalWave : 1.0) * (1.0 + uPlasmaFlicker * 0.22 * (flickerField - 0.5));
 
-            // Profil radial : cœur blanc incandescent + frange moyenne + large halo atmosphérique
-            float core = exp(-pow(dist / max(0.0014, w * 0.38), 2.0));
-            float midGlow = exp(-dist / max(0.0035, w * 1.45));
-            float outerHalo = exp(-dist / max(0.012, w * (4.2 + uDensity * 1.8))) * 0.44;
+            // Profil radial : cœur blanc incandescent fin + gaine colorée saturée + lueur additive étendue
+            float core = exp(-pow(dist / max(0.0009, w * 0.24), 2.0));
+            float sheath = exp(-dist / max(0.0022, w * 0.95));
+            float outerHalo = exp(-dist / max(0.009, w * (4.2 + uDensity * 2.2) * spread)) * 0.52;
 
             // Diffusion dans la brume traversée (MEDIUM / HIGH)
             float airMist = 1.0;
@@ -298,49 +326,80 @@ export class LaserBeamInstance implements IBrickInstance {
               beamCol = col2;
             }
 
-            // Second filament hélicoïdal enroulé (HIGH + plasma_stream ou beamMode == 2)
+            // Second filament hélicoïdal organique en mode plasma_stream (HIGH)
             float secondaryFilament = 0.0;
             if (uQualityLevel >= 2 && uBeamMode == 2) {
-              vec2 segVec = normalize(target - origin);
-              vec2 perp = vec2(-segVec.y, segVec.x);
-              float signedPerp = dot(p - origin, perp);
-              float helix = sin(along * 24.0 - uTime * 13.5 + fi * 3.1) * 0.028 * (0.5 + wobbleAmt);
+              float helixNoise = snoise(vec2(along * 7.5 - uTime * 4.2, fi * 5.1 + uTime * 1.3));
+              float helix = (sin(along * 22.0 - uTime * 12.5 + fi * 3.1) * 0.65 + helixNoise * 0.55)
+                * 0.026 * (0.5 + wobbleAmt) * smoothstep(0.0, 0.14, along) * smoothstep(1.0, 0.78, along);
               float hd = abs(signedPerp - helix);
-              if (along > 0.02 && along < 0.98) {
-                secondaryFilament = exp(-hd / max(0.0025, w * 0.55)) * 0.85;
+              if (along > 0.01 && along < 0.99) {
+                secondaryFilament = exp(-hd / max(0.0020, w * 0.45)) * 0.78;
               }
             }
 
-            float beamStrength = (core * 1.25 + midGlow * 0.75 + outerHalo * airMist) * pulseMod * uIntensity;
-            vec3 hotCore = mix(beamCol, vec3(1.0, 0.99, 0.96), clamp(core * 0.92, 0.0, 0.95));
+            // Composition additive : cœur blanc pur + halo coloré lumineux
+            vec3 coreWhite = vec3(1.0, 0.99, 0.96) * (core * 1.40 * coreFlicker);
+            vec3 coloredHalo = beamCol * ((sheath * 0.90 + outerHalo * airMist) * haloFlicker);
+            accumColor += (coreWhite + coloredHalo) * uIntensity;
+            accumColor += mix(col2, vec3(1.0, 0.98, 0.95), 0.35) * (secondaryFilament * coreFlicker * uIntensity);
 
-            accumColor += hotCore * beamStrength + col2 * secondaryFilament * uIntensity;
-            accumAlpha += (core * 0.85 + midGlow * 0.55 + outerHalo * 0.35 + secondaryFilament * 0.45) * pulseMod * uIntensity;
-
-            // Point d'impact incandescent et micro-étincelles radiales
-            if (uImpactSparks > 0.01 && uQualityLevel >= 1) {
+            // Point d'impact incandescent et gerbes d'étincelles balistiques
+            if (uImpactSparks > 0.01) {
               float dImp = length(p - target);
-              float impCore = exp(-dImp * (uBeamMode == 1 ? 10.0 : 24.0)) * (0.9 + 0.35 * pulseNoise);
-              float impHalo = exp(-dImp * (uBeamMode == 1 ? 4.2 : 9.0)) * 0.55;
-              float sparks = 0.0;
-              if (uQualityLevel >= 2 && dImp < 0.22) {
-                float impA = atan(p.y - target.y, p.x - target.x);
-                float raySp = pow(max(0.0, sin(impA * 14.0 + uTime * 18.0 + fi * 3.0)), 6.0);
-                float grainSp = step(0.68, hash12(floor(p * 95.0) + floor(uTime * 16.0)));
-                sparks = (raySp * 0.55 + grainSp * 0.65) * exp(-dImp * 18.0);
+              float impCore = exp(-dImp * (uBeamMode == 1 ? 10.0 : 20.0)) * (2.6 + 0.65 * flickerField);
+              float impHalo = exp(-dImp * (uBeamMode == 1 ? 3.8 : 7.5) / spread) * 1.35;
+              vec3 impCol = vec3(1.0, 0.98, 0.92) * impCore + beamCol * impHalo;
+              accumColor += impCol * (uImpactSparks * uIntensity);
+
+              if (uQualityLevel >= 1 && dImp < 0.36) {
+                int sparkCount = (uQualityLevel >= 2) ? 8 : 4;
+                vec2 splashBase = (uBeamMode == 1) ? vec2(0.0, 1.0) : -segVec;
+                float splashBaseAng = atan(splashBase.y, splashBase.x);
+                vec3 sparksColor = vec3(0.0);
+
+                for (int k = 0; k < 8; k++) {
+                  if (k >= sparkCount) break;
+                  float fk = float(k);
+                  float seedK = fi * 13.7 + fk * 5.31;
+                  float rate = (1.35 + hash12(vec2(seedK, 1.7)) * 1.15) * max(0.35, uSpeed);
+                  float phase = uTime * rate + hash12(vec2(seedK, 4.9));
+                  float age = fract(phase);
+                  float cycle = floor(phase);
+
+                  float rndA = hash12(vec2(seedK, cycle * 3.1 + 9.2)) * 2.0 - 1.0;
+                  float rndV = 0.55 + 0.75 * hash12(vec2(seedK + 2.3, cycle * 7.4));
+                  float spAng = splashBaseAng + rndA * 1.35;
+                  float spSpeed = (0.42 + 0.34 * rndV) * (uBeamMode == 1 ? 1.35 : 1.0);
+
+                  vec2 v0 = vec2(cos(spAng), sin(spAng)) * spSpeed;
+                  vec2 grav = vec2(0.0, -0.42);
+                  vec2 sPos = target + v0 * age + grav * (age * age);
+                  vec2 sVel = v0 + 2.0 * grav * age;
+                  vec2 sTail = sPos - sVel * 0.052;
+
+                  vec2 sSeg = sdSegmentWithT(p, sTail, sPos);
+                  float sFade = (1.0 - age) * (1.0 - age) * smoothstep(0.0, 0.06, age);
+                  float sThick = 0.0030 * (1.0 - age * 0.45) * (0.65 + 0.75 * sSeg.y);
+                  float sGlow = exp(-sSeg.x / max(0.0012, sThick)) * sFade;
+                  vec3 sCol = mix(vec3(1.0, 0.98, 0.90), beamCol, smoothstep(0.18, 0.82, age));
+                  sparksColor += sCol * sGlow * 3.2;
+                }
+
+                accumColor += sparksColor * (uImpactSparks * uIntensity);
               }
-              float impVal = (impCore + impHalo + sparks) * uImpactSparks * uIntensity;
-              accumColor += mix(beamCol, vec3(1.0, 0.96, 0.88), 0.55) * impVal;
-              accumAlpha += impVal * 0.72;
             }
           }
 
-          accumAlpha = clamp(accumAlpha, 0.0, 0.94);
-          if (accumAlpha <= 0.004) {
+          // Compression douce HDR pour une lueur additive pure et satinée
+          accumColor = accumColor / (1.0 + accumColor * 0.18);
+
+          float maxLum = max(accumColor.r, max(accumColor.g, accumColor.b));
+          if (maxLum <= 0.002) {
             discard;
           }
 
-          gl_FragColor = vec4(accumColor, accumAlpha);
+          gl_FragColor = vec4(accumColor, 1.0);
         }
       `,
       transparent: true,
@@ -399,6 +458,12 @@ export class LaserBeamInstance implements IBrickInstance {
       this.material.uniforms.uIntensity.value = newProps.intensity
     if (newProps.randomness !== undefined)
       this.material.uniforms.uRandomness.value = newProps.randomness
+    if (newProps.plasmaFlicker !== undefined)
+      this.material.uniforms.uPlasmaFlicker.value = newProps.plasmaFlicker
+    if (newProps.glowSpread !== undefined)
+      this.material.uniforms.uGlowSpread.value = newProps.glowSpread
+    if (newProps.sweepRange !== undefined)
+      this.material.uniforms.uSweepRange.value = newProps.sweepRange
   }
 
   public onQualityChange(quality: QualityTier): void {
