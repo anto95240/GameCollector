@@ -3,9 +3,9 @@
  *
  * Brique Spéciale : Pluie de Code Numérique (Matrix Rain) (Couche : Spéciaux).
  * Cascade cybernétique de flux de caractères mutants étalés sur 3 couches de profondeur,
- * avec têtes de gouttes fluorescentes ultra-brillantes (accent blanc/cyan), traînées
- * phosphorescentes exponentielles, glyphes procéduraux 5x5 en temps réel et
- * perturbation magnétique au passage de la souris.
+ * avec vitesses différentielles indépendantes par colonne, chute posée et réaliste,
+ * longues traînées phosphorescentes exponentielles, mutation sélective lente des glyphes
+ * et perturbation magnétique au passage de la souris.
  */
 
 import * as THREE from 'three'
@@ -28,6 +28,10 @@ export interface CodeRainProps {
   density?: number
   /** Vitesse de défilement des flux (0.1 à 2.0, défaut 0.45). */
   speed?: number
+  /** Multiplicateur optionnel sur la vitesse de chute des colonnes (0.2 à 2.0, défaut 1.0). */
+  fallSpeed?: number
+  /** Multiplicateur optionnel sur la fréquence de mutation des glyphes (0.0 à 2.0, défaut 1.0). */
+  mutationSpeed?: number
   /** Profondeur d'étagement 3D et parallaxe souris (0.0 à 1.0, défaut 0.35). */
   depth?: number
   /** Radiance générale et luminosité des glyphes (0.3 à 2.5, défaut 1.0). */
@@ -36,7 +40,7 @@ export interface CodeRainProps {
   randomness?: number
   /** Échelle relative de taille des glyphes (0.5 à 2.0, défaut 1.0). */
   charSize?: number
-  /** Longueur relative de la traînée phosphorescente (0.2 à 1.2, défaut 0.7). */
+  /** Longueur relative de la traînée phosphorescente (0.2 à 1.5, défaut 0.7). */
   tailLength?: number
   /** Force de perturbation magnétique sous la souris (0.0 à 1.0, défaut 0.5). */
   mouseGlow?: number
@@ -65,6 +69,8 @@ export class CodeRainInstance implements IBrickInstance {
 
     const density = props.density ?? 1.0
     const speed = props.speed ?? 0.45
+    const fallSpeed = props.fallSpeed ?? 1.0
+    const mutationSpeed = props.mutationSpeed ?? 1.0
     const depth = props.depth ?? 0.35
     const intensity = props.intensity ?? 1.0
     const randomness = props.randomness ?? 0.35
@@ -90,6 +96,8 @@ export class CodeRainInstance implements IBrickInstance {
         },
         uDensity: { value: density },
         uSpeed: { value: speed },
+        uFallSpeed: { value: fallSpeed },
+        uMutationSpeed: { value: mutationSpeed },
         uDepth: { value: depth },
         uIntensity: { value: intensity },
         uRandomness: { value: randomness },
@@ -120,6 +128,8 @@ export class CodeRainInstance implements IBrickInstance {
         uniform bool uUseCustomColors;
         uniform float uDensity;
         uniform float uSpeed;
+        uniform float uFallSpeed;
+        uniform float uMutationSpeed;
         uniform float uDepth;
         uniform float uIntensity;
         uniform float uRandomness;
@@ -161,7 +171,7 @@ export class CodeRainInstance implements IBrickInstance {
           else if (gid == 10) on = diagDown || diagUp; // X
           else if (gid == 11) on = topBar || leftCol || (y == 3.0 && x <= 2.0); // F
           else if (gid == 12) on = (x == 1.0 && y >= 2.0) || (x == 3.0 && y <= 4.0); // リ
-          else if (gid == 13) on = topBar || botBar || (x == 2.0 && y >= 2.0 && y <= 4.0); // I avec empattements
+          else if (gid == 13) on = topBar || botBar || (x == 2.0 && y >= 2.0 && y <= 4.0); // I
           else if (gid == 14) on = topBar || (x == 3.0 && y >= 3.0) || (y == 2.0 && x <= 2.0); // ユ
           else if (gid == 15) on = (y == 4.0 && x >= 1.0 && x <= 3.0) || (y == 2.0 && x >= 1.0 && x <= 3.0); // 二
           else if (gid == 16) on = topBar || leftHalf || midBar || rightHalf || botBar; // S / 5
@@ -171,9 +181,11 @@ export class CodeRainInstance implements IBrickInstance {
           else if (gid == 20) on = diagDown || (x == 2.0 && y <= 2.0); // Y / λ
           else if (gid == 21) on = (y == 5.0 && x == 2.0) || (y == 3.0 && (x == 1.0 || x == 3.0)) || (y == 1.0 && x == 2.0); // ◇
           else if (gid == 22) on = topBar || leftCol || (x == 3.0 && y >= 3.0) || midBar; // P
-          else on = centerCol || topBar || botBar; // I
+          else if (gid == 23) on = topBar || rightCol || midBar || (x == 1.0 && y == 2.0); // ク / ア
+          else if (gid == 24) on = (y == 5.0 && x >= 1.0) || (x == 3.0 && y >= 2.0) || (y == 1.0 && x == 1.0); // ヌ
+          else on = centerCol || topBar || botBar;
 
-          if (rnd > 0.88 && (x == 2.0 || y == 3.0)) on = !on;
+          if (rnd > 0.90 && (x == 2.0 || y == 3.0)) on = !on;
 
           return on ? 1.0 : 0.0;
         }
@@ -187,13 +199,16 @@ export class CodeRainInstance implements IBrickInstance {
           st.x += uMouse.x * uDepth * layerDepth * 0.12;
           st.y += uMouse.y * uDepth * layerDepth * 0.06;
 
-          // Déflexion magnétique souris
-          vec2 mouseScreen = vec2(uMouse.x * 0.5 + 0.5, uMouse.y * 0.5 + 0.5);
-          vec2 mouseDelta = vec2((uv.x - mouseScreen.x) * aspect, uv.y - mouseScreen.y);
-          float mouseDist = length(mouseDelta);
-          if (mouseDist < 0.28) {
-            float repel = smoothstep(0.28, 0.0, mouseDist) * uMouseGlow * 0.06;
-            st.x += (mouseDelta.x / max(0.01, mouseDist)) * repel;
+          // Déflexion magnétique souris (HIGH & MEDIUM)
+          float mouseDist = 1.0;
+          if (uQualityLevel >= 1) {
+            vec2 mouseScreen = vec2(uMouse.x * 0.5 + 0.5, uMouse.y * 0.5 + 0.5);
+            vec2 mouseDelta = vec2((uv.x - mouseScreen.x) * aspect, uv.y - mouseScreen.y);
+            mouseDist = length(mouseDelta);
+            if (mouseDist < 0.28) {
+              float repel = smoothstep(0.28, 0.0, mouseDist) * uMouseGlow * 0.055;
+              st.x += (mouseDelta.x / max(0.01, mouseDist)) * repel;
+            }
           }
 
           // Découpage en colonnes avec marge
@@ -201,10 +216,13 @@ export class CodeRainInstance implements IBrickInstance {
           float colIdx = floor(st.x / colW);
           float colUvX = fract(st.x / colW);
 
-          // Grain aléatoire et vitesse différentielle par colonne
+          // Graines décorrélées par colonne : phase, intervalle, vitesse, luminance
           float colSeed1 = hash12(vec2(colIdx, 17.37 + layerDepth * 31.0));
           float colSeed2 = hash12(vec2(colIdx, 73.19 + layerDepth * 59.0));
-          float colSpeedMult = 0.70 + 0.60 * colSeed1;
+          float colSeed3 = hash12(vec2(colIdx * 19.31 + 7.1, 41.73 + layerDepth * 37.0));
+          float colSeed4 = hash12(vec2(colIdx * 37.9 + 3.7, 91.13 + layerDepth * 13.0));
+          float colSpeedMult = 0.52 + 0.86 * colSeed3;
+          float colLuminance = 0.70 + 0.30 * colSeed4;
 
           // Hauteur de ligne (monospace proportion haute 1.6)
           float rowH = colW * (1.6 / max(0.25, uCharSize * charScale));
@@ -212,38 +230,52 @@ export class CodeRainInstance implements IBrickInstance {
           float rowIdx = floor(st.y / rowH);
           float cellUvY = fract(st.y / rowH);
 
-          // Cycle de chute : la tête part au-dessus de l'écran et tombe vers le bas
-          float trailRows = max(4.0, floor(18.0 * max(0.2, uTailLength)));
-          float gapRows = floor(10.0 + 22.0 * colSeed2);
+          // Traînée allongée et chute plus posée (~0.57x de l'ancienne vitesse par défaut)
+          float trailRows = max(6.0, floor(28.0 * max(0.2, uTailLength)));
+          float gapRows = floor(10.0 + 26.0 * colSeed2);
           float cycleTotalRows = numRows + trailRows + gapRows;
 
-          float rowsPerSec = (10.0 + 15.0 * uSpeed) * layerSpeed * colSpeedMult;
+          float rowsPerSec = (5.5 + 9.0 * uSpeed) * max(0.15, uFallSpeed) * layerSpeed * colSpeedMult;
           float totalRowsTraveled = uTime * rowsPerSec + colSeed1 * cycleTotalRows;
+          float cycleIdx = floor(totalRowsTraveled / cycleTotalRows);
           float cycleRow = mod(totalRowsTraveled, cycleTotalRows);
 
-          // Position de la tête en indices de lignes (décroissant avec le temps = chute vers le bas)
-          float headRow = numRows - cycleRow;
+          // Avance discrète ligne par ligne (fidèle aux terminaux Matrix)
+          float stepCycle = floor(cycleRow);
+          float headFrac = fract(cycleRow);
+          float headRow = numRows - stepCycle;
           float dRow = rowIdx - headRow;
 
-          // Seuls les caractères derrière la tête (au-dessus) et dans la traînée sont visibles
           if (dRow < 0.0 || dRow > trailRows) {
             return vec4(0.0);
           }
 
-          // Décroissance exponentielle le long de la traînée
+          // Décroissance phosphorescente longue et progressive sans coupure nette en queue
           float trailRatio = dRow / trailRows;
-          float tailIntensity = exp(-trailRatio * 3.2);
-          bool isHead = (dRow < 1.0);
+          float tailIntensity = exp(-trailRatio * 2.15) * (1.0 - smoothstep(0.84, 1.0, trailRatio));
+          bool isHead = (dRow < 0.5);
 
-          // Mutation des caractères
-          float mutateRate = 1.0 + 9.0 * uRandomness;
-          float cellTimeOffset = hash12(vec2(colIdx * 13.1, rowIdx * 19.7)) * 8.0;
-          float charSeed = floor((uTime + cellTimeOffset) * mutateRate);
+          // Mutation sélective lente : la tête change au fil de la chute, ~35% des cellules de traînée mutent lentement
+          float mutMult = max(0.0, uMutationSpeed) * (0.25 + 0.85 * uRandomness);
+          float cellMutSel = hash12(vec2(colIdx * 23.7 + cycleIdx * 3.1, rowIdx * 41.3 + layerDepth * 19.0));
+          float cellTimeOffset = hash12(vec2(colIdx * 13.1, rowIdx * 19.7)) * 12.0;
+
+          float charSeed = cycleIdx * 17.3;
+          if (isHead) {
+            charSeed += floor(uTime * (0.6 + 1.4 * mutMult) + headRow * 0.37);
+          } else if (cellMutSel > 0.65 && mutMult > 0.001) {
+            float slowRate = (0.18 + 0.55 * cellMutSel) * mutMult;
+            charSeed += floor((uTime + cellTimeOffset) * slowRate);
+          }
+
           float glyphHash = hash12(vec2(colIdx * 31.7 + rowIdx * 7.9, charSeed));
-          int gid = int(floor(glyphHash * 24.0));
+          int gid = int(floor(glyphHash * 26.0));
           float glyphRnd = hash12(vec2(colIdx * 11.1 + rowIdx * 23.3, charSeed + 3.0));
 
-          // Marges nettes autour de chaque caractère pour des colonnes bien séparées
+          // Légère variation d'intensité par cellule (phosphore organique)
+          float cellBright = 0.80 + 0.20 * hash12(vec2(colIdx * 9.3, rowIdx * 15.7 + cycleIdx));
+
+          // Marges nettes autour de chaque caractère
           float charUvX = (colUvX - 0.14) / 0.72;
           float charUvY = (cellUvY - 0.11) / 0.78;
 
@@ -252,8 +284,14 @@ export class CodeRainInstance implements IBrickInstance {
             vec2 p = vec2(charUvX * 5.0, charUvY * 7.0);
             vec2 ip = floor(p);
             vec2 fp = fract(p);
-            if (fp.x >= 0.10 && fp.x <= 0.90 && fp.y >= 0.10 && fp.y <= 0.90) {
-              charMask = getGlyphPixel(ip, gid, glyphRnd);
+            if (uQualityLevel >= 1) {
+              float px = smoothstep(0.06, 0.16, fp.x) * (1.0 - smoothstep(0.84, 0.94, fp.x));
+              float py = smoothstep(0.06, 0.16, fp.y) * (1.0 - smoothstep(0.84, 0.94, fp.y));
+              charMask = getGlyphPixel(ip, gid, glyphRnd) * px * py;
+            } else {
+              if (fp.x >= 0.10 && fp.x <= 0.90 && fp.y >= 0.10 && fp.y <= 0.90) {
+                charMask = getGlyphPixel(ip, gid, glyphRnd);
+              }
             }
           }
 
@@ -262,28 +300,31 @@ export class CodeRainInstance implements IBrickInstance {
           vec3 head = uUseCustomColors ? uHeadColor : uPaletteAccent;
           vec3 glow = uUseCustomColors ? uGlowColor : uPaletteSecondary;
 
-          // Halo d'ambiance phosphorescent discret
           float cellDist = length(vec2(colUvX - 0.5, cellUvY - 0.5));
-          float cellGlow = smoothstep(0.65, 0.0, cellDist) * 0.18 * tailIntensity;
+          float cellGlow = smoothstep(0.68, 0.0, cellDist) * 0.20 * tailIntensity;
 
           vec3 color = vec3(0.0);
           float alpha = 0.0;
 
           if (isHead) {
-            float headBloom = smoothstep(0.75, 0.0, cellDist) * 0.45;
-            color = mix(head, vec3(1.0), 0.35) * (charMask * 1.8 + headBloom);
-            alpha = clamp((charMask * 0.95 + headBloom * 0.6) * layerAlpha, 0.0, 1.0);
+            float headFlash = 1.0 + exp(-headFrac * 3.0) * 0.25;
+            float headBloom = smoothstep(0.80, 0.0, cellDist) * 0.50;
+            color = mix(head, vec3(1.0), 0.40) * (charMask * 1.85 + headBloom) * headFlash * colLuminance;
+            alpha = clamp((charMask * 0.96 + headBloom * 0.62) * layerAlpha, 0.0, 1.0);
           } else {
-            vec3 trailCol = mix(glow, primary, clamp(tailIntensity * 1.3, 0.0, 1.0));
-            color = trailCol * (charMask * tailIntensity * 1.4 + cellGlow);
-            alpha = clamp((charMask * tailIntensity + cellGlow) * layerAlpha, 0.0, 1.0);
+            vec3 trailCol = mix(glow, primary, clamp(tailIntensity * 1.35, 0.0, 1.0));
+            // Rémanence légèrement plus chaude juste derrière la tête
+            if (dRow < 2.5) {
+              trailCol = mix(trailCol, head, 0.22 * (1.0 - dRow / 2.5));
+            }
+            color = trailCol * (charMask * tailIntensity * 1.45 * cellBright + cellGlow) * colLuminance;
+            alpha = clamp((charMask * tailIntensity + cellGlow) * layerAlpha * colLuminance, 0.0, 1.0);
           }
 
-          // Boost de réactivité au passage du curseur
-          if (mouseDist < 0.22) {
+          if (uQualityLevel >= 1 && mouseDist < 0.22) {
             float boost = smoothstep(0.22, 0.0, mouseDist) * uMouseGlow;
-            color += head * (boost * charMask * 0.7);
-            alpha = min(1.0, alpha + boost * 0.3);
+            color += head * (boost * charMask * 0.65);
+            alpha = min(1.0, alpha + boost * 0.28);
           }
 
           return vec4(color, alpha);
@@ -295,21 +336,20 @@ export class CodeRainInstance implements IBrickInstance {
 
           // 1. Couche de Fond (Lointaine, dense, douce) - HIGH uniquement
           if (uQualityLevel >= 2) {
-            vec4 bg = renderCodeLayer(uv, 48.0, 0.50, 0.15, 0.35, 0.75);
+            vec4 bg = renderCodeLayer(uv, 48.0, 0.48, 0.15, 0.34, 0.75);
             col = bg;
           }
 
           // 2. Couche Médiane (Équilibrée, nette) - HIGH & MEDIUM
           if (uQualityLevel >= 1) {
-            vec4 mid = renderCodeLayer(uv, 32.0, 0.75, 0.40, 0.70, 0.90);
+            vec4 mid = renderCodeLayer(uv, 32.0, 0.76, 0.40, 0.72, 0.90);
             col = vec4(col.rgb * (1.0 - mid.a) + mid.rgb, max(col.a, mid.a));
           }
 
-          // 3. Couche Premier Plan (Rapide, percutante, caractères imposants) - TOUS PALIERS
-          vec4 fg = renderCodeLayer(uv, 20.0, 1.15, 0.75, 1.0, 1.10);
+          // 3. Couche Premier Plan (Plus nette, caractères imposants) - TOUS PALIERS
+          vec4 fg = renderCodeLayer(uv, 20.0, 1.12, 0.75, 1.0, 1.10);
           col = vec4(col.rgb * (1.0 - fg.a) + fg.rgb, max(col.a, fg.a));
 
-          // Application de l'intensité globale
           col.rgb *= uIntensity;
 
           gl_FragColor = col;
@@ -351,6 +391,10 @@ export class CodeRainInstance implements IBrickInstance {
     }
     if (newProps.density !== undefined) this.material.uniforms.uDensity.value = newProps.density
     if (newProps.speed !== undefined) this.material.uniforms.uSpeed.value = newProps.speed
+    if (newProps.fallSpeed !== undefined)
+      this.material.uniforms.uFallSpeed.value = newProps.fallSpeed
+    if (newProps.mutationSpeed !== undefined)
+      this.material.uniforms.uMutationSpeed.value = newProps.mutationSpeed
     if (newProps.depth !== undefined) this.material.uniforms.uDepth.value = newProps.depth
     if (newProps.intensity !== undefined)
       this.material.uniforms.uIntensity.value = newProps.intensity

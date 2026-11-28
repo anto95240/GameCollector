@@ -2,12 +2,11 @@
  * src/theme-engine/bricks/special/RunicCircleBrick.ts
  *
  * Brique Spéciale : Anneaux Géométriques & Rosace Lumineuse (Couche : Spéciaux).
- * Shader SDF en coordonnées polaires générant des anneaux concentriques contre-rotatifs,
- * polygones sacrés inscrits, bandes de glyphes géométriques 100 % procéduraux
- * (zéro symbole protégé), astrolabe armillaire ou rose des vents de boussole antique.
- *
- * Inclinaison pseudo-3D sensible à la souris, étincelles tangentielles,
- * et adaptation aux 3 paliers de qualité (HIGH, MEDIUM, LOW).
+ * Shader SDF en coordonnées polaires générant des anneaux concentriques contre-rotatifs
+ * à vitesses incommensurables, polygones sacrés inscrits, bandes de symboles géométriques
+ * 100 % procéduraux corrigés en ratio d'arc (zéro symbole protégé), astrolabe armillaire
+ * ou boussole antique, avec tracés fins et précis, lueur pulsée organique,
+ * particules orbitales scintillantes et apparition progressive au montage.
  */
 
 import * as THREE from 'three'
@@ -53,6 +52,12 @@ export interface RunicCircleProps {
   intensity?: number
   /** Irrégularité des glyphes procéduraux et déphasages (0.0 à 1.0, défaut 0.4). */
   randomness?: number
+  /** Durée de l'apparition progressive en secondes au montage (0.0 à 6.0, défaut 2.4). */
+  revealDuration?: number
+  /** Nombre de particules orbitales lumineuses autour des anneaux (0 à 28, défaut 16). */
+  particleCount?: number
+  /** Finesse et précision des tracés géométriques (0.5 à 2.0, défaut 1.0). */
+  lineSharpness?: number
 }
 
 const PATTERN_STYLE_MAP: Record<RunicPatternStyle, number> = {
@@ -74,6 +79,7 @@ export class RunicCircleInstance implements IBrickInstance {
   private props: RunicCircleProps
   private primaryColorVec: THREE.Color
   private secondaryColorVec: THREE.Color
+  private localTime = 0.12
 
   constructor(id: string, props: RunicCircleProps = {}, context: BrickContext) {
     this.id = id
@@ -95,12 +101,16 @@ export class RunicCircleInstance implements IBrickInstance {
     const depth = props.depth ?? 0.35
     const intensity = props.intensity ?? 1.0
     const randomness = props.randomness ?? 0.4
+    const revealDuration = props.revealDuration ?? 2.4
+    const particleCount = Math.min(28, Math.max(0, Math.round(props.particleCount ?? 16)))
+    const lineSharpness = props.lineSharpness ?? 1.0
 
     const geometry = new THREE.PlaneGeometry(2, 2)
 
     this.material = new THREE.ShaderMaterial({
       uniforms: {
         uTime: context.sharedUniforms.uTime,
+        uLocalTime: { value: this.localTime },
         uResolution: context.sharedUniforms.uResolution,
         uMouse: context.sharedUniforms.uMouse,
         uScroll: context.sharedUniforms.uScroll,
@@ -121,6 +131,9 @@ export class RunicCircleInstance implements IBrickInstance {
         uDepth: { value: depth },
         uIntensity: { value: intensity },
         uRandomness: { value: randomness },
+        uRevealDuration: { value: revealDuration },
+        uParticleCount: { value: particleCount },
+        uLineSharpness: { value: lineSharpness },
         uQualityLevel: {
           value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
         },
@@ -134,6 +147,7 @@ export class RunicCircleInstance implements IBrickInstance {
       `,
       fragmentShader: /* glsl */ `
         uniform float uTime;
+        uniform float uLocalTime;
         uniform vec2 uResolution;
         uniform vec2 uMouse;
         uniform float uScroll;
@@ -154,6 +168,9 @@ export class RunicCircleInstance implements IBrickInstance {
         uniform float uDepth;
         uniform float uIntensity;
         uniform float uRandomness;
+        uniform float uRevealDuration;
+        uniform int uParticleCount;
+        uniform float uLineSharpness;
         uniform int uQualityLevel;
         varying vec2 vUv;
 
@@ -168,13 +185,25 @@ export class RunicCircleInstance implements IBrickInstance {
           return mat2(c, -s, s, c);
         }
 
-        // Tracé lumineux anti-aliasé + halo exponentiel doux
+        // Distance à un segment [a, b] pour tracés de symboles fins et précis
+        float sdSegment(vec2 p, vec2 a, vec2 b) {
+          vec2 pa = p - a, ba = b - a;
+          float h = clamp(dot(pa, ba) / max(1e-5, dot(ba, ba)), 0.0, 1.0);
+          return length(pa - ba * h);
+        }
+
+        // Tracé lumineux fin et précis avec anti-aliasing analytique + double halo optique
         float glowStroke(float d, float width, float glowStrength) {
           float ad = abs(d);
-          float fw = max(0.0012, fwidth(d));
-          float core = 1.0 - smoothstep(width, width + fw * 1.8 + 0.002, ad);
-          float halo = exp(-ad * (42.0 / max(0.25, glowStrength))) * 0.55;
-          return max(core, halo);
+          float sharp = clamp(uLineSharpness, 0.5, 2.0);
+          float w = width * 0.60 / sharp;
+          float fw = max(0.0005, fwidth(d));
+          float core = 1.0 - smoothstep(w, w + fw * 1.25, ad);
+          float innerHalo = exp(-ad * (62.0 / max(0.25, glowStrength))) * 0.44;
+          float outerHalo = (uQualityLevel >= 1)
+            ? exp(-ad * (18.0 / max(0.25, glowStrength))) * 0.16
+            : 0.0;
+          return max(core, innerHalo + outerHalo);
         }
 
         // Distance à un polygone régulier inscrit de rayon R et N côtés
@@ -182,39 +211,92 @@ export class RunicCircleInstance implements IBrickInstance {
           float an = PI / n;
           float a = atan(p.y, p.x);
           float sector = mod(a + an, 2.0 * an) - an;
-          float d = length(p) * cos(sector) - r * cos(an);
-          return d;
+          return length(p) * cos(sector) - r * cos(an);
         }
 
-        // Bande procédurale de glyphes géométriques abstraits (aucun symbole protégé)
+        // Masque d'apparition progressive le long d'un anneau (arc sweep + pointe lumineuse)
+        vec2 arcRevealMask(float angle, float progress) {
+          if (progress >= 0.999) return vec2(1.0, 0.0);
+          if (progress <= 0.001) return vec2(0.0, 0.0);
+          float normA = fract((angle + PI) / TAU);
+          float mask = 1.0 - smoothstep(progress - 0.05, progress + 0.01, normA);
+          float tip = exp(-abs(normA - progress) * 42.0) * step(0.01, progress);
+          return vec2(mask, tip);
+        }
+
+        // Bande procédurale de symboles géométriques fins corrigés en ratio d'arc (zéro symbole protégé)
         float proceduralGlyphBand(float r, float a, float bandR, float bandW, float count, float seed) {
           float radialDist = abs(r - bandR);
-          if (radialDist > bandW * 0.65) return 0.0;
+          if (radialDist > bandW * 0.58) return 0.0;
 
-          float seg = floor((a + PI) / TAU * count);
-          float localA = fract((a + PI) / TAU * count) - 0.5;
+          float cellCoord = (a + PI) / TAU * count;
+          float seg = floor(cellCoord);
+          float localA = fract(cellCoord) - 0.5;
           float localR = (r - bandR) / max(0.001, bandW);
+
+          // Correction de ratio pour obtenir des symboles isométriques nets
+          float arcW = bandR * TAU / count;
+          vec2 gp = vec2(localA * arcW, localR * bandW) / max(0.004, min(arcW, bandW) * 0.42);
 
           float h1 = hash12(vec2(seg, seed));
           float h2 = hash12(vec2(seg + 17.3, seed * 2.1));
+          int motif = int(floor(h1 * 8.0));
 
-          // Combinaison abstraite de segments radiaux, arcs et losanges géométriques
-          float stroke = 0.0;
-          if (h1 > 0.22) {
-            float barA = 1.0 - smoothstep(0.04, 0.14, abs(localA));
-            float barR = 1.0 - smoothstep(0.32, 0.42, abs(localR));
-            stroke = max(stroke, barA * barR * 0.85);
+          float d = 1.0;
+          if (motif == 0) {
+            // Tige verticale + traverse supérieure + chevron
+            d = min(d, sdSegment(gp, vec2(0.0, -0.75), vec2(0.0, 0.75)));
+            d = min(d, sdSegment(gp, vec2(-0.45, 0.55), vec2(0.45, 0.55)));
+            d = min(d, sdSegment(gp, vec2(0.0, 0.1), vec2(0.42, -0.35)));
+          } else if (motif == 1) {
+            // Losange central + axe vertical
+            d = min(d, sdSegment(gp, vec2(0.0, -0.72), vec2(0.0, 0.72)));
+            d = min(d, sdSegment(gp, vec2(-0.42, 0.0), vec2(0.0, 0.42)));
+            d = min(d, sdSegment(gp, vec2(0.0, 0.42), vec2(0.42, 0.0)));
+            d = min(d, sdSegment(gp, vec2(0.42, 0.0), vec2(0.0, -0.42)));
+            d = min(d, sdSegment(gp, vec2(0.0, -0.42), vec2(-0.42, 0.0)));
+          } else if (motif == 2) {
+            // Fourche astronomique
+            d = min(d, sdSegment(gp, vec2(0.0, -0.75), vec2(0.0, 0.15)));
+            d = min(d, sdSegment(gp, vec2(0.0, 0.15), vec2(-0.45, 0.7)));
+            d = min(d, sdSegment(gp, vec2(0.0, 0.15), vec2(0.45, 0.7)));
+            d = min(d, sdSegment(gp, vec2(-0.35, -0.35), vec2(0.35, -0.35)));
+          } else if (motif == 3) {
+            // Triangle / delta inscrit + point
+            d = min(d, sdSegment(gp, vec2(-0.48, -0.55), vec2(0.48, -0.55)));
+            d = min(d, sdSegment(gp, vec2(-0.48, -0.55), vec2(0.0, 0.65)));
+            d = min(d, sdSegment(gp, vec2(0.48, -0.55), vec2(0.0, 0.65)));
+            d = min(d, length(gp - vec2(0.0, -0.15)) - 0.1);
+          } else if (motif == 4) {
+            // Double barre + diagonale croisée
+            d = min(d, sdSegment(gp, vec2(-0.42, -0.65), vec2(-0.42, 0.65)));
+            d = min(d, sdSegment(gp, vec2(0.42, -0.65), vec2(0.42, 0.65)));
+            d = min(d, sdSegment(gp, vec2(-0.42, -0.15), vec2(0.42, 0.35)));
+          } else if (motif == 5) {
+            // Anneau géométrique + barre transversale
+            d = min(d, abs(length(gp) - 0.44));
+            d = min(d, sdSegment(gp, vec2(0.0, -0.75), vec2(0.0, 0.75)));
+          } else if (motif == 6) {
+            // Z géométrique anguleux
+            d = min(d, sdSegment(gp, vec2(-0.45, 0.6), vec2(0.45, 0.6)));
+            d = min(d, sdSegment(gp, vec2(0.45, 0.6), vec2(-0.45, -0.6)));
+            d = min(d, sdSegment(gp, vec2(-0.45, -0.6), vec2(0.45, -0.6)));
+          } else {
+            // Croissant angulaire + barre
+            d = min(d, sdSegment(gp, vec2(-0.35, -0.65), vec2(0.35, 0.0)));
+            d = min(d, sdSegment(gp, vec2(0.35, 0.0), vec2(-0.35, 0.65)));
+            d = min(d, sdSegment(gp, vec2(-0.45, 0.0), vec2(0.1, 0.0)));
           }
-          if (h2 > 0.35) {
-            float arcR = 1.0 - smoothstep(0.05, 0.16, abs(localR - (h1 - 0.5) * 0.45));
-            float arcA = 1.0 - smoothstep(0.28, 0.38, abs(localA));
-            stroke = max(stroke, arcR * arcA * 0.78);
+
+          if (h2 > 0.72) {
+            d = min(d, length(gp - vec2(0.48, 0.55)) - 0.09);
           }
-          if (h1 + h2 > 1.25) {
-            float dotD = length(vec2(localA * 1.4, localR));
-            stroke = max(stroke, (1.0 - smoothstep(0.14, 0.24, dotD)) * 0.9);
-          }
-          return stroke;
+
+          float sharp = clamp(uLineSharpness, 0.5, 2.0);
+          float strokeW = 0.12 / sharp;
+          float stroke = 1.0 - smoothstep(strokeW, strokeW + 0.13, d);
+          float halo = exp(-max(0.0, d) * 4.5) * 0.25;
+          return clamp(stroke + halo, 0.0, 1.0);
         }
 
         void main() {
@@ -222,11 +304,9 @@ export class RunicCircleInstance implements IBrickInstance {
           float aspect = uResolution.x / max(1.0, uResolution.y);
           vec2 p = (uv - 0.5) * vec2(aspect, 1.0);
 
-          // Légère parallaxe souris + défilement scroll
           p -= uMouse * (uDepth * 0.12);
           p.y += uScroll * (uDepth * 0.06);
 
-          // Mise à l'échelle par uDensity
           float scale = 1.0 / max(0.35, uDensity);
           p *= scale;
 
@@ -236,13 +316,26 @@ export class RunicCircleInstance implements IBrickInstance {
           tiltedP.y /= max(0.32, 1.0 - tilt * 0.65);
           tiltedP = rot2(uMouse.x * uDepth * 0.25) * tiltedP;
 
+          float baseOuter = 0.36;
+          // Rejet rapide hors rosace pour garder un coût GPU minimal
+          if (length(tiltedP) > baseOuter * 1.38 && length(p) > baseOuter * 1.38) {
+            discard;
+          }
+
           float t = uTime * max(0.02, uSpeed) * (0.45 + uRotationSpeed * 1.8);
-          // Respiration organique non-linéaire
-          float breath = 1.0 + sin(uTime * (0.6 + uPulseSpeed) + snoise(vec2(uTime * 0.2, 1.7)) * 0.6) * 0.025;
+          float breath = 1.0 + sin(uTime * (0.5 + uPulseSpeed) + snoise(vec2(uTime * 0.18, 1.7)) * 0.6) * 0.018;
           tiltedP *= breath;
 
           float r = length(tiltedP);
           float a = atan(tiltedP.y, tiltedP.x);
+
+          // Apparition progressive globale (0 -> 1 sur uRevealDuration secondes)
+          float revealRaw = (uRevealDuration <= 0.01) ? 1.0 : clamp(uLocalTime / uRevealDuration, 0.0, 1.0);
+          float revealEase = 1.0 - pow(1.0 - revealRaw, 2.6);
+
+          // Lueur pulsée organique multi-harmonique se propageant radialement
+          float pulseBase = 0.72 + 0.20 * sin(uTime * (0.9 + uPulseSpeed * 2.1) - r * 11.0)
+            + 0.10 * sin(uTime * (1.618 + uPulseSpeed * 1.3) - r * 5.5);
 
           vec3 colPrimary = uUseCustomColors ? uPrimaryColor : uPaletteAccent;
           vec3 colSecondary = uUseCustomColors ? uSecondaryColor : uPalettePrimary;
@@ -251,83 +344,99 @@ export class RunicCircleInstance implements IBrickInstance {
           float accentAccum = 0.0;
 
           int maxRings = (uQualityLevel == 0) ? 2 : ((uQualityLevel == 1) ? min(uRingCount, 3) : uRingCount);
-          float baseOuter = 0.36;
+
+          // Vitesses angulaires irrationnelles et alternées pour éviter toute boucle synchrone
+          float speedProfile[5];
+          speedProfile[0] = 0.37;
+          speedProfile[1] = -0.61;
+          speedProfile[2] = 0.89;
+          speedProfile[3] = -1.23;
+          speedProfile[4] = 0.53;
 
           if (uPatternStyle == 3) {
-            // === ASTROLABE : anneaux armillaires elliptiques sur axes déphasés ===
+            // === ASTROLABE ===
             for (int i = 0; i < 5; i++) {
               if (i >= maxRings) break;
               float fi = float(i);
               float ringR = baseOuter * (1.0 - fi * 0.14);
-              float axisAngle = fi * 0.85 + t * (0.35 + fi * 0.14) * (mod(fi, 2.0) < 0.5 ? 1.0 : -1.0);
+              float ringOrder = float(maxRings - 1 - i) / max(1.0, float(maxRings));
+              float ringRev = clamp((revealEase - ringOrder * 0.45) / 0.55, 0.0, 1.0);
+
+              float axisAngle = fi * 0.85 + t * speedProfile[i] * 0.9;
               vec2 ap = rot2(axisAngle) * p;
-              float squash = 0.42 + 0.52 * abs(sin(t * 0.42 + fi * 1.27));
+              float squash = 0.42 + 0.52 * abs(sin(t * 0.38 + fi * 1.27));
               ap.y /= max(0.28, squash);
               float ar = length(ap);
               float aa = atan(ap.y, ap.x);
 
-              lineAccum += glowStroke(ar - ringR, 0.0022, 0.85) * (0.85 - fi * 0.1);
+              vec2 rev = arcRevealMask(aa, ringRev);
+              lineAccum += glowStroke(ar - ringR, 0.0018, 0.85) * (0.85 - fi * 0.09) * rev.x;
+              accentAccum += glowStroke(ar - ringR, 0.0022, 1.0) * rev.y * 1.2;
 
-              // Noeuds orbitaux brillants sur chaque anneau
-              float nodeAngle = t * (0.9 + fi * 0.37) + fi * 2.1;
+              float nodeAngle = t * (0.85 + fi * 0.33) * (mod(fi, 2.0) < 0.5 ? 1.0 : -1.0) + fi * 2.1;
               vec2 nodePos = vec2(cos(nodeAngle), sin(nodeAngle)) * ringR;
               float nodeD = length(ap - nodePos);
-              accentAccum += exp(-nodeD * 45.0) * 1.1;
+              accentAccum += exp(-nodeD * 48.0) * 1.15 * ringRev;
 
               if (uQualityLevel >= 2 && i < 2) {
-                float ticks = smoothstep(0.75, 0.95, cos(aa * 36.0)) * smoothstep(0.015, 0.0, abs(ar - ringR));
-                lineAccum += ticks * 0.35;
+                float ticks = smoothstep(0.80, 0.96, cos(aa * 48.0)) * smoothstep(0.012, 0.0, abs(ar - ringR));
+                lineAccum += ticks * 0.40 * rev.x;
               }
             }
-            // Noyau stellaire central
-            accentAccum += exp(-length(p) * 18.0) * 0.85;
+            accentAccum += exp(-length(p) * 19.0) * 0.90 * pulseBase * smoothstep(0.0, 0.25, revealEase);
           } else if (uPatternStyle == 4) {
-            // === COMPASS : rose des vents antique + graduations + aiguille oscillante ===
-            float rotBase = t * 0.08;
+            // === COMPASS ===
+            float rotBase = t * 0.07;
             vec2 cp = rot2(rotBase) * tiltedP;
             float cr = length(cp);
             float ca = atan(cp.y, cp.x);
 
-            // Cadran extérieur et intérieur
-            lineAccum += glowStroke(cr - baseOuter, 0.003, 0.9);
-            lineAccum += glowStroke(cr - baseOuter * 0.86, 0.0018, 0.65) * 0.75;
-            lineAccum += glowStroke(cr - baseOuter * 0.22, 0.002, 0.75) * 0.7;
+            vec2 revOuter = arcRevealMask(ca, clamp(revealEase * 1.3, 0.0, 1.0));
+            vec2 revInner = arcRevealMask(ca + 1.5, clamp((revealEase - 0.15) * 1.3, 0.0, 1.0));
 
-            // Graduations de degrés autour du limbe
+            lineAccum += glowStroke(cr - baseOuter, 0.0024, 0.9) * revOuter.x;
+            lineAccum += glowStroke(cr - baseOuter * 0.87, 0.0014, 0.65) * 0.78 * revOuter.x;
+            lineAccum += glowStroke(cr - baseOuter * 0.22, 0.0016, 0.75) * 0.72 * revInner.x;
+            accentAccum += glowStroke(cr - baseOuter, 0.0025, 1.0) * revOuter.y * 1.2;
+
             if (uQualityLevel >= 1) {
-              float degTicks = smoothstep(0.82, 0.98, cos(ca * 32.0)) * smoothstep(0.025, 0.0, abs(cr - baseOuter * 0.93));
-              lineAccum += degTicks * 0.55;
+              float degTicks = smoothstep(0.84, 0.98, cos(ca * 36.0)) * smoothstep(0.020, 0.0, abs(cr - baseOuter * 0.935));
+              lineAccum += degTicks * 0.55 * revOuter.x;
             }
 
-            // Étoile de la rose des vents à 8 branches (4 majeures + 4 mineures)
+            float starFade = smoothstep(0.25, 0.85, revealEase);
             float star4 = abs(cos(ca * 2.0));
             float starShape = pow(star4, 4.0) * (baseOuter * 0.72) + 0.04;
             float star8 = pow(abs(sin(ca * 2.0)), 5.0) * (baseOuter * 0.48) + 0.03;
-            lineAccum += glowStroke(cr - starShape, 0.002, 0.85) * 0.9;
-            lineAccum += glowStroke(cr - star8, 0.0015, 0.6) * 0.55;
+            lineAccum += glowStroke(cr - starShape, 0.0016, 0.85) * 0.9 * starFade;
+            lineAccum += glowStroke(cr - star8, 0.0013, 0.6) * 0.55 * starFade;
 
-            // Aiguille magnétique oscillant organiquement autour du Nord
             float needleAng = 1.5708 + sin(uTime * 1.35) * 0.14 * uNeedleOscillation
               + snoise(vec2(uTime * 0.55, 3.1)) * 0.22 * uNeedleOscillation
               + uMouse.x * uDepth * 0.5;
             vec2 np = rot2(-needleAng) * tiltedP;
             float needleBody = abs(np.y) - max(0.0, (0.28 - abs(np.x)) * 0.09);
             if (abs(np.x) < 0.28) {
-              float nGlow = 1.0 - smoothstep(0.0, 0.006, needleBody);
-              accentAccum += nGlow * (np.x > 0.0 ? 1.25 : 0.45);
+              float nGlow = 1.0 - smoothstep(0.0, 0.005, needleBody);
+              accentAccum += nGlow * (np.x > 0.0 ? 1.25 : 0.45) * starFade;
             }
-            accentAccum += exp(-cr * 32.0) * 0.9;
+            accentAccum += exp(-cr * 32.0) * 0.9 * pulseBase * smoothstep(0.0, 0.25, revealEase);
           } else {
             // === ARCANE / MANDALA / POLYHEDRON / CYBER_GLYPH ===
             for (int i = 0; i < 5; i++) {
               if (i >= maxRings) break;
               float fi = float(i);
               float ringR = baseOuter * (1.0 - fi * 0.17);
-              float dirSign = (mod(fi, 2.0) < 0.5) ? 1.0 : -1.0;
-              float ringRot = t * (0.55 + fi * 0.24) * dirSign;
+              float ringOrder = float(maxRings - 1 - i) / max(1.0, float(maxRings));
+              float ringRev = clamp((revealEase - ringOrder * 0.48) / 0.52, 0.0, 1.0);
+
+              float ringPulse = 0.78 + 0.22 * sin(uTime * (1.1 + uPulseSpeed * 2.0) - fi * 0.85);
+              float ringRot = t * speedProfile[i];
 
               vec2 rp = rot2(ringRot) * tiltedP;
               float ra = atan(rp.y, rp.x);
+
+              vec2 rev = arcRevealMask(ra, ringRev);
 
               // Anneau principal (avec coupures cyber si cyber_glyph)
               float ringMask = 1.0;
@@ -335,60 +444,101 @@ export class RunicCircleInstance implements IBrickInstance {
                 float seg = hash12(vec2(floor((ra + PI) / TAU * uSymmetry * 2.0), fi + 3.0));
                 ringMask = step(0.18, seg);
               }
-              lineAccum += glowStroke(r - ringR, 0.0022, 0.85) * ringMask * (0.95 - fi * 0.1);
+              lineAccum += glowStroke(r - ringR, 0.0018, 0.85) * ringMask * (0.95 - fi * 0.08) * ringPulse * rev.x;
+              accentAccum += glowStroke(r - ringR, 0.0022, 1.0) * rev.y * 1.25;
 
-              // Polygones ou étoiles inscrits selon le style
-              if (i == 0 || (i == 1 && uPatternStyle != 5)) {
-                float polySides = (uPatternStyle == 2) ? 6.0 : max(3.0, floor(uSymmetry * 0.5));
-                float dPoly1 = sdRegularPolygon(rp, ringR * 0.96, polySides);
-                lineAccum += glowStroke(dPoly1, 0.0018, 0.72) * 0.75;
-
-                // Deuxième polygone inversé pour mandala / arcane
-                if (uPatternStyle == 0 || uPatternStyle == 1) {
-                  vec2 rp2 = rot2(PI / polySides) * rp;
-                  float dPoly2 = sdRegularPolygon(rp2, ringR * 0.96, polySides);
-                  lineAccum += glowStroke(dPoly2, 0.0016, 0.65) * 0.65;
+              // Filet fin intérieur encadrant l'anneau (HIGH & MEDIUM)
+              if (uQualityLevel >= 1 && i < 3) {
+                float subR = ringR - 0.015;
+                lineAccum += glowStroke(r - subR, 0.0009, 0.5) * 0.48 * rev.x;
+                if (uQualityLevel >= 2) {
+                  float ticks = smoothstep(0.86, 0.98, cos(ra * uSymmetry * 6.0)) * smoothstep(0.007, 0.0, abs(r - (ringR - 0.007)));
+                  lineAccum += ticks * 0.45 * rev.x;
                 }
               }
 
-              // Bande de glyphes procéduraux abstraits (HIGH)
-              if (uQualityLevel >= 2 && i < 2) {
+              // Polygones ou étoiles inscrits selon le style
+              float polyFade = smoothstep(0.20, 0.85, ringRev);
+              if (i == 0 || (i == 1 && uPatternStyle != 5)) {
+                float polySides = (uPatternStyle == 2) ? 6.0 : max(3.0, floor(uSymmetry * 0.5));
+                float dPoly1 = sdRegularPolygon(rp, ringR * 0.96, polySides);
+                lineAccum += glowStroke(dPoly1, 0.0015, 0.72) * 0.78 * polyFade * ringPulse;
+
+                if (uPatternStyle == 0 || uPatternStyle == 1) {
+                  vec2 rp2 = rot2(PI / polySides) * rp;
+                  float dPoly2 = sdRegularPolygon(rp2, ringR * 0.96, polySides);
+                  lineAccum += glowStroke(dPoly2, 0.0013, 0.65) * 0.68 * polyFade * ringPulse;
+                }
+              }
+
+              // Bande de symboles géométriques fins et nets (HIGH & MEDIUM sur anneau 0)
+              if ((uQualityLevel >= 2 && i < 2) || (uQualityLevel == 1 && i == 0)) {
                 float glyphCount = (uPatternStyle == 1) ? uSymmetry * 3.0 : uSymmetry * 2.0;
-                float gBand = proceduralGlyphBand(r, ra, ringR - 0.032, 0.042, glyphCount, fi * 11.7 + float(uPatternStyle) * 5.0);
-                accentAccum += gBand * 0.7;
+                float gBand = proceduralGlyphBand(r, ra, ringR - 0.032, 0.034, glyphCount, fi * 11.7 + float(uPatternStyle) * 5.0);
+                accentAccum += gBand * 0.75 * ringRev * ringPulse;
               }
             }
 
-            // Rayons radiaux et noeuds d'énergie
+            // Rayons radiaux et points cardinaux
             if (uQualityLevel >= 1) {
-              vec2 sp = rot2(-t * 0.4) * tiltedP;
+              vec2 sp = rot2(-t * 0.35) * tiltedP;
               float sa = atan(sp.y, sp.x);
               float sector = mod(sa + PI / uSymmetry, TAU / uSymmetry) - PI / uSymmetry;
               float radialRay = abs(sector) * r;
-              float rayMask = smoothstep(0.08, 0.12, r) * smoothstep(baseOuter, baseOuter - 0.04, r);
-              if (uPatternStyle == 1 || uPatternStyle == 2) {
-                lineAccum += glowStroke(radialRay, 0.0012, 0.45) * rayMask * 0.45;
-              }
-
-              // Impulsions tangentielles / noeuds sur l'anneau extérieur (HIGH, sans couture à -PI/+PI)
-              if (uQualityLevel >= 2) {
-                float sparkPhase = fract((a + PI - t * 1.4) / (TAU * 0.25));
-                float sparkEnvelope = smoothstep(0.0, 0.08, sparkPhase) * exp(-sparkPhase * 4.8);
-                float sparkGlow = exp(-abs(r - baseOuter) * 55.0) * sparkEnvelope;
-                accentAccum += sparkGlow * 1.05;
+              float rayMask = smoothstep(0.08, 0.12, r) * smoothstep(baseOuter, baseOuter - 0.04, r) * smoothstep(0.35, 0.95, revealEase);
+              if (uPatternStyle == 1 || uPatternStyle == 2 || uPatternStyle == 0) {
+                lineAccum += glowStroke(radialRay, 0.0010, 0.45) * rayMask * (uPatternStyle == 0 ? 0.25 : 0.45);
               }
             }
 
             // Cœur pulsant interne
-            float corePulse = 0.65 + 0.35 * sin(uTime * (1.2 + uPulseSpeed * 2.5));
-            accentAccum += exp(-r * 16.0) * 0.55 * corePulse;
+            accentAccum += exp(-r * 17.0) * 0.62 * pulseBase * smoothstep(0.0, 0.25, revealEase);
           }
 
-          vec3 finalCol = colPrimary * lineAccum + mix(colSecondary, vec3(1.0, 0.98, 0.9), 0.35) * accentAccum;
-          finalCol *= uIntensity;
+          // Particules orbitales lumineuses le long et autour des anneaux
+          int activeParticles = (uQualityLevel >= 2)
+            ? uParticleCount
+            : ((uQualityLevel == 1) ? min(uParticleCount, 10) : min(uParticleCount, 2));
+          float particleAppear = smoothstep(0.35, 0.98, revealEase);
 
-          float alpha = clamp((lineAccum * 0.72 + accentAccum * 0.8) * uIntensity, 0.0, 0.92);
-          // Préservation de la lisibilité au-delà de la rosace
+          if (activeParticles > 0 && particleAppear > 0.01) {
+            for (int k = 0; k < 28; k++) {
+              if (k >= activeParticles) break;
+              float fk = float(k);
+              float seedP1 = hash12(vec2(fk * 13.7, 5.1));
+              float seedP2 = hash12(vec2(fk * 29.3, 19.7));
+              int hostRing = int(mod(fk, float(maxRings)));
+              float orbitR = baseOuter * (1.0 - float(hostRing) * 0.16) + (seedP1 - 0.5) * 0.028;
+              float orbitDir = (mod(float(hostRing), 2.0) < 0.5) ? 1.0 : -1.0;
+              float orbitSpd = (0.45 + seedP2 * 0.95) * orbitDir * (0.4 + uRotationSpeed * 1.4);
+              float pAngle = seedP1 * TAU + uTime * max(0.05, uSpeed) * orbitSpd;
+              // Respiration radiale légère
+              orbitR += sin(uTime * (0.8 + seedP2) + fk) * 0.006;
+
+              vec2 pPos = vec2(cos(pAngle), sin(pAngle)) * orbitR;
+              float pDist = length(tiltedP - pPos);
+              float twinkle = 0.45 + 0.55 * sin(uTime * (2.2 + seedP1 * 3.0) + fk * 2.4);
+              float pCore = exp(-pDist * 190.0) * 1.1 + exp(-pDist * 55.0) * 0.42;
+
+              // Micro-traînée tangentielle sur HIGH
+              float pTail = 0.0;
+              if (uQualityLevel >= 2) {
+                float dA = mod((a - pAngle) * orbitDir + TAU, TAU);
+                if (dA < 0.35 && abs(r - orbitR) < 0.014) {
+                  pTail = exp(-dA * 12.0) * exp(-abs(r - orbitR) * 180.0) * 0.45;
+                }
+              }
+
+              accentAccum += (pCore + pTail) * twinkle * particleAppear;
+            }
+          }
+
+          vec3 finalCol = colPrimary * (lineAccum * pulseBase)
+            + mix(colSecondary, vec3(1.0, 0.98, 0.92), 0.38) * accentAccum;
+          float lowVisBoost = (uQualityLevel == 0) ? 1.35 : 1.0;
+          finalCol *= uIntensity * lowVisBoost;
+
+          float alpha = clamp((lineAccum * 0.72 + accentAccum * 0.85) * uIntensity * lowVisBoost, 0.0, 0.94);
           if (alpha <= 0.004) {
             discard;
           }
@@ -410,7 +560,11 @@ export class RunicCircleInstance implements IBrickInstance {
 
   public init(): void {}
 
-  public update(): void {}
+  public update(delta: number): void {
+    if (!this.material) return
+    this.localTime += Math.min(delta, 0.05)
+    this.material.uniforms.uLocalTime.value = this.localTime
+  }
 
   public updateProps(newProps: Partial<RunicCircleProps>): void {
     if (!this.material) return
@@ -455,6 +609,16 @@ export class RunicCircleInstance implements IBrickInstance {
       this.material.uniforms.uIntensity.value = newProps.intensity
     if (newProps.randomness !== undefined)
       this.material.uniforms.uRandomness.value = newProps.randomness
+    if (newProps.revealDuration !== undefined)
+      this.material.uniforms.uRevealDuration.value = newProps.revealDuration
+    if (newProps.particleCount !== undefined) {
+      this.material.uniforms.uParticleCount.value = Math.min(
+        28,
+        Math.max(0, Math.round(newProps.particleCount))
+      )
+    }
+    if (newProps.lineSharpness !== undefined)
+      this.material.uniforms.uLineSharpness.value = newProps.lineSharpness
   }
 
   public onQualityChange(quality: QualityTier): void {
