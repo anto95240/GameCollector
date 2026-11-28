@@ -2,9 +2,11 @@
  * src/theme-engine/bricks/atmosphere/HeatDistortionBrick.ts
  *
  * Brique d'ambiance Atmosphérique (Couche 4 : Atmosphere).
- * Distorsion de chaleur et mirage thermique ascensionnel (désert brûlant, réacteurs, magma),
- * avec ondes convectives turbulentes, réfraction optique non-linéaire,
- * aberration chromatique prismatique (dispersion RVB), et atténuation d'altitude.
+ * Distorsion thermique et mirage subtil au-dessus des sources de chaleur :
+ * - Colonnes convectives localisées au-dessus des foyers chauds (sable, magma, réacteur)
+ * - Ondulation verticale dont l'amplitude croît avec la hauteur avant dissipation douce
+ * - Bruit à deux fréquences (panaches lents basse fréquence + rides fines haute fréquence)
+ * - Effet optique subtil de filaments réfractifs (Schlieren / mirage) sans voile opaque
  */
 
 import * as THREE from 'three'
@@ -17,22 +19,28 @@ import { BrickRegistry } from '../registry'
  * Paramètres typés et documentés pour la brique Distorsion de Chaleur.
  */
 export interface HeatDistortionProps {
-  /** Teinte du miroitement thermique (défaut #fb923c ou uPaletteAccent). */
+  /** Teinte subtile du miroitement thermique (défaut #fb923c ou uPaletteAccent). */
   tintColor?: string
-  /** Fréquence spatiale et compacité des vagues thermiques (0.2 à 2.5, défaut 1.0). */
+  /** Fréquence spatiale et finesse des ondes thermiques (0.2 à 2.5, défaut 1.0). */
   density?: number
   /** Vitesse d'ascension verticale de la colonne thermique (0.0 à 1.0, défaut 0.3). */
   speed?: number
   /** Profondeur et réactivité à la parallaxe caméra (0.0 à 1.0, défaut 0.25). */
   depth?: number
-  /** Amplitude de déformation et réfraction optique (0.1 à 2.5, défaut 1.0). */
+  /** Amplitude subtile du miroitement et de la distorsion (0.1 à 2.5, défaut 1.0). */
   intensity?: number
-  /** Turbulence chaotique et instabilité convective (0.0 à 1.0, défaut 0.4). */
+  /** Turbulence chaotique et dispersion des foyers secondaires (0.0 à 1.0, défaut 0.4). */
   randomness?: number
-  /** Hauteur maximale d'impact de la colonne de chaleur (0.2 à 1.0, défaut 0.65). */
+  /** Hauteur d'élévation de la colonne de chaleur au-dessus de la source (0.2 à 1.0, défaut 0.65). */
   heatHeight?: number
-  /** Séparation spectrale chromatique RVB (0.0 à 0.05, défaut 0.015). */
+  /** Séparation spectrale chromatique RVB sur les filaments (0.0 à 0.05, défaut 0.015). */
   chromaticAberration?: number
+  /** Position horizontale X normalisée de la source principale de chaleur (-1.0 à 1.0, défaut 0.0). */
+  sourceX?: number
+  /** Altitude verticale Y de la source de chaleur en UV (0.0 à 0.8, défaut 0.12). */
+  sourceY?: number
+  /** Largeur horizontale des panaches localisés (0.15 à 1.5, défaut 0.55). */
+  plumeWidth?: number
 }
 
 export class HeatDistortionInstance implements IBrickInstance {
@@ -59,6 +67,9 @@ export class HeatDistortionInstance implements IBrickInstance {
     const randomness = props.randomness ?? 0.4
     const heatHeight = props.heatHeight ?? 0.65
     const chromaticAberration = props.chromaticAberration ?? 0.015
+    const sourceX = props.sourceX ?? 0.0
+    const sourceY = props.sourceY ?? 0.12
+    const plumeWidth = props.plumeWidth ?? 0.55
 
     const geometry = new THREE.PlaneGeometry(2, 2)
 
@@ -80,6 +91,9 @@ export class HeatDistortionInstance implements IBrickInstance {
         uRandomness: { value: randomness },
         uHeatHeight: { value: heatHeight },
         uChromaticAberration: { value: chromaticAberration },
+        uSourceX: { value: sourceX },
+        uSourceY: { value: sourceY },
+        uPlumeWidth: { value: plumeWidth },
         uQualityLevel: {
           value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
         },
@@ -108,11 +122,43 @@ export class HeatDistortionInstance implements IBrickInstance {
         uniform float uRandomness;
         uniform float uHeatHeight;
         uniform float uChromaticAberration;
+        uniform float uSourceX;
+        uniform float uSourceY;
+        uniform float uPlumeWidth;
         uniform int uQualityLevel;
         varying vec2 vUv;
 
         ${GLSL_NOISE_2D}
         ${GLSL_HASH}
+
+        // Bruit thermique à deux fréquences : panache convectif lent + rides fines ascensionnelles
+        float twoFreqThermal(vec2 coord, float h, float t) {
+          // Basse fréquence : colonnes ondulantes qui s'amplifient avec la hauteur h
+          float lowFreq = snoise(vec2(coord.x * 2.3, coord.y * 1.1 - t * 0.95));
+          float sway = lowFreq * (0.04 + 0.22 * h) * (0.65 + 0.7 * uRandomness);
+          float vertRipple = snoise(vec2(coord.x * 4.5, coord.y * 2.2 - t * 1.5)) * 0.06;
+          // Haute fréquence : rides fines brisées verticalement pour éviter l'aspect rayures régulières
+          float highFreq = snoise(vec2((coord.x + sway + vertRipple) * 9.5 * uDensity, coord.y * 4.6 * uDensity - t * 2.4));
+          return lowFreq * 0.44 + highFreq * 0.56;
+        }
+
+        // Enveloppe d'une colonne localisée au-dessus d'un foyer (s'élargit avec la hauteur)
+        float plumeEnvelope(vec2 p, vec2 srcPos, float width, float heightSpan, float t) {
+          float dy = p.y - srcPos.y;
+          if (dy <= -0.02 || dy >= heightSpan) return 0.0;
+
+          float h = clamp(dy / max(0.05, heightSpan), 0.0, 1.0);
+          // L'amplitude et l'ouverture croissent avec la hauteur au-dessus de la source, puis s'estompent
+          float growthAmp = smoothstep(0.0, 0.24, h) * pow(h, 0.60) * smoothstep(1.0, 0.62, h);
+
+          // Légère dérive sinueuse de l'axe de la colonne croissante avec h
+          float axisSway = sin(dy * 7.5 - t * 1.9 + srcPos.x * 5.0) * (0.02 + 0.09 * h) * (0.5 + uRandomness);
+          float dx = p.x - (srcPos.x + axisSway);
+          float localWidth = width * (0.42 + 1.05 * h);
+          float radialMask = exp(-(dx * dx) / max(0.004, localWidth * localWidth));
+
+          return growthAmp * radialMask;
+        }
 
         void main() {
           vec2 uv = vUv;
@@ -120,85 +166,95 @@ export class HeatDistortionInstance implements IBrickInstance {
           vec2 p = (uv - 0.5) * vec2(aspect, 1.0);
 
           float t = uTime * uSpeed;
-
-          // Parallaxe souris et inertie thermique
-          vec2 mouseOffset = uMouse * (uDepth * 0.12);
+          vec2 mouseOffset = uMouse * (uDepth * 0.10);
           p += mouseOffset;
+          p.y += uScroll * 0.00025 * uDepth;
 
-          // Masque vertical : chaleur intense près du sol (y bas) se dissipant à uHeatHeight
-          float yGround = 1.0 - uv.y; // 1 au sol (uv.y = 0), 0 en haut (uv.y = 1)
-          float heightFactor = smoothstep(0.0, 1.0, clamp((uHeatHeight - uv.y) / max(0.01, uHeatHeight), 0.0, 1.0));
-          heightFactor = pow(heightFactor, 1.3);
+          float srcYWorld = uSourceY - 0.5;
+          vec2 mainSrc = vec2(uSourceX * aspect * 0.5, srcYWorld);
+          float heightSpan = max(0.18, uHeatHeight * 0.95);
 
-          if (heightFactor <= 0.005) {
+          // Localisation au-dessus de la source principale + 1 à 2 foyers chauds secondaires
+          float env = plumeEnvelope(p, mainSrc, uPlumeWidth * 0.42, heightSpan, t);
+
+          if (uQualityLevel >= 1) {
+            vec2 secA = vec2((uSourceX - 0.52) * aspect * 0.5, srcYWorld - 0.03);
+            env += plumeEnvelope(p, secA, uPlumeWidth * 0.34, heightSpan * 0.85, t * 1.12) * (0.55 + 0.35 * uRandomness);
+          }
+          if (uQualityLevel >= 2) {
+            vec2 secB = vec2((uSourceX + 0.56) * aspect * 0.5, srcYWorld + 0.02);
+            env += plumeEnvelope(p, secB, uPlumeWidth * 0.32, heightSpan * 0.80, t * 0.93) * (0.50 + 0.35 * uRandomness);
+          }
+
+          env = clamp(env, 0.0, 1.0);
+          if (env <= 0.004) {
             discard;
           }
 
-          // Déplacement convectif ascendant avec dérive latérale organique
-          float lateralDrift = snoise(vec2(t * 0.35, 1.7)) * (uRandomness * 0.4);
-          vec2 flowCoord = vec2((p.x + lateralDrift) * 6.0 * uDensity, (p.y - t * 0.8) * 8.0 * uDensity);
+          float hNorm = clamp((p.y - srcYWorld) / max(0.05, heightSpan), 0.0, 1.0);
+          // Amplification verticale : la distorsion croît au-dessus de la source
+          float heightAmp = 0.25 + 0.95 * hNorm;
 
-          vec2 distortion = vec2(0.0);
-          float shimmerVal = 0.0;
+          vec3 shimmerRgb = vec3(0.0);
+          float causticIntensity = 0.0;
 
           if (uQualityLevel >= 2) {
-            // === PALIER HIGH : Double nappe Simplex avec domain warping et turbulence ===
-            vec2 q = vec2(
-              snoise(flowCoord + vec2(t * 0.2, 0.0)),
-              snoise(flowCoord + vec2(2.5, t * 0.4))
+            // === PALIER HIGH : Gradient optique à 2 fréquences + dispersion RVB subtile sur filaments ===
+            float eps = 0.014;
+            float nL = twoFreqThermal(p - vec2(eps, 0.0), hNorm, t);
+            float nR = twoFreqThermal(p + vec2(eps, 0.0), hNorm, t);
+            float nC = twoFreqThermal(p, hNorm, t);
+
+            // Gradient horizontal adouci (ondulations optiques subtiles sans rayures marquées)
+            float gradX = abs(nR - nL) / (2.0 * eps);
+            float filament = smoothstep(1.5, 11.0, gradX) * 0.75;
+            float softRipple = smoothstep(-0.05, 0.78, nC) * 0.30;
+
+            // Dispersion chromatique subtile uniquement sur la crête des filaments
+            float chroma = uChromaticAberration * 0.55 * heightAmp * uIntensity;
+            float nChromaR = twoFreqThermal(p + vec2(chroma, 0.0), hNorm, t);
+            float nChromaB = twoFreqThermal(p - vec2(chroma, 0.0), hNorm, t);
+            vec3 refractionTint = vec3(
+              0.94 + 0.14 * smoothstep(0.0, 0.7, nChromaR),
+              0.92 + 0.12 * smoothstep(0.0, 0.7, nC),
+              0.86 + 0.14 * smoothstep(0.0, 0.7, nChromaB)
             );
 
-            float n1 = snoise(flowCoord + q * (uRandomness * 1.5));
-            float n2 = snoise(flowCoord * 2.3 - vec2(0.0, t * 1.2));
-
-            distortion.x = (n1 * 0.7 + n2 * 0.3) * (uIntensity * 0.04) * heightFactor;
-            distortion.y = (n2 * 0.8 - n1 * 0.2) * (uIntensity * 0.03) * heightFactor;
-
-            // Miroitement thermique haute fréquence
-            shimmerVal = abs(n1) * 0.5 + abs(n2) * 0.5;
+            causticIntensity = (filament * 0.78 + softRipple) * heightAmp * env;
+            vec3 baseTint = uUseCustomColor ? uTintColor : uPaletteAccent;
+            shimmerRgb = mix(refractionTint, baseTint, 0.30);
 
           } else if (uQualityLevel >= 1) {
-            // === PALIER MEDIUM : Nappe Simplex convective standard ===
-            float n = snoise(flowCoord);
-            distortion.x = n * (uIntensity * 0.03) * heightFactor;
-            distortion.y = snoise(flowCoord + 4.0) * (uIntensity * 0.02) * heightFactor;
-            shimmerVal = abs(n);
+            // === PALIER MEDIUM : Bruit à 2 fréquences avec gradient rapide ===
+            float eps = 0.018;
+            float nC = twoFreqThermal(p, hNorm, t);
+            float nR = twoFreqThermal(p + vec2(eps, 0.0), hNorm, t);
+            float gradX = abs(nR - nC) / eps;
+            float filament = smoothstep(1.5, 11.0, gradX) * 0.72;
+
+            causticIntensity = (filament * 0.75 + smoothstep(-0.05, 0.78, nC) * 0.25) * heightAmp * env;
+            vec3 baseTint = uUseCustomColor ? uTintColor : uPaletteAccent;
+            shimmerRgb = mix(vec3(1.0, 0.96, 0.88), baseTint, 0.28);
 
           } else {
-            // === PALIER LOW : Ondulation sinusoïdale verticale (ultra-léger) ===
-            float wave = sin(p.y * 18.0 * uDensity - t * 4.0) * cos(p.x * 12.0 * uDensity);
-            distortion.x = wave * (uIntensity * 0.02) * heightFactor;
-            distortion.y = wave * 0.5 * (uIntensity * 0.01) * heightFactor;
-            shimmerVal = abs(wave);
+            // === PALIER LOW : 2 fréquences trigonométriques verticales (0 snoise, ultra-rapide) ===
+            float lowWave = sin(p.x * 7.5 + p.y * 3.0 - t * 2.2);
+            float sway = lowWave * (0.04 + 0.16 * hNorm);
+            float highWave = sin((p.x + sway) * 26.0 * uDensity + p.y * 7.0 * uDensity - t * 5.2);
+            float combinedWave = pow(max(0.0, highWave * 0.65 + lowWave * 0.35), 2.0);
+
+            causticIntensity = combinedWave * 0.72 * heightAmp * env;
+            vec3 baseTint = uUseCustomColor ? uTintColor : uPaletteAccent;
+            shimmerRgb = mix(vec3(1.0, 0.97, 0.92), baseTint, 0.20);
           }
 
-          // Séparation spectrale chromatique (aberration optique RVB)
-          float chroma = uChromaticAberration * heightFactor * uIntensity;
-          vec2 rUv = p + distortion + vec2(chroma, 0.0);
-          vec2 gUv = p + distortion;
-          vec2 bUv = p + distortion - vec2(chroma, 0.0);
-
-          float rWave = abs(snoise(rUv * 5.0 - vec2(0.0, t)));
-          float gWave = abs(snoise(gUv * 5.0 - vec2(0.0, t)));
-          float bWave = abs(snoise(bUv * 5.0 - vec2(0.0, t)));
-
-          vec3 baseTint = uUseCustomColor ? uTintColor : uPaletteAccent;
-
-          // Effet de réfraction lumineuse chatoyante
-          vec3 shimmerColor = vec3(
-            mix(baseTint.r, 1.0, rWave * 0.4),
-            mix(baseTint.g, 1.0, gWave * 0.4),
-            mix(baseTint.b, 1.0, bWave * 0.4)
-          );
-
-          // Opacité douce pour ne pas saturer l'image, juste la sublimer
-          float alpha = clamp(shimmerVal * heightFactor * (uIntensity * 0.35), 0.0, 0.65);
-
-          if (alpha <= 0.005) {
+          // Effet volontairement subtil : jamais de nappe orange opaque
+          float alpha = clamp(causticIntensity * (uIntensity * 0.15), 0.0, 0.18);
+          if (alpha <= 0.003) {
             discard;
           }
 
-          gl_FragColor = vec4(shimmerColor * (1.0 + shimmerVal * 0.5), alpha);
+          gl_FragColor = vec4(shimmerRgb * (0.85 + causticIntensity * 0.55), alpha);
         }
       `,
       transparent: true,
@@ -236,6 +292,10 @@ export class HeatDistortionInstance implements IBrickInstance {
       this.material.uniforms.uHeatHeight.value = newProps.heatHeight
     if (newProps.chromaticAberration !== undefined)
       this.material.uniforms.uChromaticAberration.value = newProps.chromaticAberration
+    if (newProps.sourceX !== undefined) this.material.uniforms.uSourceX.value = newProps.sourceX
+    if (newProps.sourceY !== undefined) this.material.uniforms.uSourceY.value = newProps.sourceY
+    if (newProps.plumeWidth !== undefined)
+      this.material.uniforms.uPlumeWidth.value = newProps.plumeWidth
   }
 
   public onQualityChange(quality: QualityTier): void {

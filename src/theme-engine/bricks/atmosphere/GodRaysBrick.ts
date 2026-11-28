@@ -2,10 +2,11 @@
  * src/theme-engine/bricks/atmosphere/GodRaysBrick.ts
  *
  * Brique d'ambiance Atmosphérique (Couche 4 : Atmosphere).
- * Rayons de lumière (God Rays) volumétriques crépusculaires perçant l'atmosphère,
- * avec cônes de diffusion radiale, poussières en suspension micro-scintillantes,
- * atténuation exponentielle avec la distance, réactivité parallaxe à la souris,
- * et adaptation aux 3 paliers de qualité (HIGH, MEDIUM, LOW).
+ * Rayons de lumière (God Rays) volumétriques crépusculaires issus d'une source,
+ * à largeur variable (bruit angulaire multi-échelle sans symétrie artificielle),
+ * coupés par des silhouettes / trouées d'occultation le long du trajet radial,
+ * modulés par des variations d'intensité atmosphériques, un scintillement léger
+ * et des grains de poussière visibles exclusivement dans les faisceaux éclairés.
  */
 
 import * as THREE from 'three'
@@ -36,6 +37,14 @@ export interface GodRaysProps {
   lightSourceY?: number
   /** Facteur d'atténuation radiale le long du faisceau (0.7 à 0.99, défaut 0.92). */
   decay?: number
+  /** Densité des poussières visibles en suspension dans les faisceaux (0.0 à 2.0, défaut 0.7). */
+  dustDensity?: number
+  /** Intensité du scintillement organique léger (0.0 à 1.0, défaut 0.3). */
+  shimmer?: number
+  /** Force des silhouettes / nuages qui coupent les rayons (0.0 à 1.0, défaut 0.6). */
+  occlusion?: number
+  /** Étendue et variabilité de largeur des faisceaux (0.3 à 2.0, défaut 1.0). */
+  beamSpread?: number
 }
 
 export class GodRaysInstance implements IBrickInstance {
@@ -63,6 +72,10 @@ export class GodRaysInstance implements IBrickInstance {
     const lightSourceX = props.lightSourceX ?? 0.35
     const lightSourceY = props.lightSourceY ?? 0.85
     const decay = props.decay ?? 0.92
+    const dustDensity = props.dustDensity ?? 0.7
+    const shimmer = props.shimmer ?? 0.3
+    const occlusion = props.occlusion ?? 0.6
+    const beamSpread = props.beamSpread ?? 1.0
 
     const geometry = new THREE.PlaneGeometry(2, 2)
 
@@ -85,6 +98,10 @@ export class GodRaysInstance implements IBrickInstance {
         uLightSourceX: { value: lightSourceX },
         uLightSourceY: { value: lightSourceY },
         uDecay: { value: decay },
+        uDustDensity: { value: dustDensity },
+        uShimmer: { value: shimmer },
+        uOcclusion: { value: occlusion },
+        uBeamSpread: { value: beamSpread },
         uQualityLevel: {
           value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
         },
@@ -114,24 +131,73 @@ export class GodRaysInstance implements IBrickInstance {
         uniform float uLightSourceX;
         uniform float uLightSourceY;
         uniform float uDecay;
+        uniform float uDustDensity;
+        uniform float uShimmer;
+        uniform float uOcclusion;
+        uniform float uBeamSpread;
         uniform int uQualityLevel;
         varying vec2 vUv;
 
         ${GLSL_NOISE_2D}
         ${GLSL_HASH}
 
-        // Évalue la densité angulaire des rayons avec découpage irrégulier
-        float rayAngleProfile(float angle, float t) {
-          // Harmoniques angulaires non périodiques
-          float a1 = sin(angle * 11.0 * uDensity + t * 0.4);
-          float a2 = sin(angle * 23.0 * uDensity - t * 0.6);
-          float a3 = sin(angle * 47.0 * uDensity + t * 0.2);
+        // Profil angulaire sans couture à largeur variable (remplace les sinus périodiques)
+        float rayShaftProfile(vec2 rayDir, float t, float detailFactor) {
+          float angWarp = snoise(rayDir * 2.4 + vec2(t * 0.05, -t * 0.04)) * (0.38 * uRandomness);
+          float c = cos(angWarp);
+          float s = sin(angWarp);
+          vec2 wDir = vec2(rayDir.x * c - rayDir.y * s, rayDir.x * s + rayDir.y * c);
 
-          // Bruit organique Simplex sur l'angle pour briser la régularité mathématique
-          float angNoise = snoise(vec2(cos(angle) * 3.0, sin(angle) * 3.0 + t * 0.2)) * (uRandomness * 0.8);
+          float freqScale = uDensity / max(0.35, uBeamSpread);
+          // Faisceaux larges + moyens + fins filets asymétriques
+          float broad = snoise(wDir * (2.5 * freqScale) + vec2(1.7, -t * 0.06));
+          float medium = snoise(wDir * (5.8 * freqScale) + vec2(-3.2, t * 0.09));
+          float fine = detailFactor > 0.5
+            ? snoise(wDir * (13.5 * freqScale) + vec2(6.4, -t * 0.12))
+            : 0.0;
 
-          float combined = a1 * 0.5 + a2 * 0.35 + a3 * 0.15 + angNoise;
-          return pow(max(0.0, combined * 0.5 + 0.5), 2.2);
+          float combined = broad * 0.52 + medium * 0.34 + fine * 0.14;
+          // Découpe des intervalles sombres pour un contraste réaliste entre rayons et ombres
+          float shaft = smoothstep(-0.12, 0.68, combined);
+          return pow(shaft, 1.55);
+        }
+
+        // Champ d'occultation par silhouettes (canopée, nuages, crêtes) coupant le trajet radial
+        float silhouetteTransmittance(vec2 sampleP, vec2 lightCenter, float t) {
+          vec2 rel = sampleP - lightCenter;
+          float r = length(rel);
+          // Bande de silhouettes entre la source et le décor (nuages / cimes supérieures)
+          float canopyBand = smoothstep(0.06, 0.22, r) * smoothstep(0.95, 0.28, r);
+          // Silhouette irrégulière de cimes / nuages dérivant très lentement
+          float occBroad = snoise(sampleP * vec2(3.6, 2.2) + vec2(t * 0.04, 0.0));
+          float occFine = snoise(sampleP * vec2(9.2, 4.8) - vec2(t * 0.07, 1.3)) * 0.45;
+          float ridgeLine = smoothstep(0.18, -0.25, sampleP.y + 0.08 + occBroad * 0.16);
+          float occDensity = smoothstep(0.08, 0.46, occBroad + occFine) * canopyBand;
+          float lowerCut = ridgeLine * smoothstep(0.0, -0.35, sampleP.y) * 0.55;
+          float blocked = clamp((occDensity + lowerCut) * uOcclusion, 0.0, 0.92);
+          return 1.0 - blocked;
+        }
+
+        // Poussière atmosphérique scintillante en suspension (grille jitterée)
+        float dustMotesLayer(vec2 p, float scale, float t, float seedOffset) {
+          vec2 grid = p * scale;
+          vec2 cell = floor(grid);
+          vec2 local = fract(grid) - 0.5;
+          vec2 rnd = hash22(cell + seedOffset);
+          // Dérive brownienne lente ascendante
+          vec2 drift = vec2(
+            sin(t * 0.85 + rnd.x * 6.2831) * 0.18,
+            cos(t * 0.62 + rnd.y * 6.2831) * 0.18 + fract(t * 0.05 + rnd.y) * 0.12
+          );
+          vec2 motePos = (rnd - 0.5) * 0.58 + drift;
+          float d = length(local - motePos);
+          float moteSize = mix(0.028, 0.075, rnd.x);
+          float shape = smoothstep(moteSize, 0.0, d);
+          // Scintillement individuel doux non-linéaire
+          float twinkle = 0.45 + 0.55 * pow(0.5 + 0.5 * sin(t * (1.8 + rnd.y * 2.2) + rnd.x * 12.56), 1.6);
+          // Présence aléatoire (toutes les cellules n'ont pas un grain visible)
+          float visibleMask = step(0.38, rnd.y);
+          return shape * twinkle * visibleMask;
         }
 
         void main() {
@@ -141,87 +207,117 @@ export class GodRaysInstance implements IBrickInstance {
 
           float t = uTime * uSpeed;
 
-          // Position de la source de lumière avec parallaxe dynamique à la souris
-          vec2 lightCenter = vec2(uLightSourceX * aspect * 0.5, (uLightSourceY - 0.5));
-          vec2 mouseParallax = uMouse * (uDepth * 0.15);
-          lightCenter += mouseParallax;
+          // Position de la source lumineuse avec parallaxe souris et léger scroll
+          vec2 lightCenter = vec2(uLightSourceX * aspect * 0.5, uLightSourceY - 0.5);
+          lightCenter += uMouse * (uDepth * 0.15);
+          lightCenter.y += uScroll * 0.00025 * uDepth;
 
-          // Vecteur depuis la source lumineuse
           vec2 dir = p - lightCenter;
           float dist = length(dir);
-          float angle = atan(dir.y, dir.x);
+          vec2 rayDir = dist > 0.0005 ? dir / dist : vec2(0.0, -1.0);
 
-          float rayAccum = 0.0;
+          // Profil angulaire de base à largeur variable
+          float baseShaft = rayShaftProfile(rayDir, t, uQualityLevel >= 1 ? 1.0 : 0.0);
+
+          // Scintillement organique léger (comme l'air ou le feuillage devant la source)
+          float shimmerNoise = snoise(rayDir * 7.5 + vec2(t * 0.65, -t * 0.48));
+          float shimmerMod = 1.0 + shimmerNoise * (0.20 * uShimmer);
+
+          float beamEnergy = 0.0;
+          float dustAccum = 0.0;
 
           if (uQualityLevel >= 2) {
-            // === PALIER HIGH : Échantillonnage radial à 20 pas avec micro-poussières ===
-            vec2 stepVec = (lightCenter - p) / 20.0;
-            vec2 curP = p;
-            float currentDecay = 1.0;
-
-            for (int i = 0; i < 20; i++) {
-              curP += stepVec;
-              vec2 curDir = curP - lightCenter;
-              float curAngle = atan(curDir.y, curDir.x);
-              float curDist = length(curDir);
-
-              float densitySample = rayAngleProfile(curAngle, t);
-              // Poussière microscopique scintillante en suspension
-              float dust = snoise(curP * 12.0 + vec2(t * 0.3, t * 0.15)) * (uRandomness * 0.25);
-              densitySample = max(0.0, densitySample + dust);
-
-              // Atténuation de diffusion radiale
-              float falloff = exp(-curDist * (3.0 - uDecay * 2.0));
-              rayAccum += densitySample * falloff * currentDecay;
-              currentDecay *= uDecay;
-            }
-            rayAccum = (rayAccum / 20.0) * 2.8;
-
-          } else if (uQualityLevel >= 1) {
-            // === PALIER MEDIUM : Échantillonnage radial à 10 pas direct ===
+            // === PALIER HIGH : Raymarch d'occultation (10 pas optimisés) + variations de bruit + poussières ===
             vec2 stepVec = (lightCenter - p) / 10.0;
             vec2 curP = p;
-            float currentDecay = 1.0;
+            float trans = 1.0;
+            float rayWeight = 1.0;
+            float accum = 0.0;
+            float weightSum = 0.0;
 
             for (int i = 0; i < 10; i++) {
               curP += stepVec;
-              vec2 curDir = curP - lightCenter;
-              float curAngle = atan(curDir.y, curDir.x);
-              float curDist = length(curDir);
+              vec2 rel = curP - lightCenter;
+              float curDist = length(rel);
 
-              float densitySample = rayAngleProfile(curAngle, t);
-              float falloff = exp(-curDist * (2.8 - uDecay * 1.8));
-              rayAccum += densitySample * falloff * currentDecay;
-              currentDecay *= uDecay;
+              // Occultation progressive optimisée (1 snoise par pas le long du rayon)
+              float canopyBand = smoothstep(0.06, 0.22, curDist) * smoothstep(0.95, 0.28, curDist);
+              float occBroad = snoise(curP * vec2(3.8, 2.3) + vec2(t * 0.04, 0.0));
+              float ridgeLine = smoothstep(0.18, -0.25, curP.y + 0.08 + occBroad * 0.16);
+              float occDensity = smoothstep(0.08, 0.46, occBroad) * canopyBand;
+              float lowerCut = ridgeLine * smoothstep(0.0, -0.35, curP.y) * 0.55;
+              float localTrans = 1.0 - clamp((occDensity + lowerCut) * uOcclusion, 0.0, 0.92);
+              trans *= mix(1.0, localTrans, 0.42);
+
+              float falloff = exp(-curDist * (2.6 - uDecay * 1.85));
+              accum += baseShaft * trans * falloff * rayWeight;
+              weightSum += rayWeight;
+              rayWeight *= uDecay;
             }
-            rayAccum = (rayAccum / 10.0) * 2.4;
+            // Variations d'intensité volumétriques par bruit dérivant dans le faisceau
+            float mistPocket = 0.74 + 0.36 * snoise(p * 2.4 + vec2(t * 0.14, -t * 0.06));
+            beamEnergy = (accum / max(weightSum, 0.001)) * 2.15 * mistPocket * shimmerMod;
+
+            // Grains de poussière visibles exclusivement à l'intérieur des faisceaux éclairés
+            float m1 = dustMotesLayer(p + vec2(t * 0.04, -t * 0.06), 14.0, t, 1.0);
+            float m2 = dustMotesLayer(p - vec2(t * 0.02, t * 0.05), 24.0, t, 19.7);
+            float beamMask = smoothstep(0.06, 0.45, beamEnergy) * exp(-dist * 0.75);
+            dustAccum = (m1 * 0.65 + m2 * 0.55) * beamMask * uDustDensity;
+
+          } else if (uQualityLevel >= 1) {
+            // === PALIER MEDIUM : Raymarch 6 pas avec occultation + 1 couche de poussière ===
+            vec2 stepVec = (lightCenter - p) / 6.0;
+            vec2 curP = p;
+            float trans = 1.0;
+            float rayWeight = 1.0;
+            float accum = 0.0;
+            float weightSum = 0.0;
+
+            for (int i = 0; i < 6; i++) {
+              curP += stepVec;
+              float curDist = length(curP - lightCenter);
+              float canopyBand = smoothstep(0.06, 0.22, curDist) * smoothstep(0.95, 0.28, curDist);
+              float occBroad = snoise(curP * vec2(3.6, 2.2) + vec2(t * 0.04, 0.0));
+              float localTrans = 1.0 - clamp(smoothstep(0.08, 0.46, occBroad) * canopyBand * uOcclusion, 0.0, 0.90);
+              trans *= mix(1.0, localTrans, 0.48);
+
+              float falloff = exp(-curDist * (2.5 - uDecay * 1.75));
+              accum += baseShaft * trans * falloff * rayWeight;
+              weightSum += rayWeight;
+              rayWeight *= uDecay;
+            }
+            float mistPocket = 0.80 + 0.28 * snoise(p * 2.1 + vec2(t * 0.10, 0.0));
+            beamEnergy = (accum / max(weightSum, 0.001)) * 2.0 * mistPocket * shimmerMod;
+
+            float m1 = dustMotesLayer(p + vec2(t * 0.03, -t * 0.05), 16.0, t, 3.3);
+            float beamMask = smoothstep(0.08, 0.48, beamEnergy) * exp(-dist * 0.85);
+            dustAccum = m1 * 0.70 * beamMask * uDustDensity;
 
           } else {
-            // === PALIER LOW : Formule angulaire analytique directe (ultra-léger, 0 boucle) ===
-            float densitySample = rayAngleProfile(angle, t);
-            float falloff = exp(-dist * 2.5);
-            rayAccum = densitySample * falloff * 1.5;
+            // === PALIER LOW : Analytique sans boucle (0 marche radiale, FPS maximal) ===
+            float occAnalytic = silhouetteTransmittance(mix(lightCenter, p, 0.45), lightCenter, t);
+            float falloff = exp(-dist * (2.55 - uDecay * 1.4));
+            beamEnergy = baseShaft * occAnalytic * falloff * 1.45 * shimmerMod;
           }
 
-          // Éclat d'éblouissement au cœur de la source lumineuse
-          float sourceGlow = exp(-dist * 5.0) * 1.8;
-          rayAccum += sourceGlow;
+          // Cœur doux de la source (halo naturel sans disque opaque)
+          float sourceGlow = exp(-dist * 4.6) * 0.95 + exp(-dist * 14.0) * 0.55;
+          float totalEnergy = (beamEnergy + sourceGlow + dustAccum * 1.35) * uIntensity;
 
-          // Application de l'intensité et clamp de sécurité
-          float finalVal = clamp(rayAccum * uIntensity, 0.0, 1.5);
+          // Atténuation douce vers le haut derrière la source pour rester réaliste
+          float dirBias = smoothstep(0.65, -0.35, rayDir.y);
+          totalEnergy *= mix(0.55, 1.0, dirBias);
 
-          if (finalVal <= 0.005) {
+          float clampedVal = clamp(totalEnergy, 0.0, 1.45);
+          if (clampedVal <= 0.004) {
             discard;
           }
 
           vec3 baseColor = uUseCustomColor ? uRayColor : uPaletteAccent;
-          // Coeur chaud plus éclatant (blanc-doré)
-          vec3 coreColor = mix(baseColor, vec3(1.0, 0.98, 0.88), clamp(sourceGlow * 0.6, 0.0, 1.0));
+          vec3 warmCore = mix(baseColor, vec3(1.0, 0.98, 0.90), clamp(sourceGlow * 0.55 + dustAccum * 0.6, 0.0, 0.85));
+          vec3 finalColor = warmCore * clampedVal;
 
-          // Effet de dispersion chromatique subtile sur les bords du faisceau
-          vec3 finalColor = coreColor * finalVal;
-
-          gl_FragColor = vec4(finalColor, clamp(finalVal * 0.75, 0.0, 1.0));
+          gl_FragColor = vec4(finalColor, clamp(clampedVal * 0.72, 0.0, 0.92));
         }
       `,
       transparent: true,
@@ -260,6 +356,13 @@ export class GodRaysInstance implements IBrickInstance {
     if (newProps.lightSourceY !== undefined)
       this.material.uniforms.uLightSourceY.value = newProps.lightSourceY
     if (newProps.decay !== undefined) this.material.uniforms.uDecay.value = newProps.decay
+    if (newProps.dustDensity !== undefined)
+      this.material.uniforms.uDustDensity.value = newProps.dustDensity
+    if (newProps.shimmer !== undefined) this.material.uniforms.uShimmer.value = newProps.shimmer
+    if (newProps.occlusion !== undefined)
+      this.material.uniforms.uOcclusion.value = newProps.occlusion
+    if (newProps.beamSpread !== undefined)
+      this.material.uniforms.uBeamSpread.value = newProps.beamSpread
   }
 
   public onQualityChange(quality: QualityTier): void {

@@ -2,10 +2,11 @@
  * src/theme-engine/bricks/atmosphere/VolumetricGlowBrick.ts
  *
  * Brique d'ambiance Atmosphérique (Couche 4 : Atmosphere).
- * Lueur volumétrique atmosphérique et diffusion céleste (halo de lune géante, orbe mystique, soleil voilé),
- * simulant la diffusion de Mie et Rayleigh avec coeur incandescent saturé,
- * respiration lente non-linéaire, frange atmosphérique perturbée par bruit Simplex,
- * et transition spectrale 3 teintes (coeur / halo / périphérie).
+ * Lueur volumétrique atmosphérique et diffusion céleste réaliste :
+ * - Décroissance physique douce (loi inverse-carré adoucie au cœur + Mie + Rayleigh)
+ * - Cœur incandescent nettement plus chaud que le halo et la périphérie
+ * - Bloom multi-échelle progressif sans cassure ni saturation brutale
+ * - Respiration organique légère et interaction volumétrique avec la brume dérivante
  */
 
 import * as THREE from 'three'
@@ -32,12 +33,18 @@ export interface VolumetricGlowProps {
   depth?: number
   /** Radiance et émission lumineuse centrale (0.2 à 2.5, défaut 1.2). */
   intensity?: number
-  /** Perturbation atmosphérique de la frange circulaire (0.0 à 1.0, défaut 0.3). */
+  /** Perturbation atmosphérique et irrégularité de la brume (0.0 à 1.0, défaut 0.3). */
   randomness?: number
   /** Position horizontale X du centre normalisée (-1.0 à 1.0, défaut 0.0). */
   glowX?: number
   /** Position verticale Y du centre normalisée (-1.0 à 1.0, défaut 0.15). */
   glowY?: number
+  /** Intensité du halo de bloom doux multi-échelle (0.0 à 2.0, défaut 0.85). */
+  bloomStrength?: number
+  /** Interaction volumétrique avec la brume dérivante (0.0 à 1.5, défaut 0.65). */
+  fogInteraction?: number
+  /** Température et incandescence du cœur par rapport au halo plus froid (0.0 à 1.5, défaut 0.85). */
+  coreWarmth?: number
 }
 
 export class VolumetricGlowInstance implements IBrickInstance {
@@ -68,6 +75,9 @@ export class VolumetricGlowInstance implements IBrickInstance {
     const randomness = props.randomness ?? 0.3
     const glowX = props.glowX ?? 0.0
     const glowY = props.glowY ?? 0.15
+    const bloomStrength = props.bloomStrength ?? 0.85
+    const fogInteraction = props.fogInteraction ?? 0.65
+    const coreWarmth = props.coreWarmth ?? 0.85
 
     const geometry = new THREE.PlaneGeometry(2, 2)
 
@@ -93,6 +103,9 @@ export class VolumetricGlowInstance implements IBrickInstance {
         uRandomness: { value: randomness },
         uGlowX: { value: glowX },
         uGlowY: { value: glowY },
+        uBloomStrength: { value: bloomStrength },
+        uFogInteraction: { value: fogInteraction },
+        uCoreWarmth: { value: coreWarmth },
         uQualityLevel: {
           value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
         },
@@ -123,6 +136,9 @@ export class VolumetricGlowInstance implements IBrickInstance {
         uniform float uRandomness;
         uniform float uGlowX;
         uniform float uGlowY;
+        uniform float uBloomStrength;
+        uniform float uFogInteraction;
+        uniform float uCoreWarmth;
         uniform int uQualityLevel;
         varying vec2 vUv;
 
@@ -136,65 +152,87 @@ export class VolumetricGlowInstance implements IBrickInstance {
 
           float t = uTime * uSpeed;
 
-          // Centre du dôme avec parallaxe souris
+          // Centre de la lueur avec parallaxe souris et léger décalage scroll
           vec2 center = vec2(uGlowX * aspect * 0.5, uGlowY * 0.5);
-          vec2 mouseOffset = uMouse * (uDepth * 0.16);
-          center += mouseOffset;
+          center += uMouse * (uDepth * 0.16);
+          center.y += uScroll * 0.00025 * uDepth;
 
-          vec2 dir = p - center;
-          float baseDist = length(dir);
+          float baseDist = length(p - center);
 
-          // Respiration lente et asynchrone du dôme atmosphérique
-          float pulse = 1.0 + sin(t * 1.6) * 0.06 + cos(t * 2.3) * 0.04;
+          // Respiration organique très légère (~2.5% sur le rayon et la radiance)
+          float breathWave = sin(t * 1.15) * 0.62 + cos(t * 1.87 + 1.1) * 0.38;
+          float radiusBreath = 1.0 + breathWave * 0.025;
+          float radianceBreath = 1.0 + breathWave * 0.045;
 
-          float radius = 0.7 * uDensity * pulse;
-          float dist = baseDist;
+          float radius = max(0.12, 0.72 * uDensity * radiusBreath);
+          float r = baseDist / radius;
 
-          if (uQualityLevel >= 2) {
-            // === PALIER HIGH : Frange atmosphérique ondulante par Simplex FBM ===
-            float angle = atan(dir.y, dir.x);
-            float rimNoise = snoise(vec2(cos(angle) * 3.5 + t * 0.3, sin(angle) * 3.5 - t * 0.2)) * (uRandomness * 0.12);
-            float microHaze = snoise(p * 4.0 + vec2(t * 0.1, t * 0.05)) * (uRandomness * 0.08);
-            dist = baseDist + rimNoise * smoothstep(0.1, 0.8, baseDist / radius) + microHaze;
-          } else if (uQualityLevel >= 1) {
-            // === PALIER MEDIUM : Perturbation angulaire douce ===
-            float angle = atan(dir.y, dir.x);
-            float rimNoise = snoise(vec2(cos(angle) * 2.0 + t * 0.2, sin(angle) * 2.0)) * (uRandomness * 0.08);
-            dist = baseDist + rimNoise;
+          // Découpe lointaine douce pour éviter tout bord net
+          float farFade = smoothstep(2.45, 0.55, r);
+          if (farFade <= 0.002) {
+            discard;
           }
 
-          // Profil de diffusion volumétrique Mie + Rayleigh
-          // 1. Coeur incandescent très dense (Mie forward scattering)
-          float coreFactor = exp(-dist * 9.5 / max(0.1, radius)) * 2.2;
-          // 2. Halo intermédiaire diffus
-          float glowFactor = exp(-dist * 3.4 / max(0.1, radius)) * 0.95;
-          // 3. Voile atmosphérique lointain (Rayleigh)
-          float outerFactor = exp(-dist * 1.5 / max(0.1, radius)) * 0.45;
+          // Décroissance physique réaliste avec la distance :
+          // 1. Cœur incandescent adouci (gaussienne centrale + inverse-carré sans rebord de disque)
+          float coreProfile = exp(-r * r * 36.0) * 0.55 + (1.0 / (1.0 + pow(r / 0.12, 1.85))) * 0.65;
+          // 2. Halo de bloom doux multi-échelle (diffusion de Mie)
+          float mieBloom = (1.0 / (1.0 + pow(r / 0.34, 2.25))) * (0.72 + 0.28 * exp(-r * 2.1));
+          // 3. Périphérie atmosphérique étendue (diffusion de Rayleigh)
+          float rayleighHalo = (exp(-r * r * 1.55) * 0.54 + (1.0 / (1.0 + pow(r / 0.85, 2.0))) * 0.46) * farFade;
 
-          float totalGlow = (coreFactor + glowFactor + outerFactor) * uIntensity;
+          // Interaction volumétrique avec la brume dérivante (diffusion vers l'avant + volutes occultantes)
+          float fogScatter = 1.0;
+          float fogVeil = 0.0;
 
-          if (totalGlow <= 0.005) {
-            discard;
+          if (uQualityLevel >= 2) {
+            // === PALIER HIGH : Brume 2 octaves interagissant avec le halo ===
+            vec2 fogCoord = p * 1.85 + vec2(t * 0.22, t * 0.05) + uMouse * (uDepth * 0.06);
+            float f1 = snoise(fogCoord);
+            float f2 = snoise(fogCoord * 2.4 - vec2(t * 0.28, -t * 0.11));
+            float fogField = f1 * 0.64 + f2 * 0.36;
+
+            float mistZone = smoothstep(0.06, 0.50, r) * (0.68 + 0.32 * smoothstep(0.55, -0.35, p.y));
+            float scatterBoost = smoothstep(-0.18, 0.62, fogField) * (0.44 + uRandomness * 0.28) * uFogInteraction * mistZone;
+            float fogShadow = smoothstep(0.18, 0.82, -fogField) * (0.46 + uRandomness * 0.24) * uFogInteraction * mistZone;
+            fogScatter = max(0.30, 1.0 + scatterBoost - fogShadow);
+            fogVeil = max(0.0, scatterBoost) * 0.26;
+
+          } else if (uQualityLevel >= 1) {
+            // === PALIER MEDIUM : Brume 1 octave en interaction avec le halo ===
+            vec2 fogCoord = p * 1.7 + vec2(t * 0.18, t * 0.04);
+            float fogField = snoise(fogCoord);
+            float mistZone = smoothstep(0.10, 0.55, r);
+            float scatterBoost = fogField * (0.28 + uRandomness * 0.20) * uFogInteraction * mistZone;
+            fogScatter = clamp(1.0 + scatterBoost, 0.45, 1.45);
           }
 
           vec3 cCore = uUseCustomColors ? uCoreColor : uPalettePrimary;
           vec3 cGlow = uUseCustomColors ? uGlowColor : uPaletteSecondary;
           vec3 cOuter = uUseCustomColors ? uOuterColor : uPaletteAccent;
 
-          // Interpolation chromatique 3 paliers
-          float normDist = clamp(dist / max(0.1, radius), 0.0, 1.0);
-          vec3 col;
-          if (normDist < 0.35) {
-            col = mix(cCore, cGlow, normDist / 0.35);
-            // Rehausse de sur-saturation au coeur
-            col = mix(col, vec3(1.0, 0.98, 0.92), (1.0 - normDist / 0.35) * 0.5);
-          } else {
-            col = mix(cGlow, cOuter, (normDist - 0.35) / 0.65);
+          // Cœur nettement plus chaud et incandescent que le halo plus froid
+          vec3 hotCoreTint = mix(cCore, vec3(1.0, 0.96, 0.85), clamp(0.42 * uCoreWarmth, 0.0, 0.88));
+          vec3 bloomTint = mix(mix(cCore, hotCoreTint, 0.25), cGlow, smoothstep(0.06, 0.48, r));
+          vec3 outerTint = mix(cGlow, cOuter, smoothstep(0.22, 1.15, r));
+
+          float intensityScale = uIntensity * radianceBreath;
+          vec3 coreRgb = hotCoreTint * coreProfile * (1.18 + 0.38 * uCoreWarmth) * intensityScale;
+          vec3 bloomRgb = bloomTint * mieBloom * (0.68 * uBloomStrength) * intensityScale * fogScatter;
+          vec3 outerRgb = outerTint * rayleighHalo * (0.42 + fogVeil) * intensityScale * fogScatter;
+
+          vec3 rawRgb = coreRgb + bloomRgb + outerRgb;
+          // Compression douce façon filmic/HDR pour préserver la richesse du dégradé sans écraser en blanc plat
+          vec3 finalRgb = rawRgb / (1.0 + rawRgb * 0.32);
+
+          float luminance = max(finalRgb.r, max(finalRgb.g, finalRgb.b));
+          float alpha = clamp((coreProfile * 0.85 + mieBloom * 0.65 * uBloomStrength + rayleighHalo * 0.45) * fogScatter * uIntensity * 0.72, 0.0, 0.95);
+
+          if (luminance <= 0.004 || alpha <= 0.004) {
+            discard;
           }
 
-          vec3 finalRgb = col * totalGlow;
-
-          gl_FragColor = vec4(finalRgb, clamp(totalGlow * 0.75, 0.0, 1.0));
+          gl_FragColor = vec4(finalRgb, alpha);
         }
       `,
       transparent: true,
@@ -240,6 +278,12 @@ export class VolumetricGlowInstance implements IBrickInstance {
       this.material.uniforms.uRandomness.value = newProps.randomness
     if (newProps.glowX !== undefined) this.material.uniforms.uGlowX.value = newProps.glowX
     if (newProps.glowY !== undefined) this.material.uniforms.uGlowY.value = newProps.glowY
+    if (newProps.bloomStrength !== undefined)
+      this.material.uniforms.uBloomStrength.value = newProps.bloomStrength
+    if (newProps.fogInteraction !== undefined)
+      this.material.uniforms.uFogInteraction.value = newProps.fogInteraction
+    if (newProps.coreWarmth !== undefined)
+      this.material.uniforms.uCoreWarmth.value = newProps.coreWarmth
   }
 
   public onQualityChange(quality: QualityTier): void {

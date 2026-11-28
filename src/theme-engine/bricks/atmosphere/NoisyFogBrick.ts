@@ -2,10 +2,10 @@
  * src/theme-engine/bricks/atmosphere/NoisyFogBrick.ts
  *
  * Brique d'ambiance Atmosphérique (Couche 4 : Atmosphere).
- * Brume bruitée volumétrique avec nappe rampante et volutes dérivantes,
- * animée par FBM multi-octaves avec distorsion de domaine (domain warping),
- * atténuation d'élévation réaliste (height falloff), sillage dynamique
- * créé par le déplacement de la souris, et 3 paliers de qualité adaptatifs.
+ * Brume bruitée volumétrique multi-couches en parallaxe, ancrée au sol,
+ * animée par champ rotationnel (curl noise 2D) et FBM étiré par le vent,
+ * avec éclairage directionnel par les sources de lumière de la scène
+ * (diffusion vers l'avant + liseré lumineux / ombres propres) et sillage souris.
  */
 
 import * as THREE from 'three'
@@ -28,12 +28,20 @@ export interface NoisyFogProps {
   depth?: number
   /** Radiance et diffusion lumineuse dans la brume (0.2 à 2.0, défaut 1.0). */
   intensity?: number
-  /** Facteur d'asymétrie et de domain warping chaotique (0.0 à 1.0, défaut 0.35). */
+  /** Facteur d'asymétrie et de turbulence chaotique (0.0 à 1.0, défaut 0.35). */
   randomness?: number
   /** Gradient d'atténuation vertical : brume rampante au sol vs diffuse (0.3 à 3.0, défaut 1.5). */
   heightFalloff?: number
   /** Angle de direction du vent en radians (-3.14 à 3.14, défaut 0.15). */
   windAngle?: number
+  /** Teinte de la source lumineuse éclairant la brume (si absent, dérivé de uPaletteAccent). */
+  lightColor?: string
+  /** Position horizontale X normalisée de la source lumineuse (-1.0 à 1.0, défaut 0.35). */
+  lightSourceX?: number
+  /** Position verticale Y normalisée de la source lumineuse (0.0 à 1.5, défaut 0.85). */
+  lightSourceY?: number
+  /** Amplitude des volutes tourbillonnaires de type curl noise (0.0 à 1.5, défaut 0.65). */
+  curlStrength?: number
 }
 
 export class NoisyFogInstance implements IBrickInstance {
@@ -45,6 +53,7 @@ export class NoisyFogInstance implements IBrickInstance {
   private scene: THREE.Scene
   private props: NoisyFogProps
   private fogColorVec: THREE.Color
+  private lightColorVec: THREE.Color
 
   constructor(id: string, props: NoisyFogProps = {}, context: BrickContext) {
     this.id = id
@@ -52,6 +61,7 @@ export class NoisyFogInstance implements IBrickInstance {
     this.scene = context.scene
 
     this.fogColorVec = new THREE.Color(props.fogColor ?? '#94a3b8')
+    this.lightColorVec = new THREE.Color(props.lightColor ?? '#fef08a')
 
     const density = props.density ?? 1.0
     const speed = props.speed ?? 0.2
@@ -60,6 +70,9 @@ export class NoisyFogInstance implements IBrickInstance {
     const randomness = props.randomness ?? 0.35
     const heightFalloff = props.heightFalloff ?? 1.5
     const windAngle = props.windAngle ?? 0.15
+    const lightSourceX = props.lightSourceX ?? 0.35
+    const lightSourceY = props.lightSourceY ?? 0.85
+    const curlStrength = props.curlStrength ?? 0.65
 
     const geometry = new THREE.PlaneGeometry(2, 2)
 
@@ -74,6 +87,8 @@ export class NoisyFogInstance implements IBrickInstance {
         uPaletteAccent: context.sharedUniforms.uPaletteAccent,
         uFogColor: { value: this.fogColorVec },
         uUseCustomColor: { value: Boolean(props.fogColor) },
+        uLightColor: { value: this.lightColorVec },
+        uUseCustomLightColor: { value: Boolean(props.lightColor) },
         uDensity: { value: density },
         uSpeed: { value: speed },
         uDepth: { value: depth },
@@ -81,6 +96,9 @@ export class NoisyFogInstance implements IBrickInstance {
         uRandomness: { value: randomness },
         uHeightFalloff: { value: heightFalloff },
         uWindAngle: { value: windAngle },
+        uLightSourceX: { value: lightSourceX },
+        uLightSourceY: { value: lightSourceY },
+        uCurlStrength: { value: curlStrength },
         uQualityLevel: {
           value: context.quality === 'HIGH' ? 2 : context.quality === 'MEDIUM' ? 1 : 0,
         },
@@ -102,6 +120,8 @@ export class NoisyFogInstance implements IBrickInstance {
         uniform vec3 uPaletteAccent;
         uniform vec3 uFogColor;
         uniform bool uUseCustomColor;
+        uniform vec3 uLightColor;
+        uniform bool uUseCustomLightColor;
         uniform float uDensity;
         uniform float uSpeed;
         uniform float uDepth;
@@ -109,107 +129,187 @@ export class NoisyFogInstance implements IBrickInstance {
         uniform float uRandomness;
         uniform float uHeightFalloff;
         uniform float uWindAngle;
+        uniform float uLightSourceX;
+        uniform float uLightSourceY;
+        uniform float uCurlStrength;
         uniform int uQualityLevel;
         varying vec2 vUv;
 
         ${GLSL_NOISE_2D}
         ${GLSL_HASH}
 
-        // FBM atmosphérique avec rotation anti-coutures et persistance douce
+        // FBM atmosphérique avec rotation anti-coutures
         float fogFbm(vec2 coord, int octaves) {
           float v = 0.0;
-          float a = 0.50;
+          float a = 0.52;
           float total = 0.0;
           mat2 rot = mat2(0.80, 0.60, -0.60, 0.80);
-          for (int i = 0; i < 4; i++) {
+          for (int i = 0; i < 3; i++) {
             if (i >= octaves) break;
             v += a * snoise(coord);
             total += a;
-            coord = rot * coord * 2.05 + vec2(17.2, 43.7);
-            a *= 0.45; // Décroissance rapide pour étouffer les micro-fréquences et le marbré
+            coord = rot * coord * 2.07 + vec2(17.2, 43.7);
+            a *= 0.48;
           }
           return v / max(total, 0.001);
+        }
+
+        // Champ rotationnel (curl noise 2D) sans divergence pour des volutes réalistes
+        vec2 fogCurl(vec2 p) {
+          float eps = 0.07;
+          float n1 = snoise(p + vec2(0.0, eps));
+          float n2 = snoise(p - vec2(0.0, eps));
+          float n3 = snoise(p + vec2(eps, 0.0));
+          float n4 = snoise(p - vec2(eps, 0.0));
+          return vec2((n1 - n2) / (2.0 * eps), -(n3 - n4) / (2.0 * eps));
+        }
+
+        // Curl rapide 3 échantillons pour palier MEDIUM
+        vec2 fogCurlFast(vec2 p) {
+          float eps = 0.08;
+          float n0 = snoise(p);
+          float nx = snoise(p + vec2(eps, 0.0));
+          float ny = snoise(p + vec2(0.0, eps));
+          return vec2((ny - n0) / eps, -(nx - n0) / eps);
+        }
+
+        // Convertit un point monde en coordonnées étirées le long de la direction du vent
+        vec2 windStretch(vec2 p, vec2 windVec, vec2 windPerp, float alongScale, float acrossScale) {
+          return vec2(dot(p, windVec) * alongScale, dot(p, windPerp) * acrossScale);
         }
 
         void main() {
           vec2 uv = vUv;
           float aspect = uResolution.x / max(1.0, uResolution.y);
-          // Échelle spatiale basse fréquence pour une brume douce, large et vaporeuse
-          vec2 p = (uv - 0.5) * vec2(aspect, 1.0) * 0.55;
+          vec2 screenP = (uv - 0.5) * vec2(aspect, 1.0);
 
-          // Déplacement lent et apaisé du vent (ambiance atmosphérique calme)
-          float t = uTime * (uSpeed * 0.12);
-          vec2 windDir = vec2(cos(uWindAngle), sin(uWindAngle)) * t;
+          vec2 windVec = vec2(cos(uWindAngle), sin(uWindAngle));
+          vec2 windPerp = vec2(-windVec.y, windVec.x);
 
-          // Parallaxe souris avec inertie douce
-          vec2 mouseOffset = uMouse * (uDepth * 0.12);
-          p += mouseOffset + windDir;
+          // Cisaillement vertical du vent : l'air se déplace un peu plus vite au-dessus du sol
+          float windShear = 0.72 + 0.56 * smoothstep(0.0, 0.65, uv.y);
+          float t = uTime * (uSpeed * 0.16);
+          float scrollDrift = uScroll * 0.00035 * uDepth;
 
-          // Effet de sillage et dispersion au passage de la souris (mouse wake)
-          vec2 mCoord = (uMouse * 0.5) * vec2(aspect, 1.0) * 0.55;
-          float distToMouse = length(p - mCoord);
-          float mouseWake = smoothstep(0.40, 0.05, distToMouse) * (uDepth * 0.30);
+          // Sillage de souris calculé strictement en espace écran (ne dérive pas avec le vent)
+          vec2 mouseScreen = uMouse * 0.5 * vec2(aspect, 1.0);
+          vec2 toPixel = screenP - mouseScreen;
+          float mouseDist = length(toPixel);
+          float mouseWake = smoothstep(0.36, 0.04, mouseDist) * (0.22 + uDepth * 0.34);
+          vec2 wakePush = (mouseDist > 0.001 ? toPixel / mouseDist : vec2(0.0)) * (mouseWake * 0.09);
 
-          float fogDensity = 0.0;
+          // Position de la source lumineuse de scène et direction locale
+          vec2 lightCenter = vec2(uLightSourceX * aspect * 0.5, uLightSourceY - 0.5) + uMouse * (uDepth * 0.08);
+          vec2 toLight = lightCenter - screenP;
+          float lightDist = length(toLight);
+          vec2 lightDir = lightDist > 0.001 ? toLight / lightDist : vec2(0.0, 1.0);
+
+          // Profil d'ancrage au sol avec atténuation forte en altitude
+          float groundCurve = exp(-max(0.0, uv.y) * (1.15 + uHeightFalloff * 1.45));
+
+          float combinedAlpha = 0.0;
+          float combinedLight = 0.0;
+          float combinedShadow = 0.0;
 
           if (uQualityLevel >= 2) {
-            // === PALIER HIGH : 4 octaves FBM + double domain warping doux (volutes organiques sans marbrure) ===
-            float warpFactor = uRandomness * 0.28;
-            vec2 q = vec2(
-              fogFbm(p + vec2(t * 0.05, t * 0.03), 2),
-              fogFbm(p + vec2(5.2, 1.3) - vec2(t * 0.04, t * 0.06), 2)
-            );
+            // === PALIER HIGH : 3 couches en parallaxe + volutes curl + éclairage directionnel ===
+            float curlAmp = (0.14 + uRandomness * 0.24) * uCurlStrength;
 
-            vec2 r = vec2(
-              fogFbm(p + 0.60 * q + vec2(1.7, 9.2) + vec2(t * 0.03, -t * 0.04), 2),
-              fogFbm(p + 0.60 * q + vec2(8.3, 2.8) + vec2(-t * 0.03, t * 0.02), 2)
-            );
+            // 1. Couche lointaine (lente, peu contrastée, voile de vallée jusqu'à mi-hauteur)
+            vec2 pFar = screenP * 0.65 + uMouse * (uDepth * 0.05) + vec2(0.0, scrollDrift * 0.4);
+            vec2 wFar = windStretch(pFar, windVec, windPerp, 0.75, 1.35) - vec2(t * 0.42 * windShear, t * 0.08);
+            float nFar = fogFbm(wFar + vec2(3.1, 7.4), 2);
+            float hFar = exp(-max(0.0, uv.y - 0.04) * (0.65 + uHeightFalloff * 0.85));
+            float dFar = smoothstep(-0.22, 0.58, nFar) * hFar * 0.34;
 
-            float fbmVal = fogFbm(p + warpFactor * r, 4);
-            // Légère modulation douce basse fréquence au lieu d'un bruit haute fréquence marbré
-            float softMod = snoise(p * 1.1 - vec2(t * 0.06, t * 0.03)) * (0.05 * uRandomness);
-            fogDensity = fbmVal + softMod - mouseWake;
+            // 2. Couche médiane (bancs dérivants modulés par curl léger)
+            vec2 pMid = screenP * 1.05 + uMouse * (uDepth * 0.11) + wakePush * 0.5 + vec2(0.0, scrollDrift * 0.75);
+            vec2 wMid = windStretch(pMid, windVec, windPerp, 0.72, 1.45) - vec2(t * 0.85 * windShear, t * 0.12);
+            vec2 curlMid = fogCurlFast(wMid * 0.85 + vec2(t * 0.15, -t * 0.10)) * (curlAmp * 0.55);
+            float nMid = fogFbm(wMid + curlMid + vec2(11.3, 2.7), 2);
+            float ceilingMid = nMid * 0.16 * (1.0 - uv.y);
+            float hMid = clamp(groundCurve + ceilingMid, 0.0, 1.0);
+            float dMid = smoothstep(-0.18, 0.62, nMid) * hMid * 0.50;
+
+            // 3. Couche proche du sol (volutes curl détaillées, rapide, fort ancrage bas)
+            vec2 pNear = screenP * 1.65 + uMouse * (uDepth * 0.19) + wakePush + vec2(0.0, scrollDrift);
+            vec2 wNear = windStretch(pNear, windVec, windPerp, 0.68, 1.60) - vec2(t * 1.35 * windShear, t * 0.18);
+            vec2 curlNear = fogCurlFast(wNear * 0.75 + vec2(t * 0.22, -t * 0.16)) * curlAmp;
+            vec2 nearCoord = wNear + curlNear;
+            float nNear = fogFbm(nearCoord, 3);
+            // Échantillon décalé vers la source lumineuse pour l'ombrage / liseré brillant
+            vec2 lightStep = windStretch(lightDir * 0.14, windVec, windPerp, 0.68, 1.60);
+            float nLit = snoise(nearCoord + lightStep);
+
+            float groundNear = exp(-max(0.0, uv.y) * (1.55 + uHeightFalloff * 1.85));
+            float wispCeiling = smoothstep(0.55, 0.0, uv.y) * (nNear * 0.18);
+            float hNear = clamp(groundNear + max(0.0, wispCeiling), 0.0, 1.0);
+            float dNear = smoothstep(-0.12, 0.66, nNear) * hNear * (1.0 - mouseWake * 0.72) * 0.68;
+
+            combinedAlpha = dFar * 0.45 + dMid * 0.65 + dNear * 0.85;
+            // Éclairage sur les bords fins orientés vers la source + auto-ombrage dans les poches épaisses
+            float rimLight = clamp((nNear - nLit) * 2.2, 0.0, 1.0);
+            combinedLight = rimLight * 0.65 + (1.0 - smoothstep(0.2, 0.9, dNear)) * 0.25;
+            combinedShadow = clamp(dNear * 0.65 + dMid * 0.25, 0.0, 1.0);
+
           } else if (uQualityLevel >= 1) {
-            // === PALIER MEDIUM : 2 octaves FBM + warping simple ===
-            float warpFactor = uRandomness * 0.22;
-            vec2 q = vec2(
-              fogFbm(p + vec2(t * 0.05, t * 0.02), 2),
-              fogFbm(p + vec2(3.1, 1.5) - t * 0.04, 2)
-            );
-            float fbmVal = fogFbm(p + warpFactor * q, 2);
-            fogDensity = fbmVal - mouseWake;
+            // === PALIER MEDIUM : 2 couches parallaxe + curl rapide + éclairage ===
+            float curlAmp = (0.11 + uRandomness * 0.20) * uCurlStrength;
+
+            // Couche lointaine
+            vec2 pFar = screenP * 0.78 + uMouse * (uDepth * 0.07) + vec2(0.0, scrollDrift * 0.5);
+            vec2 wFar = windStretch(pFar, windVec, windPerp, 0.75, 1.35) - vec2(t * 0.55 * windShear, 0.0);
+            float nFar = snoise(wFar + vec2(4.2, 1.9));
+            float hFar = exp(-max(0.0, uv.y - 0.02) * (0.75 + uHeightFalloff * 0.95));
+            float dFar = smoothstep(-0.22, 0.62, nFar) * hFar * 0.42;
+
+            // Couche proche avec volutes curl
+            vec2 pNear = screenP * 1.45 + uMouse * (uDepth * 0.17) + wakePush + vec2(0.0, scrollDrift);
+            vec2 wNear = windStretch(pNear, windVec, windPerp, 0.70, 1.50) - vec2(t * 1.15 * windShear, t * 0.12);
+            vec2 curlNear = fogCurlFast(wNear * 0.75 + vec2(t * 0.18, -t * 0.12)) * curlAmp;
+            float nNear = fogFbm(wNear + curlNear, 2);
+
+            float hNear = clamp(groundCurve + max(0.0, nNear * 0.12 * (1.0 - uv.y)), 0.0, 1.0);
+            float dNear = smoothstep(-0.15, 0.65, nNear) * hNear * (1.0 - mouseWake * 0.65) * 0.75;
+
+            combinedAlpha = dFar * 0.50 + dNear * 0.85;
+            combinedLight = smoothstep(0.0, 0.6, nNear) * 0.45;
+            combinedShadow = clamp(dNear * 0.55, 0.0, 1.0);
+
           } else {
-            // === PALIER LOW : 1 octave Simplex douce et étirée (0 couture, ultra-léger) ===
-            float n = snoise(vec2(p.x * 0.75, p.y * 0.95) + vec2(t * 0.05, t * 0.02));
-            fogDensity = n * 0.70;
+            // === PALIER LOW : 1 couche étirée par le vent + ancrage sol (budget mobile minimal) ===
+            vec2 pLow = screenP * 1.05 + uMouse * (uDepth * 0.12);
+            vec2 wLow = windStretch(pLow, windVec, windPerp, 0.70, 1.35) - vec2(t * 0.90, 0.0);
+            float nLow = snoise(wLow);
+            float lowHeight = exp(-max(0.0, uv.y) * (0.70 + uHeightFalloff * 0.85));
+            float dLow = smoothstep(-0.22, 0.65, nLow) * lowHeight * (1.0 - mouseWake * 0.45);
+            combinedAlpha = dLow * 0.92;
+            combinedLight = smoothstep(-0.1, 0.7, nLow) * 0.38;
+            combinedShadow = dLow * 0.30;
           }
 
-          // Atténuation d'élévation réaliste (nappe rampante au sol qui s'estompe vers le haut)
-          float heightMask = exp(-max(0.0, uv.y) * (uHeightFalloff * 1.1));
-          heightMask = mix(0.12, 1.0, heightMask);
-
-          // Normalisation progressive en douceur [-1, 1] -> [0, 1]
-          float normDensity = clamp(fogDensity * 0.5 + 0.5, 0.0, 1.0);
-          // Transition vaporeuse avec fondu progressif sans coupure abrupte
-          float fogAlpha = smoothstep(0.15, 0.85, normDensity);
-
-          // Faible opacité pour garantir la translucidité (on voit clairement à travers le décor)
-          float alpha = fogAlpha * heightMask * (uDensity * 0.38);
-          alpha = clamp(alpha * uIntensity, 0.0, 0.42);
-
+          float alpha = clamp(combinedAlpha * uDensity * 0.44 * uIntensity, 0.0, 0.56);
           if (alpha <= 0.003) {
             discard;
           }
 
-          // Teinte de la brume avec absorption lumineuse atmosphérique douce
+          // Éclairage de la brume par la source lumineuse de la scène (diffusion Mie vers l'avant)
           vec3 baseFog = uUseCustomColor ? uFogColor : uPaletteSecondary;
-          // Éclat d'horizon et lueur diffuse sans saturation excessive
-          float crestLight = clamp(normDensity * 0.25 + (1.0 - uv.y) * 0.20, 0.0, 1.0);
-          vec3 lightTint = mix(baseFog, mix(baseFog, uPaletteAccent, 0.15), crestLight * 0.30);
-          // Voile atmosphérique très doux sans nervures brillantes
-          lightTint += vec3(0.03, 0.035, 0.04) * smoothstep(0.4, 0.95, normDensity);
+          vec3 sceneLight = uUseCustomLightColor
+            ? uLightColor
+            : mix(uPaletteAccent, vec3(1.0, 0.96, 0.88), 0.35);
 
-          gl_FragColor = vec4(lightTint, alpha);
+          // Diffusion vers l'avant (halo lumineux doux dans la direction de la source)
+          float forwardScatter = exp(-lightDist * 1.75) * (0.45 + 0.55 * smoothstep(0.0, 0.75, uv.y + 0.15));
+          // Assombrissement subtil à la base des bancs denses (auto-ombrage atmosphérique)
+          vec3 shadowFog = baseFog * mix(0.68, 0.88, uv.y);
+          vec3 litFog = mix(shadowFog, baseFog * 1.15, clamp(combinedLight + 0.25, 0.0, 1.0));
+          // Ajout de l'illumination de la scène sur les volutes et près de la source
+          float lightMix = clamp(forwardScatter * 0.70 + combinedLight * forwardScatter * 0.45, 0.0, 0.78);
+          vec3 finalColor = mix(litFog, mix(baseFog, sceneLight, 0.72), lightMix);
+          finalColor = mix(finalColor, shadowFog, combinedShadow * 0.22 * (1.0 - forwardScatter));
+
+          gl_FragColor = vec4(finalColor, alpha);
         }
       `,
       transparent: true,
@@ -235,6 +335,11 @@ export class NoisyFogInstance implements IBrickInstance {
       this.material.uniforms.uFogColor.value = this.fogColorVec
       this.material.uniforms.uUseCustomColor.value = true
     }
+    if (newProps.lightColor !== undefined) {
+      this.lightColorVec.set(newProps.lightColor)
+      this.material.uniforms.uLightColor.value = this.lightColorVec
+      this.material.uniforms.uUseCustomLightColor.value = true
+    }
     if (newProps.density !== undefined) this.material.uniforms.uDensity.value = newProps.density
     if (newProps.speed !== undefined) this.material.uniforms.uSpeed.value = newProps.speed
     if (newProps.depth !== undefined) this.material.uniforms.uDepth.value = newProps.depth
@@ -246,6 +351,12 @@ export class NoisyFogInstance implements IBrickInstance {
       this.material.uniforms.uHeightFalloff.value = newProps.heightFalloff
     if (newProps.windAngle !== undefined)
       this.material.uniforms.uWindAngle.value = newProps.windAngle
+    if (newProps.lightSourceX !== undefined)
+      this.material.uniforms.uLightSourceX.value = newProps.lightSourceX
+    if (newProps.lightSourceY !== undefined)
+      this.material.uniforms.uLightSourceY.value = newProps.lightSourceY
+    if (newProps.curlStrength !== undefined)
+      this.material.uniforms.uCurlStrength.value = newProps.curlStrength
   }
 
   public onQualityChange(quality: QualityTier): void {
